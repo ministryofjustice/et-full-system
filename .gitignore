@@ -3,3 +3,4 @@ systems/et3
 systems/api
 
 .idea
+tmp/**/*

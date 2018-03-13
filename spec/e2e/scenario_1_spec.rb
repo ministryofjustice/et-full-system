@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe 'Scenario 1', type: :feature do
+RSpec.describe 'Scenario 1', type: :feature, js: true do
   example 'It does something' do
     given_i_am(:anonymous)
     user.email_address = 'test@digital.justice.gov.uk'
