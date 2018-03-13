@@ -1,3 +1,9 @@
 [submodule "et1"]
-	path = et1
+	path = systems/et1
 	url = git@github.com:ministryofjustice/atet.git
+[submodule "et3"]
+	path = systems/et3
+	url = git@github.com:ministryofjustice/et3.git
+[submodule "api"]
+	path = systems/api
+	url = git@github.com:ministryofjustice/et-api.git
