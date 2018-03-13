@@ -1,0 +1,3 @@
+[submodule "et1"]
+	path = et1
+	url = git@github.com:ministryofjustice/atet.git
