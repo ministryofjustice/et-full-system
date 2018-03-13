@@ -1,0 +1,48 @@
+version: '3'
+services:
+  et1:
+    build:
+      context: ../../systems/et1
+    links:
+      - et1_db
+      - et1_redis
+      - smtp
+    ports:
+      - 8080:8080
+    environment:
+      RAILS_ENV: local
+      DB_HOST: et1_db
+      DB_USERNAME: postgres
+      DB_NAME: et1db
+      WEB_CONCURRENCY: 2
+      ASSET_HOST: anything
+      HTTP_OPEN_TIMEOUT_S: 1
+      HTTP_READ_TIMEOUT_S: 1
+      REDIS_URL: redis://et1_redis:6379
+      SECRET_KEY_BASE: dsjeflsdshewje23q896edc7dsufhsekjh4321ueirdasy6890
+      SMTP_HOSTNAME: smtp
+      SMTP_PORT: 1025
+
+    volumes:
+      - ./Procfile:/usr/src/app/Procfile
+    command: bash -c "gem install foreman; bundle; bundle exec rake db:create; bundle exec rake db:migrate; bundle exec rake assets:precompile; foreman start"
+    networks:
+      - et_full_system
+  et1_redis:
+    image: redis
+    ports:
+      - 6379
+    networks:
+      - et_full_system
+
+  et1_db:
+    image: postgres:9.3.5
+    networks:
+      - et_full_system
+  smtp:
+    image: mailhog/mailhog:latest
+    networks:
+      - et_full_system
+
+networks:
+  et_full_system:

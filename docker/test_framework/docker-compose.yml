@@ -1,0 +1,50 @@
+version: '3'
+services:
+  test:
+    build:
+      context: .
+    links:
+      - zalenium
+    environment:
+      SELENIUM_URL: 'http://zalenium:4444/wd/hub'
+      DRIVER: chrome
+    volumes:
+      - ../../:/app
+      - test_gem_cache:/usr/local/bundle
+    networks:
+      - test_framework
+  zalenium:
+    image: "dosel/zalenium"
+    tty: true
+    volumes:
+      - /tmp/videos:/home/seluser/videos
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 4444:4444
+    command: >
+      start --desiredContainers 2
+            --maxDockerSeleniumContainers 8
+            --screenWidth 1600 --screenHeight 900
+            --timeZone "Europe/London"
+            --videoRecordingEnabled true
+            --sauceLabsEnabled false
+            --browserStackEnabled false
+            --testingBotEnabled false
+            --startTunnel false
+    environment:
+      - HOST_UID
+      - HOST_GID
+      - SAUCE_USERNAME
+      - SAUCE_ACCESS_KEY
+      - BROWSER_STACK_USER
+      - BROWSER_STACK_KEY
+      - TESTINGBOT_KEY
+      - TESTINGBOT_SECRET
+    networks:
+      - test_framework
+volumes:
+  test_gem_cache:
+networks:
+  test_framework:
+    external:
+      name: testservers_et_full_system

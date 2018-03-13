@@ -24,3 +24,24 @@ or if you already have cloned but forgot the '--recursive'
 git submodule update --init
 
 ```
+
+
+# Using The Docker Setup
+
+In the docker folder, there are a few folders each with at least a docker-compose.yml file in
+
+Here are what they are for :-
+
+## docker/test_servers
+
+Will run all of the servers to run tests against or to manually test against
+
+## docker/test_framework
+
+Used to run the test suite - generally you would grab a bash session using
+
+```
+docker-compose run test bash
+```
+
+and then do normal ruby stuff such as bundle exec rspec

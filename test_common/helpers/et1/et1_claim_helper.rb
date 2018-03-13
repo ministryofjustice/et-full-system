@@ -3,6 +3,7 @@ module EtFullSystem
     module Et1ClaimHelper
       def start_a_new_et1_claim
         et1_new_claim_page.load
+        sleep 10
         et1_new_claim_page.start_a_claim
       end
     end

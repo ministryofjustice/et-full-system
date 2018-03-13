@@ -7,6 +7,7 @@ RSpec.describe 'Scenario 1', type: :feature, js: true do
     user.memorable_word = 'password'
 
     start_a_new_et1_claim
+    sleep 10
 
     et1_answer_login
 

@@ -3,7 +3,7 @@ module EtFullSystem
   module Test
     module Et1
       class NewClaimPage < BasePage
-        set_url '/'
+        set_url 'http://et1:8080/'
 
       end
     end
