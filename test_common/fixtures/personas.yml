@@ -1,3 +1,71 @@
-john:
-  first_name: John
-  last_name: Smith
+dummy_user:
+  personal:
+    title: 'Mr'
+    first_name: First
+    last_name: Last
+    date_of_birth: '21/11/1982'
+    gender: Male
+    has_special_needs: 'Yes'
+    special_needs: My special needs are as follows
+    building: '102'
+    street: Petty France
+    locality: London
+    county: Greater London
+    post_code: SW1H 9AJ
+    country: United Kingdom
+    telephone_number: 01234 567890
+    alternative_telephone_number: 01234 098765
+    email_address: test@digital.justice.gov.uk
+    correspondence: Email
+    memorable_word: password
+    group_claims:
+      -
+        title: Mrs
+        first_name: GroupFirst
+        last_name: GroupLast
+        date_of_birth: 25/12/1989
+        building: 104
+        street: Oxford Street
+        locality: London
+        county: Greater London
+        post_code: SW1H 9JA
+      -
+        title: Mrs
+        first_name: Group2First
+        last_name: Group2Last
+        date_of_birth: 25/12/1988
+        building: 106
+        street: Regent Street
+        locality: London
+        county: Greater London
+        post_code: SW1H 9JB
+      -
+        title: Mrs
+        first_name: Group3First
+        last_name: Group3Last
+        date_of_birth: 21/12/19993
+        building: 108
+        street: Pall Mall
+        locality: London
+        county: Greater London
+        post_code: SW1H 9JJ
+      -
+        title: Mrs
+        first_name: Group4First
+        last_name: Group4Last
+        date_of_birth: 21/11/1992
+        building: 110
+        street: Buckingham Pl
+        locality: London
+        county: Greater London
+        post_code: SW1H 9JT
+      -
+        title: Mrs
+        first_name: Group5First
+        last_name: Group5Last
+        date_of_birth: 21/10/1991
+        building: 112
+        street: Oxford Road
+        locality: London
+        county: Greater London
+        post_code: SW1H 9JY

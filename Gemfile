@@ -15,5 +15,9 @@ group :test do
   gem 'chromedriver-helper', '~> 1.1'
   gem 'geckodriver-helper', '~> 0.0'
   gem 'capybara-screenshot', '~> 1.0'
+end
 
+group :development, :test do
+  gem 'ruby-debug-ide', '~> 0.6'
+  gem 'debase', '~> 0.2'
 end

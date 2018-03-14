@@ -98,6 +98,9 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
   require 'active_support/concern'
+  require 'active_support/core_ext/module/delegation'
+  require 'active_support/core_ext/hash'
+
   require 'capybara/rspec'
   Dir[File.absolute_path('../support/**/*.rb', __FILE__)].each { |f| require f }
 end

@@ -8,13 +8,25 @@ module EtFullSystem
 
       # Fetch a persona
       # @param [String] name The name of the persona to fetch
-      # @return [OpenStruct] An open struct version of the hash stored in the persona
+      # @return [Hash] The hash stored in the persona
       def fetch(name)
         ensure_loaded
-        OpenStruct.new registry.fetch(name)
+        convert_value registry.fetch(name)
       end
 
       private
+
+      def convert_value(obj)
+        case obj
+        when Hash
+           obj.with_indifferent_access
+        when Array
+          obj.map {|v| convert_value(v)}
+        else
+          obj
+        end
+      end
+
 
       def ensure_loaded
         load unless loaded?
