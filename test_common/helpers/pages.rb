@@ -16,6 +16,10 @@ module EtFullSystem
       def et1_group_claims_page
         EtFullSystem::Test::Et1::GroupClaimsPage.new
       end
+
+      def et1_representatives_details_page
+        EtFullSystem::Test::Et1::RepresentativesDetailsPage.new
+      end
     end
   end
 end

@@ -20,6 +20,11 @@ module EtFullSystem
         et1_group_claims_page.set_for(user)
         et1_group_claims_page.save_and_continue
       end
+
+      def et1_answer_representatives_questions
+        et1_representatives_details_page.set_for(user)
+        et1_representatives_details_page.save_and_continue
+      end
     end
   end
 end
