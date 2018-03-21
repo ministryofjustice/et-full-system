@@ -82,4 +82,55 @@ dummy_user:
     alternative_telephone_number: '02222 654321'
     email_address: 'solicitor.test@digital.justice.gov.uk'
     dx_number: 'dx1234567890'
+  respondents:
+    -
+      name: 'Respondent Name'
+      building: '108'
+      street: 'Regent Street'
+      locality: 'London'
+      county: 'Greater London'
+      post_code: 'SW1H 9QR'
+      telephone_number: '02222 321654'
+      work_address:
+        building:  '110'
+        street:  'Piccadily Circus'
+        locality:  'London'
+        county:  'Greater London'
+        post_code:  'SW1H 9ST'
+        telephone_number:  '03333 423554'
+      acas_number: 'AC123456/78/90'
+    -
+      name: 'Respondent Two'
+      building: '112'
+      street: 'Oxford Street'
+      locality: 'London'
+      county: 'Greater London'
+      post_code: 'SW1H 9UV'
+      acas_number: 'AC654321/87/09'
+    -
+      name: 'Respondent Three'
+      building: '114'
+      street: 'Knightsbridge'
+      locality: 'London'
+      county: 'Greater London'
+      post_code: 'SW1H 9WX'
+      acas_number: 'AC654321/88/10'
+    -
+      name: 'Respondent Four'
+      building: '116'
+      street: 'Mayfair'
+      locality: 'London'
+      county: 'Greater London'
+      post_code: 'SW1H 9YZ'
+      acas_number: 'AC654321/88/10'
+    -
+      name: 'Respondent Five'
+      building: '118'
+      street: 'Marylebone Road'
+      locality: 'London'
+      county: 'Greater London'
+      post_code: 'SW1H 8AB'
+      acas_number: 'AC654321/89/11'
+
+
 
