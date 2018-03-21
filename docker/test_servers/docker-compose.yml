@@ -23,7 +23,7 @@ services:
       SECRET_KEY_BASE: dsjeflsdshewje23q896edc7dsufhsekjh4321ueirdasy6890
       SMTP_HOSTNAME: smtp
       SMTP_PORT: 1025
-      JADU_API: http://et_api:8000/v1/
+      JADU_API: http://et_api:8080/v1/
       AWS_ACCESS_KEY_ID:
       AWS_SECRET_ACCESS_KEY:
       S3_UPLOAD_BUCKET:
@@ -52,6 +52,10 @@ services:
   et_api:
     build:
       context: ../../systems/api
-
+    environment:
+      WEB_CONCURRENCY: 2
+      SECRET_KEY_BASE: sdlkjewfkjhfviuhduihenrjk435r89esfd7cv983qh2n4r3q27yh4u5rtfg
+    networks:
+      - et_full_system
 networks:
   et_full_system:
