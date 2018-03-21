@@ -131,6 +131,26 @@ dummy_user:
       county: 'Greater London'
       post_code: 'SW1H 8AB'
       acas_number: 'AC654321/89/11'
+  employment:
+    current_work_situation: 'Still working for this employer'
+    job_title: 'Project Manager'
+    start_date: '18/11/2009'
+    notice_period: '3 Months'
+    average_weekly_hours: '38'
+    pay_before_tax: '3000 Monthly'
+    pay_after_tax: '2000 Monthly'
+    employers_pension_scheme: 'Yes'
+    benefits: 'Company car, private health care'
+  claim:
+    claim_type: 'Unfair dismissal (including constructive dismissal)'
+    whistleblowing_claim: 'Yes'
+    send_to_relevant_person: 'Yes'
+    description: 'Full text version of claim'
+    other_claimants: 'Yes'
+    other_claimant_names: 'Similar Claim1, Similar Claim2'
+    preferred_outcome: 'Compensation'
+    preferred_outcome_notes: 'I would like 50,000 GBP due to the stress this caused me'
+    other_important_details: 'Here are some very important details that need to be considered'
 
 
 

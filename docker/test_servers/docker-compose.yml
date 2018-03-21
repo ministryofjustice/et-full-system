@@ -7,6 +7,7 @@ services:
       - et1_db
       - et1_redis
       - smtp
+      - et_api
     ports:
       - 8080:8080
     environment:
@@ -22,6 +23,11 @@ services:
       SECRET_KEY_BASE: dsjeflsdshewje23q896edc7dsufhsekjh4321ueirdasy6890
       SMTP_HOSTNAME: smtp
       SMTP_PORT: 1025
+      JADU_API: http://et_api:8000/v1/
+      AWS_ACCESS_KEY_ID:
+      AWS_SECRET_ACCESS_KEY:
+      S3_UPLOAD_BUCKET:
+    env_file: ./.env
 
     volumes:
       - ./Procfile:/usr/src/app/Procfile
@@ -43,6 +49,9 @@ services:
     image: mailhog/mailhog:latest
     networks:
       - et_full_system
+  et_api:
+    build:
+      context: ../../systems/api
 
 networks:
   et_full_system:

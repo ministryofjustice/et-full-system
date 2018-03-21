@@ -31,7 +31,35 @@ module EtFullSystem
         et1_respondents_details_page.save_and_continue
         et1_additional_respondents_details_page.set_for(user)
         et1_additional_respondents_details_page.save_and_continue
+      end
 
+      def et1_answer_employment_details_questions
+        et1_employment_details_page.set_for(user)
+        et1_employment_details_page.save_and_continue
+      end
+
+      def et1_answer_claim_type_questions
+        et1_claim_type_page.set_for(user)
+        et1_claim_type_page.save_and_continue
+      end
+
+      def et1_answer_claim_details_questions
+        et1_claim_details_page.set_for(user)
+        et1_claim_details_page.save_and_continue
+      end
+
+      def et1_answer_claim_outcome_questions
+        et1_claim_outcome_page.set_for(user)
+        et1_claim_outcome_page.save_and_continue
+      end
+
+      def et1_answer_more_about_the_claim_questions
+        et1_more_about_the_claim_page.set_for(user)
+        et1_more_about_the_claim_page.save_and_continue
+      end
+
+      def et1_submit_claim
+        et1_submission_page.submit_claim
       end
     end
   end

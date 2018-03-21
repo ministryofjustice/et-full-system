@@ -28,6 +28,30 @@ module EtFullSystem
       def et1_additional_respondents_details_page
         EtFullSystem::Test::Et1::AdditionalRespondentsDetailsPage.new
       end
+
+      def et1_employment_details_page
+        EtFullSystem::Test::Et1::EmploymentDetailsPage.new
+      end
+
+      def et1_claim_type_page
+        EtFullSystem::Test::Et1::ClaimTypePage.new
+      end
+
+      def et1_claim_details_page
+        EtFullSystem::Test::Et1::ClaimDetailsPage.new
+      end
+
+      def et1_claim_outcome_page
+        EtFullSystem::Test::Et1::ClaimOutcomePage.new
+      end
+
+      def et1_more_about_the_claim_page
+        EtFullSystem::Test::Et1::MoreAboutTheClaimPage.new
+      end
+
+      def et1_submission_page
+        EtFullSystem::Test::Et1::SubmissionPage.new
+      end
     end
   end
 end
