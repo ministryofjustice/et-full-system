@@ -8,3 +8,6 @@
 [submodule "systems/admin"]
 	path = systems/admin
 	url = git@github.com:ministryofjustice/et-admin.git
+[submodule "systems/api"]
+	path = systems/api
+	url = git@github.com:garytaylor/et-api.git
