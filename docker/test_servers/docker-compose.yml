@@ -13,6 +13,7 @@ services:
       - 8080:8080
     environment:
       RAILS_ENV: local
+      BUNDLE_EXCLUDE: ''
       DB_HOST: et1_db
       DB_USERNAME: postgres
       DB_NAME: et1db
@@ -46,6 +47,10 @@ services:
     image: postgres:9.3.5
     networks:
       - et_full_system
+  etapi_db:
+    image: postgres:9.3.5
+    networks:
+      - et_full_system
   smtp:
     image: mailhog/mailhog:latest
     networks:
@@ -54,24 +59,40 @@ services:
     build:
       context: ../../systems/api
     environment:
+      RAILS_ENV: production
       WEB_CONCURRENCY: 2
       SECRET_KEY_BASE: sdlkjewfkjhfviuhduihenrjk435r89esfd7cv983qh2n4r3q27yh4u5rtfg
+      DB_HOST: etapi_db
+      DB_NAME: et_jadu
+      BUNDLE_EXCLUDE: ''
+    command: bash -c "bundle exec rails db:create db:migrate && bundle exec unicorn -p 8080 -c ./config/unicorn.rb -E production"
     networks:
       - et_full_system
     volumes:
       - ../../systems/api/log:/usr/src/app/log
+    links:
+      - etapi_db
   et_admin:
     build:
       context: ../../systems/admin
     environment:
+      RAILS_ENV: production
       WEB_CONCURRENCY: 2
       SECRET_KEY_BASE: sdlkjewfkjhfviuhduihenrjk435r89esfd7cv983qh2n4r3q27yh4u5rtfg
       DEVISE_SECRET_KEY: JK3N45KH56743JN25J1B5H43B24H35BJ6575KN21NRNKFASDF89DU23I4NK5TGKFD
+      DB_HOST: etapi_db
+      DB_NAME: et_jadu
+      BUNDLE_EXCLUDE: ''
+      RAILS_SERVE_STATIC_FILES: 'true'
+      SEED_EXAMPLE_USERS: 'true'
     networks:
       - et_full_system
     volumes:
       - ../../systems/admin/log:/usr/src/app/log
+    links:
+      - etapi_db
     ports:
       - 8081:8080
+    command: bash -c "sleep 30 && bundle exec rails db:seed && bundle exec unicorn -p 8080 -c ./config/unicorn.rb -E production"
 networks:
   et_full_system:
