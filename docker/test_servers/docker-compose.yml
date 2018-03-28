@@ -25,7 +25,7 @@ services:
       SECRET_KEY_BASE: dsjeflsdshewje23q896edc7dsufhsekjh4321ueirdasy6890
       SMTP_HOSTNAME: smtp
       SMTP_PORT: 1025
-      JADU_API: http://et_api:8080/api/v1/
+      JADU_API: ${JADU_API:-http://et_api:8080/api/v1/}
       AWS_ACCESS_KEY_ID:
       AWS_SECRET_ACCESS_KEY:
       S3_UPLOAD_BUCKET:
@@ -49,6 +49,8 @@ services:
       - et_full_system
   etapi_db:
     image: postgres:9.3.5
+    ports:
+      - "${ETAPI_DB_PORT}5432"
     networks:
       - et_full_system
   smtp:
@@ -69,7 +71,7 @@ services:
     networks:
       - et_full_system
     volumes:
-      - ../../systems/api/log:/usr/src/app/log
+      - ../../systems/api:/usr/src/app
     links:
       - etapi_db
   et_admin:
@@ -88,11 +90,11 @@ services:
     networks:
       - et_full_system
     volumes:
-      - ../../systems/admin/log:/usr/src/app/log
+      - ../../systems/admin:/usr/src/app
     links:
       - etapi_db
     ports:
       - 8081:8080
-    command: bash -c "sleep 30 && bundle exec rails db:seed && bundle exec unicorn -p 8080 -c ./config/unicorn.rb -E production"
+    command: bash -c "sleep 30 && bundle exec rails db:seed assets:precompile && bundle exec unicorn -p 8080 -c ./config/unicorn.rb -E production"
 networks:
   et_full_system:
