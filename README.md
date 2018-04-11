@@ -28,6 +28,23 @@ git submodule update --init
 
 # Using The Docker Setup
 
+See below for details, but there are scripts in bin/dev to run this stuff - so to fire up the servers do :-
+
+
+```
+
+./bin/dev/test_servers up
+
+```
+
+to start them - and if ctrl-c doesn't kill them you may occasionally need to do :-
+
+```
+
+./bin/dev/test_servers down
+
+```
+
 In the docker folder, there are a few folders each with at least a docker-compose.yml file in
 
 Here are what they are for :-
@@ -42,14 +59,52 @@ There are some special environment variables too :-
 
 #### ETAPI_DB_PORT
 
-If specified (must have a colon at the end) then the db port will be forwarded to the specified port on the local machine for use in development so another rails instance can share it.
+If specified then the db port will be forwarded to the specified port on the local machine for use in development so another rails instance can share it.
+If not specified, port 0 is used which means 'a random port' - use 'docker ps' to see where the ports are forwarded
 
 e.g
 
 ```
-ETAPI_DB_PORT=5433:
+ETAPI_DB_PORT=5433
+
 ```
 
+#### ETAPI_REDIS_PORT
+
+If specified, then the redis port for the API server will be forwarded to the specified port on the local machine for use in development so another rails instance can share it.
+If not specified, port 0 is used which means 'a random port' - use 'docker ps' to see where the ports are forwarded.
+
+e.g.
+
+```
+
+ETAPI_REDIS_PORT=6379
+
+```
+
+#### ETAPI_PORT
+
+If specified then the API port will be forwarded to the specified port.
+As above, if not specified, a random port is assigned and you will have to use 'docker ps' to find out which
+
+e.g.
+
+```
+
+ETAPI_PORT=3200
+
+```
+
+#### ET1_PORT
+
+If specified then the ET1 server port will be forwarded to the specified port.
+As above, if not specified, a random port is assigned and you will have to use 'docker ps' to find out which
+
+```
+
+ET1_PORT=3300
+
+```
 
 #### JADU_API
 
@@ -59,10 +114,10 @@ Only valid for the ET1 system
 Example to use port 3000 on your local machine
 
 ```
-JADU_API=http://`hostname`:3000/api/v1/
+JADU_API=http://host.docker.internal:3000/api/v1/
 ```
 
-note that because ET1 is a docker container, you must use the ip or hostname of your machine and NOT localhost.
+note that because ET1 is a docker container, you must use the ip or hostname of your machine or host.docker.internal and NOT localhost.
 
 
 ## docker/test_framework
@@ -74,3 +129,4 @@ docker-compose run test bash
 ```
 
 and then do normal ruby stuff such as bundle exec rspec
+

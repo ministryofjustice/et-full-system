@@ -10,7 +10,7 @@ services:
       - et_api
       - et_admin
     ports:
-      - 8080:8080
+      - "${ET1_PORT:-0}:8080"
     environment:
       RAILS_ENV: local
       BUNDLE_EXCLUDE: ''
@@ -19,8 +19,8 @@ services:
       DB_NAME: et1db
       WEB_CONCURRENCY: 2
       ASSET_HOST: anything
-      HTTP_OPEN_TIMEOUT_S: 1
-      HTTP_READ_TIMEOUT_S: 1
+      HTTP_OPEN_TIMEOUT_S: 15
+      HTTP_READ_TIMEOUT_S: 15
       REDIS_URL: redis://et1_redis:6379
       SECRET_KEY_BASE: dsjeflsdshewje23q896edc7dsufhsekjh4321ueirdasy6890
       SMTP_HOSTNAME: smtp
@@ -50,7 +50,13 @@ services:
   etapi_db:
     image: postgres:9.3.5
     ports:
-      - "${ETAPI_DB_PORT}5432"
+      - "${ETAPI_DB_PORT:-0}:5432"
+    networks:
+      - et_full_system
+  etapi_redis:
+    image: redis
+    ports:
+      - "${ETAPI_REDIS_PORT:-0}:6379"
     networks:
       - et_full_system
   smtp:
@@ -66,14 +72,22 @@ services:
       SECRET_KEY_BASE: sdlkjewfkjhfviuhduihenrjk435r89esfd7cv983qh2n4r3q27yh4u5rtfg
       DB_HOST: etapi_db
       DB_NAME: et_jadu
+      REDIS_HOST: etapi_redis
+      REDIS_DATABASE: 1
       BUNDLE_EXCLUDE: ''
-    command: bash -c "bundle exec rails db:create db:migrate && bundle exec unicorn -p 8080 -c ./config/unicorn.rb -E production"
+      AWS_ACCESS_KEY_ID:
+      AWS_SECRET_ACCESS_KEY:
+      S3_UPLOAD_BUCKET:
+    command: bash -c "gem install foreman && bundle && bundle exec rails db:create db:migrate db:seed && foreman start"
     networks:
       - et_full_system
     volumes:
       - ../../systems/api:/usr/src/app
+    ports:
+      - "${ETAPI_PORT:-0}:8080"
     links:
       - etapi_db
+      - etapi_redis
   et_admin:
     build:
       context: ../../systems/admin
@@ -82,8 +96,11 @@ services:
       WEB_CONCURRENCY: 2
       SECRET_KEY_BASE: sdlkjewfkjhfviuhduihenrjk435r89esfd7cv983qh2n4r3q27yh4u5rtfg
       DEVISE_SECRET_KEY: JK3N45KH56743JN25J1B5H43B24H35BJ6575KN21NRNKFASDF89DU23I4NK5TGKFD
+      ATOS_API_URL: "http://et_api:8080/atos_api"
       DB_HOST: etapi_db
       DB_NAME: et_jadu
+      REDIS_HOST: etapi_redis
+      REDIS_DATABASE: 1
       BUNDLE_EXCLUDE: ''
       RAILS_SERVE_STATIC_FILES: 'true'
       SEED_EXAMPLE_USERS: 'true'
@@ -93,8 +110,9 @@ services:
       - ../../systems/admin:/usr/src/app
     links:
       - etapi_db
+      - etapi_redis
     ports:
-      - 8081:8080
-    command: bash -c "sleep 30 && bundle exec rails db:seed assets:precompile && bundle exec unicorn -p 8080 -c ./config/unicorn.rb -E production"
+      - "${ET_ADMIN_PORT:-0}:8080"
+    command: bash -c "sleep 30 && bundle && bundle exec rails db:seed assets:precompile && bundle exec unicorn -p 8080 -c ./config/unicorn.rb -E production"
 networks:
   et_full_system:
