@@ -29,7 +29,7 @@ services:
       AWS_ACCESS_KEY_ID:
       AWS_SECRET_ACCESS_KEY:
       S3_UPLOAD_BUCKET:
-    env_file: ./.env
+    env_file: ../../config_aws.env
 
     volumes:
       - ./Procfile:/usr/src/app/Procfile
@@ -78,6 +78,7 @@ services:
       AWS_ACCESS_KEY_ID:
       AWS_SECRET_ACCESS_KEY:
       S3_UPLOAD_BUCKET:
+    env_file: ../../config_aws.env
     command: bash -c "gem install foreman && bundle && bundle exec rails db:create db:migrate db:seed && foreman start"
     networks:
       - et_full_system
@@ -104,6 +105,10 @@ services:
       BUNDLE_EXCLUDE: ''
       RAILS_SERVE_STATIC_FILES: 'true'
       SEED_EXAMPLE_USERS: 'true'
+      AWS_ACCESS_KEY_ID:
+      AWS_SECRET_ACCESS_KEY:
+      S3_UPLOAD_BUCKET:
+    env_file: ../../config_aws.env
     networks:
       - et_full_system
     volumes:

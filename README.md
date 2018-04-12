@@ -1,4 +1,4 @@
-# Experiment - DO NOT USE
+# Employment Tribunal Full System - For Development / Testing Use Only
 
 This project groups together all the components of the employment tribunal
 system for development purposes and to perform end to end tests on them 
@@ -25,6 +25,18 @@ git submodule update --init
 
 ```
 
+# Initial Setting Up
+
+The system is very configurable so it can be run with your AWS credentials, on whichever ports you want etc..
+To get going, do
+
+```
+
+./bin/dev/setup
+
+```
+
+Which will ask a few questions to tweak your config and away you go.  You must at least provide AWS credentials.
 
 # Using The Docker Setup
 
