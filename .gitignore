@@ -2,3 +2,4 @@
 .idea
 tmp/**/*
 config_aws.env
+**/.DS_Store
