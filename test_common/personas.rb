@@ -1,3 +1,4 @@
+require 'active_support/core_ext/hash'
 module EtFullSystem
   module Test
     class PersonasRepository

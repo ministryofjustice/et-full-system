@@ -1,5 +1,6 @@
 require 'i18n'
 require 'singleton'
+require 'active_support/concern'
 module EtFullSystem
   module Test
     # @private

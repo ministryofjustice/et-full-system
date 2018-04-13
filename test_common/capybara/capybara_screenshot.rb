@@ -1,3 +1,4 @@
+require 'capybara-screenshot'
 module EtFullSystem
   module Test
     module FullScreenshot

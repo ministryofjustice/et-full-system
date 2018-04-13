@@ -4,13 +4,10 @@ require_relative '../../test_common/personas'
 require_relative '../../test_common/messaging'
 require_relative '../../test_common/helpers'
 require_relative '../../test_common/common_admin_window'
-
-RSpec.configure do |c|
-  c.include EtFullSystem::Test::Pages, type: :feature
-end
-RSpec.configure do |c|
-  c.include EtFullSystem::Test::Setup, type: :feature
-end
-RSpec.configure do |c|
-  c.include EtFullSystem::Test::Et1ClaimHelper, type: :feature
+include EtFullSystem::Test::Setup
+include EtFullSystem::Test::Pages
+include EtFullSystem::Test::Et1ClaimHelper
+include EtFullSystem::Test::CommonAdminWindow
+After do
+  EtFullSystem::Test::CommonAdminWindow.ensure_admin_window_closed
 end

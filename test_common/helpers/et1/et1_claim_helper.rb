@@ -65,6 +65,3 @@ module EtFullSystem
   end
 end
 
-RSpec.configure do |c|
-  c.include EtFullSystem::Test::Et1ClaimHelper, type: :feature
-end
