@@ -36,6 +36,8 @@ git submodule update --init
 
 ## Submodules Warning
 
+If you are just running this and not making changes - you don't need to concern yourself with this section.
+
 If you haven't used submodules before, its worth studying the docs a little (https://git-scm.com/docs/git-submodule) so that
 you don't get yourself and others in a mess.
 
