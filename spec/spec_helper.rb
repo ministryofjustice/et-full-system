@@ -102,5 +102,6 @@ RSpec.configure do |config|
   require 'active_support/core_ext/hash'
 
   require 'capybara/rspec'
+  require 'rspec/eventually'
   Dir[File.absolute_path('../support/**/*.rb', __FILE__)].each { |f| require f }
 end

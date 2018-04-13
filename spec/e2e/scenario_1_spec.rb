@@ -37,5 +37,16 @@ RSpec.describe 'Scenario 1', type: :feature, js: true do
     et1_answer_more_about_the_claim_questions
 
     et1_submit_claim
+
+    within_admin_window do
+      admin_pages.atos_files_page.load
+      file_count_before = admin_pages.atos_files_page.file_count
+      admin_pages.jobs_page.run_export_claims_cron_job
+      get_page_count = -> {
+        admin_pages.atos_files_page.load
+        admin_pages.atos_files_page.file_count
+      }
+      expect(&get_page_count).to eventually(be > file_count_before)
+    end
   end
 end

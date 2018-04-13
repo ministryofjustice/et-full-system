@@ -8,6 +8,7 @@ services:
     environment:
       SELENIUM_URL: 'http://zalenium:4444/wd/hub'
       DRIVER: chrome
+      ADMIN_BASE_URL: "${ADMIN_BASE_URL:-http://et_admin:8080/admin}"
     volumes:
       - ../../:/app
       - test_gem_cache:/usr/local/bundle

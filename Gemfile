@@ -15,6 +15,7 @@ group :test do
   gem 'chromedriver-helper', '~> 1.1'
   gem 'geckodriver-helper', '~> 0.0'
   gem 'capybara-screenshot', '~> 1.0'
+  gem 'rspec-eventually', '~> 0.2', '>= 0.2.2'
 end
 
 group :development, :test do

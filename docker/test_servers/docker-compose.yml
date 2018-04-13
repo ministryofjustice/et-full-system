@@ -26,9 +26,6 @@ services:
       SMTP_HOSTNAME: smtp
       SMTP_PORT: 1025
       JADU_API: ${JADU_API:-http://et_api:8080/api/v1/}
-      AWS_ACCESS_KEY_ID:
-      AWS_SECRET_ACCESS_KEY:
-      S3_UPLOAD_BUCKET:
     env_file: ../../config_aws.env
 
     volumes:
@@ -75,9 +72,6 @@ services:
       REDIS_HOST: etapi_redis
       REDIS_DATABASE: 1
       BUNDLE_EXCLUDE: ''
-      AWS_ACCESS_KEY_ID:
-      AWS_SECRET_ACCESS_KEY:
-      S3_UPLOAD_BUCKET:
     env_file: ../../config_aws.env
     command: bash -c "gem install foreman && bundle && bundle exec rails db:create db:migrate db:seed && foreman start"
     networks:
@@ -105,9 +99,6 @@ services:
       BUNDLE_EXCLUDE: ''
       RAILS_SERVE_STATIC_FILES: 'true'
       SEED_EXAMPLE_USERS: 'true'
-      AWS_ACCESS_KEY_ID:
-      AWS_SECRET_ACCESS_KEY:
-      S3_UPLOAD_BUCKET:
     env_file: ../../config_aws.env
     networks:
       - et_full_system
@@ -116,6 +107,7 @@ services:
     links:
       - etapi_db
       - etapi_redis
+      - et_api
     ports:
       - "${ET_ADMIN_PORT:-0}:8080"
     command: bash -c "sleep 30 && bundle && bundle exec rails db:seed assets:precompile && bundle exec unicorn -p 8080 -c ./config/unicorn.rb -E production"

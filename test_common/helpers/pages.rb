@@ -1,3 +1,4 @@
+require_relative './admin_pages'
 module EtFullSystem
   module Test
     module Pages
@@ -52,6 +53,11 @@ module EtFullSystem
       def et1_submission_page
         EtFullSystem::Test::Et1::SubmissionPage.new
       end
+
+      def admin_pages
+        @admin_pages = AdminPages
+      end
+
     end
   end
 end

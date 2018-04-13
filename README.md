@@ -32,9 +32,12 @@ To get going, do
 
 ```
 
-./bin/dev/setup
+cp config_aws.env.example config_aws.env
 
 ```
+
+and then edit this file and fill in your AWS credentials
+
 
 Which will ask a few questions to tweak your config and away you go.  You must at least provide AWS credentials.
 
@@ -142,3 +145,16 @@ docker-compose run test bash
 
 and then do normal ruby stuff such as bundle exec rspec
 
+## Environment Variables For Test Suite
+
+### ADMIN_BASE_URL
+
+The url where the admin lives (including the 'admin' part of the url)
+
+### ADMIN_USERNAME
+
+The admin username (defaults to admin@example.com - same as seed data)
+
+### ADMIN_PASSWORD
+
+The admin password (defaults to password - same as seed data)
