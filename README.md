@@ -19,7 +19,7 @@ is setup.  Again, a similar environment using something like 'foreman' could als
 
 ## Diagram Showing Test Servers and Test Framework Systems
 
-![diagram 1](docs/Diagram Showing Test Systems ET.png)
+![diagram 1](docs/diagram_showing_systems.png)
 
 # Cloning
 
