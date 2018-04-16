@@ -11,6 +11,15 @@ them up on the right ports, configuring the URLs for each service to talk to ano
 you are on your own for now !!  But, take a look in the docker/test_servers folder at the docker-compose.yml and you can see the
 different services and how they are setup to talk to one another - you need to achieve the same thing but running everything on localhost.
 
+The above could be done using 'foreman' to bring everything together and if someone has the time to do this - or if someone
+requires that it is done and therefore justifying the time - then please reach out to me (Gary Taylor) - or just do it and share it !!
+
+A diagram speaks a thousand words - so hopefully the diagram below will show what I mean.  This is how the docker environment
+is setup.  Again, a similar environment using something like 'foreman' could also be setup with some careful configuration.
+
+## Diagram Showing Test Servers and Test Framework Systems
+
+![diagram 1](docs/Diagram Showing Test Systems ET.png)
 
 # Cloning
 
@@ -85,7 +94,7 @@ and then edit this file and fill in your AWS credentials
 
 Which will ask a few questions to tweak your config and away you go.  You must at least provide AWS credentials.
 
-# General Development Notes
+# General Development / Testing Notes
 
 ## Testing
 

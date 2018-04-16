@@ -114,7 +114,7 @@ services:
       SEED_EXAMPLE_USERS: 'true'
       AWS_ACCESS_KEY_ID: accessKey1
       AWS_SECRET_ACCESS_KEY: verySecretKey1
-      S3_UPLOAD_BUCKET: 'et1bucket'
+      S3_UPLOAD_BUCKET: 'etapibucket'
       AWS_REGION: 'us-east-1'
       AWS_ENDPOINT: 'http://s3.docker.test:8000'
       AWS_S3_FORCE_PATH_STYLE: 'true'
