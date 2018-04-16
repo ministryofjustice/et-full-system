@@ -85,6 +85,12 @@ and then edit this file and fill in your AWS credentials
 
 Which will ask a few questions to tweak your config and away you go.  You must at least provide AWS credentials.
 
+# General Development Notes
+
+## Testing
+
+There are lots of things with regard to automated testing to consider - please read [this document](docs/automated_testing.md) for more details
+
 # Using The Docker Setup
 
 There are scripts in bin/dev to do docker-compose stuff.  Generally these are just shortcuts and accept the

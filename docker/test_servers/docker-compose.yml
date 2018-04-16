@@ -9,6 +9,7 @@ services:
       - smtp
       - et_api
       - et_admin
+      - s3_mock
     ports:
       - "${ET1_PORT:-0}:8080"
     environment:
@@ -26,11 +27,17 @@ services:
       SMTP_HOSTNAME: smtp
       SMTP_PORT: 1025
       JADU_API: ${JADU_API:-http://et_api:8080/api/v1/}
-    env_file: ../../config_aws.env
+      AWS_ACCESS_KEY_ID: accessKey1
+      AWS_SECRET_ACCESS_KEY: verySecretKey1
+      S3_UPLOAD_BUCKET: 'et1bucket'
+      AWS_REGION: 'us-east-1'
+      AWS_ENDPOINT: 'http://s3.docker.test:8000'
+      AWS_S3_FORCE_PATH_STYLE: 'true'
 
     volumes:
+      - ../../systems/et1:/usr/src/app
       - ./Procfile:/usr/src/app/Procfile
-    command: bash -c "gem install foreman; bundle; bundle exec rake db:create; bundle exec rake db:migrate; bundle exec rake assets:precompile; foreman start"
+    command: bash -c "gem install foreman; bundle; npm install; bundle exec rake db:create; bundle exec rake db:migrate; bundle exec rake assets:precompile; foreman start"
     networks:
       - et_full_system
   et1_redis:
@@ -72,7 +79,12 @@ services:
       REDIS_HOST: etapi_redis
       REDIS_DATABASE: 1
       BUNDLE_EXCLUDE: ''
-    env_file: ../../config_aws.env
+      AWS_ACCESS_KEY_ID: accessKey1
+      AWS_SECRET_ACCESS_KEY: verySecretKey1
+      AWS_REGION: 'us-east-1'
+      S3_UPLOAD_BUCKET: 'etapibucket'
+      AWS_ENDPOINT: 'http://s3.docker.test:8000'
+      AWS_S3_FORCE_PATH_STYLE: 'true'
     command: bash -c "gem install foreman && bundle && bundle exec rails db:create db:migrate db:seed && foreman start"
     networks:
       - et_full_system
@@ -83,6 +95,7 @@ services:
     links:
       - etapi_db
       - etapi_redis
+      - s3_mock
   et_admin:
     build:
       context: ../../systems/admin
@@ -99,7 +112,12 @@ services:
       BUNDLE_EXCLUDE: ''
       RAILS_SERVE_STATIC_FILES: 'true'
       SEED_EXAMPLE_USERS: 'true'
-    env_file: ../../config_aws.env
+      AWS_ACCESS_KEY_ID: accessKey1
+      AWS_SECRET_ACCESS_KEY: verySecretKey1
+      S3_UPLOAD_BUCKET: 'et1bucket'
+      AWS_REGION: 'us-east-1'
+      AWS_ENDPOINT: 'http://s3.docker.test:8000'
+      AWS_S3_FORCE_PATH_STYLE: 'true'
     networks:
       - et_full_system
     volumes:
@@ -108,8 +126,15 @@ services:
       - etapi_db
       - etapi_redis
       - et_api
+      - s3_mock
     ports:
       - "${ET_ADMIN_PORT:-0}:8080"
     command: bash -c "sleep 30 && bundle && bundle exec rails db:seed assets:precompile && bundle exec unicorn -p 8080 -c ./config/unicorn.rb -E production"
+  s3_mock:
+    image: scality/s3server
+    networks:
+      et_full_system:
+        aliases:
+          - "s3.docker.test"
 networks:
   et_full_system:

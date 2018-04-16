@@ -9,6 +9,12 @@ services:
       SELENIUM_URL: 'http://zalenium:4444/wd/hub'
       DRIVER: chrome
       ADMIN_BASE_URL: "${ADMIN_BASE_URL:-http://et_admin:8080/admin}"
+      AWS_ACCESS_KEY_ID: accessKey1
+      AWS_SECRET_ACCESS_KEY: verySecretKey1
+      AWS_REGION: 'us-east-1'
+      AWS_ENDPOINT: 'http://s3.docker.test:8000'
+      AWS_S3_FORCE_PATH_STYLE: 'true'
+
     volumes:
       - ../../:/app
       - test_gem_cache:/usr/local/bundle
