@@ -8,7 +8,7 @@ This allows the test suite to test the entire system to live in this code base -
 
 Of course, you can do it yourself without docker compose if you have the time and patience to run all of the services, setting
 them up on the right ports, configuring the URLs for each service to talk to another etc..  If you do want to go down this route,
-you are on your own for now !!  But, take a look in the docker/test_servers folder at the docker-compose.yml and you can see the
+you are on your own for now !!  But, take a look at the diagram below and the files in the docker/test_servers folder - the docker-compose.yml and you can see the
 different services and how they are setup to talk to one another - you need to achieve the same thing but running everything on localhost.
 
 The above could be done using 'foreman' to bring everything together and if someone has the time to do this - or if someone
@@ -16,6 +16,16 @@ requires that it is done and therefore justifying the time - then please reach o
 
 A diagram speaks a thousand words - so hopefully the diagram below will show what I mean.  This is how the docker environment
 is setup.  Again, a similar environment using something like 'foreman' could also be setup with some careful configuration.
+
+Also note that the 'test servers' are intended to be as close to production as is possible from a config and general architecture point of view, not
+performance / scaling.  Hence they run in 'production' environment, but configured to use a fake SMTP and AWS/S3 server (pre built docker containers).
+
+The fake SMTP server allows the test suite (via REST) or the developer (via a web page / web server - details further down vvvvv) to see what emails the
+application(s) would have sent if they were really being sent to users.
+
+The fake AWS/S3 server allows normal S3 requests to take place - i.e. adding files to buckets, deleting them etc.. and these files being made available via
+a URL which is accessible within the docker network (or outside if you setup port forwarding).  This means we can test without running up bills or even having
+to enter any S3 credential which quite rightly, developers do not really want to do as it may run up bills on their card.
 
 ## Diagram Showing Test Servers and Test Framework Systems
 
@@ -80,19 +90,10 @@ but if anyone else does know about them and if they would be better than submodu
 
 # Initial Setting Up
 
-The system is very configurable so it can be run with your AWS credentials, on whichever ports you want etc..
-To get going, do
+The system is very configurable so it can be run on whichever ports you want etc..
 
-```
-
-cp config_aws.env.example config_aws.env
-
-```
-
-and then edit this file and fill in your AWS credentials
-
-
-Which will ask a few questions to tweak your config and away you go.  You must at least provide AWS credentials.
+However, as the test framework runs entirely inside docker compose - if you are wanting
+to run tests via the docker framework then no extra config is required.
 
 # General Development / Testing Notes
 
