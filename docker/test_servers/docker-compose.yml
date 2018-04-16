@@ -67,6 +67,10 @@ services:
     image: mailhog/mailhog:latest
     networks:
       - et_full_system
+    ports:
+      - "8025:8025"
+    logging:
+        driver: 'none'  # disable saving logs
   et_api:
     build:
       context: ../../systems/api
@@ -129,7 +133,7 @@ services:
       - s3_mock
     ports:
       - "${ET_ADMIN_PORT:-0}:8080"
-    command: bash -c "sleep 30 && bundle && bundle exec rails db:seed assets:precompile && bundle exec unicorn -p 8080 -c ./config/unicorn.rb -E production"
+    command: bash -c "sleep 120 && bundle && bundle exec rails db:seed assets:precompile && bundle exec unicorn -p 8080 -c ./config/unicorn.rb -E production"
   s3_mock:
     image: scality/s3server
     networks:

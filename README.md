@@ -95,6 +95,15 @@ The system is very configurable so it can be run on whichever ports you want etc
 However, as the test framework runs entirely inside docker compose - if you are wanting
 to run tests via the docker framework then no extra config is required.
 
+If you are using docker, the 'zalenium' system needs to know which 'selenium' image you want to use (to allow for customising).  We just want the normal
+one, so run the following (one time only)
+
+```
+
+docker pull elgalu/selenium
+
+```
+
 # General Development / Testing Notes
 
 ## Testing
@@ -145,7 +154,16 @@ So, the first thing to do is to start up the test environment like this :-
 adding '-d' at the end if you dont want to follow the logs etc..
 
 once the test_framework is up and running - it is just idle doing nothing until you ask it to do something - so I would guess you would
-want to run cucumber - so do this :-
+want to run cucumber. However, this is just a 'container' with ruby on it and setup ready for you to go.  So, like any other ruby environment
+you need to do a bundle install first (and every time you add a new gem to the Gemfile in THIS project, not the child projects) - like this :-
+
+```
+
+./bin/dev/test_exec bundle exec cucumber
+
+```
+
+Then, to run cucumber :-
 
 
 ```
