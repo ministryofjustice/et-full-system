@@ -34,4 +34,4 @@ volumes:
 networks:
   test_framework:
     external:
-      name: testservers_et_full_system
+      name: test_servers_et_full_system
