@@ -140,5 +140,7 @@ services:
       et_full_system:
         aliases:
           - "s3.docker.test"
+    ports:
+      - "${S3_PORT:-0}:8000"
 networks:
   et_full_system:

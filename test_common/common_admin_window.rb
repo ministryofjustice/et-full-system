@@ -46,7 +46,7 @@ module EtFullSystem
       end
 
       def self.close_admin_window
-        admin_window.close
+        admin_window.close rescue nil
       end
 
       def self.admin_window_opened?

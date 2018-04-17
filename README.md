@@ -263,6 +263,10 @@ JADU_API=http://host.docker.internal:3000/api/v1/
 
 note that because ET1 is a docker container, you must use the ip or hostname of your machine or host.docker.internal and NOT localhost.
 
+##### S3_PORT
+
+If specified, the internal amazon/s3 compatible server is exposed on this port - else on a random port (use 'docker ps' to find out which)
+
 
 ### docker/test_framework
 
