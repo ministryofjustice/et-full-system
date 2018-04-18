@@ -207,7 +207,7 @@ To change this behaviour, set the RECORD_VIDEO environment variable before runni
 * on_failure (default) - means record everything but throw away passing tests - useful for seeing what went wrong when developing
 * false - means don't record anything
 * true - means record everything
-* @tag1,@tag2,@anyothertag,~@butnotthisone - Uses cucumber tagging to work out whether to or not (these tags can be anything you want)
+* @tag1,@tag2,@anyothertag,~@butnotthisone - Uses cucumber tagging to work out whether to or not (these tags can be anything you want). Useful for presentational purposes for example
 
 #### Video Recording - How It Works
 
@@ -220,6 +220,17 @@ recording etc... - but also, the filename of the recording, which directory it g
 vnc2flv needs to be told which VNC server to record from.  By default, this is assumed to to be the same server that selenium is running on (determined
 by the SELENIUM_URL environment variable).  However, if you are running your own stuff outside of docker and want to use this, you can set the RECORD_VNC_FROM environment
 variable to a url that looks like "vnc://host:port"
+
+
+### Watching Your Tests Run
+
+When developing locally, you can have a browser window visible which is great whilst debugging, but very annoying when you want to get
+on with something else whilst the tests are running.
+
+With the docker version, the browser is not launched on the local machine, but inside a docker container where you can't see it - so
+it won't annoy you.  But, what happens when you want to see it ?  Simple, you connect a vnc client to the port forwarded by the selenium service.
+This port is random to start with (use 'docker ps' when the test suite is uo and look for '5900' in selenium service), but you can lock it down to
+a known free port by setting the SELENIUM_VNC_PORT environment variable.  Note that there is a password setup by default which is 'secret'
 
 ## Re Building Docker Images
 
@@ -340,9 +351,19 @@ Controls video recording during the test run - can be one of the following value
 * on_failure (default) - means record everything but throw away passing tests - useful for seeing what went wrong when developing
 * false - means don't record anything
 * true - means record everything
-* @tag1,@tag2,@anyothertag,~@butnotthisone - Uses cucumber tagging to work out whether to or not (these tags can be anything you want)
+* @tag1,@tag2,@anyothertag,~@butnotthisone - Uses cucumber tagging to work out whether to or not (these tags can be anything you want).  Can be useful for presentational purposes
 
 ### RECORD_VNC_FROM
 
 If your VNC server is not on port 5900 on the same server that provides the selenium services, you can control where to record video
  from by setting this value to something like this :- "vnc://host:port"
+ 
+### SELENIUM_VNC_PORT
+
+If set, the VNC port that selenium exposes will be forwarded to this port.  Otherwise, it is random
+
+### SELENIUM_PORT
+
+The selenium port that the tests talk to can be set using this.  If not set, it is random.
+This could be useful if you wanted to use the docker setup for all of its supporting services, but run the actual tests in ruby on
+your local machine.  Without this, your code would not know which port to connect to.
