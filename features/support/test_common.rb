@@ -4,6 +4,7 @@ require_relative '../../test_common/personas'
 require_relative '../../test_common/messaging'
 require_relative '../../test_common/helpers'
 require_relative '../../test_common/common_admin_window'
+require_relative '../../test_common/video_recorder'
 include EtFullSystem::Test::Setup
 include EtFullSystem::Test::Pages
 include EtFullSystem::Test::Et1ClaimHelper

@@ -144,7 +144,18 @@ along wanting the same thing :-)
 The huge advantage of running the tests in docker is that all communication is done inside the docker-compose internal network,
 meaning you don't need to worry about port forwarding, port clashes - you can even run multiple instances (if you've got a high spec machine !!)
 
-So, the first thing to do is to start up the test environment like this :-
+First, start up the test servers (as above) like this 
+
+```
+
+./bin/dev/test_servers up
+
+```
+
+and wait for everything to settle and you will see the 'admin' service messages at the end
+
+
+Next, start up the test environment like this :-
 
 ```
 ./bin/dev/test_framework up
@@ -159,7 +170,7 @@ you need to do a bundle install first (and every time you add a new gem to the G
 
 ```
 
-./bin/dev/test_exec bundle exec cucumber
+./bin/dev/test_exec bundle install
 
 ```
 
@@ -181,6 +192,34 @@ or, if you prefer to just have a session open inside the 'test machine' - then d
 ```
 
 then just type in commands as normal - note the app is inside the '/app' folder in the docker machine.
+
+### Video Recording In Tests
+
+Video recording is enabled in the docker version of the test suite - it can also be used if not using docker, however, you
+will need to setup a vnc server which contains the 'desktop' that the test suite is talking to via selenium so is more involved.
+
+Video recording can be expensive in terms of time, so it can also be controller by you when running tests.
+
+By default, everything is recorded, but anything but failing tests are thrown away.
+
+To change this behaviour, set the RECORD_VIDEO environment variable before running the test to one of the following values
+
+* on_failure (default) - means record everything but throw away passing tests - useful for seeing what went wrong when developing
+* false - means don't record anything
+* true - means record everything
+* @tag1,@tag2,@anyothertag,~@butnotthisone - Uses cucumber tagging to work out whether to or not (these tags can be anything you want)
+
+#### Video Recording - How It Works
+
+Any docker images with the browser name ending in 'debug' from selenium includes a running VNC server so that you can watch the tests (see below for more details).
+So, in the 'Test Framework' dockerfile, the python command line tool called 'vnc2flv' is installed.
+
+In features/support/record_video.rb - this not only makes the decision before and after each scenario whether to record, throw away the
+recording etc... - but also, the filename of the recording, which directory it goes into etc..  It then hands over to 'test_common/video_recorder.rb' to do the work.
+
+vnc2flv needs to be told which VNC server to record from.  By default, this is assumed to to be the same server that selenium is running on (determined
+by the SELENIUM_URL environment variable).  However, if you are running your own stuff outside of docker and want to use this, you can set the RECORD_VNC_FROM environment
+variable to a url that looks like "vnc://host:port"
 
 ## Re Building Docker Images
 
@@ -293,3 +332,17 @@ The admin username (defaults to admin@example.com - same as seed data)
 ### ADMIN_PASSWORD
 
 The admin password (defaults to password - same as seed data)
+
+### RECORD_VIDEO
+
+Controls video recording during the test run - can be one of the following values
+
+* on_failure (default) - means record everything but throw away passing tests - useful for seeing what went wrong when developing
+* false - means don't record anything
+* true - means record everything
+* @tag1,@tag2,@anyothertag,~@butnotthisone - Uses cucumber tagging to work out whether to or not (these tags can be anything you want)
+
+### RECORD_VNC_FROM
+
+If your VNC server is not on port 5900 on the same server that provides the selenium services, you can control where to record video
+ from by setting this value to something like this :- "vnc://host:port"
