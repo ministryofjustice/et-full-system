@@ -18,7 +18,7 @@ services:
       DB_HOST: et1_db
       DB_USERNAME: postgres
       DB_NAME: et1db
-      WEB_CONCURRENCY: 2
+      WEB_CONCURRENCY: 4
       ASSET_HOST: anything
       HTTP_OPEN_TIMEOUT_S: 15
       HTTP_READ_TIMEOUT_S: 15
@@ -76,7 +76,7 @@ services:
       context: ../../systems/api
     environment:
       RAILS_ENV: production
-      WEB_CONCURRENCY: 2
+      WEB_CONCURRENCY: 4
       SECRET_KEY_BASE: sdlkjewfkjhfviuhduihenrjk435r89esfd7cv983qh2n4r3q27yh4u5rtfg
       DB_HOST: etapi_db
       DB_NAME: et_jadu
@@ -105,7 +105,7 @@ services:
       context: ../../systems/admin
     environment:
       RAILS_ENV: production
-      WEB_CONCURRENCY: 2
+      WEB_CONCURRENCY: 4
       SECRET_KEY_BASE: sdlkjewfkjhfviuhduihenrjk435r89esfd7cv983qh2n4r3q27yh4u5rtfg
       DEVISE_SECRET_KEY: JK3N45KH56743JN25J1B5H43B24H35BJ6575KN21NRNKFASDF89DU23I4NK5TGKFD
       ATOS_API_URL: "http://et_api:8080/atos_api"

@@ -9,6 +9,7 @@ services:
       SELENIUM_URL: 'http://selenium:4444/wd/hub'
       DRIVER: chrome
       ADMIN_BASE_URL: "${ADMIN_BASE_URL:-http://et_admin:8080/admin}"
+      ATOS_API_URL: "${ATOS_API_URL:-http://et_api:8080/atos_api}"
       AWS_ACCESS_KEY_ID: accessKey1
       AWS_SECRET_ACCESS_KEY: verySecretKey1
       AWS_REGION: 'us-east-1'

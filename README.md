@@ -334,7 +334,9 @@ but, don't forget, this is what the scripts in bin/dev do !!
 
 ### ADMIN_BASE_URL
 
-The url where the admin lives (including the 'admin' part of the url)
+The url where the admin lives (including the 'admin' part of the url).  Note that this is from the viewpoint of
+the machine where the browser is running so even if running the test code outside of docker, if you are using the
+docker selenium server - it is on the docker network so you will need to use the docker based url for it
 
 ### ADMIN_USERNAME
 

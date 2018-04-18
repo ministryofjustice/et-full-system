@@ -15,9 +15,13 @@ group :test do
   gem 'chromedriver-helper', '~> 1.1'
   gem 'geckodriver-helper', '~> 0.0'
   gem 'capybara-screenshot', '~> 1.0'
-  gem 'rspec-eventually', '~> 0.2', '>= 0.2.2'
   gem 'cucumber', '~> 3.1'
   gem 'aws-sdk-s3', '~> 1.9'
+  # Rubyzip used to test zip files
+  gem 'rubyzip', '~> 1.2', '>= 1.2.1'
+  # HTTParty - used to download from ATOS API during tests
+  gem 'httparty', '~> 0.16.2'
+
 end
 
 group :development, :test do
