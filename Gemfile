@@ -23,4 +23,5 @@ end
 group :development, :test do
   gem 'ruby-debug-ide', '~> 0.6'
   gem 'debase', '~> 0.2'
+  gem 'dotenv', '~> 2.2', '>= 2.2.2'
 end

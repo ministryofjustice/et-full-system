@@ -367,3 +367,110 @@ If set, the VNC port that selenium exposes will be forwarded to this port.  Othe
 The selenium port that the tests talk to can be set using this.  If not set, it is random.
 This could be useful if you wanted to use the docker setup for all of its supporting services, but run the actual tests in ruby on
 your local machine.  Without this, your code would not know which port to connect to.
+
+### ATOS_API_URL
+
+Until searching through zip files for filenames is implemented in the admin, using the ATOS API to verify the output
+is an acceptible way of doing things.  It may even always be acceptible ?  So, we specify the base URL of the ATOS API here.
+
+for example :-
+
+```
+
+ATOS_API_URL=http://et_api:8080/atos_api
+
+```
+
+# Running The Test Suite Locally
+
+## Preparation - Servers
+
+Make sure you have the ports you want to use free and start up the test servers with them exposed - such as :-
+
+```
+ETAPI_PORT=3000 ET_ADMIN_PORT=3001 S3_PORT=3002 ET1_PORT=3003 ./bin/dev/test_servers up
+```
+
+## Preparation - Test Framework
+
+
+### Exposing the ports
+
+The 'test' service in the test framework is not going to be required (as you are effectively running it locally) - however,
+no harm in starting up the test framework as it provides the selenium service
+
+```
+
+SELENIUM_PORT=4444 SELENIUM_VNC_PORT=5901 ./bin/dev/test_framework up
+
+```
+
+### Setting Up Video Recording (Optional)
+
+The suite will run without this, but its well worth having when things go wrong as it provides a nice video of it going wrong
+
+#### First, install python and pip
+
+You may already have this - try typing 'pip' and see if you get command not found.  If you do then continue :-
+
+For OSX
+
+```
+
+brew install python
+
+```
+
+or if you already have python but no pip
+
+```
+
+sudo easy_install pip
+
+```
+
+For Linux (debian based - e.g. ubuntu)
+
+```
+apt-get install python python-dev python-pip
+
+```
+
+For Windows
+
+I don't know - but if someone finds out, please update this readme
+
+#### Next, install vnc2flv
+
+Using pip, install vnc2flv as follows
+
+```
+
+sudo pip install vnc2flv
+
+```
+
+and you should get :-
+
+```
+Installing collected packages: vnc2flv
+  Running setup.py install for vnc2flv ... done
+Successfully installed vnc2flv-20100207
+
+
+```
+
+## Running The Test Suite
+
+The .env file provided gives the defaults assumed above - the API is running on port 3000, the admin on port 3001, the
+fake S3 server on port 3002, ET1 on port 3003 and selenium on port 4444.
+
+So, if you want to go with this - just go ahead and run
+
+```
+
+bundle exec cucumber
+
+
+```
+

@@ -25,7 +25,12 @@ module EtFullSystem
       end
 
       def discard
-        FileUtils.rm file_path
+        FileUtils.rm file_path if File.exist?(file_path)
+      end
+
+      def save
+        # At the moment it does nothing, but this stays in the API so we know whether to spend time
+        # converting to more useful formats
       end
 
       private
