@@ -487,3 +487,4 @@ bundle exec cucumber
 * postgresql - if not installed, use Postgres.app to run as required (osx)
 * redis - if not installed, use Redis.app to run as required ('brew cask install redis-app' on OSX)
 * mailhog - ('brew install mailhog' on OSX)
+* pdftk - (see https://www.pdflabs.com/tools/pdftk-server/)

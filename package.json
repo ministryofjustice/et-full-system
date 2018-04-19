@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/ministryofjustice/et-full-system#readme",
   "dependencies": {
-    "s3": "git+https://github.com/scality/S3.git"
+    "s3": "git+https://github.com/scality/S3.git#GA7.2.0.4"
   }
 }
