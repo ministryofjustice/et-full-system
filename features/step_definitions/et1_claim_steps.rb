@@ -13,5 +13,6 @@ When(/^I complete an online ET1 form and submit the form$/) do
   et1_answer_more_about_the_claim_questions
 
   et1_submit_claim
+  log_event :et1_claim_created, user
 
 end

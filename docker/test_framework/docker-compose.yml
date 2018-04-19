@@ -15,7 +15,7 @@ services:
       AWS_REGION: 'us-east-1'
       AWS_ENDPOINT: 'http://s3.docker.test:8000'
       AWS_S3_FORCE_PATH_STYLE: 'true'
-
+      BUNDLE_WITH: development,test
     volumes:
       - ../../:/app
       - test_gem_cache:/usr/local/bundle
