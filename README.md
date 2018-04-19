@@ -476,3 +476,15 @@ bundle exec cucumber
 
 ```
 
+# Running Everything Without Docker
+
+'foreman' has been configured to run everything as well.  It is more prone to port clashes, but may suit you better
+
+## Dependencies
+
+* nodejs
+* npm
+* postgresql - if not installed, use Postgres.app to run as required (osx)
+* redis - if not installed, use Redis.app to run as required ('brew cask install redis-app' on OSX)
+* mailhog - ('brew install mailhog' on OSX)
+* pdftk - (see https://www.pdflabs.com/tools/pdftk-server/)

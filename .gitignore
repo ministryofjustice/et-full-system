@@ -3,3 +3,4 @@
 tmp/**/*
 config_aws.env
 **/.DS_Store
+node_modules
