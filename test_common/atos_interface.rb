@@ -33,6 +33,9 @@ module EtFullSystem
         when :et1_claim_pdf_for
           user = args[:user]
           filename.end_with?("ET1_#{user.dig(:personal, :first_name).tr(' ', '_')}_#{user.dig(:personal, :last_name)}.pdf")
+        when :et1_claim_xml_for
+          user = args[:user]
+          filename.end_with?("ET1_#{user.dig(:personal, :first_name).tr(' ', '_')}_#{user.dig(:personal, :last_name)}.xml")
         end
       end
 
