@@ -16,6 +16,21 @@ module EtFullSystem
       include Singleton
 
       def has_zip_file_containing?(identifier, **args)
+        find_file_in_any_zip(identifier, **args)
+      end
+
+      def download_from_any_zip(identifier, **args)
+        filename = find_file_in_any_zip(identifier, **args)
+        raise "No zip file containing #{identifier} - #{args} was found" unless filename.present?
+        Dir.mktmpdir do |dir|
+          all_filenames_in_all_zip_files.extract(filename, to: dir)
+          File.read(File.join(dir, filename))
+        end
+      end
+
+      private
+
+      def find_file_in_any_zip(identifier, **args)
         all_filenames_in_all_zip_files.find do |filename|
           filename_matches?(filename, identifier, **args)
         end
@@ -36,6 +51,9 @@ module EtFullSystem
         when :et1_claim_xml_for
           user = args[:user]
           filename.end_with?("ET1_#{user.dig(:personal, :first_name).tr(' ', '_')}_#{user.dig(:personal, :last_name)}.xml")
+        when :et1_claim_txt_for
+          user = args[:user]
+          filename.end_with?("ET1_#{user.dig(:personal, :first_name).tr(' ', '_')}_#{user.dig(:personal, :last_name)}.txt")
         end
       end
 
@@ -67,7 +85,19 @@ module EtFullSystem
         end
       end
 
-      private
+      def extract(filename, to:)
+        fetch unless fetched?
+        zip_filename = zip_filename_for(filename)
+        raise "No zip file contains #{filename}" unless zip_filename.present?
+        tmp_file = Tempfile.new
+        tmp_file.binmode
+        api.download(zip_filename, to: tmp_file)
+        tmp_file.rewind
+        ::Zip::File.open(tmp_file.path) do |z|
+          z.extract(filename, File.join(to, filename))
+        end
+      end
+
 
       def files_in_filename(zip_filename)
         return filename_cache[zip_filename] if filename_cache.key?(zip_filename)
@@ -84,6 +114,11 @@ module EtFullSystem
           tmp_file.close
           tmp_file.unlink
         end
+      end
+
+      def zip_filename_for(filename)
+        (key, _value) = filename_cache.find {|(_key, value)| value.include?(filename)}
+        return key
       end
 
       def fetch

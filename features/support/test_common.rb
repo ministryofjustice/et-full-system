@@ -8,12 +8,14 @@ require_relative '../../test_common/video_recorder'
 require_relative '../../test_common/atos_interface'
 require_relative '../../test_common/rspec_eventually'
 require_relative '../../test_common/housekeeping'
+require_relative '../../test_common/matchers'
 include EtFullSystem::Test::Setup
 include EtFullSystem::Test::Pages
 include EtFullSystem::Test::Et1ClaimHelper
 include EtFullSystem::Test::CommonAdminWindow
 include EtFullSystem::Test::AtosInterfaceHelper
 include EtFullSystem::Test::Housekeeping
+include EtFullSystem::Test::Et1Export
 Before do
   EtFullSystem::Test::CommonAdminWindow.reset
 end
