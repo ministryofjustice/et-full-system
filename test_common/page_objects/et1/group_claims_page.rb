@@ -8,6 +8,8 @@ module EtFullSystem
             def set(value)
               choose(value, name: "additional_claimants[of_collection_type]")
             end
+            element :upload_link, :link, "upload their details in a separate spreadsheet"
+
             (2..6).each_with_index do |number, idx|
 
               section :"about_claimant_#{number}", :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("Claimant #{idx + 2}")]] }) do
@@ -44,13 +46,15 @@ module EtFullSystem
         end
 
         def set_for(user)
-          group_claims_data = user.dig(:personal, :group_claims)
-          if group_claims_data.is_a?(Array)
+          group_claims_data = user.dig(:personal, :group_claims) || []
+          group_claims_csv = user.dig(:personal, :group_claims_csv)
+          if group_claims_data.present? || group_claims_csv.present?
             main_content.group_claims.set('Yes')
             group_claims_data.each.with_index do |claim, idx|
               add_more_claimants unless idx == 0
               populate_group_claim_section(claim, idx + 2)
             end
+            main_content.group_claims.upload_link.click if group_claims_csv.present?
           else
             main_content.group_claims.set('No')
           end
@@ -65,6 +69,10 @@ module EtFullSystem
         end
 
         private
+
+        def upload_page
+          GroupClaimsUploadPage.new
+        end
 
         def populate_group_claim_section(claimant_data, claimant_number)
           s = main_content.group_claims.send(:"about_claimant_#{claimant_number}")

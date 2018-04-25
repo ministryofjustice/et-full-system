@@ -18,6 +18,10 @@ module EtFullSystem
         EtFullSystem::Test::Et1::GroupClaimsPage.new
       end
 
+      def et1_group_claims_upload_page
+        EtFullSystem::Test::Et1::GroupClaimsUploadPage.new
+      end
+
       def et1_representatives_details_page
         EtFullSystem::Test::Et1::RepresentativesDetailsPage.new
       end
