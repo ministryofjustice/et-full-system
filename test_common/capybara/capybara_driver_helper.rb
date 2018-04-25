@@ -13,11 +13,11 @@ Capybara.register_driver :firefox do |app|
   profile = Selenium::WebDriver::Firefox::Profile.new
   profile['browser.cache.disk.enable'] = false
   profile['browser.cache.memory.enable'] = false
-  Capybara::Selenium::Driver.new(app, browser: :firefox, profile: profile)
+  Capybara::Selenium::Driver.new(app, browser: :remote, desired_capabilities: :firefox, profile: profile, url: ENV.fetch('SELENIUM_URL', 'http://localhost:4444/wd/hub'))
 end
 
 Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome, url: ENV.fetch('SELENIUM_URL', 'http://localhost:4444/wd/hub'))
+  Capybara::Selenium::Driver.new(app, browser: :remote, desired_capabilities: :chrome, url: ENV.fetch('SELENIUM_URL', 'http://localhost:4444/wd/hub'))
 end
 
 Capybara.register_driver :chromedriver do |app|
