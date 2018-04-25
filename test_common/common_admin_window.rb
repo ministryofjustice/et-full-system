@@ -16,6 +16,10 @@ module EtFullSystem
         within_window(admin_window, &block)
       end
 
+      def reset
+        Thread.current[WINDOW_VAR_NAME] = nil
+      end
+
       def admin_window
         return Thread.current[WINDOW_VAR_NAME] if Thread.current.key?(WINDOW_VAR_NAME)
         window = open_new_window

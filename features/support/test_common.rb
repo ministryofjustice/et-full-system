@@ -14,6 +14,9 @@ include EtFullSystem::Test::Et1ClaimHelper
 include EtFullSystem::Test::CommonAdminWindow
 include EtFullSystem::Test::AtosInterfaceHelper
 include EtFullSystem::Test::Housekeeping
+Before do
+  EtFullSystem::Test::CommonAdminWindow.reset
+end
 After do
   EtFullSystem::Test::CommonAdminWindow.ensure_admin_window_closed
 end
