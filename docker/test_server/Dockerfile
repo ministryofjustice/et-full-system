@@ -30,6 +30,10 @@ RUN /pd_build/ruby-2.3.*.sh
 
 # ...put your own build instructions here...
 RUN apt-get update && apt-get -y install pdftk tzdata postgresql
+RUN /pd_build/nodejs.sh
+
+# ...put your own build instructions here...
+RUN apt-get -y install pdftk tzdata postgresql
 
 # Enable nginx and passenger
 RUN rm -f /etc/service/nginx/down
@@ -49,4 +53,6 @@ ADD docker/test_server/env.conf /etc/nginx/main.d/webapp_env.conf
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN mkdir -p /home/app/systems; chown app:app /home/app/systems
+COPY --chown=app:app systems /home/app/systems
+RUN bash -lc "cd /home/app/systems/et1 && bundle install --deployment"
 WORKDIR /home/app/systems
