@@ -1,6 +1,12 @@
 module EtFullSystem
   module Test
     module Et1Export
+      # Returns a huge array of matchera to validate what an ET1 claim txt file should look like
+      #
+      # @param [HashWithIndifferentAccess] user The user from the personas
+      #
+      # @return [Array<String,RSpec::Matchers::BuiltIn::BaseMatcher>] An array of simple strings and rspec matchers for use
+      #  as one huge expectation based on the input user.
       def calculated_claim_matchers(user:)
         [
           'ET1 - Online Application to an Employment Tribunal',
@@ -100,6 +106,76 @@ module EtFullSystem
           "AdditionalPostcode3: #{user[:respondents][3].try(:dig, :post_code)}",
           "AdditionalPhoneNumber3: #{user[:respondents][3].try(:dig, :telephone_number)}"
         ]
+      end
+
+      # Returns a huge matcher to validate what an ET1a (the a meaning additional claimants) txt file should look like
+      # @param [HashWithIndifferentAccess] user The user from the personas
+      #
+      # @return [Array<String,RSpec::Matchers::BuiltIn::BaseMatcher>] An array of simple strings and rspec matchers for use
+      #  as one huge expectation based on the input user.
+      def calculated_et1a_claim_matchers(user:)
+        matchers = [
+          'ET1a - Online Application to an Employment Tribunal',
+          '',
+          'For Office Use',
+          '',
+          "Received at ET: #{Date.today.strftime('%d/%m/%Y')}",
+          'Case Number:',
+          'Code:',
+          'Initials:',
+          '',
+          match(/\AOnline Submission Reference: (?:\d{12})\z/),
+          '',
+          'FormVersion: 2',
+          '',
+          "The following claimants are represented by  (if applicable) and the relevant required information for all the additional claimants is the same as stated in the main claim of #{user.dig(:personal,:first_name)} #{user.dig(:personal, :last_name)} v #{user[:respondents].first[:name]}",
+          '',
+          ''
+
+        ]
+        group_claimants_for(user: user).each do |claimant|
+          matchers.concat [
+            '## Section et1a: claim',
+            '',
+            "~1.1 Title: #{claimant[:title]}",
+            "~1.2 First Names: #{claimant[:first_name].downcase}",
+            "~1.3 Surname: #{claimant[:last_name].downcase}",
+            "~1.4 Date of Birth: #{claimant[:date_of_birth]}",
+            '~1.5 Address:',
+            "Address 1: #{claimant[:building].downcase}",
+            "Address 2: #{claimant[:street].downcase}",
+            "Address 3: #{claimant[:locality].downcase}",
+            "Address 4: #{claimant[:county].downcase}",
+            "Postcode: #{claimant[:post_code].downcase}",
+            '',
+            '',
+            ''
+          ]
+        end
+        matchers
+      end
+
+      private
+
+      def group_claimants_for(user:)
+        return user.dig(:personal, :group_claims) if user.dig(:personal, :group_claims).is_a?(Array)
+        return [] unless user.dig(:personal, :group_claims_csv).is_a?(String)
+        full_path = File.absolute_path(File.join('..', 'fixtures', user.dig(:personal, :group_claims_csv)), __dir__)
+        raise "#{full_path} does not exist" unless File.exist?(full_path)
+        results = CSV.read(full_path, headers: true)
+        results.map do |row|
+          {
+            title: row['Title'],
+            first_name: row['First name'],
+            last_name: row['Last name'],
+            date_of_birth: row['Date of birth'],
+            building: row['Building number or name'],
+            street: row['Street'],
+            locality: row['Town/city'],
+            county: row['County'],
+            post_code: row['Postcode']
+          }
+        end
       end
     end
   end
