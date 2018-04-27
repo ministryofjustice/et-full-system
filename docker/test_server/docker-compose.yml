@@ -9,12 +9,24 @@ services:
       - '3100:80'
     volumes:
       - rvm:/usr/local/rvm
+      - global_node_modules:/usr/lib/node_modules
+      - ../../systems:/home/app/systems
+      - et1_node_modules:/home/app/systems/et1/node_modules
+      - et3_node_modules:/home/app/systems/et3/node_modules
+      - api_node_modules:/home/app/systems/api/node_modules
+      - admin_node_modules:/home/app/systems/admin/node_modules
     environment:
       DB_HOST: 'db'
       DB_USERNAME: 'postgres'
+      SECRET_KEY_BASE: sdlkjewfkjhfviuhduihenrjk435r89esfd7cv983qh2n4r3q27yh4u5rtfg
   db:
     image: postgres:9.3.5
 volumes:
   rvm:
+  global_node_modules:
+  et1_node_modules:
+  et3_node_modules:
+  api_node_modules:
+  admin_node_modules:
 
 

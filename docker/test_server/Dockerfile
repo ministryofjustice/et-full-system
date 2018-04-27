@@ -20,15 +20,16 @@ CMD ["/sbin/my_init"]
 #RUN /pd_build/ruby-2.2.*.sh
 RUN /pd_build/ruby-2.3.*.sh
 #RUN /pd_build/ruby-2.4.*.sh
+#RUN /pd_build/ruby-2.5.*.sh
 #RUN /pd_build/jruby-9.1.*.sh
 #   Python support.
 #RUN /pd_build/python.sh
 #   Node.js and Meteor standalone support.
 #   (not needed if you already have the above Ruby support)
-RUN /pd_build/nodejs.sh
+#RUN /pd_build/nodejs.sh
 
 # ...put your own build instructions here...
-RUN apt-get -y install pdftk tzdata postgresql
+RUN apt-get update && apt-get -y install pdftk tzdata postgresql
 
 # Enable nginx and passenger
 RUN rm -f /etc/service/nginx/down
@@ -48,6 +49,4 @@ ADD docker/test_server/env.conf /etc/nginx/main.d/webapp_env.conf
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN mkdir -p /home/app/systems; chown app:app /home/app/systems
-COPY --chown=app:app systems /home/app/systems
-RUN bash -lc "cd /home/app/systems/et1 && bundle install --deployment"
 WORKDIR /home/app/systems
