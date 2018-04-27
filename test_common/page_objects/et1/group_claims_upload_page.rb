@@ -8,13 +8,15 @@ module EtFullSystem
             section :file_upload, :field, 'Upload spreadsheet (optional)' do
               def set(value)
                 browser = page.driver.browser
-                old_file_detector = browser.send(:bridge).file_detector
-                browser.file_detector = lambda do |args|
-                  args.first.to_s
+                if browser.respond_to?(:file_detector=)
+                  old_file_detector = browser.send(:bridge).file_detector
+                  browser.file_detector = lambda do |args|
+                    args.first.to_s
+                  end
                 end
                 root_element.set(value)
               ensure
-                browser.file_detector = old_file_detector if browser
+                browser.file_detector = old_file_detector if browser && browser.respond_to?(:file_detector=)
               end
 
             end
