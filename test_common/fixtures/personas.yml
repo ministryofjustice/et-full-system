@@ -223,5 +223,77 @@ simple_user:
     preferred_outcome_notes: 'I would like 50,000 GBP due to the stress this caused me'
     other_important_details: 'Here are some very important details that need to be considered'
 
+simple_user_with_csv:
+  personal:
+    title: 'Mr'
+    first_name: First
+    last_name: Last
+    date_of_birth: '21/11/1982'
+    gender: Male
+    has_special_needs: 'Yes'
+    special_needs: My special needs are as follows
+    building: '102'
+    street: Petty France
+    locality: London
+    county: Greater London
+    post_code: SW1H 9AJ
+    country: United Kingdom
+    telephone_number: 01234 567890
+    alternative_telephone_number: 01234 098765
+    email_address: test@digital.justice.gov.uk
+    correspondence: Email
+    memorable_word: password
+    group_claims_csv: 'simple_user_with_csv_group_claims.csv'
+  representative:
+    type: Solicitor
+    organisation_name: 'Solicitors Are Us Fake Company'
+    name: 'Solicitor Name'
+    building: '106'
+    street: 'Mayfair'
+    locality: 'London'
+    county: 'Greater London'
+    post_code: 'SW1H 9PP'
+    telephone_number: '01111 123456'
+    alternative_telephone_number: '02222 654321'
+    email_address: 'solicitor.test@digital.justice.gov.uk'
+    dx_number: 'dx1234567890'
+  respondents:
+    -
+      name: 'Respondent Name'
+      building: '108'
+      street: 'Regent Street'
+      locality: 'London'
+      county: 'Greater London'
+      post_code: 'SW1H 9QR'
+      telephone_number: '02222 321654'
+      work_address:
+        building:  '110'
+        street:  'Piccadily Circus'
+        locality:  'London'
+        county:  'Greater London'
+        post_code:  'SW1H 9ST'
+        telephone_number:  '03333 423554'
+      acas_number: 'AC123456/78/90'
+  employment:
+    current_work_situation: 'Still working for this employer'
+    job_title: 'Project Manager'
+    start_date: '18/11/2009'
+    notice_period: '3 Months'
+    average_weekly_hours: '38'
+    pay_before_tax: '3000 Monthly'
+    pay_after_tax: '2000 Monthly'
+    employers_pension_scheme: 'Yes'
+    benefits: 'Company car, private health care'
+  claim:
+    claim_type: 'Unfair dismissal (including constructive dismissal)'
+    whistleblowing_claim: 'Yes'
+    send_to_relevant_person: 'Yes'
+    description: 'Full text version of claim'
+    other_claimants: 'Yes'
+    other_claimant_names: 'Similar Claim1, Similar Claim2'
+    preferred_outcome: 'Compensation'
+    preferred_outcome_notes: 'I would like 50,000 GBP due to the stress this caused me'
+    other_important_details: 'Here are some very important details that need to be considered'
+
 
 
