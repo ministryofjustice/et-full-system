@@ -24,3 +24,8 @@ Feature: ET1 Claim data is exported to the local office
     And I am the lead claimant of more than 7 other claimants that I have listed in a spreadsheet
     When I complete an online ET1 form and submit the form
     Then my uploaded ET1 CSV data is formatted into a TXT format file and is available for ATOS to download
+
+  Scenario: Send the ET1 CSV upload file to local office
+    Given I am "simple_user_with_csv" with a unique first name
+    When I complete an online ET1 form and submit the form
+    Then the CSV file is stored in a landing folder
