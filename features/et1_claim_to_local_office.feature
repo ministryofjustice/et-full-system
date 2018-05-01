@@ -29,3 +29,8 @@ Feature: ET1 Claim data is exported to the local office
     Given I am "simple_user_with_csv" with a unique first name
     When I complete an online ET1 form and submit the form
     Then the CSV file is stored in a landing folder
+
+  Scenario: Send the ET1 RTF upload file to local office
+    Given I am "simple_user_with_rtf" with a unique first name
+    When I complete an online ET1 form and submit the form
+    Then the RTF file is stored in a landing folder

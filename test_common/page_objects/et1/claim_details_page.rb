@@ -14,6 +14,35 @@ module EtFullSystem
             element :names, 'textarea[name="claim_details[other_known_claimant_names]"]'
           end
 
+          section :rtf_file, :xpath, (XPath.generate { |x| x.descendant(:details)[x.child(:summary)[x.string.n.is('Or upload it as a separate document')]] }) do
+            section :file_input, :css, 'input[type=file]' do
+              def set(value)
+                browser = page.driver.browser
+                if browser.respond_to?(:file_detector=)
+                  old_file_detector = browser.send(:bridge).file_detector
+                  browser.file_detector = lambda do |args|
+                    args.first.to_s
+                  end
+                end
+                root_element.set(value)
+              ensure
+                browser.file_detector = old_file_detector if browser && browser.respond_to?(:file_detector=)
+              end
+            end
+
+            def set(value)
+              ensure_file_input_visible
+              file_input.set(value)
+            end
+
+            private
+
+            def ensure_file_input_visible
+              return if root_element[:open]
+              root_element.click
+            end
+          end
+
           element :save_and_continue_button, 'form.edit_claim_details input[value="Save and continue"]'
         end
 
@@ -24,6 +53,10 @@ module EtFullSystem
         def set_for(user)
           claim = user[:claim]
           return if claim.nil?
+          if claim.key?(:rtf_file)
+            full_path = File.absolute_path(File.join('..', '..', 'fixtures', claim[:rtf_file]), __dir__)
+            main_content.rtf_file.set(full_path)
+          end
           set_field main_content, :description, claim
           set_field main_content.similar_claims, :other_claimants, claim
           main_content.similar_claims.names.set claim[:other_claimant_names] if claim.key?(:other_claimant_names)
