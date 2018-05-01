@@ -13,6 +13,10 @@ module EtFullSystem
         Admin::JobsPage.new
       end
 
+      def self.claimants_page
+        Admin::ClaimantsPage.new
+      end
+      
       def self.job_sidekiq_cron_page
         Admin::JobSidekiqCronPage.new
       end
