@@ -6,11 +6,6 @@ module EtFullSystem
         section :main_table, '#index_table_claimants tbody tr' do
           element :first_name, 'td.col.col-first_name'
         end
-
-        def check_claimants_details(user)
-          load
-          main_table.first_name.text.should == user
-        end
       end
     end
   end
