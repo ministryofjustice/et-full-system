@@ -1,6 +1,10 @@
 module EtFullSystem
   module Test
     module AdminPages
+      def self.dashboard_page
+        Admin::DashboardPage.new
+      end
+      
       def self.login_page
         Admin::LoginPage.new
       end
