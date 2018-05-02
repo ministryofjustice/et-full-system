@@ -9,6 +9,7 @@ require_relative '../../test_common/atos_interface'
 require_relative '../../test_common/rspec_eventually'
 require_relative '../../test_common/housekeeping'
 require_relative '../../test_common/matchers'
+require_relative '../../test_common/api/admin'
 include EtFullSystem::Test::Setup
 include EtFullSystem::Test::Pages
 include EtFullSystem::Test::Et1ClaimHelper
