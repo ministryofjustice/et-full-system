@@ -9,7 +9,7 @@ module EtFullSystem
 
         def check_claimants_details(user)
           load
-          main_table.first_name.text == user
+          main_table.first_name.text.should == user
         end
       end
     end
