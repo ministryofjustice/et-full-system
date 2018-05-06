@@ -136,6 +136,29 @@ services:
     ports:
       - "${ET_ADMIN_PORT:-0}:8080"
     command: bash -c "wait-for-it et_api:8080 -t 300 && bundle && bundle exec rails db:seed assets:precompile && bundle exec unicorn -p 8080 -c ./config/unicorn.rb -E production"
+  et3:
+    build:
+      context: ../../systems/et3
+    environment:
+      RAILS_ENV: production
+      WEB_CONCURRENCY: 4
+      SECRET_KEY_BASE: sdlkjewfkjhfviuhduihenrjk435r89esfd7cv983qh2n4r3q27yh4u5rtfg
+      DB_HOST: etapi_db
+      DB_NAME: et3
+      BUNDLE_EXCLUDE: ''
+      RAILS_SERVE_STATIC_FILES: 'true'
+    networks:
+      - et_full_system
+    volumes:
+      - ../../systems/et3:/usr/src/app
+      - ./wait-for-it:/usr/local/bin/wait-for-it
+    links:
+      - etapi_db
+      - et_api
+      - s3_mock
+    ports:
+      - "${ET_ADMIN_PORT:-0}:8080"
+    command: bash -c "wait-for-it et_api:8080 -t 300 && bundle && bundle exec rails db:create db:migrate assets:precompile && bundle exec unicorn -p 8080 -c ./config/unicorn.rb -E production"
   s3_mock:
     image: scality/s3server
     networks:
