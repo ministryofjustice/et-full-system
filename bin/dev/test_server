@@ -1,0 +1,7 @@
+#!/bin/bash
+cd docker/test_server
+docker-compose "$@"
+
+
+
+

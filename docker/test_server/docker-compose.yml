@@ -19,8 +19,50 @@ services:
       DB_HOST: 'db'
       DB_USERNAME: 'postgres'
       SECRET_KEY_BASE: sdlkjewfkjhfviuhduihenrjk435r89esfd7cv983qh2n4r3q27yh4u5rtfg
+      REDIS_HOST: redis
+      AWS_ACCESS_KEY_ID: accessKey1
+      AWS_SECRET_ACCESS_KEY: verySecretKey1
+      AWS_REGION: 'us-east-1'
+      AWS_ENDPOINT: 'http://s3.docker.test:8000'
+      AWS_S3_FORCE_PATH_STYLE: 'true'
+      S3_UPLOAD_BUCKET: 'etapibucket'
+      RAILS_ENV: 'production' # Caution - ET1 runs as local
+    networks:
+      et_full_system:
+        aliases:
+          - etapi.et
+          - admin.et
+          - et1.et
+          - et3.et
+
+#command: bash -lc "cd /home/app/systems/api && REDIS_DATABASE=2 bundle exec sidekiq"
   db:
     image: postgres:9.3.5
+    networks:
+      - et_full_system
+  redis:
+    image: redis
+    ports:
+      - "${REDIS_PORT:-0}:6379"
+    networks:
+      - et_full_system
+  s3_mock:
+    image: scality/s3server
+    ports:
+      - "${S3_PORT:-0}:8000"
+    networks:
+      et_full_system:
+        aliases:
+          - "s3.docker.test"
+  smtp:
+    image: mailhog/mailhog:latest
+    ports:
+      - "8025:8025"
+    logging:
+        driver: 'none'  # disable saving logs
+    networks:
+      - et_full_system
+
 volumes:
   rvm:
   global_node_modules:
@@ -28,5 +70,7 @@ volumes:
   et3_node_modules:
   api_node_modules:
   admin_node_modules:
+networks:
+  et_full_system:
 
 

@@ -48,6 +48,15 @@ RUN rm /etc/nginx/sites-enabled/default
 ADD docker/test_server/webapp.conf /etc/nginx/sites-enabled/webapp.conf
 ADD docker/test_server/env.conf /etc/nginx/main.d/webapp_env.conf
 
+# Custom Services
+RUN mkdir /etc/service/sidekiq_api
+COPY docker/test_server/sidekiq_api.sh /etc/service/sidekiq_api/run
+RUN chmod +x /etc/service/sidekiq_api/run
+
+RUN mkdir /etc/service/sidekiq_et1
+COPY docker/test_server/sidekiq_et1.sh /etc/service/sidekiq_et1/run
+RUN chmod +x /etc/service/sidekiq_et1/run
+
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
