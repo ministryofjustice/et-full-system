@@ -21,6 +21,7 @@ group :test do
   gem 'rubyzip', '~> 1.2', '>= 1.2.1'
   # HTTParty - used to download from ATOS API during tests
   gem 'httparty', '~> 0.16.2'
+  gem 'pry'
 
 end
 

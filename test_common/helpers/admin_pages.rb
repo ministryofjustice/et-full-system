@@ -4,7 +4,7 @@ module EtFullSystem
       def self.dashboard_page
         Admin::DashboardPage.new
       end
-
+      
       def self.login_page
         Admin::LoginPage.new
       end
@@ -13,6 +13,10 @@ module EtFullSystem
         Admin::JobsPage.new
       end
 
+      def self.claimants_page
+        Admin::ClaimantsPage.new
+      end
+      
       def self.job_sidekiq_cron_page
         Admin::JobSidekiqCronPage.new
       end
