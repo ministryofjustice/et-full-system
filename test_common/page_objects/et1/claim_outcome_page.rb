@@ -20,7 +20,7 @@ module EtFullSystem
         end
 
         def set_for(user)
-          claim = user[:claim]
+          claim = FactoryBot.create(:claim).to_h
           return if claim.nil?
           main_content.preferred_outcome do |s|
             s.set claim[:preferred_outcome] if claim.key?(:preferred_outcome)

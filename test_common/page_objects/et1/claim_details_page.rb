@@ -51,7 +51,7 @@ module EtFullSystem
         end
 
         def set_for(user)
-          claim = user[:claim]
+          claim = FactoryBot.create(:claim).to_h
           return if claim.nil?
           if claim.key?(:rtf_file)
             full_path = File.absolute_path(File.join('..', '..', 'fixtures', claim[:rtf_file]), __dir__)

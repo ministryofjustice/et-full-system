@@ -36,10 +36,9 @@ module EtFullSystem
           main_content.save_and_continue_button.click
         end
 
-        def set_for(user)
-          respondents = user[:respondents]
-          return if respondents.nil? || respondents.empty?
-          respondent = respondents.first
+        def set_for(respondent)
+          return if respondent.nil? || respondent.empty?
+          # respondent = respondents.first
           main_content.about_the_respondent do |s|
             set_field s, :name, respondent
             set_field s, :building, respondent
@@ -50,14 +49,15 @@ module EtFullSystem
             set_field s, :telephone_number, respondent
           end
           if respondent.key?(:work_address)
+            address = respondent[:work_address].to_h
             main_content.your_work_address do |s|
               s.same_address.set('No')
-              set_field s, :building, respondent[:work_address]
-              set_field s, :street, respondent[:work_address]
-              set_field s, :locality, respondent[:work_address]
-              set_field s, :county, respondent[:work_address]
-              set_field s, :post_code, respondent[:work_address]
-              set_field s, :telephone_number, respondent[:work_address]
+              set_field s, :building, address
+              set_field s, :street, address
+              set_field s, :locality, address
+              set_field s, :county, address
+              set_field s, :post_code, address
+              set_field s, :telephone_number, address
             end
           else
             main_content.your_work_address.same_address.set('Yes')
@@ -69,8 +69,8 @@ module EtFullSystem
 
         private
 
-        def set_field(s, key, data)
-          s.send(key).set(data[key]) if data.key?(key)
+        def set_field(s, key, respondent)
+          s.send(key).set(respondent[key]) if respondent.key?(key)
         end
       end
     end

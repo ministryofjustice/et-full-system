@@ -65,30 +65,28 @@ module EtFullSystem
         # Fills in the entire page for the user given
         #
         # @param [Hash] user The user hash
-        def set_for(user)
-          data = user[:personal]
-
+        def set_for(claimant)
           main_content.about_the_claimant.tap do |s|
-            set_field(s, :title, data)
-            set_field(s, :first_name, data)
-            set_field(s, :last_name, data)
-            set_field(s, :date_of_birth, data)
-            set_field(s, :gender, data)
-            set_field(s, :has_special_needs, data)
-            set_field(s, :special_needs, data)
+            set_field(s, :title, claimant)
+            set_field(s, :first_name, claimant)
+            set_field(s, :last_name, claimant)
+            set_field(s, :date_of_birth, claimant)
+            set_field(s, :gender, claimant)
+            set_field(s, :has_special_needs, claimant)
+            set_field(s, :special_needs, claimant)
           end
 
           main_content.claimants_contact_details.tap do |s|
-            set_field(s, :building, data)
-            set_field(s, :street, data)
-            set_field(s, :locality, data)
-            set_field(s, :county, data)
-            set_field(s, :post_code, data)
-            set_field(s, :country, data)
-            set_field(s, :telephone_number, data)
-            set_field(s, :alternative_telephone_number, data)
-            set_field(s, :email_address, data)
-            set_field(s, :correspondence, data)
+            set_field(s, :building, claimant)
+            set_field(s, :street, claimant)
+            set_field(s, :locality, claimant)
+            set_field(s, :county, claimant)
+            set_field(s, :post_code, claimant)
+            set_field(s, :country, claimant)
+            set_field(s, :telephone_number, claimant)
+            set_field(s, :alternative_telephone_number, claimant)
+            set_field(s, :email_address, claimant)
+            set_field(s, :correspondence, claimant)
           end
         end
 
@@ -98,8 +96,8 @@ module EtFullSystem
 
         private
 
-        def set_field(s, key, data)
-          s.send(key).set(data[key]) if data.key?(key)
+        def set_field(s, key, claimant)
+          s.send(key).set(claimant[key]) if claimant.key?(key)
         end
       end
     end

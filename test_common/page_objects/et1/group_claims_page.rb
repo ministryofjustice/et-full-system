@@ -45,9 +45,9 @@ module EtFullSystem
 
         end
 
-        def set_for(user)
-          group_claims_data = user.dig(:personal, :group_claims) || []
-          group_claims_csv = user.dig(:personal, :group_claims_csv)
+        def set_for(claimant)
+          group_claims_data = claimant.dig(:group_claims) || []
+          group_claims_csv = claimant.dig(:group_claims_csv)
           if group_claims_data.present? || group_claims_csv.present?
             main_content.group_claims.set('Yes')
             group_claims_data.each.with_index do |claim, idx|

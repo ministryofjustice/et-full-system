@@ -44,25 +44,20 @@ module EtFullSystem
       end
 
       def filename_matches?(filename, identifier, **args)
+        user = args[:user]
         case identifier
         when :et1_claim_pdf_for
-          user = args[:user]
-          filename.end_with?("ET1_#{user.dig(:personal, :first_name).tr(' ', '_')}_#{user.dig(:personal, :last_name)}.pdf")
+          filename.end_with?("ET1_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.pdf")
         when :et1_claim_xml_for
-          user = args[:user]
-          filename.end_with?("ET1_#{user.dig(:personal, :first_name).tr(' ', '_')}_#{user.dig(:personal, :last_name)}.xml")
+          filename.end_with?("ET1_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.xml")
         when :et1_claim_txt_for
-          user = args[:user]
-          filename.end_with?("ET1_#{user.dig(:personal, :first_name).tr(' ', '_')}_#{user.dig(:personal, :last_name)}.txt")
+          filename.end_with?("ET1_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.txt")
         when :et1_claim_csv_for
-          user = args[:user]
-          filename.end_with?("ET1a_#{user.dig(:personal, :first_name).tr(' ', '_')}_#{user.dig(:personal, :last_name)}.csv")
+          filename.end_with?("ET1a_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.csv")
         when :et1_claim_rtf_for
-          user = args[:user]
-          filename.end_with?("ET1_Attachment_#{user.dig(:personal, :first_name).tr(' ', '_')}_#{user.dig(:personal, :last_name)}.rtf")
+          filename.end_with?("ET1_Attachment_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.rtf")
         when :et1a_claim_txt_for
-          user = args[:user]
-          filename.end_with?("ET1a_#{user.dig(:personal, :first_name).tr(' ', '_')}_#{user.dig(:personal, :last_name)}.txt")
+          filename.end_with?("ET1a_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.txt")
         end
       end
 

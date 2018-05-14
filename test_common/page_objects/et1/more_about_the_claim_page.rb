@@ -19,7 +19,7 @@ module EtFullSystem
         end
 
         def set_for(user)
-          claim = user[:claim]
+          claim = FactoryBot.create(:claim).to_h
           return if claim.nil?
           if claim.key?(:other_important_details)
             main_content.other_important_details.set 'Yes'

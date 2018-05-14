@@ -29,7 +29,7 @@ module EtFullSystem
         end
 
         def set_for(user)
-          claim = user[:claim]
+          claim = FactoryBot.create(:claim).to_h
           return if claim.nil?
           set_field main_content, :claim_type, claim
           set_field main_content, :whistleblowing_claim, claim
