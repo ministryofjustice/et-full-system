@@ -4,3 +4,10 @@ Given(/^I am making a claim$/) do
   @respondent = FactoryBot.create(:respondent).to_h
   @employment = FactoryBot.create(:employment).to_h
 end
+
+Given(/^I am making a claim with no respresentative$/) do
+  @claimant = FactoryBot.create(:claimant).to_h
+  @respondent = FactoryBot.create(:respondent).to_h
+  @employment = FactoryBot.create(:employment).to_h
+end
+

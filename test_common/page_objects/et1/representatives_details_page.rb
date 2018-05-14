@@ -41,7 +41,7 @@ module EtFullSystem
         end
 
         def set_for(representative)
-          if representative.any?
+          if representative.present?
             main_content.representatives_details.representative.set('Yes')
             main_content.representatives_details.about_your_representative do |s|
               set_field s, :type, representative

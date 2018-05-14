@@ -20,10 +20,10 @@ Feature:
     When I submit a completed Employment Tribunal form
     Then the completed form in XML format is available for ATOS to download and validate
 
-#   Scenario: No representative
-#     Given I am making a claim with no respresentative
-#     When I submit a completed Employment Tribunal form
-#     Then the completed form in PDF format is available for ATOS to download and validate
+  Scenario: No representative
+    Given I am making a claim with no respresentative
+    When I submit a completed Employment Tribunal form
+    Then the completed form in PDF format is available for ATOS to download and validate
 
 #   Scenario: 2 other People making a claim with you
 #     Given I am making a claim with 2 other people
