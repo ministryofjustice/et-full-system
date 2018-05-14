@@ -22,6 +22,7 @@ group :test do
   # HTTParty - used to download from ATOS API during tests
   gem 'httparty', '~> 0.16.2'
   gem 'pry'
+  gem 'factory_bot'
 
 end
 
