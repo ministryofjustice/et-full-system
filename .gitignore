@@ -4,3 +4,7 @@ tmp/**/*
 config_aws.env
 **/.DS_Store
 node_modules
+.bundle/
+.vscode/
+rubybin/
+vendor/
