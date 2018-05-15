@@ -1,7 +1,9 @@
+require 'faker'
+
 FactoryBot.define do
   factory :employment, class: OpenStruct do
     current_work_situation 'Still working for this employer'
-    job_title 'Project Manager'
+    job_title { Faker::Company.profession }
     start_date '18/11/2009'
     notice_period '3 Months'
     average_weekly_hours '38'

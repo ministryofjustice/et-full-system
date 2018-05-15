@@ -65,6 +65,8 @@ GEM
     dotenv (2.2.2)
     factory_bot (4.8.2)
       activesupport (>= 3.0.0)
+    faker (1.8.7)
+      i18n (>= 0.7)
     ffi (1.9.23)
     geckodriver-helper (0.0.4)
       archive-zip (~> 0.7.0)
@@ -135,6 +137,7 @@ DEPENDENCIES
   debase (~> 0.2)
   dotenv (~> 2.2, >= 2.2.2)
   factory_bot
+  faker
   geckodriver-helper (~> 0.0)
   httparty (~> 0.16.2)
   i18n (~> 0.8)
