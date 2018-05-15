@@ -17,7 +17,7 @@ module EtFullSystem
       end
 
       def et1_answer_group_claimants_questions
-        et1_group_claims_page.set_for(@claimant)
+        et1_group_claims_page.set_for(@group_claims)
         group_claims_csv = @claimant.dig(:group_claims_csv)
         if group_claims_csv
           et1_group_claims_upload_page.set_for(@claimant)

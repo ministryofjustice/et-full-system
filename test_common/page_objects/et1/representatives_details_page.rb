@@ -41,23 +41,24 @@ module EtFullSystem
         end
 
         def set_for(representative)
-          if representative.present?
+          data = representative.to_h
+          if data.present?
             main_content.representatives_details.representative.set('Yes')
             main_content.representatives_details.about_your_representative do |s|
-              set_field s, :type, representative
-              set_field s, :organisation_name, representative
-              set_field s, :name, representative
+              set_field s, :type, data
+              set_field s, :organisation_name, data
+              set_field s, :name, data
             end
             main_content.representatives_details.contact_details do |s|
-              set_field s, :building, representative
-              set_field s, :street, representative
-              set_field s, :locality, representative
-              set_field s, :county, representative
-              set_field s, :post_code, representative
-              set_field s, :telephone_number, representative
-              set_field s, :alternative_telephone_number, representative
-              set_field s, :email_address, representative
-              set_field s, :dx_number, representative
+              set_field s, :building, data
+              set_field s, :street, data
+              set_field s, :locality, data
+              set_field s, :county, data
+              set_field s, :post_code, data
+              set_field s, :telephone_number, data
+              set_field s, :alternative_telephone_number, data
+              set_field s, :email_address, data
+              set_field s, :dx_number, data
             end
           else
             main_content.representatives_details.representative.set('No')
@@ -70,8 +71,8 @@ module EtFullSystem
 
         private
 
-        def set_field(s, key, representative)
-          s.send(key).set(representative[key]) if representative.key?(key)
+        def set_field(s, key, data)
+          s.send(key).set(data[key]) if data.key?(key)
         end
       end
     end

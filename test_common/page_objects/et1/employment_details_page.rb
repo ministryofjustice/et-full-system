@@ -76,29 +76,30 @@ module EtFullSystem
         end
 
         def set_for(employment)
-          if employment.nil?
+          data = employment.to_h
+          if data.nil?
             main_content.your_employment_details.set('No')
 
           else
             main_content.your_employment_details do |s|
               s.set 'Yes'
-              set_field s, :current_work_situation, employment
+              set_field s, :current_work_situation, data
               s.employment_details do |s|
-                set_field s, :job_title, employment
-                set_field s, :start_date, employment
-                if employment.key?(:notice_period)
+                set_field s, :job_title, data
+                set_field s, :start_date, data
+                if data.key?(:notice_period)
                   s.notice_period.set 'Yes'
-                  s.notice_period_value.set employment[:notice_period]
+                  s.notice_period_value.set data[:notice_period]
                 else
                   s.notice_period.set 'No'
                 end
-                set_field s, :average_weekly_hours, employment
+                set_field s, :average_weekly_hours, data
               end
               s.pay_pension_benefits do |s|
-                set_field s, :pay_before_tax, employment
-                set_field s, :pay_after_tax, employment
-                set_field s, :employers_pension_scheme, employment
-                set_field s, :benefits, employment
+                set_field s, :pay_before_tax, data
+                set_field s, :pay_after_tax, data
+                set_field s, :employers_pension_scheme, data
+                set_field s, :benefits, data
               end
             end
           end
@@ -106,8 +107,8 @@ module EtFullSystem
 
         private
 
-        def set_field(s, key, employment)
-          s.send(key).set(employment[key]) if employment.key?(key)
+        def set_field(s, key, data)
+          s.send(key).set(data[key]) if data.key?(key)
         end
       end
     end

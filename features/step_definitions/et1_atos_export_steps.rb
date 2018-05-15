@@ -14,7 +14,7 @@ Then(/^the completed form in TXT format is available for ATOS to download and va
     admin_pages.jobs_page.run_export_claims_cron_job
   end
   expect { atos_interface }.to eventually have_zip_file_containing(:et1_claim_txt_for, user: @claimant), timeout: 30, sleep: 2
-  expect(atos_interface.download_from_any_zip(:et1_claim_txt_for, user: @claimant)).to match_text_schema calculated_claim_matchers(user: @claimant, representative: @representative, respondent: @respondent, employment: @employment)
+  expect(atos_interface.download_from_any_zip(:et1_claim_txt_for, user: @claimant)).to match_text_schema calculated_claim_matchers(user: @claimant, representative: @representative, respondent: @respondent.to_h, employment: @employment)
 end
 
 Then(/^the completed form in XML format is available for ATOS to download and validate$/) do
