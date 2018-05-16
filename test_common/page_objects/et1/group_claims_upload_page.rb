@@ -29,10 +29,10 @@ module EtFullSystem
 
         end
 
-        def set_for(user)
-          group_claims_csv = user.dig(:personal, :group_claims_csv)
-          if group_claims_csv.present?
-            full_path = File.absolute_path(File.join('..', '..', 'fixtures', group_claims_csv), __dir__)
+        def set_for(group_claims_csv)
+          data = group_claims_csv.dig(:group_claims)
+          if data.present?
+            full_path = File.absolute_path(File.join('..', '..', 'fixtures', data), __dir__)
             main_content.group_claims.set('Yes')
             main_content.group_claims.file_upload.set(full_path)
           else

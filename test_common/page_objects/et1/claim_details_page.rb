@@ -50,16 +50,16 @@ module EtFullSystem
           main_content.save_and_continue_button.click
         end
 
-        def set_for(user)
-          claim = FactoryBot.create(:claim).to_h
+        def set_for(claim)
+          data = claim.to_h
           return if claim.nil?
-          if claim.key?(:rtf_file)
-            full_path = File.absolute_path(File.join('..', '..', 'fixtures', claim[:rtf_file]), __dir__)
+          if data.key?(:rtf_file)
+            full_path = File.absolute_path(File.join('..', '..', 'fixtures', data[:rtf_file]), __dir__)
             main_content.rtf_file.set(full_path)
           end
-          set_field main_content, :description, claim
-          set_field main_content.similar_claims, :other_claimants, claim
-          main_content.similar_claims.names.set claim[:other_claimant_names] if claim.key?(:other_claimant_names)
+          set_field main_content, :description, data
+          set_field main_content.similar_claims, :other_claimants, data
+          main_content.similar_claims.names.set claim[:other_claimant_names] if data.key?(:other_claimant_names)
         end
 
         private

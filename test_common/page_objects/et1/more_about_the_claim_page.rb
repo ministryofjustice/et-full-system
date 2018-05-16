@@ -18,12 +18,12 @@ module EtFullSystem
           main_content.save_and_continue_button.click
         end
 
-        def set_for(user)
-          claim = FactoryBot.create(:claim).to_h
+        def set_for(claim)
+          data = claim.to_h
           return if claim.nil?
-          if claim.key?(:other_important_details)
+          if data.key?(:other_important_details)
             main_content.other_important_details.set 'Yes'
-            main_content.other_important_details.notes.set claim[:other_important_details]
+            main_content.other_important_details.notes.set data[:other_important_details]
           else
             main_content.other_important_details.set 'No'
           end

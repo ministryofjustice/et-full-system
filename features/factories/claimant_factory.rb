@@ -27,7 +27,12 @@ FactoryBot.define do
       post_code 'SW1H 9AJ'
     end
 
+    trait :group_claims_csv do
+      group_claims 'simple_user_with_csv_group_claims.csv'
+    end
+
     factory :first_person, traits: [:answer_data, :person_data]
     factory :group_claims, traits: [:person_data]
+    factory :group_claims_csv, traits: [:group_claims_csv]
   end
 end

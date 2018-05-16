@@ -30,10 +30,10 @@ Feature:
     When I submit a completed Employment Tribunal form
     Then the completed form in PDF format is available for ATOS to download and validate
 
-  # Scenario: Uploading CSV data when there are more than 7 other people making the claim
-  #   Given I am making a claim with 7 other people
-  #   When I submit a completed Employment Tribunal form
-  #   Then the uploaded CSV data is formatted into a TXT format file and is available for ATOS to download
+  Scenario: Uploading CSV data when there are more than 7 other people making the claim
+    Given I am making a claim with 7 other people
+    When I submit a completed Employment Tribunal form
+    Then the uploaded CSV data is formatted into a TXT format file and is available for ATOS to download
 
 #   Scenario: Describing your claim details in a separate document
 #     Given I am making a claim using a separate document

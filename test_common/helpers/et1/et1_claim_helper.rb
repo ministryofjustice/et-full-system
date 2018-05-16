@@ -17,10 +17,9 @@ module EtFullSystem
       end
 
       def et1_answer_group_claimants_questions
-        et1_group_claims_page.set_for(@group_claims)
-        group_claims_csv = @claimant.dig(:group_claims_csv)
-        if group_claims_csv
-          et1_group_claims_upload_page.set_for(@claimant)
+        et1_group_claims_page.set_for(group_claims: @group_claims, group_claims_csv: @group_claims_csv)
+        if @group_claims_csv.present?
+          et1_group_claims_upload_page.set_for(@group_claims_csv)
           et1_group_claims_upload_page.save_and_continue
         else
           et1_group_claims_page.save_and_continue
@@ -45,22 +44,22 @@ module EtFullSystem
       end
 
       def et1_answer_claim_type_questions
-        et1_claim_type_page.set_for(@employment)
+        et1_claim_type_page.set_for(@claim)
         et1_claim_type_page.save_and_continue
       end
 
       def et1_answer_claim_details_questions
-        et1_claim_details_page.set_for(@employment)
+        et1_claim_details_page.set_for(@claim)
         et1_claim_details_page.save_and_continue
       end
 
       def et1_answer_claim_outcome_questions
-        et1_claim_outcome_page.set_for(@employment)
+        et1_claim_outcome_page.set_for(@claim)
         et1_claim_outcome_page.save_and_continue
       end
 
       def et1_answer_more_about_the_claim_questions
-        et1_more_about_the_claim_page.set_for(@employment)
+        et1_more_about_the_claim_page.set_for(@claim)
         et1_more_about_the_claim_page.save_and_continue
       end
 

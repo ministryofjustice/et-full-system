@@ -19,12 +19,12 @@ module EtFullSystem
           main_content.save_and_continue_button.click
         end
 
-        def set_for(user)
-          claim = FactoryBot.create(:claim).to_h
-          return if claim.nil?
+        def set_for(claim)
+          data = claim.to_h
+          return if data.nil?
           main_content.preferred_outcome do |s|
-            s.set claim[:preferred_outcome] if claim.key?(:preferred_outcome)
-            s.notes.set claim[:preferred_outcome_notes] if claim.key?(:preferred_outcome_notes)
+            s.set claim[:preferred_outcome] if data.key?(:preferred_outcome)
+            s.notes.set claim[:preferred_outcome_notes] if data.key?(:preferred_outcome_notes)
           end
         end
       end

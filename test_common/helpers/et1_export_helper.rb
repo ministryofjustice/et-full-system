@@ -113,7 +113,7 @@ module EtFullSystem
       #
       # @return [Array<String,RSpec::Matchers::BuiltIn::BaseMatcher>] An array of simple strings and rspec matchers for use
       #  as one huge expectation based on the input user.
-      def calculated_et1a_claim_matchers(user:)
+      def calculated_et1a_claim_matchers(args)
         matchers = [
           'ET1a - Online Application to an Employment Tribunal',
           '',
@@ -128,12 +128,12 @@ module EtFullSystem
           '',
           'FormVersion: 2',
           '',
-          "The following claimants are represented by  (if applicable) and the relevant required information for all the additional claimants is the same as stated in the main claim of #{user.dig(:user,:first_name)} #{user.dig(:user, :last_name)} v #{user[:respondents].first[:name]}",
+          "The following claimants are represented by  (if applicable) and the relevant required information for all the additional claimants is the same as stated in the main claim of #{args.dig(:user,:first_name)} #{args.dig(:user, :last_name)} v #{args.dig(:respondent).dig(:name)}",
           '',
           ''
 
         ]
-        group_claimants_for(user: user).each do |claimant|
+        group_claimants_for(args.dig(:group_claims)).each do |claimant|
           matchers.concat [
             '## Section et1a: claim',
             '',
@@ -157,10 +157,10 @@ module EtFullSystem
 
       private
 
-      def group_claimants_for(user:)
-        return user.dig(:user, :group_claims) if user.dig(:user, :group_claims).is_a?(Array)
-        return [] unless user.dig(:user, :group_claims_csv).is_a?(String)
-        full_path = File.absolute_path(File.join('..', 'fixtures', user.dig(:user, :group_claims_csv)), __dir__)
+      def group_claimants_for(data)
+        # return data.dig(:personal, :group_claims) if data.dig(:personal, :group_claims).is_a?(Array)
+        return [] unless data.dig(:group_claims).is_a?(String)
+        full_path = File.absolute_path(File.join('..', 'fixtures', data.dig(:group_claims)), __dir__)
         raise "#{full_path} does not exist" unless File.exist?(full_path)
         results = CSV.read(full_path, headers: true)
         results.map do |row|
