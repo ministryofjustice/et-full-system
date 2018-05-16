@@ -133,7 +133,7 @@ module EtFullSystem
           ''
 
         ]
-        group_claimants_for(args.dig(:group_claims)).each do |claimant|
+        group_claimants_for(args.dig(:user, :group_claims_csv)).each do |claimant|
           matchers.concat [
             '## Section et1a: claim',
             '',
@@ -157,10 +157,8 @@ module EtFullSystem
 
       private
 
-      def group_claimants_for(data)
-        # return data.dig(:personal, :group_claims) if data.dig(:personal, :group_claims).is_a?(Array)
-        return [] unless data.dig(:group_claims).is_a?(String)
-        full_path = File.absolute_path(File.join('..', 'fixtures', data.dig(:group_claims)), __dir__)
+      def group_claimants_for(user)
+        full_path = File.absolute_path(File.join('..', 'fixtures', user), __dir__)
         raise "#{full_path} does not exist" unless File.exist?(full_path)
         results = CSV.read(full_path, headers: true)
         results.map do |row|

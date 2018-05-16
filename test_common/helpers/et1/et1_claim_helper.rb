@@ -7,19 +7,20 @@ module EtFullSystem
       end
 
       def et1_answer_login
-        et1_identification_page.set_for(@claimant)
+        et1_identification_page.set_for(@claimants)
         et1_identification_page.save_and_continue
       end
 
       def et1_answer_claimant_questions
-        et1_claimant_details_page.set_for(@claimant)
+        et1_claimant_details_page.set_for(@claimants)
         et1_claimant_details_page.save_and_continue
       end
 
       def et1_answer_group_claimants_questions
-        et1_group_claims_page.set_for(group_claims: @group_claims, group_claims_csv: @group_claims_csv)
-        if @group_claims_csv.present?
-          et1_group_claims_upload_page.set_for(@group_claims_csv)
+        et1_group_claims_page.set_for(@claimants)
+        group_claims_csv = @claimants[0].dig(:group_claims_csv)
+        if group_claims_csv
+          et1_group_claims_upload_page.set_for(@claimants)
           et1_group_claims_upload_page.save_and_continue
         else
           et1_group_claims_page.save_and_continue

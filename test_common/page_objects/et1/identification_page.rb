@@ -13,9 +13,9 @@ module EtFullSystem
           main_content.save_and_continue_button.click
         end
 
-        def set_for(claimant)
-          main_content.email.set(claimant.dig(:email_address))
-          main_content.memorable_word.set(claimant.dig(:memorable_word))
+        def set_for(user)
+          main_content.email.set(user[0].dig(:email_address))
+          main_content.memorable_word.set(user[0].dig(:email_address))
         end
       end
     end
