@@ -16,6 +16,7 @@ include EtFullSystem::Test::CommonAdminWindow
 include EtFullSystem::Test::AtosInterfaceHelper
 include EtFullSystem::Test::Housekeeping
 include EtFullSystem::Test::Et1Export
+include EtFullSystem::Test::Et3Export
 Before do
   EtFullSystem::Test::CommonAdminWindow.reset
 end

@@ -13,3 +13,8 @@ end
 And(/^I am the lead claimant of more than (\d+) other claimants that I have listed in a spreadsheet$/) do |_claimants|
   # Not sure if we need to do anything here yet - we will keep it for syntactical sugar though
 end
+
+
+And(/^I wait for (\d+) seconds$/) do |seconds|
+  sleep seconds.to_f
+end
