@@ -37,9 +37,8 @@ module EtFullSystem
         end
 
         def set_for(respondent)
-          data = respondent.to_h
+          data = respondent[0].to_h
           return if data.nil? || data.empty?
-          # respondent = respondents.first
           main_content.about_the_respondent do |s|
             set_field s, :name, data
             set_field s, :building, data

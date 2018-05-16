@@ -14,7 +14,7 @@ Then(/^the completed form in TXT format is available for ATOS to download and va
     admin_pages.jobs_page.run_export_claims_cron_job
   end
   expect { atos_interface }.to eventually have_zip_file_containing(:et1_claim_txt_for, user: @claimant), timeout: 30, sleep: 2
-  expect(atos_interface.download_from_any_zip(:et1_claim_txt_for, user: @claimant)).to match_text_schema calculated_claim_matchers(user: @claimant, representative: @representative, respondent: @respondent.to_h, employment: @employment)
+  expect(atos_interface.download_from_any_zip(:et1_claim_txt_for, user: @claimant)).to match_text_schema calculated_claim_matchers(user: @claimant, representative: @representative, respondents: @respondents, employment: @employment)
 end
 
 Then(/^the completed form in XML format is available for ATOS to download and validate$/) do
@@ -33,7 +33,7 @@ Then(/^the uploaded CSV data is formatted into a TXT format file and is availabl
     admin_pages.jobs_page.run_export_claims_cron_job
   end
   expect { atos_interface }.to eventually have_zip_file_containing(:et1a_claim_txt_for, user: @claimant), timeout: 30, sleep: 2
-  expect(atos_interface.download_from_any_zip(:et1a_claim_txt_for, user: @claimant)).to match_text_schema calculated_et1a_claim_matchers(user: @claimant, group_claims: @group_claims_csv, respondent: @respondent.to_h)
+  expect(atos_interface.download_from_any_zip(:et1a_claim_txt_for, user: @claimant)).to match_text_schema calculated_et1a_claim_matchers(user: @claimant, group_claims: @group_claims_csv, respondents: @respondents)
 end
 
 Then(/^the uploaded CSV data is formatted and available for ATOS to download$/) do
@@ -52,4 +52,14 @@ Then(/^the completed form in RTF format is available for ATOS to download and va
     admin_pages.jobs_page.run_export_claims_cron_job
   end
   expect { atos_interface }.to eventually have_zip_file_containing(:et1_claim_rtf_for, user: @claimant), timeout: 30, sleep: 2
+end
+
+Then(/^the completed form in TXT format should contained 3 employers details$/) do
+  within_admin_window do
+    api = EtFullSystem::Test::AdminApi.new
+    expect { api.claimants_api }.to eventually include a_hash_including(first_name: @claimant.dig(:first_name))
+    admin_pages.jobs_page.run_export_claims_cron_job
+  end
+  expect { atos_interface }.to eventually have_zip_file_containing(:et1_claim_txt_for, user: @claimant), timeout: 30, sleep: 2
+  expect(atos_interface.download_from_any_zip(:et1_claim_txt_for, user: @claimant)).to match_text_schema calculated_claim_matchers(user: @claimant, representative: @representative, respondents: @respondents, employment: @employment)
 end
