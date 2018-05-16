@@ -17,7 +17,7 @@ FactoryBot.define do
     trait :person_data do
       title 'Mr'
       first_name { Faker::Name.first_name }
-      last_name 'Last'
+      last_name { Faker::Name.last_name }
       date_of_birth '21/11/1982'
       gender 'Male'
       building { Faker::Address.building_number }

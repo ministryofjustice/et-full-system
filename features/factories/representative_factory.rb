@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :representative, class: OpenStruct do
     type 'Solicitor'
-    organisation_name  'Solicitors Are Us Fake Company'
+    organisation_name { Faker::Company.bs }
     name 'Solicitor Name'
     building '106'
     street 'Mayfair'
