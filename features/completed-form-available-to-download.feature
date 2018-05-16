@@ -35,10 +35,10 @@ Feature:
     When I submit a completed Employment Tribunal form
     Then the uploaded CSV data is formatted into a TXT format file and is available for ATOS to download
 
-#   Scenario: Describing your claim details in a separate document
-#     Given I am making a claim using a separate document
-#     When I submit a completed Employment Tribunal form
-#     Then the CSV file is stored in a landing folder
+  Scenario: Describing your claim details in a separate document
+    Given I am making a claim in a separate document
+    When I submit a completed Employment Tribunal form
+    Then the CSV file is stored in a landing folder
 
 #   Scenario: Filename based on employer's business address
 #     Given I am making a claim where my employer address is BS1 1DZ
