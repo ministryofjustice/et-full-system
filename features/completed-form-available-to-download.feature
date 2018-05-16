@@ -30,22 +30,24 @@ Feature:
     When I submit a completed Employment Tribunal form
     Then the completed form in PDF format is available for ATOS to download and validate
 
-  Scenario: Uploading CSV data when there are more than 7 other people making the claim
+  Scenario: Validate TXT file: Uploading CSV data with 7 other people making the claim
     Given I am making a claim with 7 other people
     When I submit a completed Employment Tribunal form
     Then the uploaded CSV data is formatted into a TXT format file and is available for ATOS to download
 
-  Scenario: Describing your claim details in a separate document
-    Given I am making a claim in a separate document
+    Scenario: Validate CSV file: Uploading CSV data when 7 other people making the claim
+    Given I am making a claim with 7 other people
     When I submit a completed Employment Tribunal form
-    Then the CSV file is stored in a landing folder
+    Then the uploaded CSV data is formatted and available for ATOS to download
+
+#   Scenario: Claim against more than one employer
+#     Given I am making a claim against more than one employer
+#     When I submit a completed Employment Tribunal form
+#     Then the completed form in TXT format is available for ATOS to download and validate
 
 #   Scenario: Filename based on employer's business address
 #     Given I am making a claim where my employer address is BS1 1DZ
 #     When I submit a completed Employment Tribunal form
 #     Then the filename should contain 1420000000000_ET1_Forename_Surname.txt
 
-#   Scenario: Claim against more than one employer
-#     Given I am making a claim against more than one employer
-#     When I submit a completed Employment Tribunal form
-#     Then the completed form in TXT format is available for ATOS to download and validate
+
