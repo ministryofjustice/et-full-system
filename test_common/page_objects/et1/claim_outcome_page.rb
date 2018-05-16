@@ -23,8 +23,8 @@ module EtFullSystem
           data = claim.to_h
           return if data.nil?
           main_content.preferred_outcome do |s|
-            s.set claim[:preferred_outcome] if data.key?(:preferred_outcome)
-            s.notes.set claim[:preferred_outcome_notes] if data.key?(:preferred_outcome_notes)
+            s.set data[:preferred_outcome] if data.key?(:preferred_outcome)
+            s.notes.set data[:preferred_outcome_notes] if data.key?(:preferred_outcome_notes)
           end
         end
       end

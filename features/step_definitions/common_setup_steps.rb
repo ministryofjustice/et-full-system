@@ -30,3 +30,11 @@ Given(/^I am making a claim with 7 other people$/) do
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 end
+
+Given(/^I am making a claim using a separate document$/) do
+  @claimant = FactoryBot.create(:first_person)
+  @representative = FactoryBot.create(:representative)
+  @respondent = FactoryBot.create(:respondent)
+  @employment = FactoryBot.create(:employment)
+  @claim = FactoryBot.create_list(:claim, 1, :upload_your_claim_statement)[0]
+end

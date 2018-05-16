@@ -59,7 +59,7 @@ module EtFullSystem
           end
           set_field main_content, :description, data
           set_field main_content.similar_claims, :other_claimants, data
-          main_content.similar_claims.names.set claim[:other_claimant_names] if data.key?(:other_claimant_names)
+          main_content.similar_claims.names.set data[:other_claimant_names] if data.key?(:other_claimant_names)
         end
 
         private

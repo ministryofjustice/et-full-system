@@ -20,7 +20,7 @@ module EtFullSystem
 
         def set_for(claim)
           data = claim.to_h
-          return if claim.nil?
+          return if data.nil?
           if data.key?(:other_important_details)
             main_content.other_important_details.set 'Yes'
             main_content.other_important_details.notes.set data[:other_important_details]

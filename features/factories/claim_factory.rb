@@ -10,4 +10,9 @@ FactoryBot.define do
     preferred_outcome_notes 'I would like 50,000 GBP due to the stress this caused me'
     other_important_details 'Here are some very important details that need to be considered'
   end
+
+  trait :upload_your_claim_statement do
+    rtf_file 'simple_user_with_rtf.rtf'
+  end
+
 end

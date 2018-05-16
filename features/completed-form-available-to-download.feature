@@ -40,10 +40,15 @@ Feature:
     When I submit a completed Employment Tribunal form
     Then the uploaded CSV data is formatted and available for ATOS to download
 
-#   Scenario: Claim against more than one employer
-#     Given I am making a claim against more than one employer
-#     When I submit a completed Employment Tribunal form
-#     Then the completed form in TXT format is available for ATOS to download and validate
+    Scenario: Uploading RTF data when describing your claim in details
+      Given I am making a claim using a separate document
+      When I submit a completed Employment Tribunal form
+      Then the completed form in RTF format is available for ATOS to download and validate
+
+  # Scenario: Claim against more than one employer
+  #   Given I am making a claim against more than one employer
+  #   When I submit a completed Employment Tribunal form
+  #   Then the completed form in TXT format is available for ATOS to download and validate
 
 #   Scenario: Filename based on employer's business address
 #     Given I am making a claim where my employer address is BS1 1DZ
