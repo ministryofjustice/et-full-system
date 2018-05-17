@@ -11,6 +11,7 @@ services:
       - rvm:/usr/local/rvm
       - global_node_modules:/usr/lib/node_modules
       - ../../systems:/home/app/systems
+      - ./public:/home/app/public
       - et1_node_modules:/home/app/systems/et1/node_modules
       - et3_node_modules:/home/app/systems/et3/node_modules
       - api_node_modules:/home/app/systems/api/node_modules
