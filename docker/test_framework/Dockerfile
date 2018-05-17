@@ -12,4 +12,4 @@ RUN gem update --system
 RUN gem install bundler
 RUN mkdir -p /app
 WORKDIR /app
-CMD tail -f /dev/null
+CMD cd /app && tail -f /dev/null

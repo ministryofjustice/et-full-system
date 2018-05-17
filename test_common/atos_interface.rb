@@ -52,6 +52,9 @@ module EtFullSystem
           filename.end_with?("ET1_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.xml")
         when :et1_claim_txt_for
           filename.end_with?("ET1_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.txt")
+        when :et3_response_txt_for
+          reference = args[:reference]
+          filename == "#{reference}_ET3_.txt"
         when :et1_claim_csv_for
           filename.end_with?("ET1a_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.csv")
         when :et1_claim_rtf_for
