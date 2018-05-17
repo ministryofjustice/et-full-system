@@ -28,7 +28,8 @@ module EtFullSystem
           })
       end
 
-      def get_claimants
+      def claimants_api
+        login
         claimants = request(:get, "#{url}/claimants.json", cookies: cookies_hash)
         JSON.parse(claimants.body).map(&:with_indifferent_access)
       end

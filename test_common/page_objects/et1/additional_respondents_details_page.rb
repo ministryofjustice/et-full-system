@@ -29,8 +29,7 @@ module EtFullSystem
           main_content.save_and_continue_button.click
         end
 
-        def set_for(user)
-          respondents = user[:respondents]
+        def set_for(respondents)
           return if respondents.nil? || respondents.empty?
           if respondents.length == 1
             main_content.more_than_one_employer.set('No')
@@ -39,11 +38,10 @@ module EtFullSystem
               s.set('Yes')
               respondents[1..-1].each_with_index do |respondent, idx|
                 s.add_another_respondent.click unless idx == 0
-                populate_respondent s.send(:"respondent_#{idx + 2}"), respondent
+                populate_respondent s.send(:"respondent_#{idx + 2}"), respondent.to_h
               end
             end
           end
-
         end
 
         private

@@ -1,20 +1,46 @@
-Given(/^I am "([^"]*)"$/) do |user|
-  given_i_am(user.to_sym)
+Given(/^an employee making a claim$/) do
+  @claimants = FactoryBot.create_list(:first_person, 1, :person_data)
+  @representative = FactoryBot.create(:representative)
+  @respondents = FactoryBot.create_list(:organisation_data, 1, :organisation)
+  @employment = FactoryBot.create(:employment)
+  @claim = FactoryBot.create(:claim)
 end
 
-Given(/^I am "([^"]*)" with a unique first name$/) do |user|
-  given_i_am(user.to_sym, unique: true)
+Given(/^an employee making a claim without a respresentative$/) do
+  @claimants = FactoryBot.create_list(:first_person, 1, :person_data)
+  @respondents = FactoryBot.create_list(:organisation_data, 1, :organisation)
+  @employment = FactoryBot.create(:employment)
+  @claim = FactoryBot.create(:claim)
 end
 
-And(/^I am the Claimant$/) do
-  # Not sure if we need to do anything here yet - we will keep it for syntactical sugar though
+Given(/^2 employees making a claim$/) do
+  @claimants = FactoryBot.create_list(:first_person, 2, :person_data)
+  @representative = FactoryBot.create(:representative)
+  @respondents = FactoryBot.create_list(:organisation_data, 1, :organisation)
+  @employment = FactoryBot.create(:employment)
+  @claim = FactoryBot.create(:claim)
 end
 
-And(/^I am the lead claimant of more than (\d+) other claimants that I have listed in a spreadsheet$/) do |_claimants|
-  # Not sure if we need to do anything here yet - we will keep it for syntactical sugar though
+Given(/^7 employees making a claim by uploading CSV file$/) do
+  @claimants = FactoryBot.create_list(:first_person, 1, :group_claims)
+  @representative = FactoryBot.create(:representative)
+  @respondents = FactoryBot.create_list(:organisation_data, 1, :organisation)
+  @employment = FactoryBot.create(:employment)
+  @claim = FactoryBot.create(:claim)
 end
 
+Given(/^an employee making a claim by uploading a RTF document$/) do
+  @claimants = FactoryBot.create_list(:first_person, 1, :person_data)
+  @representative = FactoryBot.create(:representative)
+  @respondents = FactoryBot.create_list(:organisation_data, 1, :organisation)
+  @employment = FactoryBot.create(:employment)
+  @claim = FactoryBot.create_list(:claim, 1, :upload_your_claim_statement)[0]
+end
 
-And(/^I wait for (\d+) seconds$/) do |seconds|
-  sleep seconds.to_f
+Given(/^an employee making a claim against 3 employers$/) do
+  @claimants = FactoryBot.create_list(:first_person, 1, :person_data)
+  @representative = FactoryBot.create(:representative)
+  @respondents = FactoryBot.create_list(:organisation_data, 3, :organisation)
+  @employment = FactoryBot.create(:employment)
+  @claim = FactoryBot.create(:claim)
 end

@@ -45,14 +45,13 @@ module EtFullSystem
 
         end
 
-        def set_for(user)
-          group_claims_data = user.dig(:personal, :group_claims) || []
-          group_claims_csv = user.dig(:personal, :group_claims_csv)
-          if group_claims_data.present? || group_claims_csv.present?
+        def set_for(users)
+          group_claims_csv = users[0].dig(:group_claims_csv)
+          if users.length > 1 || group_claims_csv.present?
             main_content.group_claims.set('Yes')
-            group_claims_data.each.with_index do |claim, idx|
+            users.each.with_index do |claim, idx|
               add_more_claimants unless idx == 0
-              populate_group_claim_section(claim, idx + 2)
+              populate_group_claim_section(users[0].to_h, idx + 2)
             end
             main_content.group_claims.upload_link.click if group_claims_csv.present?
           else
