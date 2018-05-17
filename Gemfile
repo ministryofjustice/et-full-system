@@ -23,7 +23,6 @@ group :test do
   gem 'httparty', '~> 0.16.2'
   gem 'pry'
   gem 'factory_bot'
-  gem 'faker'
 
 end
 
