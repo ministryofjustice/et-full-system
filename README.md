@@ -311,6 +311,19 @@ Example to use port 3000 on your local machine
 JADU_API=http://host.docker.internal:3000/api/v1/
 ```
 
+##### ET_API_URL
+
+If specified (see example) then any system that needs to talk to the central API will use this value.  If not specified,
+the default is 'http://et_api:8080/api' which is correct for when the test servers are running within docker
+
+Example to use port 3000 on your local machine (i.e. when doing work on the API) when the other servers are
+within docker.
+
+```
+ET_API_URL=http://host.docker.internal:3000/api
+
+```
+
 note that because ET1 is a docker container, you must use the ip or hostname of your machine or host.docker.internal and NOT localhost.
 
 ##### S3_PORT
@@ -382,6 +395,17 @@ for example :-
 ATOS_API_URL=http://et_api:8080/atos_api
 
 ```
+
+### ET1_URL
+
+If specified, whenever the test suite wants an ET1 page - the url is prefixed with this value.  The default is
+'http://et1:8080/'
+
+### ET3_URL
+
+If specified, whenever the test suite wants an ET3 page - the url is prefixed with this value.  The default is
+'http://et3:8080/'
+
 
 # Running The Test Suite Locally
 

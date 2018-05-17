@@ -29,4 +29,5 @@ group :development, :test do
   gem 'ruby-debug-ide', '~> 0.6'
   gem 'debase', '~> 0.2'
   gem 'dotenv', '~> 2.2', '>= 2.2.2'
+  gem 'faker', '~> 1.8', '>= 1.8.7'
 end

@@ -54,6 +54,9 @@ module EtFullSystem
         when :et1_claim_txt_for
           user = args[:user]
           filename.end_with?("ET1_#{user.dig(:personal, :first_name).tr(' ', '_')}_#{user.dig(:personal, :last_name)}.txt")
+        when :et3_response_txt_for
+          reference = args[:reference]
+          filename == "#{reference}_ET3_.txt"
         when :et1_claim_csv_for
           user = args[:user]
           filename.end_with?("ET1a_#{user.dig(:personal, :first_name).tr(' ', '_')}_#{user.dig(:personal, :last_name)}.csv")
