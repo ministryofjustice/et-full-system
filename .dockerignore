@@ -1,3 +1,4 @@
 systems/**/log/*
 systems/**/tmp/**/*
 systems/**/.git
+node_modules/**/*

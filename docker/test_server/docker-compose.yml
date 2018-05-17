@@ -68,6 +68,7 @@ volumes:
   global_node_modules:
   et1_node_modules:
   et3_node_modules:
+  s3_node_modules:
   api_node_modules:
   admin_node_modules:
 networks:
