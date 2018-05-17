@@ -2,53 +2,53 @@
 @javascript
 Feature:
   As an ATOS admin
-  I want to be able to download completed forms
+  I want to be able to download completed Employment Tribunal forms
   So I can triage an employees claim against their employer
 
   Scenario: PDF format
-    Given I am making a claim
-    When I submit a completed Employment Tribunal form
-    Then the completed form in PDF format is available for ATOS to download and validate
+    Given an employee making a claim
+    When the completed form is submitted
+    Then I can download the form in PDF format
 
   Scenario: TXT format
-    Given I am making a claim
-    When I submit a completed Employment Tribunal form
-    Then the completed form in TXT format is available for ATOS to download and validate
+    Given an employee making a claim
+    When the completed form is submitted
+    Then I can download the form in TXT format
 
   Scenario: XML format
-    Given I am making a claim
-    When I submit a completed Employment Tribunal form
-    Then the completed form in XML format is available for ATOS to download and validate
+    Given an employee making a claim
+    When the completed form is submitted
+    Then I can download the form in XML format
 
   Scenario: No representative
-    Given I am making a claim with no respresentative
-    When I submit a completed Employment Tribunal form
-    Then the completed form in PDF format is available for ATOS to download and validate
+    Given an employee making a claim without a respresentative
+    When the completed form is submitted
+    Then I can download the form in PDF format
 
-  Scenario: One other person making claim
-    Given I am making a claim with one other person
-    When I submit a completed Employment Tribunal form
-    Then the completed form in PDF format is available for ATOS to download and validate
+  Scenario: 2 people making a claim
+    Given 2 employees making a claim
+    When the completed form is submitted
+    Then I can download the form in PDF format
 
-  Scenario: Validate TXT file when uploading CSV data with 7 other people making the claim
-    Given I am making a claim with 7 other people
-    When I submit a completed Employment Tribunal form
-    Then the uploaded CSV data is formatted into a TXT format file and is available for ATOS to download
+  Scenario: Validate TXT file when uploading CSV data
+    Given 7 employees making a claim by uploading CSV file
+    When the completed form is submitted
+    Then I can download the uploaded CSV data in TXT format
 
-  Scenario: Validate CSV file when uploading CSV data with 7 other people making the claim
-    Given I am making a claim with 7 other people
-    When I submit a completed Employment Tribunal form
-    Then the uploaded CSV data is formatted and available for ATOS to download
+  Scenario: Validate CSV file when uploading CSV data
+    Given 7 employees making a claim by uploading CSV file
+    When the completed form is submitted
+    Then I can download the uploaded CSV data in CSV format
 
   Scenario: Uploading RTF data when describing your claim in details
-    Given I am making a claim using a separate document
-    When I submit a completed Employment Tribunal form
-    Then the completed form in RTF format is available for ATOS to download and validate
+    Given an employee making a claim by uploading a RTF document
+    When the completed form is submitted
+    Then I can download the form in RTF format
 
   Scenario: Making claim against 3 employers
-    Given I am making a claim against 3 employers
-    When I submit a completed Employment Tribunal form
-    Then the completed form in TXT format should contained 3 employers details
+    Given an employee making a claim against 3 employers
+    When the completed form is submitted
+    Then I can download the form in TXT format
 
 # Scenario: Filename based on employer's business address
 #   Given I am making a claim where my employer address is BS1 1DZ
