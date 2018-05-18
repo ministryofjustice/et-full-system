@@ -6,7 +6,7 @@ services:
       dockerfile: docker/test_server/Dockerfile
 
     ports:
-      - '3100:80'
+      - '${PORT}:${PORT}'
     volumes:
       - rvm:/usr/local/rvm
       - global_node_modules:/usr/lib/node_modules
@@ -16,6 +16,8 @@ services:
       - et3_node_modules:/home/app/systems/et3/node_modules
       - api_node_modules:/home/app/systems/api/node_modules
       - admin_node_modules:/home/app/systems/admin/node_modules
+      - ./config.json:/home/app/js/S3/config.json
+      - ./webapp.conf:/etc/nginx/sites-available/webapp.conf.template
     environment:
       DB_HOST: 'db'
       DB_USERNAME: 'postgres'
@@ -28,6 +30,8 @@ services:
       AWS_S3_FORCE_PATH_STYLE: 'true'
       S3_UPLOAD_BUCKET: 'etapibucket'
       RAILS_ENV: 'production' # Caution - ET1 runs as local
+      PORT: ${PORT}
+    command: /bin/bash -c "envsubst '$$PORT' < /etc/nginx/sites-available/webapp.conf.template > /etc/nginx/sites-enabled/webapp.conf && /sbin/my_init"
     networks:
       et_full_system:
         aliases:
@@ -35,30 +39,25 @@ services:
           - admin.et
           - et1.et
           - et3.et
+          - s3.et
 
 #command: bash -lc "cd /home/app/systems/api && REDIS_DATABASE=2 bundle exec sidekiq"
   db:
     image: postgres:9.3.5
     networks:
       - et_full_system
+    ports:
+      - "${DB_PORT:-0}:5432"
   redis:
     image: redis
     ports:
       - "${REDIS_PORT:-0}:6379"
     networks:
       - et_full_system
-  s3_mock:
-    image: scality/s3server
-    ports:
-      - "${S3_PORT:-0}:8000"
-    networks:
-      et_full_system:
-        aliases:
-          - "s3.docker.test"
   smtp:
     image: mailhog/mailhog:latest
     ports:
-      - "8025:8025"
+      - "${MAILHOG_PORT:-0}:8025"
     logging:
         driver: 'none'  # disable saving logs
     networks:

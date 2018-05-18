@@ -2,7 +2,7 @@ module EtFullSystem
   module Test
     class AdminApi
       def url
-        'http://localhost:3001/admin'
+        ENV.fetch('ADMIN_BASE_URL', 'http://localhost:3001/admin')
       end
 
       def get_token

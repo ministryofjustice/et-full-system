@@ -11,12 +11,12 @@ export REDIS_URL=redis://redis:6379/1
 export SECRET_KEY_BASE=dsjeflsdshewje23q896edc7dsufhsekjh4321ueirdasy6890
 export SMTP_HOSTNAME=smtp
 export SMTP_PORT=1025
-export JADU_API=http://etapi.et/api/v1/
+export JADU_API=http://api.et:3200/api/v1/
 export AWS_ACCESS_KEY_ID=accessKey1
 export AWS_SECRET_ACCESS_KEY=verySecretKey1
 export S3_UPLOAD_BUCKET=et1bucket
 export AWS_REGION=us-east-1
-export AWS_ENDPOINT=http://s3.docker.test:8000
+export AWS_ENDPOINT=http://s3.et:3200
 export AWS_S3_FORCE_PATH_STYLE=true
 
 exec /sbin/setuser app bundle exec sidekiq >>/var/log/sidekiq_et1.log 2>&1
