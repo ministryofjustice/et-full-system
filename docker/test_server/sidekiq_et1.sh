@@ -19,4 +19,4 @@ export AWS_REGION=us-east-1
 export AWS_ENDPOINT=http://s3.et:3200
 export AWS_S3_FORCE_PATH_STYLE=true
 
-exec /sbin/setuser app bundle exec sidekiq >>/var/log/sidekiq_et1.log 2>&1
+exec /sbin/setuser app bundle exec sidekiq >>/home/app/systems/et1/log/nginx_sidekiq.log 2>&1
