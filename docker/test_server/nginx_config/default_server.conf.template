@@ -1,0 +1,5 @@
+server {
+       listen *:${PORT} default_server;
+       server_name et.127.0.0.1.nip.io et;
+       root /home/app/public;
+}

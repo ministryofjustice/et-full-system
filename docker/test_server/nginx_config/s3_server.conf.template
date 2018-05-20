@@ -1,0 +1,8 @@
+server {
+    listen *:${PORT};
+    server_name s3.127.0.0.1.nip.io s3.et;
+    location / {
+       proxy_pass http://s3.et:8000;
+       proxy_set_header Host $http_host;
+    }
+}

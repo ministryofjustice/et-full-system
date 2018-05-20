@@ -10,12 +10,12 @@ services:
     volumes:
       - rvm:/usr/local/rvm
       - global_node_modules:/usr/lib/node_modules
-      - ../../systems:/home/app/systems
+      - ../..:/home/app/full_system
       - ./public:/home/app/public
-      - et1_node_modules:/home/app/systems/et1/node_modules
-      - et3_node_modules:/home/app/systems/et3/node_modules
-      - api_node_modules:/home/app/systems/api/node_modules
-      - admin_node_modules:/home/app/systems/admin/node_modules
+      - et1_node_modules:/home/app/full_system/systems/et1/node_modules
+      - et3_node_modules:/home/app/full_system/systems/et3/node_modules
+      - api_node_modules:/home/app/full_system/systems/api/node_modules
+      - admin_node_modules:/home/app/full_system/systems/admin/node_modules
       - ./config.json:/home/app/js/S3/config.json
       - ./webapp.conf:/etc/nginx/sites-available/webapp.conf.template
     environment:
@@ -31,7 +31,7 @@ services:
       S3_UPLOAD_BUCKET: 'etapibucket'
       RAILS_ENV: 'production' # Caution - ET1 runs as local
       PORT: ${PORT}
-    command: /bin/bash -c "envsubst '$$PORT' < /etc/nginx/sites-available/webapp.conf.template > /etc/nginx/sites-enabled/webapp.conf && /sbin/my_init"
+    command: /bin/bash -c "/home/app/full_system/docker/test_server/pre_process_files && /sbin/my_init"
     networks:
       et_full_system:
         aliases:
@@ -41,7 +41,7 @@ services:
           - et3.et
           - s3.et
 
-#command: bash -lc "cd /home/app/systems/api && REDIS_DATABASE=2 bundle exec sidekiq"
+#command: bash -lc "cd /home/app/full_system/systems/api && REDIS_DATABASE=2 bundle exec sidekiq"
   db:
     image: postgres:9.3.5
     networks:

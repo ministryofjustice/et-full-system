@@ -1,0 +1,2 @@
+#!/bin/sh
+envsubst '$$PORT' < /etc/nginx/sites-available/webapp.conf.template > /etc/nginx/sites-enabled/webapp.conf

@@ -1,7 +1,7 @@
 #!/bin/sh
 # `/sbin/setuser memcache` runs the given command as the user `memcache`.
 # If you omit that part, the command will be run as root.
-cd /home/app/systems/et1
+cd /home/app/full_system/systems/et1
 export REDIS_DATABASE=1
 export RAILS_ENV=local
 export ASSET_HOST=dontcare
@@ -19,4 +19,4 @@ export AWS_REGION=us-east-1
 export AWS_ENDPOINT=http://s3.et:3200
 export AWS_S3_FORCE_PATH_STYLE=true
 
-exec /sbin/setuser app bundle exec sidekiq >>/home/app/systems/et1/log/nginx_sidekiq.log 2>&1
+exec /sbin/setuser app bundle exec sidekiq >>/home/app/full_system/systems/et1/log/nginx_sidekiq.log 2>&1

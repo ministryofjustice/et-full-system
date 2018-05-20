@@ -1,9 +1,9 @@
 #!/bin/bash
 cd docker/test_server
-docker-compose exec et bash -lc "cd /home/app/systems/et1 && bundle install --without=development,test --with=production && RAILS_ENV=local bundle exec rake db:create db:migrate"
-docker-compose exec et bash -lc "cd /home/app/systems/et3 && bundle install --without=development,test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate"
-docker-compose exec et bash -lc "cd /home/app/systems/api && bundle install --without=development,test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate db:seed"
-docker-compose exec et bash -lc "cd /home/app/systems/admin && bundle install --without=development,test --with=production && RAILS_ENV=production SEED_EXAMPLE_USERS=true bundle exec rails db:seed"
+docker-compose exec et bash -lc "cd /home/app/full_system/systems/et1 && bundle install --without=development,test --with=production && RAILS_ENV=local bundle exec rake db:create db:migrate"
+docker-compose exec et bash -lc "cd /home/app/full_system/systems/et3 && bundle install --without=development,test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate"
+docker-compose exec et bash -lc "cd /home/app/full_system/systems/api && bundle install --without=development,test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate db:seed"
+docker-compose exec et bash -lc "cd /home/app/full_system/systems/admin && bundle install --without=development,test --with=production && RAILS_ENV=production SEED_EXAMPLE_USERS=true bundle exec rails db:seed"
 
 
 

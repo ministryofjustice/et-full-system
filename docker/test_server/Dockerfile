@@ -67,8 +67,6 @@ RUN mkdir -p /home/app/js; chown app:app /home/app/js
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN mkdir -p /home/app/systems; chown app:app /home/app/systems
-COPY --chown=app:app systems /home/app/systems
-RUN bash -lc "cd /home/app/systems/et1 && bundle install --deployment"
+RUN mkdir -p /home/app/full_system; chown app:app /home/app/full_system
 RUN bash -lc "cd /home/app/js && git clone https://github.com/scality/S3.git && cd S3 && git checkout tags/GA7.2.0.4 && npm install"
-WORKDIR /home/app/systems
+WORKDIR /home/app/full_system/systems
