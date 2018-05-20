@@ -3,7 +3,7 @@ module EtFullSystem
     module Admin
       class BasePage < ::EtFullSystem::Test::BasePage
         def self.base_url
-          ENV.fetch('ADMIN_BASE_URL')
+          Configuration.instance.admin_url
         end
 
         def self.set_url(url, *args)

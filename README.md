@@ -345,6 +345,10 @@ but, don't forget, this is what the scripts in bin/dev do !!
 
 ## Environment Variables For Test Suite
 
+### SERVER_PORT
+
+### SERVER_DOMAIN
+
 ### ADMIN_BASE_URL
 
 The url where the admin lives (including the 'admin' part of the url).  Note that this is from the viewpoint of
