@@ -50,12 +50,8 @@ ADD docker/test_server/env.conf /etc/nginx/main.d/webapp_env.conf
 
 # Custom Services
 RUN mkdir /etc/service/sidekiq_api
-COPY docker/test_server/sidekiq_api.sh /etc/service/sidekiq_api/run
-RUN chmod +x /etc/service/sidekiq_api/run
 
 RUN mkdir /etc/service/sidekiq_et1
-COPY docker/test_server/sidekiq_et1.sh /etc/service/sidekiq_et1/run
-RUN chmod +x /etc/service/sidekiq_et1/run
 
 RUN mkdir /etc/service/s3
 COPY docker/test_server/s3.sh /etc/service/s3/run

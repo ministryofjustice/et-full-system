@@ -6,7 +6,7 @@ services:
       dockerfile: docker/test_server/Dockerfile
 
     ports:
-      - '${PORT}:${PORT}'
+      - '${PORT:-3100}:${PORT:-3100}'
     volumes:
       - rvm:/usr/local/rvm
       - global_node_modules:/usr/lib/node_modules
@@ -31,11 +31,11 @@ services:
       S3_UPLOAD_BUCKET: 'etapibucket'
       RAILS_ENV: 'production' # Caution - ET1 runs as local
       PORT: ${PORT}
-    command: /bin/bash -c "/home/app/full_system/docker/test_server/pre_process_files && /sbin/my_init"
+    command: /bin/bash -c "/home/app/full_system/docker/test_server/docker_run"
     networks:
       et_full_system:
         aliases:
-          - etapi.et
+          - api.et
           - admin.et
           - et1.et
           - et3.et
