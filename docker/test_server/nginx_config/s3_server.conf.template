@@ -1,5 +1,5 @@
 server {
-    listen *:${PORT};
+    listen *:${SERVER_PORT};
     server_name s3.et.127.0.0.1.nip.io s3.et;
     location / {
        proxy_pass http://s3.et.127.0.0.1.nip.io:8000;

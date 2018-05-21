@@ -6,7 +6,7 @@ services:
       dockerfile: docker/test_server/Dockerfile
 
     ports:
-      - '${PORT:-3100}:${PORT:-3100}'
+      - '${SERVER_PORT:-3100}:${SERVER_PORT:-3100}'
     volumes:
       - rvm:/usr/local/rvm
       - global_node_modules:/usr/lib/node_modules
@@ -29,7 +29,7 @@ services:
       AWS_S3_FORCE_PATH_STYLE: 'true'
       S3_UPLOAD_BUCKET: 'etapibucket'
       RAILS_ENV: 'production' # Caution - ET1 runs as local
-      PORT: ${PORT:-3100}
+      SERVER_PORT: ${SERVER_PORT:-3100}
     command: /bin/bash -c "/home/app/full_system/docker/test_server/docker_run"
     networks:
       et_full_system:

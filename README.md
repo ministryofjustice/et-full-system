@@ -225,7 +225,47 @@ and wait for everything to settle and you will see the 'Passenger core running i
 
 ### Running Tests Locally
 
+If you just want to run the tests with the default browser (chromedriver) - once you have done a 'bundle install' you 
+can just run cucumber as normal - no external services to run etc...
 
+Note that if you have a non default port or domain when running your server (see the optional sections in 'Firing Up The Server' above),
+then you will need to use the same environment variables when running cucumber etc...
+
+So, running cucumber is as simple as :-
+
+
+```
+
+bundle exec cucumber
+
+```
+
+#### Running Tests With Selenium
+
+If you want to run tests using selenium (so the browser doesn't keep popping up, moving your focus, switching desktops
+and generally being annoying) then you will need a selenium server.
+
+The test framework provides this selenium server running inside a VNC server so you can view it if you want.  The VNC 
+server can also be used by the test suite to record video of failing tests.  Note that the test framework also provides
+a docker instance for running stuff from inside the docker network which in this case is wasted as we are not doing so.
+
+Of course, you are free to provide your own selenium server, but the instructions below apply to using the docker version.
+
+To start the test framework :-
+
+```
+
+./bin/dev/test_framework up
+
+```
+
+and from then on, when running cucumber, specify the browser in the DRIVER environment variable.  To use chrome do the following :-
+
+```
+
+DRIVER=chrome bundle exec cucumber
+
+```
 
 ### Running Tests From Inside Docker
 
