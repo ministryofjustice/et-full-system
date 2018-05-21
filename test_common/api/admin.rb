@@ -2,7 +2,7 @@ module EtFullSystem
   module Test
     class AdminApi
       def url
-        'http://localhost:3001/admin'
+        Configuration.instance.admin_url
       end
 
       def get_token

@@ -21,3 +21,4 @@ Scenario: TXT Format
   #   When I submit a completed ET3 form
   #   And I take note of my ET3 reference number
   #   Then my entered data is formatted into a PDF file for my ET3 reference number and is available for ATOS to download
+

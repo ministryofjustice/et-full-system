@@ -1,7 +1,7 @@
 # Employment Tribunal Full System - For Development / Testing Use Only
 
 This project groups together all the components of the employment tribunal
-system for development purposes and to perform end to end tests on them 
+system for development and test purposes and to perform end to end tests on them 
 whilst developing the jadu replacement system.
 
 This allows the test suite to test the entire system to live in this code base - as docker-compose can setup the entire system for you.
@@ -11,25 +11,38 @@ them up on the right ports, configuring the URLs for each service to talk to ano
 you are on your own for now !!  But, take a look at the diagram below and the files in the docker/test_servers folder - the docker-compose.yml and you can see the
 different services and how they are setup to talk to one another - you need to achieve the same thing but running everything on localhost.
 
-The above could be done using 'foreman' to bring everything together and if someone has the time to do this - or if someone
-requires that it is done and therefore justifying the time - then please reach out to me (Gary Taylor) - or just do it and share it !!
+The above could be done using 'foreman' (which is partly done in bin/foreman) to bring everything together and if someone 
+has the time to do this - or if someone requires that it is done and therefore justifying the time - 
+then please reach out to me (Gary Taylor) - or just do it and share it !!
 
 A diagram speaks a thousand words - so hopefully the diagram below will show what I mean.  This is how the docker environment
 is setup.  Again, a similar environment using something like 'foreman' could also be setup with some careful configuration.
 
 Also note that the 'test servers' are intended to be as close to production as is possible from a config and general architecture point of view, not
-performance / scaling.  Hence they run in 'production' environment, but configured to use a fake SMTP and AWS/S3 server (pre built docker containers).
+performance / scaling.  Hence they run in 'production' environment, but configured to use a test SMTP and AWS/S3 server (pre built docker containers).
 
-The fake SMTP server allows the test suite (via REST) or the developer (via a web page / web server - details further down vvvvv) to see what emails the
+The test SMTP server allows the test suite (via REST) or the developer (via a web page / web server - details further down vvvvv) to see what emails the
 application(s) would have sent if they were really being sent to users.
 
-The fake AWS/S3 server allows normal S3 requests to take place - i.e. adding files to buckets, deleting them etc.. and these files being made available via
+The test AWS/S3 server allows normal S3 requests to take place - i.e. adding files to buckets, deleting them etc.. and these files being made available via
 a URL which is accessible within the docker network (or outside if you setup port forwarding).  This means we can test without running up bills or even having
 to enter any S3 credential which quite rightly, developers do not really want to do as it may run up bills on their card.
 
 ## Diagram Showing Test Servers and Test Framework Systems
 
 ![diagram 1](docs/diagram_showing_systems.png)
+
+## Use Of 'Passenger' Gem
+
+This project now uses the nginx web server and the 'passenger' gem. This allows the outside world (i.e. us !) to see just a single server
+and not have to worry about setting port numbers etc.. for the 4 different services (api, et1, et3 and admin).  It is also
+a closer setup to production where everything is behind 'nginx'
+
+It is configured to use the same domain's whether you are working inside the docker network or on your local machine.
+
+Whilst this does not matter 95% of the time, when dealing with pre signed URL's for Amazon S3 stuff - it is signed using
+the hostname - so if you were using 's3.et.127.0.0.1' outside of docker and 's3.et' inside of docker - you would get
+issues with the signature not matching amongst other problems.
 
 # Cloning
 
@@ -92,70 +105,171 @@ but if anyone else does know about them and if they would be better than submodu
 
 The system is very configurable so it can be run on whichever ports you want etc..
 
-However, as the test framework runs entirely inside docker compose - if you are wanting
-to run tests via the docker framework then no extra config is required.
-
-If you are using docker, the 'zalenium' system needs to know which 'selenium' image you want to use (to allow for customising).  We just want the normal
-one, so run the following (one time only)
-
-```
-
-docker pull elgalu/selenium
-
-```
-
 # General Development / Testing Notes
 
 ## Testing
 
 There are lots of things with regard to automated testing to consider - please read [this document](docs/automated_testing.md) for more details
 
-# Using The Docker Setup
+# Using The Framework
 
 There are scripts in bin/dev to do docker-compose stuff.  Generally these are just shortcuts and accept the
 same commands as the docker-compose command line.  So where you see 'up' and 'down' - that is a clue that it is just docker-compose
 and you will be able to use other docker-compose command line switches such as '-d' (for detached so you dont view the output all the time).
 
-## Firing Up The Test Servers
+Whilst we don't want to force you to use docker if you don't want to, right now, it is the only supported way of running this stuff
+together.  But, remember these apps are just rails apps and are very configurable using environment variables etc.. so it won't be 
+too hard to get it running using other means.
+
+## Firing Up The Test Server
+
+If you just want the defaults and port 3100 is available, simply skip the optional sections below
+
+
+### (Optional) - Configuring environment variables
+
+If, you are happy with the server running on port 3100 and the domain being 'et.127.0.0.1.nip.io' (so you dont need
+to change your hosts file - see below) then you don't need to do anything with environment variables.
+
+The key environment variables are :-
+
+SERVER_DOMAIN - Defaults to 'et.127.0.0.1.nip.io' (correct for default server)
+SERVER_PORT - Defaults to '3100' (correct for default server)
+
+These environment variables are the same for both the server and the test suite (if automated test are
+ required to be run) and should match.
+
+
+This means that your default server should be available at http://et.127.0.0.1.nip.io:3100
+
+### (Optional) - Configuring hosts file for shorter url
+
+The servers have been configured to respond to <subdomain>.et.127.0.0.1.nip.io (a public DNS service that will respond with
+127.0.0.1) AND <subdomain>.et . However, the latter needs setting up in your hosts file (or any other means that you have
+available to add extra DNS stuff).
+
+So, if you are on OSX or Linux - go into a terminal and type
 
 ```
 
-./bin/dev/test_servers up
+sudo bash -c "echo '127.0.0.1       et et1.et et3.et api.et admin.et s3.et mail.et' >> /etc/hosts"
 
 ```
 
-to start them - and if ctrl-c doesn't kill them you may occasionally need to do :-
+Or, if you are on windows - you need to do an equivalent thing.  Please help others once you find out what it is and
+update this readme :-)
+
+Once you have done this, you can access the server using this shorter url
+
+http://<subdomain>.et:3100
+
+Where <subdomain> is either et1, et3, admin, api, s3 or mail
+
+### Starting The Server
+
+If you are not changing any environment variables - simply run
 
 ```
 
-./bin/dev/test_servers down
+./bin/dev/test_server up
 
 ```
+
+Or, if you want to use the shorter domain (make sure you have modified your hosts file as above) :-
+
+```
+
+SERVER_DOMAIN=et ./bin/test_server up
+
+``` 
+
+Or, if you want a different port
+
+```
+
+SERVER_PORT=3200 ./bin/test_server up
+
+```
+
+or a combination of the above - you get the idea :-)
+
+### Stopping The Server
+
+If ctrl-c doesn't kill the server and associated processes you may occasionally need to do :-
+
+```
+
+./bin/dev/test_server down
+
+```
+
 
 ## Running Tests
 
-Whilst you can run tests on your local machine, it means that you will need all of the port forwarding setup and
-environment variables set so your instance of selenium can open a browser window for ET1, ET3 - the admin etc.. etc..
+You can run tests either from a docker instance or from your local machine. 
 
-So, I recommend you use docker.  If you cannot use docker, then please reach out to me (Gary Taylor) and we can
-sort out some instructions on how to get this all running without docker on your local machine - therefore helping the next person to come
-along wanting the same thing :-)
+However, now that we have the 'single server' approach where all the services are behind a single nginx server, it has
+made it much easier to run the tests locally and there is less need to run them from inside docker.
 
-The huge advantage of running the tests in docker is that all communication is done inside the docker-compose internal network,
-meaning you don't need to worry about port forwarding, port clashes - you can even run multiple instances (if you've got a high spec machine !!)
+But, the docker stuff hasn't been removed so it is there if you want it.
 
-First, start up the test servers (as above) like this 
+First, start up the test servers (see  'Firing Up The Test Server' above for more details) like this 
 
 ```
 
-./bin/dev/test_servers up
+./bin/dev/test_server up
 
 ```
 
-and wait for everything to settle and you will see the 'admin' service messages at the end
+and wait for everything to settle and you will see the 'Passenger core running in multi-application mode' message near the end
+
+### Running Tests Locally
+
+If you just want to run the tests with the default browser (chromedriver) - once you have done a 'bundle install' you 
+can just run cucumber as normal - no external services to run etc...
+
+Note that if you have a non default port or domain when running your server (see the optional sections in 'Firing Up The Server' above),
+then you will need to use the same environment variables when running cucumber etc...
+
+So, running cucumber is as simple as :-
 
 
-Next, start up the test environment like this :-
+```
+
+bundle exec cucumber
+
+```
+
+#### Running Tests With Selenium
+
+If you want to run tests using selenium (so the browser doesn't keep popping up, moving your focus, switching desktops
+and generally being annoying) then you will need a selenium server.
+
+The test framework provides this selenium server running inside a VNC server so you can view it if you want.  The VNC 
+server can also be used by the test suite to record video of failing tests.  Note that the test framework also provides
+a docker instance for running stuff from inside the docker network which in this case is wasted as we are not doing so.
+
+Of course, you are free to provide your own selenium server, but the instructions below apply to using the docker version.
+
+To start the test framework :-
+
+```
+
+./bin/dev/test_framework up
+
+```
+
+and from then on, when running cucumber, specify the browser in the DRIVER environment variable.  To use chrome do the following :-
+
+```
+
+DRIVER=chrome bundle exec cucumber
+
+```
+
+### Running Tests From Inside Docker
+
+Start up the test environment like this :-
 
 ```
 ./bin/dev/test_framework up
@@ -195,7 +309,7 @@ then just type in commands as normal - note the app is inside the '/app' folder 
 
 ### Video Recording In Tests
 
-Video recording is enabled in the docker version of the test suite - it can also be used if not using docker, however, you
+Video recording is enabled in the docker version of the test framework - it can also be used if not using docker, however, you
 will need to setup a vnc server which contains the 'desktop' that the test suite is talking to via selenium so is more involved.
 
 Video recording can be expensive in terms of time, so it can also be controller by you when running tests.
@@ -344,6 +458,10 @@ and then do normal ruby stuff such as bundle exec rspec
 but, don't forget, this is what the scripts in bin/dev do !!
 
 ## Environment Variables For Test Suite
+
+### SERVER_PORT
+
+### SERVER_DOMAIN
 
 ### ADMIN_BASE_URL
 

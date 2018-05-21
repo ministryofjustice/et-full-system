@@ -1,3 +1,4 @@
+ENV['ET3_URL'] ||= ::EtFullSystem::Test::Configuration.instance.et3_url
 require_relative '../../systems/et3/test_common/page_objects'
 require_relative '../../systems/et3/test_common/helpers'
 require_relative '../../systems/et3/test_common/personas'

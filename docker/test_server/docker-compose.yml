@@ -1,0 +1,76 @@
+version: '3'
+services:
+  et:
+    build:
+      context: ../../
+      dockerfile: docker/test_server/Dockerfile
+
+    ports:
+      - '${SERVER_PORT:-3100}:${SERVER_PORT:-3100}'
+    volumes:
+      - rvm:/usr/local/rvm
+      - global_node_modules:/usr/lib/node_modules
+      - ../..:/home/app/full_system
+      - ./public:/home/app/public
+      - et1_node_modules:/home/app/full_system/systems/et1/node_modules
+      - et3_node_modules:/home/app/full_system/systems/et3/node_modules
+      - api_node_modules:/home/app/full_system/systems/api/node_modules
+      - admin_node_modules:/home/app/full_system/systems/admin/node_modules
+    environment:
+      DB_HOST: 'db'
+      DB_USERNAME: 'postgres'
+      SECRET_KEY_BASE: sdlkjewfkjhfviuhduihenrjk435r89esfd7cv983qh2n4r3q27yh4u5rtfg
+      REDIS_HOST: redis
+      AWS_ACCESS_KEY_ID: accessKey1
+      AWS_SECRET_ACCESS_KEY: verySecretKey1
+      AWS_REGION: 'us-east-1'
+      AWS_ENDPOINT: 'http://s3.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}:${SERVER_PORT:-3100}'
+      AWS_S3_FORCE_PATH_STYLE: 'true'
+      S3_UPLOAD_BUCKET: 'etapibucket'
+      RAILS_ENV: 'production' # Caution - ET1 runs as local
+      SERVER_PORT: ${SERVER_PORT:-3100}
+      SERVER_DOMAIN: ${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
+    command: /bin/bash -c "/home/app/full_system/docker/test_server/docker_run"
+    networks:
+      et_full_system:
+        aliases:
+          - api.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
+          - admin.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
+          - et1.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
+          - et3.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
+          - s3.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
+
+#command: bash -lc "cd /home/app/full_system/systems/api && REDIS_DATABASE=2 bundle exec sidekiq"
+  db:
+    image: postgres:9.3.5
+    networks:
+      - et_full_system
+    ports:
+      - "${DB_PORT:-0}:5432"
+  redis:
+    image: redis
+    ports:
+      - "${REDIS_PORT:-0}:6379"
+    networks:
+      - et_full_system
+  smtp:
+    image: mailhog/mailhog:latest
+    ports:
+      - "${MAILHOG_PORT:-0}:8025"
+    logging:
+        driver: 'none'  # disable saving logs
+    networks:
+      - et_full_system
+
+volumes:
+  rvm:
+  global_node_modules:
+  et1_node_modules:
+  et3_node_modules:
+  s3_node_modules:
+  api_node_modules:
+  admin_node_modules:
+networks:
+  et_full_system:
+
+
