@@ -11,8 +11,8 @@ envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_ser
 chmod +x /etc/service/sidekiq_api/run
 chmod +x /etc/service/sidekiq_et1/run
 cd docker/test_server
-cd /home/app/full_system/systems/et1 && bundle install --without=development,test --with=production && RAILS_ENV=local bundle exec rake db:create db:migrate
-cd /home/app/full_system/systems/et3 && bundle install --without=development,test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate
+cd /home/app/full_system/systems/et1 && bundle install --without=development,test --with=production && RAILS_ENV=local bundle exec rake db:create db:migrate assets:precompile
+cd /home/app/full_system/systems/et3 && bundle install --without=development,test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate assets:precompile
 cd /home/app/full_system/systems/api && bundle install --without=development,test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate db:seed
-cd /home/app/full_system/systems/admin && bundle install --without=development,test --with=production && RAILS_ENV=production SEED_EXAMPLE_USERS=true bundle exec rails db:seed
+cd /home/app/full_system/systems/admin && bundle install --without=development,test --with=production && RAILS_ENV=production SEED_EXAMPLE_USERS=true bundle exec rails db:seed assets:precompile
 /sbin/my_init

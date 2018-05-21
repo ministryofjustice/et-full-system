@@ -16,6 +16,9 @@ services:
       - et3_node_modules:/home/app/full_system/systems/et3/node_modules
       - api_node_modules:/home/app/full_system/systems/api/node_modules
       - admin_node_modules:/home/app/full_system/systems/admin/node_modules
+      - et1_assets:/home/app/full_system/systems/et1/public/apply/assets
+      - et3_assets:/home/app/full_system/systems/et3/public/assets
+      - admin_assets:/home/app/full_system/systems/admin/public/assets
     environment:
       DB_HOST: 'db'
       DB_USERNAME: 'postgres'
@@ -70,6 +73,9 @@ volumes:
   s3_node_modules:
   api_node_modules:
   admin_node_modules:
+  et1_assets:
+  et3_assets:
+  admin_assets:
 networks:
   et_full_system:
 
