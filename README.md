@@ -309,7 +309,7 @@ then just type in commands as normal - note the app is inside the '/app' folder 
 
 ### Video Recording In Tests
 
-Video recording is enabled in the docker version of the test suite - it can also be used if not using docker, however, you
+Video recording is enabled in the docker version of the test framework - it can also be used if not using docker, however, you
 will need to setup a vnc server which contains the 'desktop' that the test suite is talking to via selenium so is more involved.
 
 Video recording can be expensive in terms of time, so it can also be controller by you when running tests.

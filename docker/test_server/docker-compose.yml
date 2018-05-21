@@ -16,7 +16,6 @@ services:
       - et3_node_modules:/home/app/full_system/systems/et3/node_modules
       - api_node_modules:/home/app/full_system/systems/api/node_modules
       - admin_node_modules:/home/app/full_system/systems/admin/node_modules
-      - ./config.json:/home/app/js/S3/config.json
     environment:
       DB_HOST: 'db'
       DB_USERNAME: 'postgres'
@@ -30,20 +29,16 @@ services:
       S3_UPLOAD_BUCKET: 'etapibucket'
       RAILS_ENV: 'production' # Caution - ET1 runs as local
       SERVER_PORT: ${SERVER_PORT:-3100}
+      SERVER_DOMAIN: ${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
     command: /bin/bash -c "/home/app/full_system/docker/test_server/docker_run"
     networks:
       et_full_system:
         aliases:
-          - api.et
-          - admin.et
-          - et1.et
-          - et3.et
-          - s3.et
-          - api.et.127.0.0.1.nip.io
-          - admin.et.127.0.0.1.nip.io
-          - et1.et.127.0.0.1.nip.io
-          - et3.et.127.0.0.1.nip.io
-          - s3.et.127.0.0.1.nip.io
+          - api.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
+          - admin.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
+          - et1.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
+          - et3.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
+          - s3.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
 
 #command: bash -lc "cd /home/app/full_system/systems/api && REDIS_DATABASE=2 bundle exec sidekiq"
   db:

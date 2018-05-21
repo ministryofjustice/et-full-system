@@ -9,8 +9,7 @@
         "s3.docker.test": "us-east-1",
         "127.0.0.2": "us-east-1",
         "s3.amazonaws.com": "us-east-1",
-        "s3.et": "us-east-1",
-        "s3.et.127.0.0.1.nip.io": "us-east-1"
+        "s3.${SERVER_DOMAIN}": "us-east-1"
     },
     "websiteEndpoints": ["s3-website-us-east-1.amazonaws.com",
                         "s3-website.us-east-2.amazonaws.com",

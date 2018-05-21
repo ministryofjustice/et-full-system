@@ -1,6 +1,6 @@
 server {
        listen *:${SERVER_PORT};
-       server_name admin.et.127.0.0.1.nip.io admin.et;
+       server_name admin.${SERVER_DOMAIN};
        root /home/app/full_system/systems/admin/public;
        access_log /home/app/full_system/systems/admin/log/nginx_access.log combined;
        error_log /home/app/full_system/systems/admin/log/nginx_error.log;
