@@ -20,6 +20,7 @@ module EtFullSystem
       end
 
       def download_from_any_zip(identifier, **args)
+        binding.pry
         filename = find_file_in_any_zip(identifier, **args)
         raise "No zip file containing #{identifier} - #{args} was found" unless filename.present?
         Dir.mktmpdir do |dir|
