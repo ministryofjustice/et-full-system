@@ -47,6 +47,7 @@ module EtFullSystem
 
         def set_for(users)
           group_claims_csv = users[0].dig(:group_claims_csv)
+          binding.pry
           if users.length > 1 || group_claims_csv.present?
             main_content.group_claims.set('Yes')
             users.each.with_index do |claim, idx|
