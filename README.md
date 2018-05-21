@@ -105,20 +105,21 @@ but if anyone else does know about them and if they would be better than submodu
 
 The system is very configurable so it can be run on whichever ports you want etc..
 
-However, as the test framework runs entirely inside docker compose - if you are wanting
-to run tests via the docker framework then no extra config is required.
-
 # General Development / Testing Notes
 
 ## Testing
 
 There are lots of things with regard to automated testing to consider - please read [this document](docs/automated_testing.md) for more details
 
-# Using The Docker Setup
+# Using The Framework
 
 There are scripts in bin/dev to do docker-compose stuff.  Generally these are just shortcuts and accept the
 same commands as the docker-compose command line.  So where you see 'up' and 'down' - that is a clue that it is just docker-compose
 and you will be able to use other docker-compose command line switches such as '-d' (for detached so you dont view the output all the time).
+
+Whilst we don't want to force you to use docker if you don't want to, right now, it is the only supported way of running this stuff
+together.  But, remember these apps are just rails apps and are very configurable using environment variables etc.. so it won't be 
+too hard to get it running using other means.
 
 ## Firing Up The Test Server
 
@@ -206,32 +207,29 @@ If ctrl-c doesn't kill the server and associated processes you may occasionally 
 ## Running Tests
 
 You can run tests either from a docker instance or from your local machine. 
-Instructions follow to do both, however, starting the server is exactly the same no matter which way you choose, 
-so instructions follow to do this first
 
+However, now that we have the 'single server' approach where all the services are behind a single nginx server, it has
+made it much easier to run the tests locally and there is less need to run them from inside docker.
 
-Whilst you can run tests on your local machine, it means that you will need all of the port forwarding setup and
-environment variables set so your instance of selenium can open a browser window for ET1, ET3 - the admin etc.. etc..
+But, the docker stuff hasn't been removed so it is there if you want it.
 
-So, I recommend you use docker.  If you cannot use docker, then please reach out to me (Gary Taylor) and we can
-sort out some instructions on how to get this all running without docker on your local machine - therefore helping the next person to come
-along wanting the same thing :-)
-
-The huge advantage of running the tests in docker is that all communication is done inside the docker-compose internal network,
-meaning you don't need to worry about port forwarding, port clashes - you can even run multiple instances (if you've got a high spec machine !!)
-
-First, start up the test servers (as above) like this 
+First, start up the test servers (see  'Firing Up The Test Server' above for more details) like this 
 
 ```
 
-./bin/dev/test_servers up
+./bin/dev/test_server up
 
 ```
 
-and wait for everything to settle and you will see the 'admin' service messages at the end
+and wait for everything to settle and you will see the 'Passenger core running in multi-application mode' message near the end
+
+### Running Tests Locally
 
 
-Next, start up the test environment like this :-
+
+### Running Tests From Inside Docker
+
+Start up the test environment like this :-
 
 ```
 ./bin/dev/test_framework up
