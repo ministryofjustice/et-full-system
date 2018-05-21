@@ -8,14 +8,10 @@ services:
     environment:
       SELENIUM_URL: 'http://selenium:4444/wd/hub'
       DRIVER: chrome
-      ADMIN_BASE_URL: "${ADMIN_BASE_URL:-http://et_admin:8080/admin}"
-      ATOS_API_URL: "${ATOS_API_URL:-http://et_api:8080/atos_api}"
-      ET1_URL: "${ETI_URL:-http://et1:8080/}"
-      ET3_URL: "${ET3_URL:-http://et3:8080/}"
       AWS_ACCESS_KEY_ID: accessKey1
       AWS_SECRET_ACCESS_KEY: verySecretKey1
       AWS_REGION: 'us-east-1'
-      AWS_ENDPOINT: 'http://s3.docker.test:8000'
+      AWS_ENDPOINT: 'http://s3.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}:${SERVER_PORT:-3100}'
       AWS_S3_FORCE_PATH_STYLE: 'true'
       BUNDLE_WITH: development,test
     volumes:
@@ -28,8 +24,8 @@ services:
     volumes:
       - /dev/shm:/dev/shm
     ports:
-      - "${SELENIUM_PORT:-0}:4444"
-      - "${SELENIUM_VNC_PORT:-0}:5900"
+      - "${SELENIUM_PORT:-4444}:4444"
+      - "${SELENIUM_VNC_PORT:-5900}:5900"
     networks:
       - test_framework
 volumes:
@@ -37,4 +33,4 @@ volumes:
 networks:
   test_framework:
     external:
-      name: test_servers_et_full_system
+      name: test_server_et_full_system

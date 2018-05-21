@@ -39,7 +39,7 @@ module EtFullSystem
       private
 
       def initialize
-        self.api = AtosInterfaceApi.new(base_url: ENV.fetch('ATOS_API_URL'))
+        self.api = AtosInterfaceApi.new(base_url: Configuration.instance.atos_api_url)
         super
       end
 

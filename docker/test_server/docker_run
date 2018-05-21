@@ -1,0 +1,18 @@
+#!/bin/sh
+envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/default_server.conf.template > /etc/nginx/sites-enabled/default_server.conf
+envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/admin_server.conf.template > /etc/nginx/sites-enabled/admin_server.conf
+envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/api_server.conf.template > /etc/nginx/sites-enabled/api_server.conf
+envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/et1_server.conf.template > /etc/nginx/sites-enabled/et1_server.conf
+envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/et3_server.conf.template > /etc/nginx/sites-enabled/et3_server.conf
+envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/s3_server.conf.template > /etc/nginx/sites-enabled/s3_server.conf
+envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/sidekiq_init_templates/sidekiq_api.sh.template > /etc/service/sidekiq_api/run
+envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/sidekiq_init_templates/sidekiq_et1.sh.template > /etc/service/sidekiq_et1/run
+envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/s3_server_config/config.json.template > /home/app/js/S3/config.json
+chmod +x /etc/service/sidekiq_api/run
+chmod +x /etc/service/sidekiq_et1/run
+cd docker/test_server
+cd /home/app/full_system/systems/et1 && bundle install --without=development,test --with=production && RAILS_ENV=local bundle exec rake db:create db:migrate
+cd /home/app/full_system/systems/et3 && bundle install --without=development,test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate
+cd /home/app/full_system/systems/api && bundle install --without=development,test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate db:seed
+cd /home/app/full_system/systems/admin && bundle install --without=development,test --with=production && RAILS_ENV=production SEED_EXAMPLE_USERS=true bundle exec rails db:seed
+/sbin/my_init
