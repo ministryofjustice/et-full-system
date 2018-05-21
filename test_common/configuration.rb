@@ -4,7 +4,7 @@ module EtFullSystem
     class Configuration
       include Singleton
       def server_domain
-        ENV.fetch('SERVER_DOMAIN', 'et')
+        ENV.fetch('SERVER_DOMAIN', 'et.127.0.0.1.nip.io')
       end
 
       def server_port
@@ -21,6 +21,10 @@ module EtFullSystem
 
       def et3_url
         ENV.fetch('ET3_URL', "http://et3.#{server_domain}:#{server_port}/")
+      end
+
+      def atos_api_url
+        ENV.fetch('ATOS_API_URL', "http://api.#{server_domain}:#{server_port}/atos_api")
       end
     end
   end

@@ -1,7 +1,7 @@
 server {
 
        listen *:${PORT};
-       server_name et1.127.0.0.1.nip.io et1.et;
+       server_name et1.et.127.0.0.1.nip.io et1.et;
        root /home/app/full_system/systems/et1/public;
        access_log /home/app/full_system/systems/et1/log/nginx_access.log combined;
        error_log /home/app/full_system/systems/et1/log/nginx_error.log;
@@ -16,12 +16,12 @@ server {
        passenger_env_var SECRET_KEY_BASE dsjeflsdshewje23q896edc7dsufhsekjh4321ueirdasy6890;
        passenger_env_var SMTP_HOSTNAME smtp;
        passenger_env_var SMTP_PORT 1025;
-       passenger_env_var JADU_API http://api.et:${PORT}/api/api/v1/;
+       passenger_env_var JADU_API http://api.et.127.0.0.1.nip.io:${PORT}/api/api/v1/;
        passenger_env_var AWS_ACCESS_KEY_ID accessKey1;
        passenger_env_var AWS_SECRET_ACCESS_KEY verySecretKey1;
        passenger_env_var S3_UPLOAD_BUCKET 'et1bucket';
        passenger_env_var AWS_REGION 'us-east-1';
-       passenger_env_var AWS_ENDPOINT 'http://s3.et:${PORT}';
+       passenger_env_var AWS_ENDPOINT 'http://s3.et.127.0.0.1.nip.io:${PORT}';
        passenger_env_var AWS_S3_FORCE_PATH_STYLE 'true';
        passenger_app_env local;
 

@@ -8,11 +8,10 @@ services:
     environment:
       SELENIUM_URL: 'http://selenium:4444/wd/hub'
       DRIVER: chrome
-      ATOS_API_URL: "${ATOS_API_URL:-http://api.et:3100/atos_api}"
       AWS_ACCESS_KEY_ID: accessKey1
       AWS_SECRET_ACCESS_KEY: verySecretKey1
       AWS_REGION: 'us-east-1'
-      AWS_ENDPOINT: 'http://s3.et:3100'
+      AWS_ENDPOINT: 'http://s3.et.127.0.0.1.nip.io:3100'
       AWS_S3_FORCE_PATH_STYLE: 'true'
       BUNDLE_WITH: development,test
     volumes:
