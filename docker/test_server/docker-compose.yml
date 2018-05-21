@@ -24,7 +24,7 @@ services:
       AWS_ACCESS_KEY_ID: accessKey1
       AWS_SECRET_ACCESS_KEY: verySecretKey1
       AWS_REGION: 'us-east-1'
-      AWS_ENDPOINT: 'http://s3.docker.test:8000'
+      AWS_ENDPOINT: 'http://s3.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}:${SERVER_PORT:-3100}'
       AWS_S3_FORCE_PATH_STYLE: 'true'
       S3_UPLOAD_BUCKET: 'etapibucket'
       RAILS_ENV: 'production' # Caution - ET1 runs as local

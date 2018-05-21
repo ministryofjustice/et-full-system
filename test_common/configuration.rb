@@ -23,6 +23,10 @@ module EtFullSystem
         ENV.fetch('ET3_URL', "http://et3.#{server_domain}:#{server_port}/")
       end
 
+      def aws_endpoint_url
+        ENV.fetch('AWS_ENDPOINT', "http://s3.#{server_domain}:#{server_port}/")
+      end
+
       def atos_api_url
         ENV.fetch('ATOS_API_URL', "http://api.#{server_domain}:#{server_port}/atos_api")
       end

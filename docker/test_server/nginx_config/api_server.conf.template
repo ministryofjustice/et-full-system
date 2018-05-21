@@ -1,6 +1,6 @@
 server {
        listen *:${SERVER_PORT};
-       server_name api.et.127.0.0.1.nip.io api.et;
+       server_name api.${SERVER_DOMAIN} api.et;
        root /home/app/full_system/systems/api/public;
        access_log /home/app/full_system/systems/api/log/nginx_access.log combined;
        error_log /home/app/full_system/systems/api/log/nginx_error.log;
@@ -17,7 +17,7 @@ server {
        passenger_env_var AWS_SECRET_ACCESS_KEY verySecretKey1;
        passenger_env_var AWS_REGION 'us-east-1';
        passenger_env_var S3_UPLOAD_BUCKET 'etapibucket';
-       passenger_env_var AWS_ENDPOINT 'http://s3.et.127.0.0.1.nip.io:${SERVER_PORT}';
+       passenger_env_var AWS_ENDPOINT 'http://s3.${SERVER_DOMAIN}:${SERVER_PORT}';
        passenger_env_var AWS_S3_FORCE_PATH_STYLE 'true';
 
        passenger_app_env production;
