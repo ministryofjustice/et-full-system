@@ -28,12 +28,12 @@ module EtFullSystem
           main_content.save_and_continue_button.click
         end
 
-        def set_for(user)
-          claim = user[:claim]
+        def set_for(claim)
+          data = claim.to_h
           return if claim.nil?
-          set_field main_content, :claim_type, claim
-          set_field main_content, :whistleblowing_claim, claim
-          set_field main_content.whistleblowing_claim, :send_to_relevant_person, claim
+          set_field main_content, :claim_type, data
+          set_field main_content, :whistleblowing_claim, data
+          set_field main_content.whistleblowing_claim, :send_to_relevant_person, data
         end
 
         private

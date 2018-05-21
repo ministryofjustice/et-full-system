@@ -14,8 +14,8 @@ module EtFullSystem
         end
 
         def set_for(user)
-          main_content.email.set(user.dig(:personal, :email_address))
-          main_content.memorable_word.set(user.dig(:personal, :memorable_word))
+          main_content.email.set(user[0].dig(:email_address))
+          main_content.memorable_word.set(user[0].dig(:email_address))
         end
       end
     end

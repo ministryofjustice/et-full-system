@@ -1,4 +1,4 @@
-When(/^I complete an online ET1 form and submit the form$/) do
+When /^the completed form is submitted$/ do
   start_a_new_et1_claim
 
   et1_answer_login

@@ -40,9 +40,9 @@ module EtFullSystem
 
         end
 
-        def set_for(user)
-          if user.key?(:representative)
-            data = user[:representative]
+        def set_for(representative)
+          data = representative.to_h
+          if data.present?
             main_content.representatives_details.representative.set('Yes')
             main_content.representatives_details.about_your_representative do |s|
               set_field s, :type, data

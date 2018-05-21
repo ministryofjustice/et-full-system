@@ -75,31 +75,31 @@ module EtFullSystem
           main_content.save_and_continue_button.click
         end
 
-        def set_for(user)
-          emp = user[:employment]
-          if emp.nil?
+        def set_for(employment)
+          data = employment.to_h
+          if data.nil?
             main_content.your_employment_details.set('No')
 
           else
             main_content.your_employment_details do |s|
               s.set 'Yes'
-              set_field s, :current_work_situation, emp
+              set_field s, :current_work_situation, data
               s.employment_details do |s|
-                set_field s, :job_title, emp
-                set_field s, :start_date, emp
-                if emp.key?(:notice_period)
+                set_field s, :job_title, data
+                set_field s, :start_date, data
+                if data.key?(:notice_period)
                   s.notice_period.set 'Yes'
-                  s.notice_period_value.set emp[:notice_period]
+                  s.notice_period_value.set data[:notice_period]
                 else
                   s.notice_period.set 'No'
                 end
-                set_field s, :average_weekly_hours, emp
+                set_field s, :average_weekly_hours, data
               end
               s.pay_pension_benefits do |s|
-                set_field s, :pay_before_tax, emp
-                set_field s, :pay_after_tax, emp
-                set_field s, :employers_pension_scheme, emp
-                set_field s, :benefits, emp
+                set_field s, :pay_before_tax, data
+                set_field s, :pay_after_tax, data
+                set_field s, :employers_pension_scheme, data
+                set_field s, :benefits, data
               end
             end
           end

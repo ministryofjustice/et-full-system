@@ -36,34 +36,34 @@ module EtFullSystem
           main_content.save_and_continue_button.click
         end
 
-        def set_for(user)
-          respondents = user[:respondents]
-          return if respondents.nil? || respondents.empty?
-          respondent = respondents.first
+        def set_for(respondent)
+          data = respondent[0].to_h
+          return if data.nil? || data.empty?
           main_content.about_the_respondent do |s|
-            set_field s, :name, respondent
-            set_field s, :building, respondent
-            set_field s, :street, respondent
-            set_field s, :locality, respondent
-            set_field s, :county, respondent
-            set_field s, :post_code, respondent
-            set_field s, :telephone_number, respondent
+            set_field s, :name, data
+            set_field s, :building, data
+            set_field s, :street, data
+            set_field s, :locality, data
+            set_field s, :county, data
+            set_field s, :post_code, data
+            set_field s, :telephone_number, data
           end
-          if respondent.key?(:work_address)
+          if data.key?(:work_address)
+            address = data[:work_address].to_h
             main_content.your_work_address do |s|
               s.same_address.set('No')
-              set_field s, :building, respondent[:work_address]
-              set_field s, :street, respondent[:work_address]
-              set_field s, :locality, respondent[:work_address]
-              set_field s, :county, respondent[:work_address]
-              set_field s, :post_code, respondent[:work_address]
-              set_field s, :telephone_number, respondent[:work_address]
+              set_field s, :building, address
+              set_field s, :street, address
+              set_field s, :locality, address
+              set_field s, :county, address
+              set_field s, :post_code, address
+              set_field s, :telephone_number, address
             end
           else
             main_content.your_work_address.same_address.set('Yes')
           end
           main_content.acas do |s|
-            s.certificate_number.set respondent[:acas_number] if respondent.key?(:acas_number)
+            s.certificate_number.set data[:acas_number] if data.key?(:acas_number)
           end
         end
 

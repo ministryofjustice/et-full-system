@@ -66,8 +66,7 @@ module EtFullSystem
         #
         # @param [Hash] user The user hash
         def set_for(user)
-          data = user[:personal]
-
+          data = user[0].to_h
           main_content.about_the_claimant.tap do |s|
             set_field(s, :title, data)
             set_field(s, :first_name, data)

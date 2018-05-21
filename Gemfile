@@ -24,7 +24,7 @@ group :test do
   gem 'pry'
   # Pdf forms to test pdf content
   gem 'pdf-forms', '~> 1.1', '>= 1.1.1'
-
+  gem 'factory_bot'
 end
 
 group :development, :test do
