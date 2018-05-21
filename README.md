@@ -32,6 +32,18 @@ to enter any S3 credential which quite rightly, developers do not really want to
 
 ![diagram 1](docs/diagram_showing_systems.png)
 
+## Use Of 'Passenger' Gem
+
+This project now uses the nginx web server and the 'passenger' gem. This allows the outside world (i.e. us !) to see just a single server
+and not have to worry about setting port numbers etc.. for the 4 different services (api, et1, et3 and admin).  It is also
+a closer setup to production where everything is behind 'nginx'
+
+It is configured to use the same domain's whether you are working inside the docker network or on your local machine.
+
+Whilst this does not matter 95% of the time, when dealing with pre signed URL's for Amazon S3 stuff - it is signed using
+the hostname - so if you were using 's3.et.127.0.0.1' outside of docker and 's3.et' inside of docker - you would get
+issues with the signature not matching amongst other problems.
+
 # Cloning
 
 This project is an umbrella project using git submodules (https://git-scm.com/docs/git-submodule).  This is for convenience so that all developers have the

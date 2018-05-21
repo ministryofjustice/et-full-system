@@ -45,7 +45,6 @@ RUN rm -f /etc/service/redis/down
 
 # Copy configs
 RUN rm /etc/nginx/sites-enabled/default
-ADD docker/test_server/webapp.conf /etc/nginx/sites-available/webapp.conf.template
 ADD docker/test_server/env.conf /etc/nginx/main.d/webapp_env.conf
 
 # Custom Services
