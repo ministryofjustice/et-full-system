@@ -42,21 +42,21 @@ module EtFullSystem
           element :error_inclusion, :exact_error_text, 'errors.messages.inclusion', exact: false
           def set_for(user)
             case user.type
-              when 'questions.type_of_representative.citizens_advice_bureau.label'
+              when 'Citizens advice bureau'
                 citizens_advice_bureau.set(true)
-              when 'questions.type_of_representative.free_representation_unit.label'
+              when 'Free representation unit'
                 free_representation_unit.set(true)
-              when 'questions.type_of_representative.law_centre.label'
+              when 'Law centre'
                 law_centre.set(true)
-              when 'questions.type_of_representative.union.label'
+              when 'Union'
                 union.set(true)
               when 'Solicitor'
                 solicitor.set(true)
-              when 'questions.type_of_representative.private_individual.label'
+              when 'Private individual'
                 private_individual.set(true)
-              when 'questions.type_of_representative.trade_association.label'
+              when 'Trade association'
                 trade_association.set(true)
-              when 'questions.type_of_representative.other.label'
+              when 'Other'
                 other.set(true)
             end
           end

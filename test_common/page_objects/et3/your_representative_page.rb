@@ -13,8 +13,8 @@ module EtFullSystem
             element :selector, :css, 'input'
             delegate :set, to: :selector
           end
-          def set_for(user_persona)
-            if user_persona.have_representative == 'Yes'
+          def set_for(user)
+            if user.have_representative == 'Yes'
               yes.set(true)
             else
               no.set(true)

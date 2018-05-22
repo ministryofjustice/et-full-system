@@ -1,9 +1,32 @@
 #!/bin/sh
+mkdir /home/app/public
 envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/default_server.conf.template > /etc/nginx/sites-enabled/default_server.conf
-envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/admin_server.conf.template > /etc/nginx/sites-enabled/admin_server.conf
-envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/api_server.conf.template > /etc/nginx/sites-enabled/api_server.conf
-envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/et1_server.conf.template > /etc/nginx/sites-enabled/et1_server.conf
-envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/et3_server.conf.template > /etc/nginx/sites-enabled/et3_server.conf
+envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/public/index.html.template > /home/app/public/index.html
+
+if [ -z "$MY_ADMIN" ]; then
+    envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/admin_server.conf.template > /etc/nginx/sites-enabled/admin_server.conf
+else
+    envsubst '$$SERVER_PORT $$SERVER_DOMAIN $$MY_ADMIN' < /home/app/full_system/docker/test_server/nginx_config/admin_local.conf.template > /etc/nginx/sites-enabled/admin_server.conf
+fi
+
+if [ -z "$MY_API" ]; then
+    envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/api_server.conf.template > /etc/nginx/sites-enabled/api_server.conf
+else
+    envsubst '$$SERVER_PORT $$SERVER_DOMAIN $$MY_API' < /home/app/full_system/docker/test_server/nginx_config/api_local.conf.template > /etc/nginx/sites-enabled/api_server.conf
+fi
+
+if [ -z "$MY_ET1" ]; then
+    envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/et1_server.conf.template > /etc/nginx/sites-enabled/et1_server.conf
+else
+    envsubst '$$SERVER_PORT $$SERVER_DOMAIN $$MY_ET1' < /home/app/full_system/docker/test_server/nginx_config/et1_local.conf.template > /etc/nginx/sites-enabled/et1_server.conf
+fi
+
+if [ -z "$MY_ET3" ]; then
+    envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/et3_server.conf.template > /etc/nginx/sites-enabled/et3_server.conf
+else
+    envsubst '$$SERVER_PORT $$SERVER_DOMAIN $$MY_ET3' < /home/app/full_system/docker/test_server/nginx_config/et3_local.conf.template > /etc/nginx/sites-enabled/et3_server.conf
+fi
+
 envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/s3_server.conf.template > /etc/nginx/sites-enabled/s3_server.conf
 envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/sidekiq_init_templates/sidekiq_api.sh.template > /etc/service/sidekiq_api/run
 envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/sidekiq_init_templates/sidekiq_et1.sh.template > /etc/service/sidekiq_et1/run
@@ -11,8 +34,8 @@ envsubst '$$SERVER_PORT $$SERVER_DOMAIN' < /home/app/full_system/docker/test_ser
 chmod +x /etc/service/sidekiq_api/run
 chmod +x /etc/service/sidekiq_et1/run
 cd docker/test_server
-cd /home/app/full_system/systems/et1 && bundle install --without=development,test --with=production && RAILS_ENV=local bundle exec rake db:create db:migrate
-cd /home/app/full_system/systems/et3 && bundle install --without=development,test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate
+cd /home/app/full_system/systems/et1 && bundle install --without=development,test --with=production && npm install && RAILS_ENV=local bundle exec rake db:create db:migrate assets:precompile
+cd /home/app/full_system/systems/et3 && bundle install --without=development,test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate assets:precompile
 cd /home/app/full_system/systems/api && bundle install --without=development,test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate db:seed
-cd /home/app/full_system/systems/admin && bundle install --without=development,test --with=production && RAILS_ENV=production SEED_EXAMPLE_USERS=true bundle exec rails db:seed
+cd /home/app/full_system/systems/admin && bundle install --without=development,test --with=production && RAILS_ENV=production SEED_EXAMPLE_USERS=true bundle exec rails db:seed assets:precompile
 /sbin/my_init

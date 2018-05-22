@@ -1,9 +1,10 @@
 Then(/^I can download the ET3 form and validate in TXT format$/) do
   within_admin_window do
+    sleep 1
     admin_pages.jobs_page.run_export_claims_cron_job
   end
   expect { atos_interface }.to eventually have_zip_file_containing(:et3_response_txt_for, user: @respondent, reference: @my_et3_reference), timeout: 30, sleep: 2
-  expect(atos_interface.download_from_any_zip(:et3_response_txt_for, user: @respondent, reference: @my_et3_reference)).to match_text_schema calculated_response_matchers(user: et3_helper.user)
+  expect(atos_interface.download_from_any_zip(:et3_response_txt_for, user: @respondent, reference: @my_et3_reference)).to match_text_schema calculated_response_matchers(user: @claimant, representative: @representative[0], respondent: @respondent)
 end
 
 

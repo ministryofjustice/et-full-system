@@ -1,6 +1,9 @@
 require 'singleton'
 require 'zip'
 require 'httparty'
+require 'active_support'
+require 'active_support/core_ext'
+
 module EtFullSystem
   module Test
     # This is a singleton class where the instance provides assistance with keeping track of the current state
@@ -20,7 +23,6 @@ module EtFullSystem
       end
 
       def download_from_any_zip(identifier, **args)
-        binding.pry
         filename = find_file_in_any_zip(identifier, **args)
         raise "No zip file containing #{identifier} - #{args} was found" unless filename.present?
         Dir.mktmpdir do |dir|

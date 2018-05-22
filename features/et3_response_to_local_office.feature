@@ -7,7 +7,7 @@ Feature: ET3 response to local office
 
 Scenario: TXT Format
   Given an employers response
-  When the completed ET3 form is submitted
+  When the completed Employment Tribunal response form is submitted
   Then I can download the ET3 form and validate in TXT format
 
   # Scenario: Create and send ET3 TXT file to claimant's local office

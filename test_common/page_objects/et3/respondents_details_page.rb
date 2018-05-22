@@ -81,16 +81,16 @@ module EtFullSystem
           end
           element :error_invalid_email, :exact_error_text, 'errors.messages.invalid', exact: false
           element :error_invalid_fax, :exact_error_text, 'errors.messages.invalid', exact: false
-          def set_for(user_persona)
-            case user_persona.contact_preference
+          def set_for(user)
+            case user.contact_preference
               when "email"
                 select_email.set(true)
-                preference_email.set(user_persona.email_address)
+                preference_email.set(user.email_address)
               when "post"
                 select_post.set(true)
               when "fax"
                 select_fax.set(true)
-                preference_fax.set(user_persona.fax_number)
+                preference_fax.set(user.fax_number)
             end
           end
         end
@@ -113,10 +113,10 @@ module EtFullSystem
             delegate :set, to: :root_element
           end
           element :error_not_a_number, :exact_error_text, 'errors.messages.not_a_number', exact: false
-          def set_for(user_persona)
-            if user_persona.organisation_more_than_one_site == 'Yes'
+          def set_for(user)
+            if user.organisation_more_than_one_site == 'Yes'
               yes.set(true)
-              employment_at_site_number.set(user_persona.employment_at_site_number)
+              employment_at_site_number.set(user.employment_at_site_number)
             else 
               no.set(true)
             end

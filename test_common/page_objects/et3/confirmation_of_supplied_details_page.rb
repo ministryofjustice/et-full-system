@@ -207,7 +207,7 @@ module EtFullSystem
           end
         end
         element :continue_button, :button, "Submit Form"
-        def submit_form
+        def next
           continue_button.click
         end
       end

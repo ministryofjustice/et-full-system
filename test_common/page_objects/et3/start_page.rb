@@ -3,11 +3,11 @@ module EtFullSystem
   module Test
     module Et3
       class StartPage < BasePage
-      set_url ENV.fetch('ET3_URL', 'http://et3:8080/')
+      set_url set_url ::EtFullSystem::Test::Configuration.instance.et3_url
       element :header, :css, ".content-header"
       element :introduction, :css, ".introduction"
       element :start_button, :css, ".button.button-start"
-      def start_a_response
+      def next
         start_button.click
       end   
     end   

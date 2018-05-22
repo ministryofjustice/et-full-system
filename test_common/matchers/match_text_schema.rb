@@ -24,7 +24,6 @@ module EtFullSystem
 
       def failure_message
         "The data provided did not match the schema - here are the details: \n\n#{mismatches.join("\n")}"
-
       end
 
       private

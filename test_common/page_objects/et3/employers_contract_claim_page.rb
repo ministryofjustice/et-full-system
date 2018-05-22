@@ -18,10 +18,10 @@ module EtFullSystem
             delegate :set, to: :root_element
           end
           element :error_too_long, :exact_error_text, 'errors.messages.too_long', exact: false
-          def set_for(user_persona)
-            if user_persona.make_employer_contract_claim == "Yes"
+          def set_for(user)
+            if user.make_employer_contract_claim == "Yes"
               yes.set(true)
-              claim_information.set(user_persona.claim_information)
+              claim_information.set(user.claim_information)
             else
               no.set(true)
             end
