@@ -9,8 +9,10 @@ Then(/^I can download the ET3 form and validate in TXT format$/) do
 end
 
 
-Then(/^my entered data is formatted into a PDF file for my ET3 reference number and is available for ATOS to download$/) do
+Then(/^I can download the ET3 form and validate in PDF format$/) do
   within_admin_window do
+    api = EtFullSystem::Test::AdminApi.new
+    expect { api.respondents_api }.to eventually include a_hash_including(name: @respondent.dig(:name))
     admin_pages.jobs_page.run_export_claims_cron_job
   end
   expect { atos_interface }.to eventually have_zip_file_containing(:et3_response_pdf_for, user: @respondent, reference: @my_et3_reference), timeout: 30, sleep: 2
