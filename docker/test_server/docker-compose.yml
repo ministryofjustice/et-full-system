@@ -11,7 +11,6 @@ services:
       - rvm:/usr/local/rvm
       - global_node_modules:/usr/lib/node_modules
       - ../..:/home/app/full_system
-      - ./public:/home/app/public
       - et1_node_modules:/home/app/full_system/systems/et1/node_modules
       - et3_node_modules:/home/app/full_system/systems/et3/node_modules
       - api_node_modules:/home/app/full_system/systems/api/node_modules
@@ -33,6 +32,10 @@ services:
       RAILS_ENV: 'production' # Caution - ET1 runs as local
       SERVER_PORT: ${SERVER_PORT:-3100}
       SERVER_DOMAIN: ${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
+      MY_ET3:
+      MY_ET1:
+      MY_API:
+      MY_ADMIN:
     command: /bin/bash -c "/home/app/full_system/docker/test_server/docker_run"
     networks:
       et_full_system:

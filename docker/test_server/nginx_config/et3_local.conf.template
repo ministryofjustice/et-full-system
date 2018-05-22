@@ -1,0 +1,7 @@
+server {
+    listen *:${SERVER_PORT};
+    server_name et3.${SERVER_DOMAIN} et3.et;
+    location / {
+       proxy_pass ${MY_ET3};
+    }
+}
