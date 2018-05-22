@@ -61,6 +61,7 @@ git clone --recursive git@github.com:ministryofjustice/et-full-system.git
 or if you already have cloned but forgot the '--recursive'
 
 ```
+cd et-full-system
 
 git submodule update --init
 
@@ -110,6 +111,10 @@ The system is very configurable so it can be run on whichever ports you want etc
 ## Testing
 
 There are lots of things with regard to automated testing to consider - please read [this document](docs/automated_testing.md) for more details
+
+## Development
+
+If you want to develop parts of the system and use this framework for convenience - please read [this document](docs/development.md)
 
 # Using The Framework
 

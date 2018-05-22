@@ -1,8 +1,8 @@
 server {
     listen *:${SERVER_PORT};
-    server_name et3.${SERVER_DOMAIN} et3.et;
+    server_name admin.${SERVER_DOMAIN};
     location / {
-       proxy_pass ${MY_ET3};
+       proxy_pass ${MY_ADMIN};
        proxy_set_header Host $http_host;
     }
 }
