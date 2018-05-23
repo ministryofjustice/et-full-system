@@ -34,7 +34,7 @@ module EtFullSystem
           '',
           "## Section 2: Your organisation's details",
           '',
-          starting_with('~2.1 Name of your organisation: ').and(args.dig(:respondent, :name)),
+          starting_with('~2.1 Name of your organisation: ').and(ending_with(args.dig(:respondent, :name))),
           "Contact name: #{args.dig(:respondent, :contact)}",
           "~2.2 Address",
           "Address 1: #{args.dig(:respondent, :building_name)}",
