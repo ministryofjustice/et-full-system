@@ -24,15 +24,6 @@ module EtFullSystem
           has_disability_for?(representative, errors: errors, indent: indent)
         end
 
-        # def has_correct_contents_from_db_for?(response:, errors: [], indent: 1)
-        #   respondent = respondent.as_json(include: :address).symbolize_keys
-        #   representative = representative.try(:as_json, include: :address).try(:symbolize_keys)
-        #   respondent[:address_attributes] = respondent.delete(:address).symFibolize_keys
-        #   representative[:address_attributes] = representative.delete(:address).symbolize_keys unless representative.nil?
-        #   response = response.as_json.symbolize_keys
-        #   has_correct_contents_for?(response: response, respondent: respondent, representative: representative, errors: errors, indent: indent)
-        # end
-
         def has_header_for?(respondent, errors: [], indent: 1)
           validate_fields section: :header, errors: errors, indent: indent do
             expect(field_values).to include 'case number' => respondent.case_number
