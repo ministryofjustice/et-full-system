@@ -13,7 +13,7 @@ FactoryBot.define do
         telephone_number: '03333 423554'
     end
 
-    trait :organisation do
+    trait :employer do
       name { Faker::Company.name }
       building { Faker::Address.building_number }
       street { Faker::Address.street_name }
@@ -24,6 +24,7 @@ FactoryBot.define do
       telephone_number '02222 321654'
     end
 
-    factory :organisation_data, traits: [:work_address, :organisation]
+    factory :organisation_data, traits: [:work_address, :employer]
+    factory :et3_data, traits: [:employer, :et3]
   end
 end

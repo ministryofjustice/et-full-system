@@ -58,6 +58,46 @@ module EtFullSystem
         EtFullSystem::Test::Et1::SubmissionPage.new
       end
 
+      def start_page
+        EtFullSystem::Test::Et3::StartPage.new
+      end
+
+      def respondents_details_page
+        EtFullSystem::Test::Et3::RespondentsDetailsPage.new
+      end
+
+      def claimants_details_page
+        EtFullSystem::Test::Et3::ClaimantsDetailsPage.new
+      end
+
+      def earnings_and_benefits_page
+        EtFullSystem::Test::Et3::EarningsAndBenefitsPage.new
+      end
+
+      def response_page
+        EtFullSystem::Test::Et3::ResponsePage.new
+      end
+
+      def your_representative_page
+        EtFullSystem::Test::Et3::YourRepresentativePage.new
+      end
+
+      def your_representatives_details_page
+        EtFullSystem::Test::Et3::YourRepresentativesDetailsPage.new
+      end
+
+      def employers_contract_claim_page
+        EtFullSystem::Test::Et3::EmployersContractClaimPage.new
+      end
+
+      def confirmation_of_supplied_details_page
+        EtFullSystem::Test::Et3::ConfirmationOfSuppliedDetailsPage.new
+      end
+
+      def form_submission_page
+        EtFullSystem::Test::Et3::FormSubmissionPage.new
+      end
+
       def admin_pages
         @admin_pages = AdminPages
       end

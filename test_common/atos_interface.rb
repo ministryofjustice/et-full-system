@@ -1,6 +1,9 @@
 require 'singleton'
 require 'zip'
 require 'httparty'
+require 'active_support'
+require 'active_support/core_ext'
+
 module EtFullSystem
   module Test
     # This is a singleton class where the instance provides assistance with keeping track of the current state
@@ -26,6 +29,15 @@ module EtFullSystem
           all_filenames_in_all_zip_files.extract(filename, to: dir)
           File.read(File.join(dir, filename))
         end
+      end
+
+      def download_from_any_zip_to_tempfile(identifier, **args)
+        tempfile = Tempfile.new
+        filename = find_file_in_any_zip(identifier, **args)
+        raise "No zip file containing #{identifier} - #{args} was found" unless filename.present?
+        all_filenames_in_all_zip_files.extract(filename, to: File.dirname(tempfile.path), as: File.basename(tempfile.path))
+        tempfile.rewind
+        tempfile
       end
 
       private
@@ -55,6 +67,9 @@ module EtFullSystem
         when :et3_response_txt_for
           reference = args[:reference]
           filename == "#{reference}_ET3_.txt"
+        when :et3_response_pdf_for
+          reference = args[:reference]
+          filename == "#{reference}_ET3_.pdf"
         when :et1_claim_csv_for
           filename.end_with?("ET1a_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.csv")
         when :et1_claim_rtf_for
@@ -92,7 +107,7 @@ module EtFullSystem
         end
       end
 
-      def extract(filename, to:)
+      def extract(filename, to:, as: filename)
         fetch unless fetched?
         zip_filename = zip_filename_for(filename)
         raise "No zip file contains #{filename}" unless zip_filename.present?
@@ -101,7 +116,7 @@ module EtFullSystem
         api.download(zip_filename, to: tmp_file)
         tmp_file.rewind
         ::Zip::File.open(tmp_file.path) do |z|
-          z.extract(filename, File.join(to, filename))
+          z.extract(filename, File.join(to, as)) { true }
         end
       end
 
