@@ -13,5 +13,6 @@ export AWS_ENDPOINT=http://s3.${SERVER_DOMAIN}:${SERVER_PORT}
 export AWS_S3_FORCE_PATH_STYLE=true
 export SMTP_HOSTNAME=smtp
 export SMTP_PORT=1025
+export RAILS_ENV=production
 
 exec /sbin/setuser app bundle exec sidekiq >>/home/app/full_system/systems/api/log/nginx_sidekiq.log 2>&1
