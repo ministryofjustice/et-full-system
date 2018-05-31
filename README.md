@@ -31,6 +31,16 @@ to enter any S3 credential which quite rightly, developers do not really want to
 Note that this uses a server called 'minio' which is available for just about any platform.
 Minio has a web interface at http://s3.et.127.0.0.1.nip.io:3100 (unless you have changed the domain or port - then adjust as necessary)
 
+## External Dependencies
+
+### Docker Compose
+
+Minimum version: 1.21.0
+
+### Docker
+
+Minimum version:  18.05.0-ce
+
 ## Quick Start
 
 If you just want to get going, here is a quick way to prove that it all works.
