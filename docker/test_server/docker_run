@@ -4,6 +4,10 @@ sudo chown app:app /home/app/full_system/systems/et1/public/apply/assets
 sudo chown app:app /home/app/full_system/systems/et3/public/assets
 sudo chown app:app /home/app/full_system/systems/admin/public/assets
 sudo chown app:app /home/app/full_system/systems/et1/node_modules
+sudo chown app:app /home/app/full_system/systems/et1/log
+sudo chown app:app /home/app/full_system/systems/et3/log
+sudo chown app:app /home/app/full_system/systems/admin/log
+sudo chown app:app /home/app/full_system/systems/api/log
 sudo chown app:app /home/app/full_system/systems/et3/node_modules
 sudo chown app:app /home/app/full_system/systems/admin/node_modules
 
