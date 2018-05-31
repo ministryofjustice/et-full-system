@@ -1,0 +1,22 @@
+sudo: required
+install: true
+env:
+  global:
+    secure: FNL+FZauJ7fy1rT4luEvPGuAErxyp4BicM5bXCD/dBHMNI6rhGDulMhnqdThAaR4DvhCXaBahrnNFs7gfilpdkQzz3zYVBqvjlyx4slIL6xRTKOwVo6X6tG804ZiJ2b8sMTCqBBn5xoVCjDcle+VCcQNp2oq/LoXGGPHdx/LcKY=
+before_script:
+- git submodules update --init
+- ./bin/dev/test_server up -d
+- ./bin/wait-for-it localhost:3100 -t 300
+- ./bin/dev/test_framework up -d
+- ./bin/wait-for-it localhost:4444 -t 300
+- ./bin/wait-for-it localhost:5900 -t 300
+- ./bin/dev/test_exec bundle
+script:
+- ./bin/dev/test_exec cucumber
+
+services:
+  - docker
+cache:
+  directories:
+  - $HOME/rubygems
+  - $HOME/node_modules

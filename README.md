@@ -58,6 +58,13 @@ cd et-full-system
 
 ```
 
+and wait for a message like this from docker
+
+```
+Passenger core running in multi-application mode
+
+```
+
 then in another terminal window in the same directory
 
 ```
