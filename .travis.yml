@@ -1,15 +1,22 @@
 sudo: required
 install: true
 env:
+  DOCKER_COMPOSE_VERSION: 1.21.0
   global:
     secure: FNL+FZauJ7fy1rT4luEvPGuAErxyp4BicM5bXCD/dBHMNI6rhGDulMhnqdThAaR4DvhCXaBahrnNFs7gfilpdkQzz3zYVBqvjlyx4slIL6xRTKOwVo6X6tG804ZiJ2b8sMTCqBBn5xoVCjDcle+VCcQNp2oq/LoXGGPHdx/LcKY=
 git:
   submodules: false
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
 before_script:
 - sed -i -e 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
 - git submodule update --init
 - ./bin/dev/test_server up -d
 - docker --version
+- docker-compose --version
 - docker ps
 - docker network ls
 - bash -c "sleep 60"
