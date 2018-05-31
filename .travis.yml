@@ -7,7 +7,7 @@ git:
   submodules: false
 before_script:
 - sed -i -e 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
-- git submodules update --init
+- git submodule update --init
 - ./bin/dev/test_server up -d
 - ./bin/wait-for-it localhost:3100 -t 300
 - ./bin/dev/test_framework up -d

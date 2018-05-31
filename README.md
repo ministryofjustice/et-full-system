@@ -31,7 +31,7 @@ to enter any S3 credential which quite rightly, developers do not really want to
 Note that this uses a server called 'minio' which is available for just about any platform.
 Minio has a web interface at http://s3.et.127.0.0.1.nip.io:3100 (unless you have changed the domain or port - then adjust as necessary)
 
-## Quick Start ?
+## Quick Start
 
 If you just want to get going, here is a quick way to prove that it all works.
 
@@ -45,7 +45,7 @@ If you want a different branch than develop (the default) then do this :-
 
 ```
 git checkout <your_branch>
-git submodules update
+git submodule update
 
 ```
 
