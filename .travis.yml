@@ -24,7 +24,7 @@ before_script:
 - ./bin/wait-for-it.sh localhost:4444 -t 300
 - ./bin/wait-for-it.sh localhost:5900 -t 60
 - ./bin/dev/test_exec bundle
-- ./bin/dev/test_exec bash -c "apt-get update && apt-get install iputils-ping && ping s3.et.127.0.0.1.nip.io"
+- ./bin/dev/test_exec bash -c "apt-get update && apt-get install -y iputils-ping && ping s3.et.127.0.0.1.nip.io"
 script:
 - ./bin/dev/test_exec cucumber
 addons:
