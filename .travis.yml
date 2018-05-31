@@ -9,6 +9,7 @@ before_script:
 - sed -i -e 's/git@github.com:/https:\/\/github.com\//g' .gitmodules
 - git submodule update --init
 - ./bin/dev/test_server up -d
+- bash -c "sleep 60"
 - ./bin/wait-for-it.sh localhost:3100 -t 300
 - ./bin/dev/test_framework up -d
 - ./bin/wait-for-it.sh localhost:4444 -t 300
