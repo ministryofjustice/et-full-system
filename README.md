@@ -31,6 +31,45 @@ to enter any S3 credential which quite rightly, developers do not really want to
 Note that this uses a server called 'minio' which is available for just about any platform.
 Minio has a web interface at http://s3.et.127.0.0.1.nip.io:3100 (unless you have changed the domain or port - then adjust as necessary)
 
+## Quick Start ?
+
+If you just want to get going, here is a quick way to prove that it all works.
+
+```
+
+git clone --recursive git@github.com:ministryofjustice/et-full-system.git
+
+```
+
+If you want a different branch than develop (the default) then do this :-
+
+```
+git checkout <your_branch>
+git submodules update
+
+```
+
+then, irrespective of branch :-
+
+```
+
+cd et-full-system
+./bin/dev/test_server up
+
+```
+
+then in another terminal window in the same directory
+
+```
+
+./bin/dev/test_framework up -d
+./bin/dev/test_exec bundle
+./bin/dev/test_exec cucumber
+
+```
+
+If you want to do anything in a slightly different way, read on - otherwise if tests pass then its working !!
+
 ## Diagram Showing Test Servers and Test Framework Systems
 
 ![diagram 1](docs/diagram_showing_systems.png)

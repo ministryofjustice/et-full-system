@@ -1,6 +1,7 @@
 FROM phusion/passenger-customizable:0.9.30
 # Set correct environment variables.
 ENV HOME /root
+ARG APP_UID
 
 # Use baseimage-docker's init process.
 CMD ["/sbin/my_init"]
@@ -63,5 +64,6 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN mkdir -p /home/app/full_system; chown app:app /home/app/full_system
 WORKDIR /home/app/full_system/systems
 RUN echo "app ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && chmod 0440 /etc/sudoers.d/user
-RUN usermod -u 1000 app
+RUN usermod -u $APP_UID app
 USER app
+ENV HOME /home/app
