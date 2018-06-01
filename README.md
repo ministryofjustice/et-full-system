@@ -51,6 +51,12 @@ git clone --recursive git@github.com:ministryofjustice/et-full-system.git
 
 ```
 
+Then
+
+```
+cd et-full-system
+```
+
 If you want a different branch than develop (the default) then do this :-
 
 ```
@@ -63,12 +69,12 @@ then, irrespective of branch :-
 
 ```
 
-cd et-full-system
 ./bin/dev/test_server up
 
 ```
 
-and wait for a message like this from docker
+and wait for a message like this from docker (it takes a while - it has 4 applications to build so you will 
+see 4 sets of gemsets building, migrations running etc..)
 
 ```
 Passenger core running in multi-application mode
