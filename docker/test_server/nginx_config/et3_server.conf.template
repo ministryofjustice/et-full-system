@@ -4,6 +4,7 @@ server {
        root /home/app/full_system/systems/et3/public;
        access_log /home/app/full_system/systems/et3/log/nginx_access.log combined;
        error_log /home/app/full_system/systems/et3/log/nginx_error.log;
+       client_max_body_size 100M;
 
        passenger_enabled on;
        passenger_user app;

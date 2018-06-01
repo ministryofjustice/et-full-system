@@ -31,6 +31,68 @@ to enter any S3 credential which quite rightly, developers do not really want to
 Note that this uses a server called 'minio' which is available for just about any platform.
 Minio has a web interface at http://s3.et.127.0.0.1.nip.io:3100 (unless you have changed the domain or port - then adjust as necessary)
 
+## External Dependencies
+
+### Docker Compose
+
+Minimum version: 1.21.0
+
+### Docker
+
+Minimum version:  18.05.0-ce
+
+## Quick Start
+
+If you just want to get going, here is a quick way to prove that it all works.
+
+```
+
+git clone --recursive git@github.com:ministryofjustice/et-full-system.git
+
+```
+
+Then
+
+```
+cd et-full-system
+```
+
+If you want a different branch than develop (the default) then do this :-
+
+```
+git checkout <your_branch>
+git submodule update
+
+```
+
+then, irrespective of branch :-
+
+```
+
+./bin/dev/test_server up
+
+```
+
+and wait for a message like this from docker (it takes a while - it has 4 applications to build so you will 
+see 4 sets of gemsets building, migrations running etc..)
+
+```
+Passenger core running in multi-application mode
+
+```
+
+then in another terminal window in the same directory
+
+```
+
+./bin/dev/test_framework up -d
+./bin/dev/test_exec bundle
+./bin/dev/test_exec cucumber
+
+```
+
+If you want to do anything in a slightly different way, read on - otherwise if tests pass then its working !!
+
 ## Diagram Showing Test Servers and Test Framework Systems
 
 ![diagram 1](docs/diagram_showing_systems.png)

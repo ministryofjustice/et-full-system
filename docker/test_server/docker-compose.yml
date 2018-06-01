@@ -1,9 +1,12 @@
 version: '3'
 services:
   et:
+    image: 'et_full_system_server_non_root'
     build:
       context: ../../
       dockerfile: docker/test_server/Dockerfile
+      args:
+        APP_UID: ${UID:-9999}
 
     ports:
       - '${SERVER_PORT:-3100}:${SERVER_PORT:-3100}'
