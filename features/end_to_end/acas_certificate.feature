@@ -8,7 +8,7 @@ Feature:
 
   Scenario: Download and view ACAS Certificate
     Given I am an ACAS administrator
-    When I enter an ACAS certificate number
+    When I enter an ACAS certificate number in the ACAS search field
     Then I can download and view the contents of the document
 
   Scenario: Certificate not found
@@ -18,7 +18,7 @@ Feature:
 
   Scenario: Invalid format
     Given I am an ACAS administrator
-    When I enter an invalid format ACAS number
+    When I enter an invalid format ACAS number in the ACAS search field
     Then the system should return 'Please enter a valid certificate number'
 
   Scenario: ACAS log
@@ -29,8 +29,8 @@ Feature:
     
   Scenario: No response from ACAS
     Given I am an ACAS administrator
-    When I enter an ACAS certificate number
-    And an ACAS server is down for unknown reason
+    When I enter an ACAS certificate number in the ACAS search field
+    And an ACAS server is down for an unknown reason
     Then the ET Admin should timeout after 3 seconds displaying 'Something has gone wrong, please try again later'
 
   @manual
