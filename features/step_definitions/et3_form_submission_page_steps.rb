@@ -31,6 +31,3 @@ Then(/^I can return to gov.uk$/) do
   form_submission_page.return_to_govuk_button.click
   expect(current_url).to eql 'https://www.gov.uk/'
 end
-
-
-   
