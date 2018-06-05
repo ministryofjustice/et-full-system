@@ -22,6 +22,20 @@ module EtFullSystem
         respondents_details_page.contact_preference_question.set_for(user)
         respondents_details_page.organisation_more_than_one_site_question.set_for(user)
         respondents_details_page.organisation_employ_gb_question.set(user.organisation_employ_gb)
+        
+        respondents_details_page.next
+      end
+
+      def et3_answer_required_espondents_details
+        user = @respondent
+        respondents_details_page.case_number_question.set(user.case_number)
+        respondents_details_page.name_question.set(user.name)
+        respondents_details_page.building_name_question.set(user.building_name)
+        respondents_details_page.street_question.set(user.street_name)
+        respondents_details_page.town_question.set(user.town)
+        respondents_details_page.postcode_question.set(user.postcode)
+        respondents_details_page.organisation_more_than_one_site_question.set_for(user)
+        
         respondents_details_page.next
       end
 
@@ -32,8 +46,19 @@ module EtFullSystem
         claimants_details_page.agree_with_employment_dates_question.set_for(user)
         claimants_details_page.continued_employment_question.set_for(user)
         claimants_details_page.agree_with_claimants_description_of_job_or_title_question.set_for(user)
-
+        
         claimants_details_page.next
+      end
+
+      def et3_answer_required_claimants_details
+        user = @claimant
+        claimants_details_page.agree_with_employment_dates_question.set_for(user)
+      
+        claimants_details_page.next
+      end
+
+      def et3_answer_no_to_employment_dates_question
+         claimants_details_page.agree_with_employment_dates_question.no.selector.click
       end
 
       def et3_answer_earnings_and_benefits
@@ -42,7 +67,7 @@ module EtFullSystem
         earnings_and_benefits_page.agree_with_earnings_details_question.set_for(user)
         earnings_and_benefits_page.agree_with_claimant_notice_question.set_for(user)
         earnings_and_benefits_page.agree_with_claimant_pension_benefits_question.set_for(user)
-
+        
         earnings_and_benefits_page.next
       end
 
@@ -85,6 +110,16 @@ module EtFullSystem
         employers_contract_claim_page.next
       end
 
+      def et3_answer_no_to_employers_contract_claim
+        employers_contract_claim_page.make_employer_contract_claim_question.no.selector.click
+
+        employers_contract_claim_page.next
+      end
+
+      def et3_displays_edited_answer
+        make_employer_contract_claim_row.make_employer_contract_claim_answer.text
+      end
+
       def upload_additional_information
         user = @respondent
         employers_contract_claim_page.upload_additional_information.set(user.additional_information)
@@ -94,6 +129,15 @@ module EtFullSystem
         user = @respondent
         confirmation_of_supplied_details_page.email_receipt_question.set(user.email_receipt)
         confirmation_of_supplied_details_page.next
+      end
+
+      def et3_edit_answer
+        user = @respondent
+        confirmation_of_supplied_details_page.confirmation_of_employer_contract_claim_answers.edit_answers_link.click
+      end        
+      
+      def et3_displays_edited_answer
+        confirmation_of_supplied_details_page.confirmation_of_employer_contract_claim_answers.make_employer_contract_claim_row.make_employer_contract_claim_answer.text
       end
     end
   end
