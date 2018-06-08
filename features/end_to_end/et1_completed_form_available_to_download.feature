@@ -50,9 +50,7 @@ Feature:
     When the completed form is submitted
     Then I can download the form and validate the TXT file contained 3 employers details
 
-# Scenario: Filename based on claimant's work address
-    # Given a claimant work address is BS1 1DZ
-    # When the completed form is submitted
-    # Then I can download the form and validate that the filname start with 14 and ending with firstname_lastname.txt
-
-
+ Scenario: Filename based on claimants work address
+   Given claimant work address is BS11DZ
+   When the completed form is submitted
+   Then I can download the form and validate that the filname start with 14
