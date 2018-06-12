@@ -14,6 +14,11 @@ FactoryBot.define do
     dx_number  'dx1234567890'
   end
 
+  trait :et3_no_representative do
+    have_representative 'No'
+    employer_contract_claim 'No'
+  end
+
   trait :et3_information do
     have_representative 'Yes'
     representative_mobile '07987654321'

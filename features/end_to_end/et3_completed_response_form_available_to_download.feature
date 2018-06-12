@@ -14,3 +14,13 @@ Scenario: PDF Format
   Given an employer responds to a claim
   When the completed Employment Tribunal response form is submitted
   Then I can download the ET3 form and validate in PDF format
+
+Scenario: No respresentative
+  Given an employer responds to a claim with no respresentative
+  When the completed Employment Tribunal response form is submitted
+  Then I can download the ET3 form and validate in PDF format
+
+Scenario: Employment dates
+  Given an employer responds to yes to emloyment start date
+  When the completed Employment Tribunal response form is submitted
+  Then I can download the ET3 form and validate in PDF format

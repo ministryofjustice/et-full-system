@@ -51,6 +51,6 @@ Feature:
     Then I can download the form and validate the TXT file contained 3 employers details
 
  Scenario: Filename based on claimants work address
-   Given claimant work address is BS11DZ
+   Given an claimant work address is BS11DZ
    When the completed form is submitted
    Then I can download the form and validate that the filname start with 14

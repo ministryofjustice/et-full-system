@@ -45,7 +45,7 @@ Given(/^an employee making a claim against 3 employers$/) do
   @claim = FactoryBot.create(:claim)
 end
 
-Given(/^claimant work address is BS11DZ$/) do
+Given(/^an claimant work address is BS11DZ$/) do
   @claimants = FactoryBot.create_list(:first_person, 1, :person_data)
   @representative = FactoryBot.create(:representative)
   @respondents = FactoryBot.create_list(:organisation_data, 1, :employer)
