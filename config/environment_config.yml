@@ -1,7 +1,4 @@
 defaults: &defaults
-  file_transfer: atos_api/v1/filetransfer/list
-  atos-api: atos_api
-  download-file: atos_api/v1/filetransfer/download/
   admin_username: admin@example.com
   admin_password: password
 local: 
