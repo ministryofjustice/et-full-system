@@ -700,3 +700,9 @@ bundle exec cucumber
 * redis - if not installed, use Redis.app to run as required ('brew cask install redis-app' on OSX)
 * mailhog - ('brew install mailhog' on OSX)
 * pdftk - (see https://www.pdflabs.com/tools/pdftk-server/)
+
+## Running The end-to-end test suite in different environments
+
+local: ./bin/dev/test_exec bundle exec cucumber -t @e2e
+dev: ./bin/dev/test_exec bundle exec cucumber -t @e2e ENVIRONMENT=dev
+staging: ./bin/dev/test_exec bundle exec cucumber -t @e2e ENVIRONMENT=staging
