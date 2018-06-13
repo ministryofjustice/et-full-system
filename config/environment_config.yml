@@ -2,6 +2,8 @@ defaults: &defaults
   file_transfer: atos_api/v1/filetransfer/list
   atos-api: atos_api
   download-file: atos_api/v1/filetransfer/download/
+  admin_username: admin@example.com
+  admin_password: password
 local: 
   <<: *defaults
   et1_url: http://et1.et.127.0.0.1.nip.io:3100/

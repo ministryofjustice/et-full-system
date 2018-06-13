@@ -212,29 +212,6 @@ These environment variables are the same for both the server and the test suite 
 
 This means that your default server should be available at http://et.127.0.0.1.nip.io:3100
 
-### (Optional) - Configuring hosts file for shorter url
-
-The servers have been configured to respond to <subdomain>.et.127.0.0.1.nip.io (a public DNS service that will respond with
-127.0.0.1) AND <subdomain>.et . However, the latter needs setting up in your hosts file (or any other means that you have
-available to add extra DNS stuff).
-
-So, if you are on OSX or Linux - go into a terminal and type
-
-```
-
-sudo bash -c "echo '127.0.0.1       et et1.et et3.et api.et admin.et s3.et mail.et' >> /etc/hosts"
-
-```
-
-Or, if you are on windows - you need to do an equivalent thing.  Please help others once you find out what it is and
-update this readme :-)
-
-Once you have done this, you can access the server using this shorter url
-
-http://<subdomain>.et:3100
-
-Where <subdomain> is either et1, et3, admin, api, s3 or mail
-
 ### Starting The Server
 
 If you are not changing any environment variables - simply run
@@ -703,6 +680,6 @@ bundle exec cucumber
 
 ## Running The end-to-end test suite in different environments
 
-local: ./bin/dev/test_exec bundle exec cucumber -t @e2e
-dev: ./bin/dev/test_exec bundle exec cucumber -t @e2e ENVIRONMENT=dev
-staging: ./bin/dev/test_exec bundle exec cucumber -t @e2e ENVIRONMENT=staging
+local: ./bin/dev/test_exec bundle exec cucumber -t @e2e -t ~@wip -t ~@manual
+dev: ./bin/dev/test_exec bundle exec cucumber -t @e2e -t ~@wip -t ~@manual ENVIRONMENT=dev
+staging: ./bin/dev/test_exec bundle exec cucumber -t ~@wip -t ~@manual -t @e2e ENVIRONMENT=staging

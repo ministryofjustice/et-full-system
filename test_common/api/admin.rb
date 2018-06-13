@@ -20,8 +20,8 @@ module EtFullSystem
           cookies: cookies_hash,
           body: {
             admin_user: {
-              email: 'admin@example.com',
-              password: 'password',
+              email: ::EtFullSystem::Test::Configuration.admin_username,
+              password: ::EtFullSystem::Test::Configuration.admin_password,
               remember_me: '0'
             },
             authenticity_token: csrf_token
