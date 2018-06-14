@@ -680,6 +680,6 @@ bundle exec cucumber
 
 ## Running The end-to-end test suite in different environments
 
-local: ./bin/dev/test_exec bundle exec cucumber -t @e2e -t ~@wip -t ~@manual
-dev: ./bin/dev/test_exec bundle exec cucumber -t @e2e -t ~@wip -t ~@manual ENVIRONMENT=dev
-staging: ./bin/dev/test_exec bundle exec cucumber -t ~@wip -t ~@manual -t @e2e ENVIRONMENT=staging
+local: ./bin/dev/test_exec bundle exec cucumber
+dev: ./bin/dev/test_exec bundle exec cucumber ENVIRONMENT=dev
+staging: ./bin/dev/test_exec bundle exec cucumber ENVIRONMENT=staging

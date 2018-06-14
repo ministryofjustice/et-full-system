@@ -14,18 +14,15 @@ dev:
   et3_url: https://et3-dev.et.dsd.io/
   atos_api_url: https://api-dev.et.dsd.io/atos_api
   admin_url: https://admin-dev.et.dsd.io/admin
-  aws_endpoint_url: http://s3.et.127.0.0.1.nip.io:3100/
 staging:
   <<: *defaults
   et1_url: https://staging1.et.dsd.io/
   et3_url: https://et3-staging.et.dsd.io/
   atos_api_url: https://api-staging.et.dsd.io/atos_api
   admin_url: https://admin-staging.et.dsd.io/admin
-  aws_endpoint_url: http://s3.et.127.0.0.1.nip.io:3100/
 # production:
 #   <<: *defaults
 #   et1_url: https://www.employmenttribunals.service.gov.uk/
 #   et3_url: https://tribunal-response.employmenttribunals.service.gov.uk/
 #   atos_api_url: https://api.tribunal-response.employmenttribunals.service.gov.uk/atos_api
 #   admin_url: https://admin.tribunal-response.employmenttribunals.service.gov.uk/admin
-#   aws_endpoint_url: http://s3.et.127.0.0.1.nip.io:3100/
