@@ -14,6 +14,7 @@ services:
       AWS_ENDPOINT: 'http://s3.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}:${SERVER_PORT:-3100}'
       AWS_S3_FORCE_PATH_STYLE: 'true'
       BUNDLE_WITH: development,test
+      ENVIRONMENT:
     volumes:
       - ../../:/app
       - test_gem_cache:/usr/local/bundle

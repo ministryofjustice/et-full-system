@@ -23,7 +23,7 @@ before_script:
 - ./bin/dev/test_exec bash -c "/app/bin/wait-for-it.sh selenium:4444 -t 300"
 - ./bin/dev/test_exec bundle
 script:
-- ./bin/dev/test_exec cucumber
+- ./bin/dev/test_exec cucumber ENVIRONMENT=local
 addons:
   apt:
     packages:
