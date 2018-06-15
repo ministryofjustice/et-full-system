@@ -4,7 +4,7 @@ When(/^the completed Employment Tribunal response form is submitted$/) do
   et3_answer_claimants_details
   et3_answer_earnings_and_benefits
   et3_answer_defend_claim_question
-  et3_answer_representative
+  @representative[0].have_representative == 'Yes' ? et3_answer_representative : your_representative_page.next
   et3_employers_contract_claim
   et3_confiramtion_of_supplied_details
 
