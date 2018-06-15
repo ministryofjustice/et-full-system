@@ -5,11 +5,11 @@ module EtFullSystem
       WINDOW_VAR_NAME = :et_full_system_test_admin_window
 
       def admin_username
-        ENV.fetch('ADMIN_USERNAME', 'admin@example.com')
+        ::EtFullSystem::Test::Configuration.admin_username
       end
 
       def admin_password
-        ENV.fetch('ADMIN_PASSWORD', 'password')
+        ::EtFullSystem::Test::Configuration.admin_password
       end
 
       def within_admin_window(&block)
