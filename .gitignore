@@ -9,3 +9,4 @@ node_modules
 rubybin/
 vendor/
 report*.html
+cucumber_failures.log
