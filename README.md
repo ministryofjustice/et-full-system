@@ -678,8 +678,16 @@ bundle exec cucumber
 * mailhog - ('brew install mailhog' on OSX)
 * pdftk - (see https://www.pdflabs.com/tools/pdftk-server/)
 
-## Running The end-to-end test suite in different environments
+## Running The end-to-end test suite in different environments and using profile
 
 local: ./bin/dev/test_exec bundle exec cucumber
 dev: ./bin/dev/test_exec bundle exec cucumber ENVIRONMENT=dev
 staging: ./bin/dev/test_exec bundle exec cucumber ENVIRONMENT=staging
+
+## Using cucumber.yml profile
+
+./bin/dev/test_exec bundle exec cucumber -p smoke_test
+
+## Running test in parallel
+
+./bin/dev/test_exec bundle exec parallel_cucumber features/ ENVIRONMENT=dev
