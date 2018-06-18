@@ -5,11 +5,13 @@ Feature:
   I want to be able to download completed Employment Tribunal forms
   So I can triage an employees claim against their employer
 
+  @smoke_test
   Scenario: PDF format
     Given an employee making a claim
     When the completed form is submitted
     Then I can download the form and validate in PDF format
 
+  @manual
   Scenario: TXT format
     Given an employee making a claim
     When the completed form is submitted
