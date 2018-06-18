@@ -34,3 +34,4 @@ group :development, :test do
   gem 'dotenv', '~> 2.2', '>= 2.2.2'
   gem 'faker', '~> 1.8', '>= 1.8.7'
 end
+gem 'rake'
