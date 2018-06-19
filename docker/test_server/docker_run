@@ -38,6 +38,8 @@ if [ -z "$MY_ET3" ]; then
 else
     sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN MY_ET3=$MY_ET3 envsubst '\$SERVER_PORT \$SERVER_DOMAIN \$MY_ET3' < /home/app/full_system/docker/test_server/nginx_config/et3_local.conf.template > /etc/nginx/sites-enabled/et3_server.conf"
 fi
+sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN envsubst '\$SERVER_PORT \$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/acas_templates/acas_wsdl.txt.template > /home/app/acas_wsdl.txt"
+
 
 sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN envsubst '\$SERVER_PORT \$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/fake_acas_server.conf.template > /etc/nginx/sites-enabled/fake_acas_server.conf"
 
