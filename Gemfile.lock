@@ -149,6 +149,7 @@ DEPENDENCIES
   i18n (~> 0.8)
   pdf-forms (~> 1.1, >= 1.1.1)
   pry
+  rake
   rspec (~> 3.7)
   ruby-debug-ide (~> 0.6)
   rubyzip (~> 1.2, >= 1.2.1)
