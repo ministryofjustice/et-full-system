@@ -4,24 +4,32 @@ defaults: &defaults
 local: 
   <<: *defaults
   et1_url: http://et1.et.127.0.0.1.nip.io:3100/
+  diversity_url: http://et1.et.127.0.0.1.nip.io:3100/apply/diversities
+  et1_admin_url: http://et1.et.127.0.0.1.nip.io:3100/apply/admin
   et3_url: http://et3.et.127.0.0.1.nip.io:3100/
   atos_api_url: http://api.et.127.0.0.1.nip.io:3100/atos_api
   admin_url: http://admin.et.127.0.0.1.nip.io:3100/admin
 dev:
   <<: *defaults
   et1_url: https://dev1.et.dsd.io/
+  diversity_url: https://dev1.et.dsd.io/apply/diversities
+  et1_admin_url: https://dev1.et.dsd.io/apply/admin
   et3_url: https://et3-dev.et.dsd.io/
   atos_api_url: https://api-dev.et.dsd.io/atos_api
   admin_url: https://admin-dev.et.dsd.io/admin
 staging:
   <<: *defaults
   et1_url: https://staging1.et.dsd.io/
+  diversity_url: https://staging1.et.dsd.io/apply/diversities
+  et1_admin_url: https://staging1.et.dsd.io/apply/admin
   et3_url: https://et3-staging.et.dsd.io/
   atos_api_url: https://api-staging.et.dsd.io/atos_api
   admin_url: https://admin-staging.et.dsd.io/admin
 # production:
 #   <<: *defaults
 #   et1_url: https://www.employmenttribunals.service.gov.uk/
+#   diversity_url: https://www.employmenttribunals.service.gov.uk/apply/diversities
+#   et1_admin_url: https://www.employmenttribunals.service.gov.uk/apply/admin
 #   et3_url: https://tribunal-response.employmenttribunals.service.gov.uk/
 #   atos_api_url: https://api.tribunal-response.employmenttribunals.service.gov.uk/atos_api
 #   admin_url: https://admin.tribunal-response.employmenttribunals.service.gov.uk/admin
