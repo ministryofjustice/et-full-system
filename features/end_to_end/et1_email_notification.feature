@@ -12,6 +12,6 @@ Feature:
     And that the claim has been saved
 
   Scenario: Submitted application
-    When I submit a completed an ET1 form
+    When I submit a completed ET1 form
     Then I am notified via email that the claim has been submitted
-    And a copy of the pdf is attached to the email
+    And a copy of the application is attached in pdf format
