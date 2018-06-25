@@ -6,10 +6,6 @@ FactoryBot.define do
       claimants_name { Faker::Name.name }
       agree_with_early_conciliation_details 'No'
       disagree_conciliation_reason 'lorem ipsum conciliation'
-      agree_with_employment_dates 'No'
-      employment_start '01/01/2017'
-      employment_end '31/12/2017'
-      disagree_employment 'lorem ipsum employment'
       continued_employment 'No'
       agree_with_claimants_description_of_job_or_title 'No'
       disagree_claimants_job_or_title 'lorem ipsum job title'
@@ -26,6 +22,20 @@ FactoryBot.define do
       disagree_claimant_pension_benefits_reason 'lorem ipsum claimant pension'
       defend_claim 'Yes'
       defend_claim_facts 'lorem ipsum defence'
+  end
+
+  trait :agree_with_employment_dates do
+    agree_with_employment_dates 'No'
+    employment_start '01/01/2017'
+    employment_end '31/12/2017'
+    disagree_employment 'lorem ipsum employment'
+  end
+
+  trait :disagree_with_employment_dates do
+    agree_with_employment_dates 'Yes'
+    employment_start ''
+    employment_end ''
+    disagree_employment ''
   end
 end
 
