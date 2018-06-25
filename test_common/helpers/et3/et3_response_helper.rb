@@ -40,7 +40,7 @@ module EtFullSystem
       end
 
       def et3_answer_claimants_details
-        user = @claimant
+        user = @claimant[0]
         claimants_details_page.claimants_name_question.set(user.claimants_name)
         claimants_details_page.agree_with_early_conciliation_details_question.set_for(user)
         claimants_details_page.agree_with_employment_dates_question.set_for(user)
@@ -51,7 +51,7 @@ module EtFullSystem
       end
 
       def et3_answer_required_claimants_details
-        user = @claimant
+        user = @claimant[0]
         claimants_details_page.agree_with_employment_dates_question.set_for(user)
       
         claimants_details_page.next
@@ -62,7 +62,7 @@ module EtFullSystem
       end
 
       def et3_answer_earnings_and_benefits
-        user = @claimant
+        user = @claimant[0]
         earnings_and_benefits_page.agree_with_claimants_hours_question.set_for(user)
         earnings_and_benefits_page.agree_with_earnings_details_question.set_for(user)
         earnings_and_benefits_page.agree_with_claimant_notice_question.set_for(user)
@@ -72,7 +72,7 @@ module EtFullSystem
       end
 
       def et3_answer_defend_claim_question
-        user = @claimant
+        user = @claimant[0]
         response_page.defend_claim_question.set_for(user)
         
         response_page.next
