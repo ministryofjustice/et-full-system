@@ -37,3 +37,8 @@ Scenario: Employment dates
 #   When the completed Employment Tribunal response form is submitted
 #   Then the form will be forwarded to the default office
 #   And filename should start with 99
+
+# @wip
+# Scenario: Respondent answers to mandatory questions
+#  Given an employer responds to mandatory questions
+#  Then I can download the ET3 form and validate in PDF format

@@ -7,7 +7,7 @@ module EtFullSystem
       end
 
       def et3_answer_respondents_details
-        user = @respondent
+        user = @respondent[0]
         respondents_details_page.case_number_question.set(user.case_number)
         respondents_details_page.name_question.set(user.name)
         respondents_details_page.contact_question.set(user.contact)
@@ -27,7 +27,7 @@ module EtFullSystem
       end
 
       def et3_answer_required_espondents_details
-        user = @respondent
+        user = @respondent[0]
         respondents_details_page.case_number_question.set(user.case_number)
         respondents_details_page.name_question.set(user.name)
         respondents_details_page.building_name_question.set(user.building_name)
@@ -104,7 +104,7 @@ module EtFullSystem
       end
 
       def et3_employers_contract_claim
-        user = @respondent
+        user = @respondent[0]
         employers_contract_claim_page.make_employer_contract_claim_question.set_for(user)
         
         employers_contract_claim_page.next
@@ -121,18 +121,18 @@ module EtFullSystem
       end
 
       def upload_additional_information
-        user = @respondent
+        user = @respondent[0]
         employers_contract_claim_page.upload_additional_information.set(user.additional_information)
       end
 
       def et3_confiramtion_of_supplied_details
-        user = @respondent
+        user = @respondent[0]
         confirmation_of_supplied_details_page.email_receipt_question.set(user.email_receipt)
         confirmation_of_supplied_details_page.next
       end
 
       def et3_edit_answer
-        user = @respondent
+        user = @respondent[0]
         confirmation_of_supplied_details_page.confirmation_of_employer_contract_claim_answers.edit_answers_link.click
       end        
       
