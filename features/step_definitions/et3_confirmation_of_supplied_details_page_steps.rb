@@ -15,7 +15,7 @@ When(/^I submit my form$/) do
   et3_confiramtion_of_supplied_details
 end
 
-When(/^I am taken to the form submission page$/) do
+When(/^I should be taken to the form submission page$/) do
   expect(form_submission_page).to be_displayed
 end
 

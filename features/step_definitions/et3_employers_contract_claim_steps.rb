@@ -1,0 +1,19 @@
+Given(/^I am on the ET3 employers contract claim page$/) do
+  @respondent = FactoryBot.create(:et3_respondent)
+  @claimant = FactoryBot.create(:et3_claimant)
+  @representative = FactoryBot.create_list(:representative, 1, :et3_information)
+  start_a_new_et3_response
+  et3_answer_respondents_details
+  et3_answer_claimants_details
+  et3_answer_earnings_and_benefits
+  et3_answer_defend_claim_question
+  et3_answer_representative
+end
+
+Given(/^I successfully submit whether I wish to make an employers contract claim$/) do
+  et3_employers_contract_claim
+end
+
+When(/^I should be taken to the confirmation of supplied details page$/) do
+  expect(confirmation_of_supplied_details_page).to be_displayed
+end
