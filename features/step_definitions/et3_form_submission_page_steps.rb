@@ -1,5 +1,5 @@
 Given(/^I am on the ET3 form submission page$/) do
-  @respondent = FactoryBot.create(:et3_respondent)
+  @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers)
   @claimant = FactoryBot.create_list(:et3_claimant, 1, :agree_with_employment_dates)
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
   start_a_new_et3_response
