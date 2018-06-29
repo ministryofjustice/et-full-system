@@ -57,6 +57,7 @@ module EtFullSystem
 
       def filename_matches?(filename, identifier, **args)
         user = args[:user]
+        company_name_underscored = user.dig(:name).parameterize(separator: '_', preserve_case: true)
         case identifier
         when :et1_claim_pdf_for
           filename.end_with?("ET1_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.pdf")
@@ -69,10 +70,10 @@ module EtFullSystem
           filename.start_with?("14")
         when :et3_response_txt_for
           reference = args[:reference]
-          filename == "#{reference}_ET3_.txt"
+          filename == "#{reference}_ET3_#{company_name_underscored}.txt"
         when :et3_response_pdf_for
           reference = args[:reference]
-          filename == "#{reference}_ET3_.pdf"
+          filename == "#{reference}_ET3_#{company_name_underscored}.pdf"
         when :et1_claim_csv_for
           filename.end_with?("ET1a_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.csv")
         when :et1_claim_rtf_for
