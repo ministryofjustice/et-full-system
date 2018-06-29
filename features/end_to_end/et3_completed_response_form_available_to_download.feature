@@ -15,7 +15,7 @@ Scenario: PDF Format
   When the completed Employment Tribunal response form is submitted
   Then I can download the ET3 form and validate in PDF format
  
-# Scenario: No respresentative
+#  Scenario: No respresentative
 #   Given an employer responds to a claim with no respresentative
 #   When the completed Employment Tribunal response form is submitted
 #   Then I can download the ET3 form and validate in PDF format
@@ -25,11 +25,10 @@ Scenario: Employment dates
   When the completed Employment Tribunal response form is submitted
   Then I can download the ET3 form and validate in PDF format
 
-# @wip
-# Scenario: Respondent filename naming convention
-#   Given an employer responds to a claim with claimant work address BS11DZ
-#   When the completed Employment Tribunal response form is submitted
-#   Then the filename start with 14 and end with _ET1_Forename_Surname
+Scenario: Respondent filename naming convention
+  Given an employer responds to a claim with claimant work address BS11DZ
+  When the completed Employment Tribunal response form is submitted
+  Then I can download the ET3 form and validate that the filname starts with 14
 
 # @wip
 # Scenario: Respondent form will be forwarded to the Default office
