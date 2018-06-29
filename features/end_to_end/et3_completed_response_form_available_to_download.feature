@@ -25,7 +25,7 @@ Scenario: Employment dates
   When the completed Employment Tribunal response form is submitted
   Then I can download the ET3 form and validate in PDF format
 
-Scenario: Respondent filename naming convention
+Scenario: ET3 Filename based on case reference number
   Given an employer responds to a claim with claimant work address BS11DZ
   When the completed Employment Tribunal response form is submitted
   Then I can download the ET3 form and validate that the filname starts with 14
