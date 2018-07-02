@@ -12,16 +12,22 @@ module EtFullSystem
         end
 
         def has_correct_contents_for?(response:, respondent:, representative:, errors: [], indent: 1) # rubocop:disable Naming/PredicateName
-          has_header_for?(respondent, errors: errors, indent: indent) &&
-          has_claimant_for?(response, errors: errors, indent: indent) &&
-          has_respondent_for?(respondent, errors: errors, indent: indent) &&
-          has_acas_for?(response, errors: errors, indent: indent) &&
-          has_employment_details_for?(response, errors: errors, indent: indent) &&
-          has_earnings_for?(response, errors: errors, indent: indent) &&
-          has_response_for?(response, errors: errors, indent: indent) &&
-          has_contract_claim_for?(respondent, errors: errors, indent: indent) &&
-          has_representative_for?(representative, errors: errors, indent: indent) &&
-          has_disability_for?(representative, errors: errors, indent: indent)
+          has_header_for?(respondent, errors: errors, indent: indent)
+          has_claimant_for?(response, errors: errors, indent: indent)
+          has_respondent_for?(respondent, errors: errors, indent: indent)
+          has_acas_for?(response, errors: errors, indent: indent)
+          has_employment_details_for?(response, errors: errors, indent: indent)
+          has_earnings_for?(response, errors: errors, indent: indent)
+          has_response_for?(response, errors: errors, indent: indent)
+          has_contract_claim_for?(respondent, errors: errors, indent: indent)
+
+          if representative.have_representative == 'Yes'
+            has_representative_for?(representative, errors: errors, indent: indent)
+            has_disability_for?(representative, errors: errors, indent: indent)
+          else
+            has_no_representative?(errors: errors, indent: indent)
+            has_no_disability?(errors: errors, indent: indent)
+          end
         end
 
         def has_header_for?(respondent, errors: [], indent: 1)
@@ -139,7 +145,7 @@ module EtFullSystem
             expect(field_values).to include '7.5 phone number' => ''
             expect(field_values).to include '7.6' => ''
             expect(field_values).to include '7.7' => ''
-            expect(field_values).to include '7.8 tick box' => ''
+            expect(field_values).to include '7.8 tick box' => 'Off'
             expect(field_values).to include '7.9' => ''
             expect(field_values).to include '7.10' => ''
           end
