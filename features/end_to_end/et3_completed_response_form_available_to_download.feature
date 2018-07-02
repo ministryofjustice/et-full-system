@@ -21,7 +21,7 @@ Feature: ET3 response to local office
     Then I can download the ET3 form and validate in PDF format
 
   Scenario: Employment dates
-    Given an employer responds to yes to emloyment start date
+    Given an employer respond yes to 'Are the dates of employment given by the claimant correct'
     When the completed Employment Tribunal response form is submitted
     Then I can download the ET3 form and validate in PDF format
 
@@ -39,6 +39,6 @@ Feature: ET3 response to local office
     And phone number 'Telephone 0161 833 6100'
     And I can download the ET3 form and validate that the filename starts with '99'
 
-  # Scenario: Respondent answers to mandatory questions
-  #   Given an employer responds to mandatory questions
-  #   Then I can download the ET3 form and validate in PDF format
+  Scenario: Respondent answers to mandatory questions
+    When an employer responds to mandatory questions
+    Then I can download the ET3 form and validate in PDF format

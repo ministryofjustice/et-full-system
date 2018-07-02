@@ -16,7 +16,13 @@ module EtFullSystem
           has_claimant_for?(response, errors: errors, indent: indent)
           has_respondent_for?(respondent, errors: errors, indent: indent)
           has_acas_for?(response, errors: errors, indent: indent)
-          has_employment_details_for?(response, errors: errors, indent: indent)
+          
+          if response.agree_with_employment_dates == 'No'
+            has_employment_details_for?(response, errors: errors, indent: indent)
+          else
+            agree_with_employment_dates?(errors: [], indent: 1)
+          end
+          
           has_earnings_for?(response, errors: errors, indent: indent)
           has_response_for?(response, errors: errors, indent: indent)
           has_contract_claim_for?(respondent, errors: errors, indent: indent)
@@ -78,6 +84,17 @@ module EtFullSystem
             expect(field_values).to include '3.1 disagree' => response.disagree_employment
             expect(field_values).to include '3.2' => response.continued_employment.downcase
             expect(field_values).to include '3.3' => response.agree_with_claimants_description_of_job_or_title.downcase
+          end
+        end
+
+        def agree_with_employment_dates?(errors: [], indent: 1)
+          validate_fields section: :employment, errors: errors, indent: indent do
+            expect(field_values).to include '3.1' => ''
+            expect(field_values).to include '3.1 employment started' => ''
+            expect(field_values).to include '3.1 employment end' => ''
+            expect(field_values).to include '3.1 disagree' => ''
+            expect(field_values).to include '3.2' => ''
+            expect(field_values).to include '3.3' => ''
           end
         end
 
