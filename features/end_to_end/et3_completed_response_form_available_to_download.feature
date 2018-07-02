@@ -25,19 +25,16 @@ Scenario: Employment dates
   When the completed Employment Tribunal response form is submitted
   Then I can download the ET3 form and validate in PDF format
 
-Scenario: ET3 Filename based on case reference number
-  Given an employer responds to a claim with claimant work address BS11DZ
+Scenario: Filename based on case number
+  Given an employer responds to a claim with case number starting '1454321/2017'
   When the completed Employment Tribunal response form is submitted
-  Then I can download the ET3 form and validate that the filname starts with 14
+  Then I can download the ET3 form and validate that the filename starts with '14'
 
-# @wip
-# Scenario: Respondent form will be forwarded to the Default office
-#   Given an employer responds to a claim with claimant work address SO181GL
-#   When the completed Employment Tribunal response form is submitted
-#   Then the form will be forwarded to the default office
-#   And filename should start with 99
+Scenario: Case number starting with 99 will be forwarded to the Default office
+  Given an employer responds to a claim with case number starting '9954321/2017'
+  When the completed Employment Tribunal response form is submitted
+  Then I can download the ET3 form and validate that the filename starts with '99'
 
-# @wip
 # Scenario: Respondent answers to mandatory questions
-#  Given an employer responds to mandatory questions
-#  Then I can download the ET3 form and validate in PDF format
+#   Given an employer responds to mandatory questions
+#   Then I can download the ET3 form and validate in PDF format

@@ -2,7 +2,7 @@ require 'faker'
 
 FactoryBot.define do
   factory :et3_respondent, class: OpenStruct do
-      case_number '1454321/2017'
+      case_number '9954321/2017'
       name { Faker::Company.name }
       building_name 'the-shard'
       street_name { Faker::Address.street_name }
@@ -15,7 +15,7 @@ FactoryBot.define do
   trait :et3_respondent_answers do
     contact { Faker::Name.name }
     county 'london'
-    dx_number '724060 Derby 21'
+    dx_number '234242342'
     contact_number '02081234567'
     contact_mobile_number '07123456789'
     contact_preference 'email'

@@ -16,8 +16,8 @@ Given(/^an employer responds to yes to emloyment start date$/) do
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
 end
 
-Given(/^an employer responds to a claim with claimant work address BS11DZ$/) do
+Given("an employer responds to a claim with case number starting {string}") do |string|
   @claimant = FactoryBot.create_list(:et3_claimant, 1, :agree_with_employment_dates)
-  @respondent = FactoryBot.create_list(:et3_respondent,1, :et3_respondent_answers)
+  @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers, case_number: "#{string}")
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
 end

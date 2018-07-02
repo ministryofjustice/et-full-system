@@ -75,7 +75,7 @@ module EtFullSystem
           company_name_underscored = user.dig(:name).parameterize(separator: '_', preserve_case: true)
           filename == "#{reference}_ET3_#{company_name_underscored}.pdf"
         when :et3_filename_start_with
-          filename.start_with?("13")
+          filename.start_with?(args[:local_postcode])
         when :et1_claim_csv_for
           filename.end_with?("ET1a_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.csv")
         when :et1_claim_rtf_for
