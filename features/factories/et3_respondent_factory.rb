@@ -32,7 +32,7 @@ FactoryBot.define do
     dx_number ''
     contact_number ''
     contact_mobile_number ''
-    contact_preference ''
+    contact_preference 'Off'
     email_address ''
     organisation_employ_gb ''
     make_employer_contract_claim ''

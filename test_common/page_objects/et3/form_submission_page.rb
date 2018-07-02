@@ -5,6 +5,8 @@ module EtFullSystem
     module Et3
       class FormSubmissionPage < BasePage
         set_url '/respond/form_submission'
+        element :local_office_address, :css, '.office-address'
+        element :local_office_phone, :css, '.office-phone'
         element :submission_confirmation, :css, '.submission-confirmation'
         element :reference_number, :css, '.reference-number'
         element :submission_date, :css, '.submission-date'

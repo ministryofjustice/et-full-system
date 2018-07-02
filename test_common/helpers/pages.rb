@@ -90,6 +90,10 @@ module EtFullSystem
         EtFullSystem::Test::Et3::EmployersContractClaimPage.new
       end
 
+      def additional_information_page
+        EtFullSystem::Test::Et3::AdditionalInformationPage.new
+      end
+
       def confirmation_of_supplied_details_page
         EtFullSystem::Test::Et3::ConfirmationOfSuppliedDetailsPage.new
       end

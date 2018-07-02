@@ -122,7 +122,7 @@ module EtFullSystem
 
       def upload_additional_information
         user = @respondent[0]
-        employers_contract_claim_page.upload_additional_information.set(user.additional_information)
+        additional_information_page.attach_additional_information_file.set(user.additional_information)
       end
 
       def et3_confiramtion_of_supplied_details
