@@ -48,7 +48,11 @@ module EtFullSystem
             expect(field_values).to include '2.3 dx number' => respondent.dx_number
             expect(field_values).to include '2.4 phone number' => respondent.contact_number
             expect(field_values).to include '2.4 mobile number' => respondent.contact_mobile_number
-            expect(field_values).to include '2.5' => respondent.contact_preference
+            if respondent.contact_preference == 'nil'
+              expect(field_values).to include '2.5' => 'Off'
+            else
+              expect(field_values).to include '2.5' => respondent.contact_preference
+            end
             expect(field_values).to include '2.6 email address' => respondent.email_address
             expect(field_values).to include '2.6 fax number' => ''
             expect(field_values).to include '2.7' => respondent.organisation_employ_gb
@@ -73,7 +77,7 @@ module EtFullSystem
             expect(field_values).to include '3.2' => response.continued_employment.downcase
 
             if response.agree_with_claimants_description_of_job_or_title == 'nil'
-              expect(field_values).to include '3.3' => response.agree_with_claimants_description_of_job_or_title
+              expect(field_values).to include '3.3' => 'Off'
             else
             expect(field_values).to include '3.3' => response.agree_with_claimants_description_of_job_or_title.downcase
             end
@@ -83,13 +87,13 @@ module EtFullSystem
         def has_earnings_for?(response, errors: [], indent: 1)
           validate_fields section: :earnings, errors: errors, indent: indent do
             if response.agree_with_claimants_hours == 'nil'
-             expect(field_values).to include '4.1' => response.agree_with_claimants_hours
-             expect(field_values).to include '4.2' => response.agree_with_earnings_details
-             expect(field_values).to include '4.4 tick box' => response.agree_with_claimant_pension_benefits
-             expect(field_values).to include '4.3 tick box' => response.agree_with_claimant_notice
-             expect(field_values).to include '4.3 tick box' => response.agree_with_claimant_notice
-             expect(field_values).to include '4.2 normal take-home pay tick box' => response.queried_take_home_pay_period
-             expect(field_values).to include '4.2 pay before tax tick box' => response.queried_pay_before_tax_period
+             expect(field_values).to include '4.1' => 'Off'
+             expect(field_values).to include '4.2' => 'Off'
+             expect(field_values).to include '4.4 tick box' => 'Off'
+             expect(field_values).to include '4.3 tick box' => 'Off'
+             expect(field_values).to include '4.3 tick box' => 'Off'
+             expect(field_values).to include '4.2 normal take-home pay tick box' => 'Off'
+             expect(field_values).to include '4.2 pay before tax tick box' => 'Off'
             else
               expect(field_values).to include '4.1' => response.agree_with_claimants_hours.downcase
               expect(field_values).to include '4.2' => response.agree_with_earnings_details.downcase
@@ -117,7 +121,7 @@ module EtFullSystem
         def has_contract_claim_for?(respondent, errors: [], indent: 1)
           validate_fields section: :contract_claim, errors: errors, indent: indent do
             if respondent.make_employer_contract_claim == 'nil'
-            expect(field_values).to include '6.2 tick box' => respondent.make_employer_contract_claim
+            expect(field_values).to include '6.2 tick box' => 'Off'
             else
               expect(field_values).to include '6.2 tick box' => respondent.make_employer_contract_claim.downcase
             end
@@ -141,7 +145,7 @@ module EtFullSystem
             expect(field_values).to include '7.6' => representative.representative_mobile
             expect(field_values).to include '7.7' => representative.representative_reference
             if representative.representative_contact_preference == 'nil'
-              expect(field_values).to include '7.8 tick box' => representative.representative_contact_preference
+              expect(field_values).to include '7.8 tick box' => 'Off'
             else
               expect(field_values).to include '7.8 tick box' => representative.representative_contact_preference.downcase
             end
@@ -154,7 +158,7 @@ module EtFullSystem
           return has_no_disability?(errors: errors, indent: indent) if representative.nil?
           validate_fields section: :disability, errors: errors, indent: indent do
             if representative.representative_disability == 'nil'
-              expect(field_values).to include '8.1 tick box' => representative.representative_disability
+              expect(field_values).to include '8.1 tick box' => 'Off'
             else
               expect(field_values).to include '8.1 tick box' => representative.representative_disability.downcase
             end
