@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :et3_claimant, class: OpenStruct do
   end
 
-  trait :agree_with_employment_dates do
+  trait :disagree_with_employment_dates do
     claimants_name { Faker::Name.name }
     agree_with_early_conciliation_details 'No'
     disagree_conciliation_reason 'lorem ipsum conciliation'
@@ -30,7 +30,7 @@ FactoryBot.define do
     disagree_employment 'lorem ipsum employment'
   end
 
-  trait :disagree_with_employment_dates do
+  trait :agree_with_employment_dates do
     claimants_name { Faker::Name.name }
     agree_with_early_conciliation_details 'No'
     disagree_conciliation_reason 'lorem ipsum conciliation'
@@ -58,27 +58,27 @@ FactoryBot.define do
 
   trait :et3_claimant_optionals do
     claimants_name ''
-    agree_with_early_conciliation_details ''
+    agree_with_early_conciliation_details 'No'
     disagree_conciliation_reason ''
-    continued_employment ''
-    agree_with_claimants_description_of_job_or_title ''
+    continued_employment 'No'
+    agree_with_claimants_description_of_job_or_title 'nil'
     disagree_claimants_job_or_title ''
-    agree_with_claimants_hours ''
+    agree_with_claimants_hours 'nil'
     queried_hours ''
-    agree_with_earnings_details ''
+    agree_with_earnings_details 'nil'
     queried_pay_before_tax ''
-    queried_pay_before_tax_period ''
+    queried_pay_before_tax_period 'nil'
     queried_take_home_pay ''
-    queried_take_home_pay_period ''
-    agree_with_claimant_notice ''
+    queried_take_home_pay_period 'nil'
+    agree_with_claimant_notice 'nil'
     disagree_claimant_notice_reason ''
-    agree_with_claimant_pension_benefits ''
+    agree_with_claimant_pension_benefits 'nil'
     disagree_claimant_pension_benefits_reason ''
     defend_claim 'No'
+    defend_claim_facts ''
     agree_with_employment_dates 'Yes'
     employment_start ''
     employment_end ''
     disagree_employment ''
   end
 end
-

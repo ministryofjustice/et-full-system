@@ -9,6 +9,7 @@ Given(/^I am on the ET3 confirmation of supplied details page$/) do
   et3_answer_defend_claim_question
   et3_answer_representative
   et3_employers_contract_claim
+  additional_information_page.next
 end
 
 When(/^I submit my form$/) do
@@ -32,6 +33,7 @@ end
 When(/^I change my answer on the employer contract form page$/) do
   et3_edit_answer
   et3_answer_no_to_employers_contract_claim
+  additional_information_page.next
 end
 
 Then(/^I should see my updated answer on the confirmation of supplied details page$/) do

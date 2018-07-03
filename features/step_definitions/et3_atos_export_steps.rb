@@ -25,3 +25,21 @@ Then(/^I can download the ET3 form and validate in PDF format$/) do
     errors: errors,
     indent: 1), -> { errors.join("\n") }
 end
+
+Then("I can download the ET3 form and validate that the filename starts with {string}") do |string|
+  errors = []
+  within_admin_window do
+    api = EtFullSystem::Test::AdminApi.new
+    expect { api.respondents_api }.to eventually include a_hash_including(name: @respondent[0].dig(:name))
+    admin_pages.jobs_page.run_export_claims_cron_job
+  end
+  expect { atos_interface }.to eventually have_zip_file_containing(:et3_filename_start_with, user: @respondent[0], reference: @my_et3_reference, local_postcode: string), timeout: 30, sleep: 2
+end
+
+Then("it will be forwarded to the Default Office address {string}") do |string|
+  form_submission_page.local_office_address.text == string
+end
+
+Then("phone number {string}") do |string|
+  form_submission_page.local_office_phone.text == string
+end

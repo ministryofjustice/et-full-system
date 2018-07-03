@@ -9,6 +9,7 @@ Given(/^I am on the ET3 form submission page$/) do
   et3_answer_defend_claim_question
   et3_answer_representative
   et3_employers_contract_claim
+  additional_information_page.next
   et3_confiramtion_of_supplied_details
 
   @my_et3_reference = form_submission_page.reference_number.text
