@@ -7,7 +7,7 @@ Background: ET3 confirmation of supplied details page
 
 Scenario: Successfully submits
   When I submit my form
-  Then I am taken to the form submission page
+  Then I should be taken to the form submission page
 
 Scenario: Displays my answers
  Then I should see my answers to the questions
