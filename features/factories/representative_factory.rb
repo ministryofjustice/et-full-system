@@ -1,5 +1,8 @@
 FactoryBot.define do
   factory :representative, class: OpenStruct do
+  end
+
+  trait :et3_information do
     type 'Solicitor'
     organisation_name { Faker::Company.bs }
     name { Faker::Name.name }
@@ -12,14 +15,6 @@ FactoryBot.define do
     alternative_telephone_number '02222 654321'
     email_address  'solicitor.test@digital.justice.gov.uk'
     dx_number  'dx1234567890'
-  end
-
-  trait :et3_no_representative do
-    have_representative 'No'
-    employer_contract_claim 'No'
-  end
-
-  trait :et3_information do
     have_representative 'Yes'
     representative_mobile '07987654321'
     representative_reference 'Rep Ref'
@@ -27,5 +22,28 @@ FactoryBot.define do
     representative_fax '0207 345 6789'
     representative_disability 'Yes'
     representative_disability_information 'Lorem ipsum disability'
+  end
+
+  trait :et3_no_representative do
+    type ''
+    organisation_name ''
+    name ''
+    building ''
+    street ''
+    locality ''
+    county ''
+    post_code ''
+    telephone_number ''
+    alternative_telephone_number ''
+    email_address  ''
+    dx_number  ''
+    have_representative 'No'
+    representative_mobile ''
+    representative_reference ''
+    representative_contact_preference 'Off'
+    representative_fax ''
+    employer_contract_claim ''
+    representative_disability 'Off'
+    representative_disability_information ''
   end
 end

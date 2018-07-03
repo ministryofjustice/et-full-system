@@ -35,7 +35,7 @@ FactoryBot.define do
     contact_preference 'Off'
     email_address ''
     organisation_employ_gb ''
-    make_employer_contract_claim ''
+    make_employer_contract_claim 'Off'
     claim_information ''
     email_receipt ''
   end

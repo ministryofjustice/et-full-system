@@ -13,7 +13,7 @@ When(/^the completed Employment Tribunal response form is submitted$/) do
 end
 
 Given(/^an employer responds to mandatory questions$/) do
-  @claimant = FactoryBot.create_list(:et3_claimant, 1, :agree_with_employment_dates)
+  @claimant = FactoryBot.create_list(:et3_claimant, 1, :et3_claimant_optionals)
   @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_optionals)
   @representative = FactoryBot.create_list(:representative, 1, :et3_no_representative)
 
