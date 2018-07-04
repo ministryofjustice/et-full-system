@@ -12,7 +12,7 @@ When(/^the completed Employment Tribunal response form is submitted$/) do
   @my_et3_reference = form_submission_page.reference_number.text
 end
 
-Given(/^an employer responds to mandatory questions$/) do
+When(/^an employer responds to mandatory questions$/) do
   @claimant = FactoryBot.create_list(:et3_claimant, 1, :et3_claimant_optionals)
   @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_optionals)
   @representative = FactoryBot.create_list(:representative, 1, :et3_no_representative)
@@ -30,6 +30,25 @@ Given(/^an employer responds to mandatory questions$/) do
   @representative[0].have_representative == 'Yes' ? et3_answer_representative : your_representative_page.next
   employers_contract_claim_page.next
   additional_information_page.next
+  confirmation_of_supplied_details_page.next
+
+  @my_et3_reference = form_submission_page.reference_number.text
+end
+
+When(/^an employer responds to a claim with an additional information$/) do
+  @claimant = FactoryBot.create_list(:et3_claimant, 1, :disagree_with_employment_dates)
+  @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers)
+  @representative = FactoryBot.create_list(:representative, 1, :et3_information)
+
+  start_a_new_et3_response
+  et3_answer_respondents_details
+  et3_answer_claimants_details
+  et3_answer_earnings_and_benefits
+  et3_answer_defend_claim_question
+  @representative[0].have_representative == 'Yes' ? et3_answer_representative : your_representative_page.next
+  et3_employers_contract_claim
+  additional_information_page.set_for(@respondent[0])
+  et3_confiramtion_of_supplied_details
   confirmation_of_supplied_details_page.next
 
   @my_et3_reference = form_submission_page.reference_number.text
