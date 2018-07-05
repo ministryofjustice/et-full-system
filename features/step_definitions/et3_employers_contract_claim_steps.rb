@@ -8,12 +8,18 @@ Given(/^I am on the ET3 employers contract claim page$/) do
   et3_answer_earnings_and_benefits
   et3_answer_defend_claim_question
   et3_answer_representative
+  expect(employers_contract_claim_page).to be_displayed
 end
 
-Given(/^I successfully submit whether I wish to make an employers contract claim$/) do
+When(/^I successfully submit whether I wish to make an employers contract claim$/) do
   et3_employers_contract_claim
 end
 
-Given(/^I should be taken to the additional information page$/) do
+Then(/^I should be taken to the additional information page$/) do
   expect(additional_information_page).to be_displayed
 end
+
+When(/^I click on next without providing a response to employers contract claim question$/) do
+  employers_contract_claim_page.next
+end
+

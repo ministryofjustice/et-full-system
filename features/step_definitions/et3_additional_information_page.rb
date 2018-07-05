@@ -16,7 +16,7 @@ When(/^I successfully upload my file with additional information$/) do
   upload_additional_information
 end
 
-When(/^I click on next without providing the additional inforamtion$/) do
+When(/^I click on next without providing the additional information$/) do
   additional_information_page.next
 end
 

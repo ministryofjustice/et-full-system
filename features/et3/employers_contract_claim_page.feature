@@ -8,3 +8,7 @@ Background: ET3 employers contract claim page
 Scenario: Successfully submits
   When I successfully submit whether I wish to make an employers contract claim
   Then I should be taken to the additional information page
+
+Scenario: Successfully submits
+  When I click on next without providing a response to employers contract claim question
+  Then I should be taken to the additional information page
