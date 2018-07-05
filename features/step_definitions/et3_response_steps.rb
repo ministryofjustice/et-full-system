@@ -47,9 +47,8 @@ When(/^an employer responds to a claim with an additional information$/) do
   et3_answer_defend_claim_question
   @representative[0].have_representative == 'Yes' ? et3_answer_representative : your_representative_page.next
   et3_employers_contract_claim
-  additional_information_page.set_for(@respondent[0])
-  et3_confiramtion_of_supplied_details
-  confirmation_of_supplied_details_page.next
+  upload_additional_information
+  et3_confirmation_of_supplied_details
 
   @my_et3_reference = form_submission_page.reference_number.text
 end
