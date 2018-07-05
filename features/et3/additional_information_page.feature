@@ -9,7 +9,7 @@ Scenario: Successfully upload my file with additional information
   When I successfully upload my file with additional information
   Then I should see my file has been added
 
-Scenario: Proceed without uploading additonal inforamtion
-  When I click on next without providing the additional inforamtion
+Scenario: Proceed without uploading additional information
+  When I click on next without providing the additional information
   Then I should be taken to the confirmation of supplied details page
   
