@@ -24,7 +24,6 @@ module EtFullSystem
                     args.first.to_s
                   end
                 end
-                binding.pry
                 root_element.set(value)
               ensure
                 browser.file_detector = old_file_detector if browser && browser.respond_to?(:file_detector=)
