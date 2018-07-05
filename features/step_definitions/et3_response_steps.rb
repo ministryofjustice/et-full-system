@@ -7,7 +7,7 @@ When(/^the completed Employment Tribunal response form is submitted$/) do
   @representative[0].have_representative == 'Yes' ? et3_answer_representative : your_representative_page.next
   et3_employers_contract_claim
   additional_information_page.next
-  et3_confiramtion_of_supplied_details
+  et3_confirmation_of_supplied_details
 
   @my_et3_reference = form_submission_page.reference_number.text
 end
