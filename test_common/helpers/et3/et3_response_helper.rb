@@ -124,6 +124,7 @@ module EtFullSystem
         user = @respondent[0]
         additional_information_page.attach_additional_information_file(user)
         additional_information_page.next
+        page.has_selector?('.dz-filename')
       end
 
       def et3_confirmation_of_supplied_details

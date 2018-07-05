@@ -85,7 +85,7 @@ module EtFullSystem
         when :et3_response_rtf_for
           reference = args[:reference]
           company_name_underscored = user.dig(:name).parameterize(separator: '_', preserve_case: true)
-          filename == "#{reference}_ET3_#{company_name_underscored}.rtf"
+          filename == "#{reference}_ET3_Attachment_#{company_name_underscored}.rtf"
         end
       end
 
