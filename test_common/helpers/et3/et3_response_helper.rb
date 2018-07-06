@@ -122,10 +122,12 @@ module EtFullSystem
 
       def upload_additional_information
         user = @respondent[0]
-        additional_information_page.attach_additional_information_file.set(user.additional_information)
+        additional_information_page.attach_additional_information_file(user)
+        additional_information_page.next
+        page.has_selector?('.dz-filename')
       end
 
-      def et3_confiramtion_of_supplied_details
+      def et3_confirmation_of_supplied_details
         user = @respondent[0]
         confirmation_of_supplied_details_page.email_receipt_question.set(user.email_receipt)
         confirmation_of_supplied_details_page.next

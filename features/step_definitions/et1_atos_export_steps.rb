@@ -45,7 +45,7 @@ Then(/^I can download the uploaded CSV data and validate in CSV format$/) do
   expect { atos_interface }.to eventually have_zip_file_containing(:et1_claim_csv_for, user: @claimants[0]), timeout: 30, sleep: 2
 end
 
-Then(/^I can download the form and validate in RTF format$/) do
+Then(/^I can download the form and validate in Rich Text format$/) do
   within_admin_window do
     api = EtFullSystem::Test::AdminApi.new
     expect { api.claimants_api }.to eventually include a_hash_including(first_name: @claimants[0].dig(:first_name))
