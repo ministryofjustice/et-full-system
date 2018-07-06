@@ -177,6 +177,20 @@ The system is very configurable so it can be run on whichever ports you want etc
 
 There are lots of things with regard to automated testing to consider - please read [this document](docs/automated_testing.md) for more details
 
+### ACAS Testing
+
+The system will not connect to the external ACAS service as we have no control over it and we would not want builds failing
+because their server is down.  So, a fake ACAS server is provided which is pre programmed to respond with all 4 of the different response types depending on the first
+part of the certificate number requested.  The numbers after the slashes etc.. do not matter
+
+These are as follows (note, the 'R' can also be 'NE' or 'MU')
+
+R000200 - Returns a 'No Match'
+R000201 - Returns an 'Invalid Certificate Format'
+R000500 - Returns an 'Internal Error'
+
+and anything else returns a 'Found' response
+
 ## Development
 
 If you want to develop parts of the system and use this framework for convenience - please read [this document](docs/development.md)

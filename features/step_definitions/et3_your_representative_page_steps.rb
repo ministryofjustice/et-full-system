@@ -1,6 +1,6 @@
 Given(/^I am on the ET3 your representative page$/) do
-  @respondent = FactoryBot.create(:et3_respondent)
-  @claimant = FactoryBot.create(:et3_claimant)
+  @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers)
+  @claimant = FactoryBot.create_list(:et3_claimant, 1, :agree_with_employment_dates)
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
   start_a_new_et3_response
   et3_answer_respondents_details

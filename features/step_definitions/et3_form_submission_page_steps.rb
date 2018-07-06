@@ -1,6 +1,6 @@
 Given(/^I am on the ET3 form submission page$/) do
-  @respondent = FactoryBot.create(:et3_respondent)
-  @claimant = FactoryBot.create(:et3_claimant)
+  @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers)
+  @claimant = FactoryBot.create_list(:et3_claimant, 1, :agree_with_employment_dates)
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
   start_a_new_et3_response
   et3_answer_respondents_details
@@ -9,7 +9,8 @@ Given(/^I am on the ET3 form submission page$/) do
   et3_answer_defend_claim_question
   et3_answer_representative
   et3_employers_contract_claim
-  et3_confiramtion_of_supplied_details
+  additional_information_page.next
+  et3_confirmation_of_supplied_details
 
   @my_et3_reference = form_submission_page.reference_number.text
 end

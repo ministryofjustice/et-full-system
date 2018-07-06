@@ -66,4 +66,6 @@ WORKDIR /home/app/full_system/systems
 RUN echo "app ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && chmod 0440 /etc/sudoers.d/user
 RUN usermod -u $APP_UID app
 USER app
+RUN cd /home/app; git clone https://github.com/ministryofjustice/et_fake_acas_server.git; cd et_fake_acas_server; git checkout develop; git pull; bundle install
+RUN cd /home/app
 ENV HOME /home/app

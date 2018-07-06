@@ -1,5 +1,5 @@
 Given(/^I am on the ET3 respondents details page$/) do
-  @respondent = FactoryBot.create(:et3_respondent)
+  @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers)
   start_page.load
   start_page.next
   expect(respondents_details_page).to be_displayed

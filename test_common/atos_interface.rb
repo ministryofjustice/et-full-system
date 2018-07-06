@@ -65,20 +65,27 @@ module EtFullSystem
         when :et1_claim_txt_for
           filename.end_with?("ET1_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.txt")
         when :et1_filename_start_with
-          filename.end_with?("ET1_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.txt")
           filename.start_with?("14")
-        when :et3_response_txt_for
-          reference = args[:reference]
-          filename == "#{reference}_ET3_.txt"
-        when :et3_response_pdf_for
-          reference = args[:reference]
-          filename == "#{reference}_ET3_.pdf"
         when :et1_claim_csv_for
           filename.end_with?("ET1a_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.csv")
         when :et1_claim_rtf_for
           filename.end_with?("ET1_Attachment_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.rtf")
         when :et1a_claim_txt_for
           filename.end_with?("ET1a_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.txt")
+        when :et3_response_txt_for
+          reference = args[:reference]
+          company_name_underscored = user.dig(:name).parameterize(separator: '_', preserve_case: true)
+          filename == "#{reference}_ET3_#{company_name_underscored}.txt"
+        when :et3_response_pdf_for
+          reference = args[:reference]
+          company_name_underscored = user.dig(:name).parameterize(separator: '_', preserve_case: true)
+          filename == "#{reference}_ET3_#{company_name_underscored}.pdf"
+        when :et3_filename_start_with
+          filename.start_with?(args[:local_postcode])
+        when :et3_response_rtf_for
+          reference = args[:reference]
+          company_name_underscored = user.dig(:name).parameterize(separator: '_', preserve_case: true)
+          filename == "#{reference}_ET3_Attachment_#{company_name_underscored}.rtf"
         end
       end
 

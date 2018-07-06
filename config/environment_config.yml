@@ -7,7 +7,6 @@ local:
   et3_url: http://et3.et.127.0.0.1.nip.io:3100/
   atos_api_url: http://api.et.127.0.0.1.nip.io:3100/atos_api
   admin_url: http://admin.et.127.0.0.1.nip.io:3100/admin
-  aws_endpoint_url: http://s3.et.127.0.0.1.nip.io:3100/
 dev:
   <<: *defaults
   et1_url: https://dev1.et.dsd.io/

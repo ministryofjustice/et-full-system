@@ -1,6 +1,6 @@
 Given(/^I am on the ET3 confirmation of supplied details page$/) do
-  @respondent = FactoryBot.create(:et3_respondent)
-  @claimant = FactoryBot.create(:et3_claimant)
+  @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers)
+  @claimant = FactoryBot.create_list(:et3_claimant, 1, :agree_with_employment_dates)
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
   start_a_new_et3_response
   et3_answer_respondents_details
@@ -9,10 +9,11 @@ Given(/^I am on the ET3 confirmation of supplied details page$/) do
   et3_answer_defend_claim_question
   et3_answer_representative
   et3_employers_contract_claim
+  additional_information_page.next
 end
 
 When(/^I submit my form$/) do
-  et3_confiramtion_of_supplied_details
+  et3_confirmation_of_supplied_details
 end
 
 When(/^I am taken to the form submission page$/) do
@@ -32,6 +33,7 @@ end
 When(/^I change my answer on the employer contract form page$/) do
   et3_edit_answer
   et3_answer_no_to_employers_contract_claim
+  additional_information_page.next
 end
 
 Then(/^I should see my updated answer on the confirmation of supplied details page$/) do

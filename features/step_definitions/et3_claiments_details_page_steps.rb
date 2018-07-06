@@ -1,6 +1,6 @@
 Given(/^I am on the ET3 claimants details page$$/) do
-  @respondent = FactoryBot.create(:et3_respondent)
-  @claimant = FactoryBot.create(:et3_claimant)
+  @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers)
+  @claimant = FactoryBot.create_list(:et3_claimant, 1, :agree_with_employment_dates)
   start_a_new_et3_response  
   et3_answer_respondents_details
   expect(claimants_details_page).to be_displayed
