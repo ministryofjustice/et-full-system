@@ -30,7 +30,8 @@ RUN /pd_build/ruby-2.3.*.sh
 #RUN /pd_build/nodejs.sh
 
 # ...put your own build instructions here...
-RUN apt-get update && apt-get -y install pdftk tzdata postgresql gettext-base wget sudo
+RUN apt-get update && apt-get -y install pdftk tzdata postgresql gettext-base wget sudo libmcrypt-dev mcrypt
+
 RUN /pd_build/nodejs.sh
 
 # Enable nginx and passenger

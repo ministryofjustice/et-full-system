@@ -29,7 +29,7 @@ Given(/^7 employees making a claim by uploading CSV file$/) do
   @claim = FactoryBot.create(:claim)
 end
 
-Given(/^an employee making a claim by uploading a RTF document$/) do
+Given(/^an employee making a claim by uploading a Rich Text Format document$/) do
   @claimants = FactoryBot.create_list(:first_person, 1, :person_data)
   @representatives = FactoryBot.create_list(:representative, 1, :et3_information)
   @respondents = FactoryBot.create_list(:organisation_data, 1, :employer)

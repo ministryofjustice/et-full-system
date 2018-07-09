@@ -42,3 +42,7 @@ Feature: ET3 response to local office
   Scenario: Respondent answers to mandatory questions
     When an employer responds to mandatory questions
     Then I can download the ET3 form and validate in PDF format
+
+  Scenario: RTF Format
+    When an employer responds to a claim with an additional information
+    Then I can download the ET3 form and validate in RTF format

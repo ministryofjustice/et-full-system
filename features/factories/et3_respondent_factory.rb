@@ -24,6 +24,7 @@ FactoryBot.define do
     make_employer_contract_claim 'Yes'
     claim_information 'lorem ipsum info'
     email_receipt 'email@recei.pt'
+    rtf_file 'simple_user_with_rtf.rtf'
   end
 
   trait :et3_respondent_optionals do

@@ -13,7 +13,7 @@ Given(/^I am on the ET3 confirmation of supplied details page$/) do
 end
 
 When(/^I submit my form$/) do
-  et3_confiramtion_of_supplied_details
+  et3_confirmation_of_supplied_details
 end
 
 When(/^I am taken to the form submission page$/) do

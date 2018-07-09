@@ -43,3 +43,12 @@ end
 Then("phone number {string}") do |string|
   form_submission_page.local_office_phone.text == string
 end
+
+Then(/^I can download the ET3 form and validate in RTF format$/) do
+  within_admin_window do
+    api = EtFullSystem::Test::AdminApi.new
+    expect { api.respondents_api }.to eventually include a_hash_including(name: @respondent[0].dig(:name))
+    admin_pages.jobs_page.run_export_claims_cron_job
+  end
+  expect { atos_interface }.to eventually have_zip_file_containing(:et3_response_rtf_for, user: @respondent[0], reference: @my_et3_reference), timeout: 30, sleep: 2
+end
