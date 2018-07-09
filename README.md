@@ -185,11 +185,15 @@ part of the certificate number requested.  The numbers after the slashes etc.. d
 
 These are as follows (note, the 'R' can also be 'NE' or 'MU')
 
-R000200 - Returns a 'No Match'
-R000201 - Returns an 'Invalid Certificate Format'
-R000500 - Returns an 'Internal Error'
+R000200/18/68 - Returns a 'No Match'
 
-and anything else returns a 'Found' response
+R000201/18/68 - Returns an 'Invalid Certificate Format'
+
+R000500/18/68 - Returns an 'Internal Error'
+
+R000100/18/68 - Returns a valid certificate
+
+Other numbers with containing 000xxx where xxx is neither 200, 201 or 500 will also return a valid certificate
 
 ## Development
 
