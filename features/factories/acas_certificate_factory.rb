@@ -7,7 +7,9 @@ FactoryBot.define do
       method_of_issue 'Email'
       respondent_name 'Respondent Name'
       claimant_name 'Claimant Name'
-
+    end
+    trait :invalid do
+      number 'R000201/18/68'
     end
 
   end

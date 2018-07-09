@@ -17,10 +17,10 @@ Feature:
 #     When I enter an ACAS certificate number in the ACAS search field
 #     Then I can download the contents of the acas document
 
-#   Scenario: Certificate not found
-#     Given I am an ACAS administrator
-#     When I enter an invalid ACAS certificate number
-#     Then the system should return 'No certifciate returned from ACAS for AC123456/78/90'
+  Scenario: Certificate not found
+   Given I am an ACAS administrator
+   When I enter an invalid ACAS certificate number
+   Then the system should return feedback from acas 'No certifciate returned from ACAS for R000201/18/68'
 
 #   Scenario: Invalid format
 #     Given I am an ACAS administrator

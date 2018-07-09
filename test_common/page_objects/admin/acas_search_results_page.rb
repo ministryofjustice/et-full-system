@@ -33,6 +33,7 @@ module EtFullSystem
             end
           end
         end
+        element :search_errors, '.search-errors'
 
         def search(value)
           search_fieldset.search_field.set(value)
@@ -49,6 +50,10 @@ module EtFullSystem
             expect(search_results.lead_claimant_section.full_name).to have_content(cert.claimant_name)
           end
           true
+        end
+
+        def has_invalid_certificate_message_for?(cert)
+          expect(search_errors).to have_content("No certificate returned from ACAS for #{cert.number}")
         end
       end
     end
