@@ -81,26 +81,28 @@ module EtFullSystem
       def et3_answer_representative
         user = @representative[0]
 
-        your_representative_page.have_representative_question.set_for(user)
-
-        your_representative_page.next
-
-        your_representatives_details_page.type_of_representative_question.set_for(user)
-        your_representatives_details_page.representative_org_name_question.set(user.organisation_name)
-        your_representatives_details_page.representative_name_question.set(user.name)
-        your_representatives_details_page.representative_building_question.set(user.building)
-        your_representatives_details_page.representative_street_question.set(user.street)
-        your_representatives_details_page.representative_town_question.set(user.locality)
-        your_representatives_details_page.representative_county_question.set(user.county)
-        your_representatives_details_page.representative_postcode_question.set(user.post_code)
-        your_representatives_details_page.representative_phone_question.set(user.telephone_number)
-        your_representatives_details_page.representative_mobile_question.set(user.representative_mobile)
-        your_representatives_details_page.representative_dx_number_question.set(user.dx_number)
-        your_representatives_details_page.representative_reference_question.set(user.representative_reference)
-        your_representatives_details_page.representative_contact_preference_question.set_for(user)
-        your_representatives_details_page.representative_disability_question.set_for(user)
-
-        your_representatives_details_page.next
+        if user.have_representative == 'Yes'
+          your_representative_page.have_representative_question.set_for(user)
+          your_representative_page.next
+          your_representatives_details_page.type_of_representative_question.set_for(user)
+          your_representatives_details_page.representative_org_name_question.set(user.organisation_name)
+          your_representatives_details_page.representative_name_question.set(user.name)
+          your_representatives_details_page.representative_building_question.set(user.building)
+          your_representatives_details_page.representative_street_question.set(user.street)
+          your_representatives_details_page.representative_town_question.set(user.locality)
+          your_representatives_details_page.representative_county_question.set(user.county)
+          your_representatives_details_page.representative_postcode_question.set(user.post_code)
+          your_representatives_details_page.representative_phone_question.set(user.telephone_number)
+          your_representatives_details_page.representative_mobile_question.set(user.representative_mobile)
+          your_representatives_details_page.representative_dx_number_question.set(user.dx_number)
+          your_representatives_details_page.representative_reference_question.set(user.representative_reference)
+          your_representatives_details_page.representative_contact_preference_question.set_for(user)
+          your_representatives_details_page.representative_disability_question.set_for(user)
+          your_representatives_details_page.next
+        else
+          your_representative_page.next
+        end 
+        
       end
 
       def et3_employers_contract_claim

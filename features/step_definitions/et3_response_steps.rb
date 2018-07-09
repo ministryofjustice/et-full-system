@@ -4,7 +4,7 @@ When(/^the completed Employment Tribunal response form is submitted$/) do
   et3_answer_claimants_details
   et3_answer_earnings_and_benefits
   et3_answer_defend_claim_question
-  @representative[0].have_representative == 'Yes' ? et3_answer_representative : your_representative_page.next
+  et3_answer_representative
   et3_employers_contract_claim
   additional_information_page.next
   et3_confirmation_of_supplied_details
@@ -26,8 +26,7 @@ When(/^an employer responds to mandatory questions$/) do
   earnings_and_benefits_page.next
   response_page.defend_claim_question.set_for(user)
   response_page.next
-
-  @representative[0].have_representative == 'Yes' ? et3_answer_representative : your_representative_page.next
+  et3_answer_representative
   employers_contract_claim_page.next
   additional_information_page.next
   confirmation_of_supplied_details_page.next
@@ -45,7 +44,7 @@ When(/^an employer responds to a claim with an additional information$/) do
   et3_answer_claimants_details
   et3_answer_earnings_and_benefits
   et3_answer_defend_claim_question
-  @representative[0].have_representative == 'Yes' ? et3_answer_representative : your_representative_page.next
+  et3_answer_representative
   et3_employers_contract_claim
   upload_additional_information
   et3_confirmation_of_supplied_details
