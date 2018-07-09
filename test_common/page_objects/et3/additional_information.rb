@@ -34,6 +34,7 @@ module EtFullSystem
               $('.dropzone')[0].dropzone.listeners[0].events.drop(e);
             JS
           end
+          page.has_selector?('.dz-filename')
         end
       end
     end
