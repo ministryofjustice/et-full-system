@@ -27,4 +27,3 @@ When(/^an employer responds to a claim with an additional information$/) do
   @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers, :upload_additional_information)
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
 end
-
