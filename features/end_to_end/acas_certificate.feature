@@ -1,16 +1,21 @@
-# @wip
-# @e2e
-# @javascript
-# Feature:
-#   As an ACAS administrator
-#   I want to download a certificate/document from the ET Admin
-#   So I can validate the certificate number and its contents
-#   And view logs detailing user access and error messages
+@wip
+@e2e
+@javascript
+Feature:
+  As an ACAS administrator
+  I want to download a certificate/document from the ET Admin
+  So I can validate the certificate number and its contents
+  And view logs detailing user access and error messages
 
-#   Scenario: Download and view ACAS Certificate
+  Scenario: View an ACAS Certificate's data
+   Given I am an ACAS administrator
+   When I enter an ACAS certificate number in the ACAS search field
+   Then I can view the contents of the acas document
+
+#   Scenario: Download a ACAS Certificate
 #     Given I am an ACAS administrator
 #     When I enter an ACAS certificate number in the ACAS search field
-#     Then I can download and view the contents of the document
+#     Then I can download the contents of the acas document
 
 #   Scenario: Certificate not found
 #     Given I am an ACAS administrator
