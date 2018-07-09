@@ -39,14 +39,14 @@ module EtFullSystem
           search_button.click
         end
 
-        def has_valid_certificate?
+        def has_valid_certificate_for?(cert)
           aggregate_failures 'validating content' do
-            expect(search_results.respondent_section.acas_first_contact.value_element).to have_content('01/01/2017 12:00:00')
-            expect(search_results.respondent_section.acas_conciliation_closed.value_element).to have_content('01/12/2017 12:00:00')
-            expect(search_results.respondent_section.difference.value_element).to have_content('334 days')
-            expect(search_results.respondent_section.certificate_sent.value_element).to have_content('Email')
-            expect(search_results.respondent_section.full_name.value_element).to have_content('Respondent Name')
-            expect(search_results.lead_claimant_section.full_name).to have_content('Claimant Name')
+            expect(search_results.respondent_section.acas_first_contact.value_element).to have_content(cert.date_of_receipt.strftime('%d/%m/%Y %H:%M:%S'))
+            expect(search_results.respondent_section.acas_conciliation_closed.value_element).to have_content(cert.date_of_issue.strftime('%d/%m/%Y %H:%M:%S'))
+            expect(search_results.respondent_section.difference.value_element).to have_content("#{(cert.date_of_issue.to_date - cert.date_of_receipt.to_date).to_i} days")
+            expect(search_results.respondent_section.certificate_sent.value_element).to have_content(cert.method_of_issue)
+            expect(search_results.respondent_section.full_name.value_element).to have_content(cert.respondent_name)
+            expect(search_results.lead_claimant_section.full_name).to have_content(cert.claimant_name)
           end
           true
         end

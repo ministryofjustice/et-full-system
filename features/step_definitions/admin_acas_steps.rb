@@ -17,5 +17,6 @@ end
 
 
 Then(/^I can view the contents of the acas document$/) do
-  expect(admin_pages.acas_search_results_page).to have_valid_certificate
+  certificate = build(:acas_certificate, :valid)
+  expect(admin_pages.acas_search_results_page).to have_valid_certificate_for(certificate)
 end
