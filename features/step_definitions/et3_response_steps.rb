@@ -35,9 +35,8 @@ When(/^an employer responds to mandatory questions$/) do
 end
 
 When(/^an employer responds to a claim with an additional information$/) do
-  binding.pry
-  @claimant = FactoryBot.create_list(:et3_claimant, 1, :disagree_with_employment_dates, :upload_additional_information)
-  @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers)
+  @claimant = FactoryBot.create_list(:et3_claimant, 1, :disagree_with_employment_dates)
+  @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers, :upload_additional_information)
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
 
   start_a_new_et3_response
