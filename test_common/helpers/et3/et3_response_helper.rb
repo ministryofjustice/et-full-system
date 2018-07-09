@@ -122,11 +122,12 @@ module EtFullSystem
         make_employer_contract_claim_row.make_employer_contract_claim_answer.text
       end
 
-      def upload_additional_information
+      def additional_information
         user = @respondent[0]
-        additional_information_page.attach_additional_information_file(user)
+        if user[:rtf_file]
+          additional_information_page.attach_additional_information_file(user)
+        end
         additional_information_page.next
-        
       end
 
       def et3_confirmation_of_supplied_details

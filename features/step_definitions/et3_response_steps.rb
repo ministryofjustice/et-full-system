@@ -6,7 +6,7 @@ When(/^the completed Employment Tribunal response form is submitted$/) do
   et3_answer_defend_claim_question
   et3_answer_representative
   et3_employers_contract_claim
-  additional_information_page.next
+  additional_information
   et3_confirmation_of_supplied_details
 
   @my_et3_reference = form_submission_page.reference_number.text
@@ -28,14 +28,15 @@ When(/^an employer responds to mandatory questions$/) do
   response_page.next
   et3_answer_representative
   employers_contract_claim_page.next
-  additional_information_page.next
+  additional_information
   confirmation_of_supplied_details_page.next
 
   @my_et3_reference = form_submission_page.reference_number.text
 end
 
 When(/^an employer responds to a claim with an additional information$/) do
-  @claimant = FactoryBot.create_list(:et3_claimant, 1, :disagree_with_employment_dates)
+  binding.pry
+  @claimant = FactoryBot.create_list(:et3_claimant, 1, :disagree_with_employment_dates, :upload_additional_information)
   @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers)
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
 
@@ -46,7 +47,7 @@ When(/^an employer responds to a claim with an additional information$/) do
   et3_answer_defend_claim_question
   et3_answer_representative
   et3_employers_contract_claim
-  upload_additional_information
+  additional_information
   et3_confirmation_of_supplied_details
 
   @my_et3_reference = form_submission_page.reference_number.text
