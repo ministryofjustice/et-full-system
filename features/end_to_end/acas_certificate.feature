@@ -12,10 +12,10 @@ Feature:
    When I enter an ACAS certificate number in the ACAS search field
    Then I can view the contents of the acas document
 
-#   Scenario: Download a ACAS Certificate
-#     Given I am an ACAS administrator
-#     When I enter an ACAS certificate number in the ACAS search field
-#     Then I can download the contents of the acas document
+  Scenario: Download a ACAS Certificate
+   Given I am an ACAS administrator
+   When I enter an ACAS certificate number in the ACAS search field
+   Then I can download the contents of the acas document
 
   Scenario: Certificate not found
    Given I am an ACAS administrator

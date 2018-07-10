@@ -32,6 +32,11 @@ module EtFullSystem
               element :value_element, 'td'
             end
           end
+          section :certificate_section, :xpath, XPath.generate {|x| x.descendant(:div)[x.child(:h3)[x.string.n.is('Certificate')]]} do
+            section :download, :xpath, XPath.generate {|x| x.descendant(:tr)[x.child(:th)[x.string.n.is('Certificate download')]]} do
+              element :link, 'td a'
+            end
+          end
         end
         element :search_errors, '.search-errors'
 
@@ -62,6 +67,10 @@ module EtFullSystem
 
         def has_server_error_message_for?(_cert)
           expect(search_errors).to have_content("There was a problem with the ACAS service - please try again later")
+        end
+
+        def has_download_link_for?(cert)
+          expect(search_results.certificate_section.download.link['href']).to start_with "data:application/pdf;base64,"
         end
       end
     end

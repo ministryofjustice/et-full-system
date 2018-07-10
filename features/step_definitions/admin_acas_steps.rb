@@ -55,3 +55,9 @@ Then(/^the system should return feedback from acas 'There was a problem with the
   certificate = build(:acas_certificate, :invalid)
   expect(admin_pages.acas_search_results_page).to have_server_error_message_for(certificate)
 end
+
+
+Then(/^I can download the contents of the acas document$/) do
+  certificate = build(:acas_certificate, :valid)
+  expect(admin_pages.acas_search_results_page).to have_download_link_for(certificate)
+end
