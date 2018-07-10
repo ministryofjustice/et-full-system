@@ -9,8 +9,24 @@ module EtFullSystem
         Admin::LoginPage.new
       end
 
+      def self.logout_page
+        Admin::LogoutPage.new
+      end
+
       def self.jobs_page
         Admin::JobsPage.new
+      end
+
+      def self.any_page
+        Admin::BasePage.new
+      end
+
+      def self.acas_search_page
+        Admin::AcasSearchPage.new
+      end
+
+      def self.acas_search_results_page
+        Admin::AcasSearchResultsPage.new
       end
 
       def self.claimants_page
