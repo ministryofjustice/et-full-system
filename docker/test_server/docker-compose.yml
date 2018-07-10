@@ -40,6 +40,7 @@ services:
       MY_ET1:
       MY_API:
       MY_ADMIN:
+      MY_FAKE_ACAS:
     command: /bin/bash -c "/home/app/full_system/docker/test_server/docker_run"
     networks:
       et_full_system:
