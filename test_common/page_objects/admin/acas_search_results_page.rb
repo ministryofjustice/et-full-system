@@ -52,8 +52,16 @@ module EtFullSystem
           true
         end
 
-        def has_invalid_certificate_message_for?(cert)
+        def has_invalid_certificate_message_for?(_cert)
+          expect(search_errors).to have_content("Please enter a valid certificate number")
+        end
+
+        def has_not_found_certificate_message_for?(cert)
           expect(search_errors).to have_content("No certificate returned from ACAS for #{cert.number}")
+        end
+
+        def has_server_error_message_for?(_cert)
+          expect(search_errors).to have_content("There was a problem with the ACAS service - please try again later")
         end
       end
     end
