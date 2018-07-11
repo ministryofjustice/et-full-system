@@ -11,6 +11,12 @@ FactoryBot.define do
     trait :invalid do
       number 'R000201/18/68'
     end
+    trait :not_found do
+      number 'R000200/18/68'
+    end
+    trait :server_error do
+      number 'R000500/18/68'
+    end
 
   end
 end
