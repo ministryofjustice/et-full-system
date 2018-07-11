@@ -1,4 +1,3 @@
-@wip
 @e2e
 @javascript
 Feature:
