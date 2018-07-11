@@ -12,20 +12,25 @@ Feature:
    When I enter an ACAS certificate number in the ACAS search field
    Then I can view the contents of the acas document
 
-#   Scenario: Download a ACAS Certificate
-#     Given I am an ACAS administrator
-#     When I enter an ACAS certificate number in the ACAS search field
-#     Then I can download the contents of the acas document
+  Scenario: Download a ACAS Certificate
+   Given I am an ACAS administrator
+   When I enter an ACAS certificate number in the ACAS search field
+   Then I can download the contents of the acas document
 
   Scenario: Certificate not found
    Given I am an ACAS administrator
-   When I enter an invalid ACAS certificate number
-   Then the system should return feedback from acas 'No certifciate returned from ACAS for R000201/18/68'
+   When I enter a not found ACAS certificate number
+   Then the system should return feedback from acas 'No certificate returned from ACAS for R000201/18/68'
 
-#   Scenario: Invalid format
-#     Given I am an ACAS administrator
-#     When I enter an invalid format ACAS number in the ACAS search field
-#     Then the system should return 'Please enter a valid certificate number'
+  Scenario: Invalid format
+   Given I am an ACAS administrator
+   When I enter an invalid format ACAS certificate number
+   Then the system should return feedback from acas 'Please enter a valid certificate number'
+
+  Scenario: Server error
+   Given I am an ACAS administrator
+   When I enter a 'server error' ACAS certificate number
+   Then the system should return feedback from acas 'There was a problem with the ACAS service -  please try again later'
 
 #   Scenario: ACAS log
 #     Given I am an ET Administrator with full privileges 
