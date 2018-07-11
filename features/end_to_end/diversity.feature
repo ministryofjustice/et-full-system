@@ -5,10 +5,10 @@ Feature: Diversity monitoring questionnaire
   I want, after submitting an online ET1 Claim form, to be able to participate in the online Diversity questionnaire
   So that I can enter my details into a Diversity Survey form
 
-  Scenario: Launch Diversity questionnaire from ET1 confirmation page
+  Scenario: Load Diversity questionnaire from ET1 confirmation page
     Given an employee making a claim
     When the completed form is submitted
-    Then I shoud be able to launch diversity questionnaire
+    Then I shoud be able to load diversity questionnaire
 
   Scenario: An empty form is valid as a survey participant
     Given a Claimant submitted an empty Diversity questionnaire form
