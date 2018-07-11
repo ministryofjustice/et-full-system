@@ -5,7 +5,7 @@ Feature: Confirmation of supplied details page
 Background: ET3 confirmation of supplied details page
   Given I am on the ET3 confirmation of supplied details page
 
-Scenario: Successfully submits
+Scenario: Successfully submits my form
   When I submit my form
   Then I am taken to the form submission page
 
