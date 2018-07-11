@@ -1,6 +1,7 @@
 defaults: &defaults
   admin_username: admin@example.com
   admin_password: password
+  acas_user: junioruser@example.com
 local: 
   <<: *defaults
   et1_url: http://et1.et.127.0.0.1.nip.io:3100/
