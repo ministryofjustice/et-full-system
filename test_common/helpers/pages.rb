@@ -58,6 +58,10 @@ module EtFullSystem
         EtFullSystem::Test::Et1::SubmissionPage.new
       end
 
+      def et1_claim_submitted
+        EtFullSystem::Test::Et1::ClaimSubmitted.new
+      end
+
       def start_page
         EtFullSystem::Test::Et3::StartPage.new
       end
@@ -104,6 +108,10 @@ module EtFullSystem
 
       def admin_pages
         @admin_pages = AdminPages
+      end
+
+      def diversity_landing_page
+        EtFullSystem::Test::Diversity::DiversityMonitoringLandingPage.new
       end
 
     end

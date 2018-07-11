@@ -3,7 +3,7 @@ module EtFullSystem
   module Test
     module Diversity
       class DiversityMonitoringPage < BasePage
-        section :main_content, '#content .container .main-content' do
+        section :main_content, '#content .container .main-section .main-content' do
           section :coam, 'select[name="diversity[claim_type]"]' do
             def set(value)
               root_element.select(value)

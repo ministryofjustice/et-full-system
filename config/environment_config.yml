@@ -9,6 +9,7 @@ local:
   et3_url: http://et3.et.127.0.0.1.nip.io:3100/
   atos_api_url: http://api.et.127.0.0.1.nip.io:3100/atos_api
   admin_url: http://admin.et.127.0.0.1.nip.io:3100/admin
+  sidekiq_url: http://et1.et.127.0.0.1.nip.io:3100/apply/sidekiq
 dev:
   <<: *defaults
   et1_url: https://dev1.et.dsd.io/
@@ -17,6 +18,7 @@ dev:
   et3_url: https://et3-dev.et.dsd.io/
   atos_api_url: https://api-dev.et.dsd.io/atos_api
   admin_url: https://admin-dev.et.dsd.io/admin
+  sidekiq_url: https://dev1.et.dsd.io/apply/sidekiq
 staging:
   <<: *defaults
   et1_url: https://staging1.et.dsd.io/
@@ -25,6 +27,7 @@ staging:
   et3_url: https://et3-staging.et.dsd.io/
   atos_api_url: https://api-staging.et.dsd.io/atos_api
   admin_url: https://admin-staging.et.dsd.io/admin
+  sidekiq_url: https://staging1.et.dsd.io/apply/sidekiq
 # production:
 #   <<: *defaults
 #   et1_url: https://www.employmenttribunals.service.gov.uk/
