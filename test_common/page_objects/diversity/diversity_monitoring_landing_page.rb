@@ -3,6 +3,7 @@ module EtFullSystem
   module Test
     module Diversity
       class DiversityMonitoringLandingPage < BasePage
+        set_url ::EtFullSystem::Test::Configuration.diversity_url
         section :main_content, '#content .container' do
           element :heading, '.main-header h1'
           section :content_section, '.main-section .main-content' do

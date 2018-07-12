@@ -110,8 +110,8 @@ module EtFullSystem
         @admin_pages = AdminPages
       end
 
-      def diversity_landing_page
-        EtFullSystem::Test::Diversity::DiversityMonitoringLandingPage.new
+      def diversity_pages
+        @diversity_pages = DiversityPages
       end
 
     end
