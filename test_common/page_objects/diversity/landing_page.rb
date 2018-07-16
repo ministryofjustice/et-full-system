@@ -2,7 +2,7 @@ require_relative './base_page'
 module EtFullSystem
   module Test
     module Diversity
-      class DiversityMonitoringLandingPage < BasePage
+      class LandingPage < BasePage
         set_url ::EtFullSystem::Test::Configuration.diversity_url
         section :main_content, '#content .container' do
           element :heading, '.main-header h1'

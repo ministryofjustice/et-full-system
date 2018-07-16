@@ -2,7 +2,7 @@ require_relative './base_page'
 module EtFullSystem
   module Test
     module Diversity
-      class ClaimTypePage < BasePage
+      class EthnicGroupPage < BasePage
         section :main_content, '#content .main-section .main-content' do
           element :save_and_continue_button, 'input[value="Save and continue"]'
         end
