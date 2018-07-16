@@ -42,7 +42,7 @@ services:
       MY_ADMIN:
       MY_FAKE_ACAS:
       ATOS_API_USERNAME: atos
-      ATOS_API_PASSWORD: atos
+      ATOS_API_PASSWORD: password
 
     command: /bin/bash -c "/home/app/full_system/docker/test_server/docker_run"
     networks:
