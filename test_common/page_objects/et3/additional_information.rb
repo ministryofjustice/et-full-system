@@ -34,6 +34,8 @@ module EtFullSystem
               $('.dropzone')[0].dropzone.listeners[0].events.drop(e);
             JS
           end
+          sleep 1
+          page.has_content?('Remove file')
         end
       end
     end

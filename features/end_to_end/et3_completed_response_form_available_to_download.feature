@@ -44,5 +44,6 @@ Feature: ET3 response to local office
     Then I can download the ET3 form and validate in PDF format
 
   Scenario: RTF Format
-    When an employer responds to a claim with an additional information
+    Given an employer responds to a claim with an additional information
+    When the completed Employment Tribunal response form is submitted
     Then I can download the ET3 form and validate in RTF format
