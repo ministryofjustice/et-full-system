@@ -8,18 +8,20 @@ Feature: Diversity monitoring questionnaire
   Scenario: Load Diversity questionnaire from ET1 confirmation page
     Given an employee making a claim
     When the completed form is submitted
-    Then I should be able to load diversity questionnaire
+    Then I should be able to load diversity questionnaire form page
 
   Scenario: An empty form is valid as a survey participant
-    Given a Claimant submitted an empty Diversity questionnaire form
-    Then I should on Diversity confirmation page
+    Given a claimant answered all blank questions on the survey participant form
+    When the completed Diversity questionnaire form is submitted
+    Then I should be on the Thank you page
 
-  # Scenario: All questions answered
-  #   Given a Claimant answered and submitted all questions on the Diversity questionnaire form
-  #   Then I should on Diversity confirmation page
+  Scenario: All questions answered
+    Given a claimant answered all questions on the survey participant form
+    When the completed Diversity questionnaire form is submitted
+    Then I should be on the Thank you page
 
   # Scenario: Edit your answers
-  #   Given a Claimant answered all fields on the Diversity questionnaire form
+  #   Given a claimant answered all questions on the survey participant form
   #   When user edit 'What is your ethnic group' to 'prefer not to say'
   #   Then the data is stored 'prefer not to say' 
 
