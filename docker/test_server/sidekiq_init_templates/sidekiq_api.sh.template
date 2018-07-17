@@ -14,5 +14,7 @@ export AWS_S3_FORCE_PATH_STYLE=true
 export SMTP_HOSTNAME=smtp
 export SMTP_PORT=1025
 export RAILS_ENV=production
+ATOS_API_USERNAME=atos
+ATOS_API_PASSWORD=password
 
 exec /sbin/setuser app /home/app/full_system/systems/api/run_sidekiq.sh >>/home/app/full_system/systems/api/log/nginx_sidekiq.log 2>&1
