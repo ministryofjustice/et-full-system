@@ -11,54 +11,58 @@ end
 
 
 When(/^I enter an ACAS certificate number in the ACAS search field$/) do
-  certificate = build(:acas_certificate, :valid)
+  if ENV['ENVIRONMENT'] == 'local'
+    @certificate = build(:acas_mock_certificate, :mock_valid)
+  else
+    @certificate = build(:acas_certificate, :valid)
+  end
   admin_pages.any_page.menu.choose_acas_certificates
-  admin_pages.acas_search_page.search(certificate.number)
+  admin_pages.acas_search_page.search(@certificate.number)
 end
 
 When(/^I enter an invalid format ACAS certificate number$/) do
-  certificate = build(:acas_certificate, :invalid)
+  if ENV['ENVIRONMENT'] == 'local'
+    @certificate = build(:acas_mock_certificate, :mock_invalid)
+  else
+    @certificate = build(:acas_certificate, :invalid)
+  end
+  
   admin_pages.any_page.menu.choose_acas_certificates
-  admin_pages.acas_search_page.search(certificate.number)
+  admin_pages.acas_search_page.search(@certificate.number)
 end
 
 When(/^I enter a not found ACAS certificate number$/) do
-  certificate = build(:acas_certificate, :not_found)
+  @certificate = build(:acas_mock_certificate, :mock_not_found)
   admin_pages.any_page.menu.choose_acas_certificates
-  admin_pages.acas_search_page.search(certificate.number)
+  admin_pages.acas_search_page.search(@certificate.number)
 end
 
 When(/^I enter a 'server error' ACAS certificate number$/) do
-  certificate = build(:acas_certificate, :server_error)
+  @certificate = build_list(:acas_mock_certificate, :mock_server_error)
   admin_pages.any_page.menu.choose_acas_certificates
-  admin_pages.acas_search_page.search(certificate.number)
+  admin_pages.acas_search_page.search(@certificate.number)
 end
 
 Then(/^I can view the contents of the acas document$/) do
-  certificate = build(:acas_certificate, :valid)
-  expect(admin_pages.acas_search_results_page).to have_valid_certificate_for(certificate)
+  expect(admin_pages.acas_search_results_page).to have_valid_certificate_for(@certificate)
 end
 
 
 Then(/^the system should return feedback from acas 'No certificate returned from ACAS for R000201\/18\/68'$/) do
-  certificate = build(:acas_certificate, :not_found)
-  expect(admin_pages.acas_search_results_page).to have_not_found_certificate_message_for(certificate)
+  expect(admin_pages.acas_search_results_page).to have_not_found_certificate_message_for(@certificate)
 end
 
 
 Then(/^the system should return feedback from acas 'Please enter a valid certificate number'$/) do
-  certificate = build(:acas_certificate, :invalid)
-  expect(admin_pages.acas_search_results_page).to have_invalid_certificate_message_for(certificate)
+  expect(admin_pages.acas_search_results_page).to have_invalid_certificate_message_for(@certificate)
 end
 
 
 Then(/^the system should return feedback from acas 'There was a problem with the ACAS service \-  please try again later'$/) do
-  certificate = build(:acas_certificate, :invalid)
-  expect(admin_pages.acas_search_results_page).to have_server_error_message_for(certificate)
+  expect(admin_pages.acas_search_results_page).to have_server_error_message_for(@certificate)
 end
 
 
 Then(/^I can download the contents of the acas document$/) do
-  certificate = build(:acas_certificate, :valid)
-  expect(admin_pages.acas_search_results_page).to have_download_link_for(certificate)
+  expect(admin_pages.acas_search_results_page).to have_download_link_for(@certificate)
 end
