@@ -14,6 +14,7 @@ require_relative '../../test_common/api/admin'
 include EtFullSystem::Test::Pages
 include EtFullSystem::Test::Et1ClaimHelper
 include EtFullSystem::Test::Et3ResponseHelper
+include EtFullSystem::Test::DiversityHelper
 include EtFullSystem::Test::CommonAdminWindow
 include EtFullSystem::Test::AtosInterfaceHelper
 include EtFullSystem::Test::Housekeeping

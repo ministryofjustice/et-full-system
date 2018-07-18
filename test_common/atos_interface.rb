@@ -51,7 +51,9 @@ module EtFullSystem
       private
 
       def initialize
-        self.api = AtosInterfaceApi.new(base_url: Configuration.atos_api_url)
+        self.api = AtosInterfaceApi.new base_url: Configuration.atos_api_url,
+                                        username: Configuration.atos_username,
+                                        password: Configuration.atos_password
         super
       end
 
@@ -65,20 +67,27 @@ module EtFullSystem
         when :et1_claim_txt_for
           filename.end_with?("ET1_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.txt")
         when :et1_filename_start_with
-          filename.end_with?("ET1_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.txt")
           filename.start_with?("14")
-        when :et3_response_txt_for
-          reference = args[:reference]
-          filename == "#{reference}_ET3_.txt"
-        when :et3_response_pdf_for
-          reference = args[:reference]
-          filename == "#{reference}_ET3_.pdf"
         when :et1_claim_csv_for
           filename.end_with?("ET1a_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.csv")
         when :et1_claim_rtf_for
           filename.end_with?("ET1_Attachment_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.rtf")
         when :et1a_claim_txt_for
           filename.end_with?("ET1a_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.txt")
+        when :et3_response_txt_for
+          reference = args[:reference]
+          company_name_underscored = user.dig(:name).parameterize(separator: '_', preserve_case: true)
+          filename == "#{reference}_ET3_#{company_name_underscored}.txt"
+        when :et3_response_pdf_for
+          reference = args[:reference]
+          company_name_underscored = user.dig(:name).parameterize(separator: '_', preserve_case: true)
+          filename == "#{reference}_ET3_#{company_name_underscored}.pdf"
+        when :et3_filename_start_with
+          filename.start_with?(args[:local_postcode])
+        when :et3_response_rtf_for
+          reference = args[:reference]
+          company_name_underscored = user.dig(:name).parameterize(separator: '_', preserve_case: true)
+          filename == "#{reference}_ET3_Attachment_#{company_name_underscored}.rtf"
         end
       end
 
@@ -95,6 +104,7 @@ module EtFullSystem
 
     class AtosInterfaceZipFilenameRepo
       include Enumerable
+
       def initialize(cache:, api:)
         self.filename_cache = cache
         self.api = api
@@ -142,7 +152,7 @@ module EtFullSystem
       end
 
       def zip_filename_for(filename)
-        (key, _value) = filename_cache.find {|(_key, value)| value.include?(filename)}
+        (key, _value) = filename_cache.find { |(_key, value)| value.include?(filename) }
         return key
       end
 
@@ -159,25 +169,27 @@ module EtFullSystem
     end
 
     class AtosInterfaceApi
-      def initialize(base_url:)
+      def initialize(base_url:, username:, password:)
         self.base_url = base_url
+        self.username = username
+        self.password = password
       end
 
       def list_zip_filenames
-        response = HTTParty.get("#{base_url}/v1/filetransfer/list")
+        response = HTTParty.get("#{base_url}/v1/filetransfer/list", basic_auth: { username: username, password: password })
         response.body.lines.map(&:strip)
       end
 
       def download(zip_filename, to:)
         puts "ATOS API - Downloading #{zip_filename}"
-        HTTParty.get("#{base_url}/v1/filetransfer/download/#{zip_filename}") do |chunk|
+        HTTParty.get("#{base_url}/v1/filetransfer/download/#{zip_filename}", basic_auth: { username: username, password: password }) do |chunk|
           to.write(chunk)
         end
       end
 
       private
 
-      attr_accessor :base_url
+      attr_accessor :base_url, :username, :password
     end
   end
 end

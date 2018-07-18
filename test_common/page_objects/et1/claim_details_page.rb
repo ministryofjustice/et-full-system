@@ -54,7 +54,7 @@ module EtFullSystem
           data = claim.to_h
           return if claim.nil?
           if data.key?(:rtf_file)
-            full_path = File.absolute_path(File.join('..', '..', 'fixtures', data[:rtf_file]), __dir__)
+            full_path = File.expand_path(File.join('test_common', 'fixtures', data[:rtf_file]))
             main_content.rtf_file.set(full_path)
           end
           set_field main_content, :description, data
