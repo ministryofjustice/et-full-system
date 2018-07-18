@@ -22,7 +22,7 @@ dev:
   admin_url: https://admin-dev.et.dsd.io/admin
   sidekiq_url: https://dev1.et.dsd.io/apply/sidekiq
   atos_username: atos
-  atos_password: tobedecided
+  atos_password: password
 staging:
   <<: *defaults
   et1_url: https://staging1.et.dsd.io/
@@ -33,7 +33,7 @@ staging:
   admin_url: https://admin-staging.et.dsd.io/admin
   sidekiq_url: https://staging1.et.dsd.io/apply/sidekiq
   atos_username: atos
-  atos_password: tobedecided
+  atos_password: password
 # production:
 #   <<: *defaults
 #   et1_url: https://www.employmenttribunals.service.gov.uk/
