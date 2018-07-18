@@ -1,15 +1,13 @@
 @e2e
 @javascript
-@local
 Feature:
-  As a claimant applying for unfair dismissal against my employer
-  I want to receive copies of my application form
-  So that I have a record of it
+  As a claimant submitting for unfair dismissal against my employer
+  I want to recieve email notification of my application form
+  So that I have a copy of it
 
-  Scenario: Save and continue from the login page
-    Given I answered and continued from the login page
-    Then I am notified via email the claimant number
-    And that the claim has been saved
+  Scenario: Complete your claim
+    Given I answered and continued from Saving your claim page
+    Then I am notified via email that the claim has been started
 
   Scenario: Submitted application
     When I submit a completed ET1 form
