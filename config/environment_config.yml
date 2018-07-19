@@ -12,6 +12,7 @@ local:
   atos_api_url: http://api.et.127.0.0.1.nip.io:3100/atos_api
   admin_url: http://admin.et.127.0.0.1.nip.io:3100/admin
   sidekiq_url: http://et1.et.127.0.0.1.nip.io:3100/apply/sidekiq
+  mailhog_url: http://localhost:32791//api/v2/messages
 dev:
   <<: *defaults
   et1_url: https://dev1.et.dsd.io/
@@ -21,6 +22,7 @@ dev:
   atos_api_url: https://api-dev.et.dsd.io/atos_api
   admin_url: https://admin-dev.et.dsd.io/admin
   sidekiq_url: https://dev1.et.dsd.io/apply/sidekiq
+  mailhog_url: http://localhost:32791//api/v2/messages
   atos_username: atos
   atos_password: password
 staging:
@@ -32,6 +34,7 @@ staging:
   atos_api_url: https://api-staging.et.dsd.io/atos_api
   admin_url: https://admin-staging.et.dsd.io/admin
   sidekiq_url: https://staging1.et.dsd.io/apply/sidekiq
+  mailhog_url: http://localhost:32791//api/v2/messages
   atos_username: atos
   atos_password: password
 # production:

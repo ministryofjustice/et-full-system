@@ -3,22 +3,21 @@ require 'httparty'
 module EtFullSystem
   module Test
     class MailApi
-      def url
-        Configuration.mail_url
+      def claim_submitted_email(email_address)
+        mail = mailhog_api['items'].select { |a| a['Content']['Headers']['To'] == ["#{email_address}"] && a['Content']['Headers']['Subject'] == ["Employment tribunal: claim submitted"]}[0]
+        binding.pry
+        return mail['Content']['Headers']
       end
 
-      def claim_started_mail
-        mailhog_api['items'].select { |a| a['Content']['Headers']['To'] == ['test@digital.justice.gov.uk'] && a['Content']['Headers']['Subject'] == ["Employment tribunal: claim submitted"]}
-      end
-
-      def check_mail_sent_for_claim
-        mailhog_api['items'].select { |a| a['Content']['Headers']['To'] == ['test@digital.justice.gov.uk'] && a['Content']['Headers']['Subject'] == ["Employment tribunal: complete your claim"]}
+      def claim_started_email(email_address)
+        mail = mailhog_api['items'].select { |a| a['Content']['Headers']['To'] == ["#{email_address}"] && a['Content']['Headers']['Subject'] == ["Employment tribunal: complete your claim"]}[0]
+        mail['Content']['Headers']
       end
 
       private
 
       def mailhog_api
-        HTTParty.get("http://localhost:32788//api/v2/messages")
+        HTTParty.get(::EtFullSystem::Test::Configuration.mailhog_url)
       end
     end
   end
