@@ -20,7 +20,7 @@ module EtFullSystem
           cookies: cookies_hash,
           body: {
             admin_user: {
-              email: ::EtFullSystem::Test::Configuration.admin_username,
+              username: ::EtFullSystem::Test::Configuration.admin_username,
               password: ::EtFullSystem::Test::Configuration.admin_password,
               remember_me: '0'
             },
