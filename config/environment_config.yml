@@ -1,5 +1,5 @@
 defaults: &defaults
-  admin_username: admin@example.com
+  admin_username: admin
   admin_password: password
   atos_username: atos
   atos_password: password
