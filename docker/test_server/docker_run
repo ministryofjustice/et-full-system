@@ -53,7 +53,7 @@ sudo chmod +x /etc/service/sidekiq_api/run
 sudo chmod +x /etc/service/sidekiq_et1/run
 cd /home/app/et_fake_acas_server && bundle install
 cd /home/app/full_system/systems/et1 && bundle install --without=development,test --with=production && npm install && RAILS_ENV=local bundle exec rake db:create db:migrate assets:precompile
-cd /home/app/full_system/systems/et3 && bundle install --without=development,test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate assets:precompile
+cd /home/app/full_system/systems/et3 && bundle install --without=development,test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate assets:precompile && bundle exec rake non_digest_assets
 cd /home/app/full_system/systems/api && bundle install --without=development,test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate db:seed
 cd /home/app/full_system/systems/admin && bundle install --without=development,test --with=production && RAILS_ENV=production SEED_EXAMPLE_USERS=true bundle exec rails db:seed assets:precompile
 /home/app/full_system/docker/test_server/setup_buckets > /home/app/setup_buckets.log &

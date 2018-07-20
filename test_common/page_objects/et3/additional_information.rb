@@ -1,8 +1,11 @@
 require_relative './base_page'
+require_relative '../../../test_common/helpers/upload_helper'
 module EtFullSystem
   module Test
     module Et3
       class AdditionalInformationPage < BasePage
+        include ::EtFullSystem::Test::UploadHelper
+
         set_url '/respond/additional_information'
         element :error_header, :error_titled, 'errors.header', exact: true
         section :upload_additional_information_question, :css, 'form.dropzone' do
@@ -27,14 +30,17 @@ module EtFullSystem
                 {id: 'fakeFileInput', type:'file'}
               ).appendTo('body');
             JS
-            attach_file("fakeFileInput", File.expand_path(File.join('test_common', 'fixtures', data[:rtf_file])))
+
+            force_remote do
+             attach_file("fakeFileInput", File.expand_path(File.join('test_common', 'fixtures', data[:rtf_file])))
+            end
             page.execute_script("var fileList = [fakeFileInput.get(0).files[0]]")
             page.execute_script <<-JS
               var e = jQuery.Event('drop', { dataTransfer : { files : [fakeFileInput.get(0).files[0]] } });
               $('.dropzone')[0].dropzone.listeners[0].events.drop(e);
             JS
           end
-          sleep 1
+          sleep 2
           page.has_content?('Remove file')
         end
       end
