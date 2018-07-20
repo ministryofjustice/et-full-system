@@ -5,11 +5,10 @@ Feature:
   I want to recieve email notification of my application form
   So that I have a copy of it
 
-  Scenario: Complete your claim
-    Given I answered and continued from Saving your claim page
-    Then I am notified via email that the claim has been started
+  Scenario: Complete your claim email notification
+    Given a claimant continued from Saving your claim page
+    Then an email is sent to notify user that a claim has been started
 
-  Scenario: Submitted application
-    When I submit a completed ET1 form
-    Then I am notified via email that the claim has been submitted
-    And a copy of the application is attached in pdf format
+  Scenario: Completed claimant email notification
+    When a claimant completed an ET1 form
+    Then an email is sent to notify user that a claim has been successfully submitted

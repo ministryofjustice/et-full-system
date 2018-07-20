@@ -5,8 +5,7 @@ module EtFullSystem
     class MailApi
       def claim_submitted_email(email_address)
         mail = mailhog_api['items'].select { |a| a['Content']['Headers']['To'] == ["#{email_address}"] && a['Content']['Headers']['Subject'] == ["Employment tribunal: claim submitted"]}[0]
-        binding.pry
-        return mail['Content']['Headers']
+        mail['Content']['Headers']
       end
 
       def claim_started_email(email_address)
