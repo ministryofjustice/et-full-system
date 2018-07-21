@@ -9,7 +9,6 @@ Given(/^I am an ACAS administrator$/) do
   end
 end
 
-
 When(/^I enter an ACAS certificate number in the ACAS search field$/) do
   if ENV['ENVIRONMENT'] == 'local'
     @certificate = build(:acas_mock_certificate, :mock_valid)
@@ -65,4 +64,59 @@ end
 
 Then(/^I can download the contents of the acas document$/) do
   expect(admin_pages.acas_search_results_page).to have_download_link_for(@certificate)
+end
+
+When(/^an ET Administrator with full access can view successful Acas Certificate log$/) do
+  admin_username = ::EtFullSystem::Test::Configuration.admin_username
+  admin_password = ::EtFullSystem::Test::Configuration.admin_password
+  admin_pages.logout_page.load
+  admin_pages.dashboard_page.load
+  if admin_pages.login_page.displayed?
+    admin_pages.login_page.login(email: admin_username, password: admin_password)
+    raise "Could not login to admin with username '#{admin_username}' and password '#{admin_password}'" unless admin_pages.dashboard_page.displayed?
+  end
+
+  if ENV['ENVIRONMENT'] == 'local'
+    @certificate = build(:acas_mock_certificate, :mock_valid)
+  else
+    @certificate = FactoryBot.create_list(:acas_certificate, 1, :valid, number: 'MU000086/18/82', method_of_issue: 'Letter')[0]
+  end
+
+  admin_pages.any_page.menu.choose_acas_certificates
+  admin_pages.acas_search_page.search(@certificate.number)
+end
+
+Then("I can see who has downloaded ACAS certificate {string}") do |string|
+  within_admin_window do
+    api = EtFullSystem::Test::AdminApi.new
+    acas_details_from_log = api.acas_certificate_logs_api.select { |a| a['certificate_number'] == "#{@certificate.number}"}[0]
+    expect(@certificate.number).to eq(acas_details_from_log['certificate_number'])
+    expect(@certificate.user_id).to eq(acas_details_from_log["#{::EtFullSystem::Test::Configuration.admin_username}"])
+    expect("#{string}").to eq(acas_details_from_log['message'])
+    if @certificate.method_of_issue.present?
+      expect(@certificate.method_of_issue).to eq(acas_details_from_log['method_of_issue'])
+    else
+      expect(nil).to eq(acas_details_from_log['method_of_issue'])
+    end
+  end
+end
+
+When(/^an ET Administrator with full access ca view invalid Acas Certificate log$/) do
+  admin_username = ::EtFullSystem::Test::Configuration.admin_username
+  admin_password = ::EtFullSystem::Test::Configuration.admin_password
+  admin_pages.logout_page.load
+  admin_pages.dashboard_page.load
+  if admin_pages.login_page.displayed?
+    admin_pages.login_page.login(email: admin_username, password: admin_password)
+    raise "Could not login to admin with username '#{admin_username}' and password '#{admin_password}'" unless admin_pages.dashboard_page.displayed?
+  end
+
+  if ENV['ENVIRONMENT'] == 'local'
+    @certificate = build(:acas_mock_certificate, :mock_invalid)
+  else
+    @certificate = create(:acas_certificate, :invalid)
+  end
+
+  admin_pages.any_page.menu.choose_acas_certificates
+  admin_pages.acas_search_page.search(@certificate.number)
 end

@@ -1,6 +1,7 @@
 defaults: &defaults
   admin_username: admin
   admin_password: password
+  admin_email: admin@example.com
   atos_username: atos
   atos_password: password
 local: 

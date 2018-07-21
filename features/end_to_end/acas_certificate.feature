@@ -21,8 +21,10 @@ Feature:
    When I enter an invalid format ACAS certificate number
    Then the system should return feedback from acas 'Please enter a valid certificate number'
 
-#   Scenario: ACAS log
-#     Given I am an ET Administrator with full privileges 
-#     When I view the ACAS Certificate Access log
-#     And sort by the Date field
-#     Then I can see who has downloaded the ACAS document
+  Scenario: ACAS Certificate logging for Certificate found
+    When an ET Administrator with full access can view successful Acas Certificate log
+    Then I can see who has downloaded ACAS certificate 'CertificateFound' 
+
+  Scenario: ACAS Certificate logging for Invalid Certificate Format
+    When an ET Administrator with full access ca view invalid Acas Certificate log
+    Then I can see who has downloaded ACAS certificate 'Invalid Certificate Format'
