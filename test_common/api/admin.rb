@@ -40,6 +40,12 @@ module EtFullSystem
         JSON.parse(claimants.body).map(&:with_indifferent_access)
       end
 
+      def acas_certificate_logs_api
+        login
+        acas_logs = request(:get, "#{url}/download_logs.json", cookies: cookies_hash)
+        JSON.parse(acas_logs.body).map(&:with_indifferent_access)
+      end
+
       private
 
       def request(method, *args)
