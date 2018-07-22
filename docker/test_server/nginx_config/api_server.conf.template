@@ -14,6 +14,8 @@ server {
        passenger_env_var REDIS_HOST redis;
        passenger_env_var REDIS_DATABASE 2;
        passenger_env_var BUNDLE_EXCLUDE '';
+       passenger_env_var SMTP_HOSTNAME smtp;
+       passenger_env_var SMTP_PORT 1025;
        passenger_env_var AWS_ACCESS_KEY_ID accessKey1;
        passenger_env_var AWS_SECRET_ACCESS_KEY verySecretKey1;
        passenger_env_var AWS_REGION 'us-east-1';

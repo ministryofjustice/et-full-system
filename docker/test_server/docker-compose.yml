@@ -25,6 +25,9 @@ services:
     environment:
       DB_HOST: 'db'
       DB_USERNAME: 'postgres'
+      SMTP_HOSTNAME: 'smtp'
+      SMTP_PORT: '1025'
+
       SECRET_KEY_BASE: sdlkjewfkjhfviuhduihenrjk435r89esfd7cv983qh2n4r3q27yh4u5rtfg
       REDIS_HOST: redis
       AWS_ACCESS_KEY_ID: accessKey1
