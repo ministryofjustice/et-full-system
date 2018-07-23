@@ -9,7 +9,7 @@ FactoryBot.define do
       special_needs 'My special needs are as follows'
       telephone_number '01234 567890'
       alternative_telephone_number '01234 098765'
-      email_address "#{ Faker::Name.first_name }#{ Faker::Name.last_name }@digital.justice.gov.uk"
+      email_address "sivvoy.taing@hmcts.net"
       correspondence 'Email'
       memorable_word 'password'
     end
