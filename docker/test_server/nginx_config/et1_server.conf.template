@@ -15,7 +15,7 @@ server {
        passenger_env_var HTTP_READ_TIMEOUT_S 15;
        passenger_env_var REDIS_URL redis://redis:6379/1;
        passenger_env_var SECRET_KEY_BASE dsjeflsdshewje23q896edc7dsufhsekjh4321ueirdasy6890;
-       passenger_env_var SMTP_HOSTNAME smtp;
+       passenger_env_var SMTP_HOSTNAME 'mail.${SERVER_DOMAIN}:${SERVER_PORT}';
        passenger_env_var SMTP_PORT 1025;
        passenger_env_var JADU_API http://api.${SERVER_DOMAIN}:${SERVER_PORT}/api/api/v1/;
        passenger_env_var AWS_ACCESS_KEY_ID accessKey1;
