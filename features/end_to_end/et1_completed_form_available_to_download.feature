@@ -51,19 +51,16 @@ Scenario: PDF format
     Then I can download the form and validate the TXT file contained 3 employers details
 
  Scenario: Filename based on claimants work address
-   Given a claimant work address is 'BS11DZ'
-   When the completed form is submitted
-   Then it will be forwarded to the Default Office address 'Bristol Civil and Family Justice Centre, 2 Redcliff Street, Bristol, BS1 6GR'
+   Given a claimant submitted an ET1 form with work address 'BS11DZ' 
+   Then it will be forwarded to the Office address 'Bristol Civil and Family Justice Centre, 2 Redcliff Street, Bristol, BS1 6GR'
    And I can download the form and validate that the filname start with '14'
 
- Scenario: Filename based on claimant's work address is the same as respondents
-   Given a claimant work address is the same as respondent's work  'WD187SQ'
-   When the completed form is submitted
-   Then it will be forwarded to the Default Office address '3rd Floor, Radius House, 51 Clarendon Rd, Watford, WD17 1HP'
+ Scenario: Filename based on claimants work address is the same as respondents
+   Given a claimant submitted an ET1 form with work address the same as respondents 'WD187SQ'
+   Then it will be forwarded to the Office address '3rd Floor, Radius House, 51 Clarendon Rd, Watford, WD17 1HP'
    And I can download the form and validate that the filname start with '33'
 
 Scenario: Filename based on claimant's work address is unknown
-   Given a claimant work address is the same as respondent's work  'WD187SQ'
-   When the completed form is submitted
-   Then it will be forwarded to the Default Office address 'Alexandra House, 14-22 The Parsonage, Manchester M3 2JA'
+   Given a claimant submitted an ET1 form with work address 'WD187SQ'
+   Then it will be forwarded to the Office address 'Alexandra House, 14-22 The Parsonage, Manchester M3 2JA'
    And I can download the form and validate that the filname start with '99'

@@ -45,10 +45,23 @@ Given(/^an employee making a claim against 3 employers$/) do
   @claim = FactoryBot.create(:claim)
 end
 
-Given(/^an claimant work address is BS11DZ$/) do
-  @claimants = FactoryBot.create_list(:first_person, 1, :person_data)
+Given("a claimant submitted an ET1 form with work address {string}") do |string|
+  @claimants = FactoryBot.create_list(:first_person, 1, :person_data, post_code: string)
   @representatives = FactoryBot.create_list(:representative, 1, :et3_information)
   @respondents = FactoryBot.create_list(:organisation_data, 1, :employer)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
+
+  start_a_new_et1_claim
+  et1_answer_login
+  et1_answer_claimant_questions
+  et1_answer_group_claimants_questions
+  et1_answer_representatives_questions
+  et1_answer_respondents_questions
+  et1_answer_employment_details_questions
+  et1_answer_claim_type_questions
+  et1_answer_claim_details_questions
+  et1_answer_claim_outcome_questions
+  et1_answer_more_about_the_claim_questions
+  et1_submit_claim
 end

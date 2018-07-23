@@ -13,7 +13,7 @@ FactoryBot.define do
     post_code 'SW1H 9PP'
     telephone_number '01111 123456'
     alternative_telephone_number '02222 654321'
-    email_address  'solicitor.test@digital.justice.gov.uk'
+    email_address  'sivvoy.taing@hmcts.net'
     dx_number  'dx1234567890'
     have_representative 'Yes'
     representative_mobile '07987654321'
