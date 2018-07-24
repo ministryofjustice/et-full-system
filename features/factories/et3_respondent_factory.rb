@@ -23,7 +23,7 @@ FactoryBot.define do
     organisation_employ_gb '100'
     make_employer_contract_claim 'Yes'
     claim_information 'lorem ipsum info'
-    email_receipt 'email@recei.pt'
+    email_receipt 'sivvoy.taing@hmcts.net'
   end
 
   trait :upload_additional_information do
