@@ -1,9 +1,3 @@
-Given(/^a list of zip files available for download$/) do
-  binding.pry
-delete_api = EtFullSystem::Test::DeleteZipFilesApi.new
-binding.pry
-end
-
-Then(/^I should be able to delete them all$/) do
-  
+Given(/^I have a list of zip files then I can delete them all$/) do
+  atos_interface.delete_zip_files
 end

@@ -5,5 +5,4 @@ Feature:
   So that I can have confident in my automated test when the files gets to large to download
 
   Scenario: Delete all zip files
-   Given a list of zip files available for download
-   Then I should be able to delete them all
+   When I have a list of zip files then I can delete them all
