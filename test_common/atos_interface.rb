@@ -67,7 +67,7 @@ module EtFullSystem
         when :et1_claim_txt_for
           filename.end_with?("ET1_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.txt")
         when :et1_filename_start_with
-          filename.start_with?("14")
+          filename.start_with?(args[:local_office])
         when :et1_claim_csv_for
           filename.end_with?("ET1a_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.csv")
         when :et1_claim_rtf_for

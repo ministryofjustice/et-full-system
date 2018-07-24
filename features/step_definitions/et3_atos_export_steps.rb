@@ -36,8 +36,12 @@ Then("I can download the ET3 form and validate that the filename starts with {st
   expect { atos_interface }.to eventually have_zip_file_containing(:et3_filename_start_with, user: @respondent[0], reference: @my_et3_reference, local_postcode: string), timeout: 30, sleep: 2
 end
 
-Then("it will be forwarded to the Default Office address {string}") do |string|
-  form_submission_page.local_office_address.text == string
+Then("it will be forwarded to the Office address {string}") do |string|
+  if URI.parse(current_url).path == et1_claim_submitted.url
+    et1_claim_submitted.main_content.local_office_address.text == "Submitted 23 July 2018 to tribunal office Bristol, #{string}"
+  else
+    form_submission_page.local_office_address.text == string
+  end
 end
 
 Then("phone number {string}") do |string|
