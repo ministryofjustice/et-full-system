@@ -19,7 +19,7 @@ CMD ["/sbin/my_init"]
 #RUN /pd_build/ruby-2.0.*.sh
 #RUN /pd_build/ruby-2.1.*.sh
 #RUN /pd_build/ruby-2.2.*.sh
-RUN /pd_build/ruby-2.3.*.sh
+#RUN /pd_build/ruby-2.3.*.sh
 #RUN /pd_build/ruby-2.4.*.sh
 RUN /pd_build/ruby-2.5.*.sh
 #RUN /pd_build/jruby-9.1.*.sh
