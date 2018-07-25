@@ -10,7 +10,7 @@ local:
   diversity_url: http://et1.et.127.0.0.1.nip.io:3100/apply/diversity
   et1_admin_url: http://et1.et.127.0.0.1.nip.io:3100/apply/admin
   et3_url: http://et3.et.127.0.0.1.nip.io:3100/
-  atos_api_url: http://api.et.127.0.0.1.nip.io:3100/atos_api
+  atos_api_url: http://atos.et.127.0.0.1.nip.io:3100
   admin_url: http://admin.et.127.0.0.1.nip.io:3100/admin
   sidekiq_url: http://et1.et.127.0.0.1.nip.io:3100/apply/sidekiq
   mailhog_url: http://localhost:32792//api/v2/messages

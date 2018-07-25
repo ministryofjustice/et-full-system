@@ -19,4 +19,4 @@ export AWS_REGION=us-east-1
 export AWS_ENDPOINT=http://s3.${SERVER_DOMAIN}:${SERVER_PORT}
 export AWS_S3_FORCE_PATH_STYLE=true
 
-exec /sbin/setuser app bundle exec sidekiq >>/home/app/full_system/systems/et1/log/nginx_sidekiq.log 2>&1
+exec /sbin/setuser app bash --login -c "rvm use ruby-2.3.3 && bundle exec sidekiq >>/home/app/full_system/systems/et1/log/nginx_sidekiq.log 2>&1"
