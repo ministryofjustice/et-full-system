@@ -18,6 +18,10 @@ module EtFullSystem
     class AtosInterface
       include Singleton
 
+      def delete_zip_files
+        api.list_zip_filenames.each { |filename| api.delete_zip_file(filename) }
+      end
+
       def has_zip_file_containing?(identifier, **args)
         find_file_in_any_zip(identifier, **args)
       end
@@ -185,6 +189,14 @@ module EtFullSystem
         HTTParty.get("#{base_url}/v1/filetransfer/download/#{zip_filename}", basic_auth: { username: username, password: password }) do |chunk|
           to.write(chunk)
         end
+      end
+
+      def delete_zip_file(filename)
+        response = HTTParty.post("#{base_url}/v1/filetransfer/delete", 
+          basic_auth: { username: username, password: password }, 
+          body: {
+            filename: filename
+        })
       end
 
       private
