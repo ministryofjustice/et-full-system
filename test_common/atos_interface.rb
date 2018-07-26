@@ -180,13 +180,13 @@ module EtFullSystem
       end
 
       def list_zip_filenames
-        response = HTTParty.get("#{base_url}/v1/filetransfer/list", basic_auth: { username: username, password: password })
+        response = HTTParty.get("#{base_url}/list", basic_auth: { username: username, password: password })
         response.body.lines.map(&:strip)
       end
 
       def download(zip_filename, to:)
         puts "ATOS API - Downloading #{zip_filename}"
-        HTTParty.get("#{base_url}/v1/filetransfer/download/#{zip_filename}", basic_auth: { username: username, password: password }) do |chunk|
+        HTTParty.get("#{base_url}/download/#{zip_filename}", basic_auth: { username: username, password: password }) do |chunk|
           to.write(chunk)
         end
       end

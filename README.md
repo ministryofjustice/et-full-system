@@ -575,7 +575,7 @@ for example :-
 
 ```
 
-ATOS_API_URL=http://et_api:8080/atos_api
+ATOS_API_URL=http://atos_api:8080
 
 ```
 
