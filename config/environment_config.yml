@@ -13,7 +13,7 @@ local:
   atos_api_url: http://api.et.127.0.0.1.nip.io:3100/atos_api
   admin_url: http://admin.et.127.0.0.1.nip.io:3100/admin
   sidekiq_url: http://et1.et.127.0.0.1.nip.io:3100/apply/sidekiq
-  mailhog_url: http://localhost:32792//api/v2/messages
+  mailhog_url: http://localhost:32772/api/v1/messages
 dev:
   <<: *defaults
   et1_url: https://dev1.et.dsd.io/

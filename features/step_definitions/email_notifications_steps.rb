@@ -8,6 +8,7 @@ end
 Then(/^an email is sent to notify user that a claim has been started$/) do
   puts "Email Address: #{@claimants[0].email_address}"
   mail = EtFullSystem::Test::MailApi.new
+  binding.pry
   expect { mail.claim_started_email(@claimants[0].email_address)['To'] }.to eventually include(@claimants[0].dig(:email_address))
 end
 
@@ -55,4 +56,10 @@ When(/^a respondent completed an ET3 form$/) do
   et3_confirmation_of_supplied_details
 
   @my_et3_reference = form_submission_page.reference_number.text
+end
+
+Then(/^an email is sent to notify user that a respondent has been successfully submitted$/) do
+  puts "Email Address: #{@respondent[0].email_receipt}"
+  mail = EtFullSystem::Test::MailApi.new
+  expect { mail.respondent_submitted_email(@respondent[0].email_receipt)['To'] }.to eventually include(@respondent[0].dig(:email_receipt))
 end
