@@ -38,3 +38,21 @@ Then(/^an email is sent to notify user that a claim has been successfully submit
   mail = EtFullSystem::Test::MailApi.new
   expect { mail.claim_submitted_email(@claimants[0].email_address)['To'] }.to eventually include(@claimants[0].dig(:email_address))
 end
+
+When(/^a respondent completed an ET3 form$/) do
+  @claimant = FactoryBot.create_list(:et3_claimant, 1, :disagree_with_employment_dates)
+  @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers)
+  @representative = FactoryBot.create_list(:representative, 1, :et3_information)
+
+  start_a_new_et3_response
+  et3_answer_respondents_details
+  et3_answer_claimants_details
+  et3_answer_earnings_and_benefits
+  et3_answer_defend_claim_question
+  et3_answer_representative
+  et3_employers_contract_claim
+  additional_information
+  et3_confirmation_of_supplied_details
+
+  @my_et3_reference = form_submission_page.reference_number.text
+end

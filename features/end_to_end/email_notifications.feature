@@ -14,4 +14,4 @@ Feature:
 
   Scenario: ET3 - Completed respondent's form
     When a respondent completed an ET3 form
-    Then an email is sent to notify user that a respondent has been successfully submitted
+    Then an email is sent to notify user that a respondent has been successfully submitted@
