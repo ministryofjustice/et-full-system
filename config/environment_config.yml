@@ -20,7 +20,7 @@ dev:
   diversity_url: https://dev1.et.dsd.io/apply/diversity
   et1_admin_url: https://dev1.et.dsd.io/apply/admin
   et3_url: https://et3-dev.et.dsd.io/
-  atos_api_url: https://atos-api-dev.et.dsd.io/
+  atos_api_url: https://atos-api-dev.et.dsd.io
   admin_url: https://admin-dev.et.dsd.io/admin
   sidekiq_url: https://dev1.et.dsd.io/apply/sidekiq
   mailhog_url: http://localhost:32791//api/v2/messages
@@ -32,7 +32,7 @@ staging:
   diversity_url: https://staging1.et.dsd.io/apply/diversity
   et1_admin_url: https://staging1.et.dsd.io/apply/admin
   et3_url: https://et3-staging.et.dsd.io/
-  atos_api_url: https://atos-api-staging.et.dsd.io/
+  atos_api_url: https://atos-api-staging.et.dsd.io
   admin_url: https://admin-staging.et.dsd.io/admin
   sidekiq_url: https://staging1.et.dsd.io/apply/sidekiq
   mailhog_url: http://localhost:32791//api/v2/messages
