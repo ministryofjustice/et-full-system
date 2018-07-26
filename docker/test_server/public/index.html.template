@@ -6,5 +6,5 @@
     <p>API Sytem api.${SERVER_DOMAIN}:${SERVER_PORT}</p>
     <p><a href="http://admin.${SERVER_DOMAIN}:${SERVER_PORT}/admin">Admin System admin.${SERVER_DOMAIN}:${SERVER_PORT}</a></p>
     <p><a href="http://s3.${SERVER_DOMAIN}:${SERVER_PORT}">Private S3 server s3.${SERVER_DOMAIN}:${SERVER_PORT}</a></p>
-    <p><a href="http://et1.${SERVER_DOMAIN}:${SERVER_PORT}/apply/diversities">Diversity monitoring questionaire et1.${SERVER_DOMAIN}:${SERVER_PORT}</a></p>
+    <p><a href="http://et1.${SERVER_DOMAIN}:${SERVER_PORT}/apply/diversity">Diversity monitoring questionaire et1.${SERVER_DOMAIN}:${SERVER_PORT}</a></p>
 </body>

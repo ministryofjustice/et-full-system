@@ -18,6 +18,10 @@ module EtFullSystem
     class AtosInterface
       include Singleton
 
+      def delete_zip_files
+        api.list_zip_filenames.each { |filename| api.delete_zip_file(filename) }
+      end
+
       def has_zip_file_containing?(identifier, **args)
         find_file_in_any_zip(identifier, **args)
       end
@@ -51,7 +55,9 @@ module EtFullSystem
       private
 
       def initialize
-        self.api = AtosInterfaceApi.new(base_url: Configuration.atos_api_url)
+        self.api = AtosInterfaceApi.new base_url: Configuration.atos_api_url,
+                                        username: Configuration.atos_username,
+                                        password: Configuration.atos_password
         super
       end
 
@@ -65,7 +71,7 @@ module EtFullSystem
         when :et1_claim_txt_for
           filename.end_with?("ET1_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.txt")
         when :et1_filename_start_with
-          filename.start_with?("14")
+          filename.start_with?(args[:local_office])
         when :et1_claim_csv_for
           filename.end_with?("ET1a_#{user.dig(:first_name).tr(' ', '_')}_#{user.dig(:last_name)}.csv")
         when :et1_claim_rtf_for
@@ -102,6 +108,7 @@ module EtFullSystem
 
     class AtosInterfaceZipFilenameRepo
       include Enumerable
+
       def initialize(cache:, api:)
         self.filename_cache = cache
         self.api = api
@@ -149,7 +156,7 @@ module EtFullSystem
       end
 
       def zip_filename_for(filename)
-        (key, _value) = filename_cache.find {|(_key, value)| value.include?(filename)}
+        (key, _value) = filename_cache.find { |(_key, value)| value.include?(filename) }
         return key
       end
 
@@ -166,25 +173,35 @@ module EtFullSystem
     end
 
     class AtosInterfaceApi
-      def initialize(base_url:)
+      def initialize(base_url:, username:, password:)
         self.base_url = base_url
+        self.username = username
+        self.password = password
       end
 
       def list_zip_filenames
-        response = HTTParty.get("#{base_url}/v1/filetransfer/list")
+        response = HTTParty.get("#{base_url}/list", basic_auth: { username: username, password: password })
         response.body.lines.map(&:strip)
       end
 
       def download(zip_filename, to:)
         puts "ATOS API - Downloading #{zip_filename}"
-        HTTParty.get("#{base_url}/v1/filetransfer/download/#{zip_filename}") do |chunk|
+        HTTParty.get("#{base_url}/download/#{zip_filename}", basic_auth: { username: username, password: password }) do |chunk|
           to.write(chunk)
         end
       end
 
+      def delete_zip_file(filename)
+        response = HTTParty.post("#{base_url}/v1/filetransfer/delete", 
+          basic_auth: { username: username, password: password }, 
+          body: {
+            filename: filename
+        })
+      end
+
       private
 
-      attr_accessor :base_url
+      attr_accessor :base_url, :username, :password
     end
   end
 end

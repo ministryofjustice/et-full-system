@@ -25,6 +25,9 @@ services:
     environment:
       DB_HOST: 'db'
       DB_USERNAME: 'postgres'
+      SMTP_HOSTNAME: 'smtp'
+      SMTP_PORT: '1025'
+
       SECRET_KEY_BASE: sdlkjewfkjhfviuhduihenrjk435r89esfd7cv983qh2n4r3q27yh4u5rtfg
       REDIS_HOST: redis
       AWS_ACCESS_KEY_ID: accessKey1
@@ -40,6 +43,11 @@ services:
       MY_ET1:
       MY_API:
       MY_ADMIN:
+      MY_FAKE_ACAS:
+      MY_ATOS:
+      ATOS_API_USERNAME: atos
+      ATOS_API_PASSWORD: password
+
     command: /bin/bash -c "/home/app/full_system/docker/test_server/docker_run"
     networks:
       et_full_system:
@@ -49,6 +57,7 @@ services:
           - et1.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
           - et3.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
           - s3.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
+          - atos.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
 
 #command: bash -lc "cd /home/app/full_system/systems/api && REDIS_DATABASE=2 bundle exec sidekiq"
   db:

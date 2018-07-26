@@ -1,4 +1,4 @@
-FROM phusion/passenger-customizable:0.9.30
+FROM phusion/passenger-customizable:0.9.34
 # Set correct environment variables.
 ENV HOME /root
 ARG APP_UID
@@ -19,9 +19,9 @@ CMD ["/sbin/my_init"]
 #RUN /pd_build/ruby-2.0.*.sh
 #RUN /pd_build/ruby-2.1.*.sh
 #RUN /pd_build/ruby-2.2.*.sh
-RUN /pd_build/ruby-2.3.*.sh
+#RUN /pd_build/ruby-2.3.*.sh
 #RUN /pd_build/ruby-2.4.*.sh
-#RUN /pd_build/ruby-2.5.*.sh
+RUN /pd_build/ruby-2.5.*.sh
 #RUN /pd_build/jruby-9.1.*.sh
 #   Python support.
 #RUN /pd_build/python.sh
@@ -30,7 +30,8 @@ RUN /pd_build/ruby-2.3.*.sh
 #RUN /pd_build/nodejs.sh
 
 # ...put your own build instructions here...
-RUN apt-get update && apt-get -y install pdftk tzdata postgresql gettext-base wget sudo
+RUN apt-get update && apt-get -y install pdftk tzdata postgresql gettext-base wget sudo libmcrypt-dev mcrypt
+
 RUN /pd_build/nodejs.sh
 
 # Enable nginx and passenger
@@ -66,6 +67,8 @@ WORKDIR /home/app/full_system/systems
 RUN echo "app ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && chmod 0440 /etc/sudoers.d/user
 RUN usermod -u $APP_UID app
 USER app
-RUN cd /home/app; git clone https://github.com/ministryofjustice/et_fake_acas_server.git; cd et_fake_acas_server; git checkout develop; git pull; bundle install
+RUN bash --login -c "rvm install ruby-2.3.3 && rvm --default use 2.5.1"
+
+RUN bash --login -c "cd /home/app; git clone https://github.com/ministryofjustice/et_fake_acas_server.git; cd et_fake_acas_server; git checkout develop; git pull; rvm use ruby-2.3.3 && bundle install"
 RUN cd /home/app
 ENV HOME /home/app

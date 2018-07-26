@@ -20,7 +20,7 @@ module EtFullSystem
           cookies: cookies_hash,
           body: {
             admin_user: {
-              email: ::EtFullSystem::Test::Configuration.admin_username,
+              username: ::EtFullSystem::Test::Configuration.admin_username,
               password: ::EtFullSystem::Test::Configuration.admin_password,
               remember_me: '0'
             },
@@ -38,6 +38,12 @@ module EtFullSystem
         login
         claimants = request(:get, "#{url}/claimants.json", cookies: cookies_hash)
         JSON.parse(claimants.body).map(&:with_indifferent_access)
+      end
+
+      def acas_certificate_logs_api
+        login
+        acas_logs = request(:get, "#{url}/download_logs.json", cookies: cookies_hash)
+        JSON.parse(acas_logs.body).map(&:with_indifferent_access)
       end
 
       private

@@ -14,6 +14,8 @@ server {
        passenger_env_var REDIS_HOST redis;
        passenger_env_var REDIS_DATABASE 2;
        passenger_env_var BUNDLE_EXCLUDE '';
+       passenger_env_var SMTP_HOSTNAME smtp;
+       passenger_env_var SMTP_PORT 1025;
        passenger_env_var AWS_ACCESS_KEY_ID accessKey1;
        passenger_env_var AWS_SECRET_ACCESS_KEY verySecretKey1;
        passenger_env_var AWS_REGION 'us-east-1';
@@ -22,7 +24,9 @@ server {
        passenger_env_var AWS_ENDPOINT 'http://s3.${SERVER_DOMAIN}:${SERVER_PORT}';
        passenger_env_var AWS_S3_FORCE_PATH_STYLE 'true';
        passenger_env_var RAILS_ENV 'production';
-       passenger_env_var ACAS_WSDL_URL '/home/app/acas_wsdl.txt';
+       passenger_env_var ACAS_SERVICE_URL 'http://acas.${SERVER_DOMAIN}:${SERVER_PORT}/Lookup/ECService.svc';
+       passenger_env_var ATOS_API_USERNAME 'atos';
+       passenger_env_var ATOS_API_PASSWORD 'password';
 
        passenger_app_env production;
 
