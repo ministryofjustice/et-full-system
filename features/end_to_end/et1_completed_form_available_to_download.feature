@@ -10,6 +10,7 @@ Feature:
     When the completed form is submitted
     Then I can download the form and validate in PDF format
 
+  @manual
   Scenario: TXT format
     Given an employee making a claim
     When the completed form is submitted
