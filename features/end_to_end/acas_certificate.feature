@@ -1,4 +1,3 @@
-@e2e
 @javascript
 Feature:
   As an ACAS administrator

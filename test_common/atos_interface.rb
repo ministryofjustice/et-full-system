@@ -192,7 +192,7 @@ module EtFullSystem
       end
 
       def delete_zip_file(filename)
-        response = HTTParty.post("#{base_url}/v1/filetransfer/delete", 
+        response = HTTParty.post("#{base_url}/delete", 
           basic_auth: { username: username, password: password }, 
           body: {
             filename: filename
