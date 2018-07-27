@@ -19,8 +19,8 @@ before_script:
 - docker ps
 - docker network ls
 - ./bin/dev/test_framework up -d
-- ./bin/dev/test_exec bash -c "/app/bin/wait-for-it.sh et3.et.127.0.0.1.nip.io:3100 -t 300"
-- ./bin/dev/test_exec bash -c "/app/bin/wait-for-it.sh selenium:4444 -t 300"
+- ./bin/dev/test_exec bash -c "/app/bin/wait-for-it.sh et3.et.127.0.0.1.nip.io:3100 -t 600"
+- ./bin/dev/test_exec bash -c "/app/bin/wait-for-it.sh selenium:4444 -t 600"
 - ./bin/dev/test_exec bundle
 script:
 - ./bin/dev/test_exec cucumber ENVIRONMENT=local
