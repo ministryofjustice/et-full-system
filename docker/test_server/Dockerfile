@@ -43,6 +43,9 @@ RUN rm -f /etc/service/redis/down
 # Install minio
 RUN bash -lc "cd /usr/local/bin && wget https://dl.minio.io/server/minio/release/linux-amd64/minio && chmod +x minio"
 
+# Install Mailhog
+RUN bash -lc "cd /usr/local/bin && wget https://github.com/mailhog/MailHog/releases/download/v1.0.0/MailHog_linux_amd64 -O mailhog && chmod +x mailhog"
+
 # Copy configs
 RUN rm /etc/nginx/sites-enabled/default
 ADD docker/test_server/env.conf /etc/nginx/main.d/webapp_env.conf
@@ -55,6 +58,10 @@ RUN mkdir /etc/service/sidekiq_et1
 RUN mkdir /etc/service/s3
 COPY docker/test_server/s3.sh /etc/service/s3/run
 RUN chmod +x /etc/service/s3/run
+
+RUN mkdir /etc/service/smtp
+COPY docker/test_server/smtp.sh /etc/service/smtp/run
+RUN chmod +x /etc/service/smtp/run
 
 # Create the minio_data directory for the minio server
 RUN mkdir -p /home/app/minio_data; chown app:app /home/app/minio_data; chmod 0777 /home/app/minio_data

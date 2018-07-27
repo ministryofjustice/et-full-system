@@ -48,6 +48,7 @@ fi
 
 
 sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN envsubst '\$SERVER_PORT \$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/s3_server.conf.template > /etc/nginx/sites-enabled/s3_server.conf"
+sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN envsubst '\$SERVER_PORT \$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/smtp_server.conf.template > /etc/nginx/sites-enabled/smtp_server.conf"
 sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN envsubst '\$SERVER_PORT \$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/sidekiq_init_templates/sidekiq_api.sh.template > /etc/service/sidekiq_api/run"
 sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN envsubst '\$SERVER_PORT \$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/sidekiq_init_templates/sidekiq_et1.sh.template > /etc/service/sidekiq_et1/run"
 sudo chmod +x /etc/service/sidekiq_api/run

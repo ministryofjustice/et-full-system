@@ -17,7 +17,7 @@ server {
        passenger_env_var REDIS_HOST redis;
        passenger_env_var REDIS_DATABASE 2;
        passenger_env_var BUNDLE_EXCLUDE '';
-       passenger_env_var SMTP_HOSTNAME smtp;
+       passenger_env_var SMTP_HOSTNAME 'mail.${SERVER_DOMAIN}';
        passenger_env_var SMTP_PORT 1025;
        passenger_env_var RAILS_SERVE_STATIC_FILES 'true';
        passenger_env_var SEED_EXAMPLE_USERS 'true';

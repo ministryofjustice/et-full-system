@@ -10,6 +10,7 @@ services:
 
     ports:
       - '${SERVER_PORT:-3100}:${SERVER_PORT:-3100}'
+      - '${SMTP_PORT:-1025}:${SMTP_PORT:-1025}'
     volumes:
       - rvm:/usr/local/rvm
       - global_node_modules:/usr/lib/node_modules
@@ -25,7 +26,7 @@ services:
     environment:
       DB_HOST: 'db'
       DB_USERNAME: 'postgres'
-      SMTP_HOSTNAME: 'smtp'
+      SMTP_HOSTNAME: 'mail.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}'
       SMTP_PORT: '1025'
 
       SECRET_KEY_BASE: sdlkjewfkjhfviuhduihenrjk435r89esfd7cv983qh2n4r3q27yh4u5rtfg
@@ -58,6 +59,7 @@ services:
           - et3.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
           - s3.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
           - atos.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
+          - mail.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
 
 #command: bash -lc "cd /home/app/full_system/systems/api && REDIS_DATABASE=2 bundle exec sidekiq"
   db:
@@ -70,14 +72,6 @@ services:
     image: redis
     ports:
       - "${REDIS_PORT:-0}:6379"
-    networks:
-      - et_full_system
-  smtp:
-    image: mailhog/mailhog:latest
-    ports:
-      - "${MAILHOG_PORT:-0}:8025"
-    logging:
-        driver: 'none'  # disable saving logs
     networks:
       - et_full_system
 
