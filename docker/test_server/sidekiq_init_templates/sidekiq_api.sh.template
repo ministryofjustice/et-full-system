@@ -11,10 +11,10 @@ export S3_DIRECT_UPLOAD_BUCKET=etapidirectbucket
 export AWS_REGION=us-east-1
 export AWS_ENDPOINT=http://s3.${SERVER_DOMAIN}:${SERVER_PORT}
 export AWS_S3_FORCE_PATH_STYLE=true
-export SMTP_HOSTNAME=smtp
+export SMTP_HOSTNAME=mail.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
 export SMTP_PORT=1025
 export RAILS_ENV=production
 ATOS_API_USERNAME=atos
 ATOS_API_PASSWORD=password
 
-exec /sbin/setuser app /home/app/full_system/systems/api/run_sidekiq.sh >>/home/app/full_system/systems/api/log/nginx_sidekiq.log 2>&1
+exec /sbin/setuser app bash --login -c "rvm use ruby-2.5.1 && /home/app/full_system/systems/api/run_sidekiq.sh >>/home/app/full_system/systems/api/log/nginx_sidekiq.log 2>&1"

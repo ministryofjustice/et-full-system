@@ -1,0 +1,4 @@
+# parallel: --format html --out report<%= ENV['TEST_ENV_NUMBER']%>.html --format ParallelTests::Cucumber::FailuresLogger --out cucumber_failures.log
+parallel: --format html --out report<%= ENV['TEST_ENV_NUMBER']%>.html
+smoke_test: -t @smoke_test -t ~@wip -t ~@manual
+manual_test: -t @manual -t ~@wip

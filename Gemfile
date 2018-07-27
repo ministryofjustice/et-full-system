@@ -26,6 +26,7 @@ group :test do
   gem 'pdf-forms', '~> 1.1', '>= 1.1.1'
   gem 'factory_bot'
   gem 'settingslogic'
+  gem 'parallel_tests'
 end
 
 group :development, :test do

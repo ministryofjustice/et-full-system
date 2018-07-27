@@ -46,16 +46,31 @@ else
     sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN MY_FAKE_ACAS=$MY_FAKE_ACAS envsubst '\$SERVER_PORT \$SERVER_DOMAIN \$MY_FAKE_ACAS' < /home/app/full_system/docker/test_server/nginx_config/fake_acas_local.conf.template > /etc/nginx/sites-enabled/fake_acas_server.conf"
 fi
 
+
 sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN envsubst '\$SERVER_PORT \$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/s3_server.conf.template > /etc/nginx/sites-enabled/s3_server.conf"
+sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN envsubst '\$SERVER_PORT \$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/smtp_server.conf.template > /etc/nginx/sites-enabled/smtp_server.conf"
 sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN envsubst '\$SERVER_PORT \$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/sidekiq_init_templates/sidekiq_api.sh.template > /etc/service/sidekiq_api/run"
 sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN envsubst '\$SERVER_PORT \$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/sidekiq_init_templates/sidekiq_et1.sh.template > /etc/service/sidekiq_et1/run"
 sudo chmod +x /etc/service/sidekiq_api/run
 sudo chmod +x /etc/service/sidekiq_et1/run
 cd /home/app/et_fake_acas_server && bundle install
-cd /home/app/full_system/systems/et1 && bundle install --without=development,test --with=production && npm install && RAILS_ENV=local bundle exec rake db:create db:migrate assets:precompile
-cd /home/app/full_system/systems/et3 && bundle install --without=development,test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate assets:precompile && bundle exec rake non_digest_assets
-cd /home/app/full_system/systems/api && bundle install --without=development,test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate db:seed
-cd /home/app/full_system/systems/admin && bundle install --without=development,test --with=production && RAILS_ENV=production SEED_EXAMPLE_USERS=true bundle exec rails db:seed assets:precompile
+bash --login -c "cd /home/app/full_system/systems/et1 && rvm use ruby-2.3.3 && bundle install --without=development,test --with=production && npm install && RAILS_ENV=local bundle exec rake db:create db:migrate assets:precompile"
+bash --login -c "cd /home/app/full_system/systems/et3 && rvm use ruby-2.3.3 && bundle install --without=development,test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate assets:precompile && bundle exec rake non_digest_assets"
+bash --login -c "cd /home/app/full_system/systems/api && rvm use ruby-2.5.1 && bundle install --without=development,test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate db:seed"
+bash --login -c "cd /home/app/full_system/systems/admin && rvm use ruby-2.5.1 && bundle install --without=development,test --with=production && RAILS_ENV=production SEED_EXAMPLE_USERS=true bundle exec rails db:seed assets:precompile"
+
+cd /home/app/full_system/systems/api
+ATOS_GEM_PATH=`bundle show et_atos_file_transfer`
+export ATOS_GEM_PATH
+bash --login -c "cd $ATOS_GEM_PATH && rvm use ruby-2.5.1 && bundle install"
+
+if [ -z "$MY_ATOS" ]; then
+    sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN ATOS_GEM_PATH=$ATOS_GEM_PATH envsubst '\$SERVER_PORT \$SERVER_DOMAIN \$ATOS_GEM_PATH' < /home/app/full_system/docker/test_server/nginx_config/atos_server.conf.template > /etc/nginx/sites-enabled/atos_server.conf"
+else
+    sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN MY_ATOS=$MY_ATOS envsubst '\$SERVER_PORT \$SERVER_DOMAIN \$MY_ATOS' < /home/app/full_system/docker/test_server/nginx_config/atos_local.conf.template > /etc/nginx/sites-enabled/atos_server.conf"
+fi
+
+
 /home/app/full_system/docker/test_server/setup_buckets > /home/app/setup_buckets.log &
 sudo -E DB_HOST=$DB_HOST DB_USERNAME=$DB_USERNAME /sbin/my_init
 

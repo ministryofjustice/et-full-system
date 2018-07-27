@@ -1,4 +1,4 @@
-FROM phusion/passenger-customizable:0.9.30
+FROM phusion/passenger-customizable:0.9.34
 # Set correct environment variables.
 ENV HOME /root
 ARG APP_UID
@@ -19,9 +19,9 @@ CMD ["/sbin/my_init"]
 #RUN /pd_build/ruby-2.0.*.sh
 #RUN /pd_build/ruby-2.1.*.sh
 #RUN /pd_build/ruby-2.2.*.sh
-RUN /pd_build/ruby-2.3.*.sh
+#RUN /pd_build/ruby-2.3.*.sh
 #RUN /pd_build/ruby-2.4.*.sh
-#RUN /pd_build/ruby-2.5.*.sh
+RUN /pd_build/ruby-2.5.*.sh
 #RUN /pd_build/jruby-9.1.*.sh
 #   Python support.
 #RUN /pd_build/python.sh
@@ -43,6 +43,9 @@ RUN rm -f /etc/service/redis/down
 # Install minio
 RUN bash -lc "cd /usr/local/bin && wget https://dl.minio.io/server/minio/release/linux-amd64/minio && chmod +x minio"
 
+# Install Mailhog
+RUN bash -lc "cd /usr/local/bin && wget https://github.com/mailhog/MailHog/releases/download/v1.0.0/MailHog_linux_amd64 -O mailhog && chmod +x mailhog"
+
 # Copy configs
 RUN rm /etc/nginx/sites-enabled/default
 ADD docker/test_server/env.conf /etc/nginx/main.d/webapp_env.conf
@@ -56,6 +59,10 @@ RUN mkdir /etc/service/s3
 COPY docker/test_server/s3.sh /etc/service/s3/run
 RUN chmod +x /etc/service/s3/run
 
+RUN mkdir /etc/service/smtp
+COPY docker/test_server/smtp.sh /etc/service/smtp/run
+RUN chmod +x /etc/service/smtp/run
+
 # Create the minio_data directory for the minio server
 RUN mkdir -p /home/app/minio_data; chown app:app /home/app/minio_data; chmod 0777 /home/app/minio_data
 
@@ -67,6 +74,8 @@ WORKDIR /home/app/full_system/systems
 RUN echo "app ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && chmod 0440 /etc/sudoers.d/user
 RUN usermod -u $APP_UID app
 USER app
-RUN cd /home/app; git clone https://github.com/ministryofjustice/et_fake_acas_server.git; cd et_fake_acas_server; git checkout develop; git pull; bundle install
+RUN bash --login -c "rvm install ruby-2.3.3 && rvm --default use 2.5.1"
+
+RUN bash --login -c "cd /home/app; git clone https://github.com/ministryofjustice/et_fake_acas_server.git; cd et_fake_acas_server; git checkout develop; git pull; rvm use ruby-2.3.3 && bundle install"
 RUN cd /home/app
 ENV HOME /home/app
