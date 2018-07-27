@@ -1,4 +1,3 @@
-@e2e
 @javascript
 Feature: Diversity monitoring questionnaire
   As a Claimant
