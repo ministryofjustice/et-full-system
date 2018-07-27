@@ -37,7 +37,7 @@ When(/^I enter a not found ACAS certificate number$/) do
 end
 
 When(/^I enter a 'server error' ACAS certificate number$/) do
-  @certificate = build_list(:acas_mock_certificate, :mock_server_error)
+  @certificate = build(:acas_mock_certificate, :mock_server_error)
   admin_pages.any_page.menu.choose_acas_certificates
   admin_pages.acas_search_page.search(@certificate.number)
 end
