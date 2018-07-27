@@ -1,4 +1,4 @@
-@e2e
+@local
 @javascript
 Feature:
   As an Employment tribunal
