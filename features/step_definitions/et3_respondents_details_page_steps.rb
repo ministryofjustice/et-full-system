@@ -23,12 +23,11 @@ end
 
 Then(/^I should see the error message saying the respondents details cant be blank$/) do
   expect(respondents_details_page).to have_error_header
-  # functionality is wrong for case number
-  # expect(respondents_details_page.case_number_question).to have_error_blank
+  expect(respondents_details_page.case_number_question).to have_error_invalid
   expect(respondents_details_page.name_question).to have_error_blank
   expect(respondents_details_page.building_name_question).to have_error_blank
   expect(respondents_details_page.street_question).to have_error_blank
   expect(respondents_details_page.town_question).to have_error_blank
-  # functionality is wrong for postcode
-  # expect(respondents_details_page.postcode_question).to have_error_blank
+  expect(respondents_details_page.postcode_question).to have_error_blank
+  expect(respondents_details_page.organisation_more_than_one_site_question).to have_inclusion
 end

@@ -1,6 +1,6 @@
 Given(/^I am on the ET3 additional information page$/) do
+  @claimant = FactoryBot.create_list(:et3_claimant, 1, :disagree_with_employment_dates)
   @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers, :upload_additional_information)
-  @claimant = FactoryBot.create_list(:et3_claimant, 1, :agree_with_employment_dates)
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
   start_a_new_et3_response
   et3_answer_respondents_details
@@ -21,7 +21,7 @@ When(/^I click on next without providing the additional information$/) do
 end
 
 Then(/^I should see my file has been added$/) do
-#   TODO
+  expect(confirmation_of_supplied_details_page.confirmation_of_additional_information_answers.upload_additional_information_row).to have_upload_additional_information_answer
 end
 
 Then(/^I should be taken to the confirmation of supplied details page$/) do

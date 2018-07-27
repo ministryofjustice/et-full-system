@@ -13,7 +13,6 @@ Scenario: Successfully submits required claimants details only
   When I successfully submit required claimants details only
   Then I should be taken to the earnings and benefits page
 
-# functionality is incorrect
 Scenario: Displays required information error message
   When I click on next without providing the required claimants details
   Then I should see the error message saying the claimants details cant be blank

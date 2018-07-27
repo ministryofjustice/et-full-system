@@ -22,6 +22,5 @@ end
 
 Then(/^I should see the error message saying the response to claim cant be blank$/) do
   expect(response_page).to have_error_header
-  # functionality is wrong for this error message
   expect(response_page.defend_claim_question).to have_error_inclusion
 end

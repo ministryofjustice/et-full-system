@@ -23,13 +23,8 @@ When(/^I click on next without providing the required claimants details$/) do
 end
 
 Then(/^I should see the error message saying the claimants details cant be blank$/) do
-  # TODO: behaviour is incorrect
   expect(claimants_details_page).to have_error_header
-#   expect(claimants_details_page.agree_with_employment_dates_question).to have_error_inclusion
-#   expect(claimants_details_page.agree_with_employment_dates_question.employment_start).to have_no_error_blank
-#   expect(claimants_details_page.agree_with_employment_dates_question.employment_end).to have_no_error_blank
-#   expect(claimants_details_page.agree_with_employment_dates_question.disagree_employment).to have_no_error_blank
-
+  expect(claimants_details_page.agree_with_employment_dates_question).to have_error_inclusion
 end
 
 But(/^I do not provide the correct employment dates or give a reason$/) do
