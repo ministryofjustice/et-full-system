@@ -56,7 +56,6 @@ bash --login -c "cd /home/app/full_system/systems/admin && rvm use ruby-2.5.1 &&
 
 cd /home/app/full_system/systems/api
 ATOS_GEM_PATH=`bundle show et_atos_file_transfer`
-
 export ATOS_GEM_PATH
 bash --login -c "cd $ATOS_GEM_PATH && rvm use ruby-2.5.1 && bundle install --jobs=4"
 
