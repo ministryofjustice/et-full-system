@@ -27,6 +27,7 @@ group :test do
   gem 'factory_bot'
   gem 'settingslogic'
   gem 'parallel_tests'
+  gem 'et_fake_acas_server', git: 'https://github.com/ministryofjustice/et_fake_acas_server.git', ref: 'eeaf6c89ce645e02d0f0a857aada546e1687d7ce'
 end
 
 group :development, :test do
