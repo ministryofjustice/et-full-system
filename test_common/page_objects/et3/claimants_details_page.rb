@@ -33,6 +33,7 @@ module EtFullSystem
           end
         end
         section :agree_with_employment_dates_question, :single_choice_option, 'questions.agree_with_employment_dates.label', exact: false do
+          element :error_inclusion, :exact_error_text, 'errors.custom.agree_with_employment_dates.inclusion', exact: false
           section :yes, :gds_multiple_choice_option, 'questions.agree_with_employment_dates.yes.label', exact: false do
             element :selector, :css, 'input[type="radio"]'
             delegate :set, to: :selector

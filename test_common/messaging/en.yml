@@ -262,6 +262,8 @@ en:
     custom:
       organisation_employ_gb:
         not_a_number: Please enter how many people the organisation employs in Great Britain as a number
+      agree_with_employment_dates:
+        inclusion: Please indicate whether you agree with the dates of employment provided by the claimant
       organisation_more_than_one_site:
         not_a_number: Please enter how many people are employed at the place where the claimant worked as a number
         inclusion: Please indicate whether the organisation has more than one site in Great Britain

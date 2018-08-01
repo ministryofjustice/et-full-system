@@ -101,8 +101,10 @@ module EtFullSystem
           delegate :set, to: :field
         end
         section :organisation_more_than_one_site_question, :single_choice_option, 'questions.organisation_more_than_one_site.label', exact: false do |q|
+          element :inclusion, :exact_error_text, 'errors.custom.organisation_more_than_one_site.inclusion', exact: false
           section :yes, :gds_multiple_choice_option, 'questions.organisation_more_than_one_site.yes.label', exact: false do
             element :selector, :css, 'input'
+            
             delegate :set, to: :selector
           end
           section :no, :gds_multiple_choice_option, 'questions.organisation_more_than_one_site.no.label', exact: false do
