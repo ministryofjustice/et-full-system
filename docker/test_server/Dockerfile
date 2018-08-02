@@ -76,6 +76,5 @@ RUN usermod -u $APP_UID app
 USER app
 RUN bash --login -c "rvm install ruby-2.3.3 && rvm --default use 2.5.1"
 
-RUN bash --login -c "cd /home/app; git clone https://github.com/ministryofjustice/et_fake_acas_server.git; cd et_fake_acas_server; git checkout develop; git pull; rvm use ruby-2.3.3 && bundle install"
 RUN cd /home/app
 ENV HOME /home/app

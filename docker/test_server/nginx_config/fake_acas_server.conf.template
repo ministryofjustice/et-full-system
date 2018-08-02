@@ -1,7 +1,7 @@
 server {
        listen *:${SERVER_PORT};
        server_name acas.${SERVER_DOMAIN} acas.et;
-       root /home/app/et_fake_acas_server/public;
+       root ${FAKE_ACAS_GEM_PATH}/public;
        access_log /var/log/fake_acas_server_access.log combined;
        error_log /var/log/fake_acas_server_error.log;
        client_max_body_size 100M;

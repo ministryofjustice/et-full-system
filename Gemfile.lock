@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/ministryofjustice/et_fake_acas_server.git
+  revision: eeaf6c89ce645e02d0f0a857aada546e1687d7ce
+  ref: eeaf6c89ce645e02d0f0a857aada546e1687d7ce
+  specs:
+    et_fake_acas_server (0.1.0)
+      activesupport (~> 5.2)
+      nokogiri (~> 1.8, >= 1.8.2)
+      ruby-mcrypt (~> 0.2)
+      sinatra (~> 2.0, >= 2.0.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -87,6 +98,7 @@ GEM
     multi_json (1.13.1)
     multi_test (0.1.2)
     multi_xml (0.6.0)
+    mustermann (1.0.2)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     parallel (1.12.1)
@@ -100,6 +112,8 @@ GEM
       method_source (~> 0.9.0)
     public_suffix (3.0.2)
     rack (2.0.4)
+    rack-protection (2.0.3)
+      rack
     rack-test (0.8.3)
       rack (>= 1.0, < 3)
     rake (12.3.0)
@@ -118,16 +132,23 @@ GEM
     rspec-support (3.7.1)
     ruby-debug-ide (0.6.1)
       rake (>= 0.8.1)
+    ruby-mcrypt (0.2.0)
     rubyzip (1.2.1)
     safe_shell (1.1.0)
     selenium-webdriver (3.10.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
     settingslogic (2.0.9)
+    sinatra (2.0.3)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.3)
+      tilt (~> 2.0)
     site_prism (2.10)
       addressable (~> 2.4)
       capybara (~> 2.3)
     thread_safe (0.3.6)
+    tilt (2.0.8)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     xpath (3.0.0)
@@ -145,6 +166,7 @@ DEPENDENCIES
   cucumber (~> 3.1)
   debase (~> 0.2)
   dotenv (~> 2.2, >= 2.2.2)
+  et_fake_acas_server!
   factory_bot
   faker (~> 1.8, >= 1.8.7)
   geckodriver-helper (~> 0.0)
@@ -162,4 +184,4 @@ DEPENDENCIES
   site_prism (~> 2.9)
 
 BUNDLED WITH
-   1.16.2
+   1.16.3
