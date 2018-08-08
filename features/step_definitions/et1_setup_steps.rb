@@ -86,3 +86,24 @@ Given("a claimant submitted an ET1 form with work address the same as respondent
   et1_answer_more_about_the_claim_questions
   et1_submit_claim
 end
+
+When("a claimant submitted an ET1 with special characters in the first and last name") do
+  @claimants = FactoryBot.create_list(:first_person, 1, :person_data, first_name: 'N/A.*_', last_name: 'N/A.*')
+  @representatives = FactoryBot.create_list(:representative, 1, :et3_information)
+  @respondents = FactoryBot.create_list(:respondent, 1, :employer)
+  @employment = FactoryBot.create(:employment)
+  @claim = FactoryBot.create(:claim)
+
+  start_a_new_et1_claim
+  et1_answer_login
+  et1_answer_claimant_questions
+  et1_answer_group_claimants_questions
+  et1_answer_representatives_questions
+  et1_answer_respondents_questions
+  et1_answer_employment_details_questions
+  et1_answer_claim_type_questions
+  et1_answer_claim_details_questions
+  et1_answer_claim_outcome_questions
+  et1_answer_more_about_the_claim_questions
+  et1_submit_claim
+end

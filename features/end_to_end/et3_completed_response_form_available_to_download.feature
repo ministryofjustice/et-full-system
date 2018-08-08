@@ -47,3 +47,7 @@ Feature: ET3 response to local office
     Given an employer responds to a claim with an additional information
     When the completed Employment Tribunal response form is submitted
     Then I can download the ET3 form and validate in RTF format
+
+  Scenario: Ignore special characters in Company's name
+    When an employer responds to a claim with special characters in the company's name
+    Then I can download the ET3 form and validate in PDF format

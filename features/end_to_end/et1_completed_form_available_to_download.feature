@@ -10,7 +10,6 @@ Feature:
     When the completed form is submitted
     Then I can download the form and validate in PDF format
 
-  @manual
   Scenario: TXT format
     Given an employee making a claim
     When the completed form is submitted
@@ -56,6 +55,10 @@ Feature:
     Then it will be forwarded to the Office address 'Bristol Civil and Family Justice Centre, 2 Redcliff Street, Bristol, BS1 6GR'
     And I can download the form and validate that the filname start with '14'
 
+  Scenario: Ignore special characters in first and last name when generating filenames
+    When a claimant submitted an ET1 with special characters in the first and last name 
+    Then I can download the form and validate in PDF format
+
 #Bug RST-1287
   # Scenario: Filename based on claimants work address is the same as respondents
   #   Given a claimant submitted an ET1 form with work address the same as respondents 'WD187SQ'
@@ -63,6 +66,6 @@ Feature:
   #   And I can download the form and validate that the filname start with '33'
 
   # Scenario: Filename based on claimant's work address is unknown
-  #   Given a claimant submitted an ET1 form with work address 'M32JA'
+  #   Given a claimant submitted an ET1 form with work address 'Z12LL'
   #   Then it will be forwarded to the Office address 'Alexandra House, 14-22 The Parsonage, Manchester M3 2JA'
   #   And I can download the form and validate that the filname start with '99'
