@@ -59,13 +59,12 @@ Feature:
     When a claimant submitted an ET1 with special characters in the first and last name 
     Then I can download the form and validate in PDF format
 
-#Bug RST-1287
   # Scenario: Filename based on claimants work address is the same as respondents
   #   Given a claimant submitted an ET1 form with work address the same as respondents 'WD187SQ'
   #   Then it will be forwarded to the Office address '3rd Floor, Radius House, 51 Clarendon Rd, Watford, WD17 1HP'
   #   And I can download the form and validate that the filname start with '33'
 
-  # Scenario: Filename based on claimant's work address is unknown
-  #   Given a claimant submitted an ET1 form with work address 'Z12LL'
-  #   Then it will be forwarded to the Office address 'Alexandra House, 14-22 The Parsonage, Manchester M3 2JA'
-  #   And I can download the form and validate that the filname start with '99'
+  Scenario: Filename based on claimant's work address is unknown
+    Given a claimant submitted an ET1 form with work address 'Z12LL'
+    Then it will be forwarded to the Office address 'Alexandra House, 14-22 The Parsonage, Manchester M3 2JA'
+    And I can download the form and validate that the filname start with '99'
