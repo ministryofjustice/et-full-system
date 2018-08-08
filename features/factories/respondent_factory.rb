@@ -9,7 +9,7 @@ FactoryBot.define do
         street: 'Petty France',
         locality: 'London',
         county: 'Greater London',
-        post_code: 'BS1 1DZ',
+        post_code: 'WD18 7SQ',
         telephone_number: '03333 423554'
     end
 

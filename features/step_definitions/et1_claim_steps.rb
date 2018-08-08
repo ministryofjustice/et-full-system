@@ -37,3 +37,11 @@ When /^I submit a completed ET1 form$/ do
   et1_submit_claim
   log_event :et1_claim_created, @claimants
 end
+
+Then("the address lookup will be based on respondent's work address and will forwarded to {string}") do |string|
+  expect(et1_claim_submitted.main_content.local_office_address.text).to end_with(string)
+end
+
+Then("the address lookup will be based on claimant's work address and will be forwarded to {string}") do |string|
+  expect(et1_claim_submitted.main_content.local_office_address.text).to end_with(string)
+end

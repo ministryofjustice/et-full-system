@@ -45,7 +45,7 @@ Given(/^an employee making a claim against 3 employers$/) do
   @claim = FactoryBot.create(:claim)
 end
 
-Given("a claimant submitted an ET1 form with work address {string}") do |string|
+Given("a claimant submitted an ET1 form without providing a work address {string}") do |string|
   @claimants = FactoryBot.create_list(:first_person, 1, :person_data)
   @representatives = FactoryBot.create_list(:representative, 1, :et3_information)
   @respondents = FactoryBot.create_list(:respondent, 1, :employer, post_code: string)
@@ -66,10 +66,10 @@ Given("a claimant submitted an ET1 form with work address {string}") do |string|
   et1_submit_claim
 end
 
-Given("a claimant submitted an ET1 form with work address the same as respondents {string}") do |string|
-  @claimants = FactoryBot.create_list(:first_person, 1, :person_data, post_code: string)
+Given("a claimant submitted an ET1 form with work address WD187SQ") do
+  @claimants = FactoryBot.create_list(:first_person, 1, :person_data)
   @representatives = FactoryBot.create_list(:representative, 1, :et3_information)
-  @respondents = FactoryBot.create_list(:respondent, 1, :employer)
+  @respondents = FactoryBot.create_list(:organisation_data, 1, :employer)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 
