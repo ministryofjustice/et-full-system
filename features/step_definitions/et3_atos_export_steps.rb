@@ -37,11 +37,7 @@ Then("I can download the ET3 form and validate that the filename starts with {st
 end
 
 Then("it will be forwarded to the Office address {string}") do |string|
-  if URI.parse(current_url).path == et1_claim_submitted.url
-    et1_claim_submitted.main_content.local_office_address.text == "Submitted 23 July 2018 to tribunal office Bristol, #{string}"
-  else
-    form_submission_page.local_office_address.text == string
-  end
+  expect(form_submission_page.local_office_address.text).to end_with(string)
 end
 
 Then("phone number {string}") do |string|
