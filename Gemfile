@@ -27,7 +27,6 @@ group :test do
   gem 'factory_bot'
   gem 'settingslogic'
   gem 'parallel_tests'
-  gem 'et_fake_acas_server', git: 'https://github.com/ministryofjustice/et_fake_acas_server.git', ref: 'eeaf6c89ce645e02d0f0a857aada546e1687d7ce'
 end
 
 group :development, :test do
@@ -36,4 +35,9 @@ group :development, :test do
   gem 'dotenv', '~> 2.2', '>= 2.2.2'
   gem 'faker', '~> 1.8', '>= 1.8.7'
 end
+
+group :production do
+  gem 'et_fake_acas_server', git: 'https://github.com/ministryofjustice/et_fake_acas_server.git', ref: 'ba78be596b80a6006b543a03f1b40ff6b130d5fc'
+end
+
 gem 'rake'

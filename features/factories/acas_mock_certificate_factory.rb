@@ -5,8 +5,8 @@ FactoryBot.define do
       date_of_receipt Time.parse('01/01/2017 12:00:00')
       date_of_issue Time.parse('01/12/2017 12:00:00')
       method_of_issue 'Email'
-      respondent_name 'Respondent Name'
-      claimant_name 'Claimant Name'
+      respondent_name 'Respondent’s Name'
+      claimant_name 'Claimant’s Name'
     end
     trait :mock_invalid do
       number 'R000201/18/68'
