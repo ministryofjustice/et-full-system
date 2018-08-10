@@ -15,11 +15,6 @@ Feature:
     When the completed form is submitted
     Then I can download the form and validate in TXT format
 
-  Scenario: XML format
-    Given an employee making a claim
-    When the completed form is submitted
-    Then I can download the form and validate in XML format
-
   Scenario: RTF format
     Given an employee making a claim by uploading a Rich Text Format document
     When the completed form is submitted
