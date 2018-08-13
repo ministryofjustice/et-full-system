@@ -25,6 +25,5 @@ server {
        passenger_env_var AWS_ENDPOINT 'http://s3.${SERVER_DOMAIN}:${SERVER_PORT}';
        passenger_env_var AWS_S3_FORCE_PATH_STYLE 'true';
        passenger_env_var RAILS_ENV 'local';
-       passenger_app_env local;
-
+       passenger_env_var ET_API_URL 'http://api.${SERVER_DOMAIN}:${SERVER_PORT}/api/v2';
 }
