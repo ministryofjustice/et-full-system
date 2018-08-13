@@ -27,6 +27,9 @@ module EtFullSystem
         def has_header_for?(respondent, errors: [], indent: 1)
           validate_fields section: :header, errors: errors, indent: indent do
             expect(field_values).to include 'case number' => respondent.case_number
+            # Date should be todays date, but in case this has ran through midnight - accept the date from 1 hour ago as well
+            expect(field_values).to include('date_received' => date_for(Time.now)).or(include('date_received' => date_for(1.hour.ago)))
+            expect(field_values).to include 'RTF' => respondent[:rtf_file].blank? ? '' : 'Additional RTF'
           end
         end
 
