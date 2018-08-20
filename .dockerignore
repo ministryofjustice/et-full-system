@@ -2,3 +2,5 @@ systems/**/log/*
 systems/**/tmp/**/*
 systems/**/.git
 node_modules/**/*
+# added for docker-compose build
+systems/

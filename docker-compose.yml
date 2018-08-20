@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  tests:
+    build: .
+    command: /usr/local/bundle/bin/cucumber 
+    volumes:
+      - ./config:/workspace/config
+      - ./features:/workspace/features
+      - ./test_common:/workspace/test_common
+      - ./tmp:/workspace/tmp
+    links:
+      - chrome
+      - hub
+    environment:
+      HUB_HOST: hub
+      DRIVER: 'chrome'
+      ENVIRONMENT: 'dev'
+  chrome:
+    image: selenium/node-chrome-debug
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - hub
+    environment:
+      HUB_HOST: hub
+    ports:
+      - "5900:5900"
+  hub:
+    image: selenium/hub
+    ports:
+      - "4444:4444"

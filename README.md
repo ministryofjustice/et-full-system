@@ -601,9 +601,9 @@ bundle exec cucumber
 
 ## Running The end-to-end test suite in different environments and using profile
 
-local: ./bin/dev/test_exec bundle exec cucumber
-dev: ./bin/dev/test_exec bundle exec cucumber ENVIRONMENT=dev
-staging: ./bin/dev/test_exec bundle exec cucumber ENVIRONMENT=staging
+local: <whatever command you used to run locally>
+dev: <whatever command you used to run locally> ENVIRONMENT=dev
+staging: <whatever command you used to run locally> ENVIRONMENT=staging
 
 ## Using cucumber.yml profile
 
