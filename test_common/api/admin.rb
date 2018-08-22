@@ -46,6 +46,12 @@ module EtFullSystem
         JSON.parse(acas_logs.body).map(&:with_indifferent_access)
       end
 
+      def diversity_api
+        login
+        responses = request(:get, "#{url}/diversity_responses.json", cookies: cookies_hash)
+        JSON.parse(responses.body).map(&:with_indifferent_access)
+      end
+
       private
 
       def request(method, *args)

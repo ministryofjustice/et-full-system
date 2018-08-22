@@ -21,3 +21,17 @@ When(/^a claimant answered all questions on the survey participant form$/) do
   diversity_load_page
   answer_diversity_page(diversity)
 end
+
+Then(/^I should see my details populated in ET-Admin Diversity Responses page$/) do
+  within_admin_window do
+    api = EtFullSystem::Test::AdminApi.new
+    binding.pry
+    expect { api.diversity_api }.to eventually include a_hash_including(first_name: @claimants[0].dig(:first_name))
+    admin_pages.jobs_page.run_export_claims_cron_job
+  end
+end
+
+# When(/^I should see participant survey populated in ET-Admin Diversity Responses page$/) do
+  
+#   expect { atos_interface }.to eventually have_zip_file_containing(:et1_claim_pdf_for, user: @claimants[0]), timeout: 30, sleep: 2
+# end
