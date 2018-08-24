@@ -4,6 +4,7 @@ When(/^the completed Employment Tribunal response form is submitted$/) do
   et3_answer_claimants_details
   et3_answer_earnings_and_benefits
   et3_answer_defend_claim_question
+  et3_answer_disability_question
   et3_answer_representative
   et3_employers_contract_claim
   additional_information

@@ -105,6 +105,14 @@ module EtFullSystem
         
       end
 
+       def et3_answer_disability_question
+        user = @claimant[0]
+        binding.pry
+        disability_page.disability_question.set_for(user)
+
+        disability_page.next
+      end
+
       def et3_employers_contract_claim
         user = @respondent[0]
         employers_contract_claim_page.make_employer_contract_claim_question.set_for(user)
