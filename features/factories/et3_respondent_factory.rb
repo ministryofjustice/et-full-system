@@ -24,6 +24,8 @@ FactoryBot.define do
     make_employer_contract_claim 'Yes'
     claim_information 'lorem ipsum info'
     email_receipt 'sivvoy.taing@hmcts.net'
+    disability 'Yes'
+    disability_information 'Lorem ipsum disability'
   end
 
   trait :upload_additional_information do
@@ -42,5 +44,7 @@ FactoryBot.define do
     make_employer_contract_claim 'nil'
     claim_information ''
     email_receipt ''
+    disability 'nil'
+    disability_information ''
   end
 end

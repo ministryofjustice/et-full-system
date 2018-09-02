@@ -82,12 +82,12 @@ module EtFullSystem
         EtFullSystem::Test::Et3::ResponsePage.new
       end
 
-       def disability_page
-        EtFullSystem::Test::Et3::DisabilityPage.new
-      end
-
       def your_representative_page
         EtFullSystem::Test::Et3::YourRepresentativePage.new
+      end
+
+      def disability_page
+        EtFullSystem::Test::Et3::DisabilityPage.new
       end
 
       def your_representatives_details_page

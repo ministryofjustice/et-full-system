@@ -18,6 +18,6 @@ When(/^I click on next without providing whether I have a representative$/) do
   your_representative_page.next
 end
 
-Then(/^I should be taken to my employers contract claim page$/) do
-  expect(employers_contract_claim_page).to be_displayed
+Then(/^I should be taken to disability page$/) do
+  expect(disability_page).to be_displayed
 end
