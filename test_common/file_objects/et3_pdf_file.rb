@@ -21,7 +21,7 @@ module EtFullSystem
           has_response_for?(response, errors: errors, indent: indent) &&
           has_contract_claim_for?(respondent, errors: errors, indent: indent) &&
           has_representative_for?(representative, errors: errors, indent: indent) &&
-          has_disability_for?(representative, errors: errors, indent: indent)
+          has_disability_for?(respondent, errors: errors, indent: indent)
         end
 
         def has_header_for?(respondent, errors: [], indent: 1)
@@ -154,15 +154,14 @@ module EtFullSystem
           end
         end
 
-        def has_disability_for?(representative, errors: [], indent: 1)
-          return has_no_disability?(errors: errors, indent: indent) if representative.nil?
+        def has_disability_for?(respondent, errors: [], indent: 1)
           validate_fields section: :disability, errors: errors, indent: indent do
-            if representative.representative_disability == 'nil'
+            if respondent.disability == 'nil'
               expect(field_values).to include '8.1 tick box' => 'Off'
             else
-              expect(field_values).to include '8.1 tick box' => representative.representative_disability.downcase
+              expect(field_values).to include '8.1 tick box' => respondent.disability.downcase
             end
-            expect(field_values).to include '8.1 if yes' => representative.representative_disability_information
+            expect(field_values).to include '8.1 if yes' => respondent.disability_information
           end
         end
 

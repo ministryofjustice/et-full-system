@@ -97,17 +97,14 @@ module EtFullSystem
           your_representatives_details_page.representative_dx_number_question.set(user.dx_number)
           your_representatives_details_page.representative_reference_question.set(user.representative_reference)
           your_representatives_details_page.representative_contact_preference_question.set_for(user)
-          your_representatives_details_page.representative_disability_question.set_for(user)
           your_representatives_details_page.next
         else
           your_representative_page.next
-        end 
-        
+        end
       end
 
-       def et3_answer_disability_question
-        user = @claimant[0]
-        binding.pry
+      def et3_answer_disability_question
+        user = @respondent[0]
         disability_page.disability_question.set_for(user)
 
         disability_page.next
