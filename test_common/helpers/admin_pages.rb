@@ -40,6 +40,14 @@ module EtFullSystem
       def self.atos_files_page
         Admin::AtosFilesPage.new
       end
+
+      def self.office_postcodes_page
+        Admin::OfficePostcodesPage.new
+      end
+
+      def self.new_office_postcodes_page
+        Admin::NewOfficePostcodesPage.new
+      end
     end
   end
 end
