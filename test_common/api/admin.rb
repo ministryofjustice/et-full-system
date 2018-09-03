@@ -48,8 +48,8 @@ module EtFullSystem
 
       def diversity_api
         login
-        responses = request(:get, "#{url}/diversity_responses.json", cookies: cookies_hash)
-        JSON.parse(responses.body).map(&:with_indifferent_access)
+        responses = request(:get, "#{url}/diversity_responses.json", cookies: cookies_hash)[0]
+        return responses.delete_if { |k, v| %w"id created_at updated_at".include? k}
       end
 
       private

@@ -12,7 +12,7 @@ Feature: Diversity monitoring questionnaire
   Scenario: An empty form is valid as a survey participant
     Given a claimant answered all blank questions on the survey participant form
     When the completed Diversity questionnaire form is submitted
-    Then I should see my details populated in ET-Admin Diversity Responses page
+    Then I should see participant survey populated in ET-Admin Diversity Responses page
 
   Scenario: All questions answered
     Given a claimant answered all questions on the survey participant form

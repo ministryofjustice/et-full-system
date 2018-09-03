@@ -4,8 +4,11 @@ Then(/^I should be able to load diversity questionnaire form page$/) do
 end
 
 Given(/^a claimant answered all blank questions on the survey participant form$/) do
+  @diversity = build(:diversity, claim_type: '', sex: '', gender: '', gender_at_birth: '', 
+    sexual_identity: '', relationship_status:'', age_group: '', responsibilites: '', religion: '', 
+    ethnic_group: '', ethnic_type: '', health: '', pregnancy: '')
   diversity_load_page
-  answer_diversity_page(nil)
+  answer_diversity_page(@diversity)
 end
 
 When(/^the completed Diversity questionnaire form is submitted$/) do
@@ -22,16 +25,9 @@ When(/^a claimant answered all questions on the survey participant form$/) do
   answer_diversity_page(diversity)
 end
 
-Then(/^I should see my details populated in ET-Admin Diversity Responses page$/) do
+Then("I should see participant survey populated in ET-Admin Diversity Responses page") do
   within_admin_window do
     api = EtFullSystem::Test::AdminApi.new
-    binding.pry
-    expect { api.diversity_api }.to eventually include a_hash_including(first_name: @claimants[0].dig(:first_name))
-    admin_pages.jobs_page.run_export_claims_cron_job
+    api.diversity_api.should equal  @diversity.to_h
   end
 end
-
-# When(/^I should see participant survey populated in ET-Admin Diversity Responses page$/) do
-  
-#   expect { atos_interface }.to eventually have_zip_file_containing(:et1_claim_pdf_for, user: @claimants[0]), timeout: 30, sleep: 2
-# end
