@@ -8,9 +8,9 @@ module EtFullSystem
         element :create_office_post_code, 'input[type="submit"]'
         element :cancel, '.cancel'
 
-        def create_office_postcode(office_name, postcode)
-          select_office_id.select(office_name)
-          input_postcode.set(postcode)
+        def create_office_postcode(postcode_id, local_office)
+          select_office_id.select(local_office)
+          input_postcode.set(postcode_id)
           create_office_post_code.click
         end
       end
