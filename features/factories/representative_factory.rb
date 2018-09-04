@@ -20,8 +20,6 @@ FactoryBot.define do
     representative_reference 'Rep Ref'
     representative_contact_preference 'Fax'
     representative_fax '0207 345 6789'
-    representative_disability 'Yes'
-    representative_disability_information 'Lorem ipsum disability'
   end
 
   trait :et3_no_representative do
@@ -43,7 +41,5 @@ FactoryBot.define do
     representative_contact_preference 'nil'
     representative_fax ''
     employer_contract_claim ''
-    representative_disability 'nil'
-    representative_disability_information ''
   end
 end
