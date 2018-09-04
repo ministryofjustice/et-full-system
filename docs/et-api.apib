@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: https://et-api-example.com/api
+HOST: https://api-staging.et.dsd.io/ [Staging]
 
 # ET Forms API
 This API replaces an existing Jadu system, enabling full functionality within ET1 and ET3 forms.
@@ -9,12 +9,61 @@ Group of all ET1-related resources.
 
 This group is primarily focussed on the ET1 web form.
 
+# Group ET3 S3 Upload [v2/s3]
+Group for all S3 resources.
+
+This group controls data flow between the requesting service and S3, providing access once approved.
+
+## Create Signed URL [v2/s3/create_signed_url]
+Speaks to the S3 controller on behalf of ET3 to return the presigned URL (and other data)
+that ET3 needs to upload directly to S3.
+
+### Receive a Request [POST]
+
+Responds with the data that ET3 requires to upload directly to S3.
+
++ Request (application/json)
+
+        {
+            "uuid": "96a709a1-a0e7-452d-afd6-1cca6f3d7f68",
+            "command": "CreateSignedS3FormData",
+            "async": false
+        }
+
++ Response 202 (application/json)
+
+    + Attributes (object)
+
+        + fields: {} (object)
+
+            Each key-value pair represents an HTML form input field and its value.
+            These fields will be validated by S3 to enable the file to be uploaded.
+    
+    + Body
+
+        {
+            "status": "accepted",
+            "meta": {},
+            "uuid": "8e161d2e-9ce9-43f2-99a3-d8e0772438b7",
+            "data": {
+                "fields": {
+                    "key": "direct_uploads/b8cc8e2d-d568-4c33-ba10-f4b3946b119a",
+                    "policy": "eyJleHBpcmF0aW9uIjoiMjAxOC0wNi0yMlQxNjo0Nzo1OFoiLCJjb25kaXRpb25zIjpbeyJidWNrZXQiOiJldGFwaWRpcmVjdGJ1Y2tldCJ9LHsia2V5IjoiZGlyZWN0X3VwbG9hZHMvYjhjYzhlMmQtZDU2OC00YzMzLWJhMTAtZjRiMzk0NmIxMTlhIn0seyJ4LWFtei1jcmVkZW50aWFsIjoiYWNjZXNzS2V5MS8yMDE4MDYyMi91cy1lYXN0LTEvczMvYXdzNF9yZXF1ZXN0In0seyJ4LWFtei1hbGdvcml0aG0iOiJBV1M0LUhNQUMtU0hBMjU2In0seyJ4LWFtei1kYXRlIjoiMjAxODA2MjJUMTU0NzU4WiJ9XX0=",
+                    "x-amz-credential": "accessKey1/20180622/us-east-1/s3/aws4_request",
+                    "x-amz-algorithm": "AWS4-HMAC-SHA256",
+                    "x-amz-date": "20180622T154758Z",
+                    "x-amz-signature": "c01d3d8ab864df732363425ae0eabfcd53f54cb0d1de3fc0444671325a567c80"
+                },
+                "url": "http://s3.et.127.0.0.1.nip.io:3100/etapidirectbucket"
+            }
+        }
+
 # Group ET3 [v2/respondents]
-Group of all ET3-related resources.
+Group of all ET3 submission-related resources.
 
-This group is primarily focussed on the ET3 web form.
+This group is primarily focussed on the ET3 web form data.
 
-## Response [v2/respondents/response]
+## Response [v2/respondents/build_response]
 Creates a respondent response within the system and returns confirmation.
 
 ### Receive a Form [POST]
@@ -22,78 +71,106 @@ Creates a respondent response within the system and returns confirmation.
 + Request (application/json)
 
         {
-            "case_number":"7654321/2017",
-            "name":"dodgy_co",
-            "contact":"john",
-            "building_name":"the_shard",
-            "street_name":"downing_street",
-            "town":"westminster",
-            "county":"",
-            "postcode":"wc1 1aa",
-            "dx_number":"",
-            "contact_number":"",
-            "mobile_number":"",
-            "contact_preference":"email",
-            "email_address":"john@dodgyco.com",
-            "fax_number":"",
-            "organisation_employ_gb":null,
-            "organisation_more_than_one_site":false,
-            "employment_at_site_number":null,
-            "claimants_name":"jane",
-            "agree_with_early_conciliation_details":false,
-            "disagree_conciliation_reason":"lorem ipsum conciliation",
-            "agree_with_employment_dates":false,
-            "employment_start": "2017-01-01",
-            "employment_end": "2017-12-31",
-            "disagree_employment":"lorem ipsum employment",
-            "continued_employment":true,
-            "agree_with_claimants_description_of_job_or_title":false,
-            "disagree_claimants_job_or_title":"lorem ipsum job title",
-            "agree_with_claimants_hours":false,
-            "queried_hours":32.0,
-            "agree_with_earnings_details":false,
-            "queried_pay_before_tax":1000.0,
-            "queried_pay_before_tax_period":"Monthly",
-            "queried_take_home_pay":900.0,
-            "queried_take_home_pay_period":"Monthly",
-            "agree_with_claimant_notice":false,
-            "disagree_claimant_notice_reason":"lorem ipsum notice reason",
-            "agree_with_claimant_pension_benefits":false,
-            "disagree_claimant_pension_benefits_reason":"lorem ipsum claimant pension",
-            "defend_claim":true,
-            "defend_claim_facts":"lorem ipsum defence",
-            "have_representative":true,
-            "type_of_representative":"Private Individual",
-            "representative_org_name":"repco ltd",
-            "representative_name":"Jane Doe",
-            "representative_building":"Rep Building",
-            "representative_street":"Rep Street",
-            "representative_town":"Rep Town",
-            "representative_county":"Rep County",
-            "representative_postcode":"WC2 2BB",
-            "representative_phone":"0207 987 6543",
-            "representative_mobile":"07987654321",
-            "representative_dx_number":"dx address",
-            "representative_reference":"Rep Ref",
-            "representative_contact_preference":"Fax",
-            "representative_email":"",
-            "representative_fax":"0207 345 6789",
-            "representative_disability":true,
-            "representative_disability_information":"Lorem ipsum disability",
-            "make_employer_contract_claim":true,
-            "claim_information":"lorem ipsum info",
-            "upload_additional_information": "sample.rtf",
-            "email_receipt": "email@recei.pt",
-            "confirm_email_receipt": "email@recei.pt"
+            "uuid": "acf1e78a-7c13-4dae-8a68-c43ecfea453d",
+            "command": "SerialSequence",
+            "data": [
+                {
+                    "command": "BuildResponse",
+                    "data": {
+                        "case_number":"1454321/2017",
+                        "claimants_name":"Jane Doe",
+                        "agree_with_early_conciliation_details":false,
+                        "disagree_conciliation_reason":"conciliation info",
+                        "agree_with_employment_dates":false,
+                        "employment_start": "2017-01-01",
+                        "employment_end": "2017-12-31",
+                        "disagree_employment":"lorem ipsum employment",
+                        "continued_employment":true,
+                        "agree_with_claimants_description_of_job_or_title":false,
+                        "disagree_claimants_job_or_title":"lorem ipsum job title",
+                        "agree_with_claimants_hours":false,
+                        "queried_hours":32.0,
+                        "agree_with_earnings_details":false,
+                        "queried_pay_before_tax":1000.0,
+                        "queried_pay_before_tax_period":"Monthly",
+                        "queried_take_home_pay":900.0,
+                        "queried_take_home_pay_period":"Monthly",
+                        "agree_with_claimant_notice":false,
+                        "disagree_claimant_notice_reason":"lorem ipsum notice reason",
+                        "agree_with_claimant_pension_benefits":false,
+                        "disagree_claimant_pension_benefits_reason":"lorem ipsum claimant pension",
+                        "defend_claim":true,
+                        "defend_claim_facts":"lorem ipsum defence",
+                        "make_employer_contract_claim":true,
+                        "claim_information":"lorem ipsum info",
+                        "additional_information_url": "http://s3.et.127.0.0.1.nip.io:3100/etapidirectbucket/1529492014704",
+                        "email_receipt": "email@recei.pt"
+                    },
+                    "uuid": "4611f316-f67a-4ccc-9335-df21408e96f6"
+                },
+                {
+                    "command": "BuildRespondent",
+                    "data": {
+                        "name":"dodgy_co",
+                        "contact":"John Smith",
+                        "address_attributes": {
+                            "building":"The Shard",
+                            "street":"Downing Street",
+                            "locality":"Westminster",
+                            "county":"",
+                            "post_code":"WC1A 1AA"
+                        },
+                        "dx_number":"724060 Derby 21",
+                        "address_telephone_number":"02081234567",
+                        "alt_phone_number":"07123456789",
+                        "contact_preference":"email",
+                        "email_address":"email@domain.com",
+                        "fax_number":"02071234567",
+                        "organisation_employ_gb":100,
+                        "organisation_more_than_one_site":true,
+                        "employment_at_site_number":100,
+                        "disability":true,
+                        "disability_information":"Lorem ipsum disability"
+                    },
+                    "uuid":"d80d85ee-9d5c-4c9c-bd86-aa3da851c622"
+                },
+                {
+                    "command":"BuildRepresentative",
+                    "data": {
+                        "name":"Jane Doe",
+                        "organisation_name":"Representative Org",
+                        "address_attributes": {
+                            "building":"Rep Building",
+                            "street":"Rep Street",
+                            "locality":"Rep Town",
+                            "county":"Rep County",
+                            "post_code":"WC2 2BB"
+                        },
+                        "address_telephone_number":"02077654321",
+                        "mobile_number":"07987654321",
+                        "representative_type":"Private Individual",
+                        "dx_number":"724060 Derby 21",
+                        "reference":"Rep Ref",
+                        "contact_preference":"Fax",
+                        "email_address":"rep@domain.co.uk",
+                        "fax_number":"02073456789"
+                    },
+                    "uuid":"cdb093bf-82ee-4025-88a8-d00a6717a6aa"
+                }
+            ]
         }
 
-+ Response 201 (application/json)
++ Response 202 (application/json)
 
         {
-          "data": {
-            "reference": "992000000100",
-            "submitted_at": "2018-01-01 12:00:00 GMT+00",
-            "pdf": "s3/link/to/form/pdf"
-          }
+            "meta": {
+                "BuildResponse": {
+                    "reference": "142000000100",
+                    "submitted_at": "2018-01-13 14:00",
+                    "pdf_url": "s3/link/to/form.pdf",
+                    "office_address": "Alexandra House, 14-22 The Parsonage, Manchester, M3 2JA"
+                    "office_phone_number": "0161 833 6100"
+                }
+            }
         }
 

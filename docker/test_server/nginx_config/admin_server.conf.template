@@ -14,6 +14,7 @@ server {
        passenger_env_var DEVISE_SECRET_KEY JK3N45KH56743JN25J1B5H43B24H35BJ6575KN21NRNKFASDF89DU23I4NK5TGKFD;
        passenger_env_var ATOS_API_URL "http://atos.${SERVER_DOMAIN}:${SERVER_PORT}";
        passenger_env_var ACAS_API_URL "http://api.${SERVER_DOMAIN}:${SERVER_PORT}/et_acas_api";
+       passenger_env_var ET_API_URL 'http://api.${SERVER_DOMAIN}:${SERVER_PORT}/api';
        passenger_env_var REDIS_HOST redis;
        passenger_env_var REDIS_DATABASE 2;
        passenger_env_var BUNDLE_EXCLUDE '';

@@ -50,13 +50,12 @@ sudo chmod +x /etc/service/sidekiq_api/run
 sudo chmod +x /etc/service/sidekiq_et1/run
 cd /home/app/et_fake_acas_server && bundle install --jobs=4
 bash --login -c "cd /home/app/full_system/systems/et1 && rvm use ruby-2.3.3 && bundle install --jobs=4 --without=development test --with=production && npm install && RAILS_ENV=local bundle exec rake db:create db:migrate assets:precompile"
-bash --login -c "cd /home/app/full_system/systems/et3 && rvm use ruby-2.3.3 && bundle install --jobs=4 --without=development test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate assets:precompile && bundle exec rake non_digest_assets"
+bash --login -c "cd /home/app/full_system/systems/et3 && rvm use ruby-2.5.1 && bundle install --jobs=4 --without=development test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate assets:precompile && bundle exec rake non_digest_assets"
 bash --login -c "cd /home/app/full_system/systems/api && rvm use ruby-2.5.1 && bundle install --jobs=4 --without=development test --with=production && RAILS_ENV=production bundle exec rails db:create db:migrate db:seed"
 bash --login -c "cd /home/app/full_system/systems/admin && rvm use ruby-2.5.1 && bundle install --jobs=4 --without=development test --with=production && RAILS_ENV=production SEED_EXAMPLE_USERS=true bundle exec rails db:seed assets:precompile"
 
 cd /home/app/full_system/systems/api
 ATOS_GEM_PATH=`bundle show et_atos_file_transfer`
-
 export ATOS_GEM_PATH
 bash --login -c "cd $ATOS_GEM_PATH && rvm use ruby-2.5.1 && bundle install --jobs=4"
 

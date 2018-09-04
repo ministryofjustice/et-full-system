@@ -145,28 +145,6 @@ module EtFullSystem
             end
           end
         end
-        section :representative_disability_question, :single_choice_option, 'questions.representative_disability.label', exact: false do
-          section :yes, :gds_multiple_choice_option, 'questions.representative_disability.yes.label', exact: true do
-            element :selector, :css, 'input'
-            delegate :set, to: :selector
-          end
-          section :no, :gds_multiple_choice_option, 'questions.representative_disability.no.label', exact: true do
-            element :selector, :css, 'input'
-            delegate :set, to: :selector
-          end
-          section :representative_disability_information, :textarea_labelled, 'questions.representative_disability.disability_information.label', exact: :false do
-            delegate :set, to: :root_element
-          end
-          element :error_too_long, :exact_error_text, 'errors.messages.too_long', exact: false
-          def set_for(user)
-            if user.representative_disability == "Yes"
-              yes.set(true)
-              representative_disability_information.set(user.representative_disability_information)
-            else
-              no.set(true)
-            end
-          end
-        end
         element :continue_button, :button, "Save and continue"
         def next
           continue_button.click

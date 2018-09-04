@@ -8,6 +8,7 @@ Given(/^I am on the ET3 additional information page$/) do
   et3_answer_earnings_and_benefits
   et3_answer_defend_claim_question
   et3_answer_representative
+  et3_answer_disability_question
   et3_employers_contract_claim
   expect(additional_information_page).to be_displayed
 end
