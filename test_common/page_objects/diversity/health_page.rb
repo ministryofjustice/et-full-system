@@ -12,9 +12,9 @@ module EtFullSystem
         end
 
         def set_for(answers)
-          if answers.try(:[], :health).present?
-            answer = answers.to_h
-            choose(answer[:health], name: 'diversities_disability[disability]')
+          data = answers.to_h
+          if data[:disability] != nil
+            choose(data[:disability], name: 'diversities_disability[disability]')
           end
           save_and_continue
         end

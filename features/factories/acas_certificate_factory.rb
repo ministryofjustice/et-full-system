@@ -17,6 +17,5 @@ FactoryBot.define do
     trait :server_error do
       number 'R000500/18/68'
     end
-
   end
 end

@@ -18,6 +18,7 @@ Feature: Diversity monitoring questionnaire
     Given a claimant answered all questions on the survey participant form
     When the completed Diversity questionnaire form is submitted
     Then I should be on the Thank you page
+    And I should see participant survey populated in ET-Admin Diversity Responses page
 
   # Scenario: Edit your answers
   #   Given a claimant answered all questions on the survey participant form

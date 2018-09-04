@@ -22,8 +22,8 @@ module EtFullSystem
         private
 
         def set_for_optional(answers, key, name)
-          if answers.try(:[], key).present?
-            data = answers.to_h
+          data = answers.to_h
+          if data[key] != nil
             choose(data[key], name: name)
           end
         end

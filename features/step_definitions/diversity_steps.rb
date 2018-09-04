@@ -4,9 +4,7 @@ Then(/^I should be able to load diversity questionnaire form page$/) do
 end
 
 Given(/^a claimant answered all blank questions on the survey participant form$/) do
-  @diversity = build(:diversity, claim_type: '', sex: '', gender: '', gender_at_birth: '', 
-    sexual_identity: '', relationship_status:'', age_group: '', responsibilites: '', religion: '', 
-    ethnic_group: '', ethnic_type: '', health: '', pregnancy: '')
+  @diversity = build(:diversity, :blank)
   diversity_load_page
   answer_diversity_page(@diversity)
 end
@@ -20,14 +18,15 @@ Then(/^I should be on the Thank you page$/) do
 end
 
 When(/^a claimant answered all questions on the survey participant form$/) do
-  diversity = build(:diversity)
+  @diversity = build(:diversity, :not_blank)
   diversity_load_page
-  answer_diversity_page(diversity)
+  answer_diversity_page(@diversity)
 end
 
 Then("I should see participant survey populated in ET-Admin Diversity Responses page") do
   within_admin_window do
     api = EtFullSystem::Test::AdminApi.new
-    api.diversity_api.should equal  @diversity.to_h
+    binding.pry
+    expect(api.diversity_api.symbolize_keys).to eq @diversity.to_h
   end
 end
