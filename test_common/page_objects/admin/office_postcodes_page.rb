@@ -35,11 +35,9 @@ module EtFullSystem
         end
 
         def postcode_exist(postcode_id)
-          begin
-            main_content.tbody.postcode.has_content?(postcode_id)
-          rescue Capybara::ElementNotFound
+          main_content.tbody.postcode.has_content?(postcode_id)
+            rescue Capybara::ElementNotFound
             return false
-          end
         end
 
         def delete_postcode
