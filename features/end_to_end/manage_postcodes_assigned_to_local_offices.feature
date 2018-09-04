@@ -21,3 +21,9 @@ Feature: Manage postcodes assigned to local offices
     Given an existing postcode 'TT' is assigned to 'Default' office
     When I delete postcode 'TT'
     Then the deleted postcode is no longer saved in the system
+
+  Scenario: RST-1349 - Filename based on newly added postcode 'BT' to 'Default' office
+    Given a new postcode 'BT' is added to 'Default' office
+    When a claimant submitted an ET1 form using postcode 'BT11AA'
+    Then the address lookup will be based on respondent's work address and will forwarded to 'Alexandra House, 14-22 The Parsonage, Manchester M3 2JA'
+    And I can download the form and validate that the filname start with '99'
