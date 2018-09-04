@@ -9,12 +9,11 @@ Given("an administrator login") do
   end
 end
 
-When("a new postcode {postcode_id} is added to the {local_office} local office address") do |postcode_id, local_office|
+When("a new postcode {string} is added to the {string} local office address") do |string, string2|
   admin_pages.any_page.menu.click_office_postcodes
-  admin_pages.office_postcodes_page.add_new_office_postcode
-  admin_pages.new_office_postcodes_page.create_office_postcode(postcode_id, local_office)
+  admin_pages.office_postcodes_page.add_new_office_postcode(string, string2)
 end
 
 Then("the new postcode is saved on the system") do
-  pending # Write code here that turns the phrase above into concrete actions
+  admin_pages.office_postcodes_page.has_success_error_msg?
 end
