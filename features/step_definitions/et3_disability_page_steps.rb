@@ -15,7 +15,7 @@ When(/^I successfully submit whether I have a disability$/) do
   et3_answer_disability_question
 end
 
-When(/^I click on next without providing whether I have a disability$/) do
+When(/^I click on next without answering the disability question$/) do
   disability_page.next
 end
 
