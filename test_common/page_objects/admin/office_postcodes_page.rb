@@ -27,14 +27,19 @@ module EtFullSystem
 
         def add_new_office_postcode(postcode_id, local_office)
           search_by_postcode(postcode_id)
-          postcode_exist(postcode_id).present? rescue nil
+          if postcode_exist(postcode_id)
+            delete_postcode
+          end
           new_office_postcode.click
           admin_pages.new_office_postcodes_page.create_office_postcode(postcode_id, local_office)
         end
 
         def postcode_exist(postcode_id)
-          main_content.tbody.postcode.has_content?(postcode_id)
-          delete_postcode
+          begin
+            main_content.tbody.postcode.has_content?(postcode_id)
+          rescue Capybara::ElementNotFound
+            return false
+          end
         end
 
         def delete_postcode
