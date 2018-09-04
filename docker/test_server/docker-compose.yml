@@ -63,7 +63,7 @@ services:
 
 #command: bash -lc "cd /home/app/full_system/systems/api && REDIS_DATABASE=2 bundle exec sidekiq"
   db:
-    image: postgres:9.3.5
+    image: postgres:9.6.9
     networks:
       - et_full_system
     ports:
