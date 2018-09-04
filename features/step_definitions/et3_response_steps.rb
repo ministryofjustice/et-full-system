@@ -5,6 +5,7 @@ When(/^the completed Employment Tribunal response form is submitted$/) do
   et3_answer_earnings_and_benefits
   et3_answer_defend_claim_question
   et3_answer_representative
+  et3_answer_disability_question
   et3_employers_contract_claim
   additional_information
   et3_confirmation_of_supplied_details
@@ -27,6 +28,7 @@ When(/^an employer responds to mandatory questions$/) do
   response_page.defend_claim_question.set_for(user)
   response_page.next
   et3_answer_representative
+  et3_answer_disability_question
   employers_contract_claim_page.next
   additional_information
   confirmation_of_supplied_details_page.next
@@ -49,6 +51,7 @@ When("an employer responds to a claim with special characters in the company's n
   response_page.defend_claim_question.set_for(user)
   response_page.next
   et3_answer_representative
+  et3_answer_disability_question
   employers_contract_claim_page.next
   additional_information
   confirmation_of_supplied_details_page.next
