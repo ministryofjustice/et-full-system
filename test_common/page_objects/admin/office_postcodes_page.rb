@@ -53,6 +53,10 @@ module EtFullSystem
         def has_successfully_edited_error_msg?
           expect(success_error_msg).to have_content("Office post code was successfully updated")
         end
+
+        def has_successfully_delete_error_msg?
+          expect(success_error_msg).to have_content("Office post code was successfully destroyed")
+        end
       end
     end
   end
