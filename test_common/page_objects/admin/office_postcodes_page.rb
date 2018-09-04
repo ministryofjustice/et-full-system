@@ -30,7 +30,6 @@ module EtFullSystem
           postcode_exist(postcode_id).present? rescue nil
           new_office_postcode.click
           admin_pages.new_office_postcodes_page.create_office_postcode(postcode_id, local_office)
-          
         end
 
         def postcode_exist(postcode_id)
@@ -38,13 +37,21 @@ module EtFullSystem
           delete_postcode
         end
 
-        def has_success_error_msg?
-          expect(success_error_msg).to have_content("Office post code was successfully created")
-        end
-
         def delete_postcode
           main_content.tbody.action_table.delete.click
           page.driver.browser.switch_to.alert.accept
+        end
+
+        def edit_postcode
+          main_content.tbody.action_table.edit.click
+        end
+
+        def has_successfully_created_error_msg?
+          expect(success_error_msg).to have_content("Office post code was successfully created")
+        end
+
+        def has_successfully_edited_error_msg?
+          expect(success_error_msg).to have_content("Office post code was successfully updated")
         end
       end
     end

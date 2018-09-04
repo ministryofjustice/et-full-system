@@ -13,6 +13,11 @@ module EtFullSystem
           input_postcode.set(postcode_id)
           create_office_post_code.click
         end
+
+        def edit_office_address(local_office)
+          select_office_id.select(local_office)
+          create_office_post_code.click
+        end
       end
     end
   end

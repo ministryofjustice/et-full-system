@@ -9,5 +9,10 @@ Feature: Manage postcodes assigned to local offices
     Given an administrator login
 
   Scenario: Add new postcode
-    When a new postcode 'TT' is added to the 'Default' local office address
+    When a new postcode 'TT' is added to the 'Default' office
     Then the new postcode is saved on the system
+
+  Scenario: Assign postcode to a different office
+    Given a postcode 'TT' is assigned to 'Default' office
+    When I reassign the postcode to 'Southampton' office
+    Then the postcode will be assigned to the different office and no longer assigned to the original office
