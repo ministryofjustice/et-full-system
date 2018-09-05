@@ -20,6 +20,12 @@ Feature: Diversity monitoring questionnaire
     Then I should be on the Thank you page
     And I should see participant survey populated in ET-Admin Diversity Responses page
 
+  Scenario: Any other religion
+    Given a claimant answered Any other religion on the survey participant form
+    When the completed Diversity questionnaire form is submitted
+    Then I should be on the Thank you page
+    And I should see participant survey populated in ET-Admin Diversity Responses page  
+
   # Scenario: Edit your answers
   #   Given a claimant answered all questions on the survey participant form
   #   When user edit 'What is your ethnic group' to 'prefer not to say'

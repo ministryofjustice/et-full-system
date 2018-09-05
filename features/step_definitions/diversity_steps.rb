@@ -11,6 +11,7 @@ end
 
 When(/^the completed Diversity questionnaire form is submitted$/) do
   diversity_submit_form
+  @submission_timestamp = Time.now.gmtime.strftime("%Y-%m-%dT%H:%I:%M")
 end
 
 Then(/^I should be on the Thank you page$/) do
@@ -26,7 +27,12 @@ end
 Then("I should see participant survey populated in ET-Admin Diversity Responses page") do
   within_admin_window do
     api = EtFullSystem::Test::AdminApi.new
-    api.diversity_api
-    expect {api.diversity_api.symbolize_keys}.to eventually include @diversity.to_h
+    expect {api.diversity_api(@submission_timestamp).symbolize_keys}.to eventually include @diversity.to_h
   end
+end
+
+Given("a claimant answered Any other religion on the survey participant form") do
+  @diversity = build(:diversity, :not_blank, religion: 'Any other religion', religion_please_describe: 'Free text')
+  diversity_load_page
+  answer_diversity_page(@diversity)
 end
