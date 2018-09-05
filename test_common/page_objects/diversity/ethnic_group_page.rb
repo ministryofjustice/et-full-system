@@ -12,8 +12,8 @@ module EtFullSystem
         end
 
         def set_for(answers)
-          set_for_optional(answers, :ethnicity_subgroup, 'diversities_ethnicity[ethnicity]')
-          set_for_optional(answers, :ethnicity, 'diversities_ethnicity[ethnicity_subgroup]')
+          set_for_optional(answers, :ethnicity, 'diversities_ethnicity[ethnicity]')
+          set_for_optional(answers, :ethnicity_subgroup, 'diversities_ethnicity[ethnicity_subgroup]')
           save_and_continue
         end
 
