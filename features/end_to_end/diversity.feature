@@ -24,19 +24,15 @@ Feature: Diversity monitoring questionnaire
     Given a claimant answered Any other religion on the survey participant form
     When the completed Diversity questionnaire form is submitted
     Then I should be on the Thank you page
-    And I should see participant survey populated in ET-Admin Diversity Responses page  
+    And I should see participant survey populated in ET-Admin Diversity Responses page
 
-  # Scenario: Edit your answers
+  Scenario: Prefer not to answer ethnicity
+    Given a claimant prefered not to answered ethnicity on the survey participant form
+    When the completed Diversity questionnaire form is submitted
+    Then I should be on the Thank you page
+    And I should see participant survey populated in ET-Admin Diversity Responses page
+
+  # Scenario: When I change my answers
   #   Given a claimant answered all questions on the survey participant form
   #   When user edit 'What is your ethnic group' to 'prefer not to say'
-  #   Then the data is stored 'prefer not to say' 
-
-  # Scenario: Previous your answers
-  #   Given a Claimant answered all fields on the Diversity questionnaire form
-  #   When user click on previous button
-  #   And edit 'Which age group are you in?' to 'prefer not to say'
-  #   Then the data is stored in et1 database as 'prefer not to say' with timestamp created
-
-  # Scenario: Other relevant links
-  #   Given I am on the Diversity questionnaire form page
-  #   Then I should see Other relevant links
+  #   Then the data is stored 'prefer not to say'

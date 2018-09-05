@@ -1,5 +1,3 @@
-require "timeout"
-
 module EtFullSystem
   module Test
     class AdminApi
@@ -50,12 +48,11 @@ module EtFullSystem
         JSON.parse(acas_logs.body).map(&:with_indifferent_access)
       end
 
-      def diversity_api
+      def diversity_api(submission_timestamp)
         login
-        responses = request(:get, "#{url}/diversity_responses.json", cookies: cookies_hash)[0]
-        # expect { responses['created_at'] }.to eventually include Time.now.gmtime.strftime("%Y-%m-%dT%H:%I:%M")
-        response = responses.delete_if { |k, v| %w"id created_at updated_at".include? k}
-        return data = response.inject({}) do |a, (k,v)|
+        response = request(:get, "#{url}/diversity_responses.json", cookies: cookies_hash)[0]
+        data = response.delete_if { |k, v| %w"id created_at updated_at".include? k}
+        return data.inject({}) do |a, (k,v)|
           a[k] = t("#{k}.#{v}")
           a[k] = t("#{k}.#{v}")
           a
