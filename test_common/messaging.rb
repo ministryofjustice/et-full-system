@@ -38,7 +38,7 @@ module EtFullSystem
       #
       # @return [Symbol] The current locale
       def current_locale
-        Thread.current[:calculator_test_current_locale] ||= ENV.fetch('TEST_LOCALE', 'en').to_sym
+        ENV.fetch('TEST_LOCALE', 'en').to_sym
       end
 
       alias t translate
@@ -58,12 +58,12 @@ module EtFullSystem
       private
 
       def t(*args)
-        ::Calculator::Test::Messaging.instance.t(*args)
+        ::EtFullSystem::Test::Messaging.instance.t(*args)
       end
 
       class_methods do
         def t(*args)
-          ::Calculator::Test::Messaging.instance.t(*args)
+          ::EtFullSystem::Test::Messaging.instance.t(*args)
         end
       end
     end

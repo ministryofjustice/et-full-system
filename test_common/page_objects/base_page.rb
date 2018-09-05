@@ -8,7 +8,7 @@ module EtFullSystem
       include ::EtFullSystem::Test::I18n
 
       def messaging
-        @messaging ||= ::Calculator::Test::Messaging.instance
+        @messaging ||= ::EtFullSystem::Test::Messaging.instance
       end
 
       def load_page
