@@ -1,6 +1,10 @@
+require "timeout"
+
 module EtFullSystem
   module Test
     class AdminApi
+      include ::RSpec::Matchers
+      include ::EtFullSystem::Test::I18n
       def url
         Configuration.admin_url
       end
@@ -49,7 +53,13 @@ module EtFullSystem
       def diversity_api
         login
         responses = request(:get, "#{url}/diversity_responses.json", cookies: cookies_hash)[0]
-        responses.delete_if { |k, v| %w"id created_at updated_at".include? k}
+        # expect { responses['created_at'] }.to eventually include Time.now.gmtime.strftime("%Y-%m-%dT%H:%I:%M")
+        response = responses.delete_if { |k, v| %w"id created_at updated_at".include? k}
+        return data = response.inject({}) do |a, (k,v)|
+          a[k] = t("#{k}.#{v}")
+          a[k] = t("#{k}.#{v}")
+          a
+        end
       end
 
       private
