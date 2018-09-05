@@ -42,3 +42,16 @@ Given("a claimant prefered not to answered ethnicity on the survey participant f
   diversity_load_page
   answer_diversity_page(@diversity)
 end
+
+When("user changed {string} to {string}") do |string, string2|
+  @diversity = build(:diversity, :not_blank, claim_type: "#{string2}")
+  diversity_pages.submission_form_page.main_content.form_fields.claim_type.link.click
+  diversity_pages.claim_type_page.set_for(@diversity)
+end
+
+Then("the updated data is saved on the system") do
+  within_admin_window do
+    api = EtFullSystem::Test::AdminApi.new
+    expect {api.diversity_api(@submission_timestamp).symbolize_keys}.to eventually include @diversity.to_h
+  end
+end

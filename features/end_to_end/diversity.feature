@@ -32,7 +32,8 @@ Feature: Diversity monitoring questionnaire
     Then I should be on the Thank you page
     And I should see participant survey populated in ET-Admin Diversity Responses page
 
-  # Scenario: When I change my answers
-  #   Given a claimant answered all questions on the survey participant form
-  #   When user edit 'What is your ethnic group' to 'prefer not to say'
-  #   Then the data is stored 'prefer not to say'
+  Scenario: When I change my answers
+    Given a claimant answered all questions on the survey participant form
+    When user changed 'claim_type' to 'Redundancy payment'
+    And the completed Diversity questionnaire form is submitted
+    Then the updated data is saved on the system
