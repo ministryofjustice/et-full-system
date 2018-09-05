@@ -26,7 +26,7 @@ end
 Then("I should see participant survey populated in ET-Admin Diversity Responses page") do
   within_admin_window do
     api = EtFullSystem::Test::AdminApi.new
-    binding.pry
-    expect(api.diversity_api.symbolize_keys).to eq @diversity.to_h
+    api.diversity_api
+    expect {api.diversity_api.symbolize_keys}.to eventually include @diversity.to_h
   end
 end
