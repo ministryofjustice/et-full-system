@@ -18,8 +18,8 @@ module EtFullSystem
             choose(data[:religion], name: 'diversities_religion[religion]')
           end
 
-          if data[:religion_please_describe].present?
-            main_content.other_religion.set(data[:please_describe])
+          if data[:religion] == 'Any other religion'
+            main_content.other_religion.set(data[:religion])
           end
           save_and_continue
         end

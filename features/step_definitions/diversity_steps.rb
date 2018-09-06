@@ -32,7 +32,7 @@ Then("I should see participant survey populated in ET-Admin Diversity Responses 
 end
 
 Given("a claimant answered Any other religion on the survey participant form") do
-  @diversity = build(:diversity, :not_blank, religion: 'Any other religion', religion_please_describe: 'Free text')
+  @diversity = build(:diversity, :not_blank, religion: 'Any other religion')
   diversity_load_page
   answer_diversity_page(@diversity)
 end
