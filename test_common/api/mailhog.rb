@@ -22,7 +22,7 @@ module EtFullSystem
 
       def mailhog_api
         delete_mailhog_api
-        HTTParty.get(::EtFullSystem::Test::Configuration.mailhog_url)
+        HTTParty.get(::EtFullSystem::Test::Configuration.mailhog_search_url)
       end
 
       def delete_mailhog_api
