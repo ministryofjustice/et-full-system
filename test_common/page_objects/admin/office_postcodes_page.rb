@@ -1,3 +1,4 @@
+require 'rspec/matchers'
 module EtFullSystem
   module Test
     module Admin
