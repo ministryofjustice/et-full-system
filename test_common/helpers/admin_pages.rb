@@ -48,6 +48,14 @@ module EtFullSystem
       def self.new_office_postcodes_page
         Admin::NewOfficePostcodesPage.new
       end
+
+      def self.generate_reference_number_page
+        Admin::GenerateReferenceNumberPage.new
+      end
+
+      def self.generate_reference_result_page
+        Admin::GenerateReferenceResultPage.new
+      end
     end
   end
 end
