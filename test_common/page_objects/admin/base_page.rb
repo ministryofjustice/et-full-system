@@ -1,7 +1,10 @@
+require 'rspec/matchers'
 module EtFullSystem
   module Test
     module Admin
       class BasePage < ::EtFullSystem::Test::BasePage
+        include ::RSpec::Matchers
+        elements :tab, '.header ul li a'
         section :menu, '#header ul#tabs' do
           element :dashboard_menu_item, :link, 'Dashboard'
           element :acas_menu_item, :link, 'Acas'
@@ -44,6 +47,58 @@ module EtFullSystem
 
         def self.set_url(url, *args)
           super("#{base_url}#{url}", *args)
+        end
+
+        def full_access
+          ["Dashboard",
+            "Acas",
+            "",
+            "",
+            "Addresses",
+            "Atos Files",
+            "Claimants",
+            "Claims",
+            "Diversity Responses",
+            "Et Offices",
+            "Exported Files",
+            "Exports",
+            "Generate References",
+            "Jobs",
+            "Office Postcodes",
+            "Permissions",
+            "Representatives",
+            "Respondents",
+            "Responses",
+            "Roles",
+            "Uploaded Files",
+            "Users",
+            "",
+            "Logout"]
+        end
+
+        def partial_access
+          ["Dashboard", 
+            "Acas", 
+            "", 
+            "", 
+            "Claims", 
+            "Et Offices", 
+            "Generate References", 
+            "Office Postcodes", 
+            "Responses", 
+            "Users", 
+            "", 
+            "Logout"]
+        end
+
+        def basic_access
+          ["Dashboard", 
+            "Acas", 
+            "", 
+            "", 
+            "Et Offices", 
+            "Generate References", 
+            "Logout"]
         end
       end
     end
