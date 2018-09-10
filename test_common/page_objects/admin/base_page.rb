@@ -4,7 +4,7 @@ module EtFullSystem
     module Admin
       class BasePage < ::EtFullSystem::Test::BasePage
         include ::RSpec::Matchers
-        elements :tab, '.header ul li a'
+        elements :names, '.header ul li a'
         section :menu, '#header ul#tabs' do
           element :dashboard_menu_item, :link, 'Dashboard'
           element :acas_menu_item, :link, 'Acas'
@@ -39,6 +39,10 @@ module EtFullSystem
 
           def click_generate_references
             generate_references_menu_item.click
+          end
+
+          def click_users
+            users_menu_item.click
           end
         end
         def self.base_url

@@ -1,5 +1,16 @@
+When("import new users") do
+  users = create(:users)
+  admin_pages.any_page.menu.click_users
+  admin_pages.users_page.click_import_users
+  admin_pages.import_file_page.choose_file(users)
+end
+
+Then("new users have sucessfully been imported") do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
 Then(/^I should have full access to ET admin$/) do
-  expect(admin_pages.any_page.tab.map {|x| x.text}).to eq(admin_pages.any_page.full_access)
+  expect(admin_pages.any_page.names.map {|x| x.text}).to eq(admin_pages.any_page.full_access)
 end
 
 When("a {string} login") do |string|
@@ -14,9 +25,9 @@ When("a {string} login") do |string|
 end
 
 Then("I should have partial access to ET admin") do
-  expect(admin_pages.any_page.tab.map {|x| x.text}).to eq(admin_pages.any_page.partial_access)
+  expect(admin_pages.any_page.names.map {|x| x.text}).to eq(admin_pages.any_page.partial_access)
 end
 
 Then("I should have basic access to ET admin") do
-  expect(admin_pages.any_page.tab.map {|x| x.text}).to eq(admin_pages.any_page.basic_access)
+  expect(admin_pages.any_page.names.map {|x| x.text}).to eq(admin_pages.any_page.basic_access)
 end
