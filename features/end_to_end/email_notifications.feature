@@ -1,6 +1,6 @@
 @local
 @javascript
-Feature:
+Feature: Eamil notifications
   As an Employment tribunal
   I want to ensure that users submitting E1 or ET3 form get an email notifications
 
