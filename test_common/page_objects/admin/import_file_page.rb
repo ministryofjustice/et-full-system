@@ -1,4 +1,3 @@
-require_relative './base_page'
 require_relative '../../../test_common/helpers/upload_helper'
 module EtFullSystem
   module Test
