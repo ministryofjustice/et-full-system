@@ -14,6 +14,7 @@ local:
   admin_url: http://admin.et.127.0.0.1.nip.io:3100/admin
   sidekiq_url: http://et1.et.127.0.0.1.nip.io:3100/apply/sidekiq
   mailhog_url: http://mail.et.127.0.0.1.nip.io:3100/api/v2/messages
+  mailhog_search_url: http://mail.et.127.0.0.1.nip.io:3100/api/v2/search
 dev:
   <<: *defaults
   et1_url: https://dev1.et.dsd.io/
