@@ -1,10 +1,6 @@
 defaults: &defaults
   admin_username: admin
   admin_password: password
-  super_username: superuser
-  super_password: password
-  basic_username: user
-  basic_password: password
   admin_email: admin@example.com
   atos_username: atos
   atos_password: password

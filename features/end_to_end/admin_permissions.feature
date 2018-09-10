@@ -1,6 +1,6 @@
 @e2e
 @javascript
-Feature: Employment Tribunal 
+Feature: Admin roles and permissions
   As an ET Admin system
   I want to ensure that roles only have the permissions assigned to that user role
 
@@ -9,9 +9,9 @@ Feature: Employment Tribunal
    Then I should have full access to ET admin
 
   Scenario: Super User
-   When a super login
+   When a 'superuser' login
    Then I should have partial access to ET admin
 
-  Scenario: Normal User
-    When a normal user login
+  Scenario: Basic User
+    When a 'user' login
     Then I should have basic access to ET admin
