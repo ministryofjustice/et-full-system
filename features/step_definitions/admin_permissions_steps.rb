@@ -1,12 +1,13 @@
-When("import new users") do
-  users = create(:users)
+When("import {string} users") do |string|
+  @email = string
+  @users = create(:users)
   admin_pages.any_page.menu.click_users
   admin_pages.users_page.click_import_users
-  admin_pages.import_file_page.choose_file(users)
+  admin_pages.import_file_page.choose_file(@users)
 end
 
-Then("new users have sucessfully been imported") do
-  pending # Write code here that turns the phrase above into concrete actions
+Then("users successfully imported") do
+  admin_pages.users_page.search_by_email('Starts with', @email, @users)
 end
 
 Then(/^I should have full access to ET admin$/) do

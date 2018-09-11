@@ -1,6 +1,8 @@
+require 'rspec/matchers'
 module EtFullSystem
   module Test
     class AdminApi
+      include ::RSpec::Matchers
       def url
         Configuration.admin_url
       end

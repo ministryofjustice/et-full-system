@@ -6,8 +6,8 @@ Feature: Admin roles and permissions
 
   Scenario: Create roles for admin functions
     When an administrator login
-    And import new users
-    Then new users have sucessfully been imported
+    And import 'dummy.test' users
+    Then users successfully imported
 
   Scenario: Admin User
    When an administrator login
