@@ -8,6 +8,10 @@ Feature: Admin roles and permissions
     When an administrator login
     And import 'dummy.test' users
     Then users successfully imported
+  
+  Scenario: Delete roles for admin functions
+    When an administrator login
+    Then admin user can delete users
 
   Scenario: Admin User
    When an administrator login

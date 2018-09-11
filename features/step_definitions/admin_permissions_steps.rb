@@ -10,6 +10,12 @@ Then("users successfully imported") do
   admin_pages.users_page.search_by_email('Starts with', @email, @users)
 end
 
+Then("admin user can delete users") do
+  admin_pages.any_page.menu.click_users
+  @users = create(:users)
+  admin_pages.users_page.delete_users(@users)
+end
+
 Then(/^I should have full access to ET admin$/) do
   expect(admin_pages.any_page.names.map {|x| x.text}).to eq(admin_pages.any_page.full_access)
 end
@@ -32,3 +38,4 @@ end
 Then("I should have basic access to ET admin") do
   expect(admin_pages.any_page.names.map {|x| x.text}).to eq(admin_pages.any_page.basic_access)
 end
+

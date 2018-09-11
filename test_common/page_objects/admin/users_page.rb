@@ -31,7 +31,7 @@ module EtFullSystem
               elements :username, '.col.col-username'
               elements :email, '.col.col-email'
               elements :department, '.col.col-department'
-              section :table_actions, '.col.col-actions .table_actions' do
+              sections :table_actions, '.col.col-actions .table_actions' do
                 elements :view, '.view_link.member_link'
                 elements :edit, '.edit_link.member_link'
                 elements :delete, '.delete_link.member_link'
@@ -64,6 +64,18 @@ module EtFullSystem
           aggregate_failures 'Validating all users are imported' do
             CSV.foreach(filename, :headers => true) do |csv_row|
               expect(collection_contents.table).to have_user_matching(csv_row)
+            end
+          end
+        end
+
+        def delete_users(users)
+          users_csv = users.dig(:users_file)
+          filename = File.expand_path(File.join('test_common', 'fixtures', users_csv))
+          aggregate_failures 'Validating all users are imported' do
+            CSV.foreach(filename, :headers => true) do |csv_row|
+              have_user_matching(csv_row)
+              find('.col.col-actions .table_actions .delete_link.member_link').click
+              page.driver.browser.switch_to.alert.accept
             end
           end
         end
