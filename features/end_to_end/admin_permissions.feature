@@ -13,14 +13,14 @@ Feature: Admin roles and permissions
     When an administrator login
     Then admin user can delete users
 
-  Scenario: Admin User
+  Scenario: Admin User - Provide access to all ET admin functions including add/remove users and user role maintenance
    When an administrator login
    Then I should have full access to ET admin
 
-  Scenario: Super User
+  Scenario: Super User - Allow viewing of the submitted Claim and Response forms and to maintain Office Postcode coverage definitions
    When a 'superuser' login
    Then I should have partial access to ET admin
 
-  Scenario: Basic User
+  Scenario: User - Typical day-to-day ET Admin functions e.g Acas certificate and view office postcodes
     When a 'user' login
     Then I should have basic access to ET admin
