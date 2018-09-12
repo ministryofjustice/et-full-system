@@ -82,7 +82,7 @@ module EtFullSystem
           end
         end
 
-        def assert_user_can_be_edit(users)
+        def assert_user_role_can_be_modify(users)
           # TODO - bug in code
         end
       end
