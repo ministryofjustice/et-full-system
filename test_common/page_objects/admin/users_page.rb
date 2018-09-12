@@ -13,6 +13,7 @@ module EtFullSystem
             element :import_users, :link, 'Import Users'
           end
         end
+        element :notification_msg, '.flash.flash_notice'
         section :collection_contents, '.index_content .index_as_table' do
           section :thead, 'thead tr' do
             element :resource_selection_cell, '.col.col-selectable .resource_selection_toggle_cell'
@@ -51,11 +52,10 @@ module EtFullSystem
           title_bar.title_bar.import_users.click
         end
 
-        def search_by_email(filter_by, email_address, users)
+        def search_by_email(filter_by, email_address)
           filters_contents.email_section.filter_by_email.select(filter_by)
           filters_contents.email_section.email_input.set(email_address)
           filters_contents.filter_button.click
-          assert_users_are_imported(users)
         end
 
         def assert_users_are_imported(users)
@@ -68,16 +68,22 @@ module EtFullSystem
           end
         end
 
-        def delete_users(users)
+        def assert_users_are_delete(users)
           users_csv = users.dig(:users_file)
           filename = File.expand_path(File.join('test_common', 'fixtures', users_csv))
-          aggregate_failures 'Validating all users are imported' do
+          aggregate_failures 'Validating user has been deleted' do
             CSV.foreach(filename, :headers => true) do |csv_row|
               have_user_matching(csv_row)
+              # yucky code - its not deleteing row based on user's name
               find('.col.col-actions .table_actions .delete_link.member_link').click
               page.driver.browser.switch_to.alert.accept
+              expect(notification_msg).to have_content("User was successfully destroyed.")
             end
           end
+        end
+
+        def assert_user_can_be_edit(users)
+          # TODO - bug in code
         end
       end
     end

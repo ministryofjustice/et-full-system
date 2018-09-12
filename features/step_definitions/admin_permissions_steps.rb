@@ -7,13 +7,16 @@ When("import {string} users") do |string|
 end
 
 Then("users successfully imported") do
-  admin_pages.users_page.search_by_email('Starts with', @email, @users)
+  admin_pages.users_page.search_by_email('Starts with', @email)
+  admin_pages.users_page.assert_users_are_imported(@users)
 end
 
-Then("admin user can delete users") do
-  admin_pages.any_page.menu.click_users
-  @users = create(:users)
-  admin_pages.users_page.delete_users(@users)
+Then("can deleted from the admin system") do
+  admin_pages.users_page.assert_users_are_delete(@users)
+end
+
+Then("can be edited") do
+  admin_pages.users_page.assert_user_role_can_be_modify(@users)
 end
 
 Then(/^I should have full access to ET admin$/) do
