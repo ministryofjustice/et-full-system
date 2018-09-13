@@ -15,7 +15,6 @@ module EtFullSystem
       def start
         return if command.empty?
         FileUtils.mkdir_p dir unless Dir.exist?(dir)
-        FileUtils.rm Dir.glob(File.join(dir, '*.flv'))
         command_line = "#{command} -P #{password_file.path} -o #{file_path} #{host} #{port}"
         self.process = IO.popen(command_line)
         at_exit { stop }
