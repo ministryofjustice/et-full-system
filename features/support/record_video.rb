@@ -1,6 +1,7 @@
 require_relative './test_common'
 record_video_mode = ENV.fetch('RECORD_VIDEO', 'on_failure')  # Can be 'on_failure', 'false', 'true', '@tagname,@other_tagname'
 selenium_url = ENV.fetch('SELENIUM_URL', 'http://localhost:4444/wd/hub')
+FileUtils.rm Dir.glob(File.join(Capybara::Screenshot.capybara_root, '*.flv')) # Always start with empty dir
 if selenium_url || ENV.key?('RECORD_VNC_FROM')
   selenium_host = URI.parse(selenium_url).host
   vnc_uri = URI.parse(ENV.fetch('RECORD_VNC_FROM', "vnc://#{selenium_host}:5900"))
