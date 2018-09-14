@@ -58,9 +58,8 @@ module EtFullSystem
           filters_contents.filter_button.click
         end
 
-        def assert_users_are_imported(users)
-          users_csv = users.dig(:users_file)
-          filename = File.expand_path(File.join('test_common', 'fixtures', users_csv))
+        def assert_users_are_imported
+          filename = File.expand_path(File.join('test_common', 'fixtures', 'et_admin_users.csv'))
           aggregate_failures 'Validating all users are imported' do
             CSV.foreach(filename, :headers => true) do |csv_row|
               expect(collection_contents.table).to have_user_matching(csv_row)
@@ -68,22 +67,29 @@ module EtFullSystem
           end
         end
 
-        def assert_users_are_delete(users)
-          users_csv = users.dig(:users_file)
-          filename = File.expand_path(File.join('test_common', 'fixtures', users_csv))
+        def get_username_password(role)
+          filename = File.expand_path(File.join('test_common', 'fixtures', 'et_admin_users.csv'))
+          data = []
+          CSV.foreach(filename, :headers => true) do |csv_row|
+            if csv_row['Role'] == role
+              data << csv_row['username']
+              data << csv_row['password']
+              data << csv_row['name']
+            end
+          end
+          return data
+        end
+
+        def assert_users_are_delete
+          filename = File.expand_path(File.join('test_common', 'fixtures', 'et_admin_users.csv'))
           aggregate_failures 'Validating user has been deleted' do
             CSV.foreach(filename, :headers => true) do |csv_row|
-              have_user_matching(csv_row)
               # yucky code - its not deleteing row based on user's name
               find('.col.col-actions .table_actions .delete_link.member_link').click
               page.driver.browser.switch_to.alert.accept
               expect(notification_msg).to have_content("User was successfully destroyed.")
             end
           end
-        end
-
-        def assert_user_role_can_be_modify(users)
-          # TODO - bug in code
         end
       end
     end
