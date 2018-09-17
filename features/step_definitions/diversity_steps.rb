@@ -11,7 +11,6 @@ end
 
 When(/^the completed Diversity questionnaire form is submitted$/) do
   diversity_submit_form
-  @submission_timestamp = Time.now.gmtime.strftime("%Y-%m-%dT%H:%I:%M")
 end
 
 Then(/^I should be on the Thank you page$/) do
@@ -24,20 +23,26 @@ When(/^a claimant answered all questions on the survey participant form$/) do
   answer_diversity_page(@diversity)
 end
 
-Then("I should see participant survey populated in ET-Admin Diversity Responses page") do
+Then("the data is updated in ET Admin system") do
+  data_filled_in = @diversity.to_h
+  if data_filled_in[:any_other_relgion_text] != nil
+   data_filled_in.delete(:religion)
+  end
+  
   within_admin_window do
     api = EtFullSystem::Test::AdminApi.new
-    expect {api.diversity_api(@submission_timestamp).symbolize_keys}.to eventually include @diversity.to_h
+    expect {api.admin_diversity_data.symbolize_keys}.to eventually include data_filled_in
   end
 end
 
-Given("a claimant answered Any other religion on the survey participant form") do
-  @diversity = build(:diversity, :not_blank, religion: 'Any other religion')
+Given("a claimant answered {string} on the survey participant form") do |string|
+  @diversity = build(:diversity, :not_blank, religion: 'Any other religion', any_other_relgion_text: 'Atheist')
   diversity_load_page
   answer_diversity_page(@diversity)
 end
 
-Given("a claimant prefered not to answered ethnicity on the survey participant form") do
+
+Given("a claimant prefered not to answer ethnicity on the survey participant form") do
   @diversity = build(:diversity, :not_blank, ethnicity: 'Prefer not to say', ethnicity_subgroup: nil)
   diversity_load_page
   answer_diversity_page(@diversity)
@@ -47,11 +52,4 @@ When("user changed {string} to {string}") do |string, string2|
   @diversity = build(:diversity, :not_blank, claim_type: "#{string2}")
   diversity_pages.submission_form_page.main_content.form_fields.claim_type.link.click
   diversity_pages.claim_type_page.set_for(@diversity)
-end
-
-Then("the updated data is saved on the system") do
-  within_admin_window do
-    api = EtFullSystem::Test::AdminApi.new
-    expect {api.diversity_api(@submission_timestamp).symbolize_keys}.to eventually include @diversity.to_h
-  end
 end

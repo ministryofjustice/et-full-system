@@ -12,29 +12,28 @@ Feature: Diversity monitoring questionnaire
   Scenario: An empty form is valid as a survey participant
     Given a claimant answered all blank questions on the survey participant form
     When the completed Diversity questionnaire form is submitted
-    Then I should see participant survey populated in ET-Admin Diversity Responses page
+    Then the data is updated in ET Admin system
 
   Scenario: All questions answered
     Given a claimant answered all questions on the survey participant form
     When the completed Diversity questionnaire form is submitted
     Then I should be on the Thank you page
-    And I should see participant survey populated in ET-Admin Diversity Responses page
+    And the data is updated in ET Admin system
 
-  # @wip - will come back later to fix it
-  # Scenario: Any other religion
-  #   Given a claimant answered Any other religion on the survey participant form
+  # Scenario: Religion - Any other religion - WIP
+  #   Given a claimant answered 'Any other religion' on the survey participant form
   #   When the completed Diversity questionnaire form is submitted
   #   Then I should be on the Thank you page
-  #   And I should see participant survey populated in ET-Admin Diversity Responses page
+  #   And the data is updated in ET Admin system
 
   Scenario: Prefer not to answer ethnicity
-    Given a claimant prefered not to answered ethnicity on the survey participant form
+    Given a claimant prefered not to answer ethnicity on the survey participant form
     When the completed Diversity questionnaire form is submitted
     Then I should be on the Thank you page
-    And I should see participant survey populated in ET-Admin Diversity Responses page
+    And the data is updated in ET Admin system
 
   Scenario: When I change my answers
     Given a claimant answered all questions on the survey participant form
     When user changed 'claim_type' to 'Redundancy payment'
     And the completed Diversity questionnaire form is submitted
-    Then the updated data is saved on the system
+    Then the data is updated in ET Admin system

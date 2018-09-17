@@ -48,13 +48,12 @@ module EtFullSystem
         JSON.parse(acas_logs.body).map(&:with_indifferent_access)
       end
 
-      def diversity_api(submission_timestamp)
+      def admin_diversity_data
         login
         response = request(:get, "#{url}/diversity_responses.json", cookies: cookies_hash)[0]
         data = response.delete_if { |k, v| %w"id created_at updated_at".include? k}
         return data.inject({}) do |a, (k,v)|
-          a[k] = t("#{k}.#{v}")
-          a[k] = t("#{k}.#{v}")
+          a[k] = v.nil? ? nil : t("#{k}.#{v}")
           a
         end
       end
