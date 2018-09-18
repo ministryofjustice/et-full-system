@@ -18,4 +18,4 @@ export RAILS_MAX_THREADS=10
 ATOS_API_USERNAME=atos
 ATOS_API_PASSWORD=password
 
-exec /sbin/setuser app bash --login -c "rvm use ruby-2.5.1 && /home/app/full_system/systems/api/run_sidekiq.sh >>/home/app/full_system/systems/api/log/nginx_sidekiq.log 2>&1"
+exec /sbin/setuser app bash --login -c "/usr/local/rvm/bin/rvm use && /home/app/full_system/systems/api/run_sidekiq.sh >>/home/app/full_system/systems/api/log/nginx_sidekiq.log 2>&1"

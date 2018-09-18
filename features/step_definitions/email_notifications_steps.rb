@@ -7,7 +7,8 @@ end
 
 Then(/^an email is sent to notify user that a claim has been started$/) do
   mail = EtFullSystem::Test::MailApi.new
-  expect { mail.claim_started(@claimants[0].email_address)['To'] }.to eventually include(@claimants[0].dig(:email_address))
+  expect { mail.mailhog_api['To']}.to eventually include (@claimants[0].email_address)
+  expect { mail.mailhog_api['Subject'].to_s}.to eventually include ('["Employment tribunal: complete your claim"]')
 end
 
 Given /^a claimant completed an ET1 form$/ do
@@ -34,7 +35,8 @@ end
 
 Then(/^an email is sent to notify user that a claim has been successfully submitted$/) do
   mail = EtFullSystem::Test::MailApi.new
-  expect { mail.claim_submitted(@claimants[0].email_address)['To'] }.to eventually include(@claimants[0].dig(:email_address))
+  expect { mail.mailhog_api['To']}.to eventually include (@claimants[0].email_address)
+  expect { mail.mailhog_api['Subject'].to_s}.to eventually include ('["Employment tribunal: claim submitted"]')
 end
 
 When(/^a respondent completed an ET3 form$/) do
@@ -58,5 +60,6 @@ end
 
 Then(/^an email is sent to notify user that a respondent has been successfully submitted$/) do
   mail = EtFullSystem::Test::MailApi.new
-  expect { mail.respondent_submitted(@respondent[0].email_receipt)['To'] }.to eventually include(@respondent[0].dig(:email_receipt))
+  expect { mail.mailhog_api['To']}.to eventually include (@respondent[0].email_address)
+  expect { mail.mailhog_api['Subject'].to_s}.to eventually include ('["Your Response to Employment Tribunal claim online form receipt"]')
 end
