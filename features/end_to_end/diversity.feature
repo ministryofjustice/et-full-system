@@ -20,11 +20,11 @@ Feature: Diversity monitoring questionnaire
     Then I should be on the Thank you page
     And the data is updated in ET Admin system
 
-  # Scenario: Religion - Any other religion - WIP
-  #   Given a claimant answered 'Any other religion' on the survey participant form
-  #   When the completed Diversity questionnaire form is submitted
-  #   Then I should be on the Thank you page
-  #   And the data is updated in ET Admin system
+  Scenario: Religion - Any other religion
+    Given a claimant answered 'Any other religion' on the survey participant form
+    When the completed Diversity questionnaire form is submitted
+    Then I should be on the Thank you page
+    And the data is updated in ET Admin system
 
   Scenario: Prefer not to answer ethnicity
     Given a claimant prefered not to answer ethnicity on the survey participant form

@@ -15,10 +15,11 @@ module EtFullSystem
         def set_for(answers)
           data = answers.to_h
           if data[:religion] != nil
-            choose(data[:religion], name: 'diversities_religion[religion]')
-
-            if data[:any_other_relgion_text] != nil
-              main_content.other_religion.set(data[:any_other_relgion_text])
+            if data[:religion] == "Jehovah's Witnesses"
+              choose('Any other religion', name: 'diversities_religion[religion]')
+              main_content.other_religion.set(data[:religion])
+            else
+             choose(data[:religion], name: 'diversities_religion[religion]')
             end
           end
           save_and_continue
@@ -27,3 +28,4 @@ module EtFullSystem
     end
   end
 end
+

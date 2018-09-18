@@ -23,20 +23,15 @@ When(/^a claimant answered all questions on the survey participant form$/) do
   answer_diversity_page(@diversity)
 end
 
-Then("the data is updated in ET Admin system") do
-  data_filled_in = @diversity.to_h
-  if data_filled_in[:any_other_relgion_text] != nil
-   data_filled_in.delete(:religion)
-  end
-  
+Then("the data is updated in ET Admin system") do  
   within_admin_window do
     api = EtFullSystem::Test::AdminApi.new
-    expect {api.admin_diversity_data.symbolize_keys}.to eventually include data_filled_in
+    expect {api.admin_diversity_data.symbolize_keys}.to eventually include @diversity.to_h
   end
 end
 
 Given("a claimant answered {string} on the survey participant form") do |string|
-  @diversity = build(:diversity, :not_blank, religion: 'Any other religion', any_other_relgion_text: 'Atheist')
+  @diversity = build(:diversity, :not_blank, religion: "Jehovah's Witnesses")
   diversity_load_page
   answer_diversity_page(@diversity)
 end
