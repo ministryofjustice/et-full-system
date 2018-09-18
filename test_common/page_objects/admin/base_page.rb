@@ -12,7 +12,6 @@ module EtFullSystem
           end
 
           def click_office_postcodes
-            binding.pry
             office_postcodes_menu_item.click
           end
         end
