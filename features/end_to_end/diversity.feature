@@ -12,24 +12,28 @@ Feature: Diversity monitoring questionnaire
   Scenario: An empty form is valid as a survey participant
     Given a claimant answered all blank questions on the survey participant form
     When the completed Diversity questionnaire form is submitted
-    Then I should be on the Thank you page
+    Then the data is updated in ET Admin system
 
   Scenario: All questions answered
     Given a claimant answered all questions on the survey participant form
     When the completed Diversity questionnaire form is submitted
     Then I should be on the Thank you page
+    And the data is updated in ET Admin system
 
-  # Scenario: Edit your answers
-  #   Given a claimant answered all questions on the survey participant form
-  #   When user edit 'What is your ethnic group' to 'prefer not to say'
-  #   Then the data is stored 'prefer not to say' 
+  Scenario: Religion - Any other religion
+    Given a claimant answered 'Any other religion' on the survey participant form
+    When the completed Diversity questionnaire form is submitted
+    Then I should be on the Thank you page
+    And the data is updated in ET Admin system
 
-  # Scenario: Previous your answers
-  #   Given a Claimant answered all fields on the Diversity questionnaire form
-  #   When user click on previous button
-  #   And edit 'Which age group are you in?' to 'prefer not to say'
-  #   Then the data is stored in et1 database as 'prefer not to say' with timestamp created
+  Scenario: Prefer not to answer ethnicity
+    Given a claimant prefered not to answer ethnicity on the survey participant form
+    When the completed Diversity questionnaire form is submitted
+    Then I should be on the Thank you page
+    And the data is updated in ET Admin system
 
-  # Scenario: Other relevant links
-  #   Given I am on the Diversity questionnaire form page
-  #   Then I should see Other relevant links
+  Scenario: When I change my answers
+    Given a claimant answered all questions on the survey participant form
+    When user changed 'claim_type' to 'Redundancy payment'
+    And the completed Diversity questionnaire form is submitted
+    Then the data is updated in ET Admin system

@@ -1,6 +1,8 @@
 module EtFullSystem
   module Test
     class AdminApi
+      include ::RSpec::Matchers
+      include ::EtFullSystem::Test::I18n
       def url
         Configuration.admin_url
       end
@@ -44,6 +46,22 @@ module EtFullSystem
         login
         acas_logs = request(:get, "#{url}/download_logs.json", cookies: cookies_hash)
         JSON.parse(acas_logs.body).map(&:with_indifferent_access)
+      end
+
+      def admin_diversity_data
+        login
+        response = request(:get, "#{url}/diversity_responses.json", cookies: cookies_hash)[0]
+        data = response.delete_if { |k, v| %w"id created_at updated_at".include? k}
+        return data.inject({}) do |a, (k,v)|
+          if v.nil? 
+            a[k] = nil
+          elsif v == "Jehovah's Witnesses"
+            a[k] = v
+          else
+            a[k] = t("#{k}.#{v}")
+          end
+          a
+        end
       end
 
       private
