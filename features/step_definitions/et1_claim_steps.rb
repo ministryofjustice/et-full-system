@@ -35,13 +35,17 @@ When /^I submit a completed ET1 form$/ do
   et1_answer_more_about_the_claim_questions
 
   et1_submit_claim
-  log_event :et1_claim_created, @claimants
+  log_event :et1_claim_created, @claimantse
 end
 
 Then("the address lookup will be based on respondent's work address and will forwarded to {string}") do |string|
-  expect(et1_claim_submitted.main_content.local_office_address.text).to end_with(string)
+  expect(et1_claim_submitted.main_content.confirmation_tabe.tbody.local_office_address.text).to end_with(string)
 end
 
 Then("the address lookup will be based on claimant's work address and will be forwarded to {string}") do |string|
-  expect(et1_claim_submitted.main_content.local_office_address.text).to end_with(string)
+  expect(et1_claim_submitted.main_content.confirmation_tabe.tbody.local_office_address.text).to end_with(string)
+end
+
+Then("submission details page includes RTF and CSV files") do
+  expect(et1_claim_submitted.main_content.confirmation_tabe.tbody.attachments.text).to eq("#{@claim[:rtf_file]} #{@claimants[0][:group_claims_csv]}")
 end

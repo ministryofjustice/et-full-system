@@ -63,3 +63,9 @@ Feature:
   Scenario: Ignore special characters in first and last name when generating filenames
     When a claimant submitted an ET1 with special characters in the first and last name 
     Then I can download the form and validate in PDF format
+
+  #Bug RST-1423 - breakline display
+  Scenario: Submission details includes RTF and CSV files
+    Given a group claimaints submitting an ET1 form by uploading CSV and Rich Text Format documents
+    When the completed form is submitted
+    Then submission details page includes RTF and CSV files
