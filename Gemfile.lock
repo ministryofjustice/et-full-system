@@ -91,6 +91,8 @@ GEM
     jmespath (1.4.0)
     launchy (2.4.3)
       addressable (~> 2.3)
+    mail (2.7.0)
+      mini_mime (>= 0.1.1)
     method_source (0.9.0)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
@@ -172,6 +174,7 @@ DEPENDENCIES
   geckodriver-helper (~> 0.0)
   httparty (~> 0.16.2)
   i18n (~> 0.8)
+  mail
   parallel_tests
   pdf-forms (~> 1.1, >= 1.1.1)
   pry

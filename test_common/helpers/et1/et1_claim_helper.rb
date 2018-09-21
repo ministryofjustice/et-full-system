@@ -67,7 +67,6 @@ module EtFullSystem
 
       def et1_submit_claim
         et1_submission_page.submit_claim
-        @claim_submitted_time = Time.current.strftime('%a, %e %b %Y')
       end
     end
   end
