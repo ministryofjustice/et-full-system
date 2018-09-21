@@ -6,7 +6,7 @@ if selenium_url || ENV.key?('RECORD_VNC_FROM')
   selenium_host = URI.parse(selenium_url).host
   vnc_uri = URI.parse(ENV.fetch('RECORD_VNC_FROM', "vnc://#{selenium_host}:5900"))
 
-  Before('@e2e') do |scenario|
+  Before do |scenario|
     case record_video_mode
     when 'false' then next
     when /@/
