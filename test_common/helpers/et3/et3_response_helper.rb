@@ -138,6 +138,8 @@ module EtFullSystem
       def et3_confirmation_of_supplied_details
         user = @respondent[0]
         confirmation_of_supplied_details_page.email_receipt_question.set(user.email_receipt)
+        # @claim_submitted_time = Time.current.rfc2822.sub(/(-)(0+)$/, '+\2')
+        @claim_submitted_time = Time.current.strftime('%a, %e %b %C')
         confirmation_of_supplied_details_page.next
       end
 

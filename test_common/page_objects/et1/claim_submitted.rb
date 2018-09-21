@@ -5,8 +5,13 @@ module EtFullSystem
       class ClaimSubmitted < BasePage
         set_url '/apply/confirmation'
         section :main_content, '#content .main-section .main-content .content-section' do
-          element :diversity_link, 'a[href="/apply/diversity"]'
-          element :local_office_address, :css, '.confirmation-table tbody tr:nth-child(2) td'
+          element :diversity_link, 'p a[href="/apply/diversity"]'
+          section :confirmation_tabe, '.confirmation-table' do
+            section :tbody, 'tbody' do
+              element :local_office_address, :css, 'tr:nth-child(2) td'
+              element :attachments, :css, 'tr:nth-child(3) td'
+            end
+          end
         end
 
         def diversity_link

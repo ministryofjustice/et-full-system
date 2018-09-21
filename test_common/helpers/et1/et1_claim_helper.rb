@@ -8,6 +8,7 @@ module EtFullSystem
 
       def et1_answer_login
         et1_identification_page.set_for(@claimants)
+        @claim_started_time = Time.current.strftime('%a, %e %b %Y')
         et1_identification_page.save_and_continue
       end
 
@@ -66,6 +67,7 @@ module EtFullSystem
 
       def et1_submit_claim
         et1_submission_page.submit_claim
+        @claim_submitted_time = Time.current.strftime('%a, %e %b %Y')
       end
     end
   end
