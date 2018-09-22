@@ -13,5 +13,5 @@ Feature: Eamil notifications
     Then an email is sent to notify user that a claim has been successfully submitted
 
   Scenario: ET3 - Completed respondent's form
-    #When a respondent completed an ET3 form
+    When a respondent completed an ET3 form
     Then an email is sent to notify user that a respondent has been successfully submitted

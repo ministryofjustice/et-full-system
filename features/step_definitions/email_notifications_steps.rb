@@ -61,9 +61,9 @@ When(/^a respondent completed an ET3 form$/) do
 end
 
 Then(/^an email is sent to notify user that a respondent has been successfully submitted$/) do
-  mail = EtFullSystem::Test::MailApi.new
-  mail.mailhog_api
-  # expect { header['To']}.to eventually include (@respondent[0].email_address)
-  # expect { header['Subject'].to_s}.to eventually include ('["Your Response to Employment Tribunal claim online form receipt"]')
-  # expect { header['Submission date'][0]}.to eventually eq(form_submission_page.submission_date.text)
+  emails_sent = EtFullSystem::Test::EmailsSent.new
+  et3_email = emails_sent.new_response_html_email_for(reference: @my_et3_reference)
+  # You will need to define the method has_correct_content_for? if you want to use this - otherwise et3_email is just another
+  # page object just like the rest.
+  expect(et3_email).to have_correct_content_for(bla)
 end
