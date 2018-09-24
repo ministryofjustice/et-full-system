@@ -16,5 +16,7 @@ _No new features_
 
 ## Info
 Deployed by Stath
+
 No downtime expected/observed
+
 No risks expected/observed
