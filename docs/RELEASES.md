@@ -13,3 +13,8 @@ _No new features_
 ## Fixes
 
 _No new features_
+
+## Info
+Deployed by Stath
+No downtime expected/observed
+No risks expected/observed
