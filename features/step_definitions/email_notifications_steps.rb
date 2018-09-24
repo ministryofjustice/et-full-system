@@ -1,14 +1,15 @@
 Given /^a claimant continued from Saving your claim page$/ do
   @claimants = FactoryBot.create_list(:claimant, 1, :answer_data)
   start_a_new_et1_claim
+  @my_et1_claim_number = et1_identification_page.main_content.claim_number.text
   et1_answer_login
 end
 
 Then(/^an email is sent to notify user that a claim has been started$/) do
-  mail = EtFullSystem::Test::MailApi.new
-  expect { mail.mailhog_api['To']}.to eventually include (@claimants[0].email_address)
-  expect { mail.mailhog_api['Subject'].to_s}.to eventually include ('["Employment tribunal: complete your claim"]')
-  expect { mail.mailhog_api['Date'][0]}.to eventually start_with(@claim_started_time)
+  et1_email = EtFullSystem::Test::Et1ResponseEmailHtml.find(claim_number: @my_et1_claim_number)
+  expect(et1_email.submission_date).to eq(form_submission_page.submission_date.text)
+  expect(et1_email.has_correct_subject_for_complete_your_claim?).to be true
+  expect(et1_email.submission_date).to eq(t1_claim_submitted.main_content.confirmation_tabe.tbody.local_office_address.text)
 end
 
 Given /^a claimant completed an ET1 form$/ do
@@ -20,6 +21,7 @@ Given /^a claimant completed an ET1 form$/ do
 
 
   start_a_new_et1_claim
+  @my_et1_claim_number = et1_identification_page.main_content.claim_number.text
   et1_answer_login
   et1_answer_claimant_questions
   et1_answer_group_claimants_questions
@@ -35,10 +37,10 @@ Given /^a claimant completed an ET1 form$/ do
 end
 
 Then(/^an email is sent to notify user that a claim has been successfully submitted$/) do
-  mail = EtFullSystem::Test::MailApi.new
-  expect { mail.mailhog_api['To']}.to eventually include (@claimants[0].email_address)
-  expect { mail.mailhog_api['Subject'].to_s}.to eventually include ('["Employment tribunal: claim submitted"]')
-  expect { mail.mailhog_api['Submission date'][0]}.to eventually start_with(et1_claim_submitted.main_content.confirmation_tabe.tbody.local_office_address.text)
+  et1_email = EtFullSystem::Test::Et1ResponseEmailHtml.find(claim_number: @my_et1_claim_number)
+  expect(et1_email.submission_date).to eq(form_submission_page.submission_date.text)
+  expect(et1_email.has_correct_subject_for_claim_submitted?).to be true
+  expect(et1_email.submission_date).to eq(t1_claim_submitted.main_content.confirmation_tabe.tbody.local_office_address.text)
 end
 
 When(/^a respondent completed an ET3 form$/) do
@@ -61,9 +63,7 @@ When(/^a respondent completed an ET3 form$/) do
 end
 
 Then(/^an email is sent to notify user that a respondent has been successfully submitted$/) do
-  emails_sent = EtFullSystem::Test::EmailsSent.new
-  et3_email = emails_sent.new_response_html_email_for(reference: @my_et3_reference)
-  # You will need to define the method has_correct_content_for? if you want to use this - otherwise et3_email is just another
-  # page object just like the rest.
-  expect(et3_email).to have_correct_content_for(bla)
+  et3_email = EtFullSystem::Test::Et3ResponseEmailHtml.find(reference: @my_et3_reference)
+  expect(et3_email.submission_date).to eq(form_submission_page.submission_date.text)
+  expect(et3_email.has_correct_subject?).to be true
 end
