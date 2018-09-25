@@ -2,28 +2,26 @@ require_relative './base'
 require 'rack/utils'
 module EtFullSystem
   module Test
-    class Et1ClaimantEmailHtml < SitePrism::Page
+    class Et1ClaimCompletedHtml < SitePrism::Page
       include RSpec::Matchers
-      element(:claim_number_element, :xpath, XPath.generate { |x| x.descendant(:td)[x.string.n.starts_with('Claim number')] })
-      element(:claim_submitted_element, :xpath, XPath.generate { |x| x.descendant(:p)[x.string.n.starts_with('Claim submitted:')] })
+      element(:claim_number_element, :xpath, XPath.generate { |x| x.descendant(:td)[x.string.n.starts_with('Claim number')].child(:p)[2] })
+      element(:claim_submitted_element, :xpath, XPath.generate { |x| x.descendant(:tr)[x.child(:td)[x.string.n.starts_with('Claim submitted:')]].child(:td)[2] })
     
-      def self.find(search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, claim_number:, sleep: 30, timeout: 120)
+      def self.find(search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, claim_number:, sleep: 10, timeout: 120)
         item = find_email(claim_number, search_url, sleep: sleep, timeout: timeout)
         raise "ET1 Mail with claim number #{claim_number} not found" unless item.present?
-        Et1ClaimantEmailHtml.new(item)
+        new(item)
       end
 
-      def self.find_email(claim_number, search_url, timeout: 120, sleep: 10)
+      def self.find_email(claim_number, search_url, timeout: 120, sleep: 10, subject_text: 'Employment tribunal: claim submitted')
         Timeout.timeout(timeout) do
           item = nil
           until item.present? do
-            list = Rack::Utils.build_query(kind: 'containing', query: claim_number, start: 0, limit: 2)
-            # temporary hard coding query string
-            query = Rack::Utils.build_query(kind: 'containing', query: 'Employment tribunal: claim submitted', start: 0, limit: 1)
+            query = Rack::Utils.build_query(kind: 'containing', query: claim_number, start: 0, limit: 10)
             url = URI.parse(search_url)
             url.query = query
             response = HTTParty.get(url, headers: { accept: 'application/json' })
-            item = response.parsed_response['items'].first
+            item = response.parsed_response['items'].detect {|i| i.dig('Content', 'Headers', 'Subject').try(:first) == subject_text}
             sleep sleep unless item.present?
           end
           Mail.new item.dig('Raw', 'Data')

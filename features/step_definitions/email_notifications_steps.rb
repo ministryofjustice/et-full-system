@@ -35,7 +35,7 @@ Given /^a claimant completed an ET1 form$/ do
 end
 
 Then(/^an email is sent to notify user that a claim has been successfully submitted$/) do
-  et1_email = EtFullSystem::Test::Et1ClaimantEmailHtml.find(claim_number: @my_et1_claim_number)
+  et1_email = EtFullSystem::Test::Et1ClaimCompletedHtml.find(claim_number: @my_et1_claim_number)
   expect(et1_email.claim_number).to eq(et1_claim_submitted.main_content.claim_number.text)
   expect(et1_email.submission_submitted).to eq(et1_claim_submitted.main_content.content_section.confirmation_table.tbody.local_office_address.text)
   expect(et1_email.has_correct_subject_for_claim_submitted?).to be true
