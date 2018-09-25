@@ -2,7 +2,7 @@ require_relative './base'
 require 'rack/utils'
 module EtFullSystem
   module Test
-    class Et1ClaimCompletedHtml < SitePrism::Page
+    class Et1ClaimContinueHtml < SitePrism::Page
       include RSpec::Matchers
       element(:claim_number_element, :xpath, XPath.generate { |x| x.descendant(:td)[x.string.n.starts_with('Claim number')].child(:p)[2] })
       element(:claim_submitted_element, :xpath, XPath.generate { |x| x.descendant(:tr)[x.child(:td)[x.string.n.starts_with('Claim submitted:')]].child(:td)[2] })
@@ -13,7 +13,7 @@ module EtFullSystem
         new(item)
       end
 
-      def self.find_email(claim_number, search_url, timeout: 120, sleep: 10, subject_text: 'Employment tribunal: claim submitted')
+      def self.find_email(claim_number, search_url, timeout: 120, sleep: 10, subject_text: 'Employment tribunal: complete your claim')
         Timeout.timeout(timeout) do
           item = nil
           until item.present? do
@@ -32,8 +32,7 @@ module EtFullSystem
 
       def initialize(mail)
         self.mail = mail
-        multipart = mail.parts.detect { |p| p.content_type =~ %r{multipart\/alternative} }
-        part = multipart.parts.detect { |p| p.content_type =~ %r{text\/html} }
+        part = mail.parts.detect { |p| p.content_type =~ %r{text\/html} }
         body = part.nil? ? '' : part.body.to_s
         load(body)
       end
@@ -46,8 +45,8 @@ module EtFullSystem
         claim_submitted_element.text
       end
 
-      def has_correct_subject_for_claim_submitted?
-        mail.subject == 'Employment tribunal: claim submitted'
+      def has_correct_subject_for_complete_your_claim?
+        mail.subject == 'Employment tribunal: complete your claim'
       end
 
       attr_accessor :mail

@@ -6,7 +6,7 @@ Given /^a claimant continued from Saving your claim page$/ do
 end
 
 Then(/^an email is sent to notify user that a claim has been started$/) do
-  et1_email = EtFullSystem::Test::Et1ClaimantEmailHtml.find(claim_number: @my_et1_claim_number)
+  et1_email = EtFullSystem::Test::Et1ClaimContinueHtml.find(claim_number: @my_et1_claim_number)
   expect(et1_email.has_correct_subject_for_complete_your_claim?).to be true
 end
 
