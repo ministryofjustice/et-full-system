@@ -6,10 +6,8 @@ Given /^a claimant continued from Saving your claim page$/ do
 end
 
 Then(/^an email is sent to notify user that a claim has been started$/) do
-  et1_email = EtFullSystem::Test::Et1ResponseEmailHtml.find(claim_number: @my_et1_claim_number)
-  expect(et1_email.submission_date).to eq(form_submission_page.submission_date.text)
+  et1_email = EtFullSystem::Test::Et1ClaimantEmailHtml.find(claim_number: @my_et1_claim_number)
   expect(et1_email.has_correct_subject_for_complete_your_claim?).to be true
-  expect(et1_email.submission_date).to eq(t1_claim_submitted.main_content.confirmation_tabe.tbody.local_office_address.text)
 end
 
 Given /^a claimant completed an ET1 form$/ do
@@ -37,10 +35,10 @@ Given /^a claimant completed an ET1 form$/ do
 end
 
 Then(/^an email is sent to notify user that a claim has been successfully submitted$/) do
-  et1_email = EtFullSystem::Test::Et1ResponseEmailHtml.find(claim_number: @my_et1_claim_number)
-  expect(et1_email.submission_date).to eq(form_submission_page.submission_date.text)
+  et1_email = EtFullSystem::Test::Et1ClaimantEmailHtml.find(claim_number: @my_et1_claim_number)
+  expect(et1_email.claim_number).to eq(et1_claim_submitted.main_content.claim_number.text)
+  expect(et1_email.submission_submitted).to eq(et1_claim_submitted.main_content.content_section.confirmation_table.tbody.local_office_address.text)
   expect(et1_email.has_correct_subject_for_claim_submitted?).to be true
-  expect(et1_email.submission_date).to eq(t1_claim_submitted.main_content.confirmation_tabe.tbody.local_office_address.text)
 end
 
 When(/^a respondent completed an ET3 form$/) do
