@@ -39,9 +39,9 @@ When /^I submit a completed ET1 form$/ do
 end
 
 Then("the address lookup will be based on respondent's work address and will forwarded to {string}") do |string|
-  expect(et1_claim_submitted.main_content.confirmation_tabe.tbody.local_office_address.text).to end_with(string)
+  expect(et1_claim_submitted.main_content.content_section.confirmation_table.tbody.local_office_address.text).to end_with(string)
 end
 
 Then("the address lookup will be based on claimant's work address and will be forwarded to {string}") do |string|
-  expect(et1_claim_submitted.main_content.confirmation_tabe.tbody.local_office_address.text).to end_with(string)
+  expect(et1_claim_submitted.main_content.content_section.confirmation_table.tbody.local_office_address.text).to end_with(string)
 end
