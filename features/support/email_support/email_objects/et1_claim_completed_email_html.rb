@@ -2,7 +2,7 @@ require_relative './base'
 require 'rack/utils'
 module EtFullSystem
   module Test
-    class Et1ClaimCompletedHtml < SitePrism::Page
+    class Et1ClaimCompletedEmailHtml < SitePrism::Page
       include RSpec::Matchers
       element(:claim_number_element, :xpath, XPath.generate { |x| x.descendant(:td)[x.string.n.starts_with('Claim number')].child(:p)[2] })
       element(:claim_submitted_element, :xpath, XPath.generate { |x| x.descendant(:tr)[x.child(:td)[x.string.n.starts_with('Claim submitted:')]].child(:td)[2] })

@@ -6,11 +6,11 @@ Given /^a claimant continued from Saving your claim page$/ do
 end
 
 Then(/^an email is sent to notify user that a claim has been started$/) do
-  et1_email = EtFullSystem::Test::Et1ClaimContinueHtml.find(claim_number: @my_et1_claim_number)
+  et1_email = EtFullSystem::Test::Et1ClaimContinueEmailHtml.find(claim_number: @my_et1_claim_number)
   expect(et1_email.has_correct_subject_for_complete_your_claim?).to be true
 end
 
-Given /^a claimant completed an ET1 form$/ do
+Given /^a claimant completes an ET1 form$/ do
   @claimants = FactoryBot.create_list(:first_person, 1, :person_data)
   @representative = FactoryBot.create(:representative)
   @respondents = FactoryBot.create_list(:organisation_data, 1, :employer)
@@ -35,13 +35,13 @@ Given /^a claimant completed an ET1 form$/ do
 end
 
 Then(/^an email is sent to notify user that a claim has been successfully submitted$/) do
-  et1_email = EtFullSystem::Test::Et1ClaimCompletedHtml.find(claim_number: @my_et1_claim_number)
+  et1_email = EtFullSystem::Test::Et1ClaimCompletedEmailHtml.find(claim_number: @my_et1_claim_number)
   expect(et1_email.claim_number).to eq(et1_claim_submitted.main_content.claim_number.text)
   expect(et1_email.submission_submitted).to eq(et1_claim_submitted.main_content.content_section.confirmation_table.tbody.local_office_address.text)
   expect(et1_email.has_correct_subject_for_claim_submitted?).to be true
 end
 
-When(/^a respondent completed an ET3 form$/) do
+When(/^a respondent completes an ET3 form$/) do
   @claimant = FactoryBot.create_list(:et3_claimant, 1, :disagree_with_employment_dates)
   @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers)
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)

@@ -13,7 +13,7 @@ module EtFullSystem
       def self.find(search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, reference:, sleep: 30, timeout: 120)
         item = find_email(reference, search_url, sleep: sleep, timeout: timeout)
         raise "ET3 Mail with reference #{reference} not found" unless item.present?
-        Et3ResponseEmailHtml.new(item)
+        new(item)
       end
 
       def self.find_email(reference, search_url, timeout: 120, sleep: 10)
