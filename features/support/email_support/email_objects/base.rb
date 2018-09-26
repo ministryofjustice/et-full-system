@@ -1,15 +1,13 @@
 module EtFullSystem
   module Test
-    module EmailObjects
-      class Base
-        def initialize(mail)
-          self.mail = mail
-        end
-
-        private
-
-        attr_accessor :mail
+    class Base
+      def initialize(mail)
+        self.mail = mail
       end
-    end
+
+      private
+
+      attr_accessor :mail
+  end
   end
 end

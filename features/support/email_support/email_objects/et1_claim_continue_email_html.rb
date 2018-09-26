@@ -1,3 +1,4 @@
+require 'mail'
 require_relative './base'
 require 'rack/utils'
 module EtFullSystem
