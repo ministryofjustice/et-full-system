@@ -1,4 +1,4 @@
-# API v2.2.1
+# API v2.2.1 and ET1 v2.0.1
 **26/09/2018**
 
 ## New
@@ -7,7 +7,7 @@ _No new features_
 
 ## Changes
 
-_No Changes_
+* ET1 - Improved logging
 
 ## Fixes
 
