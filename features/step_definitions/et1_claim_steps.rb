@@ -35,7 +35,7 @@ When /^I submit a completed ET1 form$/ do
   et1_answer_more_about_the_claim_questions
 
   et1_submit_claim
-  log_event :et1_claim_created, @claimantse
+  log_event :et1_claim_created, @claimants
 end
 
 Then("the address lookup will be based on respondent's work address and will forwarded to {string}") do |string|
