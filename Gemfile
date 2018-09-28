@@ -27,6 +27,7 @@ group :test do
   gem 'factory_bot'
   gem 'settingslogic'
   gem 'parallel_tests'
+  gem 'mail'
 end
 
 group :development, :test do

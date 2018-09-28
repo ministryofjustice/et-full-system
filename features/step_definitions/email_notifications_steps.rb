@@ -1,17 +1,16 @@
 Given /^a claimant continued from Saving your claim page$/ do
   @claimants = FactoryBot.create_list(:claimant, 1, :answer_data)
-
   start_a_new_et1_claim
+  @my_et1_claim_number = et1_identification_page.main_content.claim_number.text
   et1_answer_login
 end
 
 Then(/^an email is sent to notify user that a claim has been started$/) do
-  mail = EtFullSystem::Test::MailApi.new
-  expect { mail.mailhog_api['To']}.to eventually include (@claimants[0].email_address)
-  expect { mail.mailhog_api['Subject'].to_s}.to eventually include ('["Employment tribunal: complete your claim"]')
+  et1_email = EtFullSystem::Test::Et1ClaimContinueEmailHtml.find(claim_number: @my_et1_claim_number)
+  expect(et1_email.has_correct_subject_for_complete_your_claim?).to be true
 end
 
-Given /^a claimant completed an ET1 form$/ do
+Given /^a claimant completes an ET1 form$/ do
   @claimants = FactoryBot.create_list(:first_person, 1, :person_data)
   @representative = FactoryBot.create(:representative)
   @respondents = FactoryBot.create_list(:organisation_data, 1, :employer)
@@ -20,6 +19,7 @@ Given /^a claimant completed an ET1 form$/ do
 
 
   start_a_new_et1_claim
+  @my_et1_claim_number = et1_identification_page.main_content.claim_number.text
   et1_answer_login
   et1_answer_claimant_questions
   et1_answer_group_claimants_questions
@@ -31,15 +31,17 @@ Given /^a claimant completed an ET1 form$/ do
   et1_answer_claim_outcome_questions
   et1_answer_more_about_the_claim_questions
   et1_submit_claim
+
 end
 
 Then(/^an email is sent to notify user that a claim has been successfully submitted$/) do
-  mail = EtFullSystem::Test::MailApi.new
-  expect { mail.mailhog_api['To']}.to eventually include (@claimants[0].email_address)
-  expect { mail.mailhog_api['Subject'].to_s}.to eventually include ('["Employment tribunal: claim submitted"]')
+  et1_email = EtFullSystem::Test::Et1ClaimCompletedEmailHtml.find(claim_number: @my_et1_claim_number)
+  expect(et1_email.claim_number).to eq(et1_claim_submitted.main_content.claim_number.text)
+  expect(et1_email.submission_submitted).to eq(et1_claim_submitted.main_content.content_section.confirmation_table.tbody.local_office_address.text)
+  expect(et1_email.has_correct_subject_for_claim_submitted?).to be true
 end
 
-When(/^a respondent completed an ET3 form$/) do
+When(/^a respondent completes an ET3 form$/) do
   @claimant = FactoryBot.create_list(:et3_claimant, 1, :disagree_with_employment_dates)
   @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers)
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
@@ -59,7 +61,7 @@ When(/^a respondent completed an ET3 form$/) do
 end
 
 Then(/^an email is sent to notify user that a respondent has been successfully submitted$/) do
-  mail = EtFullSystem::Test::MailApi.new
-  expect { mail.mailhog_api['To']}.to eventually include (@respondent[0].email_address)
-  expect { mail.mailhog_api['Subject'].to_s}.to eventually include ('["Your Response to Employment Tribunal claim online form receipt"]')
+  et3_email = EtFullSystem::Test::Et3ResponseEmailHtml.find(reference: @my_et3_reference)
+  expect(et3_email.submission_date).to eq(form_submission_page.submission_date.text)
+  expect(et3_email.has_correct_subject?).to be true
 end

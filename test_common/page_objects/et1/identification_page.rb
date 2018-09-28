@@ -4,6 +4,7 @@ module EtFullSystem
     module Et1
       class IdentificationPage < BasePage
         section :main_content, '#content .main-section .main-content' do
+          element :claim_number, '.callout-reference .number'
           element :email, 'input[name="application_number[email_address]"]'
           element :memorable_word, 'input[name="application_number[password]"]'
           element :save_and_continue_button, 'input[value="Save and continue"]'
