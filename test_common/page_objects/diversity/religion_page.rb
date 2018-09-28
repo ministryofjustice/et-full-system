@@ -4,6 +4,7 @@ module EtFullSystem
     module Diversity
       class ReligionPage < BasePage
         section :main_content, '#content .main-section .main-content' do
+          element :other_religion, 'input[name="diversities_religion[religion_text]"]'
           element :save_and_continue_button, 'input[value="Save and continue"]'
         end
 
@@ -12,9 +13,14 @@ module EtFullSystem
         end
 
         def set_for(answers)
-          if answers.try(:[], :religion).present?
-            answer = answers.to_h
-            choose(answer[:religion], name: 'diversities_religion[religion]')
+          data = answers.to_h
+          if data[:religion] != nil
+            if data[:religion] == "Jehovah's Witnesses"
+              choose('Any other religion', name: 'diversities_religion[religion]')
+              main_content.other_religion.set(data[:religion])
+            else
+             choose(data[:religion], name: 'diversities_religion[religion]')
+            end
           end
           save_and_continue
         end
@@ -22,3 +28,4 @@ module EtFullSystem
     end
   end
 end
+

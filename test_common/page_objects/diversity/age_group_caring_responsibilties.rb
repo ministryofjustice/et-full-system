@@ -13,15 +13,15 @@ module EtFullSystem
 
         def set_for(answers)
           set_for_optional(answers, :age_group, 'diversities_age_caring[age_group]')
-          set_for_optional(answers, :responsibilites, 'diversities_age_caring[caring_responsibility]')
+          set_for_optional(answers, :caring_responsibility, 'diversities_age_caring[caring_responsibility]')
           save_and_continue
         end
 
         private
 
         def set_for_optional(answers, key, name)
-          if answers.try(:[], key).present?
-            data = answers.to_h
+          data = answers.to_h
+          if data[key] != nil
             choose(data[key], name: name)
           end
         end

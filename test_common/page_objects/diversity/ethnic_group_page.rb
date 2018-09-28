@@ -12,16 +12,16 @@ module EtFullSystem
         end
 
         def set_for(answers)
-          set_for_optional(answers, :ethnic_group, 'diversities_ethnicity[ethnicity]')
-          set_for_optional(answers, :ethnic_type, 'diversities_ethnicity[ethnicity_subgroup]')
+          set_for_optional(answers, :ethnicity, 'diversities_ethnicity[ethnicity]')
+          set_for_optional(answers, :ethnicity_subgroup, 'diversities_ethnicity[ethnicity_subgroup]')
           save_and_continue
         end
 
         private
 
         def set_for_optional(answers, key, name)
-          if answers.try(:[], key).present?
-            data = answers.to_h
+          data = answers.to_h
+          if data[key] != nil
             choose(data[key], name: name)
           end
         end
