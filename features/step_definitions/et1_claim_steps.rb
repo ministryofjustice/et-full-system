@@ -42,6 +42,10 @@ Then("the address lookup will be based on respondent's work address and will for
   expect(et1_claim_submitted.main_content.content_section.confirmation_table.tbody.local_office_address.text).to end_with(string)
 end
 
+Then("submission details page includes RTF and CSV files") do
+    expect(et1_claim_submitted.main_content.content_section.confirmation_table.tbody.attachments.text).to end_with("#{@claim[:rtf_file]} #{@claimants[0][:group_claims_csv]}")
+end
+
 Then("the address lookup will be based on claimant's work address and will be forwarded to {string}") do |string|
   expect(et1_claim_submitted.main_content.content_section.confirmation_table.tbody.local_office_address.text).to end_with(string)
 end
