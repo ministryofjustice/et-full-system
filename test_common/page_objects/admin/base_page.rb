@@ -89,7 +89,8 @@ module EtFullSystem
             "Et Offices", 
             "Generate References", 
             "Office Postcodes", 
-            "Responses", 
+            "Responses",
+            "Roles",
             "Users", 
             "", 
             "Logout"]
