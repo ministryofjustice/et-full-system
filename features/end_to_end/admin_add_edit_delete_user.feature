@@ -1,14 +1,14 @@
 @javascript
 Feature: Create new user
-  As an Admin user
+  As an Super or Admin user
   I want to be able to add, edit and delete users who are no longer working for MOJ
 
   Background: 
-    Given an administrator login
+    When an administrator login
     And load User page
 
   Scenario: Add new user with 'User' role
-    When a new user is created with 'user' role
+    When a new user is created with 'User' role
     Then they should be able to login
     And have basic access to ET admin system
 

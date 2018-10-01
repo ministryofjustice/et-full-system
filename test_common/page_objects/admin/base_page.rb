@@ -26,7 +26,6 @@ module EtFullSystem
           element :roles_menu_item, :link, 'Roles'
           element :uploaded_files_menu_item, :link, 'Uploaded Files'
           element :users_menu_item, :link, 'Users'
-          element :logout_menu_item, :link, 'Logout'
           
           def choose_acas_certificates
             acas_menu_item.hover
@@ -104,6 +103,13 @@ module EtFullSystem
             "Et Offices", 
             "Generate References", 
             "Logout"]
+        end
+        section :utility_nav, '#header ul#utility_nav' do
+          element :logout_menu_item, :link, 'Logout'
+
+          def click_logout
+            logout_menu_item.click
+          end
         end
       end
     end

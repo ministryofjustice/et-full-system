@@ -52,6 +52,10 @@ module EtFullSystem
           title_bar.title_bar.import_users.click
         end
 
+        def click_new_user
+          title_bar.title_bar.new_user.click
+        end
+
         def search_by_email(filter_by, email_address)
           filters_contents.email_section.filter_by_email.select(filter_by)
           filters_contents.email_section.email_input.set(email_address)

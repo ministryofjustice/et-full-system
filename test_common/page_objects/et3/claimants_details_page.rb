@@ -18,7 +18,7 @@ module EtFullSystem
           end
           section :no, :gds_multiple_choice_option, 'questions.agree_with_early_conciliation_details.no.label', exact: false do
             element :selector, :css, 'input[type="radio"]'
-            delegate :set, to: :selector          
+            delegate :set, to: :selector
           end
           section :disagree_conciliation_reason, :textarea_labelled, 'questions.agree_with_early_conciliation_details.disagree_conciliation_reason.label', exact: false do
             delegate :set, to: :root_element

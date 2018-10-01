@@ -61,6 +61,10 @@ module EtFullSystem
         Admin::UsersPage.new
       end
 
+      def self.new_user_page
+        Admin::NewUserPage.new
+      end
+
       def self.import_file_page
         Admin::ImportFilePage.new
       end
