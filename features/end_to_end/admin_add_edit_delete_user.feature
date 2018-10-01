@@ -1,7 +1,7 @@
 @javascript
 Feature: Create new user
-  As a System Administrator
-  I need to be able to control who has access to the ET administrative functions for authorisation and security reasons
+  As an Admin user
+  I want to be able to add, edit and delete users who are no longer working for MOJ
 
   Background: 
     Given an administrator login
