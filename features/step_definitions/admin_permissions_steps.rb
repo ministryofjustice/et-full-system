@@ -30,7 +30,7 @@ Then(/^I should have full access to ET admin$/) do
   tab_names[tab_names.index('Logout') -1] =  @name
   expect(admin_pages.any_page.names.map {|x| x.text}).to eq(tab_names)
 
-  # Tear down of the uploaded csv
+  # Tear down
   admin_username = ::EtFullSystem::Test::Configuration.admin_username
   admin_password = ::EtFullSystem::Test::Configuration.admin_password
   admin_pages.logout_page.load
@@ -48,7 +48,7 @@ Then("I should have partial access to ET admin") do
   tab_names[tab_names.index('Logout') -1] =  @name
   expect(admin_pages.any_page.names.map {|x| x.text}).to eq(tab_names)
 
-  # Tear down of the uploaded csv
+  # Tear down
   admin_username = ::EtFullSystem::Test::Configuration.admin_username
   admin_password = ::EtFullSystem::Test::Configuration.admin_password
   admin_pages.logout_page.load
@@ -65,7 +65,7 @@ Then("I should have basic access to ET admin") do
   tab_names = admin_pages.any_page.basic_access
   expect(admin_pages.any_page.names.map {|x| x.text}).to eq(tab_names)
 
-  # Tear down of the uploaded csv
+  # Tear down
   admin_username = ::EtFullSystem::Test::Configuration.admin_username
   admin_password = ::EtFullSystem::Test::Configuration.admin_password
   admin_pages.logout_page.load
