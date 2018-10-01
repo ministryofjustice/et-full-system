@@ -1,5 +1,6 @@
 require_relative '../../../test_common/helpers/upload_helper'
 require 'rspec/matchers'
+require 'csv'
 module EtFullSystem
   module Test
     module Admin
@@ -49,6 +50,46 @@ module EtFullSystem
 
         def click_import_users
           title_bar.title_bar.import_users.click
+        end
+
+        def search_by_email(filter_by, email_address)
+          filters_contents.email_section.filter_by_email.select(filter_by)
+          filters_contents.email_section.email_input.set(email_address)
+          filters_contents.filter_button.click
+        end
+
+        def assert_users_are_imported
+          filename = File.expand_path(File.join('test_common', 'fixtures', 'et_admin_users.csv'))
+          aggregate_failures 'Validating all users are imported' do
+            CSV.foreach(filename, :headers => true) do |csv_row|
+              expect(collection_contents.table).to have_user_matching(csv_row)
+            end
+          end
+        end
+
+        def get_username_password(role)
+          filename = File.expand_path(File.join('test_common', 'fixtures', 'et_admin_users.csv'))
+          data = []
+          CSV.foreach(filename, :headers => true) do |csv_row|
+            if csv_row['Role'] == role
+              data << csv_row['username']
+              data << csv_row['password']
+              data << csv_row['name']
+            end
+          end
+          return data
+        end
+
+        def assert_users_are_delete
+          filename = File.expand_path(File.join('test_common', 'fixtures', 'et_admin_users.csv'))
+          aggregate_failures 'Validating user has been deleted' do
+            CSV.foreach(filename, :headers => true) do |csv_row|
+              # yucky code - its not deleteing row based on user's name
+              find('.col.col-actions .table_actions .delete_link.member_link').click
+              page.driver.browser.switch_to.alert.accept
+              expect(notification_msg).to have_content("User was successfully destroyed.")
+            end
+          end
         end
       end
     end
