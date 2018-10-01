@@ -1,5 +1,5 @@
 # Admin v1.4.0 & API v2.3.0
-**Scheduled: 01/10/2018**
+**01/10/2018**
 
 ## New
 
@@ -16,9 +16,9 @@ _No new features_
 ## Info
 Deployment by Stath
 
-No downtime expected
+No downtime expected/observed
 
-No risk expected
+No risk expected/observed
 
 # API v2.2.1 and ET1 v2.0.1
 **26/09/2018**
