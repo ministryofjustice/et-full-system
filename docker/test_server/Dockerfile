@@ -74,6 +74,7 @@ WORKDIR /home/app/full_system/systems
 RUN echo "app ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && chmod 0440 /etc/sudoers.d/user
 RUN usermod -u $APP_UID app
 USER app
+RUN bash --login -c "rvm_rubygems_version=2.7.6 rvm install ruby-2.3.3 && rvm --default use 2.5.1"
 
 RUN cd /home/app
 ENV HOME /home/app
