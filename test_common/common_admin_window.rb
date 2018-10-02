@@ -32,7 +32,7 @@ module EtFullSystem
         within_window(window) do
           admin_pages.dashboard_page.load
           if admin_pages.login_page.displayed?
-            admin_pages.login_page.login(email: admin_username, password: admin_password)
+            admin_pages.login_page.login(username: admin_username, password: admin_password)
             raise "Could not login to admin with username '#{admin_username}' and password '#{admin_password}'" unless admin_pages.dashboard_page.displayed?
           end
         end
