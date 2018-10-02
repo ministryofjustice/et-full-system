@@ -52,6 +52,10 @@ module EtFullSystem
           title_bar.title_bar.import_users.click
         end
 
+        def click_new_user
+          title_bar.title_bar.new_user.click
+        end
+
         def search_by_email(filter_by, email_address)
           filters_contents.email_section.filter_by_email.select(filter_by)
           filters_contents.email_section.email_input.set(email_address)
@@ -80,14 +84,21 @@ module EtFullSystem
           return data
         end
 
-        def assert_users_are_delete
+        def delete_user_from_admin(email_address)
+          # Search for user by email to make it unique
+          filters_contents.email_section.email_input.set(email_address)
+          filters_contents.filter_button.click
+          # Then delete the first record
+          find('.col.col-actions .table_actions .delete_link.member_link').click
+          page.driver.browser.switch_to.alert.accept
+          expect(notification_msg).to have_content("User was successfully destroyed.")
+        end
+
+        def delete_uploaded_csv_users_from_admin
           filename = File.expand_path(File.join('test_common', 'fixtures', 'et_admin_users.csv'))
           aggregate_failures 'Validating user has been deleted' do
             CSV.foreach(filename, :headers => true) do |csv_row|
-              # yucky code - its not deleteing row based on user's name
-              find('.col.col-actions .table_actions .delete_link.member_link').click
-              page.driver.browser.switch_to.alert.accept
-              expect(notification_msg).to have_content("User was successfully destroyed.")
+              delete_user_from_admin(csv_row['email'])
             end
           end
         end

@@ -1,12 +1,7 @@
 Given(/^I am an ACAS administrator$/) do
   admin_username = ::EtFullSystem::Test::Configuration.admin_username
   admin_password = ::EtFullSystem::Test::Configuration.admin_password
-  admin_pages.logout_page.load
-  admin_pages.dashboard_page.load
-  if admin_pages.login_page.displayed?
-    admin_pages.login_page.login(email: admin_username, password: admin_password)
-    raise "Could not login to admin with username '#{admin_username}' and password '#{admin_password}'" unless admin_pages.dashboard_page.displayed?
-  end
+  admin_pages.dashboard_page.admin_login(admin_username, admin_password)
 end
 
 When(/^I enter an ACAS certificate number in the ACAS search field$/) do
@@ -69,12 +64,7 @@ end
 When(/^an ET Administrator with full access can view successful Acas Certificate log$/) do
   admin_username = ::EtFullSystem::Test::Configuration.admin_username
   admin_password = ::EtFullSystem::Test::Configuration.admin_password
-  admin_pages.logout_page.load
-  admin_pages.dashboard_page.load
-  if admin_pages.login_page.displayed?
-    admin_pages.login_page.login(email: admin_username, password: admin_password)
-    raise "Could not login to admin with username '#{admin_username}' and password '#{admin_password}'" unless admin_pages.dashboard_page.displayed?
-  end
+  admin_pages.dashboard_page.admin_login(admin_username, admin_password)
 
   if ENV['ENVIRONMENT'] == 'local'
     @certificate = build(:acas_mock_certificate, :mock_valid)
@@ -104,12 +94,7 @@ end
 When(/^an ET Administrator with full access ca view invalid Acas Certificate log$/) do
   admin_username = ::EtFullSystem::Test::Configuration.admin_username
   admin_password = ::EtFullSystem::Test::Configuration.admin_password
-  admin_pages.logout_page.load
-  admin_pages.dashboard_page.load
-  if admin_pages.login_page.displayed?
-    admin_pages.login_page.login(email: admin_username, password: admin_password)
-    raise "Could not login to admin with username '#{admin_username}' and password '#{admin_password}'" unless admin_pages.dashboard_page.displayed?
-  end
+  admin_pages.dashboard_page.admin_login(admin_username, admin_password)
 
   if ENV['ENVIRONMENT'] == 'local'
     @certificate = build(:acas_mock_certificate, :mock_invalid)
