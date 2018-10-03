@@ -26,7 +26,7 @@ end
 Then("the data is updated in ET Admin system") do  
   within_admin_window do
     api = EtFullSystem::Test::AdminApi.new
-    expect {api.admin_diversity_data.symbolize_keys}.to eventually include @diversity.to_h
+    expect {api.admin_diversity_data(@diversity).symbolize_keys}.to eventually include(@diversity.to_h), timeout: 30, sleep: 2
   end
 end
 
