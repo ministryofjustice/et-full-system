@@ -74,9 +74,3 @@ Feature:
   #   Given a group claimaints submitting an ET1 form by uploading CSV and Rich Text Format documents
   #   When the completed form is submitted
   #   Then submission details page includes RTF and CSV files
-
-  # fixed as part of this ticket - RST-1433-current-work-situation
-  Scenario: Employment Details - Current work situation 
-    Given a claimant submitted an ET1 with no employment situation question answered
-    When the completed form is submitted
-    Then  I can download the form and validate in PDF format
