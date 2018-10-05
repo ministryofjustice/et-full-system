@@ -77,9 +77,8 @@ module EtFullSystem
 
         def set_for(employment)
           data = employment.to_h
-          if data.nil?
+          if data.nil? || data == {}
             main_content.your_employment_details.set('No')
-
           else
             main_content.your_employment_details do |s|
               s.set 'Yes'
