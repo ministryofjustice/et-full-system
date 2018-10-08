@@ -20,7 +20,7 @@ module EtFullSystem
         element :what_you_need_to_know_acas_details, :paragraph_link_named, 'claims.new.what_you_need_to_know.body_html.acas_details', exact: false
         element :start_a_claim_link, 'input[type="submit"]', exact: false
         element :start_a_claim_button, :submit_text, 'helpers.submit.claim.create', exact: false
-        element :return_a_claim_button, :link_named, 'helpers.submit.user_session.create', exact: false
+        element :return_a_claim_button, :link_named, 'helpers.link.claim.return', exact: false
         def start_a_claim
           start_a_claim_link.click
         end
