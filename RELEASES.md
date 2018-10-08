@@ -1,3 +1,25 @@
+# Admin v1.4.0 & API v2.3.0
+**01/10/2018**
+
+## New
+
+* **ADMIN:** Admins and Super Users can now create, edit and delete users via the admin portal, without requiring a CSV file. Super users cannot assign administrator role. (RST-1314)
+
+## Changes
+
+* **API:** Migrations in API DB to support admin user roles. (RST-1314)
+
+## Fixes
+
+_No new features_
+
+## Info
+Deployment by Stath
+
+No downtime expected/observed
+
+No risk expected/observed
+
 # API v2.2.1 and ET1 v2.0.1
 **26/09/2018**
 
