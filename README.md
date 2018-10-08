@@ -612,3 +612,8 @@ staging: ./bin/dev/test_exec bundle exec cucumber ENVIRONMENT=staging
 ## Running test in parallel
 
 ./bin/dev/test_exec bundle exec parallel_cucumber features/ ENVIRONMENT=dev
+
+## Running test in different locale
+
+./rubybin/cucumber features/end_to_end/et1_welsh_translation.feature TEST_LOCALE='cy'
+./bin/dev/test_exec bundle exec features/end_to_end/et1_welsh_translation.feature [default to English]
