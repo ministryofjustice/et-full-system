@@ -33,7 +33,7 @@ _Assuming that the features that form the release have been merged into `develop
 ## Prepare Full System
 
 1. Branch off of `develop` to create a `release/xxx` branch. **Naming convention for release branches TBD**
-1. Update [RELEASES.md](../releases.md) at the top of the document using the following format:
+1. Update [RELEASES.md](../RELEASES.md) at the top of the document using the following format:
     ```markdown
        # Microservice vx.x.x & Other Microservice vx.x.x
        **Date of Deployment**
@@ -74,7 +74,7 @@ _Assuming that the features that form the release have been merged into `develop
 1. For each microservice, via Github
     2. Set up a PR from `release` branch into `master` - Retain the last five `release` branches
     2. Edit the Release information, removing the `-rc` suffix and untick `This is a pre-release`
-1. On the `release` branch of full-system, update [RELEASES.md](../releases.md) as a record of how the deployment went
+1. On the `release` branch of full-system, update [RELEASES.md](../RELEASES.md) as a record of how the deployment went
 1. Using the microservice ping.json files, ensure the SHAs between full-system and production match
 1. PR full-system `release` branch into `develop` & `master` - Retain the last five `release` branches
 
@@ -85,7 +85,7 @@ If an issue is found in a release candidate, fix using a `hotfix/xxx` branch in 
 1. Update the Github release version tag data (increment the `-rc` by one)
 1. Where applicable, update the Github release notes
 1. Update the full-system `release` branch to point to the service `release` branch hotfix SHA
-1. Where applicable, update [RELEASES.md](../releases.md)
+1. Where applicable, update [RELEASES.md](../RELEASES.md)
 1. `BUILD` and `DEPLOY` the hotfixed `release` branch to dev and staging (NB: Before using Jenkins please liaise with colleagues)
 1. Inform QA & stakeholders, await approval for deployment or follow these steps again if there are continued issues
 
