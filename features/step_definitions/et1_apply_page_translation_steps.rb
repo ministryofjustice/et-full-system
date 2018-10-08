@@ -1,6 +1,8 @@
 Given("a claimant is on the Apply page in {string}") do |string|
   et1_new_claim_page.load
-  et1_new_claim_page.switch_language
+  if string == 'Welsh'
+    et1_new_claim_page.switch_language
+  end
 end
 
 Then("Your feedback copy text is in the correct language") do
