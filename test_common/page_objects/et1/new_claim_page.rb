@@ -8,16 +8,16 @@ module EtFullSystem
         section :feedback_notice, '.feedback-notice' do
           element :language_picker, '.language-picker a'
           element :language, :link_named, 'switch.language'
-          element :feedback_link, :paragraph_link_named, 'shared.feedback_link.feedback_statement_html'
+          element :feedback_link, :paragraph_containing_text, 'shared.feedback_link.feedback_statement_html'
         end
         element :header, :h1_text, 'claims.new.header', exact: false
         element :are_you_in_time_h2, :h2_text, 'claims.new.are_you_in_time.legend', exact: false
-        element :are_you_in_time_body, :paragraph_link_named, 'claims.new.are_you_in_time.body_html', exact: false
+        element :are_you_in_time_body, :paragraph_containing_text, 'claims.new.are_you_in_time.body_html', exact: false
         element :have_you_contacted_acas_h2, :h2_text, 'claims.new.have_you_contacted_acas.legend', exact: false
-        element :have_you_contacted_acas_body, :paragraph_link_named, 'claims.new.have_you_contacted_acas.body_html', exact: false
+        element :have_you_contacted_acas_body, :paragraph_containing_text, 'claims.new.have_you_contacted_acas.body_html', exact: false
         element :what_you_need_to_know_h2, :h2_text, 'claims.new.what_you_need_to_know.legend', exact: false
-        element :what_you_need_to_know_acas_text, :paragraph_link_named, 'claims.new.what_you_need_to_know.body_html.acas_text', exact: false
-        element :what_you_need_to_know_acas_details, :paragraph_link_named, 'claims.new.what_you_need_to_know.body_html.acas_details', exact: false
+        element :what_you_need_to_know_acas_text, :paragraph_containing_text, 'claims.new.what_you_need_to_know.body_html.acas_text', exact: false
+        element :what_you_need_to_know_acas_details, :paragraph_containing_text, 'claims.new.what_you_need_to_know.body_html.acas_details', exact: false
         element :start_a_claim_link, 'input[type="submit"]', exact: false
         element :start_a_claim_button, :submit_text, 'helpers.submit.claim.create', exact: false
         element :return_a_claim_button, :link_named, 'helpers.link.claim.return', exact: false
