@@ -115,3 +115,10 @@ Given("a group claimaints submitting an ET1 form by uploading CSV and Rich Text 
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create_list(:claim, 1, :upload_your_claim_statement)[0]
 end
+
+Given("a claimant submitted an ET1 with no employment details") do
+  @claimants = FactoryBot.create_list(:first_person, 1, :group_claims)
+  @representatives = FactoryBot.create_list(:representative, 1, :et3_information)
+  @respondents = FactoryBot.create_list(:organisation_data, 1, :employer)
+  @claim = FactoryBot.create_list(:claim, 1, :upload_your_claim_statement)[0]
+end
