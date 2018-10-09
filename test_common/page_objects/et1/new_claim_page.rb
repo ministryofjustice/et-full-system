@@ -4,6 +4,7 @@ module EtFullSystem
     module Et1
       class NewClaimPage < BasePage
         include RSpec::Matchers
+        include ::EtFullSystem::Test::I18n
         set_url ::EtFullSystem::Test::Configuration.et1_url
         section :feedback_notice, '.feedback-notice' do
           element :language_picker, '.language-picker a'
@@ -21,6 +22,9 @@ module EtFullSystem
         element :start_a_claim_link, 'input[type="submit"]', exact: false
         element :start_a_claim_button, :submit_text, 'helpers.submit.claim.create', exact: false
         element :return_a_claim_button, :link_named, 'helpers.link.claim.return', exact: false
+        element :suport_header, :main_header, 'shared.aside.gethelp_header'
+        element :guide, :link_named, 'shared.aside.read_guide'
+        element :contact_use, :link_named, 'shared.aside.contact_us'
         def start_a_claim
           start_a_claim_link.click
         end
@@ -54,9 +58,19 @@ module EtFullSystem
           expect(what_you_need_to_know_acas_details.text).to be_truthy
         end
 
-        def has_correct_translation_action_buttons_labelled?
+        def has_correct_translation_button_labelled?
           expect(start_a_claim_button.value).to be_truthy
           expect(return_a_claim_button.text).to be_truthy
+        end
+
+        def has_correct_translation_support_link_labelled?
+          expect(start_a_claim_button.value).to be_truthy
+          expect(return_a_claim_button.text).to be_truthy
+        end
+
+        def has_load_your_feedback_page
+          binding.pry
+          expect(current_url).to eq("#{::EtFullSystem::Test::Configuration.et1_url}apply/feedback?locale=en")
         end
       end
     end
