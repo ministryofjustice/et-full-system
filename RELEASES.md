@@ -1,3 +1,61 @@
+# v1.1.0 - Bug fix for ET1
+
+## Security
+
+No changes
+
+## New
+
+No new functionality
+
+## Changes
+
+No changes
+
+## Fixes
+
+* ET1 v3.0.1 - RST-1447 Claims in dead queue on sidekig.  A bug fix to allow a post code such as '1086' through which validates ok, but the pdf code failed
+
+# API 2.4.0, ET1 3.0.0 and ET3 2.2.1
+**9/10/2018**
+
+## New
+
+## Security
+
+* Updated vulnerable gems in ET3 (RST-1432)
+
+## Changes
+
+* API change to V2 - no functionality will change as a result of this, but this enables us to get away from the old XML way of doing things and should resolve the problems that we get when sending large csv files from ET1
+* ET3 Header change on confirmation page (RST-1426)
+
+## Fixes
+
+None
+
+# Admin v1.4.0 & API v2.3.0
+**01/10/2018**
+
+## New
+
+* **ADMIN:** Admins and Super Users can now create, edit and delete users via the admin portal, without requiring a CSV file. Super users cannot assign administrator role. (RST-1314)
+
+## Changes
+
+* **API:** Migrations in API DB to support admin user roles. (RST-1314)
+
+## Fixes
+
+_No new features_
+
+## Info
+Deployment by Stath
+
+No downtime expected/observed
+
+No risk expected/observed
+
 # API v2.2.1 and ET1 v2.0.1
 **26/09/2018**
 
