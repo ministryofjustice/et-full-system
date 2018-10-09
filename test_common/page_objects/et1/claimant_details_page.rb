@@ -48,7 +48,11 @@ module EtFullSystem
             element :locality, 'input[name="claimant[address_locality]"]'
             element :county, 'input[name="claimant[address_county]"]'
             element :post_code, 'input[name="claimant[address_post_code]"]'
-            element :country, 'select[name="claimant[address_country]"]'
+            section :country, 'select[name="claimant[address_country]"]' do
+              def set(value)
+                root_element.select(value)
+              end
+            end
             element :telephone_number, 'input[name="claimant[address_telephone_number]"]'
             element :alternative_telephone_number, 'input[name="claimant[mobile_number]"]'
             element :email_address, 'input[name="claimant[email_address]"]'
