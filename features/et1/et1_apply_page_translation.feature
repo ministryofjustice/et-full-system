@@ -5,8 +5,8 @@ Feature:
   I would like to select whether I submit my application in Welsh or English
   So that I can use my preferred language
 
-  Scenario: Apply Page in Welsh
-    Given a claimant is on the Apply page in 'Welsh' 
+  Scenario: Apply Page
+    Given a claimant is on the Apply page 
     Then Your feedback copy text is in the correct language
     And Main header copy text is in the correct language
     And Are you in time copy text is in the correct language
