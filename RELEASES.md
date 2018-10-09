@@ -1,3 +1,21 @@
+# v1.1.0 - Bug fix for ET1
+
+## Security
+
+No changes
+
+## New
+
+No new functionality
+
+## Changes
+
+No changes
+
+## Fixes
+
+* ET1 v3.0.1 - RST-1447 Claims in dead queue on sidekig.  A bug fix to allow a post code such as '1086' through which validates ok, but the pdf code failed
+
 # API 2.4.0, ET1 3.0.0 and ET3 2.2.1
 **9/10/2018**
 
