@@ -1,3 +1,21 @@
+# API 2.4.0, ET1 3.0.0 and ET3 2.2.1
+**9/10/2018**
+
+## New
+
+## Security
+
+* Updated vulnerable gems in ET3 (RST-1432)
+
+## Changes
+
+* API change to V2 - no functionality will change as a result of this, but this enables us to get away from the old XML way of doing things and should resolve the problems that we get when sending large csv files from ET1
+* ET3 Header change on confirmation page (RST-1426)
+
+## Fixes
+
+None
+
 # Admin v1.4.0 & API v2.3.0
 **01/10/2018**
 
