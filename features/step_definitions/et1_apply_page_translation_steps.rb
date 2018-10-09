@@ -1,6 +1,6 @@
-Given("a claimant is on the Apply page in {string}") do |string|
+Given("a claimant is on the Apply page") do
   et1_new_claim_page.load
-  if string == 'Welsh'
+  if ENV['TEST_LOCALE'] == "cy"
     et1_new_claim_page.switch_language
   end
 end
