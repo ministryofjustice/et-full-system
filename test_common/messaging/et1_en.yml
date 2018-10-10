@@ -460,7 +460,7 @@ en:
       what_you_need_to_know:
         legend: What you’ll need
         body_html:
-          acas_text: your acas_early_conciliation">Acas early conciliation certificate number
+          acas_text: your Acas early conciliation certificate number
           acas_details: details of your claim including the background, dates and people involved
     application_number:
       header: Saving your claim
