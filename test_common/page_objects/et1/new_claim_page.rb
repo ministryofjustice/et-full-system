@@ -39,6 +39,10 @@ module EtFullSystem
           start_a_claim_button.click
         end
 
+        def return_to_claim
+          return_a_claim_button.click
+        end
+
         def switch_to_welsh
           feedback_notice.welsh_link.click
         end

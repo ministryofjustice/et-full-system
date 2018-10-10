@@ -58,6 +58,10 @@ module EtFullSystem
         EtFullSystem::Test::Et1::SubmissionPage.new
       end
 
+      def et1_return_to_your_claim_page
+        EtFullSystem::Test::Et1::ReturnToYourClaimPage.new
+      end
+
       def et1_claim_submitted
         EtFullSystem::Test::Et1::ClaimSubmitted.new
       end
