@@ -5,12 +5,13 @@ Feature:
   I would like to select whether I submit my application in Welsh or English
   So that I can use my preferred language
 
-  Background: Apply Page
+  Background: Apply page
     Given a claimant is on the Apply page 
 
   Scenario: Verify copy texts
     Then Apply page copy texts are displayed in the correct language
-
+  
+  # TODO
   # Scenario: 'Your feedback' link
   #   When user click on Your feedback link
   #   Then user is taken to the feedback page

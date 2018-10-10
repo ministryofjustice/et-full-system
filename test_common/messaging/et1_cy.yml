@@ -314,7 +314,7 @@ cy:
 
     hints:
       application_number:
-        password: "Er enghraifft eich cyfenw "
+        password: "Er enghraifft eich cyfenw"
       address_county: "Ee os Llundain, Llundain Fwyaf; os Manceinion, Manceinion Fwyaf"
       claimant:
         date_of_birth: "Er enghraifft, 23 04 1981"
@@ -527,9 +527,9 @@ cy:
           acas_text: eich rhif tystysgrif cymodi cynnar Acas
           acas_details: manylion eich hawliad gan gynnwys y cefndir, y dyddiadau a'r unigolion sy'n gysylltiedig â'r hawliad
     application_number:
-      header: "Cadw eich hawliad "
+      header: "Cadw eich hawliad"
       application_number: Eich rhif hawliad
-      intro_text: "Gallwch gadw eich hawliad a dychwelyd iddo unrhyw bryd. Byddwch angen eich rhif hawliad (uchod), a gair cofiadwy y byddwch yn ei greu isod. "
+      intro_text: "Gallwch gadw eich hawliad a dychwelyd iddo unrhyw bryd. Byddwch angen eich rhif hawliad (uchod), a gair cofiadwy y byddwch yn ei greu isod."
       email_hint: Rhowch eich cyfeiriad e-bost i gael y rhif hawliad drwy neges e-bost.
       print_link: Argraffu'r dudalen hon
       print_copy: "i gael copi o'ch rhif hawliad er mwyn i chi allu cyfeirio ato "

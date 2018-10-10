@@ -121,7 +121,7 @@ en:
 
     labels:
       application_number:
-        email_address: Enter your email address to receive your claim number
+        email_address: Enter your email address to receive your claim number (optional)
         password: Create your memorable word
       user_session:
         new:

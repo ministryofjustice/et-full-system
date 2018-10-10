@@ -1,8 +1,5 @@
 Given("a claimant is on the Apply page") do
-  et1_new_claim_page.load
-  if ENV['TEST_LOCALE'] == "cy"
-    et1_new_claim_page.switch_language
-  end
+  load_start_page
 end
 
 Then("Apply page copy texts are displayed in the correct language") do
