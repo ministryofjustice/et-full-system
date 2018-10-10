@@ -7,29 +7,29 @@ module EtFullSystem
         #your feedback header
         section :feedback_notice, '.feedback-notice' do
           include ::EtFullSystem::Test::I18n
-          element :language, :link_named, 'switch.language', exact: false
+          element :language, :link_named, 'switch.language'
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
-          element :feedback_link, :paragraph, 'shared.feedback_link.feedback_statement_html', exact: false
+          element :feedback_link, :paragraph, 'shared.feedback_link.feedback_statement_html'
         end
         #page and main header
         section :main_header, '.main-header' do
-          element :page_header, :page_title, 'claims.application_number.header', exact: false
+          element :page_header, :page_title, 'claims.application_number.header'
         end
         section :main_content, '#content .main-section .main-content' do
-          element :claim_number_text, :paragraph, 'claims.application_number.application_number', exact: false
-          element :claims_number, '.callout-reference .number', exact: false
-          element :claims_intro_text, :paragraph, 'claims.application_number.intro_text', exact: false
+          element :claim_number_text, :paragraph, 'claims.application_number.application_number'
+          element :claims_number, '.callout-reference .number'
+          element :claims_intro_text, :paragraph, 'claims.application_number.intro_text'
           #email address
-          element :email_label, :form_labelled, 'simple_form.labels.application_number.email_address', exact: false
-          element :email, 'input#application_number_email_address', exact: false
+          element :email_label, :form_labelled, 'simple_form.labels.application_number.email_address'
+          element :email, 'input#application_number_email_address'
           #create your memorable word
-          element :memorable_word_label, :form_labelled, 'simple_form.labels.application_number.password', exact: false
-          element :example_word, :paragraph, 'simple_form.hints.application_number.password', exact: false
-          element :memorable_word, 'input#application_number_password', exact: false
+          element :memorable_word_label, :form_labelled, 'simple_form.labels.application_number.password'
+          element :example_word, :paragraph, 'simple_form.hints.application_number.password'
+          element :memorable_word, 'input#application_number_password'
           #print this page
-          # element :claims_print_copy, :, 'user_sessions.reminder.print_link'
-          # element :claims_print_copy, :, 'claims.application_number.print_copy'
+          element :print_link, :link_named, 'user_sessions.reminder.print_link'
+          element :print_copy, :paragraph, 'claims.application_number.print_copy', exact: false
           #save and continue button
           element :save_and_continue, :submit_text, 'helpers.submit.update'
         end
@@ -59,9 +59,15 @@ module EtFullSystem
           expect(main_content.email_label.text).to be_truthy
           #memorable
           expect(main_content.memorable_word_label.text).to be_truthy
-          expect(main_content.example_word.text).to be_truthy
+          #print this page
+          expect(main_content.print_link.text).to be_truthy
+          expect(main_content.print_copy.text).to be_truthy
           #save and continue button
           expect(main_content.example_word.text).to be_truthy
+          #Support links
+          expect(support.suport_header.text).to be_truthy
+          expect(support.guide.text).to be_truthy
+          expect(support.contact_use.text).to be_truthy
         end
 
 

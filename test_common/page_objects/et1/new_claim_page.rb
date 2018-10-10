@@ -13,21 +13,21 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
           element :feedback_link, :paragraph, 'shared.feedback_link.feedback_statement_html'
         end
-        element :header, :main_header, 'claims.new.header', exact: false
+        element :header, :main_header, 'claims.new.header'
         #are you in time?
-        element :are_you_in_time_header, :content_header, 'claims.new.are_you_in_time.legend', exact: false
-        element :are_you_in_time_paragraph, :paragraph, 'claims.new.are_you_in_time.body_html', exact: false
+        element :are_you_in_time_header, :content_header, 'claims.new.are_you_in_time.legend'
+        element :are_you_in_time_paragraph, :paragraph, 'claims.new.are_you_in_time.body_html'
         #have you contacted Acas?
-        element :have_you_contacted_acas_header, :content_header, 'claims.new.have_you_contacted_acas.legend', exact: false
-        element :have_you_contacted_acas_paragraph, :paragraph, 'claims.new.have_you_contacted_acas.body_html', exact: false
-        element :what_you_need_to_know_header, :content_header, 'claims.new.what_you_need_to_know.legend', exact: false
+        element :have_you_contacted_acas_header, :content_header, 'claims.new.have_you_contacted_acas.legend'
+        element :have_you_contacted_acas_paragraph, :paragraph, 'claims.new.have_you_contacted_acas.body_html'
+        element :what_you_need_to_know_header, :content_header, 'claims.new.what_you_need_to_know.legend'
         #what you'll need
-        element :what_you_need_to_know_acas_text, :listing_containing_text, 'claims.new.what_you_need_to_know.body_html.acas_text', exact: false
-        element :what_you_need_to_know_acas_details, :listing_containing_text, 'claims.new.what_you_need_to_know.body_html.acas_details', exact: false
+        element :what_you_need_to_know_acas_text, :listing_containing_text, 'claims.new.what_you_need_to_know.body_html.acas_text'
+        element :what_you_need_to_know_acas_details, :listing_containing_text, 'claims.new.what_you_need_to_know.body_html.acas_details'
         #start a claim
-        element :start_a_claim_button, :submit_text, 'helpers.submit.claim.create', exact: false
+        element :start_a_claim_button, :submit_text, 'helpers.submit.claim.create'
         #return to a claim
-        element :return_a_claim_button, :link_named, 'helpers.link.claim.return', exact: false
+        element :return_a_claim_button, :link_named, 'helpers.link.claim.return'
         #Support links
         section :support, 'aside[role="complementary"]' do
           element :suport_header, :support_header, 'shared.aside.gethelp_header'

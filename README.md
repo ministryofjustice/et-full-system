@@ -615,4 +615,4 @@ staging: ./bin/dev/test_exec bundle exec cucumber ENVIRONMENT=staging
 
 ## Running test in different locale
 
-./rubybin/cucumber features/end_to_end/et1_welsh_translation.feature TEST_LOCALE=cy [if left blank it will default to english']
+TEST_LOCALE=cy [if left blank it will default to english']

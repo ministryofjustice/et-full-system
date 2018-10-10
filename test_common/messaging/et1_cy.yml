@@ -128,7 +128,7 @@ cy:
 
     labels:
       application_number:
-        email_address: Rhowch eich cyfeiriad e-bost i gael gopi o rif eich hawliad
+        email_address: Rhowch eich cyfeiriad e-bost i gael gopi o rif eich hawliad (dewisol)
         password: Creu eich gair cofiadwy
       user_session:
         new:
@@ -532,7 +532,7 @@ cy:
       intro_text: "Gallwch gadw eich hawliad a dychwelyd iddo unrhyw bryd. Byddwch angen eich rhif hawliad (uchod), a gair cofiadwy y byddwch yn ei greu isod."
       email_hint: Rhowch eich cyfeiriad e-bost i gael y rhif hawliad drwy neges e-bost.
       print_link: Argraffu'r dudalen hon
-      print_copy: "i gael copi o'ch rhif hawliad er mwyn i chi allu cyfeirio ato "
+      print_copy: "i gael copi o'ch rhif hawliad er mwyn i chi allu cyfeirio ato"
 
     claimant:
       header: Manylion yr hawlydd
