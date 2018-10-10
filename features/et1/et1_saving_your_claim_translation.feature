@@ -10,3 +10,6 @@ Feature:
 
   Scenario: Verify copy texts
     Then Saving your claim copy texts are displayed in the correct language
+
+  # Scenario: Print this page
+  #   Then I should be able to print this page  

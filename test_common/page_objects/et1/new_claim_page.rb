@@ -62,6 +62,7 @@ module EtFullSystem
           expect(what_you_need_to_know_header.text).to be_truthy
           expect(what_you_need_to_know_acas_text.text).to be_truthy
           expect(what_you_need_to_know_acas_details.text).to be_truthy
+          #start a claim and return to a cliam
           expect(start_a_claim_button.value).to be_truthy
           expect(return_a_claim_button.text).to be_truthy
           #Support links
