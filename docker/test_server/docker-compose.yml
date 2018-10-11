@@ -23,6 +23,10 @@ services:
       - et3_assets:/home/app/full_system/systems/et3/public/assets
       - admin_assets:/home/app/full_system/systems/admin/public/assets
       - s3_data:/home/app/minio_data
+      - et1_bundle_dir:/home/app/full_system/systems/et1/.bundle
+      - api_bundle_dir:/home/app/full_system/systems/api/.bundle
+      - et3_bundle_dir:/home/app/full_system/systems/et3/.bundle
+      - admin_bundle_dir:/home/app/full_system/systems/admin/.bundle
     environment:
       DB_HOST: 'db'
       DB_USERNAME: 'postgres'
@@ -87,6 +91,10 @@ volumes:
   et3_assets:
   admin_assets:
   s3_data:
+  et1_bundle_dir:
+  api_bundle_dir:
+  et3_bundle_dir:
+  admin_bundle_dir:
 networks:
   et_full_system:
 
