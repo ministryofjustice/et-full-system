@@ -73,7 +73,7 @@ module EtFullSystem
 
         def set_for(user)
           main_content.email.set(user[0].dig(:email_address))
-          main_content.memorable_word.set(user[0].dig(:email_address))
+          main_content.memorable_word.set(user[0].dig(:memorable_word))
         end
       end
     end

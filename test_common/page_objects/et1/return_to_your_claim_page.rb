@@ -12,6 +12,7 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
           element :feedback_link, :paragraph, 'shared.feedback_link.feedback_statement_html'
         end
+        #page title
         element :header, :main_header, 'user_sessions.new.header'
         section :main_content, '.container .main-section .main-content' do
           #return to your claim
@@ -19,7 +20,7 @@ module EtFullSystem
           #claim number
           element :claim_number_label, :form_labelled, 'simple_form.labels.user_session.new.reference'
           element :claim_number_hint, :paragraph, 'simple_form.hints.user_session.new.reference'
-          element :email, 'input#user_session_reference'
+          element :claim_number, 'input#user_session_reference'
           #memorable word
           element :memorable_word_label, :form_labelled, 'simple_form.labels.user_session.new.password'
           element :memorable_word_hint, :paragraph, 'simple_form.hints.user_session.new.password'
@@ -27,10 +28,9 @@ module EtFullSystem
           #find my claim
           element :find_my_claim, :submit_text, 'helpers.submit.user_session.create'
           #don't have these details
-          element :form_hint, :paragraph, 'user_sessions.new.hint_html'
+          element :form_hint, :after_text, 'user_sessions.new.hint_html'
           element :start_a_new_claim, :link_named, 'user_sessions.new.hint_html'
         end
-
         #Support links
         section :support, 'aside[role="complementary"]' do
           element :suport_header, :support_header, 'shared.aside.gethelp_header'
@@ -39,7 +39,7 @@ module EtFullSystem
         end
 
         def find_my_claim
-          find_my_claim.click
+          main_content.find_my_claim.click
         end
 
         def switch_to_welsh
@@ -62,7 +62,22 @@ module EtFullSystem
           #find my claim
           expect(main_content.find_my_claim.value).to be_truthy
           #don't have these details
+          #TODO - need help with capybara selector
           # expect(main_content.form_hint.text).to be_truthy
+        end
+
+        def set_for(user)
+          data = user[0].to_h
+          main_content.tap do |s|
+            set_field(s, :claim_number, data)
+            set_field(s, :memorable_word, data)
+          end
+        end
+
+        private
+
+        def set_field(s, key, data)
+          s.send(key).set(data[key]) if data.key?(key)
         end
       end
     end

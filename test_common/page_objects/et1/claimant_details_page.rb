@@ -3,6 +3,16 @@ module EtFullSystem
   module Test
     module Et1
       class ClaimantDetailsPage < BasePage
+        #your feedback header
+        section :feedback_notice, '.feedback-notice' do
+          include ::EtFullSystem::Test::I18n
+          element :language, :link_named, 'switch.language'
+          element :welsh_link, :link_or_button, t('switch.language', locale: :en)
+          element :english_link, :link_or_button, t('switch.language', locale: :cy)
+          element :feedback_link, :paragraph, 'shared.feedback_link.feedback_statement_html'
+        end
+        #page title
+        element :header, :main_header, 'simple_form.claims.claimant.header'
         section :main_content, '#content .main-section .main-content' do
           section :about_the_claimant, :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("About the claimant")]] }) do
             section :title, 'select[name="claimant[title]"]' do
@@ -65,6 +75,12 @@ module EtFullSystem
 
           element :save_and_continue_button, 'form.edit_claimant input[value="Save and continue"]'
         end
+        #Support links
+        section :support, 'aside[role="complementary"]' do
+          element :suport_header, :support_header, 'shared.aside.gethelp_header'
+          element :guide, :link_named, 'shared.aside.read_guide'
+          element :contact_use, :link_named, 'shared.aside.contact_us'
+        end
 
         # Fills in the entire page for the user given
         #
@@ -97,6 +113,10 @@ module EtFullSystem
 
         def save_and_continue
           main_content.save_and_continue_button.click
+        end
+
+        def verify_claimants_details_page
+          expect(header.text).to be_truthy
         end
 
         private
