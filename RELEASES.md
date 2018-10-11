@@ -1,5 +1,5 @@
 # v1.1.1 - Admin v1.4.1 & API v2.4.1
-**Scheduled 11/10/2018**
+**11/10/2018**
 
 ## New
 
@@ -20,9 +20,9 @@ _No changes_
 ## Info
 Deployment by Stath
 
-No downtime expected
+No downtime expected/observed
 
-No risk expected
+No risk expected/observed
 
 # v1.1.0 - Bug fix for ET1
 
