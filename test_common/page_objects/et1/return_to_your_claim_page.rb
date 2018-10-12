@@ -28,8 +28,8 @@ module EtFullSystem
           #find my claim
           element :find_my_claim, :submit_text, 'helpers.submit.user_session.create'
           #don't have these details
-          element :form_hint, :after_text, 'user_sessions.new.hint_html'
-          element :start_a_new_claim, :link_named, 'user_sessions.new.hint_html'
+          element :form_hint, :paragraph, 'user_sessions.new.hint_html', exact: false
+          element :new_claim, :link_named, 'user_sessions.new.link'
         end
         #Support links
         section :support, 'aside[role="complementary"]' do
@@ -49,6 +49,10 @@ module EtFullSystem
         def switch_to_english
           feedback_notice.english_link.click
         end
+        
+        def start_a_new_claim
+          main_content.new_claim.click
+        end
 
         def has_correct_translation?
           #header
@@ -62,8 +66,7 @@ module EtFullSystem
           #find my claim
           expect(main_content.find_my_claim.value).to be_truthy
           #don't have these details
-          #TODO - need help with capybara selector
-          # expect(main_content.form_hint.text).to be_truthy
+          expect(main_content.form_hint.text).to be_truthy
         end
 
         def set_for(user)

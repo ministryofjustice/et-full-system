@@ -14,8 +14,7 @@ Feature:
     When I enter my claim details
     Then I should be taken to where I was left off
 
-  # Todo 
-  # Scenario: 'Start a new claim' link
-  #   When I realised I don't have these details on me
-  #   When I click on Start a new claim
-  #   Then I should be taken to Start a new claim page
+  Scenario: 'Start a new claim' link
+    Given a claimant is on the Return to your claim page
+    When I click Start a new claim
+    Then I should be taken to Start a new claim page

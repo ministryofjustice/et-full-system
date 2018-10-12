@@ -388,7 +388,8 @@ en:
     new:
       header: Return to your claim
       subheader: Enter your details below
-      hint_html: Don’t have these details? Start a new claim
+      hint_html: Don’t have these details? 
+      link: Start a new claim
     create:
       header: Return to your claim
     reminder:

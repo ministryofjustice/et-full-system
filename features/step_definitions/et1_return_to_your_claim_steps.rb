@@ -25,3 +25,11 @@ end
 Then("I should be taken to where I was left off") do
   expect(current_url).to eq( @page_left_off)
 end
+
+When("I click Start a new claim") do
+  et1_return_to_your_claim_page.start_a_new_claim
+end
+
+Then("I should be taken to Start a new claim page") do
+  expect(et1_apply_page.header.text).to be_truthy
+end
