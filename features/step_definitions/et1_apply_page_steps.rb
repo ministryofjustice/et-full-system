@@ -21,3 +21,11 @@ end
 Then("user is taken to the time limits page") do
   expect(et1_guide_page.has_correct_translation_for_time_limits?).to be true
 end
+
+When("user click on Acas early conciliation certificate number") do
+  et1_apply_page.acas_certificate_number
+end
+
+Then("user is taken to the Acas early conciliation page") do
+  expect(et1_guide_page.has_correct_translation_for_acas_early_conciliation?).to be true
+end

@@ -19,9 +19,9 @@ Feature:
     When user click on Learn about when you can apply link
     Then user is taken to the time limits page
 
-  # Scenario: 'Acas early conciliaton certificate number' link
-  #   When user click on Acas early conciliation certificate number
-  #   Then user is taken to the Acas early conciliation page
+  Scenario: 'Acas early conciliaton certificate number' link
+    When user click on Acas early conciliation certificate number
+    Then user is taken to the Acas early conciliation page
 
   # Scenario: Support links
   #   When user click on Guide link

@@ -18,7 +18,7 @@ en:
 
     acas_early_conciliation:
       title: "Acas: early conciliation"
-      line_one_html: Acas provides impartial information, advice and conciliation services on all aspects of employment law. It&#39;s available to employers and to employees.
+      line_one_html: Acas provides impartial information, advice and conciliation services on all aspects of employment law. It's available to employers and to employees.
       line_two: Before making a claim to an employment tribunal you must contact Acas (Advisory, Conciliation and Arbitration Service) to use their free Early Conciliation service. This service aims to sort out problems without having to go to an employment tribunal.
       line_three: 'To use this service, fill in the Acas early conciliation notification form (which can be found on the Acas website), or contact Acas:'
       address:
@@ -27,10 +27,10 @@ en:
         week: 'Monday to Friday, 8am to 8pm'
         weekend: 'Saturday, 9am to 1pm'
       title_two: Early conciliation certificate number
-      line_four_html: 'If Acas can&#39;t help you come to an agreement with your employer, they will send you a certificate.'
-      line_five_html: 'The certificate will contain an Acas early conciliation certificate number. You&#39;ll need this number when making your online claim to an employment tribunal.'
+      line_four_html: "If Acas can't help you come to an agreement with your employer, they will send you a certificate."
+      line_five_html: "The certificate will contain an Acas early conciliation certificate number. You'll need this number when making your online claim to an employment tribunal."
       title_three: Conciliation with multiple respondents
-      line_six_html: 'If you&#39;re making a claim against more than one employer or individual, you&#39;ll need an Acas early conciliation certificate number for each employer.'
+      line_six_html: "If you're making a claim against more than one employer or individual, you'll need an Acas early conciliation certificate number for each employer."
 
     acas_early_conciliation_exceptions:
       title: Exceptions to early conciliation
