@@ -2,12 +2,12 @@ require_relative './admin_pages'
 module EtFullSystem
   module Test
     module Pages
-      def et1_new_claim_page
-        EtFullSystem::Test::Et1::NewClaimPage.new
+      def et1_apply_page
+        EtFullSystem::Test::Et1::ApplyPage.new
       end
 
-      def et1_identification_page
-        EtFullSystem::Test::Et1::IdentificationPage.new
+      def et1_application_number_page
+        EtFullSystem::Test::Et1::ApplicationNumberPage.new
       end
 
       def et1_claimant_details_page

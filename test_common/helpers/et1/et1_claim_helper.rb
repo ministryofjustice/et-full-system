@@ -3,21 +3,21 @@ module EtFullSystem
     module Et1ClaimHelper
       def start_a_new_et1_claim
         load_start_page
-        et1_new_claim_page.start_a_claim
+        et1_apply_page.start_a_claim
       end
 
       def load_start_page(in_language: ::EtFullSystem::Test::Messaging.instance.current_locale)
-        et1_new_claim_page.load
+        et1_apply_page.load
         case in_language
-        when :cy then et1_new_claim_page.switch_to_welsh
+        when :cy then et1_apply_page.switch_to_welsh
         when :en then nil
         else raise "We only support languages en and cy - #{in_language} is not supported"
         end
       end
 
       def et1_answer_login
-        et1_identification_page.set_for(@claimants)
-        et1_identification_page.save_and_continue
+        et1_application_number_page.set_for(@claimants)
+        et1_application_number_page.save_and_continue
       end
 
       def et1_answer_claimant_questions

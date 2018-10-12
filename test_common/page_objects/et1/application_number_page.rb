@@ -2,7 +2,7 @@ require_relative './base_page'
 module EtFullSystem
   module Test
     module Et1
-      class IdentificationPage < BasePage
+      class ApplicationNumberPage < BasePage
         include RSpec::Matchers
         #your feedback header
         section :feedback_notice, '.feedback-notice' do

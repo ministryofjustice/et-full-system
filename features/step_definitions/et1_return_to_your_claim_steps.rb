@@ -1,6 +1,6 @@
 Given("a claimant is on the Return to your claim page") do
   load_start_page
-  et1_new_claim_page.return_to_claim
+  et1_apply_page.return_to_claim
 end
 
 Then("Return to your claim copy texts are displayed in the correct language") do
@@ -9,11 +9,12 @@ end
 
 Given("I'm a return claimant") do
   start_a_new_et1_claim
-  claim_number = et1_identification_page.main_content.claims_number.text
+  claim_number = et1_application_number_page.main_content.claims_number.text
   @claimants = FactoryBot.create_list(:first_person, 1, :person_data, claim_number: claim_number)
   et1_answer_login
+  @page_left_off = current_url
   load_start_page
-  et1_new_claim_page.return_to_claim
+  et1_apply_page.return_to_claim
 end
 
 When("I enter my claim details") do
@@ -22,6 +23,5 @@ When("I enter my claim details") do
 end
 
 Then("I should be taken to where I was left off") do
-  binding.pry
-  et1_claimant_details_page.verify_claimants_details_page
+  expect(current_url).to eq( @page_left_off)
 end

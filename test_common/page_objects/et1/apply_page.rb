@@ -2,7 +2,7 @@ require_relative './base_page'
 module EtFullSystem
   module Test
     module Et1
-      class NewClaimPage < BasePage
+      class ApplyPage < BasePage
         include RSpec::Matchers
         set_url ::EtFullSystem::Test::Configuration.et1_url
         #your feedback header
