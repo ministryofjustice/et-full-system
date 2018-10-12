@@ -11,5 +11,5 @@ When("user click on Your feedback link") do
 end
 
 Then("user is taken to the feedback page") do
-  et1_apply_page.has_load_your_feedback_page
+  expect(et1_your_feedback_page.header.text).to be_truthy
 end

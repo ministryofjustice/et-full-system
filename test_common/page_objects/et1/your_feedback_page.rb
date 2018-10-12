@@ -12,17 +12,20 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
           element :feedback_link, :paragraph, 'shared.feedback_link.feedback_statement_html'
         end
+        section 'flash_heading', '#flash-summary' do
+          element :flash_message, :content_header, 'feedback.create.sent'
+        end
         #your feedback header
         element :header, :main_header, 'feedback.new.header'
         section :main_content, '.main-section, .main-content' do
           #have you had any problems using this service? (optional)
           section :comments, :question_labelled, 'simple_form.labels.feedback.comments', exact: false do
-            element :field, :css, "input"
+            element :field, :css, "textarea"
             delegate :set, to: :field
           end
           #do you have any other comments or suggestions? (optional)
           section :suggestions, :question_labelled, 'simple_form.labels.feedback.suggestions', exact: false do
-            element :field, :css, "input"
+            element :field, :css, "textarea"
             delegate :set, to: :field
           end
           #your email address (optional)
@@ -32,15 +35,20 @@ module EtFullSystem
           end
         end
         #send feedback
-        element :send_feedback_button, :link_named, 'helpers.submit.feedback.create'
+        section :form_actions, '.form-actions' do
+          element :submit_feedback, :submit_text, 'helpers.submit.feedback.create'
+        end
         #Support links
         section :support, 'aside[role="complementary"]' do
           element :suport_header, :support_header, 'shared.aside.gethelp_header'
           element :guide, :link_named, 'shared.aside.read_guide'
           element :contact_use, :link_named, 'shared.aside.contact_us'
         end
-        
 
+        def send_your_feedback
+          form_actions.submit_feedback.click
+        end
+        
         def has_correct_translation?
           #your feedback header
           expect(header.text).to be_truthy
@@ -49,9 +57,9 @@ module EtFullSystem
           expect(main_content.suggestions.text).to be_truthy
           expect(main_content.email_address.text).to be_truthy
           #Support links
-          expect(main_content.support.suport_header.text).to be_truthy
-          expect(main_content.support.guide.text).to be_truthy
-          expect(main_content.support.contact_use.text).to be_truthy
+          expect(support.suport_header.text).to be_truthy
+          expect(support.guide.text).to be_truthy
+          expect(support.contact_use.text).to be_truthy
         end
       end
     end

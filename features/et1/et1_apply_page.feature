@@ -11,10 +11,9 @@ Feature:
   Scenario: Verify copy texts
     Then Apply page copy texts are displayed in the correct language
   
-  # TODO
-  # Scenario: 'Your feedback' link
-  #   When user click on Your feedback link
-  #   Then user is taken to the feedback page
+  Scenario: 'Your feedback' link
+    When user click on Your feedback link
+    Then user is taken to the feedback page
 
   # Scenario: 'Learn about when you can apply' link  
   #   When user click on Learn about when you can apply link

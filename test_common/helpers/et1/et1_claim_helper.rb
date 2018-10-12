@@ -76,6 +76,13 @@ module EtFullSystem
       def et1_submit_claim
         et1_submission_page.submit_claim
       end
+
+      def et1_submit_your_feedback
+        et1_your_feedback_page.main_content.comments.set('feedback page has not validation')
+        et1_your_feedback_page.main_content.suggestions.set("Don't understand why user is allowed to submit blank page")
+        et1_your_feedback_page.main_content.email_address.set('no validating here either')
+        et1_your_feedback_page.send_your_feedback
+      end
     end
   end
 end

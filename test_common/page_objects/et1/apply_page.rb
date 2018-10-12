@@ -74,11 +74,6 @@ module EtFullSystem
           expect(support.guide.text).to be_truthy
           expect(support.contact_use.text).to be_truthy
         end
-
-        def has_load_your_feedback_page
-          # TODO - Do I need to validate feedback in different langugages?
-          # expect(current_url).to eq("#{::EtFullSystem::Test::Configuration.et1_url}apply/feedback?locale=en")
-        end
       end
     end
   end
