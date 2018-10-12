@@ -1,3 +1,29 @@
+# v1.1.1 - Admin v1.4.1 & API v2.4.1
+**11/10/2018**
+
+## New
+
+_No new features_
+
+## Changes
+
+* **Admin:** Logging changes
+
+## Fixes
+
+* **Admin:** Remove spaces from the front and end of usernames. This caused users from the CSV import to have difficulty logging in as their usernames were incorrect. (RST-1416)
+* **API:** Fix a bug where an ET3 RTF could be overwritten if two were uploaded in a short space of time. (RST-1457) 
+
+## Security
+_No changes_
+
+## Info
+Deployment by Stath
+
+No downtime expected/observed
+
+No risk expected/observed
+
 # v1.1.0 - Bug fix for ET1
 
 ## Security
