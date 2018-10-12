@@ -6,6 +6,10 @@ module EtFullSystem
         EtFullSystem::Test::Et1::ApplyPage.new
       end
 
+      def et1_your_feedback_page
+        EtFullSystem::Test::Et1::YourFeedbackPage.new
+      end
+
       def et1_application_number_page
         EtFullSystem::Test::Et1::ApplicationNumberPage.new
       end
