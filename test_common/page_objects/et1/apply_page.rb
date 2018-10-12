@@ -16,13 +16,16 @@ module EtFullSystem
         element :header, :main_header, 'claims.new.header'
         #are you in time?
         element :are_you_in_time_header, :content_header, 'claims.new.are_you_in_time.legend'
-        element :are_you_in_time_paragraph, :paragraph, 'claims.new.are_you_in_time.body_html'
+        element :are_you_in_time_paragraph, :paragraph, 'claims.new.are_you_in_time.body_html', exact: false
+        element :learn_how_to_apply_link, :link_named, 'claims.new.are_you_in_time.link', exact: false
         #have you contacted Acas?
         element :have_you_contacted_acas_header, :content_header, 'claims.new.have_you_contacted_acas.legend'
-        element :have_you_contacted_acas_paragraph, :paragraph, 'claims.new.have_you_contacted_acas.body_html'
+        element :have_you_contacted_acas_paragraph, :paragraph, 'claims.new.have_you_contacted_acas.body_html', exact: false
+        element :early_coniciliation_service_link, :paragraph, 'claims.new.have_you_contacted_acas.link'
         element :what_you_need_to_know_header, :content_header, 'claims.new.what_you_need_to_know.legend'
         #what you'll need
-        element :what_you_need_to_know_acas_text, :listing_containing_text, 'claims.new.what_you_need_to_know.body_html.acas_text'
+        element :what_you_need_to_know_acas_text, :listing_containing_text, 'claims.new.what_you_need_to_know.body_html.acas_text', exact: false
+        element :acas_certificate_number_link, :listing_containing_text, 'claims.new.what_you_need_to_know.body_html.link'
         element :what_you_need_to_know_acas_details, :listing_containing_text, 'claims.new.what_you_need_to_know.body_html.acas_details'
         #start a claim
         element :start_a_claim_button, :submit_text, 'helpers.submit.claim.create'
@@ -49,6 +52,18 @@ module EtFullSystem
 
         def switch_to_english
           feedback_notice.english_link.click
+        end
+
+        def learn_how_to_apply
+          learn_how_to_apply_link.click
+        end
+
+        def early_coniciliation_service
+          early_coniciliation_service_link.click
+        end
+
+        def acas_certificate_number
+          acas_certificate_number_link.click
         end
 
         def has_correct_translation?

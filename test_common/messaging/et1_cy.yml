@@ -516,16 +516,17 @@ cy:
 
       are_you_in_time:
         legend: "Ydych chi o fewn y terfyn amser?"
-        body_html:
-          Fel arfer mae'n rhaid i chi wneud eich hawliad o fewn 3 mis i'ch cyflogaeth ddod i ben neu i'r broblem ddigwydd. Dysgu mwy am pryd allwch wneud cais.
+        body_html: Fel arfer mae'n rhaid i chi wneud eich hawliad o fewn 3 mis i'ch cyflogaeth ddod i ben neu i'r broblem ddigwydd.
+        link: Dysgu mwy am pryd allwch wneud cais
       have_you_contacted_acas:
         legend: "Ydych chi wedi cysylltu ag Acas?"
-        body_html:
-          Cyn gwneud hawliad i dribiwnlys cyflogaeth, mae'n rhaid i chi gysylltu ag Acas i ddefnyddio eu gwasanaeth rhad ac am ddim Cymodi Cynnar.
+        body_html: Cyn gwneud hawliad i dribiwnlys cyflogaeth, mae'n rhaid i chi gysylltu ag Acas i ddefnyddio eu gwasanaeth rhad ac am ddim
+        link: Cymodi Cynnar
       what_you_need_to_know:
         legend: Beth fydd arnoch ei angen
         body_html:
-          acas_text: eich rhif tystysgrif cymodi cynnar Acas
+          acas_text: eich
+          link: rhif tystysgrif cymodi cynnar Acas
           acas_details: manylion eich hawliad gan gynnwys y cefndir, y dyddiadau a'r unigolion sy'n gysylltiedig â'r hawliad
     application_number:
       header: "Cadw eich hawliad"

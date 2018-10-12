@@ -452,16 +452,17 @@ en:
 
       are_you_in_time:
         legend: Are you in time?
-        body_html:
-          You usually have to make your claim within 3 months of your employment ending or the problem happening. Learn about when you can apply.
+        body_html: You usually have to make your claim within 3 months of your employment ending or the problem happening.
+        link: Learn about when you can apply
       have_you_contacted_acas:
         legend: Have you contacted Acas?
-        body_html:
-          Before making a claim to an employment tribunal you have to contact Acas to use their free Early Conciliation service.
+        body_html: Before making a claim to an employment tribunal you have to contact Acas to use their free
+        link: Early Conciliation service
       what_you_need_to_know:
         legend: What you’ll need
         body_html:
-          acas_text: your Acas early conciliation certificate number
+          acas_text: your
+          link: Acas early conciliation certificate number
           acas_details: details of your claim including the background, dates and people involved
     application_number:
       header: Saving your claim

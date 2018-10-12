@@ -118,6 +118,10 @@ module EtFullSystem
         EtFullSystem::Test::Et3::FormSubmissionPage.new
       end
 
+      def et1_guide_page
+        EtFullSystem::Test::Et1::GuidePage.new
+      end
+
       def admin_pages
         @admin_pages = AdminPages
       end
