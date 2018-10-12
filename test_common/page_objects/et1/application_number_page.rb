@@ -21,12 +21,16 @@ module EtFullSystem
           element :claims_number, '.callout-reference .number'
           element :claims_intro_text, :paragraph, 'claims.application_number.intro_text'
           #email address
-          element :email_label, :form_labelled, 'simple_form.labels.application_number.email_address'
-          element :email, 'input#application_number_email_address'
+          section :email_label, :question_labelled, 'simple_form.labels.application_number.email_address', exact: false do
+            element :field, :css, "input"
+            delegate :set, to: :field
+          end
           #create your memorable word
-          element :memorable_word_label, :form_labelled, 'simple_form.labels.application_number.password'
+          section :memorable_word_label, :question_labelled, 'simple_form.labels.application_number.password', exact: false do
+            element :field, :css, "input"
+            delegate :set, to: :field
+          end
           element :example_word, :paragraph, 'simple_form.hints.application_number.password'
-          element :memorable_word, 'input#application_number_password'
           #print this page
           element :print_link, :link_named, 'user_sessions.reminder.print_link'
           element :print_copy, :paragraph, 'claims.application_number.print_copy', exact: false
@@ -72,8 +76,8 @@ module EtFullSystem
 
 
         def set_for(user)
-          main_content.email.set(user[0].dig(:email_address))
-          main_content.memorable_word.set(user[0].dig(:memorable_word))
+          main_content.email_label.set(user[0].dig(:email_address))
+          main_content.memorable_word_label.set(user[0].dig(:memorable_word))
         end
       end
     end
