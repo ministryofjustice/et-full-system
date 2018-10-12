@@ -17,72 +17,93 @@ module EtFullSystem
           element :page_header, :page_title, 'simple_form.claims.claimant.header', exact: false
         end
         section :main_content, '#content .main-section .main-content' do
-          section :about_the_claimant, :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("About the claimant")]] }) do
-            section :title, 'select[name="claimant[title]"]' do
-              def set(value)
-                root_element.select(value)
-              end
+          #About the claimant
+          element :about_the_claimant_legend, :legend_header, ''
+          #information about the person
+          element :information_about_the_person, :paragraph, ''
+          #title
+          section :title, :question_labelled, '' do
+            def set(value)
+              root_element.select(value)
             end
-            element :first_name, 'input[name="claimant[first_name]"]'
-            element :last_name, 'input[name="claimant[last_name]"]'
-            section :date_of_birth, :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("Date of birth")]] }) do
-              element :day, 'input[name="claimant[date_of_birth][day]"]'
-              element :month, 'input[name="claimant[date_of_birth][month]"]'
-              element :year, 'input[name="claimant[date_of_birth][year]"]'
-              def set(value)
-                (day_value, month_value, year_value) = value.split("/")
-                day.set(day_value)
-                month.set(month_value)
-                year.set(year_value)
-              end
-            end
-            section :gender, "div.claimant_gender" do
-              element :male, 'input[value="male"]'
-              element :female, 'input[value="female"]'
-              element :prefer_not_to_say, 'input[value="prefer_not_to_say"]'
-              def set(value)
-                choose(value, name: 'claimant[gender]')
-              end
-            end
-
-            section :has_special_needs, "div.claimant_has_special_needs" do
-              element :yes, 'input[value="true"]'
-              element :no, 'input[value="false"]'
-              def set(value)
-                choose(value, name: 'claimant[has_special_needs]')
-              end
-            end
-            element :special_needs, 'textarea[name="claimant[special_needs]"]'
           end
-
-          section :claimants_contact_details, :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("Claimant’s contact details")]] }) do
-            element :building, 'input[name="claimant[address_building]"]'
-            element :street, 'input[name="claimant[address_street]"]'
-            element :locality, 'input[name="claimant[address_locality]"]'
-            element :county, 'input[name="claimant[address_county]"]'
-            element :post_code, 'input[name="claimant[address_post_code]"]'
-            section :country, 'select[name="claimant[address_country]"]' do
+          #first name
+          section :first_name, :question_labelled, '' do
+            element :field, :css, "input"
+            delegate :set, to: :field
+          end
+          #lastname name
+          section :last_name, :question_labelled, '' do
+            element :field, :css, "input"
+            delegate :set, to: :field
+          end
+          #Date of birth
+          section :date_of_birth_section, 'fieldset' do
+            section :date_of_birth, :form_labelled, '' do
+              section :day, :question_labelled, '' do
+                element :field, :css, "input"
+                delegate :set, to: :field
+              end
+              section :month, :question_labelled, '' do
+                element :field, :css, "input"
+                delegate :set, to: :field
+              end
+              section :year, :question_labelled, '' do
+                element :field, :css, "input"
+                delegate :set, to: :field
+              end
+            end
+          end
+          #Gender
+          section :gender, :form_labelled, '' do
+            element :male, :question_labelled, ''
+            element :female, :question_labelled, ''
+            element :prefer_not_to_say, :question_labelled, ''
+            def set(value)
+              choose(value, name: 'claimant[gender]')
+            end
+          end
+          #disability
+          section :has_special_needs, :question_labelled, '' do
+            element :yes, :question_labelled, ''
+            element :no, :question_labelled, ''
+            def set(value)
+              choose(value, name: 'claimant[has_special_needs]')
+            end
+          end
+          element :special_needs, :question_labelled, ''
+          #Claimant's contact details
+          section :claimants_contact_details, :question_labelled, ''  do
+            element :building, :question_labelled, ''
+            element :street, :question_labelled, ''
+            element :locality, :question_labelled, ''
+            element :county, :question_labelled, ''
+            element :post_code, :question_labelled, ''
+            section :country, :question_labelled, '' do
               def set(value)
                 root_element.select(value)
               end
             end
-            element :telephone_number, 'input[name="claimant[address_telephone_number]"]'
-            element :alternative_telephone_number, 'input[name="claimant[mobile_number]"]'
-            element :email_address, 'input[name="claimant[email_address]"]'
-            section :correspondence, '.claimant_contact_preference' do
+            element :telephone_number, :question_labelled, ''
+            element :alternative_telephone_number, :question_labelled, ''
+            element :email_address, :question_labelled, ''
+            #best way to send correspondence
+            section :correspondence, :question_labelled, '' do
               def set(value)
                 choose(value, name: 'claimant[contact_preference]')
               end
             end
           end
-
-          element :save_and_continue_button, 'form.edit_claimant input[value="Save and continue"]'
+          #Save and continue
+          element :save_and_continue_button, :question_labelled, ''
         end
         #Support links
         section :support, 'aside[role="complementary"]' do
           element :suport_header, :support_header, 'shared.aside.gethelp_header'
           element :guide, :link_named, 'shared.aside.read_guide'
           element :contact_use, :link_named, 'shared.aside.contact_us'
+          element :your_claim, :support_header, 'shared.aside.actions_header'
+          element :save_and_complete_later, :link_named, 'shared.mobile_nav.save_and_complete'
         end
         # Fills in the entire page for the user given
         #
