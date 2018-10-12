@@ -34,6 +34,7 @@ module EtFullSystem
             element :week, :paragraph, 'guides.acas_early_conciliation.address.week', exact: false
             element :weekend, :paragraph, 'guides.acas_early_conciliation.address.weekend', exact: false
             element :conciliation_title_two, :support_header, 'guides.acas_early_conciliation.title_two', exact: false
+            element :conciliation_line_four, :paragraph, 'guides.acas_early_conciliation.line_four_html', exact: false
             element :conciliation_line_five, :paragraph, 'guides.acas_early_conciliation.line_five_html', exact: false
             element :conciliation_title_three, :support_header, 'guides.acas_early_conciliation.title_three', exact: false
             element :conciliation_line_six, :paragraph, 'guides.acas_early_conciliation.line_six_html', exact: false
@@ -73,6 +74,7 @@ module EtFullSystem
           expect(static_content.early_conciliation.week.text).to be_truthy
           expect(static_content.early_conciliation.weekend.text).to be_truthy
           expect(static_content.early_conciliation.conciliation_title_two.text).to be_truthy
+          expect(static_content.early_conciliation.conciliation_line_four.text).to be_truthy
           expect(static_content.early_conciliation.conciliation_line_five.text).to be_truthy
           expect(static_content.early_conciliation.conciliation_title_three.text).to be_truthy
           expect(static_content.early_conciliation.conciliation_line_six.text).to be_truthy
