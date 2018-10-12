@@ -13,6 +13,7 @@ Given("I'm a return claimant") do
   @claimants = FactoryBot.create_list(:first_person, 1, :person_data, claim_number: claim_number)
   et1_answer_login
   @page_left_off = current_url
+  page.reset!
   load_start_page
   et1_apply_page.return_to_claim
 end

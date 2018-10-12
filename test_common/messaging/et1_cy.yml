@@ -446,7 +446,8 @@ cy:
     new:
       header: Dychwelyd i'ch hawliad
       subheader: Rhowch eich manylion isod
-      hint_html: "Nid yw'r manylion hyn gennych? <a href=\"%{path}\">Cychwynnwch hawliad newydd</a>."
+      hint_html: Nid yw'r manylion hyn gennych?
+      link: Cychwynnwch hawliad newydd
     create:
       header: Dychwelyd i'ch hawliad
     reminder:
