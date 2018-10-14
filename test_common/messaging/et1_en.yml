@@ -139,12 +139,12 @@ en:
           month: Month
           year: Year
 
-
-        mobile_number: Alternative phone or mobile number
+        mobile_number: Alternative phone or mobile number (optional)
+        email_address: Email address (optional)
         fax_number: Fax
         has_special_needs: Do you have a disability which means you require assistance at the tribunal hearing?
-        special_needs: Describe the assistance you require
-        address_telephone_number: Phone or mobile number
+        special_needs: Describe the assistance you require (optional)
+        address_telephone_number: Phone or mobile number (optional)
         address_building: Building number or name
         address_locality: Town/city
         address_street: Street
@@ -258,24 +258,19 @@ en:
         password: For example your surname
       address_county: Eg if London, Greater London; if Manchester, Greater Manchester
       claimant:
-        date_of_birth: For example, 23 04 1981
-        has_special_needs: |
-          Eg documents in Braille, or a sign language interpreter
-        has_representative: |
-          Someone who has agreed to represent you (for example, to prepare your case and/or act on your behalf if there is a hearing).
-        applying_for_remission: |
-          You may not have to pay a fee if you have limited savings and you’re on benefits or a low income. Do I qualify for help?
-        contact_preference: |
-          Note that if you have a representative (eg solicitor), then all future correspondence will be sent to them
-        address_county: Eg if London, Greater London; if Manchester, Greater Manchester
+        date_of_birth: "For example, 23 04 1981"
+        has_special_needs: Eg documents in Braille, or a sign language interpreter
+        has_representative: "Someone who has agreed to represent you (for example, to prepare your case and/or act on your behalf if there is a hearing)"
+        applying_for_remission: "You may not have to pay a fee if you have limited savings and you’re on benefits or a low income. Do I qualify for help?"
+        contact_preference: "Note that if you have a representative (eg solicitor), then all future correspondence will be sent to them"
+        address_county: "Eg if London, Greater London; if Manchester, Greater Manchester"
       claimants:
         address_county: Eg if London, Greater London; if Manchester, Greater Manchester
         date_of_birth: For example, 23 04 1981
       representative:
         address_county: Eg if London, Greater London; if Manchester, Greater Manchester
         respondent:
-        acas_early_conciliation_certificate_number: |
-          This is on the certificate that Acas sends if conciliation doesn’t work. The number starts with ’R’ or ’MU’.
+        acas_early_conciliation_certificate_number: "This is on the certificate that Acas sends if conciliation doesn’t work. The number starts with ’R’ or ’MU’"
       employment:
         job_title: The job you were doing at the time of the problem at work
         start_date: For example, 22 04 2014 (if you don’t know the exact date then put your best estimate)
@@ -371,9 +366,10 @@ en:
       read_guide: Application guide
       exit_guide: Back to form
       contact_us: Contact us
-      contact_us_link: http://www.justice.gov.uk/contacts/hmcts/tribunals/employment
-  aria:
-    error_summary: Errors on page
+      contact_us_link: http://www.justice.gov.uk/contacts/hmcts/tribunals/employment    
+    error_notification:
+      error_summary: Errors on page
+      default_message: Provide information in the highlighted fields
 
   errors:
     messages:
@@ -473,13 +469,12 @@ en:
       print_copy: to have a copy of your claim number for reference
 
     claimant:
-      header: Claimant’s details
+      header: "Claimant’s details"
       gender: Gender
-      legend_disability: Do you have a disability which means you require assistance at the tribunal hearing?
+      legend_disability: "Do you have a disability which means you require assistance at the tribunal hearing?"
       legend_personal_details: About the claimant
-      legend_contact_details: Claimant’s contact details
-      personal_details_description: |
-        Information about the person or organisation making this claim (known as the 'claimant').
+      legend_contact_details: "Claimant’s contact details"
+      personal_details_description: "Information about the person or organisation making this claim (known as the 'claimant')."
     additional_claimants:
       header: Group claims
       subheader: People making a claim with you
