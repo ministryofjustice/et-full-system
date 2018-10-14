@@ -146,11 +146,12 @@ cy:
           month: "Mis"
           year: "Blwyddyn"
 
-        mobile_number: Rhif ffôn neu rif ffôn symudol arall
+        mobile_number: Rhif ffôn neu rif ffôn symudol arall (dewisol)
+        email_address: "Cyfeiriad e-bost (dewisol)"
         fax_number: Ffacs
         has_special_needs: "Oes gennych chi anabledd sy'n golygu eich bod angen cymorth yn y gwrandawiad tribiwnlys?"
         special_needs: Disgrifiwch y cymorth sydd ei angen arnoch
-        address_telephone_number: "Rhif ffôn neu rif ffôn symudol "
+        address_telephone_number: "Rhif ffôn neu rif ffôn symudol (dewisol)"
         address_building: Rhif neu enw'r adeilad
         address_locality: Tref/dinas
         address_street: Stryd
@@ -318,14 +319,10 @@ cy:
       address_county: "Ee os Llundain, Llundain Fwyaf; os Manceinion, Manceinion Fwyaf"
       claimant:
         date_of_birth: "Er enghraifft, 23 04 1981"
-        has_special_needs: |
-          Ee dogfennau Braille, neu ddehonglydd iaith arwyddion
-        has_representative: |
-          Rhywun sydd wedi cytuno i'ch cynrychioli (er enghraifft, i baratoi eich achos a/neu gweithredu ar eich rhan os bydd gwrandawiad).
-        applying_for_remission: |
-          Efallai na fydd rhaid i chi dalu ffi os nad oes gennych lawer o gynilion a'ch bod yn cael budd-daliadau neu ar incwm isel. Ydw i'n gymwys i gael help?
-        contact_preference: |
-          Noder, os oes gennych cynrychiolydd (ee cyfreithiwr), yna fe anfonir pob gohebiaeth atynt
+        has_special_needs: Ee dogfennau Braille, neu ddehonglydd iaith arwyddion
+        has_representative: Rhywun sydd wedi cytuno i'ch cynrychioli (er enghraifft, i baratoi eich achos a/neu gweithredu ar eich rhan os bydd gwrandawiad).
+        applying_for_remission: Efallai na fydd rhaid i chi dalu ffi os nad oes gennych lawer o gynilion a'ch bod yn cael budd-daliadau neu ar incwm isel. Ydw i'n gymwys i gael help?
+        contact_preference: Noder, os oes gennych cynrychiolydd (ee cyfreithiwr), yna fe anfonir pob gohebiaeth atynt
         address_county: "Ee os Llundain, Llundain Fwyaf; os Manceinion, Manceinion Fwyaf"
       claimants:
         address_county: "Ee os Llundain, Llundain Fwyaf; os Manceinion, Manceinion Fwyaf"
@@ -541,9 +538,8 @@ cy:
       gender: Rhywedd
       legend_disability: "Oes gennych chi anabledd sy'n golygu eich bod angen cymorth yn y gwrandawiad tribiwnlys?"
       legend_personal_details: Ynglŷn â’r hawlydd
-      legend_contact_details: "Manylion cyswllt yr hawlydd "
-      personal_details_description: |
-        Gwybodaeth am yr unigolyn neu'r sefydliad sy'n gwneud yr hawliad hwn (a elwir yn 'hawlydd').
+      legend_contact_details: "Manylion cyswllt yr hawlydd"
+      personal_details_description: Gwybodaeth am yr unigolyn neu'r sefydliad sy'n gwneud yr hawliad hwn (a elwir yn 'hawlydd').
     additional_claimants:
       header: "Hawliadau grŵp "
       subheader: Unigolion sy'n gwneud hawliad gyda chi

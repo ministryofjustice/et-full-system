@@ -140,8 +140,7 @@ module EtFullSystem
             element :field, :css, 'input'
             delegate :set_field, to: :field
           end
-          #TODO ----------
-          element :email_address, :question_labelled, 'simple_form.labels.claimant.email_address' do
+          element :email_address, :question_labelled, 'simple_form.labels.claimant.email_address', exact: false do
             element :field, :css, 'input'
             delegate :set_field, to: :field
             element :error_email_address, :error, 'errors.messages.blank'
