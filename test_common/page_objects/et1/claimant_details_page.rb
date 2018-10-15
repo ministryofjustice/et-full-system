@@ -34,97 +34,108 @@ module EtFullSystem
           end
           #first name
           section :first_name, :question_labelled, 'simple_form.labels.claimant.first_name' do
-            element :field, :css, "input"
-            delegate :set_field, to: :field
+            element :field, :css, 'input'
+            delegate :set, to: :field
             element :error_first_name, :error, 'activemodel.errors.models.user_session.claimant.attributes.first_name.inclusion'
           end
           #lastname name
           section :last_name, :question_labelled, 'simple_form.labels.claimant.last_name' do
-            element :field, :css, "input"
-            delegate :set_field, to: :field
+            element :field, :css, 'input'
+            delegate :set, to: :field
             element :error_last_name, :error, 'activemodel.errors.models.user_session.claimant.attributes.last_name.inclusion'
           end
           #Date of birth
           section :date_of_birth, :legend_header, 'claims.personal_details.date_of_birth', exact: false do
             element :date_of_birth_hint, :paragraph, 'simple_form.hints.claimant.date_of_birth'
             section :day, :question_labelled, 'simple_form.labels.claimant.date_of_birth.day' do
-              element :field, :css, "input"
-              delegate :set_field, to: :field
-              element :error_day, :error, 'activemodel.errors.models.user_session.claimant.attributes.date_of_birth.inclusion'
+              element :field, :css, '#claimant_date_of_birth_day'
+              delegate :set, to: :field
             end
-            section :month, :question_labelled, 'simple_form.labels..claimant.date_of_birth.month' do
-              element :field, :css, "input"
-              delegate :set_field, to: :field
-              element :error_month, :error, 'errors.messages.blank'
+            section :month, :question_labelled, 'simple_form.labels.claimant.date_of_birth.month' do
+              element :field, :css, '#claimant_date_of_birth_month'
+              delegate :set, to: :field
             end
-            section :year, :question_labelled, 'simple_form.labels..claimant.date_of_birth.year' do
-              element :field, :css, "input"
-              delegate :set_field, to: :field
-              element :error_year, :error, 'errors.messages.blank'
+            section :year, :question_labelled, 'simple_form.labels.claimant.date_of_birth.year' do
+              element :field, :css, '#claimant_date_of_birth_year'
+              delegate :set, to: :field
+            end
+            def set(value)
+              (day_value, month_value, year_value) = value.split("/")
+              day.set(day_value)
+              month.set(month_value)
+              year.set(year_value)
             end
           end
+
           #Gender
           section :gender, :question_labelled, 'claims.claimant.gender' do
             element :male, :form_labelled, 'simple_form.options.claimant.gender.male' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set_field, to: :selector
+              delegate :set, to: :selector
             end
             element :female, :form_labelled, 'simple_form.options.claimant.gender.female' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set_field, to: :selector
+              delegate :set, to: :selector
             end
             element :prefer_not_to_say, :form_labelled, 'simple_form.options.claimant.gender.prefer_not_to_say' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set_field, to: :selector
+              delegate :set, to: :selector
             end
             element :error_gender, :error, 'errors.messages.blank'
+            def set(value)
+              choose(value, name: 'claimant[gender]')
+            end
           end
           #has special needs
           section :claiman_has_special_needs, '.form-group-reveal' do
-            element :has_special_needs, :form_labelled, 'simple_form.labels.claimant.has_special_needs', exact: false
             element :has_special_needs_hint, :paragraph, 'simple_form.hints.claimant.has_special_needs', exact: false
-            element :yes, :form_labelled, 'simple_form.yes' do
-              element :selector, :css, 'input[type="radio"]'
-              delegate :set_field, to: :selector
+            element :yes, :question_labelled, 'simple_form.yes' do
+              element :selector, :css, 'input'
+              delegate :set, to: :selector
             end
-            element :no, :form_labelled, 'simple_form.no' do
-              element :selector, :css, 'input[type="radio"]'
-              delegate :set_field, to: :selector
+            element :no, :question_labelled, 'simple_form.no' do
+              element :selector, :css, 'input'
+              delegate :set, to: :selector
             end
             element :error_has_special_needs, :error, 'errors.messages.blank'
+            def set(value)
+              choose(value, name: 'claimant[has_special_needs]')
+            end
           end
           #describe the assistance you require
-          element :special_needs, :question_labelled, 'simple_form.hints.labels.claimant.special_needs' do
-            element :field, :css, "textarea"
-            delegate :set_field, to: :field
+          section :assistance, '.claimant_special_needs' do
+            element :special_needs, :form_labelled, 'simple_form.labels.claimant.special_needs', exact: false do
+              element :field, :css, 'name="claimant[special_needs]"'
+              delegate :set, to: :field
+            end
           end
           #Claimant's contact details
           element :claimants_contact_details, :legend_header, 'claims.claimant.legend_contact_details', exact: false
           element :building, :question_labelled, 'simple_form.labels.claimant.address_building' do
             element :field, :css, 'input'
-            delegate :set_field, to: :field
+            delegate :set, to: :field
             element :error_building, :error, 'errors.messages.blank'
           end
           element :street, :question_labelled, 'simple_form.labels.claimant.address_street' do
             element :field, :css, 'input'
-            delegate :set_field, to: :field
+            delegate :set, to: :field
             element :error_street, :error, 'errors.messages.blank'
           end
           element :locality, :question_labelled, 'simple_form.labels.claimant.address_locality' do
             element :field, :css, 'input'
-            delegate :set_field, to: :field
+            delegate :set, to: :field
             element :error_locality, :error, 'errors.messages.blank'
           end
           #County
           element :county, :question_labelled, 'simple_form.labels.claimant.address_county' do
             element :field, :css, 'input'
-            delegate :set_field, to: :field
+            delegate :set, to: :field
             element :error_county, :error, 'errors.messages.blank'
           end
           element :county_hint, :paragraph, 'simple_form.hints.claimant.address_county', exact: false
           element :post_code, :question_labelled, 'simple_form.labels.claimant.address_post_code' do
             element :field, :css, 'input'
-            delegate :set_field, to: :field
+            delegate :set, to: :field
             element :error_post_code, :error, 'errors.messages.blank'
           end
           section :country, :question_labelled, 'simple_form.labels.claimant.address_country' do
@@ -134,15 +145,15 @@ module EtFullSystem
           end
           element :telephone_number, :question_labelled, 'simple_form.labels.claimant.address_telephone_number' do
             element :field, :css, 'input'
-            delegate :set_field, to: :field
+            delegate :set, to: :field
           end
           element :alternative_telephone_number, :question_labelled, 'simple_form.labels.claimant.mobile_number' do
             element :field, :css, 'input'
-            delegate :set_field, to: :field
+            delegate :set, to: :field
           end
           element :email_address, :question_labelled, 'simple_form.labels.claimant.email_address', exact: false do
             element :field, :css, 'input'
-            delegate :set_field, to: :field
+            delegate :set, to: :field
             element :error_email_address, :error, 'errors.messages.blank'
           end
           #correspondence
@@ -151,11 +162,14 @@ module EtFullSystem
             element :contact_preference, :paragraph, 'simple_form.hints.claimant.contact_preference'
             section :email_preference, :form_labelled, 'simple_form.options.claimant.contact_preference.email' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set_field, to: :selector
+              delegate :set, to: :selector
             end
             section :post_preference, :form_labelled, 'simple_form.options.claimant.contact_preference.post' do 
               element :selector, :css, 'input[type="radio"]'
-              delegate :set_field, to: :selector
+              delegate :set, to: :selector
+            end
+            def set(value)
+              choose(value, name: 'claimant[contact_preference]')
             end
           end
           #Save and continue
@@ -220,15 +234,21 @@ module EtFullSystem
           expect(support.suport_header.text).to be_truthy
           expect(support.guide.text).to be_truthy
           expect(support.contact_use.text).to be_truthy
+          #Save your claim later
+          expect(support.your_claim.text).to be_truthy
+          expect(support.save_and_complete_later.text).to be_truthy
         end
-        # Fills in the entire page for the user given
-        #
-        # @param [Hash] user The user hash
+        
+        def has_correct_translation_for_assistance_required?
+          expect(main_content.assistance.special_needs.text).to be_truthy
+        end
+
         def set_for(user)
           data = user[0].to_h
-          main_content.about_the_claimant.tap do |s|
-            set_field(s, :title, data)
-            set_field(s, :first_name, data)
+          main_content.tap do |s|
+            binding.pry
+            set(s, :title, data)
+            set(s, :first_name, data)
             set_field(s, :last_name, data)
             set_field(s, :date_of_birth, data)
             set_field(s, :gender, data)

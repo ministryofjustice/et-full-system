@@ -11,9 +11,9 @@ Feature:
   Scenario: Verify copy texts
     Then Claimant's details page copy texts are displayed in the correct language
 
-  # Scenario: Yes to disability
-  #   When I answerd Yes to disability
-  #   Then I should see the option to describe the assistant I need
+  Scenario: Yes to disability
+    When I answerd Yes to disability
+    Then I should see the option to describe the assistant I need
 
   # Scenario: Outside United Kingdom
   #   Then I should be able to select Outside United Kindom as country of residence

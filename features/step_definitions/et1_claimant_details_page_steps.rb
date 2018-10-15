@@ -8,6 +8,21 @@ Then("Claimant's details page copy texts are displayed in the correct language")
   expect(et1_claimant_details_page.has_correct_translation?).to be true
 end
 
+When("I answerd Yes to disability") do
+  et1_claimant_details_page.main_content.title.set('Mrs')
+  et1_claimant_details_page.main_content.first_name.set('Sivvoy')
+  et1_claimant_details_page.main_content.last_name.set('Taing')
+  et1_claimant_details_page.main_content.date_of_birth.set('21/11/1982')
+  et1_claimant_details_page.main_content.gender.set('Prefer not to say')
+  et1_claimant_details_page.main_content.claiman_has_special_needs.set('Yes')
+  #TODO - not sure why this is not working! argh!
+  et1_claimant_details_page.main_content.assistance.special_needs.set("hello world")
+end
+
+Then("I should see the option to describe the assistant I need") do
+  expect(et1_claimant_details_page.has_correct_translation_for_assistance_required?).to be true
+end
+
 
 # When("user click on Your feedback link") do
 #   et1_apply_page.feedback_notice.feedback_link.click
