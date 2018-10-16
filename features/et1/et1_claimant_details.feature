@@ -15,8 +15,8 @@ Feature:
     When I answerd Yes to disability
     Then I should see the option to describe the assistant I need
 
-  # Scenario: Outside United Kingdom
-  #   Then I should be able to select Outside United Kindom as country of residence
+  Scenario: Outside United Kingdom
+    Then I should be able to select Outside United Kingdom as country of residence
 
   # Scenario: Mandatory field validation
   #   When I submit without answering any questions

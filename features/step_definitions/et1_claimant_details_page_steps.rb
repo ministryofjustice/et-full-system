@@ -23,3 +23,9 @@ end
 Then("I should see the option to describe the assistant I need") do
   expect(et1_claimant_details_page.has_correct_translation_for_assistance_required?).to be true
 end
+
+Then("I should be able to select Outside United Kingdom as country of residence") do
+  @claimants = FactoryBot.create_list(:first_person, 1, :person_data, country: 'Outside United Kingdom')
+  data = @claimants[0]
+  et1_claimant_details_page.main_content.country.set(data[:country])
+end

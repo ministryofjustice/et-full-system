@@ -66,27 +66,6 @@ module EtFullSystem
               year.set(year_value)
             end
           end
-          # #Gender
-          # section :gender, :question_labelled, 'claims.claimant.gender' do
-          #   element :male, :form_labelled, 'simple_form.options.claimant.gender.male' do
-          #     element :selector, :css, 'input[type="radio"]'
-          #     delegate :set, to: :selector
-          #   end
-          #   element :female, :form_labelled, 'simple_form.options.claimant.gender.female' do
-          #     element :selector, :css, 'input[type="radio"]'
-          #     delegate :set, to: :selector
-          #   end
-          #   element :prefer_not_to_say, :form_labelled, 'simple_form.options.claimant.gender.prefer_not_to_say' do
-          #     element :selector, :css, 'input[type="radio"]'
-          #     delegate :set, to: :selector
-          #   end
-          #   element :error_gender, :error, 'errors.messages.blank'
-          #   def set(value)
-          #     binding.pry
-          #     choose(value, name: 'claimant[gender]')
-          #   end
-          # end
-          #Gender
           section :gender, :question_labelled, 'claims.claimant.gender' do
             element :male, :form_labelled, 'simple_form.options.claimant.gender.male' do
               element :selector, :css, 'input[type="radio"]'
