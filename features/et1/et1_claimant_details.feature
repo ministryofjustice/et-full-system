@@ -18,9 +18,9 @@ Feature:
   Scenario: Outside United Kingdom
     Then I should be able to select Outside United Kingdom as country of residence
 
-  # Scenario: Mandatory field validation
-  #   When I submit without answering any questions
-  #   Then I should see errors on the Claimant's details page
+  Scenario: Mandatory field validation errors
+    When I submit without answering any questions
+    Then I should see mandatory errors on the Claimant's details page
 
   # Scenario: Email: Enter the claimant’s email address
   #   When selecting an email for the best way to send correspondence without providing an email address

@@ -29,3 +29,11 @@ Then("I should be able to select Outside United Kingdom as country of residence"
   data = @claimants[0]
   et1_claimant_details_page.main_content.country.set(data[:country])
 end
+
+When("I submit without answering any questions") do
+  et1_claimant_details_page.save_and_continue.click
+end
+
+Then("I should see mandatory errors on the Claimant's details page") do
+  expect(et1_claimant_details_page.has_correct_validation_error_message?).to be true
+end

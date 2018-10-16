@@ -427,8 +427,9 @@ cy:
       exit_guide: Yn ôl i'r ffurflen
       contact_us: Cysylltu â ni
       contact_us_link: "http://www.justice.gov.uk/contacts/hmcts/tribunals/employment"
-  aria:
-    error_summary: "Mae gwallau ar y dudalen "
+    error_notification:
+      error_summary: "Mae gwallau ar y dudalen"
+      default_message: "Rhowch wybodaeth yn y blychau testun sydd wedi'u hamlygu"
 
   errors:
     messages:
@@ -781,7 +782,7 @@ cy:
             special_needs:
               blank: Dywedwch p'un a ydych angen cymorth yn y gwrandawiad tribiwnlys
             contact_preference:
-              blank: Dywedwch p'un a hoffech i ohebiaeth gael ei hanfon at yr hawlydd drwy'r post neu e-bost
+              blank: "Dywedwch p'un a hoffech i ohebiaeth gael ei hanfon at yr hawlydd drwy'r post neu e-bost"
             address_building:
               blank: Rhowch rif neu enw adeilad cyfeiriad yr hawlydd
             address_street:

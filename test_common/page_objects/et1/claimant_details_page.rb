@@ -16,11 +16,11 @@ module EtFullSystem
         section :main_header, '.main-header' do
           element :page_header, :page_title, 'claims.claimant.header', exact: false
         end
-        section :error_message, '#error-summary' do
-          element :error_summary, :content_header, 'simple_form.error_notification.error_summary'
-          element :default_message, :paragraph, 'simple_form.error_notification.default_message'
-        end
-        section :main_content, '#content .main-section .main-content' do
+        section :main_content, '.main-section .main-content' do
+          section :error_message, '#edit_claimant #error-summary' do
+            element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
+            element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
+          end
           #About the claimant
           element :legend_personal_details, :legend_header, 'claims.claimant.legend_personal_details', exact: false
           #information about the person
@@ -30,22 +30,23 @@ module EtFullSystem
             def set(value)
               root_element.select(value)
             end
-            element :error_title, :error, 'activemodel.errors.models.user_session.claimant.attributes.title.inclusion'
+            element :error_title, :error, 'activemodel.errors.models.claimant.attributes.title.blank', exact: false
           end
           #first name
           section :first_name, :question_labelled, 'simple_form.labels.claimant.first_name' do
             element :field, :css, 'input'
             delegate :set, to: :field
-            element :error_first_name, :error, 'activemodel.errors.models.user_session.claimant.attributes.first_name.inclusion'
+            element :error_first_name, :error, 'activemodel.errors.models.claimant.attributes.first_name.blank'
           end
           #lastname name
           section :last_name, :question_labelled, 'simple_form.labels.claimant.last_name' do
             element :field, :css, 'input'
             delegate :set, to: :field
-            element :error_last_name, :error, 'activemodel.errors.models.user_session.claimant.attributes.last_name.inclusion'
+            element :error_last_name, :error, 'activemodel.errors.models.claimant.attributes.last_name.blank'
           end
           #Date of birth
           section :date_of_birth, :legend_header, 'claims.personal_details.date_of_birth', exact: false do
+            element :error_date_of_birth, :error, 'activemodel.errors.models.claimant.attributes.date_of_birth.too_young'
             element :date_of_birth_hint, :paragraph, 'simple_form.hints.claimant.date_of_birth'
             section :day, :question_labelled, 'simple_form.labels.claimant.date_of_birth.day' do
               element :field, :css, '#claimant_date_of_birth_day'
@@ -67,6 +68,7 @@ module EtFullSystem
             end
           end
           section :gender, :question_labelled, 'claims.claimant.gender' do
+            element :error_gender, :error, 'activemodel.errors.models.claimant.attributes.gender.blank'
             element :male, :form_labelled, 'simple_form.options.claimant.gender.male' do
               element :selector, :css, 'input[type="radio"]'
               delegate :set, to: :selector
@@ -79,7 +81,6 @@ module EtFullSystem
               element :selector, :css, 'input[type="radio"]'
               delegate :set, to: :selector
             end
-            element :error_gender, :error, 'errors.messages.blank'
             def set(value)
               case value
                 when "Male"
@@ -104,7 +105,6 @@ module EtFullSystem
               element :selector, :css, '#claimant_has_special_needs_false'
               delegate :set, to: :selector
             end
-            element :error_has_special_needs, :error, 'errors.messages.blank'
             def set(value)
               case value
               when "Yes"
@@ -128,35 +128,36 @@ module EtFullSystem
           element :building, :question_labelled, 'simple_form.labels.claimant.address_building' do
             element :field, :css, 'input'
             delegate :set, to: :field
-            element :error_building, :error, 'errors.messages.blank'
           end
+          element :error_building, :error, 'activemodel.errors.models.claimant.attributes.address_building.blank'
           element :street, :question_labelled, 'simple_form.labels.claimant.address_street' do
             element :field, :css, 'input'
             delegate :set, to: :field
-            element :error_street, :error, 'errors.messages.blank'
           end
+          element :error_street, :error, 'activemodel.errors.models.claimant.attributes.address_street.blank'
           element :locality, :question_labelled, 'simple_form.labels.claimant.address_locality' do
             element :field, :css, 'input'
             delegate :set, to: :field
-            element :error_locality, :error, 'errors.messages.blank'
           end
+          element :error_locality, :error, 'activemodel.errors.models.claimant.attributes.address_locality.blank'
           #County
           element :county, :question_labelled, 'simple_form.labels.claimant.address_county' do
             element :field, :css, 'input'
             delegate :set, to: :field
-            element :error_county, :error, 'errors.messages.blank'
           end
+          element :error_county, :error, 'activemodel.errors.models.claimant.attributes.address_county.blank'
           element :county_hint, :paragraph, 'simple_form.hints.claimant.address_county', exact: false
           element :post_code, :question_labelled, 'simple_form.labels.claimant.address_post_code' do
             element :field, :css, 'input'
             delegate :set, to: :field
-            element :error_post_code, :error, 'errors.messages.blank'
           end
+          element :error_post_code, :error, 'activemodel.errors.models.claimant.attributes.address_post_code.blank'
           section :country, :question_labelled, 'simple_form.labels.claimant.address_country' do
             def set(value)
               root_element.select(value)
             end
           end
+          element :error_address_county, :error, 'activemodel.errors.models.claimant.attributes.address_county.blank'
           element :telephone_number, :question_labelled, 'simple_form.labels.claimant.address_telephone_number' do
             element :field, :css, 'input'
             delegate :set, to: :field
@@ -168,10 +169,11 @@ module EtFullSystem
           element :email_address, :question_labelled, 'simple_form.labels.claimant.email_address', exact: false do
             element :field, :css, 'input'
             delegate :set, to: :field
-            element :error_email_address, :error, 'errors.messages.blank'
           end
+          element :error_email_address, :error, 'activemodel.errors.models.claimant.attributes.email_address.invalid'
           #correspondence
           section :claimant_contact_preference, '.claimant_contact_preference' do
+            element :error_claimant_contact_preference, :error, 'activemodel.errors.models.claimant.attributes.contact_preference.blank'
             element :correspondence, :form_labelled, 'simple_form.labels.claimant.contact_preference'
             element :contact_preference, :paragraph, 'simple_form.hints.claimant.contact_preference'
             section :email_preference, :form_labelled, 'simple_form.options.claimant.contact_preference.email' do
@@ -257,41 +259,26 @@ module EtFullSystem
           expect(main_content.assistance.special_needs.text).to be_truthy
         end
 
-        def set_for(user)
-          data = user[0].to_h
-          main_content.tap do |s|
-            binding.pry
-            set(s, :title, data)
-            set(s, :first_name, data)
-            set_field(s, :last_name, data)
-            set_field(s, :date_of_birth, data)
-            set_field(s, :gender, data)
-            set_field(s, :has_special_needs, data)
-            set_field(s, :special_needs, data)
-          end
-
-          main_content.claimants_contact_details.tap do |s|
-            set_field(s, :building, data)
-            set_field(s, :street, data)
-            set_field(s, :locality, data)
-            set_field(s, :county, data)
-            set_field(s, :post_code, data)
-            set_field(s, :country, data)
-            set_field(s, :telephone_number, data)
-            set_field(s, :alternative_telephone_number, data)
-            set_field(s, :email_address, data)
-            set_field(s, :correspondence, data)
-          end
+        def has_correct_validation_error_message?
+          #Errors on page
+          expect(main_content.error_message.error_summary.text).to be_truthy
+          expect(main_content.error_message.default_message.text).to be_truthy
+          expect(main_content.title.error_title.text).to be_truthy
+          expect(main_content.first_name.error_first_name.text).to be_truthy
+          expect(main_content.last_name.error_last_name.text).to be_truthy
+          expect(main_content.date_of_birth.error_date_of_birth.text).to be_truthy
+          expect(main_content.gender.error_gender.text).to be_truthy
+          expect(main_content.error_building.text).to be_truthy
+          expect(main_content.error_street.text).to be_truthy
+          expect(main_content.error_locality.text).to be_truthy
+          expect(main_content.error_county.text).to be_truthy
+          expect(main_content.error_post_code.text).to be_truthy
+          expect(main_content.error_address_county.text).to be_truthy
+          expect(main_content.claimant_contact_preference.error_claimant_contact_preference.text).to be_truthy
         end
 
         def save_and_continue
           main_content.save_and_continue_button.click
-        end
-
-        private
-
-        def set_field(s, key, data)
-          s.send(key).set(data[key]) if data.key?(key)
         end
       end
     end
