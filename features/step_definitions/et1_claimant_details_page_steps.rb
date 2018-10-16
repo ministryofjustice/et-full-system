@@ -37,3 +37,13 @@ end
 Then("I should see mandatory errors on the Claimant's details page") do
   expect(et1_claimant_details_page.has_correct_validation_error_message?).to be true
 end
+
+When("selecting an email for the best way to send correspondence without providing an email address") do
+  data = @claimants[0]
+  et1_claimant_details_page.main_content.claimant_contact_preference.set(data[:correspondence])
+  et1_claimant_details_page.save_and_continue.click
+end
+
+Then("I should see a validation error message {string}") do |string|
+  expect(et1_claimant_details_page.has_correct_translation_for_leaving_email_address_field_blank?).to be true
+end

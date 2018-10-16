@@ -369,7 +369,7 @@ en:
       contact_us_link: http://www.justice.gov.uk/contacts/hmcts/tribunals/employment    
     error_notification:
       error_summary: "Errors on page"
-      default_message: "Provide information in the highlighted fields"
+      default_message: Provide information in the highlighted fields"
 
   errors:
     messages:
@@ -734,9 +734,6 @@ en:
             address_post_code:
               blank: "Enter the claimant’s postcode"
               invalid: Enter a valid UK postcode. If the claimant lives abroad, enter SW55 9QT
-            email_address:
-              blank: Enter the claimant’s email address
-              invalid: You have entered an invalid email address
             email_address:
               blank: Enter the claimant’s email address
               invalid: You have entered an invalid email address

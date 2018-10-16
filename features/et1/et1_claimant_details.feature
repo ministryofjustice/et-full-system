@@ -22,9 +22,9 @@ Feature:
     When I submit without answering any questions
     Then I should see mandatory errors on the Claimant's details page
 
-  # Scenario: Email: Enter the claimant’s email address
-  #   When selecting an email for the best way to send correspondence without providing an email address
-  #   Then I should see a validation error message "Enter the claimant's email address"
+  Scenario: Email: Enter claimant’s email address
+    When selecting an email for the best way to send correspondence without providing an email address
+    Then I should see a validation error message "Enter the claimant's email address"
     
   # Scenario: Email: You have entered an invalid email address
   #   When entering an invalid email address
