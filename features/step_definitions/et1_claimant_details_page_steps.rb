@@ -9,14 +9,15 @@ Then("Claimant's details page copy texts are displayed in the correct language")
 end
 
 When("I answerd Yes to disability") do
-  et1_claimant_details_page.main_content.title.set('Mrs')
-  et1_claimant_details_page.main_content.first_name.set('Sivvoy')
-  et1_claimant_details_page.main_content.last_name.set('Taing')
-  et1_claimant_details_page.main_content.date_of_birth.set('21/11/1982')
-  et1_claimant_details_page.main_content.gender.set('Prefer not to say')
-  et1_claimant_details_page.main_content.claiman_has_special_needs.set('Yes')
+  data = @claimants[0]
+  et1_claimant_details_page.main_content.title.set(data[:title])
+  et1_claimant_details_page.main_content.first_name.set(data[:first_name])
+  et1_claimant_details_page.main_content.last_name.set(data[:last_name])
+  et1_claimant_details_page.main_content.date_of_birth.set(data[:date_of_birth])
+  et1_claimant_details_page.main_content.gender.set(data[:gender])
+  et1_claimant_details_page.main_content.claiman_has_special_needs.set(data[:has_special_needs])
   #TODO - not sure why this is not working! argh!
-  et1_claimant_details_page.main_content.assistance.special_needs.set("hello world")
+  et1_claimant_details_page.main_content.assistance.special_needs.set(data[:special_needs])
 end
 
 Then("I should see the option to describe the assistant I need") do

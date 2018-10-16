@@ -66,7 +66,26 @@ module EtFullSystem
               year.set(year_value)
             end
           end
-
+          # #Gender
+          # section :gender, :question_labelled, 'claims.claimant.gender' do
+          #   element :male, :form_labelled, 'simple_form.options.claimant.gender.male' do
+          #     element :selector, :css, 'input[type="radio"]'
+          #     delegate :set, to: :selector
+          #   end
+          #   element :female, :form_labelled, 'simple_form.options.claimant.gender.female' do
+          #     element :selector, :css, 'input[type="radio"]'
+          #     delegate :set, to: :selector
+          #   end
+          #   element :prefer_not_to_say, :form_labelled, 'simple_form.options.claimant.gender.prefer_not_to_say' do
+          #     element :selector, :css, 'input[type="radio"]'
+          #     delegate :set, to: :selector
+          #   end
+          #   element :error_gender, :error, 'errors.messages.blank'
+          #   def set(value)
+          #     binding.pry
+          #     choose(value, name: 'claimant[gender]')
+          #   end
+          # end
           #Gender
           section :gender, :question_labelled, 'claims.claimant.gender' do
             element :male, :form_labelled, 'simple_form.options.claimant.gender.male' do
@@ -83,23 +102,39 @@ module EtFullSystem
             end
             element :error_gender, :error, 'errors.messages.blank'
             def set(value)
-              choose(value, name: 'claimant[gender]')
+              case value
+                when "Male"
+                  male.click
+                when "Female"
+                  female.click
+                when "Prefer not to say"
+                  prefer_not_to_say.click
+                else
+                  puts "#{value} you have entered is not valid"
+              end
             end
           end
           #has special needs
           section :claiman_has_special_needs, '.form-group-reveal' do
             element :has_special_needs_hint, :paragraph, 'simple_form.hints.claimant.has_special_needs', exact: false
-            element :yes, :question_labelled, 'simple_form.yes' do
-              element :selector, :css, 'input'
+            element :yes, :form_labelled, 'simple_form.yes' do
+              element :selector, :css, '#claimant_has_special_needs_true'
               delegate :set, to: :selector
             end
-            element :no, :question_labelled, 'simple_form.no' do
-              element :selector, :css, 'input'
+            element :no, :form_labelled, 'simple_form.no' do
+              element :selector, :css, '#claimant_has_special_needs_false'
               delegate :set, to: :selector
             end
             element :error_has_special_needs, :error, 'errors.messages.blank'
             def set(value)
-              choose(value, name: 'claimant[has_special_needs]')
+              case value
+              when "Yes"
+                yes.click
+              when "No"
+                no.click
+              else
+                puts "#{value} you have entered is not valid"
+            end
             end
           end
           #describe the assistance you require
