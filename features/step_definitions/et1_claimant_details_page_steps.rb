@@ -45,7 +45,7 @@ When("leaving an email address field blank") do
 end
 
 Then("I should see an error message for leaving email address field blank") do
-  expect(et1_claimant_details_page.has_correct_translation_for_leaving_email_address_field_blank?).to be true
+  expect(et1_claimant_details_page.has_correct_error_message_for_leaving_email_address_field_blank?).to be true
 end
 
 When("entering an invalid email address") do
@@ -54,4 +54,5 @@ When("entering an invalid email address") do
 end
 
 Then("I should see an error message for entering invalid email address") do
+  expect(et1_claimant_details_page.has_correct_error_message_for_invalid_email_address?).to be true
 end
