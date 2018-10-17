@@ -166,11 +166,9 @@ module EtFullSystem
             element :field, :css, 'input'
             delegate :set, to: :field
           end
-          section :claimant_email_address, '.claimant_email_address' do 
-            element :email_address, :question_labelled, 'simple_form.labels.claimant.email_address', exact: false do
-              element :field, :css, 'input[type="email"]'
-              delegate :set, to: :field
-            end
+          element :email_address, :question_labelled, 'simple_form.labels.claimant.email_address', exact: false do
+            element :field, :css, 'input[type="email"]'
+            delegate :set, to: :field
           end
           element :blank_email_address, :error, 'activemodel.errors.models.claimant.attributes.email_address.blank'
           #correspondence
@@ -242,7 +240,7 @@ module EtFullSystem
           expect(main_content.country.text).to be_truthy
           expect(main_content.telephone_number.text).to be_truthy
           expect(main_content.alternative_telephone_number.text).to be_truthy
-          expect(main_content.claimant_email_address.email_address.text).to be_truthy
+          expect(main_content.email_address.text).to be_truthy
           #Best way to send correspondence
           expect(main_content.claimant_contact_preference.correspondence.text).to be_truthy
           expect(main_content.claimant_contact_preference.contact_preference.text).to be_truthy
