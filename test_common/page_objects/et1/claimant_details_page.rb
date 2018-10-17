@@ -191,10 +191,10 @@ module EtFullSystem
 
         def has_correct_translation?
           #your feedback header
-          expect(feedback_notice.language.text).to be_truthy
-          expect(feedback_notice.feedback_link.text).to be_truthy
+          expect(feedback_notice).to have_language
+          expect(feedback_notice).to have_feedback_link
           #Page header
-          expect(main_header.page_header.text).to be_truthy
+          expect(main_header).to have_page_header
           #About your claimant
           expect(main_content).to have_legend_personal_details
           expect(main_content).to have_personal_details_description

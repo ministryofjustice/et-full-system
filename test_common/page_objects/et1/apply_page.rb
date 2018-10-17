@@ -64,26 +64,26 @@ module EtFullSystem
 
         def has_correct_translation?
           #your feedback header
-          expect(feedback_notice.language.text).to be_truthy
-          expect(feedback_notice.feedback_link.text).to be_truthy
-          expect(header.text).to be_truthy
+          expect(feedback_notice).to have_language
+          expect(feedback_notice).to have_feedback_link
+          expect(self).to have_header
           #are you in time?
-          expect(are_you_in_time_header.text).to be_truthy
-          expect(are_you_in_time_paragraph.text).to be_truthy
+          expect(self).to have_are_you_in_time_header
+          expect(self).to have_are_you_in_time_paragraph
            #have you contacted Acas?
-          expect(have_you_contacted_acas_header.text).to be_truthy
-          expect(have_you_contacted_acas_paragraph.text).to be_truthy
+          expect(self).to have_have_you_contacted_acas_header
+          expect(self).to have_have_you_contacted_acas_paragraph
           #what you'll need
-          expect(what_you_need_to_know_header.text).to be_truthy
-          expect(what_you_need_to_know_acas_text.text).to be_truthy
-          expect(what_you_need_to_know_acas_details.text).to be_truthy
+          expect(self).to have_what_you_need_to_know_header
+          expect(self).to have_what_you_need_to_know_acas_text
+          expect(self).to have_what_you_need_to_know_acas_details
           #start a claim and return to a cliam
-          expect(start_a_claim_button.value).to be_truthy
-          expect(return_a_claim_button.text).to be_truthy
+          expect(self).to have_start_a_claim_button
+          expect(self).to have_return_a_claim_button
           #Support links
-          expect(support.suport_header.text).to be_truthy
-          expect(support.guide.text).to be_truthy
-          expect(support.contact_use.text).to be_truthy
+          expect(support).to have_suport_header
+          expect(support).to have_guide
+          expect(support).to have_contact_use
         end
       end
     end

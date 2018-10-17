@@ -54,24 +54,24 @@ module EtFullSystem
 
         def has_correct_translation?
           #saving your claim heading
-          expect(main_header.page_header.text).to be_truthy
+          expect(main_header).to have_page_header
           #your claim number
-          expect(main_content.claim_number_text.text).to be_truthy
+          expect(main_content).to have_claim_number_text
           #claim intro
-          expect(main_content.claims_intro_text.text).to be_truthy
+          expect(main_content).to have_claims_intro_text
           #email address
-          expect(main_content.email_label.text).to be_truthy
+          expect(main_content).to have_email_label
           #memorable
-          expect(main_content.memorable_word_label.text).to be_truthy
+          expect(main_content).to have_memorable_word_label
           #print this page
-          expect(main_content.print_link.text).to be_truthy
-          expect(main_content.print_copy.text).to be_truthy
+          expect(main_content).to have_print_link
+          expect(main_content).to have_print_copy
           #save and continue button
-          expect(main_content.example_word.text).to be_truthy
+          expect(main_content).to have_example_word
           #Support links
-          expect(support.suport_header.text).to be_truthy
-          expect(support.guide.text).to be_truthy
-          expect(support.contact_use.text).to be_truthy
+          expect(support).to have_suport_header
+          expect(support).to have_guide
+          expect(support).to have_contact_use
         end
 
 

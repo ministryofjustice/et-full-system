@@ -11,7 +11,8 @@ FactoryBot.define do
       building { Faker::Address.building_number }
       street { Faker::Address.street_name }
       locality 'London'
-      county :"simple_form.labels.claimant.address_county.united_kingdom"
+      county 'Manchester'
+      country :"simple_form.options.claimant.address_country.united_kingdom"
       post_code 'SW1H 9AJ'
       has_special_needs :"simple_form.yes"
       special_needs 'My special needs are as follows'

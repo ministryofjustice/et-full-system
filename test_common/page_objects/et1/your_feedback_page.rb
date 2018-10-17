@@ -51,15 +51,15 @@ module EtFullSystem
         
         def has_correct_translation?
           #your feedback header
-          expect(header.text).to be_truthy
+          expect(self).to have_header
           #body text
-          expect(main_content.comments.text).to be_truthy
-          expect(main_content.suggestions.text).to be_truthy
-          expect(main_content.email_address.text).to be_truthy
+          expect(main_content).to have_comments
+          expect(main_content).to have_suggestions
+          expect(main_content).to have_email_address
           #Support links
-          expect(support.suport_header.text).to be_truthy
-          expect(support.guide.text).to be_truthy
-          expect(support.contact_use.text).to be_truthy
+          expect(support).to have_suport_header
+          expect(support).to have_guide
+          expect(support).to have_contact_use
         end
       end
     end

@@ -56,21 +56,21 @@ module EtFullSystem
 
         def has_correct_translation?
           #header
-          expect(header.text).to be_truthy
-          expect(main_content.sub_header.text).to be_truthy
+          expect(self).to have_header
+          expect(main_content).to have_sub_header
           #enter your details below
-          expect(main_content.claim_number_label.text).to be_truthy
-          expect(main_content.claim_number_hint.text).to be_truthy
-          expect(main_content.memorable_word_label.text).to be_truthy
-          expect(main_content.memorable_word_hint.text).to be_truthy
+          expect(main_content).to have_claim_number_label
+          expect(main_content).to have_claim_number_hint
+          expect(main_content).to have_memorable_word_label
+          expect(main_content).to have_memorable_word_hint
           #find my claim
-          expect(main_content.find_my_claim.value).to be_truthy
+          expect(main_content).to have_find_my_claim
           #don't have these details
-          expect(main_content.form_hint.text).to be_truthy
+          expect(main_content).to have_form_hint
         end
 
-        def set_for(user)
-          data = user[0].to_h
+        def set(user)
+          data = user.to_h
           main_content.tap do |s|
             set_field(s, :claim_number, data)
             set_field(s, :memorable_word, data)
