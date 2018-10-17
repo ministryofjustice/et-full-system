@@ -1,5 +1,5 @@
 Given("a claimant is on Claimant's details page") do
-  @claimants = FactoryBot.create_list(:first_person, 1, :person_data)
+  @claimant = FactoryBot.create(:claimant, :personal_details)
   start_a_new_et1_claim
   et1_answer_login
 end
@@ -9,15 +9,8 @@ Then("Claimant's details page copy texts are displayed in the correct language")
 end
 
 When("I answerd Yes to disability") do
-  data = @claimants[0]
-  et1_claimant_details_page.main_content.title.set(data[:title])
-  et1_claimant_details_page.main_content.first_name.set(data[:first_name])
-  et1_claimant_details_page.main_content.last_name.set(data[:last_name])
-  et1_claimant_details_page.main_content.date_of_birth.set(data[:date_of_birth])
-  et1_claimant_details_page.main_content.gender.set(data[:gender])
-  et1_claimant_details_page.main_content.claiman_has_special_needs.set(data[:has_special_needs])
-  #TODO - not sure why this is not working! argh!
-  et1_claimant_details_page.main_content.assistance.special_needs.set(data[:special_needs])
+  et1_claimant_details_page.main_content.claiman_has_special_needs.set(@claimant[:has_special_needs])
+  et1_claimant_details_page.main_content.assistance.special_needs.set(@claimant[:special_needs])
 end
 
 Then("I should see the option to describe the assistant I need") do
@@ -25,9 +18,8 @@ Then("I should see the option to describe the assistant I need") do
 end
 
 Then("I should be able to select Outside United Kingdom as country of residence") do
-  @claimants = FactoryBot.create_list(:first_person, 1, :person_data, country: 'Outside United Kingdom')
-  data = @claimants[0]
-  et1_claimant_details_page.main_content.country.set(data[:country])
+  claimant = FactoryBot.create(:claimant, :personal_details, county: :"simple_form.labels.claimant.address_county.other")
+  et1_claimant_details_page.main_content.country.set(claimant[:country])
 end
 
 When("I submit without answering any questions") do
@@ -39,8 +31,7 @@ Then("I should see mandatory errors on the Claimant's details page") do
 end
 
 When("leaving an email address field blank") do
-  data = @claimants[0]
-  et1_claimant_details_page.main_content.claimant_contact_preference.set(data[:correspondence])
+  et1_claimant_details_page.main_content.claimant_contact_preference.set(@claimant[:correspondence])
   et1_claimant_details_page.save_and_continue.click
 end
 

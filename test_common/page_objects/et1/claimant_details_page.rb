@@ -28,7 +28,7 @@ module EtFullSystem
           #title
           section :title, :question_labelled, 'simple_form.labels.claimant.title' do
             def set(value)
-              root_element.select(factory_translate value)
+              root_element.select(value)
             end
             element :error_title, :error, 'activemodel.errors.models.claimant.attributes.title.blank', exact: false
           end
@@ -68,6 +68,7 @@ module EtFullSystem
             end
           end
           section :gender, :question_labelled, 'claims.claimant.gender' do
+            include ::EtFullSystem::Test::I18n
             element :error_gender, :error, 'activemodel.errors.models.claimant.attributes.gender.blank'
             element :male, :form_labelled, 'simple_form.options.claimant.gender.male' do
               element :selector, :css, 'input[type="radio"]'
@@ -82,20 +83,12 @@ module EtFullSystem
               delegate :set, to: :selector
             end
             def set(value)
-              case value
-                when "Male"
-                  male.click
-                when "Female"
-                  female.click
-                when "Prefer not to say"
-                  prefer_not_to_say.click
-                else
-                  puts "#{value} you have entered is not valid"
-              end
+              choose(factory_translate(value), name: 'claimant[gender]')
             end
           end
           #has special needs
           section :claiman_has_special_needs, '.form-group-reveal' do
+            include ::EtFullSystem::Test::I18n
             element :has_special_needs, :form_labelled, 'simple_form.labels.claimant.has_special_needs'
             element :has_special_needs_hint, :paragraph, 'simple_form.hints.claimant.has_special_needs'
             element :yes, :form_labelled, 'simple_form.yes' do
@@ -107,14 +100,7 @@ module EtFullSystem
               delegate :set, to: :selector
             end
             def set(value)
-              case value
-                when "Yes"
-                  yes.click
-                when "No"
-                  no.click
-                else
-                  puts "#{value} you have entered is not valid"
-              end
+              choose(factory_translate(value), name: 'claimant[has_special_needs]')
             end
           end
           #describe the assistance you require
@@ -153,8 +139,9 @@ module EtFullSystem
           end
           element :error_post_code, :error, 'activemodel.errors.models.claimant.attributes.address_post_code.blank'
           section :country, :question_labelled, 'simple_form.labels.claimant.address_country' do
+            include ::EtFullSystem::Test::I18n
             def set(value)
-              root_element.select(value)
+              root_element.select(factory_translate(value))
             end
           end
           element :error_address_county, :error, 'activemodel.errors.models.claimant.attributes.address_county.blank'
@@ -174,6 +161,7 @@ module EtFullSystem
           element :blank_email_address, :error, 'activemodel.errors.models.claimant.attributes.email_address.blank'
           #correspondence
           section :claimant_contact_preference, '.claimant_contact_preference' do
+            include ::EtFullSystem::Test::I18n
             element :error_claimant_contact_preference, :error, 'activemodel.errors.models.claimant.attributes.contact_preference.blank'
             element :correspondence, :form_labelled, 'simple_form.labels.claimant.contact_preference'
             element :contact_preference, :paragraph, 'simple_form.hints.claimant.contact_preference', exact: false
@@ -186,7 +174,7 @@ module EtFullSystem
               delegate :set, to: :selector
             end
             def set(value)
-              choose(value, name: 'claimant[contact_preference]')
+              choose(factory_translate(value), name: 'claimant[contact_preference]')
             end
           end
           #Save and continue

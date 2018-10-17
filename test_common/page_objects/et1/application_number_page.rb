@@ -75,9 +75,9 @@ module EtFullSystem
         end
 
 
-        def set_for(user)
-          main_content.email_label.set(user[0].dig(:email_address))
-          main_content.memorable_word_label.set(user[0].dig(:memorable_word))
+        def set(data)
+          main_content.email_label.set(data.dig(:email_address))
+          main_content.memorable_word_label.set(data.dig(:memorable_word))
         end
       end
     end
