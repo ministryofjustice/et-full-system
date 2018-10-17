@@ -176,7 +176,7 @@ module EtFullSystem
           section :claimant_contact_preference, '.claimant_contact_preference' do
             element :error_claimant_contact_preference, :error, 'activemodel.errors.models.claimant.attributes.contact_preference.blank'
             element :correspondence, :form_labelled, 'simple_form.labels.claimant.contact_preference'
-            element :contact_preference, :paragraph, 'simple_form.hints.claimant.contact_preference'
+            element :contact_preference, :paragraph, 'simple_form.hints.claimant.contact_preference', exact: false
             section :email_preference, :form_labelled, 'simple_form.options.claimant.contact_preference.email' do
               element :selector, :css, 'input[type="radio"]'
               delegate :set, to: :selector
