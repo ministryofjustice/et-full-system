@@ -38,12 +38,20 @@ Then("I should see mandatory errors on the Claimant's details page") do
   expect(et1_claimant_details_page.has_correct_validation_error_message?).to be true
 end
 
-When("selecting an email for the best way to send correspondence without providing an email address") do
+When("leaving an email address field blank") do
   data = @claimants[0]
   et1_claimant_details_page.main_content.claimant_contact_preference.set(data[:correspondence])
   et1_claimant_details_page.save_and_continue.click
 end
 
-Then("I should see a blank validation error message Enter the claimant's email address") do
+Then("I should see an error message for leaving email address field blank") do
   expect(et1_claimant_details_page.has_correct_translation_for_leaving_email_address_field_blank?).to be true
+end
+
+When("entering an invalid email address") do
+  et1_claimant_details_page.main_content.claimant_email_address.email_address.set('blah@blah')
+  et1_claimant_details_page.save_and_continue.click
+end
+
+Then("I should see an error message for entering invalid email address") do
 end

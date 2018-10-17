@@ -22,13 +22,13 @@ Feature:
     When I submit without answering any questions
     Then I should see mandatory errors on the Claimant's details page
 
-  Scenario: Validate email address when left blank
-    When selecting an email for the best way to send correspondence without providing an email address
-    Then I should see a blank validation error message Enter the claimant's email address
+  Scenario: blank email address
+    When leaving an email address field blank
+    Then I should see an error message for leaving email address field blank
     
-  # Scenario: Validat email address when invalid
-  #   When entering an invalid email address
-  #   Then I should see a validation error message "You have entered an invalid email address"
+  Scenario: invalid email address
+    When entering an invalid email address
+    Then I should see an error message for entering invalid email address
 
   # Scenario: Save and complete later
   #   When I click on Save and complete later
