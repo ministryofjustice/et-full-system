@@ -1,9 +1,8 @@
 @e2e
 @javascript
 Feature:
-  As a claimant
-  I would like to select whether I submit my application in Welsh or English
-  So that I can use my preferred language
+  As claimant details page
+  I want to ensure that user can submit their claimant details in Welsh or in English
 
   Background: Claimant's details page
     Given a claimant is on Claimant's details page 
@@ -22,13 +21,17 @@ Feature:
     When I submit without answering any questions
     Then I should see mandatory errors on the Claimant's details page
 
-  Scenario: blank email address
+  Scenario: Blank email address
     When leaving an email address field blank
     Then I should see an error message for leaving email address field blank
     
-  Scenario: invalid email address
+  Scenario: Invalid email address
     When entering an invalid email address
     Then I should see an error message for entering invalid email address
+
+  Scenario: Submit Claimant details page
+    When Claimant's details page has been submitted
+    Then I should be on the Group claims page 
 
   # Scenario: Save and complete later
   #   When I click on Save and complete later

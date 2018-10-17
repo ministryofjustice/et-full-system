@@ -111,29 +111,29 @@ module EtFullSystem
           end
           #Claimant's contact details
           element :claimants_contact_details, :legend_header, 'claims.claimant.legend_contact_details', exact: false
-          element :building, :question_labelled, 'simple_form.labels.claimant.address_building' do
+          section :building, :question_labelled, 'simple_form.labels.claimant.address_building' do
             element :field, :css, 'input'
             delegate :set, to: :field
           end
           element :error_building, :error, 'activemodel.errors.models.claimant.attributes.address_building.blank'
-          element :street, :question_labelled, 'simple_form.labels.claimant.address_street' do
+          section :street, :question_labelled, 'simple_form.labels.claimant.address_street' do
             element :field, :css, 'input'
             delegate :set, to: :field
           end
           element :error_street, :error, 'activemodel.errors.models.claimant.attributes.address_street.blank'
-          element :locality, :question_labelled, 'simple_form.labels.claimant.address_locality' do
+          section :locality, :question_labelled, 'simple_form.labels.claimant.address_locality' do
             element :field, :css, 'input'
             delegate :set, to: :field
           end
           element :error_locality, :error, 'activemodel.errors.models.claimant.attributes.address_locality.blank'
           #County
-          element :county, :question_labelled, 'simple_form.labels.claimant.address_county' do
+          section :county, :question_labelled, 'simple_form.labels.claimant.address_county' do
             element :field, :css, 'input'
             delegate :set, to: :field
           end
           element :error_county, :error, 'activemodel.errors.models.claimant.attributes.address_county.blank'
           element :county_hint, :paragraph, 'simple_form.hints.claimant.address_county', exact: false
-          element :post_code, :question_labelled, 'simple_form.labels.claimant.address_post_code' do
+          section :post_code, :question_labelled, 'simple_form.labels.claimant.address_post_code' do
             element :field, :css, 'input'
             delegate :set, to: :field
           end
@@ -145,11 +145,11 @@ module EtFullSystem
             end
           end
           element :error_address_county, :error, 'activemodel.errors.models.claimant.attributes.address_county.blank'
-          element :telephone_number, :question_labelled, 'simple_form.labels.claimant.address_telephone_number' do
+          section :telephone_number, :question_labelled, 'simple_form.labels.claimant.address_telephone_number' do
             element :field, :css, 'input'
             delegate :set, to: :field
           end
-          element :alternative_telephone_number, :question_labelled, 'simple_form.labels.claimant.mobile_number' do
+          section :alternative_telephone_number, :question_labelled, 'simple_form.labels.claimant.mobile_number' do
             element :field, :css, 'input'
             delegate :set, to: :field
           end

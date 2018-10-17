@@ -18,7 +18,7 @@ Then("I should see the option to describe the assistant I need") do
 end
 
 Then("I should be able to select Outside United Kingdom as country of residence") do
-  claimant = FactoryBot.create(:claimant, :personal_details, county: :"simple_form.labels.claimant.address_county.other")
+  claimant = FactoryBot.create(:claimant, :personal_details, country: :"simple_form.options.claimant.address_country.other")
   et1_claimant_details_page.main_content.country.set(claimant[:country])
 end
 
@@ -46,4 +46,12 @@ end
 
 Then("I should see an error message for entering invalid email address") do
   expect(et1_claimant_details_page.has_correct_error_message_for_invalid_email_address?).to be true
+end
+
+When("Claimant's details page has been submitted") do
+  et1_answer_claimant_questions
+end
+
+Then("I should be on the Group claims page") do
+  #TODO once i build group claims page
 end

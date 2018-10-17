@@ -21,33 +21,24 @@ module EtFullSystem
       end
 
       def et1_answer_claimant_questions
-        et1_claimant_details_page.main_content.title.set('Mrs')
-        et1_claimant_details_page.main_content.first_name.set('Sivvoy')
-        et1_claimant_details_page.main_content.last_name.set('Taing')
-        et1_claimant_details_page.main_content.date_of_birth.set('21/11/1982')
-        et1_claimant_details_page.main_content.gender.set('Prefer not to say')
-        et1_claimant_details_page.main_content.claiman_has_special_needs.set('Yes')
-        et1_claimant_details_page.main_content.claiman_has_special_needs.special_needs.set('blah blah')
-        binding.pry
-        # et1_claimant_details_page.main_content.building.set('123')
-        # et1_claimant_details_page.main_content.street.set('street')
-        # et1_claimant_details_page.main_content.locality.set('London')
-        # et1_claimant_details_page.main_content.county.set('London')
-        # et1_claimant_details_page.main_content.post_code.set('N1 1PA')
-        # et1_claimant_details_page.main_content.country.set('United Kingdom')
-        # et1_claimant_details_page.main_content.telephone_number.set('23424234')
-        # et1_claimant_details_page.main_content.alternative_telephone_number.set('32423423')
-        # et1_claimant_details_page.main_content.email_address.set('sivvoy@blah.com')
-        # et1_claimant_details_page.main_content.claimant_contact_preference.set('email')
-        # binding.pry
-
-
-
-
-
-        # et1_claimant_details_page.set_for(@claimants)
-        # binding.pry
-        # et1_claimant_details_page.save_and_continue
+        et1_claimant_details_page.main_content.title.set(@claimant[:title])
+        et1_claimant_details_page.main_content.first_name.set(@claimant[:first_name])
+        et1_claimant_details_page.main_content.last_name.set(@claimant[:last_name])
+        et1_claimant_details_page.main_content.date_of_birth.set(@claimant[:date_of_birth])
+        et1_claimant_details_page.main_content.gender.set(@claimant[:gender])
+        et1_claimant_details_page.main_content.claiman_has_special_needs.set(@claimant[:has_special_needs])
+        et1_claimant_details_page.main_content.assistance.special_needs.set(@claimant[:special_needs])
+        et1_claimant_details_page.main_content.building.set(@claimant[:building])
+        et1_claimant_details_page.main_content.street.set(@claimant[:street])
+        et1_claimant_details_page.main_content.locality.set(@claimant[:locality])
+        et1_claimant_details_page.main_content.county.set(@claimant[:county])
+        et1_claimant_details_page.main_content.post_code.set(@claimant[:post_code])
+        et1_claimant_details_page.main_content.country.set(@claimant[:country])
+        et1_claimant_details_page.main_content.telephone_number.set(@claimant[:telephone_number])
+        et1_claimant_details_page.main_content.alternative_telephone_number.set(@claimant[:alternative_telephone_number])
+        et1_claimant_details_page.main_content.email_address.set(@claimant[:email_address])
+        et1_claimant_details_page.main_content.claimant_contact_preference.set(@claimant[:claimant_contact_preference])
+        et1_claimant_details_page.save_and_continue
       end
 
       def et1_answer_group_claimants_questions
