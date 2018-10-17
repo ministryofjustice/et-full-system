@@ -149,7 +149,7 @@ cy:
         mobile_number: Rhif ffôn neu rif ffôn symudol arall (dewisol)
         email_address: "Cyfeiriad e-bost (dewisol)"
         fax_number: Ffacs
-        has_special_needs: "Oes gennych chi anabledd sy'n golygu eich bod angen cymorth yn y gwrandawiad tribiwnlys?"
+        has_special_needs: "Oes gennych chi anabledd sy'n golygu eich bod angen cymorth yn y gwrandawiad tribiwnlys? (dewisol)"
         special_needs: Disgrifiwch y cymorth sydd ei angen arnoch
         address_telephone_number: "Rhif ffôn neu rif ffôn symudol (dewisol)"
         address_building: Rhif neu enw'r adeilad
@@ -159,7 +159,7 @@ cy:
         address_post_code: Cod post
         address_country: Gwlad
         applying_for_remission: "Ydych chi eisiau gwneud cais am help i dalu eich ffi (a elwir yn \"help i dalu ffioedd\")?"
-        contact_preference: Y ffordd orau i anfon gohebiaeth atoch (yr hawlydd)
+        contact_preference: "Y ffordd orau i anfon gohebiaeth atoch (yr hawlydd)"
         _destroy: 'Dileu''r hawlydd yma'
         email_address: Cyfeiriad e-bost
         gender: Rhywedd
@@ -312,7 +312,6 @@ cy:
         applying_for_remission: "Ydych chi eisiau gwneud cais am help i dalu ffioedd?"
         remission_claimant_count: "Faint yn eich grŵp chi sydd eisiau gwneud cais am help i dalu ffioedd?"
 
-
     hints:
       application_number:
         password: "Er enghraifft eich cyfenw"
@@ -322,7 +321,7 @@ cy:
         has_special_needs: Ee dogfennau Braille, neu ddehonglydd iaith arwyddion
         has_representative: Rhywun sydd wedi cytuno i'ch cynrychioli (er enghraifft, i baratoi eich achos a/neu gweithredu ar eich rhan os bydd gwrandawiad).
         applying_for_remission: Efallai na fydd rhaid i chi dalu ffi os nad oes gennych lawer o gynilion a'ch bod yn cael budd-daliadau neu ar incwm isel. Ydw i'n gymwys i gael help?
-        contact_preference: Noder, os oes gennych cynrychiolydd (ee cyfreithiwr), yna fe anfonir pob gohebiaeth atynt
+        contact_preference: "Noder, os oes gennych gynrychiolydd (ee cyfreithiwr), yna fe anfonir pob gohebiaeth atynt"
         address_county: "Ee os Llundain, Llundain Fwyaf; os Manceinion, Manceinion Fwyaf"
       claimants:
         address_county: "Ee os Llundain, Llundain Fwyaf; os Manceinion, Manceinion Fwyaf"
