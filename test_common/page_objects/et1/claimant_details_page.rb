@@ -198,7 +198,7 @@ module EtFullSystem
           element :guide, :link_named, 'shared.aside.read_guide'
           element :contact_use, :link_named, 'shared.aside.contact_us'
           element :your_claim, :support_header, 'shared.aside.actions_header'
-          element :save_and_complete_later, :button, 'shared.mobile_nav.save_and_complete', exact: false
+          element :save_and_complete_later, :button, 'shared.mobile_nav.save_and_complete'
         end
 
         def has_correct_translation?
@@ -208,55 +208,55 @@ module EtFullSystem
           #Page header
           expect(main_header.page_header.text).to be_truthy
           #About your claimant
-          expect(main_content.legend_personal_details.text).to be_truthy
-          expect(main_content.personal_details_description.text).to be_truthy
-          expect(main_content.title.text).to be_truthy
-          expect(main_content.first_name.text).to be_truthy
-          expect(main_content.last_name.text).to be_truthy
+          expect(main_content).to have_legend_personal_details
+          expect(main_content).to have_personal_details_description
+          expect(main_content).to have_title
+          expect(main_content).to have_first_name
+          expect(main_content).to have_last_name
           #date of birth
-          expect(main_content.date_of_birth.text).to be_truthy
-          expect(main_content.date_of_birth.date_of_birth_hint.text).to be_truthy
-          expect(main_content.date_of_birth.day.text).to be_truthy
-          expect(main_content.date_of_birth.month.text).to be_truthy
-          expect(main_content.date_of_birth.year.text).to be_truthy
+          expect(main_content).to have_date_of_birth
+          expect(main_content.date_of_birth).to have_date_of_birth_hint
+          expect(main_content.date_of_birth).to have_day
+          expect(main_content.date_of_birth).to have_month
+          expect(main_content.date_of_birth).to have_year
           #gender
-          expect(main_content.gender.text).to be_truthy
-          expect(main_content.gender.male.text).to be_truthy
-          expect(main_content.gender.female.text).to be_truthy
-          expect(main_content.gender.prefer_not_to_say.text).to be_truthy
+          expect(main_content).to have_gender
+          expect(main_content.gender).to have_male
+          expect(main_content.gender).to have_female
+          expect(main_content.gender).to have_prefer_not_to_say
           #has special needs
-          expect(main_content.claiman_has_special_needs.has_special_needs.text).to be_truthy
-          expect(main_content.claiman_has_special_needs.has_special_needs_hint.text).to be_truthy
-          expect(main_content.claiman_has_special_needs.yes.text).to be_truthy
-          expect(main_content.claiman_has_special_needs.no.text).to be_truthy
-          expect(main_content.assistance.special_needs.text).to be_truthy
+          expect(main_content.claiman_has_special_needs).to have_has_special_needs
+          expect(main_content.claiman_has_special_needs).to have_has_special_needs_hint
+          expect(main_content.claiman_has_special_needs).to have_yes
+          expect(main_content.claiman_has_special_needs).to have_no
+          expect(main_content.assistance).to have_special_needs
           #Claimant's contact details
-          expect(main_content.claimants_contact_details.text).to be_truthy
-          expect(main_content.building.text).to be_truthy
-          expect(main_content.street.text).to be_truthy
-          expect(main_content.locality.text).to be_truthy
-          expect(main_content.county.text).to be_truthy
-          expect(main_content.county_hint.text).to be_truthy
-          expect(main_content.post_code.text).to be_truthy
-          expect(main_content.country.text).to be_truthy
-          expect(main_content.telephone_number.text).to be_truthy
-          expect(main_content.alternative_telephone_number.text).to be_truthy
-          expect(main_content.email_address.text).to be_truthy
+          expect(main_content).to have_claimants_contact_details
+          expect(main_content).to have_building
+          expect(main_content).to have_street
+          expect(main_content).to have_locality
+          expect(main_content).to have_county
+          expect(main_content).to have_county_hint
+          expect(main_content).to have_post_code
+          expect(main_content).to have_country
+          expect(main_content).to have_telephone_number
+          expect(main_content).to have_alternative_telephone_number
+          expect(main_content).to have_email_address
           #Best way to send correspondence
-          expect(main_content.claimant_contact_preference.correspondence.text).to be_truthy
-          expect(main_content.claimant_contact_preference.contact_preference.text).to be_truthy
-          expect(main_content.claimant_contact_preference.email_preference.text).to be_truthy
-          expect(main_content.claimant_contact_preference.post_preference.text).to be_truthy
+          expect(main_content.claimant_contact_preference).to have_correspondence
+          expect(main_content.claimant_contact_preference).to have_contact_preference
+          expect(main_content.claimant_contact_preference).to have_email_preference
+          expect(main_content.claimant_contact_preference).to have_post_preference
           #Save and continue
-          expect(main_content.save_and_continue_button.text).to be_truthy
+          expect(main_content).to have_save_and_continue_button
           #Support
-          expect(support.suport_header.text).to be_truthy
-          expect(support.guide.text).to be_truthy
-          expect(support.contact_use.text).to be_truthy
+          expect(support).to have_suport_header
+          expect(support).to have_guide
+          expect(support).to have_contact_use
           #Save your claim later
-          expect(support.your_claim.text).to be_truthy
+          expect(support).to have_your_claim
           #TODO this has stopped working - why?
-          # expect(support.save_and_complete_later.text).to be_truthy
+          expect(support).to have_save_and_complete_later
         end
         
         def has_correct_translation_for_assistance_required?
@@ -275,19 +275,19 @@ module EtFullSystem
           #Errors on page
           expect(main_content.error_message.error_summary.text).to be_truthy
           #TODO why has this stopped working - why?
-          # expect(main_content.error_message.default_message.text).to be_truthy
-          expect(main_content.title.error_title.text).to be_truthy
-          expect(main_content.first_name.error_first_name.text).to be_truthy
-          expect(main_content.last_name.error_last_name.text).to be_truthy
-          expect(main_content.date_of_birth.error_date_of_birth.text).to be_truthy
-          expect(main_content.gender.error_gender.text).to be_truthy
-          expect(main_content.error_building.text).to be_truthy
-          expect(main_content.error_street.text).to be_truthy
-          expect(main_content.error_locality.text).to be_truthy
-          expect(main_content.error_county.text).to be_truthy
-          expect(main_content.error_post_code.text).to be_truthy
-          expect(main_content.error_address_county.text).to be_truthy
-          expect(main_content.claimant_contact_preference.error_claimant_contact_preference.text).to be_truthy
+          # expect(main_content.error_message).to have_default_message
+          expect(main_content.title).to have_error_title
+          expect(main_content.first_name).to have_error_first_name
+          expect(main_content.last_name).to have_error_last_name
+          expect(main_content.date_of_birth).to have_error_date_of_birth
+          expect(main_content.gender).to have_error_gender
+          expect(main_content).to have_error_building
+          expect(main_content).to have_error_street
+          expect(main_content).to have_error_locality
+          expect(main_content).to have_error_county
+          expect(main_content).to have_error_post_code
+          expect(main_content).to have_error_address_county
+          expect(main_content.claimant_contact_preference).to have_error_claimant_contact_preference
         end
 
         def save_and_continue
