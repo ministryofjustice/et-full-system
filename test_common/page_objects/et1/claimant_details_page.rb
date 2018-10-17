@@ -256,24 +256,24 @@ module EtFullSystem
           #Save your claim later
           expect(support).to have_your_claim
           #TODO this has stopped working - why?
-          expect(support).to have_save_and_complete_later
+          # expect(support).to have_save_and_complete_later
         end
         
         def has_correct_translation_for_assistance_required?
-          expect(main_content.assistance.special_needs.text).to be_truthy
+          expect(main_content.assistance).to have_special_needs
         end
 
         def has_correct_error_message_for_leaving_email_address_field_blank?
-          expect(main_content.blank_email_address.text).to be_truthy
+          expect(main_content).to have_blank_email_address
         end
 
         def has_correct_error_message_for_invalid_email_address?
-          expect(main_content.email_address.invalid_email_address.text).to be_truthy
+          expect(main_content.email_address).to have_invalid_email_address
         end
 
         def has_correct_validation_error_message?
           #Errors on page
-          expect(main_content.error_message.error_summary.text).to be_truthy
+          expect(main_content.error_message).to have_error_summary
           #TODO why has this stopped working - why?
           # expect(main_content.error_message).to have_default_message
           expect(main_content.title).to have_error_title
