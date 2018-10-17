@@ -166,11 +166,11 @@ module EtFullSystem
             element :field, :css, 'input'
             delegate :set, to: :field
           end
-          element :email_address, :question_labelled, 'simple_form.labels.claimant.email_address', exact: false do
+          section :email_address, :question_labelled, 'simple_form.labels.claimant.email_address', exact: false do
+            element :invalid_email_address, :error, 'activemodel.errors.models.claimant.attributes.email_address.invalid'
             element :field, :css, 'input[type="email"]'
             delegate :set, to: :field
           end
-          element :invalid_email_address, :error, 'activemodel.errors.models.claimant.attributes.email_address.invalid'
           element :blank_email_address, :error, 'activemodel.errors.models.claimant.attributes.email_address.blank'
           #correspondence
           section :claimant_contact_preference, '.claimant_contact_preference' do
@@ -268,7 +268,7 @@ module EtFullSystem
         end
 
         def has_correct_error_message_for_invalid_email_address?
-          expect(main_content.blank_email_address.text).to be_truthy
+          expect(main_content.email_address.invalid_email_address.text).to be_truthy
         end
 
         def has_correct_validation_error_message?
