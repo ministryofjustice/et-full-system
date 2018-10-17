@@ -28,7 +28,7 @@ module EtFullSystem
           #title
           section :title, :question_labelled, 'simple_form.labels.claimant.title' do
             def set(value)
-              root_element.select(value)
+              root_element.select(factory_translate value)
             end
             element :error_title, :error, 'activemodel.errors.models.claimant.attributes.title.blank', exact: false
           end
@@ -166,7 +166,7 @@ module EtFullSystem
             element :field, :css, 'input'
             delegate :set, to: :field
           end
-          element :email_address, :question_labelled, 'simple_form.labels.claimant.email_address', exact: false do
+          section :email_address, :question_labelled, 'simple_form.labels.claimant.email_address', exact: false do
             element :field, :css, 'input[type="email"]'
             delegate :set, to: :field
           end
