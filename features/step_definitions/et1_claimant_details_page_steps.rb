@@ -44,6 +44,6 @@ When("selecting an email for the best way to send correspondence without providi
   et1_claimant_details_page.save_and_continue.click
 end
 
-Then("I should see a validation error message {string}") do |string|
+Then("I should see a blank validation error message Enter the claimant's email address") do
   expect(et1_claimant_details_page.has_correct_translation_for_leaving_email_address_field_blank?).to be true
 end

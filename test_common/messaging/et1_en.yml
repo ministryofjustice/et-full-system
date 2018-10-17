@@ -142,7 +142,7 @@ en:
         mobile_number: Alternative phone or mobile number (optional)
         email_address: Email address (optional)
         fax_number: Fax
-        has_special_needs: Do you have a disability which means you require assistance at the tribunal hearing?
+        has_special_needs: "Do you have a disability which means you require assistance at the tribunal hearing? (optional)"
         special_needs: Describe the assistance you require (optional)
         address_telephone_number: Phone or mobile number (optional)
         address_building: Building number or name
@@ -259,7 +259,7 @@ en:
       address_county: Eg if London, Greater London; if Manchester, Greater Manchester
       claimant:
         date_of_birth: "For example, 23 04 1981"
-        has_special_needs: Eg documents in Braille, or a sign language interpreter
+        has_special_needs: "Eg documents in Braille, or a sign language interpreter"
         has_representative: "Someone who has agreed to represent you (for example, to prepare your case and/or act on your behalf if there is a hearing)"
         applying_for_remission: "You may not have to pay a fee if you have limited savings and you’re on benefits or a low income. Do I qualify for help?"
         contact_preference: "Note that if you have a representative (eg solicitor), then all future correspondence will be sent to them"
@@ -331,7 +331,7 @@ en:
 
   helpers:
     submit:
-      update: Save and continue
+      update: "Save and continue"
       return: Complete later
       claim:
         create: Start a claim
@@ -361,7 +361,7 @@ en:
     feedback_link:
       feedback_statement_html: This is a new service. Your feedback helps improve it for others.
     mobile_nav:
-      save_and_complete: Save and complete later
+      save_and_complete: "Save and complete later"
       support: Support
       read_guide: Application guide
       exit_guide: Back to form
@@ -471,7 +471,7 @@ en:
     claimant:
       header: "Claimant’s details"
       gender: Gender
-      legend_disability: "Do you have a disability which means you require assistance at the tribunal hearing?"
+      legend_disability: "Do you have a disability which means you require assistance at the tribunal hearing? (optional"
       legend_personal_details: About the claimant
       legend_contact_details: "Claimant’s contact details"
       personal_details_description: "Information about the person or organisation making this claim (known as the 'claimant')."
