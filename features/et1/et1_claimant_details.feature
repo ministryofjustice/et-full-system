@@ -29,9 +29,9 @@ Feature:
     When entering an invalid email address
     Then I should see an error message for entering invalid email address
 
-  Scenario: Submit Claimant details page
-    When Claimant's details page has been submitted
-    Then I should be on the Group claims page 
+  Scenario: Invalid UK postcode error message
+    When entering 'UTOI&*"?£$' postcode
+    Then I should see an error message for invalid UK postcode please use SW55 9QT
 
   # Scenario: Save and complete later
   #   When I click on Save and complete later

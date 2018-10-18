@@ -48,10 +48,11 @@ Then("I should see an error message for entering invalid email address") do
   expect(et1_claimant_details_page.has_correct_error_message_for_invalid_email_address?).to be true
 end
 
-When("Claimant's details page has been submitted") do
-  et1_answer_claimant_questions
+When("entering {string} postcode") do |string|
+  et1_claimant_details_page.main_content.post_code.set(string)
+  et1_claimant_details_page.save_and_continue.click
 end
 
-Then("I should be on the Group claims page") do
-  #TODO once i build group claims page
+Then("I should see an error message for invalid UK postcode please use SW55 9QT") do
+  expect(et1_claimant_details_page.has_correct_error_message_for_invalid_uk_postcode?).to be true
 end

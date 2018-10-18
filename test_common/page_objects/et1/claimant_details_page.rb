@@ -137,7 +137,8 @@ module EtFullSystem
             element :field, :css, 'input'
             delegate :set, to: :field
           end
-          element :error_post_code, :error, 'activemodel.errors.models.claimant.attributes.address_post_code.blank'
+          element :blank_post_code, :error, 'activemodel.errors.models.claimant.attributes.address_post_code.blank'
+          element :invalid_post_code, :error, 'activemodel.errors.models.claimant.attributes.address_post_code.invalid'
           section :country, :question_labelled, 'simple_form.labels.claimant.address_country' do
             include ::EtFullSystem::Test::I18n
             def set(value)
@@ -259,6 +260,10 @@ module EtFullSystem
           expect(main_content.email_address).to have_invalid_email_address
         end
 
+        def has_correct_error_message_for_invalid_uk_postcode?
+          expect(main_content).to have_invalid_post_code
+        end
+
         def has_correct_validation_error_message?
           #Errors on page
           expect(main_content.error_message).to have_error_summary
@@ -273,7 +278,7 @@ module EtFullSystem
           expect(main_content).to have_error_street
           expect(main_content).to have_error_locality
           expect(main_content).to have_error_county
-          expect(main_content).to have_error_post_code
+          expect(main_content).to have_blank_post_code
           expect(main_content).to have_error_address_county
           expect(main_content.claimant_contact_preference).to have_error_claimant_contact_preference
         end
