@@ -23,7 +23,8 @@ module EtFullSystem
           end
           #People making a claim with you
           element :legend_group_claims, :legend_header, 'claims.additional_claimants.subheader', exact: false
-          section :additional_claimants_of_collection_type, '.additional_claimants_of_collection_type' do 
+          section :additional_claimants_of_collection_type, '.additional_claimants_of_collection_type' do
+            include ::EtFullSystem::Test::I18n
             element :group_claims, :form_labelled, 'simple_form.labels.additional_claimants.of_collection_type'
             element :yes, :form_labelled, 'simple_form.yes' do
               element :selector, :css, 'input'
@@ -112,6 +113,8 @@ module EtFullSystem
           expect(main_content.additional_claimants_of_collection_type).to have_group_claims
           expect(main_content.additional_claimants_of_collection_type).to have_yes
           expect(main_content.additional_claimants_of_collection_type).to have_no
+          #save and continue
+          expect(main_content).to have_save_and_continue_button
           #Support links
           expect(support).to have_suport_header
           expect(support).to have_guide

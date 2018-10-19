@@ -165,7 +165,7 @@ en:
         claimants: :"simple_form.labels.claimant"
 
       representative:
-        has_representative: Do you have someone who’s agreed to represent you (eg by handling correspondence)?
+        has_representative: "Do you have someone who’s agreed to represent you (eg by handling correspondence)? (optional)"
         address_telephone_number: Phone or mobile number
         address_building: Building number or name
         address_locality: Town/city
@@ -174,7 +174,7 @@ en:
         address_post_code: Postcode
         type: Type of representative
         organisation_name: Name of the representative’s organisation
-        name: Representative’s name
+        name: "Representative’s name"
         mobile_number: Alternative phone or mobile number
         dx_number: Document exchange (DX) number
         contact_preference: Best way to send correspondence to your representative
@@ -506,7 +506,7 @@ en:
       upload_limit: Maximum file size is 2MB.
 
     representative:
-      header: Representative’s details
+      header: "Representative’s details"
       form_legend: The person representing you
       representative_type_legend: Type of representative
       representative_legend: About your representative
