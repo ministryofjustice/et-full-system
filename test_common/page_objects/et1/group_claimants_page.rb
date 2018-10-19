@@ -12,6 +12,7 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
           element :feedback_link, :paragraph, 'shared.feedback_link.feedback_statement_html'
         end
+
         #Group claims
         section :main_header, '.main-header' do
           element :page_header, :page_title, 'claims.additional_claimants.header', exact: false
@@ -21,6 +22,7 @@ module EtFullSystem
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
             element :default_message, :paragraph, 'shared.error_notification.default_message'
           end
+
           #People making a claim with you
           element :legend_group_claims, :legend_header, 'claims.additional_claimants.subheader', exact: false
           section :additional_claimants_of_collection_type, '.additional_claimants_of_collection_type' do
@@ -35,41 +37,85 @@ module EtFullSystem
               delegate :set, to: :selector
             end
             def set(value)
-              choose(factory_translate(value), name: "additional_claimants[of_collection_type]")
+              choose(factory_translate(value), name: "claims.additional_claimants.additional_claimants[of_collection_type]")
+            end
+
+            section :number_claimants_info, '#number_claimants_info' do
+              element :number_claimants_info, :balh, 'claims.additional_claimants.number_claimants_info'
+              element :csv_upload_text_html, :sdfs, 'claims.additional_claimants.csv_upload_text_html'
+              element :upload_link, :link, 'claims.additional_claimants.csv_upload_text_html'
             end
           end
-          element :upload_link, :link, "upload their details in a separate spreadsheet"
-
+          
           (2..6).each_with_index do |number, idx|
             section :"about_claimant_#{number}", :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("Claimant #{idx + 2}")]] }) do
-              section :title, "select[name=\"additional_claimants[collection_attributes][#{idx}][title]\"]" do
-                def set(value)
-                  root_element.select(value)
-                end
-              end
-              element :first_name, "input[name=\"additional_claimants[collection_attributes][#{idx}][first_name]\"]"
-              element :last_name, "input[name=\"additional_claimants[collection_attributes][#{idx}][last_name]\"]"
-              section :date_of_birth, :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("Date of birth")]] }) do
-                element :day, "input[name=\"additional_claimants[collection_attributes][#{idx}][date_of_birth][day]\"]"
-                element :month, "input[name=\"additional_claimants[collection_attributes][#{idx}][date_of_birth][month]\"]"
-                element :year, "input[name=\"additional_claimants[collection_attributes][#{idx}][date_of_birth][year]\"]"
-                def set(value)
-                  (day_value, month_value, year_value) = value.split("/")
-                  day.set(day_value)
-                  month.set(month_value)
-                  year.set(year_value)
-                end
-              end
-              element :building, "input[name=\"additional_claimants[collection_attributes][#{idx}][address_building]\"]"
-              element :street, "input[name=\"additional_claimants[collection_attributes][#{idx}][address_street]\"]"
-              element :locality, "input[name=\"additional_claimants[collection_attributes][#{idx}][address_locality]\"]"
-              element :county, "input[name=\"additional_claimants[collection_attributes][#{idx}][address_county]\"]"
-              element :post_code, "input[name=\"additional_claimants[collection_attributes][#{idx}][address_post_code]\"]"
+              #title
+          section :title, :question_labelled, 'simple_form.labels.representative.title' do
+            def set(value)
+              root_element.select(value)
+            end
+            element :error_title, :error, 'activemodel.errors.models.representative.attributes.title.blank', exact: false
+          end
+          #first name
+          section :first_name, :question_labelled, 'simple_form.labels.representative.first_name' do
+            element :field, :css, 'input'
+            delegate :set, to: :field
+            element :error_first_name, :error, 'activemodel.errors.models.representative.attributes.first_name.blank'
+          end
+          #lastname name
+          section :last_name, :question_labelled, 'simple_form.labels.representative.last_name' do
+            element :field, :css, 'input'
+            delegate :set, to: :field
+            element :error_last_name, :error, 'activemodel.errors.models.representative.attributes.last_name.blank'
+          end
+          #Date of birth
+          section :date_of_birth, :legend_header, 'claims.personal_details.date_of_birth', exact: false do
+            element :error_date_of_birth, :error, 'activemodel.errors.models.representative.attributes.date_of_birth.too_young'
+            element :date_of_birth_hint, :paragraph, 'simple_form.hints.representative.date_of_birth'
+            section :day, :question_labelled, 'simple_form.labels.representative.date_of_birth.day' do
+              element :field, :css, '#claimant_date_of_birth_day'
+              delegate :set, to: :field
+            end
+            section :month, :question_labelled, 'simple_form.labels.representative.date_of_birth.month' do
+              element :field, :css, '#claimant_date_of_birth_month'
+              delegate :set, to: :field
+            end
+            section :year, :question_labelled, 'simple_form.labels.representative.date_of_birth.year' do
+              element :field, :css, '#claimant_date_of_birth_year'
+              delegate :set, to: :field
+            end
+            def set(value)
+              (day_value, month_value, year_value) = value.split("/")
+              day.set(day_value)
+              month.set(month_value)
+              year.set(year_value)
+            end
+            element :error_building, :error, 'activemodel.errors.models.representative.attributes.address_building.blank'
+            section :street, :question_labelled, 'simple_form.labels.representative.address_street' do
+              element :field, :css, 'input'
+              delegate :set, to: :field
+            end
+            element :error_street, :error, 'activemodel.errors.models.representative.attributes.address_street.blank'
+            section :locality, :question_labelled, 'simple_form.labels.representative.address_locality' do
+              element :field, :css, 'input'
+              delegate :set, to: :field
+            end
+            element :error_locality, :error, 'activemodel.errors.models.representative.attributes.address_locality.blank'
+            #County
+            section :county, :question_labelled, 'simple_form.labels.representative.address_county' do
+              element :field, :css, 'input'
+              delegate :set, to: :field
+            end
+            element :error_county, :error, 'activemodel.errors.models.representative.attributes.address_county.blank'
+            element :county_hint, :paragraph, 'simple_form.hints.representative.address_county', exact: false
+            section :post_code, :question_labelled, 'simple_form.labels.representative.address_post_code' do
+              element :field, :css, 'input'
+              delegate :set, to: :field
             end
           end
           element :add_more_claimants_link, 'input[value="Add more claimants"]'
-          #save and continue
-          element :save_and_continue_button, 'form.edit_additional_claimants input[value="Save and continue"]'
+          #Save and continue
+          element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
         end
         #Support links
         section :support, 'aside[role="complementary"]' do
@@ -123,6 +169,10 @@ module EtFullSystem
           expect(support).to have_your_claim
           #TODO this has stopped working - why?
           # expect(support).to have_save_and_complete_later
+        end
+
+        def has_correct_translation_for_group_claimants?
+          #People making a claim with you
         end
 
         private

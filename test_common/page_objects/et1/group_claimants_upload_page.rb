@@ -25,7 +25,6 @@ module EtFullSystem
           element :legend_group_claims, :legend_header, 'claims.claimant.legend_personal_details', exact: false
         end
 
-
         section :main_content, '#content .main-section .main-content' do
           section :group_claims, :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("People making a claim with you")]] }) do
             section :file_upload, :field, 'Upload spreadsheet (optional)' do
@@ -48,8 +47,8 @@ module EtFullSystem
             end
 
           end
-          element :save_and_continue_button, 'form.edit_additional_claimants_upload input[value="Save and continue"]'
-
+          #Save and continue
+          element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
         end
         
         def set_for(user)

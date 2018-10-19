@@ -37,7 +37,8 @@ module EtFullSystem
               choose(factory_translate(value), name: "additional_claimants[of_collection_type]")
             end
           end
-          element :save_and_continue_button, 'form.edit_representative input[value="Save and continue"]'
+          #Save and continue
+          element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
         end
         #Support links
         section :support, 'aside[role="complementary"]' do

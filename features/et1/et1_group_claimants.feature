@@ -15,20 +15,20 @@ Feature:
     Then I should be on the Respresentative's details page
 
   Scenario: Verify copy text for 5 or few claimants
-    when I answered Yes to group claims
-    Then I should see the copy text for uploading csv file
+    when there is a group claimant
+    Then I should see copy text for group claimants
 
   Scenario: Claimant 2
-    when I answered Yes to group claims
+    when there is a group claimant
     Then I enter my claimant 2 details 
 
   Scenario: Add more claimants
-    when I answered Yes to group claims
+    when there is a group claimant
     And I enter my claimant 2 details
     Then I can add more claimants
     
   Scenario: Upload user details in separate spreadsheet
-    when I answered Yes to group claims
+    when there is a group claimant
     Then I should be able to upload groups claims in csv file
 
   Scenario: Spreadsheet for group claim copy text
