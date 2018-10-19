@@ -3,6 +3,29 @@ module EtFullSystem
   module Test
     module Et1
       class GroupClaimsUploadPage < BasePage
+        include RSpec::Matchers
+        #your feedback header
+        section :feedback_notice, '.feedback-notice' do
+          include ::EtFullSystem::Test::I18n
+          element :language, :link_named, 'switch.language'
+          element :welsh_link, :link_or_button, t('switch.language', locale: :en)
+          element :english_link, :link_or_button, t('switch.language', locale: :cy)
+          element :feedback_link, :paragraph, 'shared.feedback_link.feedback_statement_html'
+        end
+        #Group claims
+        section :main_header, '.main-header' do
+          element :page_header, :page_title, 'claims.claimant.header', exact: false
+        end
+        section :main_content, '.main-section .main-content' do
+          section :error_message, '#edit_claimant #error-summary' do
+            element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
+            element :default_message, :paragraph, 'shared.error_notification.default_message'
+          end
+          #People making a claim with you
+          element :legend_group_claims, :legend_header, 'claims.claimant.legend_personal_details', exact: false
+        end
+
+
         section :main_content, '#content .main-section .main-content' do
           section :group_claims, :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("People making a claim with you")]] }) do
             section :file_upload, :field, 'Upload spreadsheet (optional)' do
