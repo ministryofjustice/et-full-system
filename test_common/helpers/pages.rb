@@ -18,12 +18,12 @@ module EtFullSystem
         EtFullSystem::Test::Et1::ClaimantDetailsPage.new
       end
 
-      def et1_additional_claimants_page
-        EtFullSystem::Test::Et1::AdditionalClaimantsPage.new
+      def et1_group_claimants_page
+        EtFullSystem::Test::Et1::GroupClaimantsPage.new
       end
 
-      def et1_additional_claimants_upload_page
-        EtFullSystem::Test::Et1::AdditionalClaimantsUploadPage.new
+      def et1_group_claimants_upload_page
+        EtFullSystem::Test::Et1::GroupClaimantsUploadPage.new
       end
 
       def et1_representatives_details_page

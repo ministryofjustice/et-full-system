@@ -6,7 +6,7 @@ Given("a claimant is on Group claims page") do
 end
 
 Then("Group claims page copy texts are displayed in the correct language") do
-  expect(et1_additional_claimants_page.has_correct_translation_on_group_claims?).to be true
+  expect(et1_group_claimants_page.has_correct_translation_on_group_claims?).to be true
 end
 
 # When("I answerd Yes to disability") do
