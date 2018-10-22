@@ -33,6 +33,5 @@ end
 
 Then("I should be able to submit two claimants details") do
   et1_group_claimants_page.set(@claimants)
-  binding.pry
   et1_group_claimants_page.save_and_continue
 end
