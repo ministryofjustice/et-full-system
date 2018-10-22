@@ -18,9 +18,9 @@ Feature:
     When there are group claimants
     Then I should see copy texts correctly dispayed for group claimants
 
-  # Scenario: Claimant 2
-  #   When there are group claimants
-  #   Then I enter my claimant 2 details 
+  Scenario: Three Claimants
+    Given two employees making a claim
+    Then I should be able to submit two claimants details
 
   # Scenario: Add more claimants
   #   When there are group claimants
