@@ -481,8 +481,9 @@ en:
       contact_details: Contact details
       add_fields: Add more claimants
       remove_resource_link: Remove this claimant
-      number_claimants_info: For 5 or fewer claimants, enter their details below
-      csv_upload_text_html: "For 6 or more claimants, you can upload their details in a separate spreadsheet"
+      number_claimants_info: "For 5 or fewer claimants, enter their details below"
+      csv_upload_text_html: "For 6 or more claimants, you can" 
+      csv_upload_link: "upload their details in a separate spreadsheet"
 
     additional_claimants_upload:
       header: :"claims.additional_claimants.header"

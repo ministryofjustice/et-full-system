@@ -15,29 +15,29 @@ Feature:
     Then I should be on the Respresentative's details page
 
   Scenario: Verify copy text for 5 or few claimants
-    when there is a group claimant
-    Then I should see copy text for group claimants
+    When there are group claimants
+    Then I should see copy texts correctly dispayed for group claimants
 
-  Scenario: Claimant 2
-    when there is a group claimant
-    Then I enter my claimant 2 details 
+  # Scenario: Claimant 2
+  #   When there are group claimants
+  #   Then I enter my claimant 2 details 
 
-  Scenario: Add more claimants
-    when there is a group claimant
-    And I enter my claimant 2 details
-    Then I can add more claimants
+  # Scenario: Add more claimants
+  #   When there are group claimants
+  #   And I enter my claimant 2 details
+  #   Then I can add more claimants
     
-  Scenario: Upload user details in separate spreadsheet
-    when there is a group claimant
-    Then I should be able to upload groups claims in csv file
+  # Scenario: Upload user details in separate spreadsheet
+  #   When there are group claimants
+  #   Then I should be able to upload groups claims in csv file
 
-  Scenario: Spreadsheet for group claim copy text
-    When I answered Yes to uploading user details in separate spreadsheet
-    Then I can verify that the copy text on the spreadsheet for group claim are correct
+  # Scenario: Spreadsheet for group claim copy text
+  #   When I answered Yes to uploading user details in separate spreadsheet
+  #   Then I can verify that the copy text on the spreadsheet for group claim are correct
 
-  Scenario: Download spreadsheet template
-    When I'm on Spreadsheet for group claim
-    Then I should be able to download spreadsheet template
+  # Scenario: Download spreadsheet template
+  #   When I'm on Spreadsheet for group claim
+  #   Then I should be able to download spreadsheet template
 
-  Scenario: Submit group claims via separate spreadsheet
-    Then I should be able to upload and submit a group claims via separate spreadsheet
+  # Scenario: Submit group claims via separate spreadsheet
+  #   Then I should be able to upload and submit a group claims via separate spreadsheet

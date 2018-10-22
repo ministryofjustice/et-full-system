@@ -36,51 +36,54 @@ module EtFullSystem
               element :selector, :css, 'input'
               delegate :set, to: :selector
             end
-            def set(value)
-              choose(factory_translate(value), name: "claims.additional_claimants.additional_claimants[of_collection_type]")
-            end
-
-            section :number_claimants_info, '#number_claimants_info' do
-              element :number_claimants_info, :balh, 'claims.additional_claimants.number_claimants_info'
-              element :csv_upload_text_html, :sdfs, 'claims.additional_claimants.csv_upload_text_html'
-              element :upload_link, :link, 'claims.additional_claimants.csv_upload_text_html'
+            def set(data)
+              group_claims_csv = data.dig(:group_claims_csv)
+              if group_claims_csv.present?
+                yes.click
+                # data.each.with_index do |claim, idx|
+                #   add_more_claimants unless idx == 0
+                #   populate_group_claim_section(users.to_h, idx + 2)
+                # end
+                # main_content.group_claims.upload_link.click if group_claims_csv.present?
+              else
+                no.click
+              end
             end
           end
-          
-          (2..6).each_with_index do |number, idx|
-            section :"about_claimant_#{number}", :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("Claimant #{idx + 2}")]] }) do
-              #title
-          section :title, :question_labelled, 'simple_form.labels.representative.title' do
+
+          section :number_claimants_info, '#number_claimants_info' do
+            element :five_more_claimants, :panel_indent, 'claims.additional_claimants.number_claimants_info', exact: false
+            element :six_more_claimants, :panel_indent, 'claims.additional_claimants.csv_upload_text_html', exact: false
+            element :csv_upload_link, :link_named, 'claims.additional_claimants.csv_upload_link', exact: false
+          end
+
+          section :title, :question_labelled, 'simple_form.labels.claimant.title' do
             def set(value)
-              root_element.select(value)
+              root_element.select(factory_translate(value))
             end
-            element :error_title, :error, 'activemodel.errors.models.representative.attributes.title.blank', exact: false
           end
           #first name
-          section :first_name, :question_labelled, 'simple_form.labels.representative.first_name' do
+          section :first_name, :question_labelled, 'simple_form.labels.claimant.first_name' do
             element :field, :css, 'input'
             delegate :set, to: :field
-            element :error_first_name, :error, 'activemodel.errors.models.representative.attributes.first_name.blank'
           end
           #lastname name
-          section :last_name, :question_labelled, 'simple_form.labels.representative.last_name' do
+          section :last_name, :question_labelled, 'simple_form.labels.claimant.last_name' do
             element :field, :css, 'input'
             delegate :set, to: :field
-            element :error_last_name, :error, 'activemodel.errors.models.representative.attributes.last_name.blank'
           end
           #Date of birth
           section :date_of_birth, :legend_header, 'claims.personal_details.date_of_birth', exact: false do
-            element :error_date_of_birth, :error, 'activemodel.errors.models.representative.attributes.date_of_birth.too_young'
-            element :date_of_birth_hint, :paragraph, 'simple_form.hints.representative.date_of_birth'
-            section :day, :question_labelled, 'simple_form.labels.representative.date_of_birth.day' do
+            element :date_of_birth_hint, :paragraph, 'simple_form.hints.claimant.date_of_birth'
+            section :day, :question_labelled, 'simple_form.labels.claimant.date_of_birth.day' do
               element :field, :css, '#claimant_date_of_birth_day'
               delegate :set, to: :field
             end
-            section :month, :question_labelled, 'simple_form.labels.representative.date_of_birth.month' do
+            section :month, :question_labelled, 'simple_form.labels.claimant.date_of_birth.month' do
               element :field, :css, '#claimant_date_of_birth_month'
               delegate :set, to: :field
             end
-            section :year, :question_labelled, 'simple_form.labels.representative.date_of_birth.year' do
+            section :year, :question_labelled, 'simple_form.labels.claimant.date_of_birth.year' do
               element :field, :css, '#claimant_date_of_birth_year'
               delegate :set, to: :field
             end
@@ -90,33 +93,37 @@ module EtFullSystem
               month.set(month_value)
               year.set(year_value)
             end
-            element :error_building, :error, 'activemodel.errors.models.representative.attributes.address_building.blank'
-            section :street, :question_labelled, 'simple_form.labels.representative.address_street' do
-              element :field, :css, 'input'
-              delegate :set, to: :field
-            end
-            element :error_street, :error, 'activemodel.errors.models.representative.attributes.address_street.blank'
-            section :locality, :question_labelled, 'simple_form.labels.representative.address_locality' do
-              element :field, :css, 'input'
-              delegate :set, to: :field
-            end
-            element :error_locality, :error, 'activemodel.errors.models.representative.attributes.address_locality.blank'
-            #County
-            section :county, :question_labelled, 'simple_form.labels.representative.address_county' do
-              element :field, :css, 'input'
-              delegate :set, to: :field
-            end
-            element :error_county, :error, 'activemodel.errors.models.representative.attributes.address_county.blank'
-            element :county_hint, :paragraph, 'simple_form.hints.representative.address_county', exact: false
-            section :post_code, :question_labelled, 'simple_form.labels.representative.address_post_code' do
-              element :field, :css, 'input'
-              delegate :set, to: :field
-            end
           end
+            #Building number or name
+            section :building, :question_labelled, 'simple_form.labels.claimant.address_building' do
+              element :field, :css, 'input'
+              delegate :set, to: :field
+            end
+            #Street
+            section :street, :question_labelled, 'simple_form.labels.claimant.address_street' do
+              element :field, :css, 'input'
+              delegate :set, to: :field
+            end
+            #Town/city
+            section :locality, :question_labelled, 'simple_form.labels.claimant.address_locality' do
+              element :field, :css, 'input'
+              delegate :set, to: :field
+            end
+            #County
+            section :county, :question_labelled, 'simple_form.labels.claimant.address_county' do
+              element :field, :css, 'input'
+              delegate :set, to: :field
+            end
+            #Postcode
+            section :post_code, :question_labelled, 'simple_form.labels.claimant.address_post_code' do
+              element :field, :css, 'input'
+              delegate :set, to: :field
+            end
+
           element :add_more_claimants_link, 'input[value="Add more claimants"]'
-          #Save and continue
           element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
         end
+
         #Support links
         section :support, 'aside[role="complementary"]' do
           element :suport_header, :support_header, 'shared.aside.gethelp_header'
@@ -124,20 +131,6 @@ module EtFullSystem
           element :contact_use, :link_named, 'shared.aside.contact_us'
           element :your_claim, :support_header, 'shared.aside.actions_header'
           element :save_and_complete_later, :button, 'shared.mobile_nav.save_and_complete'
-        end
-
-        def set_for(users)
-          group_claims_csv = users[0].dig(:group_claims_csv)
-          if users.length > 1 || group_claims_csv.present?
-            main_content.group_claims.set('Yes')
-            users.each.with_index do |claim, idx|
-              add_more_claimants unless idx == 0
-              populate_group_claim_section(users[0].to_h, idx + 2)
-            end
-            main_content.group_claims.upload_link.click if group_claims_csv.present?
-          else
-            main_content.group_claims.set('No')
-          end
         end
 
         def add_more_claimants
@@ -152,7 +145,7 @@ module EtFullSystem
           #your feedback header
           expect(feedback_notice).to have_language
           expect(feedback_notice).to have_feedback_link
-          #Page header
+          #Group claims
           expect(main_header).to have_page_header
           #people making a claim with you
           expect(main_content).to have_legend_group_claims
@@ -172,7 +165,28 @@ module EtFullSystem
         end
 
         def has_correct_translation_for_group_claimants?
-          #People making a claim with you
+          #For 5 or fewer claimants, enter their details below
+          expect(main_content.number_claimants_info).to have_five_more_claimants
+          #For 6 or more claimants, you can upload their details in a separate spreadsheet.
+          expect(main_content.number_claimants_info).to have_six_more_claimants
+          expect(main_content.number_claimants_info).to have_csv_upload_link
+          #Claimant 2
+          expect(main_content).to have_title
+          expect(main_content).to have_first_name
+          expect(main_content).to have_last_name
+          #date of birth
+          expect(main_content).to have_date_of_birth
+          expect(main_content.date_of_birth).to have_date_of_birth_hint
+          expect(main_content.date_of_birth).to have_day
+          expect(main_content.date_of_birth).to have_month
+          expect(main_content.date_of_birth).to have_year
+          expect(main_content).to have_building
+          expect(main_content).to have_street
+          expect(main_content).to have_locality
+          expect(main_content).to have_county
+          expect(main_content).to have_post_code
+          #Add more claimants
+          expect(main_content).to have_post_code
         end
 
         private

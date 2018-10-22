@@ -165,8 +165,7 @@ cy:
         gender: Rhywedd
 
       additional_claimants:
-        of_collection_type: |
-          A oes unigolion eraill sy'n gwneud hawliad gyda chi (yn erbyn yr un cyflogwr neu sefydliad)?
+        of_collection_type: "A oes unigolion eraill sy'n gwneud hawliad gyda chi (yn erbyn yr un cyflogwr neu sefydliad)? (dewisol)"
         collection:
           first_name: Enw cyntaf
           last_name: Enw olaf
@@ -541,14 +540,15 @@ cy:
       legend_contact_details: "Manylion cyswllt yr hawlydd"
       personal_details_description: Gwybodaeth am yr unigolyn neu'r sefydliad sy'n gwneud yr hawliad hwn (a elwir yn 'hawlydd').
     additional_claimants:
-      header: "Hawliadau grŵp "
+      header: "Hawliadau grŵp"
       subheader: Unigolion sy'n gwneud hawliad gyda chi
       person: "Hawlydd %{number}"
       contact_details: Manylion cyswllt
       add_fields: "Ychwanegu mwy o hawlwyr "
       remove_resource_link: Dileu'r hawlydd yma
-      number_claimants_info: "Ar gyfer 5 hawlydd neu lai, rhowch eu manylion isod. "
-      csv_upload_text_html: "Ar gyfer 6 hawlydd neu fwy, gallwch <a href=\"%{path}\" class=\"ga-event\">uwchlwytho eu manylion mewn taenlen ar wahân</a>."
+      number_claimants_info: "Ar gyfer 5 hawlydd neu lai, rhowch eu manylion isod"
+      csv_upload_text_html: "Ar gyfer 6 hawlydd neu fwy, gallwch"
+      csv_upload_link: "uwchlwytho eu manylion mewn taenlen ar wahân"
 
     additional_claimants_upload:
       header: "Hawliadau grŵp "
@@ -571,13 +571,12 @@ cy:
       upload_limit: "Uchafswm maint ffeil: 2MB"
 
     representative:
-      header: "Manylion y cynrychiolydd "
-      form_legend: "Yr unigolyn sy'n eich cynrychioli "
+      header: "Manylion y cynrychiolydd"
+      form_legend: "Yr unigolyn sy'n eich cynrychioli"
       representative_type_legend: Math o gynrychiolydd
       representative_legend: Ynglŷn â’ch cynrychiolydd
-      contact_legend: "Manylion cyswllt y cynrychiolydd "
-      contact_info: |
-        Fe anfonir yr holl wybodaeth am yr achos at y cynrychiolydd ac nid at yr hawlydd. Os ydych chi'n newid cynrychiolydd ar ôl i chi gyflwyno eich hawliad, bydd rhaid i chi anfon eu manylion cyswllt i swyddfa'r tribiwnlys sy'n delio â'ch achos.
+      contact_legend: "Manylion cyswllt y cynrychiolydd"
+      contact_info: "Fe anfonir yr holl wybodaeth am yr achos at y cynrychiolydd ac nid at yr hawlydd. Os ydych chi'n newid cynrychiolydd ar ôl i chi gyflwyno eich hawliad, bydd rhaid i chi anfon eu manylion cyswllt i swyddfa'r tribiwnlys sy'n delio â'ch achos"
       what_is_dx:
         detail: "Beth yw rhif DX?"
         summary: System bost breifat yw DX a ddefnyddir gan sefydliadau (ee cwmnïau cyfreithiol)
@@ -591,11 +590,9 @@ cy:
 
       acas_legend: Rhif tystysgrif cymodi cynnar Acas
       workaddress_legend: Eich cyfeiriad gwaith
-      form_hint: |
-        Manylion cyswllt yr unigolyn neu sefydliad yr ydych chi'n gwneud hawliad yn ei erbyn (a elwir yn 'atebydd'). Fe ddefnyddir y cyfeiriad ar gyfer anfon gohebiaeth am yr achos.
-      work_address: "Rhowch fanylion eich cyfeiriad gwaith "
-      acas_early_conciliation_certificate_number_html: |
-        Dylai fod gan bron iawn bawb y rhif hwn cyn iddynt lenwi ffurflen hawlio. Gallwch ddod o hyd iddo ar eich tystysgrif Acas. Darllenwch fwy am <a href="%{path}#acas_early_conciliation">wasanaeth cymodi cynnar Acas</a>.
+      # form_hint: "Manylion cyswllt yr unigolyn neu sefydliad yr ydych chi'n gwneud hawliad yn ei erbyn (a elwir yn 'atebydd'). Fe ddefnyddir y cyfeiriad ar gyfer anfon gohebiaeth am yr achos.
+      # work_address: "Rhowch fanylion eich cyfeiriad gwaith"
+      # acas_early_conciliation_certificate_number_html: "Dylai fod gan bron iawn bawb y rhif hwn cyn iddynt lenwi ffurflen hawlio. Gallwch ddod o hyd iddo ar eich tystysgrif Acas. Darllenwch fwy amacas_early_conciliation wasanaeth cymodi cynnar Acas".
 
     additional_respondents:
       no_acas_number_reason: "Pam nad oes gennych rif Acas?"

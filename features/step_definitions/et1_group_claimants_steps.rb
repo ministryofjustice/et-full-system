@@ -10,7 +10,7 @@ Then("Group claims page copy texts are displayed in the correct language") do
 end
 
 When("I submit no other people are making claims") do
-  et1_group_claimants_page.main_content.additional_claimants_of_collection_type.set(:"simple_form.no")
+  et1_group_claimants_page.main_content.additional_claimants_of_collection_type.set(@claimant)
   et1_group_claimants_page.save_and_continue
 end
 
@@ -18,11 +18,12 @@ Then("I should be on the Respresentative's details page") do
   expect(et1_representatives_details_page.main_header).to have_page_header
 end
 
-Then("there is a group claimant") do
-  et1_group_claimants_page.main_content.additional_claimants_of_collection_type.set(:"simple_form.no")
-  et1_group_claimants_page.save_and_continue
+When("there are group claimants") do
+  @claimants = FactoryBot.create(:claimant, :group_claims)
+  et1_group_claimants_page.main_content.additional_claimants_of_collection_type.set(@claimants)
 end
 
 Then("I should see copy texts correctly dispayed for group claimants") do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(et1_group_claimants_page.has_correct_translation_for_group_claimants?).to be true
 end
+
