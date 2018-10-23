@@ -120,6 +120,10 @@ module EtFullSystem
         end
 
         def has_correct_mandatory_error_msg_for_group_claimants?
+          #Errors on page
+          expect(main_content.error_message).to have_error_summary
+          #TODO why has this stopped working - why?
+          # expect(main_content.error_message).to have_default_message
           expect(main_content.about_claimant_2.title).to have_blank_title
           expect(main_content.about_claimant_2.first_name).to have_blank_first_name
           expect(main_content.about_claimant_2.last_name).to have_blank_last_name

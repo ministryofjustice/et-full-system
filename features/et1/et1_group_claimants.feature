@@ -42,7 +42,7 @@ Feature:
     When I submit without answering any claimant details
     Then I should see mandatory errors on the Group claims page
 
-  Scenario: Invalid date of birth error
+  Scenario: Invalid Date of birth error
     When I submit an invalid date of birth
     Then I should see an invalid error message for date of birth
     
