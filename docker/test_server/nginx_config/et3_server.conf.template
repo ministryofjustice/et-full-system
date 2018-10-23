@@ -14,6 +14,6 @@ server {
        passenger_env_var BUNDLE_EXCLUDE '';
        passenger_env_var ET_API_URL 'http://api.${SERVER_DOMAIN}:${SERVER_PORT}/api';
        passenger_env_var RAILS_ENV 'production';
-
+       passenger_env_var GTM_ACCOUNT 'GTM-52RDF96';
        passenger_app_env production;
 }
