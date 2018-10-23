@@ -33,6 +33,10 @@ Feature:
     When entering 'UTOI&*"?£$' postcode
     Then I should see an error message for invalid UK postcode please use SW55 9QT
 
+  Scenario: Invalid Date of birth error
+    When I submit an invalid date of birth for claimant details page
+    Then I should see an invalid error message for date of birth claimant details page
+
   # Scenario: Save and complete later
   #   When I click on Save and complete later
   #   Then I should be able to return to where I was left off

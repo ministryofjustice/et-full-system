@@ -119,6 +119,22 @@ module EtFullSystem
           expect(main_content).to have_add_more_claimants_link
         end
 
+        def has_correct_mandatory_error_msg_for_group_claimants?
+          expect(main_content.about_claimant_2.title).to have_blank_title
+          expect(main_content.about_claimant_2.first_name).to have_blank_first_name
+          expect(main_content.about_claimant_2.last_name).to have_blank_last_name
+          expect(main_content.about_claimant_2).to have_blank_date_of_birth
+          expect(main_content.about_claimant_2).to have_blank_building
+          expect(main_content.about_claimant_2).to have_blank_street
+          expect(main_content.about_claimant_2).to have_blank_locality
+          expect(main_content.about_claimant_2).to have_blank_county
+          expect(main_content.about_claimant_2).to have_blank_post_code
+        end
+
+        def has_correct_invalid_error_msg_for_dob?
+          expect(main_content.about_claimant_2).to have_invalid_date_of_birth
+        end
+
         def set(data)
           group_claims_csv = data[0].dig(:group_claims_csv)
           if data.length > 1 || group_claims_csv.present?

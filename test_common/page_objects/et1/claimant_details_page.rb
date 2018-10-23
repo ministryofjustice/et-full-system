@@ -47,6 +47,7 @@ module EtFullSystem
           #Date of birth
           section :date_of_birth, :legend_header, 'claims.personal_details.date_of_birth', exact: false do
             element :error_date_of_birth, :error, 'activemodel.errors.models.claimant.attributes.date_of_birth.too_young'
+            element :invalid_date_of_birth, :error, 'activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.date_of_birth.invalid'
             element :date_of_birth_hint, :paragraph, 'simple_form.hints.claimant.date_of_birth'
             section :day, :question_labelled, 'simple_form.labels.claimant.date_of_birth.day' do
               element :field, :css, '#claimant_date_of_birth_day'
@@ -87,7 +88,7 @@ module EtFullSystem
             end
           end
           #has special needs
-          section :claiman_has_special_needs, '.form-group-reveal' do
+          section :claimant_has_special_needs, '.form-group-reveal' do
             include ::EtFullSystem::Test::I18n
             element :has_special_needs, :form_labelled, 'simple_form.labels.claimant.has_special_needs'
             element :has_special_needs_hint, :paragraph, 'simple_form.hints.claimant.has_special_needs'
@@ -214,10 +215,10 @@ module EtFullSystem
           expect(main_content.gender).to have_female
           expect(main_content.gender).to have_prefer_not_to_say
           #has special needs
-          expect(main_content.claiman_has_special_needs).to have_has_special_needs
-          expect(main_content.claiman_has_special_needs).to have_has_special_needs_hint
-          expect(main_content.claiman_has_special_needs).to have_yes
-          expect(main_content.claiman_has_special_needs).to have_no
+          expect(main_content.claimant_has_special_needs).to have_has_special_needs
+          expect(main_content.claimant_has_special_needs).to have_has_special_needs_hint
+          expect(main_content.claimant_has_special_needs).to have_yes
+          expect(main_content.claimant_has_special_needs).to have_no
           expect(main_content.assistance).to have_special_needs
           #Claimant's contact details
           expect(main_content).to have_claimants_contact_details
@@ -264,6 +265,10 @@ module EtFullSystem
           expect(main_content).to have_invalid_post_code
         end
 
+        def has_correct_invalid_error_message_for_dob?
+          expect(main_content.date_of_birth).to have_invalid_date_of_birth
+        end
+
         def has_correct_validation_error_message?
           #Errors on page
           expect(main_content.error_message).to have_error_summary
@@ -296,7 +301,7 @@ module EtFullSystem
             set_field(s, :gender, data)
           end
 
-          main_content.claiman_has_special_needs.set(data[:has_special_needs])
+          main_content.claimant_has_special_needs.set(data[:has_special_needs])
           main_content.assistance.special_needs.set(data[:special_needs])
           main_content.claimant_contact_preference.set(data[:claimant_contact_preference])
 

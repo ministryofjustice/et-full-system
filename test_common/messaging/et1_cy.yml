@@ -715,11 +715,11 @@ cy:
         additional_claimants_form/additional_claimant:
           attributes:
             title:
-              inclusion: "Rhowch deitl yr hawlydd ychwanegol "
+              inclusion: "Rhowch deitl yr hawlydd ychwanegol"
             first_name:
               blank: Rhowch enw cyntaf yr hawlydd ychwanegol
             last_name:
-              blank: "Rhowch enw olaf yr hawlydd ychwanegol "
+              blank: "Rhowch enw olaf yr hawlydd ychwanegol"
             address_building:
               blank: Rhowch enw neu rif adeilad cyfeiriad yr hawlydd ychwanegol
             address_street:
@@ -729,10 +729,10 @@ cy:
             address_county:
               blank: Rhowch sir cyfeiriad yr hawlydd ychwanegol
             address_post_code:
-              blank: "Rhowch god post yr hawlydd ychwanegol "
+              blank: "Rhowch god post yr hawlydd ychwanegol"
               invalid: "Rhowch god post DU dilys. Os ydych chi'n byw dramor, rhowch SW55 9QT"
             date_of_birth:
-              invalid: Rhowch ddyddiad geni'r hawlydd yn y fformat cywir (DD/MM/BBBB)
+              invalid: "Rhowch ddyddiad geni'r hawlydd yn y fformat cywir (DD/MM/BBBB)"
         additional_claimant:
           attributes:
             title:

@@ -37,8 +37,15 @@ Feature:
   Scenario: Submit group claims via csv file
     When I submit a group claims via csv file
     Then I should be on the Respresentative's details page
+
+  Scenario: Mandatory field validation errors
+    When I submit without answering any claimant details
+    Then I should see mandatory errors on the Group claims page
+
+  Scenario: Invalid date of birth error
+    When I submit an invalid date of birth
+    Then I should see an invalid error message for date of birth
     
   # Scenario: Download spreadsheet template
   #   When I'm on Spreadsheet for group claim
   #   Then I should be able to download spreadsheet template
-

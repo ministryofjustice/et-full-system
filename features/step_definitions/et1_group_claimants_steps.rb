@@ -64,3 +64,22 @@ Then("I submit a group claims via csv file") do
   @claimants = FactoryBot.create_list(:claimant, 1, :group_claims)
   et1_answer_group_claimants_questions
 end
+
+When("I submit without answering any claimant details") do
+  et1_group_claimants_page.main_content.additional_claimants_of_collection_type.yes.click
+  et1_group_claimants_page.save_and_continue
+end
+
+Then("I should see mandatory errors on the Group claims page") do
+  expect(et1_group_claimants_page.has_correct_mandatory_error_msg_for_group_claimants?).to be true
+end
+
+When("I submit an invalid date of birth") do
+  et1_group_claimants_page.main_content.additional_claimants_of_collection_type.yes.click
+  et1_group_claimants_page.main_content.about_claimant_2.date_of_birth.set('0/0/0')
+  et1_group_claimants_page.save_and_continue
+end
+
+Then("I should see an invalid error message for date of birth") do
+  expect(et1_group_claimants_page.has_correct_invalid_error_msg_for_dob?).to be true
+end
