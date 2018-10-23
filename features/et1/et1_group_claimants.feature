@@ -33,11 +33,12 @@ Feature:
   Scenario: Manually enter claimant details
     When I changed my mind to manually enter claimant details
     Then I should be able to submit two claimant details
-    
 
+  Scenario: Submit group claims via csv file
+    When I submit a group claims via csv file
+    Then I should be on the Respresentative's details page
+    
   # Scenario: Download spreadsheet template
   #   When I'm on Spreadsheet for group claim
   #   Then I should be able to download spreadsheet template
 
-  # Scenario: Submit group claims via separate spreadsheet
-  #   Then I should be able to upload and submit a group claims via separate spreadsheet

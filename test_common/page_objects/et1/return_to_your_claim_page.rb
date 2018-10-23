@@ -70,7 +70,7 @@ module EtFullSystem
         end
 
         def set(user)
-          data = user.to_h
+          data = user[0].to_h
           main_content.tap do |s|
             set_field(s, :claim_number, data)
             set_field(s, :memorable_word, data)

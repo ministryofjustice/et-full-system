@@ -1,4 +1,5 @@
 require_relative './base_page'
+require_relative '../../../test_common/helpers/upload_helper'
 module EtFullSystem
   module Test
     module Et1
@@ -52,24 +53,16 @@ module EtFullSystem
             element :no_spaces, :paragraph, 'claims.additional_claimants_upload.no_spaces', exact: false
             #Step 3
             element :step_3, :break_text, 'claims.additional_claimants_upload.step_three_header'
-            section :file_upload, :form_labelled, 'simple_form.labels.additional_claimants_upload.additional_claimants_csv', exact: false do
+            element :file_spreadsheet_labelled, :form_labelled, 'simple_form.labels.additional_claimants_upload.additional_claimants_csv', exact: false
+            section :file_upload, 'input#additional_claimants_upload_additional_claimants_csv' do
+              include ::EtFullSystem::Test::UploadHelper
               def set(value)
-                browser = page.driver.browser
-                if browser.respond_to?(:file_detector=)
-                  old_file_detector = browser.send(:bridge).file_detector
-                  browser.file_detector = lambda do |args|
-                    args.first.to_s
-                  end
+                force_remote do
+                  full_path = File.expand_path(File.join('test_common', 'fixtures', value))
+                  root_element.set(full_path)
                 end
-                root_element.set(value)
-              ensure
-                browser.file_detector = old_file_detector if browser && browser.respond_to?(:file_detector=)
               end
             end
-            def set(value)
-              choose(value, name: "additional_claimants_upload[has_additional_claimants]")
-            end
-
             #Maximum file size is 2MB
             element :upload_limit, :paragraph, 'claims.additional_claimants_upload.upload_limit', exact: false
           end
@@ -112,7 +105,7 @@ module EtFullSystem
           expect(main_content.group_claims).to have_how_to_save
           expect(main_content.group_claims).to have_no_spaces
           expect(main_content.group_claims).to have_step_3
-          expect(main_content.group_claims).to have_file_upload
+          expect(main_content.group_claims).to have_file_spreadsheet_labelled
           expect(main_content.group_claims).to have_upload_limit
           #save and continue
           expect(main_content).to have_save_and_continue_button
@@ -129,11 +122,10 @@ module EtFullSystem
         def set(user)
           group_claims_csv = user[0].dig(:group_claims_csv)
           if group_claims_csv.present?
-            full_path = File.absolute_path(File.join('..', '..', 'fixtures', group_claims_csv), __dir__)
-            main_content.group_claims.set('Yes')
-            main_content.group_claims.file_upload.set(full_path)
+            main_content.form_group.yes.click
+            main_content.group_claims.file_upload.set(group_claims_csv)
           else
-            main_content.group_claims.set('No')
+            main_content.form_group.no.click
           end
         end
 

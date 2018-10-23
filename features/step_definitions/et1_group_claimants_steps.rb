@@ -59,3 +59,8 @@ When("I changed my mind to manually enter claimant details") do
   et1_group_claimants_upload_page.main_content.form_group.manually_link.click
   @claimants = FactoryBot.create_list(:claimant, 2, :person_data)
 end
+
+Then("I submit a group claims via csv file") do
+  @claimants = FactoryBot.create_list(:claimant, 1, :group_claims)
+  et1_answer_group_claimants_questions
+end
