@@ -105,8 +105,8 @@ module EtFullSystem
           expect(main_content.about_claimant_2).to have_first_name
           expect(main_content.about_claimant_2).to have_last_name
           #date of birth
-          expect(main_content.about_claimant_2).to have_date_of_birth
-          expect(main_content.about_claimant_2.date_of_birth).to have_date_of_birth_hint
+          expect(main_content.about_claimant_2).to have_date_of_birth_labelled
+          expect(main_content.about_claimant_2).to have_date_of_birth_hint
           expect(main_content.about_claimant_2.date_of_birth).to have_day
           expect(main_content.about_claimant_2.date_of_birth).to have_month
           expect(main_content.about_claimant_2.date_of_birth).to have_year
@@ -150,6 +150,9 @@ module EtFullSystem
           set_field s, :locality, claimant_data
           set_field s, :county, claimant_data
           set_field s, :post_code, claimant_data
+
+          # s = main_content.date_of_birth.send(:"about_claimant_#{claimant_number}")
+
         end
 
         def set_field(s, key, data)

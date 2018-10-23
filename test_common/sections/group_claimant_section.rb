@@ -18,18 +18,19 @@ module EtFullSystem
         delegate :set, to: :field
       end
       #Date of birth
-      section :date_of_birth, :legend_header, 'claims.personal_details.date_of_birth', exact: false do
-        element :date_of_birth_hint, :paragraph, 'simple_form.hints.claimant.date_of_birth'
+      element :date_of_birth_labelled, :legend_header, 'claims.personal_details.date_of_birth'
+      element :date_of_birth_hint, :paragraph, 'simple_form.hints.claimant.date_of_birth'
+      section :date_of_birth, '.know-date-input' do
         section :day, :question_labelled, 'simple_form.labels.claimant.date_of_birth.day' do
-          element :field, :css, 'input'
+          element :field, :css, 'input[type="tel"]'
           delegate :set, to: :field
         end
         section :month, :question_labelled, 'simple_form.labels.claimant.date_of_birth.month' do
-          element :field, :css, 'input'
+          element :field, :css, 'input[type="tel"]'
           delegate :set, to: :field
         end
         section :year, :question_labelled, 'simple_form.labels.claimant.date_of_birth.year' do
-          element :field, :css, 'input'
+          element :field, :css, 'input[type="tel"]'
           delegate :set, to: :field
         end
         def set(value)

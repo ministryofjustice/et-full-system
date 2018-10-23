@@ -7,7 +7,7 @@ Feature:
   Background: Group claims page
     Given a claimant is on Group claims page 
 
-  Scenario: Verify copy texts
+  Scenario: Verify copy texts on Group claims page
     Then Group claims page copy texts are displayed in the correct language
 
   Scenario: Single claimant
@@ -20,11 +20,20 @@ Feature:
 
   Scenario: Two Claimants
     Given two employees making a claim
-    Then I should be able to submit two claimants details
+    Then I should be able to submit two claimant details
     
   Scenario: Verify copy texts for Upload user details in separate spreadsheet
     When there are group claimants
     Then I can very that the copy texts correctly dispayed for Upload user details in separate spreadsheet
+
+  Scenario: No to uploaded group claimant
+    When I submit no to uploaded group claimant
+    Then I should be on the Respresentative's details page
+
+  Scenario: Manually enter claimant details
+    When I changed my mind to manually enter claimant details
+    Then I should be able to submit two claimant details
+    
 
   # Scenario: Download spreadsheet template
   #   When I'm on Spreadsheet for group claim

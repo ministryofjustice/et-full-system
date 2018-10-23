@@ -30,9 +30,10 @@ Given("two employees making a claim") do
   @claimants = FactoryBot.create_list(:claimant, 2, :person_data)
 end
 
-Then("I should be able to submit two claimants details") do
+Then("I should be able to submit two claimant details") do
   et1_group_claimants_page.set(@claimants)
   et1_group_claimants_page.save_and_continue
+  expect(et1_representatives_details_page.main_header).to have_page_header
 end
 
 When("there are group claimants") do
@@ -43,4 +44,18 @@ end
 
 Then("I can very that the copy texts correctly dispayed for Upload user details in separate spreadsheet") do
   expect(et1_group_claimants_upload_page.has_correct_translation_for_group_claimants?).to be true
+end
+
+When("I submit no to uploaded group claimant") do
+  @claimants = FactoryBot.create_list(:claimant, 1, :group_claims)
+  et1_group_claimants_page.set(@claimants)
+  et1_group_claimants_upload_page.save_and_continue
+  expect(et1_representatives_details_page.main_header).to have_page_header
+end
+
+When("I changed my mind to manually enter claimant details") do
+  @claimants = FactoryBot.create_list(:claimant, 1, :group_claims)
+  et1_group_claimants_page.set(@claimants)
+  et1_group_claimants_upload_page.main_content.form_group.manually_link.click
+  @claimants = FactoryBot.create_list(:claimant, 2, :person_data)
 end
