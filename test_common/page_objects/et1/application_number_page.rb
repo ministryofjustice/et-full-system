@@ -76,8 +76,8 @@ module EtFullSystem
 
 
         def set(data)
-          main_content.email_label.set(data.dig(:email_address))
-          main_content.memorable_word_label.set(data.dig(:memorable_word))
+          main_content.email_label.set(data[0].dig(:email_address))
+          main_content.memorable_word_label.set(data[0].dig(:memorable_word))
         end
       end
     end

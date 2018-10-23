@@ -10,15 +10,15 @@ Feature:
   Scenario: Verify copy texts
     Then Group claims page copy texts are displayed in the correct language
 
-  Scenario: No to other people making claims
+  Scenario: Single claimant
     When I submit no other people are making claims
     Then I should be on the Respresentative's details page
 
   Scenario: Verify copy text for 5 or few claimants
-    When there are group claimants
+    When there 5 or few claimants
     Then I should see copy texts correctly dispayed for group claimants
 
-  Scenario: Three Claimants
+  Scenario: two Claimants
     Given two employees making a claim
     Then I should be able to submit two claimants details
 

@@ -21,23 +21,7 @@ module EtFullSystem
       end
 
       def et1_answer_claimant_questions
-        et1_claimant_details_page.main_content.title.set(@claimant[:title])
-        et1_claimant_details_page.main_content.first_name.set(@claimant[:first_name])
-        et1_claimant_details_page.main_content.last_name.set(@claimant[:last_name])
-        et1_claimant_details_page.main_content.date_of_birth.set(@claimant[:date_of_birth])
-        et1_claimant_details_page.main_content.gender.set(@claimant[:gender])
-        et1_claimant_details_page.main_content.claiman_has_special_needs.set(@claimant[:has_special_needs])
-        et1_claimant_details_page.main_content.assistance.special_needs.set(@claimant[:special_needs])
-        et1_claimant_details_page.main_content.building.set(@claimant[:building])
-        et1_claimant_details_page.main_content.street.set(@claimant[:street])
-        et1_claimant_details_page.main_content.locality.set(@claimant[:locality])
-        et1_claimant_details_page.main_content.county.set(@claimant[:county])
-        et1_claimant_details_page.main_content.post_code.set(@claimant[:post_code])
-        et1_claimant_details_page.main_content.country.set(@claimant[:country])
-        et1_claimant_details_page.main_content.telephone_number.set(@claimant[:telephone_number])
-        et1_claimant_details_page.main_content.alternative_telephone_number.set(@claimant[:alternative_telephone_number])
-        et1_claimant_details_page.main_content.email_address.set(@claimant[:email_address])
-        et1_claimant_details_page.main_content.claimant_contact_preference.set(@claimant[:claimant_contact_preference])
+        et1_claimant_details_page.set(@claimant)
         et1_claimant_details_page.save_and_continue
       end
 

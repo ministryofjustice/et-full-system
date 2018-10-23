@@ -101,20 +101,20 @@ module EtFullSystem
           expect(main_content.number_claimants_info).to have_six_more_claimants
           expect(main_content.number_claimants_info).to have_csv_upload_link
           #Claimant 2
-          expect(main_content).to have_title
-          expect(main_content).to have_first_name
-          expect(main_content).to have_last_name
+          expect(main_content.about_claimant_2).to have_title
+          expect(main_content.about_claimant_2).to have_first_name
+          expect(main_content.about_claimant_2).to have_last_name
           #date of birth
-          expect(main_content).to have_date_of_birth
-          expect(main_content.date_of_birth).to have_date_of_birth_hint
-          expect(main_content.date_of_birth).to have_day
-          expect(main_content.date_of_birth).to have_month
-          expect(main_content.date_of_birth).to have_year
-          expect(main_content).to have_building
-          expect(main_content).to have_street
-          expect(main_content).to have_locality
-          expect(main_content).to have_county
-          expect(main_content).to have_post_code
+          expect(main_content.about_claimant_2).to have_date_of_birth
+          expect(main_content.about_claimant_2.date_of_birth).to have_date_of_birth_hint
+          expect(main_content.about_claimant_2.date_of_birth).to have_day
+          expect(main_content.about_claimant_2.date_of_birth).to have_month
+          expect(main_content.about_claimant_2.date_of_birth).to have_year
+          expect(main_content.about_claimant_2).to have_building
+          expect(main_content.about_claimant_2).to have_street
+          expect(main_content.about_claimant_2).to have_locality
+          expect(main_content.about_claimant_2).to have_county
+          expect(main_content.about_claimant_2).to have_post_code
           #Add more claimants
           expect(main_content).to have_add_more_claimants_link
         end
@@ -150,16 +150,6 @@ module EtFullSystem
           set_field s, :locality, claimant_data
           set_field s, :county, claimant_data
           set_field s, :post_code, claimant_data
-
-          # main_content.title.set(claimant_data[:title])
-          # main_content.first_name.set(claimant_data[:first_name])
-          # main_content.last_name.set(claimant_data[:last_name])
-          # main_content.date_of_birth.set(claimant_data[:date_of_birth])
-          # main_content.building.set(claimant_data[:building])
-          # main_content.street.set(claimant_data[:street])
-          # main_content.locality.set(claimant_data[:locality])
-          # main_content.county.set(claimant_data[:county])
-          # main_content.post_code.set(claimant_data[:post_code])
         end
 
         def set_field(s, key, data)

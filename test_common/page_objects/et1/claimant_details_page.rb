@@ -283,8 +283,45 @@ module EtFullSystem
           expect(main_content.claimant_contact_preference).to have_error_claimant_contact_preference
         end
 
+        # Fills in the entire page for the user given
+        #
+        # @param [Hash] user The user hash
+        def set(user)
+          data = user[0].to_h
+          main_content.tap do |s|
+            set_field(s, :title, data)
+            set_field(s, :first_name, data)
+            set_field(s, :last_name, data)
+            set_field(s, :date_of_birth, data)
+            set_field(s, :gender, data)
+          end
+
+          main_content.claiman_has_special_needs.set(data[:has_special_needs])
+          main_content.assistance.special_needs.set(data[:special_needs])
+          main_content.claimant_contact_preference.set(data[:claimant_contact_preference])
+
+          main_content.tap do |s|
+            set_field(s, :building, data)
+            set_field(s, :street, data)
+            set_field(s, :locality, data)
+            set_field(s, :county, data)
+            set_field(s, :post_code, data)
+            set_field(s, :country, data)
+            set_field(s, :telephone_number, data)
+            set_field(s, :alternative_telephone_number, data)
+            set_field(s, :email_address, data)
+            set_field(s, :claimant_contact_preference, data)
+          end
+        end
+
         def save_and_continue
           main_content.save_and_continue_button.click
+        end
+
+        private
+        
+        def set_field(s, key, data)
+          s.send(key).set(data[key]) if data.key?(key)
         end
       end
     end
