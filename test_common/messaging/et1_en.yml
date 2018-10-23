@@ -160,8 +160,8 @@ en:
         collection: :"simple_form.labels.claimant"
 
       additional_claimants_upload:
-        has_additional_claimants: Do you want to upload details of 6 claimants or more?
-        additional_claimants_csv: Upload spreadsheet
+        has_additional_claimants: "Do you want to upload details of 6 claimants or more? (optional)"
+        additional_claimants_csv: "Upload spreadsheet (optional)"
         claimants: :"simple_form.labels.claimant"
 
       representative:
@@ -493,18 +493,19 @@ en:
       malformatted_csv: The CSV doesn’t appear to be formatted correctly.
       remove_additional_claimants_csv: :"claims.claim_details.remove_claim_details_rtf"
       number_claimants_info: For 6 or more claimants, enter their details below.
-      has_additional_claimants_html: For up to 5 other claimants you can enter their details <a href="%{path}">manually</a>.
+      has_additional_claimants_html: "For up to 5 other claimants you can enter their details"
+      has_additional_claimants_link: manually
       step_one_header: Step 1
-      download_template_html: |
-        <a href="%{path}">Download spreadsheet template</a> or use your own if it follows the same format.
+      download_template_html: Download spreadsheet template
+      use_your_own_text: or use your own if it follows the same format.
 
-      dob_info: For dates of birth, use numbers and/or letters separated by forward slashes. Eg 23/04/1983 or 23/Apr/1983
+      dob_info: "For dates of birth, use numbers and/or letters separated by forward slashes. Eg 23/04/1983 or 23/Apr/1983"
       step_two_header: Step 2
-      save_csv_format: Save in CSV format.
+      save_csv_format: Save in CSV format
       how_to_save: "Do this by choosing File > Save as / Export To > Format: Comma Separated Values (.csv)"
-      no_spaces: Don’t include spaces in the file name.
+      no_spaces: "Don’t include spaces in the file name"
       step_three_header: Step 3
-      upload_limit: Maximum file size is 2MB.
+      upload_limit: "Maximum file size is 2MB"
 
     representative:
       header: "Representative’s details"

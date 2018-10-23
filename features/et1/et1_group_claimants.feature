@@ -14,26 +14,17 @@ Feature:
     When I submit no other people are making claims
     Then I should be on the Respresentative's details page
 
-  Scenario: Verify copy text for 5 or few claimants
+  Scenario: Verify copy texts for 5 or few claimants
     When there 5 or few claimants
-    Then I should see copy texts correctly dispayed for group claimants
+    Then I can very that the copy texts correctly dispayed for group claimants
 
-  Scenario: two Claimants
+  Scenario: Two Claimants
     Given two employees making a claim
     Then I should be able to submit two claimants details
-
-  # Scenario: Add more claimants
-  #   When there are group claimants
-  #   And I enter my claimant 2 details
-  #   Then I can add more claimants
     
-  # Scenario: Upload user details in separate spreadsheet
-  #   When there are group claimants
-  #   Then I should be able to upload groups claims in csv file
-
-  # Scenario: Spreadsheet for group claim copy text
-  #   When I answered Yes to uploading user details in separate spreadsheet
-  #   Then I can verify that the copy text on the spreadsheet for group claim are correct
+  Scenario: Verify copy texts for Upload user details in separate spreadsheet
+    When there are group claimants
+    Then I can very that the copy texts correctly dispayed for Upload user details in separate spreadsheet
 
   # Scenario: Download spreadsheet template
   #   When I'm on Spreadsheet for group claim

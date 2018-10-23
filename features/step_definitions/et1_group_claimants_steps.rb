@@ -22,7 +22,7 @@ When("there 5 or few claimants") do
   et1_group_claimants_page.main_content.additional_claimants_of_collection_type.yes.click
 end
 
-Then("I should see copy texts correctly dispayed for group claimants") do
+Then("I can very that the copy texts correctly dispayed for group claimants") do
   expect(et1_group_claimants_page.has_correct_translation_for_group_claimants?).to be true
 end
 
@@ -35,8 +35,12 @@ Then("I should be able to submit two claimants details") do
   et1_group_claimants_page.save_and_continue
 end
 
-
 When("there are group claimants") do
   @claimants = FactoryBot.create_list(:claimant, 1, :group_claims)
   et1_group_claimants_page.set(@claimants)
+  et1_group_claimants_upload_page.main_content.form_group.yes.click
+end
+
+Then("I can very that the copy texts correctly dispayed for Upload user details in separate spreadsheet") do
+  expect(et1_group_claimants_upload_page.has_correct_translation_for_group_claimants?).to be true
 end

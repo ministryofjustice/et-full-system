@@ -26,13 +26,13 @@ module EtFullSystem
       end
 
       def et1_answer_group_claimants_questions
-        et1_group_claims_page.set_for(@claimants)
+        et1_group_claimants_page.set(@claimants)
         group_claims_csv = @claimants[0].dig(:group_claims_csv)
         if group_claims_csv
-          et1_group_claims_upload_page.set_for(@claimants)
-          et1_group_claims_upload_page.save_and_continue
+          et1_group_claimants_upload_page.set(@claimants)
+          et1_group_claimants_upload_page.save_and_continue
         else
-          et1_group_claims_page.save_and_continue
+          et1_group_claimants_page.save_and_continue
         end
       end
 
