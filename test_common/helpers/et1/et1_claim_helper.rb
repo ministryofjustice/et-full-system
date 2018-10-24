@@ -16,12 +16,12 @@ module EtFullSystem
       end
 
       def et1_answer_login
-        et1_application_number_page.set(@claimant)
+        et1_application_number_page.set(@claimants)
         et1_application_number_page.save_and_continue
       end
 
       def et1_answer_claimant_questions
-        et1_claimant_details_page.set(@claimant)
+        et1_claimant_details_page.set(@claimants)
         et1_claimant_details_page.save_and_continue
       end
 

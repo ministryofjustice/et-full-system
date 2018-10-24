@@ -3,52 +3,6 @@ module EtFullSystem
   module Test
     module Et1
       class RepresentativesDetailsPage < BasePage
-        #your feedback header
-        section :feedback_notice, '.feedback-notice' do
-          include ::EtFullSystem::Test::I18n
-          element :language, :link_named, 'switch.language'
-          element :welsh_link, :link_or_button, t('switch.language', locale: :en)
-          element :english_link, :link_or_button, t('switch.language', locale: :cy)
-          element :feedback_link, :paragraph, 'shared.feedback_link.feedback_statement_html'
-        end
-        #Representative's details
-        section :main_header, '.main-header' do
-          element :page_header, :page_title, 'claims.representative.header', exact: false
-        end
-        section :main_content, '.main-section .main-content' do
-          section :error_message, '#edit_claimant #error-summary' do
-            element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
-            element :default_message, :paragraph, 'shared.error_notification.default_message'
-          end
-          #People making a claim with you
-          element :legend_representative, :legend_header, 'claims.representative.form_legend', exact: false
-          section :representative_has_representative, '.additional_claimants_of_collection_type' do
-            include ::EtFullSystem::Test::I18n
-            element :group_claims, :form_labelled, 'simple_form.labels.representative.has_representative'
-            element :yes, :form_labelled, 'simple_form.yes' do
-              element :selector, :css, 'input'
-              delegate :set, to: :selector
-            end
-            element :no, :form_labelled, 'simple_form.no' do
-              element :selector, :css, 'input'
-              delegate :set, to: :selector
-            end
-            def set(value)
-              choose(factory_translate(value), name: "additional_claimants[of_collection_type]")
-            end
-          end
-          #Save and continue
-          element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
-        end
-        #Support links
-        section :support, 'aside[role="complementary"]' do
-          element :suport_header, :support_header, 'shared.aside.gethelp_header'
-          element :guide, :link_named, 'shared.aside.read_guide'
-          element :contact_use, :link_named, 'shared.aside.contact_us'
-          element :your_claim, :support_header, 'shared.aside.actions_header'
-          element :save_and_complete_later, :button, 'shared.mobile_nav.save_and_complete'
-        end
-
         section :main_content, '#content .main-section .main-content' do
           section :representatives_details, :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("The person representing you")]] }) do
             section :representative, ".representative_has_representative" do
@@ -82,11 +36,43 @@ module EtFullSystem
               element :dx_number, 'input[name="representative[dx_number]"]'
             end
           end
-          
+          element :save_and_continue_button, 'form.edit_representative input[value="Save and continue"]'
+
+        end
+
+        def set_for(representative)
+          data = representative.to_h
+          if data.present?
+            main_content.representatives_details.representative.set('Yes')
+            main_content.representatives_details.about_your_representative do |s|
+              set_field s, :type, data
+              set_field s, :organisation_name, data
+              set_field s, :name, data
+            end
+            main_content.representatives_details.contact_details do |s|
+              set_field s, :building, data
+              set_field s, :street, data
+              set_field s, :locality, data
+              set_field s, :county, data
+              set_field s, :post_code, data
+              set_field s, :telephone_number, data
+              set_field s, :alternative_telephone_number, data
+              set_field s, :email_address, data
+              set_field s, :dx_number, data
+            end
+          else
+            main_content.representatives_details.representative.set('No')
+          end
         end
 
         def save_and_continue
           main_content.save_and_continue_button.click
+        end
+
+        private
+
+        def set_field(s, key, data)
+          s.send(key).set(data[key]) if data.key?(key)
         end
       end
     end

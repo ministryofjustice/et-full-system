@@ -124,7 +124,7 @@ Given("a claimant submitted an ET1 with no employment details") do
 end
 
 Given("a claimant submitted an ET1 who live outside UK") do
-  @claimants = FactoryBot.create_list(:first_person, 1, :group_claims, country: 'Outside United Kingdom', post_code: "1065^&%$£@():?><*&")
+  @claimants = FactoryBot.create_list(:claimant, 1, :group_claims, country: 'Outside United Kingdom', post_code: "1065^&%$£@():?><*&")
   @representatives = FactoryBot.create_list(:representative, 1, :et3_information)
   @respondents = FactoryBot.create_list(:organisation_data, 1, :employer)
   @claim = FactoryBot.create_list(:claim, 1, :upload_your_claim_statement)[0]
