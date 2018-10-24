@@ -14,13 +14,9 @@ Feature:
     When I submit a claim without any representative
     Then I should be taken to Respondent's details page
 
-  Scenario: Verify all copy text for there when there is a representative
-    When I answer yes to representative
-    Then I can verify that the copy texts displayed correctly for representative
-
   Scenario: Mandatory field validation
     When I submit without answering any representative questions
-    Then I can verify that validation error messages for Representative's details page
+    Then I can verify that validation error messages are shown on the Representative's details page
 
   Scenario: Verify all type of representative values 
     When I select down list for type of representative

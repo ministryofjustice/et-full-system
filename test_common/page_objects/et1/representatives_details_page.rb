@@ -17,9 +17,9 @@ module EtFullSystem
           element :page_header, :page_title, 'claims.representative.header', exact: false
         end
         section :main_content, '.main-section .main-content' do
-          section :error_message, '#edit_claimant #error-summary' do
+          section :error_message, '#error-summary' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
-            element :default_message, :paragraph, 'shared.error_notification.default_message'
+            element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
           end
           #The person representing you
           element :representative_header, :legend_header, 'claims.representative.form_legend'
@@ -42,6 +42,7 @@ module EtFullSystem
           element :about_your_representative, :legend_header, 'claims.representative.representative_legend'
           #Type of representative
           section :type, '.representative_type' do
+            element :blank_type, :error, 'activemodel.errors.models.representative.attributes.type.blank'
             element :type_of_representative_labelled, :form_labelled, 'claims.representative.representative_type_legend'
             def set(value)
               root_element.select(value)
@@ -52,54 +53,57 @@ module EtFullSystem
             delegate :set, to: :field
           end
           section :name, :question_labelled, 'simple_form.labels.representative.name' do
+            element :blank_organisation_name, :error, 'activemodel.errors.models.representative.attributes.name.blank'
             element :field, :css, 'input'
             delegate :set, to: :field
           end
           #Representative's contact details
           element :representative_contact_details, :legend_header, 'claims.representative.contact_legend'
+          element :blank_building, :error, 'activemodel.errors.models.representative.attributes.address_building.blank'
           section :building, :question_labelled, 'simple_form.labels.representative.address_building' do
             element :field, :css, 'input'
             delegate :set, to: :field
           end
-          element :blank_building, :error, 'activemodel.errors.models.claimant.attributes.address_building.blank'
+          element :blank_street, :error, 'activemodel.errors.models.representative.attributes.address_building.blank'
           section :street, :question_labelled, 'simple_form.labels.representative.address_street' do
             element :field, :css, 'input'
             delegate :set, to: :field
           end
-          element :blank_street, :error, 'activemodel.errors.models.claimant.attributes.address_street.blank'
+          element :blank_locality, :error, 'activemodel.errors.models.representative.attributes.address_street.blank'
           section :locality, :question_labelled, 'simple_form.labels.representative.address_locality' do
             element :field, :css, 'input'
             delegate :set, to: :field
           end
-          element :blank_locality, :error, 'activemodel.errors.models.claimant.attributes.address_locality.blank'
           #County
+          element :blank_county, :error, 'activemodel.errors.models.representative.attributes.address_locality.blank'
           section :county, :question_labelled, 'simple_form.labels.representative.address_county' do
             element :field, :css, 'input'
             delegate :set, to: :field
           end
-          element :blank_county, :error, 'activemodel.errors.models.claimant.attributes.address_county.blank'
+          element :blank_post_code, :error, 'activemodel.errors.models.representative.attributes.address_post_code.blank'
+          element :invalid_post_code, :error, 'activemodel.errors.models.representative.attributes.address_post_code.invalid'
           element :county_hint, :paragraph, 'simple_form.hints.representative.address_county', exact: false
           section :post_code, :question_labelled, 'simple_form.labels.representative.address_post_code' do
             element :field, :css, 'input'
             delegate :set, to: :field
           end
-          element :blank_post_code, :error, 'activemodel.errors.models.claimant.attributes.address_post_code.blank'
-          element :invalid_post_code, :error, 'activemodel.errors.models.claimant.attributes.address_post_code.invalid'
+          element :blank_telephone_number, :error, 'activemodel.errors.models.representative.attributes.address_locality.blank'
           section :telephone_number, :question_labelled, 'simple_form.labels.representative.address_telephone_number' do
             element :field, :css, 'input'
             delegate :set, to: :field
           end
+          element :blank_mobile, :error, 'activemodel.errors.models.representative.attributes.address_locality.blank'
           section :alternative_telephone_number, :question_labelled, 'simple_form.labels.representative.mobile_number' do
             element :field, :css, 'input'
             delegate :set, to: :field
           end
-          section :email_address, :question_labelled, 'simple_form.labels.claimant.email_address', exact: false do
-            element :field, :css, 'input[type="email"]'
+          element :blank_email_address, :error, 'activemodel.errors.models.representative.attributes.email_address.blank'
+          section :email_address, :question_labelled, 'simple_form.labels.representative.email_address', exact: false do
+            element :field, :css, 'input'
             delegate :set, to: :field
           end
-          element :blank_email_address, :error, 'activemodel.errors.models.claimant.attributes.email_address.blank'
           section :dx_number, :question_labelled, 'simple_form.labels.representative.dx_number' do
-            element :field, :css, 'input[type="email"]'
+            element :field, :css, 'input'
             delegate :set, to: :field
           end
           #What is Dx number?
@@ -166,22 +170,15 @@ module EtFullSystem
         end
 
         def has_correct_validation_error_message?
-          #Errors on page
           expect(main_content.error_message).to have_error_summary
-          #TODO why has this stopped working - why?
-          # expect(main_content.error_message).to have_default_message
-          expect(main_content.title).to have_error_title
-          expect(main_content.first_name).to have_error_first_name
-          expect(main_content.last_name).to have_error_last_name
-          expect(main_content.date_of_birth).to have_error_date_of_birth
-          expect(main_content.gender).to have_error_gender
-          expect(main_content).to have_error_building
-          expect(main_content).to have_error_street
-          expect(main_content).to have_error_locality
-          expect(main_content).to have_error_county
+          expect(main_content.error_message).to have_default_message
+          expect(main_content).to have_type
+          expect(main_content).to have_name
+          expect(main_content).to have_blank_building
+          expect(main_content).to have_blank_street
+          expect(main_content).to have_blank_locality
+          expect(main_content).to have_blank_county
           expect(main_content).to have_blank_post_code
-          expect(main_content).to have_error_address_county
-          expect(main_content.claimant_contact_preference).to have_error_claimant_contact_preference
         end
 
         def set(user)

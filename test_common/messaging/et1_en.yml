@@ -368,7 +368,7 @@ en:
       contact_us_link: http://www.justice.gov.uk/contacts/hmcts/tribunals/employment    
     error_notification:
       error_summary: "Errors on page"
-      default_message: Provide information in the highlighted fields"
+      default_message: "Provide information in the highlighted fields"
 
   errors:
     messages:
@@ -756,7 +756,7 @@ en:
             type:
               blank: Select which type of representative you have
             name:
-              blank: Enter your representative’s name
+              blank: "Enter your representative’s name"
             address_country:
               blank: You must provide information for this field
             contact_preference:
