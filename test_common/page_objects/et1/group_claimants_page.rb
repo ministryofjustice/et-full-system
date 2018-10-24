@@ -18,9 +18,9 @@ module EtFullSystem
           element :page_header, :page_title, 'claims.additional_claimants.header', exact: false
         end
         section :main_content, '.main-section .main-content' do
-          section :error_message, '#edit_claimant #error-summary' do
+          section :error_message, '#error-summary' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
-            element :default_message, :paragraph, 'shared.error_notification.default_message'
+            element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
           end
 
           #People making a claim with you
@@ -122,8 +122,7 @@ module EtFullSystem
         def has_correct_mandatory_error_msg_for_group_claimants?
           #Errors on page
           expect(main_content.error_message).to have_error_summary
-          #TODO why has this stopped working - why?
-          # expect(main_content.error_message).to have_default_message
+          expect(main_content.error_message).to have_default_message
           expect(main_content.about_claimant_2.title).to have_blank_title
           expect(main_content.about_claimant_2.first_name).to have_blank_first_name
           expect(main_content.about_claimant_2.last_name).to have_blank_last_name

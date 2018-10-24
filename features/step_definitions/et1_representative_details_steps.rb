@@ -29,12 +29,31 @@ Then("I can verify that validation error messages are shown on the Representativ
   expect(et1_representatives_details_page.has_correct_validation_error_message?).to be true
 end
 
-When("entering {string} postcode for Representative's details page") do |string|
+When("entering invalid postcode for Representative's details page") do
   et1_representatives_details_page.main_content.representative.yes.click
-  et1_representatives_details_page.main_content.post_code.set(string)
+  et1_representatives_details_page.main_content.post_code.set('UTOI&*"?£$')
   et1_representatives_details_page.save_and_continue
 end
 
-Then("I should see an error message for invalid UK postcode please use SW55 9QT Representative's details page") do
+Then("I can verify an invalid UK postcode is being used for Representative's details page") do
   expect(et1_representatives_details_page.has_correct_error_message_for_invalid_uk_postcode?).to be true
+end
+
+When("I click on DX number") do
+  et1_representatives_details_page.main_content.representative.yes.click
+  et1_representatives_details_page.main_content.what_is_dx_number.click
+end
+
+Then("I can see the DX information details") do
+  expect(et1_representatives_details_page.has_correct_dx_information?).to be true
+end
+
+Then("I should be able to select Employment advisor, Citizens Advice Bureau from type of representative") do
+  @representatives = FactoryBot.create_list(:representative, 1, :et3_information, type: :"simple_form.options.representative.type.citizen_advice_bureau")
+  et1_representatives_details_page.main_content.representative.yes.click
+  et1_representatives_details_page.main_content.type.set(@representatives[0][:type])
+end
+
+When("I submit all Representative's details page questions") do
+  et1_answer_representatives_questions
 end

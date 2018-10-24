@@ -17,9 +17,9 @@ module EtFullSystem
           element :page_header, :page_title, 'claims.claimant.header', exact: false
         end
         section :main_content, '.main-section .main-content' do
-          section :error_message, '#edit_claimant #error-summary' do
+          section :error_message, '#error-summary' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
-            element :default_message, :paragraph, 'shared.error_notification.default_message'
+            element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
           end
           #About the claimant
           element :legend_personal_details, :legend_header, 'claims.claimant.legend_personal_details', exact: false
@@ -272,8 +272,7 @@ module EtFullSystem
         def has_correct_validation_error_message?
           #Errors on page
           expect(main_content.error_message).to have_error_summary
-          #TODO why has this stopped working - why?
-          # expect(main_content.error_message).to have_default_message
+          expect(main_content.error_message).to have_default_message
           expect(main_content.title).to have_error_title
           expect(main_content.first_name).to have_error_first_name
           expect(main_content.last_name).to have_error_last_name

@@ -3,7 +3,7 @@ FactoryBot.define do
   end
 
   trait :et3_information do
-    type 'Solicitor'
+    type :"simple_form.options.representative.type.solicitor"
     organisation_name { Faker::Company.bs }
     name { Faker::Name.name }
     building '106'

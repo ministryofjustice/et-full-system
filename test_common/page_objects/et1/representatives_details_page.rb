@@ -42,10 +42,11 @@ module EtFullSystem
           element :about_your_representative, :legend_header, 'claims.representative.representative_legend'
           #Type of representative
           section :type, '.representative_type' do
+            include ::EtFullSystem::Test::I18n
             element :blank_type, :error, 'activemodel.errors.models.representative.attributes.type.blank'
             element :type_of_representative_labelled, :form_labelled, 'claims.representative.representative_type_legend'
             def set(value)
-              root_element.select(value)
+              root_element.select(factory_translate(value))
             end
           end
           section :organisation_name, :question_labelled, 'simple_form.labels.representative.organisation_name' do
@@ -99,7 +100,7 @@ module EtFullSystem
           end
           element :invalid_email_address, :error, 'activemodel.errors.models.representative.attributes.email_address.invalid'
           element :blank_email_address, :error, 'activemodel.errors.models.representative.attributes.email_address.blank'
-          section :email_address, :question_labelled, 'simple_form.labels.representative.email_address', exact: false do
+          section :email_address, :question_labelled, 'simple_form.labels.representative.email_address' do
             element :field, :css, 'input'
             delegate :set, to: :field
           end
@@ -109,6 +110,7 @@ module EtFullSystem
           end
           #What is Dx number?
           element :what_is_dx_number, :summary_text, 'claims.representative.what_is_dx.detail'
+          element :dx_information, :paragraph, 'claims.representative.what_is_dx.summary'
           #Save and continue
           element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
         end
@@ -186,22 +188,28 @@ module EtFullSystem
           expect(main_content).to have_invalid_post_code
         end
 
+        def has_correct_dx_information?
+          expect(main_content).to have_dx_information
+        end
+
         def set(user)
-          data = user.to_h
+          data = user[0].to_h
           if data.present?
             main_content.representative.yes.click
-            set_field s, :type, data
-            set_field s, :organisation_name, data
-            set_field s, :name, data
-            set_field s, :building, data
-            set_field s, :street, data
-            set_field s, :locality, data
-            set_field s, :county, data
-            set_field s, :post_code, data
-            set_field s, :telephone_number, data
-            set_field s, :alternative_telephone_number, data
-            set_field s, :email_address, data
-            set_field s, :dx_number, data
+            main_content do |s|
+              set_field s, :type, data
+              set_field s, :organisation_name, data
+              set_field s, :name, data
+              set_field s, :building, data
+              set_field s, :street, data
+              set_field s, :locality, data
+              set_field s, :county, data
+              set_field s, :post_code, data
+              set_field s, :telephone_number, data
+              set_field s, :alternative_telephone_number, data
+              set_field s, :email_address, data
+              set_field s, :dx_number, data
+            end
           else
             main_content.representative.no.click
           end

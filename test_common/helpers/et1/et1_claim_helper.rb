@@ -37,7 +37,7 @@ module EtFullSystem
       end
 
       def et1_answer_representatives_questions
-        et1_representatives_details_page.set(@representative)
+        et1_representatives_details_page.set(@representatives)
         et1_representatives_details_page.save_and_continue
       end
 

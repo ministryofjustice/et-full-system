@@ -39,7 +39,7 @@ en:
 
       representative:
         type:
-          citizen_advice_bureau: Employment advisor, Citizens Advice Bureau
+          citizen_advice_bureau: "Employment advisor, Citizens Advice Bureau"
           free_representation_unit: Free Representation Unit
           law_centre: Law centre
           trade_union: Trade union
@@ -178,6 +178,7 @@ en:
         mobile_number: Alternative phone or mobile number (optional)
         dx_number: "Document exchange (DX) number (optional)"
         contact_preference: Best way to send correspondence to your representative
+        email_address: Email address (optional)
 
       respondent:
         name: Name of respondent
@@ -516,7 +517,7 @@ en:
       contact_info: "All correspondence about the case will be sent to the representative and not the claimant. If you change representative after you have submitted your claim, you must send their contact details to the tribunal office handling your case"
       what_is_dx:
         detail: What is a DX number?
-        summary: DX is a private mail system used by organisations (eg legal firms)
+        summary: "DX is a private mail system used by organisations (eg legal firms)"
 
     respondent:
       header: "Respondent’s details"

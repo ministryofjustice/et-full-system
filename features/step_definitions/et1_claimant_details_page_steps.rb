@@ -1,5 +1,5 @@
 Given("a claimant is on Claimant's details page") do
-  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @claimants = FactoryBot.create_list(:claimant, 1, :person_data)
   start_a_new_et1_claim
   et1_answer_login
 end
@@ -9,8 +9,8 @@ Then("Claimant's details page copy texts are displayed in the correct language")
 end
 
 When("I answerd Yes to disability") do
-  et1_claimant_details_page.main_content.claimant_has_special_needs.set(@claimant[0][:has_special_needs])
-  et1_claimant_details_page.main_content.assistance.special_needs.set(@claimant[0][:special_needs])
+  et1_claimant_details_page.main_content.claimant_has_special_needs.set(@claimants[0][:has_special_needs])
+  et1_claimant_details_page.main_content.assistance.special_needs.set(@claimants[0][:special_needs])
 end
 
 Then("I should see the option to describe the assistant I need") do
@@ -31,7 +31,7 @@ Then("I should see mandatory errors on the Claimant's details page") do
 end
 
 When("leaving an email address field blank") do
-  et1_claimant_details_page.main_content.claimant_contact_preference.set(@claimant[0][:correspondence])
+  et1_claimant_details_page.main_content.claimant_contact_preference.set(@claimants[0][:correspondence])
   et1_claimant_details_page.save_and_continue.click
 end
 

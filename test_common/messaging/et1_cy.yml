@@ -161,7 +161,7 @@ cy:
         applying_for_remission: "Ydych chi eisiau gwneud cais am help i dalu eich ffi (a elwir yn \"help i dalu ffioedd\")?"
         contact_preference: "Y ffordd orau i anfon gohebiaeth atoch (yr hawlydd)"
         _destroy: 'Dileu''r hawlydd yma'
-        email_address: Cyfeiriad e-bost
+        email_address: "Cyfeiriad e-bost (dewisol)"
         gender: Rhywedd
 
       additional_claimants:
@@ -180,7 +180,7 @@ cy:
           address_county: Sir
           address_post_code: Cod post
           address_country: Gwlad
-          email_address: Cyfeiriad e-bost
+          email_address: "Cyfeiriad e-bost (dewisol)"
 
       additional_claimants_upload:
         has_additional_claimants: "Ydych chi eisiau uwchlwytho manylion 6 hawlydd neu fwy? (dewisol)"

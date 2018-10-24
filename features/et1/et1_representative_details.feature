@@ -19,14 +19,16 @@ Feature:
     Then I can verify that validation error messages are shown on the Representative's details page
 
   Scenario: Invalid UK postcode error message
-    When entering 'UTOI&*"?£$' postcode for Representative's details page
-    Then I should see an error message for invalid UK postcode please use SW55 9QT Representative's details page
-
-  Scenario: Verify all type of representative values 
-    When I select down list for type of representative
-    Then I can verify that the copy texts displayed correctly for type of representative
+    When entering invalid postcode for Representative's details page
+    Then I can verify an invalid UK postcode is being used for Representative's details page
 
   Scenario: What is a DX number?
     When I click on DX number
-    Then I can verify that the copy texts displayed correctly for DX Number
+    Then I can see the DX information details
 
+  Scenario: Type of representative: Employment advisor, Citizens Advice Bureau
+    Then I should be able to select Employment advisor, Citizens Advice Bureau from type of representative
+
+  Scenario: Answer all fields questions
+    When I submit all Representative's details page questions
+    Then I should be taken to Respondent's details page

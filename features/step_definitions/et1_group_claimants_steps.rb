@@ -1,5 +1,5 @@
 Given("a claimant is on Group claims page") do
-  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @claimants = FactoryBot.create_list(:claimant, 1, :person_data)
   start_a_new_et1_claim
   et1_answer_login
   et1_answer_claimant_questions
@@ -10,7 +10,7 @@ Then("Group claims page copy texts are displayed in the correct language") do
 end
 
 When("I submit no other people are making claims") do
-  et1_group_claimants_page.set(@claimant)
+  et1_group_claimants_page.set(@claimants)
   et1_group_claimants_page.save_and_continue
 end
 
