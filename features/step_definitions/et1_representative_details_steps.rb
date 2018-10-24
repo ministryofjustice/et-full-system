@@ -28,3 +28,13 @@ end
 Then("I can verify that validation error messages are shown on the Representative's details page") do
   expect(et1_representatives_details_page.has_correct_validation_error_message?).to be true
 end
+
+When("entering {string} postcode for Representative's details page") do |string|
+  et1_representatives_details_page.main_content.representative.yes.click
+  et1_representatives_details_page.main_content.post_code.set(string)
+  et1_representatives_details_page.save_and_continue
+end
+
+Then("I should see an error message for invalid UK postcode please use SW55 9QT Representative's details page") do
+  expect(et1_representatives_details_page.has_correct_error_message_for_invalid_uk_postcode?).to be true
+end

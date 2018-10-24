@@ -97,6 +97,7 @@ module EtFullSystem
             element :field, :css, 'input'
             delegate :set, to: :field
           end
+          element :invalid_email_address, :error, 'activemodel.errors.models.representative.attributes.email_address.invalid'
           element :blank_email_address, :error, 'activemodel.errors.models.representative.attributes.email_address.blank'
           section :email_address, :question_labelled, 'simple_form.labels.representative.email_address', exact: false do
             element :field, :css, 'input'
@@ -179,6 +180,10 @@ module EtFullSystem
           expect(main_content).to have_blank_locality
           expect(main_content).to have_blank_county
           expect(main_content).to have_blank_post_code
+        end
+
+        def has_correct_error_message_for_invalid_uk_postcode?
+          expect(main_content).to have_invalid_post_code
         end
 
         def set(user)

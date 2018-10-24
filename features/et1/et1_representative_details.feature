@@ -18,6 +18,10 @@ Feature:
     When I submit without answering any representative questions
     Then I can verify that validation error messages are shown on the Representative's details page
 
+  Scenario: Invalid UK postcode error message
+    When entering 'UTOI&*"?£$' postcode for Representative's details page
+    Then I should see an error message for invalid UK postcode please use SW55 9QT Representative's details page
+
   Scenario: Verify all type of representative values 
     When I select down list for type of representative
     Then I can verify that the copy texts displayed correctly for type of representative
@@ -26,10 +30,3 @@ Feature:
     When I click on DX number
     Then I can verify that the copy texts displayed correctly for DX Number
 
-  Scenario: Invalid Date of birth error
-    When I submit an invalid date of birth for claimant details page
-    Then I should see an invalid error message for date of birth claimant details page
-
-  Scenario: Invalid UK postcode error message
-    When entering 'UTOI&*"?£$' postcode for Representative's details page
-    Then I should see an error message for invalid UK postcode please use SW55 9QT Representative's details page
