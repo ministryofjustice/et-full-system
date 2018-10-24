@@ -3,33 +3,56 @@ module EtFullSystem
   module Test
     module Et1
       class RespondentsDetailsPage < BasePage
-        section :main_content, '#content .main-section .main-content' do
-          section :about_the_respondent, :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("About the respondent")]] }) do
-            element :name, 'input[name="respondent[name]"]'
-            element :building, 'input[name="respondent[address_building]"]'
-            element :street, 'input[name="respondent[address_street]"]'
-            element :locality, 'input[name="respondent[address_locality]"]'
-            element :county, 'input[name="respondent[address_county]"]'
-            element :post_code, 'input[name="respondent[address_post_code]"]'
-            element :telephone_number, 'input[name="respondent[address_telephone_number]"]'
+        include RSpec::Matchers
+        #your feedback header
+        section :feedback_notice, '.feedback-notice' do
+          include ::EtFullSystem::Test::I18n
+          element :language, :link_named, 'switch.language'
+          element :welsh_link, :link_or_button, t('switch.language', locale: :en)
+          element :english_link, :link_or_button, t('switch.language', locale: :cy)
+          element :feedback_link, :paragraph, 'shared.feedback_link.feedback_statement_html'
+        end
+        #Representative's details
+        section :main_header, '.main-header' do
+          element :page_header, :page_title, 'claims.respondent.header', exact: false
+        end
+        section :main_content, '.main-section .main-content' do
+          section :error_message, '#edit_claimant #error-summary' do
+            element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
+            element :default_message, :paragraph, 'shared.error_notification.default_message'
           end
-          section :your_work_address, :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("Your work address")]] }) do
-            element :building, 'input[name="respondent[work_address_building]"]'
-            element :street, 'input[name="respondent[work_address_street]"]'
-            element :locality, 'input[name="respondent[work_address_locality]"]'
-            element :county, 'input[name="respondent[work_address_county]"]'
-            element :post_code, 'input[name="respondent[work_address_post_code]"]'
-            element :telephone_number, 'input[name="respondent[work_address_telephone_number]"]'
-            section :same_address, '.respondent_worked_at_same_address' do
-              def set(value)
-                choose value, name: 'respondent[worked_at_same_address]'
-              end
+          #About the respondent
+          element :representative_header, :legend_header, 'claims.respondent.respondent_legend'
+          element :respondent_summary, :paragraph, ''
+          element :name, 'input[name="respondent[name]"]'
+          element :building, 'input[name="respondent[address_building]"]'
+          element :street, 'input[name="respondent[address_street]"]'
+          element :locality, 'input[name="respondent[address_locality]"]'
+          element :county, 'input[name="respondent[address_county]"]'
+          element :post_code, 'input[name="respondent[address_post_code]"]'
+          element :telephone_number, 'input[name="respondent[address_telephone_number]"]'
+          element :building, 'input[name="respondent[work_address_building]"]'
+          element :street, 'input[name="respondent[work_address_street]"]'
+          element :locality, 'input[name="respondent[work_address_locality]"]'
+          element :county, 'input[name="respondent[work_address_county]"]'
+          element :post_code, 'input[name="respondent[work_address_post_code]"]'
+          element :telephone_number, 'input[name="respondent[work_address_telephone_number]"]'
+          section :same_address, '.respondent_worked_at_same_address' do
+            def set(value)
+              choose value, name: 'respondent[worked_at_same_address]'
             end
           end
-          section :acas, :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("Acas early conciliation certificate number")]] }) do
-            element :certificate_number, 'input[name="respondent[acas_early_conciliation_certificate_number]"]'
-          end
-          element :save_and_continue_button, 'form.edit_respondent input[value="Save and continue"]'
+          element :certificate_number, 'input[name="respondent[acas_early_conciliation_certificate_number]"]'
+          #Save and continue
+          element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
+        end
+        #Support links
+        section :support, 'aside[role="complementary"]' do
+          element :suport_header, :support_header, 'shared.aside.gethelp_header'
+          element :guide, :link_named, 'shared.aside.read_guide'
+          element :contact_use, :link_named, 'shared.aside.contact_us'
+          element :your_claim, :support_header, 'shared.aside.actions_header'
+          element :save_and_complete_later, :button, 'shared.mobile_nav.save_and_complete'
         end
 
         def save_and_continue

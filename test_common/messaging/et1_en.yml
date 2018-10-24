@@ -519,7 +519,7 @@ en:
         summary: DX is a private mail system used by organisations (eg legal firms)
 
     respondent:
-      header: Respondent’s details
+      header: "Respondent’s details"
       no_acas_number_reason: Why don’t you have an Acas number?
       respondent_legend: About the respondent
       no_acas_number_note_one: "Please note: Incorrectly claiming an exemption may lead to your claim being rejected. If in doubt, please contact ACAS."
