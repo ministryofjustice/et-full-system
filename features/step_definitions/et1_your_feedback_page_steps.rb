@@ -8,7 +8,7 @@ Then("Your feedback page copy texts are displayed in the correct language") do
   expect(et1_your_feedback_page.has_correct_translation?).to be true
 end
 
-When("I sumit a Your feedback") do
+When("I submit Your feedback") do
   et1_submit_your_feedback
 end
 

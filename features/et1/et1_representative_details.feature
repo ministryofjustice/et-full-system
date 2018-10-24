@@ -1,4 +1,3 @@
-@e2e
 @javascript
 Feature:
   As Representative's details page

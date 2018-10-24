@@ -1,4 +1,3 @@
-@e2e
 @javascript
 Feature:
   As a claimant
@@ -12,5 +11,5 @@ Feature:
     Then Your feedback page copy texts are displayed in the correct language
   
   Scenario: Submit a feedback
-    When I sumit a Your feedback
+    When I submit Your feedback
     Then I should see thank you for your feedback message
