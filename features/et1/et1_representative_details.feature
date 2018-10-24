@@ -7,28 +7,28 @@ Feature:
   Background: Representative's details page
     Given a claimant is on Representative's details page 
 
-  Scenario: Verify copy texts on Representative's details page
-    Then Representative's details page copy texts are displayed in the correct language
+  Scenario: Verify copy texts for Representative's details page
+    Then I can verify that the copy text on Representative's details page displayed correctly
 
   Scenario: No to representative
     When I submit a claim without any representative
     Then I should be taken to Respondent's details page
 
-  Scenario: Verify all copy text for there yes to representative
+  Scenario: Verify all copy text for there when there is a representative
     When I answer yes to representative
-    Then I can verify that copy texts correctly dispayed for yes to representative
+    Then I can verify that the copy texts displayed correctly for representative
 
-  Scenario: Mandatory field validation errors
+  Scenario: Mandatory field validation
     When I submit without answering any representative questions
-    Then I should see mandatory errors on the Representative's details page
+    Then I can verify that validation error messages for Representative's details page
 
   Scenario: Verify all type of representative values 
     When I select down list for type of representative
-    Then I can verify that all type of representative values are correctly displayed
+    Then I can verify that the copy texts displayed correctly for type of representative
 
   Scenario: What is a DX number?
     When I click on DX number
-    Then I can verify that DX copy texts are correctly displayed
+    Then I can verify that the copy texts displayed correctly for DX Number
 
   Scenario: Invalid Date of birth error
     When I submit an invalid date of birth for claimant details page

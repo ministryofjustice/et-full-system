@@ -153,7 +153,7 @@ cy:
         special_needs: Disgrifiwch y cymorth sydd ei angen arnoch
         address_telephone_number: "Rhif ffôn neu rif ffôn symudol (dewisol)"
         address_building: Rhif neu enw'r adeilad
-        address_locality: Tref/dinas
+        address_locality: "Tref/dinas"
         address_street: Stryd
         address_county: Sir
         address_post_code: Cod post
@@ -188,20 +188,20 @@ cy:
         claimants: ""
 
       representative:
-        has_representative: "Oes gennych chi rywun sydd wedi cytuno i'ch cynrychioli (e.e. trwy ddelio â gohebiaeth)?"
-        address_telephone_number: "Rhif ffôn neu rif ffôn symudol "
+        has_representative: "Oes gennych chi rywun sydd wedi cytuno i'ch cynrychioli (e.e. trwy ddelio â gohebiaeth)? (dewisol)"
+        address_telephone_number: "Rhif ffôn neu rif ffôn symudol (dewisol)"
         address_building: Rhif neu enw'r adeilad
         address_locality: Tref/dinas
         address_street: Stryd
         address_county: Sir
         address_post_code: Cod post
         type: Math o gynrychiolydd
-        organisation_name: Enw sefydliad y cynrychiolydd
-        name: Enw'r cynrychiolydd
-        mobile_number: Rhif ffôn neu rif ffôn symudol arall
-        dx_number: Rhif cyfnewid dogfennau (DX)
+        organisation_name: "Enw sefydliad y cynrychiolydd (dewisol)"
+        name: "Enw'r cynrychiolydd"
+        mobile_number: "Rhif ffôn neu rif ffôn symudol arall (dewisol)"
+        dx_number: Rhif cyfnewid dogfennau (DX) (dewisol)
         contact_preference: Y ffordd orau i anfon gohebiaeth at eich cynrychiolydd
-        email_address: Cyfeiriad e-bost
+        email_address: Cyfeiriad e-bost (dewisol)
 
       respondent:
         name: Enw'r atebydd
@@ -573,8 +573,8 @@ cy:
     representative:
       header: "Manylion y cynrychiolydd"
       form_legend: "Yr unigolyn sy'n eich cynrychioli"
-      representative_type_legend: Math o gynrychiolydd
-      representative_legend: Ynglŷn â’ch cynrychiolydd
+      representative_type_legend: "Math o gynrychiolydd"
+      representative_legend: "Ynglŷn â’ch cynrychiolydd"
       contact_legend: "Manylion cyswllt y cynrychiolydd"
       contact_info: "Fe anfonir yr holl wybodaeth am yr achos at y cynrychiolydd ac nid at yr hawlydd. Os ydych chi'n newid cynrychiolydd ar ôl i chi gyflwyno eich hawliad, bydd rhaid i chi anfon eu manylion cyswllt i swyddfa'r tribiwnlys sy'n delio â'ch achos"
       what_is_dx:

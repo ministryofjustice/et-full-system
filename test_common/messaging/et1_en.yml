@@ -166,17 +166,17 @@ en:
 
       representative:
         has_representative: "Do you have someone who’s agreed to represent you (eg by handling correspondence)? (optional)"
-        address_telephone_number: Phone or mobile number
+        address_telephone_number: Phone or mobile number (optional)
         address_building: Building number or name
         address_locality: Town/city
         address_street: Street
         address_county: County
         address_post_code: Postcode
         type: Type of representative
-        organisation_name: Name of the representative’s organisation
+        organisation_name: "Name of the representative’s organisation (optional)"
         name: "Representative’s name"
-        mobile_number: Alternative phone or mobile number
-        dx_number: Document exchange (DX) number
+        mobile_number: Alternative phone or mobile number (optional)
+        dx_number: "Document exchange (DX) number (optional)"
         contact_preference: Best way to send correspondence to your representative
 
       respondent:
@@ -267,7 +267,7 @@ en:
         address_county: Eg if London, Greater London; if Manchester, Greater Manchester
         date_of_birth: For example, 23 04 1981
       representative:
-        address_county: Eg if London, Greater London; if Manchester, Greater Manchester
+        address_county: "Eg if London, Greater London; if Manchester, Greater Manchester"
         respondent:
         acas_early_conciliation_certificate_number: "This is on the certificate that Acas sends if conciliation doesn’t work. The number starts with ’R’ or ’MU’"
       employment:
@@ -513,8 +513,7 @@ en:
       representative_type_legend: Type of representative
       representative_legend: About your representative
       contact_legend: Representative’s contact details
-      contact_info: |
-        All correspondence about the case will be sent to the representative and not the claimant. If you change representative after you have submitted your claim, you must send their contact details to the tribunal office handling your case.
+      contact_info: "All correspondence about the case will be sent to the representative and not the claimant. If you change representative after you have submitted your claim, you must send their contact details to the tribunal office handling your case"
       what_is_dx:
         detail: What is a DX number?
         summary: DX is a private mail system used by organisations (eg legal firms)
