@@ -1,4 +1,10 @@
 en:
+  diversity:
+    header: Diversity monitoring questionnaire
+    index:
+      optional_text: This is optional and won't affect your claim. The information is used to help make sure everyone in contact with HM Courts & Tribunals Service (HMCTS) gets equal treatment.
+      anonymous: Your answers will be anonymous.
+      begin_form: Start now
   claim_type:
     unfair-dismissal-or-constructive-dismissal: "Unfair dismissal or constructive dismissal"
     discrimination: "Discrimination"
