@@ -22,6 +22,11 @@ FactoryBot.define do
     representative_fax '0207 345 6789'
   end
 
+  trait :et1_information do
+    et3_information
+    representative_contact_preference :"simple_form.options.representative.contact_preference.post"
+  end
+
   trait :et3_no_representative do
     type ''
     organisation_name ''

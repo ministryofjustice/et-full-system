@@ -27,8 +27,9 @@ module EtFullSystem
           element :personal_details_description, :paragraph, 'claims.claimant.personal_details_description', exact: false
           #title
           section :title, :question_labelled, 'simple_form.labels.claimant.title' do
+            include EtFullSystem::Test::I18n
             def set(value)
-              root_element.select(value)
+              root_element.select(factory_translate value)
             end
             element :error_title, :error, 'activemodel.errors.models.claimant.attributes.title.blank', exact: false
           end
