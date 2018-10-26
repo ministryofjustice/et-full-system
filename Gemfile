@@ -26,7 +26,6 @@ group :test do
   gem 'pdf-forms', '~> 1.1', '>= 1.1.1'
   gem 'factory_bot'
   gem 'settingslogic'
-  gem 'parallel_tests'
   gem 'mail'
 end
 
@@ -35,6 +34,7 @@ group :development, :test do
   gem 'debase', '~> 0.2'
   gem 'dotenv', '~> 2.2', '>= 2.2.2'
   gem 'faker', '~> 1.8', '>= 1.8.7'
+  gem 'parallel_tests'
 end
 
 group :production do

@@ -5,6 +5,7 @@ Then(/^I can download the form and validate in PDF format$/) do
     admin_pages.jobs_page.run_export_claims_cron_job
   end
   expect { atos_interface }.to eventually have_zip_file_containing(:et1_claim_pdf_for, user: @claimants[0]), timeout: 30, sleep: 2
+  expect(atos_interface.download_from_any_zip_to_tempfile(:et1_claim_pdf_for, user: @claimants[0])).to match_et1_pdf_for(claim: @claim, claimants: @claimants, representative: @representatives.first, respondents: @respondents, employment: @employment)
 end
 
 Then(/^I can download the form and validate in TXT format$/) do

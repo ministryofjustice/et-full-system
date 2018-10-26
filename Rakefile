@@ -1,4 +1,5 @@
 require_relative 'test_common/configuration'
+require_relative 'test_common/atos_interface.rb'
 require 'aws-sdk-s3'
 desc 'Configures the buckets needed by the applications (local environment only)'
 task :setup_buckets do
@@ -16,4 +17,7 @@ task :setup_buckets do
   Aws::S3::Bucket.new(client: s3, name: 'etapibucket').tap do |bucket|
     bucket.create unless bucket.exists?
   end
+end
+task :delete_zip_files_from_server do
+  ::EtFullSystem::Test::AtosInterface.instance.delete_zip_files
 end

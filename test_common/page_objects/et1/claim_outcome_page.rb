@@ -6,9 +6,10 @@ module EtFullSystem
         section :main_content, '#content .main-section .main-content' do
 
           section :preferred_outcome, :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("Choose your preferred outcome(s)")]] }) do
+            include ::EtFullSystem::Test::I18n
             element :notes, 'textarea[name="claim_outcome[other_outcome]"]'
             def set(value)
-              check value
+              check factory_translate(value)
             end
           end
 

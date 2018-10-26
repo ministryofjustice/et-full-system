@@ -11,5 +11,7 @@ FactoryBot.define do
     pay_after_tax '2000 Monthly'
     employers_pension_scheme 'Yes'
     benefits 'Company car, private health care'
+    end_date nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in pdf code
+    paid_for_notice_period nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in pdf code
   end
 end

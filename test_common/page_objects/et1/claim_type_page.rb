@@ -5,8 +5,9 @@ module EtFullSystem
       class ClaimTypePage < BasePage
         section :main_content, '#content .main-section .main-content' do
           section :claim_type, :xpath, (XPath.generate { |x| x.attr(:class).contains('legend') && x.descendant(:div)[x.descendant(:h2)[x.string.n.is("What your claim is about")]] }) do
+            include ::EtFullSystem::Test::I18n
             def set(value)
-              check value
+              check factory_translate(value)
             end
           end
 
