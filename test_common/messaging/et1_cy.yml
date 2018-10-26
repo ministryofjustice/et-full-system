@@ -54,18 +54,18 @@ cy:
 
       respondent:
         no_acas_number_reason:
-          joint_claimant_has_acas_number: "Mae gan unigolyn arall yr wyf yn gwneud hawliad ag ef/hi rif tystysgrif cymodi cynnar Acas "
-          acas_has_no_jurisdiction: "Nid oes gan Acas y pŵer i gymodi ar rai agweddau o fy hawliad neu fy hawliad cyfan "
-          employer_contacted_acas: "Mae fy nghyflogwr eisoes wedi bod mewn cysylltiad ag Acas "
-          interim_relief: "Mae'r hawliad yn ymwneud â chwyn am ddiswyddo annheg yn unig sy'n cynnwys cais am gymorth interim. "
+          joint_claimant_has_acas_number: "Mae gan unigolyn arall yr wyf yn gwneud hawliad ag ef/ȃ hi rif tystysgrif cymodi cynnar Acas"
+          acas_has_no_jurisdiction: "Nid oes gan Acas y pŵer i gymodi ar rai agweddau o fy hawliad neu fy hawliad cyfan"
+          employer_contacted_acas: "Mae fy nghyflogwr eisoes wedi bod mewn cysylltiad ag Acas"
+          interim_relief: "Mae'r hawliad yn ymwneud â chwyn am ddiswyddo annheg yn unig sy'n cynnwys cais am gymorth interim."
 
       additional_respondents:
         collection:
           no_acas_number_reason:
-            joint_claimant_has_acas_number: "Mae gan unigolyn arall yr wyf yn gwneud hawliad ag ef/hi rif tystysgrif cymodi cynnar Acas "
-            acas_has_no_jurisdiction: "Nid oes gan Acas y pŵer i gymodi ar rai agweddau o fy hawliad neu fy hawliad cyfan "
-            employer_contacted_acas: "Mae fy nghyflogwr eisoes wedi bod mewn cysylltiad ag Acas "
-            interim_relief: "Mae'r hawliad yn ymwneud â chwyn am ddiswyddo annheg yn unig sy'n cynnwys cais am gymorth interim. "
+            joint_claimant_has_acas_number: "Mae gan unigolyn arall yr wyf yn gwneud hawliad ag ef/ȃ hi rif tystysgrif cymodi cynnar Acas"
+            acas_has_no_jurisdiction: "Nid oes gan Acas y pŵer i gymodi ar rai agweddau o fy hawliad neu fy hawliad cyfan"
+            employer_contacted_acas: "Mae fy nghyflogwr eisoes wedi bod mewn cysylltiad ag Acas"
+            interim_relief: "Mae'r hawliad yn ymwneud â chwyn am ddiswyddo annheg yn unig sy'n cynnwys cais am gymorth interim."
 
 
       employment:
@@ -204,24 +204,26 @@ cy:
         email_address: Cyfeiriad e-bost (dewisol)
 
       respondent:
-        name: Enw'r atebydd
-        address_telephone_number: Rhif ffôn
+        name: "Enw'r atebydd"
+        address_telephone_number: Rhif ffôn (dewisol)
         address_building: Rhif neu enw'r adeilad
         address_locality: Tref/dinas
         address_street: Stryd
         address_county: Sir
         address_post_code: Cod post
-        work_address_telephone_number: Rhif ffôn
-        work_address_building: Rhif neu enw'r adeilad
-        work_address_locality: Tref/dinas
-        work_address_street: Stryd
-        work_address_county: Sir
-        work_address_post_code: Cod post
-        worked_at_same_address: "Oeddech chi'n gweithio yn yr un cyfeiriad a roddwyd uchod?"
+        work_address_telephone_number: Rhif ffôn (dewisol)
+        work_address_building: "Rhif neu enw'r adeilad (dewisol)"
+        work_address_locality: Tref/dinas (dewisol)
+        work_address_street: Stryd (dewisol)
+        work_address_county: Sir (dewisol)
+        work_address_post_code: Cod post (dewisol)
+        worked_at_same_address: "Oeddech chi'n gweithio yn yr un cyfeiriad a roddwyd uchod? (dewisol)"
         acas_early_conciliation_certificate_number: Rhif Acas
-        no_acas_number: Nid oes gen i rif Acas
+        no_acas_number: "Nid oes gen i rif Acas"
         no_acas_number_reason: "Pam nad oes gennych rif Acas?"
         _destroy: 'Dileu''r atebydd yma '
+        "yes": 'Oeddwn'
+        "no": 'Nac oeddwn'
 
       additional_respondents:
         of_collection_type: "Ydych chi'n gwneud hawliad yn erbyn cyflogwr, unigolyn neu sefydliad arall?"
@@ -243,12 +245,10 @@ cy:
           acas_early_conciliation_certificate_number: Rhif Acas
           no_acas_number: Nid oes gen i rif Acas
           no_acas_number_reason:
-            joint_claimant_has_acas_number: "Mae gan unigolyn arall yr wyf yn gwneud hawliad ag ef/hi rif tystysgrif cymodi cynnar Acas "
-            acas_has_no_jurisdiction: "Nid oes gan Acas y pŵer i gymodi ar rai agweddau o fy hawliad neu fy hawliad cyfan "
-            employer_contacted_acas: "Mae fy nghyflogwr eisoes wedi bod mewn cysylltiad ag Acas "
-            interim_relief: "Mae'r hawliad yn ymwneud â chwyn am ddiswyddo annheg yn unig sy'n cynnwys cais am gymorth interim. "
-
-
+            joint_claimant_has_acas_number: "Mae gan unigolyn arall yr wyf yn gwneud hawliad ag ef/ȃ hi rif tystysgrif cymodi cynnar Acas"
+            acas_has_no_jurisdiction: "Nid oes gan Acas y pŵer i gymodi ar rai agweddau o fy hawliad neu fy hawliad cyfan"
+            employer_contacted_acas: "Mae fy nghyflogwr eisoes wedi bod mewn cysylltiad ag Acas"
+            interim_relief: "Mae'r hawliad yn ymwneud â chwyn am ddiswyddo annheg yn unig sy'n cynnwys cais am gymorth interim."
 
       employment:
         job_title: Teitl swydd
@@ -327,8 +327,7 @@ cy:
       representative:
         address_county: "Ee os Llundain, Llundain Fwyaf; os Manceinion, Manceinion Fwyaf"
         respondent:
-        acas_early_conciliation_certificate_number: |
-          Mae hwn ar y dystysgrif y mae Acas yn ei hanfon os nad yw cymodi yn llwyddiannus. Mae'r rhif yn cychwyn gyda ’R’ neu ’MU’.
+        acas_early_conciliation_certificate_number: "Mae hwn ar y dystysgrif y mae Acas yn ei hanfon os nad yw cymodi yn llwyddiannus. Mae'r rhif yn cychwyn gyda ’R’ neu ’MU’"
       employment:
         job_title: Y swydd yr oeddech yn ei gwneud adeg y broblem yn y gwaith
         start_date: "Er enghraifft, 22 04 2014 (os nad ydych yn gwybod yr union ddyddiad, rhowch eich amcangyfrif gorau)"
@@ -582,17 +581,18 @@ cy:
         summary: System bost breifat yw DX a ddefnyddir gan sefydliadau (ee cwmnïau cyfreithiol)
 
     respondent:
-      header: Manylion yr atebydd
+      header: "Manylion yr atebydd"
       no_acas_number_reason: "Pam nad oes gennych rif Acas?"
-      respondent_legend: Ynglŷn â’r atebydd
-      no_acas_number_note_one: "Noder: Mae’n bosib y bydd eich hawliad yn cael ei wrthod os byddwch yn hawlio esemptiad yn anghywir. Os oes gennych amheuaeth, cysylltwch ag ACAS. "
+      respondent_legend: "Ynglŷn â’r atebydd"
+      no_acas_number_note_one: "Noder: Mae’n bosib y bydd eich hawliad yn cael ei wrthod os byddwch yn hawlio esemptiad yn anghywir. Os oes gennych amheuaeth, cysylltwch ag ACAS"
       no_acas_number_note_two: "Noder: Mae hwn yn fath anghyffredin o hawliad. Nid yw'r ffaith eich bod yn gwneud hawliad am ddiswyddo annheg yn golygu eich bod o reidrwydd yn gwneud hawliad am gymorth interim. "
 
       acas_legend: Rhif tystysgrif cymodi cynnar Acas
       workaddress_legend: Eich cyfeiriad gwaith
-      # form_hint: "Manylion cyswllt yr unigolyn neu sefydliad yr ydych chi'n gwneud hawliad yn ei erbyn (a elwir yn 'atebydd'). Fe ddefnyddir y cyfeiriad ar gyfer anfon gohebiaeth am yr achos.
-      # work_address: "Rhowch fanylion eich cyfeiriad gwaith"
-      # acas_early_conciliation_certificate_number_html: "Dylai fod gan bron iawn bawb y rhif hwn cyn iddynt lenwi ffurflen hawlio. Gallwch ddod o hyd iddo ar eich tystysgrif Acas. Darllenwch fwy amacas_early_conciliation wasanaeth cymodi cynnar Acas".
+      form_hint: "Manylion cyswllt yr unigolyn neu sefydliad yr ydych chi'n gwneud hawliad yn ei erbyn (a elwir yn 'atebydd'). Fe ddefnyddir y cyfeiriad ar gyfer anfon gohebiaeth am yr achos."
+      work_address: "Rhowch fanylion eich cyfeiriad gwaith"
+      acas_early_conciliation_certificate_number_html: "Dylai fod gan bron iawn bawb y rhif hwn cyn iddynt lenwi ffurflen hawlio. Gallwch ddod o hyd iddo ar eich tystysgrif Acas. Darllenwch fwy am"
+      acas_early_conciliation_certificate_number_link: "wasanaeth cymodi cynnar Acas"
 
     additional_respondents:
       no_acas_number_reason: "Pam nad oes gennych rif Acas?"
@@ -840,7 +840,7 @@ cy:
             name:
               blank: Nodwch enw'r unigolyn neu sefydliad yr ydych yn gwneud yr hawliad yn ei erbyn
             no_acas_number_reason:
-              blank: "Dewiswch reswm o'r rhestr. "
+              blank: "Dewiswch reswm o'r rhestr."
               inclusion: ""
             acas_early_conciliation_certificate_number:
               blank: Nodwch eich rhif cymodi cynnar Acas. Dewiswch 'Nid oes gen i rif Acas' os nad oes gennych un

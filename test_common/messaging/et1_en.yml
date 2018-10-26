@@ -56,7 +56,7 @@ en:
           joint_claimant_has_acas_number: Another person I’m making the claim with has an Acas early conciliation certificate number
           acas_has_no_jurisdiction: Acas doesn’t have the power to conciliate on some or all of my claim
           employer_contacted_acas: My employer has already been in touch with Acas
-          interim_relief: The claim consists only of a complaint of unfair dismissal which contains an application for interim relief.
+          interim_relief: "The claim consists only of a complaint of unfair dismissal which contains an application for interim relief."
 
       additional_respondents:
         collection: :"simple_form.options.respondent"
@@ -181,24 +181,26 @@ en:
         email_address: Email address (optional)
 
       respondent:
-        name: Name of respondent
-        address_telephone_number: Phone number
+        name: "Name of respondent"
+        address_telephone_number: "Phone number (optional)"
         address_building: Building number or name
         address_locality: Town/city
         address_street: Street
         address_county: County
         address_post_code: Postcode
-        work_address_telephone_number: Phone number
-        work_address_building: Building number or name
-        work_address_locality: Town/city
-        work_address_street: Street
-        work_address_county: County
-        work_address_post_code: Postcode
-        worked_at_same_address: Did you work at the same address to the one given above?
+        work_address_telephone_number: Phone number (optional)
+        work_address_building: Building number or name (optional)
+        work_address_locality: Town/city (optional)
+        work_address_street: Street (optional)
+        work_address_county: County (optional)
+        work_address_post_code: Postcode (optional)
+        worked_at_same_address: "Did you work at the same address to the one given above? (optional)"
         acas_early_conciliation_certificate_number: Acas number
-        no_acas_number: I don’t have an Acas number
-        no_acas_number_reason: Why don’t you have an Acas number?
+        no_acas_number: "I don’t have an Acas number"
+        no_acas_number_reason: "Why don’t you have an Acas number?"
         _destroy: 'Remove this respondent'
+        "yes": 'Yes'
+        "no": 'No'
 
       additional_respondents:
         of_collection_type: Are you making a claim against another employer, person or organisation fam?
@@ -521,18 +523,16 @@ en:
 
     respondent:
       header: "Respondent’s details"
-      no_acas_number_reason: Why don’t you have an Acas number?
+      no_acas_number_reason: "Why don’t you have an Acas number?"
       respondent_legend: About the respondent
       no_acas_number_note_one: "Please note: Incorrectly claiming an exemption may lead to your claim being rejected. If in doubt, please contact ACAS."
       no_acas_number_note_two: "Please note: This is a rare type of claim. The fact that you are making a claim of unfair dismissal does not mean you are necessarily making a claim for interim relief."
-
       acas_legend: Acas early conciliation certificate number
       workaddress_legend: Your work address
-      form_hint: |
-        The contact details of the person or organisation you're making a claim against (known as the 'respondent'). The address will be used for correspondence about the case.
-      work_address: Give details of your work address.
-      acas_early_conciliation_certificate_number_html: |
-          Nearly everyone should have this number before they fill in a claim form. You can find it on your Acas certificate. Read more about the <a href="%{path}#acas_early_conciliation">Acas early conciliation service</a>.
+      form_hint: "The contact details of the person or organisation you're making a claim against (known as the 'respondent'). The address will be used for correspondence about the case."
+      work_address: "Give details of your work address."
+      acas_early_conciliation_certificate_number_html: "Nearly everyone should have this number before they fill in a claim form. You can find it on your Acas certificate. Read more about the "
+      acas_early_conciliation_certificate_number_link: "Acas early conciliation service"
 
     additional_respondents:
       no_acas_number_reason: Why don’t you have an Acas number?
@@ -781,7 +781,7 @@ en:
             name:
               blank: Provide the name of the person or organisation you are making the claim against
             no_acas_number_reason:
-              blank: Select a reason from the list.
+              blank: "Select a reason from the list."
               inclusion: :"activemodel.errors.models.respondent.attributes.no_acas_number_reason.blank"
             acas_early_conciliation_certificate_number:
               blank: Provide your Acas early conciliation number. Select ‘I don't have an Acas number’ if you don't have one

@@ -3,6 +3,19 @@ module EtFullSystem
   module Test
     module Et1
       class AdditionalRespondentsDetailsPage < BasePage
+        include RSpec::Matchers
+        #your feedback header
+        section :feedback_notice, '.feedback-notice' do
+          include ::EtFullSystem::Test::I18n
+          element :language, :link_named, 'switch.language'
+          element :welsh_link, :link_or_button, t('switch.language', locale: :en)
+          element :english_link, :link_or_button, t('switch.language', locale: :cy)
+          element :feedback_link, :paragraph, 'shared.feedback_link.feedback_statement_html'
+        end
+        #Additional respondents
+        section :main_header, '.main-header' do
+          element :page_header, :page_title, 'claims.additional_respondents.header', exact: false
+        end
         section :main_content, '#content .main-section .main-content' do
           section :more_than_one_employer, :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("Claims against more than one employer")]] }) do
             def set(value)
@@ -29,7 +42,7 @@ module EtFullSystem
           main_content.save_and_continue_button.click
         end
 
-        def set_for(respondents)
+        def set(respondents)
           return if respondents.nil? || respondents.empty?
           if respondents.length == 1
             main_content.more_than_one_employer.set('No')

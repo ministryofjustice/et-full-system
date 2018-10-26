@@ -18,7 +18,7 @@ end
 When /^I submit a completed ET1 form$/ do
   @claimants = FactoryBot.create_list(:first_person, 1, :person_data)
   @representative = FactoryBot.create(:representative)
-  @respondents = FactoryBot.create_list(:organisation_data, 1, :employer)
+  @respondents = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 
