@@ -835,7 +835,6 @@ en:
             address_post_code:
               blank: Enter the additional respondent's postcode
               invalid: Enter a valid UK postcode. If you live abroad, enter SW55 9QT
-
   claim_pdf_fields:
     your_details:
       title:
@@ -1128,12 +1127,3 @@ en:
     additional_information:
       additional_information:
         field_name: '15'
-
-
-
-
-
-
-
-
-
