@@ -13,19 +13,23 @@ Feature:
     When I submit a blank Additional respondent's details page
     Then I can verify blank error messages for Additional respondent's details page
 
-  Scenario: Invalid UK postcode error message
+  Scenario: Invalid UK postcode
     When entering invalid postcode for Additional respondent's details page
-    Then I can verify an invalid UK postcode is being used for Additional respondent's details page
+    Then I can verify an invalid UK postcode error message is displayed on Additional respondent's details page
 
-  Scenario: Answering no to claims against more than one employer
+  Scenario: Invalid Acas number
+    When entering invalid acas number for Additional respondent's details page
+    Then I can verify an invalid acas number error message is displayed on Additional respondent's details page
+
+  Scenario: Submit claim against one employer
     When I answer no to claims against more than one employer
-    Then I should be taken to Employment details page
+    Then I should on Employment details page
 
-  Scenario: Claims against 3 employers
-    When I submit claims against 3 employers
-    Then I should be taken to Employment details page
+  Scenario: Claim against three employers
+    When I submit claim against three employers
+    Then I should on Employment details page
 
-  Scenario: Remove respondent
-    When I submit claims against 3 employers
-    And remove one of them
-    Then I should only have 2 repondents
+  # Scenario: Remove respondent
+  #   When I submit claim against three employers
+  #   And remove one of additional respondent
+  #   Then I should only have two respondents to submit

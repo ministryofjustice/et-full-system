@@ -597,7 +597,7 @@ cy:
     additional_respondents:
       no_acas_number_reason: "Pam nad oes gennych rif Acas?"
       header: Atebwyr ychwanegol
-      additional_repsondents_legend: Hawliadau yn erbyn mwy nag un cyflogwr
+      additional_respondents_legend: Hawliadau yn erbyn mwy nag un cyflogwr
       additional_respondents_intro: "Ydych chi'n gwneud hawliad yn erbyn unigolyn neu sefydliad arall?"
       person: "Atebydd %{number}"
       add_fields: Ychwanegu atebydd arall

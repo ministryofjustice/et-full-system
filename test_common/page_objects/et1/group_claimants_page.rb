@@ -169,9 +169,6 @@ module EtFullSystem
           set_field s, :locality, claimant_data
           set_field s, :county, claimant_data
           set_field s, :post_code, claimant_data
-
-          # s = main_content.date_of_birth.send(:"about_claimant_#{claimant_number}")
-
         end
 
         def set_field(s, key, data)

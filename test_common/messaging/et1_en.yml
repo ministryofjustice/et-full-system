@@ -195,7 +195,7 @@ en:
         work_address_county: County (optional)
         work_address_post_code: Postcode (optional)
         worked_at_same_address: "Did you work at the same address to the one given above? (optional)"
-        acas_early_conciliation_certificate_number: Acas number
+        acas_early_conciliation_certificate_number: "Acas number"
         no_acas_number: "I don’t have an Acas number"
         no_acas_number_reason: "Why don’t you have an Acas number?"
         _destroy: 'Remove this respondent'
@@ -538,7 +538,7 @@ en:
       no_acas_number_reason: Why don’t you have an Acas number?
       header: Additional respondents
       additional_respondents_legend: Claims against more than one employer
-      additional_respondents_intro: Are you making a claim against another person or organisation?
+      additional_respondents_intro: "Are you making a claim against another person or organisation?"
       person: Respondent %{number}
       add_fields: Add another respondent
       remove_resource_link: Remove this respondent
@@ -785,8 +785,8 @@ en:
               blank: "Select a reason from the list."
               inclusion: :"activemodel.errors.models.respondent.attributes.no_acas_number_reason.blank"
             acas_early_conciliation_certificate_number:
-              blank: Provide your Acas early conciliation number. Select ‘I don't have an Acas number’ if you don't have one
-              invalid: You have provided an invalid Acas early conciliation number.
+              blank: "Provide your Acas early conciliation number. Select ‘I don't have an Acas number’ if you don't have one"
+              invalid: "You have provided an invalid Acas early conciliation number."
             address_country:
               blank: You must provide information for this field
             contact_preference:
@@ -820,22 +820,22 @@ en:
             name:
               blank: Provide the name of the additional person or organisation you are making the claim against
             acas_early_conciliation_certificate_number:
-              blank: Provide your Acas early conciliation number. Select ‘I don't have an Acas number’ if you don't have one
-              invalid: You have provided an invalid Acas early conciliation number.
+              blank: "Provide your Acas early conciliation number. Select ‘I don't have an Acas number’ if you don't have one"
+              invalid: "You have provided an invalid Acas early conciliation number."
             no_acas_number_reason:
               blank: Select a reason from the list
               inclusion: :"activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.no_acas_number_reason.blank"
             address_building:
-              blank: Enter the building name or number from the additional respondent’s address
+              blank: "Enter the building name or number from the additional respondent’s address"
             address_street:
-              blank: Enter the street from the additional respondent’s address
+              blank: "Enter the street from the additional respondent’s address"
             address_locality:
-              blank: Enter the town or city from the additional respondent’s address
+              blank: "Enter the town or city from the additional respondent’s address"
             address_county:
-              blank: Enter the county from the additional respondent’s address
+              blank: "Enter the county from the additional respondent’s address"
             address_post_code:
-              blank: Enter the additional respondent's postcode
-              invalid: Enter a valid UK postcode. If you live abroad, enter SW55 9QT
+              blank: "Enter the additional respondent's postcode"
+              invalid: "Enter a valid UK postcode. If you live abroad, enter SW55 9QT"
   claim_pdf_fields:
     your_details:
       title:

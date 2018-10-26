@@ -44,7 +44,7 @@ module EtFullSystem
       def et1_answer_respondents_questions
         et1_respondents_details_page.set(@respondents)
         et1_respondents_details_page.save_and_continue
-        et1_additional_respondents_details_page.set_for(@respondents)
+        et1_additional_respondents_details_page.set(@respondents)
         et1_additional_respondents_details_page.save_and_continue
       end
 
