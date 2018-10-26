@@ -36,7 +36,7 @@ module EtFullSystem
             end
           end
           #Add another respondent
-          element :add_another_respondent, 'claims.additional_respondents.add_fields'
+          element :add_another_respondent, :submit_text, 'claims.additional_respondents.add_fields'
           #Save and continue
           element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
         end
