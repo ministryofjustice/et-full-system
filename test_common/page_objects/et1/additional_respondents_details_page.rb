@@ -3,11 +3,47 @@ module EtFullSystem
   module Test
     module Et1
       class AdditionalRespondentsDetailsPage < BasePage
+        include RSpec::Matchers
+        #your feedback header
+        section :feedback_notice, '.feedback-notice' do
+          include ::EtFullSystem::Test::I18n
+          element :language, :link_named, 'switch.language'
+          element :welsh_link, :link_or_button, t('switch.language', locale: :en)
+          element :english_link, :link_or_button, t('switch.language', locale: :cy)
+          element :feedback_link, :paragraph, 'shared.feedback_link.feedback_statement_html'
+        end
+        #Additional respondents
+        section :main_header, '.main-header' do
+          element :page_header, :page_title, 'claims.additional_respondents.header', exact: false
+        end
         section :main_content, '#content .main-section .main-content' do
-          section :more_than_one_employer, :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("Claims against more than one employer")]] }) do
-            def set(value)
-              choose value, name: "additional_respondents[of_collection_type]"
+          #Claims against more than one employer
+          element :additional_respondents_header, :legend_header, 'claims.additional_respondents.additional_respondents_legend'
+          section :additional_respondents, '.respondent_worked_at_same_address' do
+            include ::EtFullSystem::Test::I18n
+            #Are you making a claim against another person or organisation?
+            element :additional_respondents_labelled, :form_labelled, 'claims.additional_respondents.additional_respondents_intro'
+            element :yes, :form_labelled, 'claims.additional_respondents.yes' do
+              element :selector, :css, 'input[type="radio"]'
+              delegate :set, to: :selector
             end
+            element :no, :form_labelled, 'claims.additional_respondents.no' do
+              element :selector, :css, 'input[type="radio"]'
+              delegate :set, to: :selector
+            end
+            def set(value)
+              choose(factory_translate(value), name: 'additional_respondents[of_collection_type]')
+            end
+          end
+          #Add another respondent
+          element :add_another_respondent, 'claims.additional_respondents.add_fields'
+          #Save and continue
+          element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
+        end
+
+        
+          section :more_than_one_employer, :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("Claims against more than one employer")]] }) do
+
             [2, 3, 4, 5].each_with_index do |number, idx|
               section :"respondent_#{number}", :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("Respondent #{idx + 2}")]] }) do |*_args|
                 element :name, "input[name=\"additional_respondents[collection_attributes][#{idx}][name]\"]"
@@ -29,7 +65,7 @@ module EtFullSystem
           main_content.save_and_continue_button.click
         end
 
-        def set_for(respondents)
+        def set(respondents)
           return if respondents.nil? || respondents.empty?
           if respondents.length == 1
             main_content.more_than_one_employer.set('No')
