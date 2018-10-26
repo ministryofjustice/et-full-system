@@ -13,25 +13,30 @@ en:
     redundancy-payment: "Redundancy payment"
     other-payments-you-are-owed: "Other payments you are owed"
     other-complaints: "Other complaints"
+  sexual_identity:
+    header: "How do you identify?"
+    sex: "What is your sex? (optional)"
+    gender: "What is your gender identity? (optional)"
+    gender_at_birth: "Is your gender identity different to the sex you were assumed to be at birth? (optional)"
+    your_sexual_identity: "Which of the options below best describes your sexual identity? (optional)"
   sex:
     male: Male
     female: Female
-    prefer-not-to-say: Prefer not to say
-  sexual_identity:
+    prefer_not_to_say: Prefer not to say
+  gender:
+    male: "Male (including female-to-male trans men)"
+    female: "Female (including male-to-female trans women)"
+    prefer_not_to_say: Prefer not to say
+  gender_at_birth:
+    yes_answer: 'Yes'
+    no_answer: 'No'
+    prefer_not_to_say: Prefer not to say
+  your_sexual_identity:
     heterosexual-straight: Heterosexual / Straight
     gay-lesbian: Gay / Lesbian
     bisexual: Bisexual
     other: Other
-    prefer-not-to-say: Prefer not to say
-  gender_at_birth:
-    bananas: 'Bananas'
-    yes_answer: 'Yes'
-    no_answer: 'No'
-    prefer-not-to-say: Prefer not to say
-  gender:
-    male-including-female-to-male-trans-men: Male (including female-to-male trans men)
-    female-including-male-to-female-trans-women: Female (including male-to-female trans women)
-    prefer-not-to-say: Prefer not to say
+    prefer_not_to_say: Prefer not to say
   relationship:
     single-that-is-never-married-and-never-registered-in-a-same-sex-civil-partnership: Single, that is, never married and never registered in a same-sex civil partnership
     married: Married
