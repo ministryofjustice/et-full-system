@@ -345,6 +345,11 @@ module EtFullSystem
           expect(main_content.respondent_2).to have_blank_acas_number
         end
 
+        def has_correct_invalid_date_error_message?
+          expect(main_content.employment_start_date).to have_invalid_employment_start_date_hint
+          expect(main_content.employment_end_date).to have_invalid_employment_end_date_hint
+        end
+
         def set_for(employment)
           data = employment.to_h
           if data.nil? || data == {}

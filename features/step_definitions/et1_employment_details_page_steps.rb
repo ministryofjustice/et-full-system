@@ -17,6 +17,15 @@ Then("I can verify that the copy text on Employment details page displayed corre
   expect(et1_employment_details_page.has_correct_translation?).to be true
 end
 
+Then("I submit without providing Employment details") do
+  et1_employment_details_page.main_content.your_employment_details.set(:"claims.employment.no")
+end
+
+Then("I should on About the claim page") do
+  et1_employment_details_page.save_and_continue
+  expect(et1_claim_type_page.main_header).to have_page_header
+end
+
 # When("I submit a blank Additional respondent's details page") do
 #   et1_additional_respondents_details_page.main_content.additional_respondents.set(:"claims.additional_respondents.yes")
 #   et1_additional_respondents_details_page.save_and_continue  
@@ -50,10 +59,7 @@ end
 #   et1_additional_respondents_details_page.main_content.additional_respondents.set(:"claims.additional_respondents.no")
 # end
 
-# Then("I should on Employment details page") do
-#   et1_additional_respondents_details_page.save_and_continue
-#   expect(et1_employment_details_page.main_header).to have_page_header
-# end
+
 
 # When("I submit claim against three employers") do
 #   @respondents = FactoryBot.create_list(:acas_number_reason, 3, :yes_acas)
