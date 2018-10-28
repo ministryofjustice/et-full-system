@@ -32,7 +32,7 @@ Then("I submit without answering work situation") do
 end
 
 Then("I should get an error that work situation must be selected") do
-  expect(et1_employment_details_page.has_correct_mandatory_option_for_current_work_situation?).to be true
+  expect(et1_employment_details_page.has_correct_error_message_for_current_work_situation?).to be true
 end
 
 When("I submit without answering Employment details") do
