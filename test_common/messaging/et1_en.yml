@@ -207,15 +207,30 @@ en:
         collection: :"simple_form.labels.respondent"
 
       employment:
-        job_title: Job title
-        gross_pay: Pay before tax
-        net_pay: Pay after tax
-        enrolled_in_pension_scheme: Are – or were – you a member of your employer’s pension scheme?
-        benefit_details: Do – or did – you have any benefits, like a company car?
+        job_title: "Job title (optional)"
+        gross_pay: "Pay before tax (optional)"
+        net_pay: "Pay after tax (optional)"
+        enrolled_in_pension_scheme: "Are – or were – you a member of your employer’s pension scheme? (optional)"
+        benefit_details: "Do – or did – you have any benefits, like a company car? (optional)"
         found_new_job: Have you got a new job?
-        notice_pay_period_count: For how many weeks or months did you get paid?
-        was_employed: Have you ever been employed by the person or organisation that you’re making this claim against?
+        notice_pay_period_count: For how many weeks or months did you get paid? (optional)
+        was_employed: "Have you ever been employed by the person or organisation that you’re making this claim against? (optional)"
         new_job_gross_pay: New job pay before tax
+        start_date:
+          day: "Day"
+          month: "Month"
+          year: "Year"
+        end_date:
+          day: "Day"
+          month: "Month"
+          year: "Year"
+        notice_period_end_date:
+          day: "Day"
+          month: "Month"
+          year: "Year"
+        average_hours_worked_per_week: "Average hours worked per week (optional)"
+        "yes": 'Yes'
+        "no": 'No'
 
       claim:
         is_unfair_dismissal: Unfair dismissal (including constructive dismissal)
@@ -275,13 +290,13 @@ en:
         acas_early_conciliation_certificate_number: "This is on the certificate that Acas sends if conciliation doesn’t work. The number starts with ’R’ or ’MU’"
       employment:
         job_title: The job you were doing at the time of the problem at work
-        start_date: For example, 22 04 2014 (if you don’t know the exact date then put your best estimate)
-        average_hours_worked_per_week: Don’t include overtime
-        gross_pay: This is your gross pay, before tax and other deductions. You can find it on your payslip. Don’t include any overtime payments
-        new_job_gross_pay: This is your gross pay, before tax and other deductions. You can find it on your payslip. Don’t include any overtime payments
+        start_date: "For example, 22 04 2014 (if you don’t know the exact date then put your best estimate)"
+        average_hours_worked_per_week: "Don’t include overtime"
+        gross_pay: "This is your gross pay, before tax and other deductions. You can find it on your payslip. Don’t include any overtime payments"
+        new_job_gross_pay: "This is your gross pay, before tax and other deductions. You can find it on your payslip. Don’t include any overtime payments"
         net_pay: This is your net or take-home pay, after tax and other deductions. You can find it on your payslip. Include overtime, commission and bonuses
-        benefit_details: Details of benefit(s)
-        end_date: For example, 22 04 2014 (if you don’t know the exact date then put your best estimate)
+        benefit_details: "Details of benefit(s)"
+        end_date: "For example, 22 04 2014 (if you don’t know the exact date then put your best estimate)"
         new_job_start_date: For example, 22 04 2014
         notice_period_end_date: The date your employment ends. For example, 22 04 2014
       claim:
@@ -560,6 +575,10 @@ en:
       employment_details_legend: Employment details
       pay_legend: Pay, pension and benefits
       new_job_legend: New Job
+      "yes": 'Yes'
+      "no": 'No'
+      "true": 'Yes'
+      "false": 'No'
 
     claim:
       header: Claim details
