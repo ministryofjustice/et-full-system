@@ -12,7 +12,7 @@ end
 
 Then("I can verify that the copy text on Employment details page displayed correctly") do
   et1_employment_details_page.main_content.your_employment_details.set(:"claims.employment.yes")
-  et1_employment_details_page.main_content.employment_current_situation.set(:"simple_form.options.employment.current_situation.still_employed")
+  et1_employment_details_page.main_content.employment_current_situation.set(:"simple_form.options.employment.current_situation.notice_period")
   et1_employment_details_page.main_content.period_of_notice.set(:"claims.employment.yes")
   expect(et1_employment_details_page.has_correct_translation?).to be true
 end
@@ -26,50 +26,34 @@ Then("I should on About the claim page") do
   expect(et1_claim_type_page.main_header).to have_page_header
 end
 
-# When("I submit a blank Additional respondent's details page") do
-#   et1_additional_respondents_details_page.main_content.additional_respondents.set(:"claims.additional_respondents.yes")
-#   et1_additional_respondents_details_page.save_and_continue  
-# end
+Then("I submit without answering work situation") do
+  et1_employment_details_page.main_content.your_employment_details.set(:"claims.employment.yes")
+  et1_employment_details_page.save_and_continue
+end
 
-# Then("I can verify blank error messages for Additional respondent's details page") do
-#   expect(et1_additional_respondents_details_page.has_correct_blank_validation?).to be true
-# end
+Then("I should get an error that work situation must be selected") do
+  expect(et1_employment_details_page.has_correct_mandatory_option_for_current_work_situation?).to be true
+end
 
-# When("entering invalid acas number for Additional respondent's details page") do
-#   et1_additional_respondents_details_page.main_content.additional_respondents.set(:"claims.additional_respondents.yes")
-#   et1_additional_respondents_details_page.main_content.respondent_2.acas_number.set('88234w')
-#   et1_additional_respondents_details_page.save_and_continue 
-# end
+When("I submit without answering Employment details") do
+  et1_employment_details_page.main_content.your_employment_details.set(:"claims.employment.yes")
+  et1_employment_details_page.main_content.employment_current_situation.set(:"simple_form.options.employment.current_situation.notice_period")
+end
 
-# Then("I can verify an invalid acas number error message is displayed on Additional respondent's details page") do
-#   expect(et1_additional_respondents_details_page.has_correct_invalid_acas_number?).to be true
-# end
+When("I submit an invalid start and end date") do
+  et1_employment_details_page.main_content.your_employment_details.set(:"claims.employment.yes")
+  et1_employment_details_page.main_content.employment_current_situation.set(:"simple_form.options.employment.current_situation.notice_period")
+  et1_employment_details_page.main_content.employment_start_date.set('0/0/0')
+  #TODO
+  # et1_employment_details_page.main_content.employment_end_date.set('0/0/0')
+  et1_employment_details_page.save_and_continue
+end
 
-# When("entering invalid postcode for Additional respondent's details page") do
-#   et1_additional_respondents_details_page.main_content.additional_respondents.set(:"claims.additional_respondents.yes")
-#   et1_additional_respondents_details_page.main_content.respondent_2.post_code.set('88234w')
-#   et1_additional_respondents_details_page.save_and_continue 
-# end
+Then("I should get an error message that the date provided are invalid") do
+  expect(et1_employment_details_page.has_correct_invalid_date_error_messages?).to be true
+end
 
-# Then("I can verify an invalid UK postcode error message is displayed on Additional respondent's details page") do
-#   expect(et1_additional_respondents_details_page.has_correct_invalid_postcode?).to be true
-# end
-
-# When("I answer no to claims against more than one employer") do
-#   et1_additional_respondents_details_page.main_content.additional_respondents.set(:"claims.additional_respondents.no")
-# end
-
-
-
-# When("I submit claim against three employers") do
-#   @respondents = FactoryBot.create_list(:acas_number_reason, 3, :yes_acas)
-#   et1_additional_respondents_details_page.set(@respondents)
-# end
-
-# Then("remove one of additional respondent") do
-#   et1_additional_respondents_details_page.remove_another_respondent
-# end
-
-# Then("I should only have two respondents to submit") do
-#   #Todo -
-# end
+When("I submit my weeks or months paid for a period notice") do
+  @employment = FactoryBot.create(:employment)
+  et1_employment_details_page.set_for(@employment)
+end

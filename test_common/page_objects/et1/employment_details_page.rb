@@ -42,6 +42,7 @@ module EtFullSystem
           #What is your current work situation in relation to the employer you're making a claim against?
           element :current_work_situation_labelled, :legend_header, 'claims.employment.current_situation', exact: false
           section :employment_current_situation, '.employment_current_situation' do
+            element :error_current_situation, :error, 'activemodel.errors.models.employment.attributes.current_situation.blank'
             include ::EtFullSystem::Test::I18n
             element :still_employed, :form_labelled, 'simple_form.options.employment.current_situation.still_employed' do
               element :selector, :css, 'input[type="radio"]'
@@ -62,28 +63,28 @@ module EtFullSystem
           #Employment details
           element :employment_details_header, :legend_header, 'claims.employment.situation_legend'
           #Job title (optional)
-          section :employment_job_title, :question_labelled, 'simple_form.labels.employment.job_title' do
+          section :employment_job_title, '.employment_job_title' do
+            element :job_title, :form_labelled, 'simple_form.labels.employment.job_title'
             #The job you were doing at the time of the problem at work
-            element :job_title, :paragraph, 'simple_form.hints.employment.job_title'
+            element :job_title_hint, :form_hint, 'simple_form.hints.employment.job_title'
             element :field, :css, 'input'
             delegate :set, to: :field
           end
           #Employment start date
           section :employment_start_date, :legend_header, 'claims.employment.start_date', exact: false do
-            element :error_employment_start_date, :error, 'activemodel.errors.models.employment.attributes.employment_start_date.too_young'
-            element :invalid_employment_start_date, :error, 'activemodel.errors.models.employment.attributes.employment_start_date.invalid'
+            element :invalid_employment_start_date, :error, 'activemodel.errors.models.employment.attributes.start_date.invalid'
             #For example, 22 04 2014 (if you don’t know the exact date then put your best estimate)
-            element :employment_start_date_hint, :paragraph, 'simple_form.hints.employment.start_date'
+            element :employment_start_date_hint, :form_hint, 'simple_form.hints.employment.start_date'
             section :day, :question_labelled, 'simple_form.labels.employment.start_date.day' do
-              element :field, :css, 'input'
+              element :field, :css, '#employment_start_date_day'
               delegate :set, to: :field
             end
             section :month, :question_labelled, 'simple_form.labels.employment.start_date.month' do
-              element :field, :css, 'input'
+              element :field, :css, '#employment_start_date_month'
               delegate :set, to: :field
             end
             section :year, :question_labelled, 'simple_form.labels.employment.start_date.year' do
-              element :field, :css, 'input'
+              element :field, :css, '#employment_start_date_year'
               delegate :set, to: :field
             end
             def set(value)
@@ -95,20 +96,19 @@ module EtFullSystem
           end
           #Employment end date
           section :employment_end_date, :legend_header, 'claims.employment.end_date', exact: false do
-            element :error_employment_end_date, :error, 'activemodel.errors.models.employment.attributes.employment_end_date.too_young'
-            element :invalid_employment_end_date, :error, 'activemodel.errors.models.employment.attributes.employment_end_date.invalid'
+            element :invalid_employment_end_date, :error, 'activemodel.errors.models.employment.attributes.end_date.invalid'
             #For example, 22 04 2014 (if you don’t know the exact date then put your best estimate)
-            element :employment_end_date_hint, :paragraph, 'simple_form.hints.employment.end_date'
+            element :employment_end_date_hint, :form_hint, 'simple_form.hints.employment.end_date', exact: false
             section :day, :question_labelled, 'simple_form.labels.employment.end_date.day' do
-              element :field, :css, 'input'
+              element :field, :css, '#employment_notice_period_end_date_day'
               delegate :set, to: :field
             end
             section :month, :question_labelled, 'simple_form.labels.employment.end_date.month' do
-              element :field, :css, 'input'
+              element :field, :css, '#employment_notice_period_end_date_month'
               delegate :set, to: :field
             end
             section :year, :question_labelled, 'simple_form.labels.employment.end_date.year' do
-              element :field, :css, 'input'
+              element :field, :css, '#employment_notice_period_end_date_year'
               delegate :set, to: :field
             end
             def set(value)
@@ -135,25 +135,28 @@ module EtFullSystem
             end
           end
           #For how many weeks or months did you get paid? (optional)
-          section :reveal_notice_pay_period, '#reveal_notice_pay_period' do
+          section :notice_period_value, '#reveal_notice_pay_period' do
             element :notice_pay_period_count, :form_labelled, 'simple_form.labels.employment.notice_pay_period_count'
-            section :slim_fieldset, '.slim-fieldset' do
-              include ::EtFullSystem::Test::I18n
-              element :field, :css, 'input'
+            section :notice_pay, '.inline-fields.slim-fieldset' do
+              element :field, :css, '#employment_notice_pay_period_count'
               delegate :set, to: :field
               section :employment_notice_pay_period_type, '.employment_notice_pay_period_type .options' do
+                include ::EtFullSystem::Test::I18n
                 element :weeks, :form_labelled, 'simple_form.options.employment.notice_pay_period_type.weeks' do
-                  element :selector, :css, 'input[type="radio"]'
+                  element :selector, :css, '#employment_notice_pay_period_type_weeks'
                   delegate :set, to: :selector
                 end
                 element :months, :form_labelled, 'simple_form.options.employment.notice_pay_period_type.months' do
-                  element :selector, :css, 'input[type="radio"]'
+                  element :selector, :css, '#employment_notice_pay_period_type_months'
                   delegate :set, to: :selector
                 end
                 def set(value)
-                  choose(factory_translate(value), name: 'employment[notice_pay_period_type]')
+                  choose(factory_translate(value), name: "employment[notice_pay_period_type]")
                 end
               end
+            end
+            def set(value)
+              notice_pay.set(value)
             end
           end
           #Average hours worked per week (optionl)
@@ -171,11 +174,11 @@ module EtFullSystem
             element :gross_pay, :form_labelled, 'simple_form.labels.employment.gross_pay'
             #This is your gross pay, before tax and other deductions. You can find it on your payslip. Don’t include any overtime payments
             element :gross_pay_hint, :form_hint, 'simple_form.hints.employment.gross_pay'
-            section :inline_fieldset, '.prefixed-field.inline-fields' do
-              include ::EtFullSystem::Test::I18n
+            section :gross_pay_count, '.prefixed-field.inline-fields' do
               element :field, :css, 'input'
               delegate :set, to: :field
               section :employment_gross_pay_period_type, '.employment_gross_pay_period_type .options' do
+                include ::EtFullSystem::Test::I18n
                 element :weekly, :form_labelled, 'simple_form.options.employment.gross_pay_period_type.weekly' do
                   element :selector, :css, 'input[type="radio"]'
                   delegate :set, to: :selector
@@ -185,9 +188,12 @@ module EtFullSystem
                   delegate :set, to: :selector
                 end
                 def set(value)
-                  choose(factory_translate(value), name: 'employment[gross_pay_period_type]')
+                  choose(factory_translate(value), name: "employment[gross_pay_period_type]")
                 end
               end
+            end
+            def set(value)
+              gross_pay_count.set(value)
             end
           end
           #Pay after tax (optional)
@@ -195,11 +201,11 @@ module EtFullSystem
             element :net_pay, :form_labelled, 'simple_form.labels.employment.net_pay'
             #This is your net or take-home pay, after tax and other deductions. You can find it on your payslip. Include overtime, commission and bonuses
             element :net_pay_hint, :form_hint, 'simple_form.hints.employment.net_pay'
-            section :inline_fieldset, '.prefixed-field.inline-fields' do
-              include ::EtFullSystem::Test::I18n
+            section :net_pay_count, '.prefixed-field.inline-fields' do
               element :field, :css, 'input'
               delegate :set, to: :field
               section :employment_net_pay_period_type, '.employment_net_pay_period_type .options' do
+                include ::EtFullSystem::Test::I18n
                 element :weekly, :form_labelled, 'simple_form.options.employment.net_pay_period_type.weekly' do
                   element :selector, :css, 'input[type="radio"]'
                   delegate :set, to: :selector
@@ -209,9 +215,12 @@ module EtFullSystem
                   delegate :set, to: :selector
                 end
                 def set(value)
-                  choose(factory_translate(value), name: 'employment[net_pay_period_type]')
+                  choose(factory_translate(value), name: "employment[net_pay_period_type]")
                 end
               end
+            end
+            def set(value)
+              net_pay_count.set(value)
             end
           end
           #Are – or were – you a member of your employer’s pension scheme? (optional)
@@ -237,7 +246,7 @@ module EtFullSystem
             element :benefit_details, :form_labelled, 'simple_form.labels.employment.benefit_details'
             #Details of benefit(s)
             element :benefit_details_hint, :form_hint, 'simple_form.hints.employment.benefit_details'
-            element :field, :css, 'input'
+            element :field, :css, 'textarea'
             delegate :set, to: :field
           end
 
@@ -277,8 +286,8 @@ module EtFullSystem
           #Employment details
           expect(main_content).to have_employment_details_header
           #Job title (optional)
-          expect(main_content).to have_employment_job_title
           expect(main_content.employment_job_title).to have_job_title
+          expect(main_content.employment_job_title).to have_job_title_hint
           #Employment start date
           expect(main_content).to have_employment_start_date
           expect(main_content.employment_start_date).to have_employment_start_date_hint
@@ -296,9 +305,9 @@ module EtFullSystem
           expect(main_content.period_of_notice).to have_yes
           expect(main_content.period_of_notice).to have_no
           #For how many weeks or months did you get paid? (optional)
-          expect(main_content.reveal_notice_pay_period).to have_notice_pay_period_count
-          expect(main_content.reveal_notice_pay_period.slim_fieldset.employment_notice_pay_period_type).to have_weeks
-          expect(main_content.reveal_notice_pay_period.slim_fieldset.employment_notice_pay_period_type).to have_months
+          expect(main_content.notice_period_value).to have_notice_pay_period_count
+          expect(main_content.notice_period_value.notice_pay.employment_notice_pay_period_type).to have_weeks
+          expect(main_content.notice_period_value.notice_pay.employment_notice_pay_period_type).to have_months
           #Average hours worked per week (optional)
           expect(main_content.employment_average_hours_worked_per_week).to have_average_hours_worked_per_week
           expect(main_content.employment_average_hours_worked_per_week).to have_overtime_hint
@@ -307,13 +316,13 @@ module EtFullSystem
           #Pay before tax (optionl)
           expect(main_content.employment_gross_pay).to have_gross_pay
           expect(main_content.employment_gross_pay).to have_gross_pay_hint
-          expect(main_content.employment_gross_pay.inline_fieldset.employment_gross_pay_period_type).to have_weekly
-          expect(main_content.employment_gross_pay.inline_fieldset.employment_gross_pay_period_type).to have_monthly
+          expect(main_content.employment_gross_pay.gross_pay_count.employment_gross_pay_period_type).to have_weekly
+          expect(main_content.employment_gross_pay.gross_pay_count.employment_gross_pay_period_type).to have_monthly
           #Pay after tax (optional)
           expect(main_content.employment_net_pay).to have_net_pay
           expect(main_content.employment_net_pay).to have_net_pay_hint
-          expect(main_content.employment_net_pay.inline_fieldset.employment_net_pay_period_type).to have_weekly
-          expect(main_content.employment_net_pay.inline_fieldset.employment_net_pay_period_type).to have_monthly
+          expect(main_content.employment_net_pay.net_pay_count.employment_net_pay_period_type).to have_weekly
+          expect(main_content.employment_net_pay.net_pay_count.employment_net_pay_period_type).to have_monthly
           #Are – or were – you a member of your employer’s pension scheme? (optional)
           expect(main_content.employment_enrolled_in_pension_scheme).to have_enrolled_in_pension_scheme
           expect(main_content.employment_enrolled_in_pension_scheme.pension_scheme).to have_yes
@@ -332,57 +341,46 @@ module EtFullSystem
           #TODO this has stopped working - why?
           # expect(support).to have_save_and_complete_later
         end
-
-        def has_correct_blank_validation?
+        
+        def has_correct_error_message_for_current_work_situation?
           expect(main_content.error_message).to have_error_summary
           expect(main_content.error_message).to have_default_message
-          expect(main_content.respondent_2).to have_blank_name
-          expect(main_content.respondent_2).to have_blank_building
-          expect(main_content.respondent_2).to have_blank_street
-          expect(main_content.respondent_2).to have_blank_locality
-          expect(main_content.respondent_2).to have_blank_county
-          expect(main_content.respondent_2).to have_blank_post_code
-          expect(main_content.respondent_2).to have_blank_acas_number
+          expect(main_content.employment_current_situation).to have_error_current_situation
         end
 
-        def has_correct_invalid_date_error_message?
-          expect(main_content.employment_start_date).to have_invalid_employment_start_date_hint
-          expect(main_content.employment_end_date).to have_invalid_employment_end_date_hint
+        def has_correct_invalid_date_error_messages?
+          expect(main_content.error_message).to have_error_summary
+          expect(main_content.error_message).to have_default_message
+          expect(main_content.employment_start_date).to have_invalid_employment_start_date
+          # expect(main_content.employment_notice_period_end_date).to have_invalid_employment_end_date
         end
 
         def set_for(employment)
           data = employment.to_h
           if data.nil? || data == {}
-            main_content.your_employment_details.set('No')
+            main_content.your_employment_details.set(:"claims.employment.no")
           else
-            main_content.your_employment_details do |s|
-              s.set 'Yes'
-              set_field s, :current_work_situation, data
-              s.employment_details do |s|
-                set_field s, :job_title, data
-                set_field s, :start_date, data
-                if data.key?(:notice_period)
-                  s.notice_period.set 'Yes'
-                  s.notice_period_value.set data[:notice_period]
-                else
-                  s.notice_period.set 'No'
-                end
-                set_field s, :average_weekly_hours, data
+            main_content.your_employment_details.set(:"claims.employment.yes")
+            main_content do |s|
+              s.employment_current_situation.set(data[:current_work_situation])
+              s.employment_job_title.set(data[:job_title])
+              s.employment_start_date.set(data[:start_date])
+              if data.key?(:notice_period)
+                s.period_of_notice.set(:"claims.employment.yes")
+                s.notice_period_value.set(data[:notice_period])
+                s.notice_period_value.notice_pay.employment_notice_pay_period_type.set(data[:notice_period_type])
+              else
+                s.period_of_notice.set(:"claims.employment.no")
               end
-              s.pay_pension_benefits do |s|
-                set_field s, :pay_before_tax, data
-                set_field s, :pay_after_tax, data
-                set_field s, :employers_pension_scheme, data
-                set_field s, :benefits, data
-              end
+              s.employment_average_hours_worked_per_week.set(data[:average_weekly_hours])
+              s.employment_gross_pay.set(data[:pay_before_tax])
+              s.employment_gross_pay.gross_pay_count.employment_gross_pay_period_type.set(data[:pay_before_tax_type])
+              s.employment_net_pay.set(data[:pay_after_tax])
+              s.employment_net_pay.net_pay_count.employment_net_pay_period_type.set(data[:pay_after_tax_typee])
+              s.employment_enrolled_in_pension_scheme.pension_scheme.set(data[:employers_pension_scheme])
+              s.employment_benefit_details.set(data[:benefits])
             end
           end
-        end
-
-        private
-
-        def set_field(s, key, data)
-          s.send(key).set(data[key]) if data.key?(key)
         end
       end
     end
