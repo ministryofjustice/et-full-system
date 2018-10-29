@@ -49,6 +49,12 @@ en:
     formerly-in-a-same-sex-civil-partnership-which-is-now-legally-dissolved: Formerly in a same-sex civil partnership which is now legally dissolved
     surviving-partner-from-a-same-sex-civil-partnership: Surviving partner from a same-sex civil partnership
     prefer_not_to_say: Prefer not to say
+  age_group_caring_responsibility:
+    header: What is your age group and caring responsibilities?
+    age_group: Which age group are you in? (optional)
+    caring_responsbilities:
+      label: Do you have any caring responsibilities? (optional)
+      hint: For example, children, elderly relatives or partners
   age_group:
     under-25: Under 25
     25-34: 25 - 34
@@ -56,11 +62,11 @@ en:
     45-54: 45 - 54
     55-64: 55 - 64
     65-over: 65 and over
-    prefer-not-to-say: Prefer not to say
+    prefer_not_to_say: Prefer not to say
   caring_responsibility:
     yes_answer: 'Yes'
     no_answer: 'No'
-    prefer-not-to-say: Prefer not to say
+    prefer_not_to_say: Prefer not to say
   religion:
     no-religion: No religion
     christian-including-church-of-england-catholic-protestant-and-all-other-christian-denominations: Christian (including Church of England, Catholic, Protestant and all other Christian denominations)
