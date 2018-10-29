@@ -68,6 +68,7 @@ en:
     no_answer: 'No'
     prefer_not_to_say: Prefer not to say
   religion:
+    header: What is your religion?
     no-religion: No religion
     christian-including-church-of-england-catholic-protestant-and-all-other-christian-denominations: Christian (including Church of England, Catholic, Protestant and all other Christian denominations)
     buddhist: Buddhist
@@ -75,8 +76,10 @@ en:
     jewish: Jewish
     muslim: Muslim
     sikh: Sikh
-    prefer-not-to-say: Prefer not to say
+    prefer_not_to_say: Prefer not to say
     any-other-religion: Any other religion
+    describe_religion: Please describe
+
   ethnicity:
     white: White
     mixed-multiple-ethnic-groups: Mixed / multiple ethnic groups
