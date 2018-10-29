@@ -15,49 +15,25 @@ end
 Then("I can verify that the copy text on About the claim page displayed correctly") do
   et1_claim_type_page.main_content.unfair_dismissal.what_is_this.click
   et1_claim_type_page.main_content.protective_award.what_is_this.click
+  et1_claim_type_page.main_content.other_type_of_claim.other_type_of_claim.click
+  et1_claim_type_page.main_content.whistleblowing_claim.set(:"claims.claim_type.yes")
   expect(et1_claim_type_page.has_correct_translation?).to be true
 end
 
-Then("I can verify that the copy text on Employment details page displayed correctly") do
-  
+Then("I select all claim types") do
+  claim = FactoryBot.create(:claim)
+  et1_claim_type_page.set(claim)
 end
 
-# Then("I submit without providing Employment details") do
-#   et1_employment_details_page.main_content.your_employment_details.set(:"claims.employment.no")
-# end
+Then("I should be on Claim details page") do
+  et1_claim_type_page.save_and_continue
+  expect(et1_claim_details_page.main_header).to have_page_header
+end
 
-# Then("I should on About the claim page") do
-#   et1_employment_details_page.save_and_continue
-#   expect(et1_claim_type_page.main_header).to have_page_header
-# end
+Then("I submit without selecting a claim type") do
+  et1_claim_type_page.save_and_continue
+end
 
-# Then("I submit without answering work situation") do
-#   et1_employment_details_page.main_content.your_employment_details.set(:"claims.employment.yes")
-#   et1_employment_details_page.save_and_continue
-# end
-
-# Then("I should get an error that work situation must be selected") do
-#   expect(et1_employment_details_page.has_correct_error_message_for_current_work_situation?).to be true
-# end
-
-# When("I submit without answering Employment details") do
-#   et1_employment_details_page.main_content.your_employment_details.set(:"claims.employment.yes")
-#   et1_employment_details_page.main_content.employment_current_situation.set(:"simple_form.options.employment.current_situation.notice_period")
-# end
-
-# When("I submit an invalid start and end date") do
-#   et1_employment_details_page.main_content.your_employment_details.set(:"claims.employment.yes")
-#   et1_employment_details_page.main_content.employment_current_situation.set(:"simple_form.options.employment.current_situation.notice_period")
-#   et1_employment_details_page.main_content.employment_start_date.set('0/0/0')
-#   #TODO
-#   # et1_employment_details_page.main_content.employment_end_date.set('0/0/0')
-#   et1_employment_details_page.save_and_continue
-# end
-
-# Then("I should get an error message that the date provided are invalid") do
-#   expect(et1_employment_details_page.has_correct_invalid_date_error_messages?).to be true
-# end
-
-# When("I submit my weeks or months paid for a period notice") do
-#   
-# end
+Then("I an error message displaying claim types must be selected") do
+  expect(et1_claim_type_page.has_missing_claim_type_error_message?).to be true
+end
