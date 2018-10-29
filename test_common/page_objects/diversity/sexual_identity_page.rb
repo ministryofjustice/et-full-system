@@ -21,7 +21,7 @@ module EtFullSystem
               element :field, 'input'
 
               delegate :set, to: :field
-              end
+            end
 
             section :female, :form_labelled, 'sex.female' do
               element :field, 'input'
