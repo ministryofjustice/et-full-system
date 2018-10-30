@@ -46,7 +46,7 @@ Then("I can very that the copy texts correctly dispayed for Upload user details 
   expect(et1_group_claimants_upload_page.has_correct_translation_for_group_claimants?).to be true
 end
 
-When("I submit no to uploaded group claimant") do
+When("I submit no to upload group claimant") do
   @claimants = FactoryBot.create_list(:claimant, 1, :group_claims)
   et1_group_claimants_page.set(@claimants)
   et1_group_claimants_upload_page.save_and_continue

@@ -25,8 +25,8 @@ Feature:
     When there are group claimants
     Then I can very that the copy texts correctly dispayed for Upload user details in separate spreadsheet
 
-  Scenario: No to uploaded group claimant
-    When I submit no to uploaded group claimant
+  Scenario: No to upload group claimant
+    When I submit no to upload group claimant
     Then I should be on the Respresentative's details page
 
   Scenario: Manually enter claimant details

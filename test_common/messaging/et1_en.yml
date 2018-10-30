@@ -242,7 +242,7 @@ en:
         claim_details: This is your opportunity to tell us about your problem at work, so that the tribunal and employer understand your claim. You don’t have to provide evidence at this stage. How do I write a claim statement?
         desired_outcomes: What do you want if your claim is successful?
         other_outcome: What compensation or other outcome(s) do you want?
-        other_known_claimants: Do you know of any other claimants (not already listed) making similar claims against the same employer?
+        other_known_claimants: "Do you know of any other claimants (not already listed) making similar claims against the same employer? (optional)"
         other_known_claimant_names: You can add the names of other people here.
         is_whistleblowing: Are you reporting suspected wrongdoing at work?
         send_claim_to_whistleblowing_entity: Do you want us to send a copy of your claim to the relevant person or body that deals with whistleblowing?
@@ -258,9 +258,9 @@ en:
         is_whistleblowing: Are you reporting suspected wrongdoing at work?
         send_claim_to_whistleblowing_entity: "Do you want us to send a copy of your claim to the relevant person or body that deals with whistleblowing?"
       claim_details:
-        other_known_claimants: Do you know of any other claimants (not already listed) making similar claims against the same employer?
-        other_known_claimant_names: You can add the names of other people here.
-        claim_details_rtf: The document needs to be in Rich Text Format(RTF)
+        other_known_claimants: "Do you know of any other claimants (not already listed) making similar claims against the same employer? (optional)"
+        other_known_claimant_names: "You can add the names of other people here. (optional)"
+        claim_details_rtf: "The document needs to be in Rich Text Format(RTF) (optional)"
       claim_outcome:
         desired_outcomes: What do you want if your claim is successful?
         other_outcome: What compensation or other outcome do you want?
@@ -594,13 +594,10 @@ en:
       header: Claim details
       claim_details: Describe your claim
       claim_details_upload: Or upload it as a separate document
-      claim_details_html: |
-        Write your claim statement below.
-        Include the background, dates and people involved.
-        <a href="%{path}#writing_your_claim_statement">More about writing your claim statement</a>.
-      claim_details_hint_html: Limit is 2500 characters.
-      remove_claim_details_rtf: |
-        Remove previously uploaded document: %{file}
+      claim_details_html: "Write your claim statement below. Include the background, dates and people involved."
+      claim_details_hint: More about writing your claim statement
+      claim_details_hint_html: "Limit is 2500 characters. (2500 characters remaining)"
+      remove_claim_details_rtf: "Remove previously uploaded document: %{file}"
       similar_claims: Similar claims
 
     claim_outcome:
@@ -709,7 +706,7 @@ en:
         claim_details:
           attributes:
             claim_details:
-              blank: You must enter details of your claim here. If you want to upload your claim statement in a separate document, type ‘see attached’ in the box
+              blank: "You must enter details of your claim here. If you want to upload your claim statement in a separate document, type ‘see attached’ in the box"
             other_known_claimant_names:
               blank: List the names of other people who are making a similar claim
         claim_outcome:

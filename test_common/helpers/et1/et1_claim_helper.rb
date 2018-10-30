@@ -49,12 +49,12 @@ module EtFullSystem
       end
 
       def et1_answer_employment_details_questions
-        et1_employment_details_page.set_for(@employment)
+        et1_employment_details_page.set(@employment)
         et1_employment_details_page.save_and_continue
       end
 
       def et1_answer_claim_type_questions
-        et1_claim_type_page.set_for(@claim)
+        et1_claim_type_page.set(@claim)
         et1_claim_type_page.save_and_continue
       end
 

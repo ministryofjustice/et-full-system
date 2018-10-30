@@ -355,7 +355,7 @@ module EtFullSystem
           # expect(main_content.employment_notice_period_end_date).to have_invalid_employment_end_date
         end
 
-        def set_for(employment)
+        def set(employment)
           data = employment.to_h
           if data.nil? || data == {}
             main_content.your_employment_details.set(:"claims.employment.no")

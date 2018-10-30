@@ -177,14 +177,14 @@ module EtFullSystem
 
           #Save and continue
           element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
-          #Support links
-          section :support, 'aside[role="complementary"]' do
-            element :suport_header, :support_header, 'shared.aside.gethelp_header'
-            element :guide, :link_named, 'shared.aside.read_guide'
-            element :contact_use, :link_named, 'shared.aside.contact_us'
-            element :your_claim, :support_header, 'shared.aside.actions_header'
-            element :save_and_complete_later, :button, 'shared.mobile_nav.save_and_complete'
-          end
+        end
+        #Support links
+        section :support, 'aside[role="complementary"]' do
+          element :suport_header, :support_header, 'shared.aside.gethelp_header'
+          element :guide, :link_named, 'shared.aside.read_guide'
+          element :contact_use, :link_named, 'shared.aside.contact_us'
+          element :your_claim, :support_header, 'shared.aside.actions_header'
+          element :save_and_complete_later, :button, 'shared.mobile_nav.save_and_complete'
         end
 
         def has_correct_translation?
@@ -238,6 +238,16 @@ module EtFullSystem
           expect(main_content.send_to_relevant_person).to have_whistleblowing_entity_header
           expect(main_content.send_to_relevant_person).to have_yes
           expect(main_content.send_to_relevant_person).to have_no
+          #Save and continue
+          expect(main_content).to have_save_and_continue_button
+          #Support
+          expect(support).to have_suport_header
+          expect(support).to have_guide
+          expect(support).to have_contact_use
+          #Save your claim later
+          expect(support).to have_your_claim
+          #TODO this has stopped working - why?
+          # expect(support).to have_save_and_complete_later
         end
 
         def has_missing_claim_type_error_message?

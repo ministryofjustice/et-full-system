@@ -55,5 +55,5 @@ end
 
 When("I submit my weeks or months paid for a period notice") do
   @employment = FactoryBot.create(:employment)
-  et1_employment_details_page.set_for(@employment)
+  et1_employment_details_page.set(@employment)
 end

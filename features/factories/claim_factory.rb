@@ -20,7 +20,7 @@ FactoryBot.define do
     whistleblowing_claim :"claims.claim_type.yes"
     send_to_relevant_person :"simple_form.yes"
     description 'Full text version of claim'
-    other_claimants 'Yes'
+    other_claimants :"claims.claim_type.yes"
     other_claimant_names 'Similar Claim1, Similar Claim2'
     preferred_outcome 'Compensation'
     preferred_outcome_notes 'I would like 50,000 GBP due to the stress this caused me'
