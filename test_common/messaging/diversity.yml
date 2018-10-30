@@ -124,6 +124,20 @@ en:
     yes_answer: 'Yes'
     no_answer: 'No'
     prefer_not_to_say: Prefer not to say
-
-
-
+  submission:
+    header: Check your answers
+    change_link: Change
+    claim_type: What is the type of your claim?
+    sex: What is your sex?
+    gender: What is your gender identity?
+    gender_at_birth: Is your gender identity different to the sex you were assumed to be at birth?
+    sexual_identity: Which of the options below best describes your sexual identity?
+    relationship: What is your relationship status?
+    age: Which age group are you in?
+    care: Do you have any caring responsibilities?
+    religion: What is your religion?
+    ethnicity: What is your ethnic group?
+    ethnicity_type: What is your ethnic type?
+    health:
+      "Do you have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more?"
+    pregnancy: Were you pregnant when you were dismissed?
