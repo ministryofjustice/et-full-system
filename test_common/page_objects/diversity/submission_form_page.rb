@@ -5,18 +5,14 @@ module EtFullSystem
       class SubmissionFormPage < BasePage
         include RSpec::Matchers
         set_url "#{::EtFullSystem::Test::Configuration.diversity_url}/review"
-
         section :feedback_notice, '.feedback-notice' do
           include ::EtFullSystem::Test::I18n
           element :language, :link_named, 'switch.language'
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
-
         section :main_content, '.container' do
-
           element :header, :main_header, 'submission.header'
-
           section :claim_type_row, :table_row_with_th_labelled, 'submission.claim_type' do
             element :answer, :return_diversity_answer
             element :link, :link_named, 'submission.change_link'
@@ -78,9 +74,7 @@ module EtFullSystem
 
         def has_correct_translation?
           expect(feedback_notice).to have_language
-
           expect(main_content).to have_header
-
           expect(main_content.claim_type_row).to have_link
           expect(main_content.sex_row).to have_link
           expect(main_content.gender_row).to have_link
