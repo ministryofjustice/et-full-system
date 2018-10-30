@@ -22,7 +22,10 @@ FactoryBot.define do
     description 'Full text version of claim'
     other_claimants :"claims.claim_type.yes"
     other_claimant_names 'Similar Claim1, Similar Claim2'
-    preferred_outcome 'Compensation'
+    preferred_outcome [:"simple_form.options.claim_outcome.desired_outcomes.compensation_only",
+      :"simple_form.options.claim_outcome.desired_outcomes.tribunal_recommendation",
+      :"simple_form.options.claim_outcome.desired_outcomes.reinstated_employment_and_compensation",
+      :"simple_form.options.claim_outcome.desired_outcomes.new_employment_and_compensation"]
     preferred_outcome_notes 'I would like 50,000 GBP due to the stress this caused me'
     other_important_details 'Here are some very important details that need to be considered'
   end
