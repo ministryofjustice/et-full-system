@@ -4,6 +4,7 @@ module EtFullSystem
     module Diversity
       class HealthPage < BasePage
         include RSpec::Matchers
+        set_url "#{::EtFullSystem::Test::Configuration.diversity_url}/disability"
 
         section :feedback_notice, '.feedback-notice' do
           include ::EtFullSystem::Test::I18n

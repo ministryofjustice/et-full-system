@@ -4,6 +4,8 @@ module EtFullSystem
     module Diversity
       class ReligionPage < BasePage
         include RSpec::Matchers
+        set_url "#{::EtFullSystem::Test::Configuration.diversity_url}/religion"
+
 
         section :feedback_notice, '.feedback-notice' do
           include ::EtFullSystem::Test::I18n
