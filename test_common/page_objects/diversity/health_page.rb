@@ -27,7 +27,7 @@ module EtFullSystem
             element :field, 'input'
             delegate :set, to: :field
           end
-          element :save_and_continue_button, 'input[value="Save and continue"]'
+          element :save_and_continue_button, :diversity_input_button_named, 'health.button_text'
         end
 
         def save_and_continue

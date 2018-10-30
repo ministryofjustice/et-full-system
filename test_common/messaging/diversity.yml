@@ -13,12 +13,14 @@ en:
     redundancy-payment: "Redundancy payment"
     other-payments-you-are-owed: "Other payments you are owed"
     other-complaints: "Other complaints"
+    button_text: Save and continue
   sexual_identity:
     header: "How do you identify?"
     sex: "What is your sex? (optional)"
     gender: "What is your gender identity? (optional)"
     gender_at_birth: "Is your gender identity different to the sex you were assumed to be at birth? (optional)"
     your_sexual_identity: "Which of the options below best describes your sexual identity? (optional)"
+    button_text: Save and continue
   sex:
     male: Male
     female: Female
@@ -49,9 +51,11 @@ en:
     formerly-in-a-same-sex-civil-partnership-which-is-now-legally-dissolved: Formerly in a same-sex civil partnership which is now legally dissolved
     surviving-partner-from-a-same-sex-civil-partnership: Surviving partner from a same-sex civil partnership
     prefer_not_to_say: Prefer not to say
+    button_text: Save and continue
   age_group_caring_responsibility:
     header: What is your age group and caring responsibilities?
     age_group: Which age group are you in? (optional)
+    button_text: Save and continue
     caring_responsbilities:
       label: Do you have any caring responsibilities? (optional)
       hint: For example, children, elderly relatives or partners
@@ -79,7 +83,7 @@ en:
     prefer_not_to_say: Prefer not to say
     any-other-religion: Any other religion
     describe_religion: Please describe
-
+    button_text: Save and continue
   ethnicity:
     header: What is your ethnic group?
     white: White
@@ -88,6 +92,7 @@ en:
     black-african-caribbean-black-british: Black / African / Caribbean / Black British
     other-ethnic-group: Other ethnic group
     prefer_not_to_say: Prefer not to say
+    button_text: Save and continue
   ethnicity_subgroup:
     label: What is your ethnic type? (optional)
     english-welsh-scottish-northern-irish-british: English / Welsh / Scottish / Northern Irish / British
@@ -111,19 +116,21 @@ en:
     any-other-ethnic-group: Any other ethnic group
   health:
     header:
-      "Do you have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more?"
+                   "Do you have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more?"
     definition:
-      "The Equality Act 2010 defines a disabled person as
+                   "The Equality Act 2010 defines a disabled person as
       'someone who has a physical or mental impairment and the impairment has a substantial and long-term adverse effect on his or her ability to carry out normal day-to-day activities'."
     example: Conditions covered may include, for example, severe depression, dyslexia, epilepsy and arthritis.
     yes_answer: 'Yes'
     no_answer: 'No'
     prefer_not_to_say: Prefer not to say
+    button_text: Save and continue
   pregnancy:
     header: Were you pregnant when you were dismissed?
     yes_answer: 'Yes'
     no_answer: 'No'
     prefer_not_to_say: Prefer not to say
+    button_text: Save and continue
   submission:
     header: Check your answers
     change_link: Change
@@ -139,8 +146,9 @@ en:
     ethnicity: What is your ethnic group?
     ethnicity_type: What is your ethnic type?
     health:
-      "Do you have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more?"
+                   "Do you have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more?"
     pregnancy: Were you pregnant when you were dismissed?
+    submit_form: Submit Form
   confirmation:
     header: Thank you
     content: Thank you for completing this diversity monitoring questionnaire.

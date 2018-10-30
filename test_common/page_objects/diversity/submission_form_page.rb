@@ -65,7 +65,7 @@ module EtFullSystem
             element :answer, :return_diversity_answer
             element :link, :link_named, 'submission.change_link'
           end
-          element :submit_form, 'input[value="Submit Form"]'
+          element :submit_form, :diversity_input_button_named, 'submission.submit_form'
         end
 
         def submit_form

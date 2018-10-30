@@ -144,7 +144,7 @@ module EtFullSystem
               delegate :set, to: :field
             end
           end
-          element :save_and_continue_button, 'input[value="Save and continue"]'
+          element :save_and_continue_button, :diversity_input_button_named, 'ethnicity.button_text'
         end
 
         def save_and_continue
