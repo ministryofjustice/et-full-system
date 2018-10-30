@@ -6,7 +6,7 @@ Feature:
   So that I can use my preferred language
 
   Background: Disability page
-    Given a claimant is on the Disability page
+    Given a claimant is on the Pregnancy page
 
   Scenario: Verify page copy
-    Then Disability page copy texts are displayed in the correct language
+    Then Pregnancy page copy texts are displayed in the correct language
