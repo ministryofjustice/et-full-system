@@ -59,12 +59,12 @@ module EtFullSystem
       end
 
       def et1_answer_claim_details_questions
-        et1_claim_details_page.set_for(@claim)
+        et1_claim_details_page.set(@claim)
         et1_claim_details_page.save_and_continue
       end
 
       def et1_answer_claim_outcome_questions
-        et1_claim_outcome_page.set_for(@claim)
+        et1_claim_outcome_page.set(@claim)
         et1_claim_outcome_page.save_and_continue
       end
 
