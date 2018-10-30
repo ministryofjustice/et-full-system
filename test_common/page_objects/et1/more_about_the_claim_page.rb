@@ -40,7 +40,7 @@ module EtFullSystem
           main_content.save_and_continue_button.click
         end
 
-        def set_for(claim)
+        def set(claim)
           data = claim.to_h
           return if data.nil?
           if data.key?(:other_important_details)

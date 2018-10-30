@@ -22,7 +22,7 @@ Given(/^2 employees making a claim$/) do
 end
 
 Given(/^7 employees making a claim by uploading CSV file$/) do
-  @claimants = FactoryBot.create_list(:claimant, 1, :person_data)
+  @claimants = FactoryBot.create_list(:claimant, 1, :group_claims)
   @representatives = FactoryBot.create_list(:representative, 1, :et3_information)
   @respondents = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment)
