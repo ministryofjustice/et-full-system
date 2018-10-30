@@ -141,3 +141,7 @@ en:
     health:
       "Do you have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more?"
     pregnancy: Were you pregnant when you were dismissed?
+  confirmation:
+    header: Thank you
+    content: Thank you for completing this diversity monitoring questionnaire.
+    button_text: Return to GOV.UK
