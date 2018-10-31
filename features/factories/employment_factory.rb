@@ -14,7 +14,13 @@ FactoryBot.define do
     pay_after_tax_type :"simple_form.options.employment.net_pay_period_type.monthly"
     employers_pension_scheme :"claims.employment.true"
     benefits 'Company car, private health care'
-    end_date nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in pdf code
+    end_date nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in pdf code and submission page code
     paid_for_notice_period nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in pdf code
+    new_job nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in submission page code
+    new_job_gross_pay nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in submission page code
+    new_job_gross_pay_type nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in submission page code
+    notice_pay nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in submission page code
+    notice_pay_type nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in submission page code
+    notice_period_end_date nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in submission page code
   end
 end

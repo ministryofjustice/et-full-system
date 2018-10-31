@@ -376,7 +376,7 @@ module EtFullSystem
               s.employment_gross_pay.set(data[:pay_before_tax])
               s.employment_gross_pay.gross_pay_count.employment_gross_pay_period_type.set(data[:pay_before_tax_type])
               s.employment_net_pay.set(data[:pay_after_tax])
-              s.employment_net_pay.net_pay_count.employment_net_pay_period_type.set(data[:pay_after_tax_typee])
+              s.employment_net_pay.net_pay_count.employment_net_pay_period_type.set(data[:pay_after_tax_type])
               s.employment_enrolled_in_pension_scheme.pension_scheme.set(data[:employers_pension_scheme])
               s.employment_benefit_details.set(data[:benefits])
             end

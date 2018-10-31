@@ -32,6 +32,11 @@ module EtFullSystem
         result.is_a?(::I18n::MissingTranslation) ? raise(result) : result
       end
 
+      # Localizes certain objects, such as dates and numbers to local formatting.
+      def localize(object, locale: current_locale, format: :default, **options)
+        backend.localize(locale, object, format, options)
+      end
+
       # Provides the current_locale which is the default for the #translate method
       # The current locale is determined from the special environment variable
       # 'TEST_LOCALE' - which defaults to :en
@@ -42,6 +47,7 @@ module EtFullSystem
       end
 
       alias t translate
+      alias l localize
 
       private
 
@@ -59,6 +65,10 @@ module EtFullSystem
 
       def t(*args)
         ::EtFullSystem::Test::Messaging.instance.t(*args)
+      end
+
+      def localize(*args)
+        ::EtFullSystem::Test::Messaging.instance.localize(*args)
       end
 
       def factory_translate(value)

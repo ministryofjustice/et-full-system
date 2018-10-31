@@ -142,7 +142,7 @@ module EtFullSystem
           group_claims_csv = data[0].dig(:group_claims_csv)
           if data.length > 1 || group_claims_csv.present?
             main_content.additional_claimants_of_collection_type.yes.click
-            data.each.with_index do |claimant, idx|
+            data.drop(1).each.with_index do |claimant, idx|
               add_more_claimants unless idx == 0
               populate_group_claim_section(claimant.to_h, idx + 2)
             end

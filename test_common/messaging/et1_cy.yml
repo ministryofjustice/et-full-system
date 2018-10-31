@@ -1183,3 +1183,169 @@ cy:
     additional_information:
       additional_information:
         field_name: '15'
+  review:
+    submit_claim: "Cyflwyno'r hawliad"
+    common:
+      not_entered: 'Heb ei roi'
+      "yes": "Oes"
+      "no": "Nac oes"
+    group_claim:
+      title: "Hawliad grŵp"
+      claimant_header: 'Hawlydd '
+      questions:
+        group_claim:
+          label: 'Hawliad grŵp'
+          options:
+            "yes": "Oes"
+            "no": "Nac oes"
+        csv_file_name: 'Enw Ffeil CSV'
+        number_of_additional_claimants: 'Nifer o hawlwyr ychwanegol'
+      claimant:
+        person_title:
+          mr: 'Mr'
+          mrs: 'Mrs'
+          miss: 'Miss'
+          ms: 'Ms'
+        questions:
+          full_name: 'Enw llawn'
+          date_of_birth: 'Dyddiad geni'
+          address: 'Cyfeiriad'
+    additional_information:
+      title: 'Gwybodaeth ychwanegol'
+      questions:
+        important_details: 'Manylion pwysig'
+    claim_details:
+      title: 'Manylion yr hawliad'
+      questions:
+        attached_documents:
+          title: 'Dogfennau sydd ynghlwm'
+          options:
+            "yes": "Oes"
+            "no": "Nac oes"
+        claim_details: 'Manylion yr hawliad'
+        other_known_claimants: 'Hawlwyr hysbys eraill'
+    claim_outcome:
+      title: 'Canlyniad yr hawliad'
+      questions:
+        what_outcome: 'Pa ganlyniad?'
+        outcome_details: 'Manylion y canlyniad'
+    claim_type:
+      title: 'Math o hawliad'
+      questions:
+        send_to_whistleblowing_body: "Anfon i gorff chwythu'r chwiban"
+        whistleblowing: "Chwythu'r chwiban"
+        types:
+          title: 'Math(au)'
+          options:
+            discrimination_claims:
+              sex_including_equal_pay: Gwahaniaethu ar sail rhyw (gan gynnwys tâl cyfartal)
+              disability: Gwahaniaethu ar sail anabledd
+              race: Gwahaniaethu ar sail hil
+              age: Gwahaniaethu ar sail oedran
+              pregnancy_or_maternity: Gwahaniaethu ar sail beichiogrwydd neu famolaeth
+              religion_or_belief: Gwahaniaethu ar sail crefydd neu gred
+              sexual_orientation: Gwahaniaethu ar sail cyfeiriadedd rhywiol
+              marriage_or_civil_partnership: Gwahaniaethu ar sail priodas neu bartneriaeth sifil
+              gender_reassignment: Gwahaniaethu ar sail ailbennu rhywedd
+            pay_claims:
+              redundancy: Tâl dileu swydd
+              notice: Tâl cyfnod rhybudd
+              holiday: Tâl gwyliau
+              arrears: Tâl dyledus
+              other: Taliadau eraill
+
+    claimant:
+      title: "Manylion yr hawlydd"
+      questions:
+        date_of_birth: 'Dyddiad geni'
+        preferred_contact: 'Dull cyswllt dewisol'
+        address: 'Cyfeiriad'
+        email: 'E-bost'
+        assistance_required: 'Angen cymorth yn y tribiwnlys?'
+        full_name: 'Enw llawn'
+        mobile: 'Ffôn Symudol'
+        phone: 'Ffôn'
+        gender: 'Rhywedd'
+    employment:
+      title: 'Manylion cyflogaeth'
+      pay:
+        types:
+          weekly: bob wythnos
+          monthly: bob mis
+
+      questions:
+        pension_scheme: 'Cynllun pensiwn'
+        notice_period:
+          title: 'Cyfnod rhybudd'
+          options:
+            "yes": "Oes"
+            "no": "Nac oes"
+        end_date: 'Dyddiad gorffen'
+        start_date: 'Dyddiad cychwyn'
+        pay_before_tax: 'Tâl cyn treth'
+        pay_after_tax: 'Tâl ar ôl treth'
+        average_weekly_hours_worked: 'Oriau gwaith bob wythnos ar gyfartaledd'
+        current_situation: 'Sefyllfa gyfredol'
+        job: 'Swydd'
+        benefit_details: 'Manylion buddion'
+        another_job: 'Swydd arall'
+        notice_pay: 'Tâl cyfnod rhybudd'
+        notice_period_end_date: 'Dyddiad gorffen y cyfnod rhybudd'
+        pay_before_tax_at_new_job: "Tâl cyn treth yn y swydd newydd"
+        employed_by_employer:
+          title: 'Cael fy nghyflogi gan y cyflogwr'
+          options:
+            "yes": "Oes"
+            "no": "Nac oes"
+    representative:
+      title: "Manylion y cynrychiolydd"
+      questions:
+        type_of_representative: 'Math o gynrychiolydd'
+        email: 'E-bost'
+        address: 'Cyfeiriad'
+        full_name: 'Enw llawn'
+        dx_number: 'Rhif DX'
+        mobile: 'Ffôn Symudol'
+        preferred_contact: 'Dull cyswllt dewisol'
+        phone: 'Ffôn'
+        organisation_name: "Enw'r sefydliad"
+        representative: 'Cynrychiolydd'
+    respondent:
+      title: "Manylion yr atebydd"
+      questions:
+        name: 'Enw'
+        address: 'Cyfeiriad'
+        phone: 'Ffôn'
+        acas_number: 'Rhif Acas'
+        work_address: 'Cyfeiriad gwaith'
+    additional_respondents:
+      title: 'Atebwyr ychwanegol'
+      respondent_header: 'Atebydd '
+      questions:
+        additional_respondents:
+          label: 'Atebwyr ychwanegol'
+          options:
+            "yes": "Oes"
+            "no": "Nac oes"
+      respondent:
+        questions:
+          name: 'Enw'
+          acas_number: 'Rhif Acas'
+          address: 'Cyfeiriad'
+  date:
+    month_names:
+    -
+    - Ionawr
+    - Chwefror
+    - Mawrth
+    - Ebrill
+    - Mai
+    - Mehefin
+    - Gorffennaf
+    - Awst
+    - Medi
+    - Hydref
+    - Tachwedd
+    - Rhagfyr
+
+
