@@ -58,6 +58,14 @@ module EtFullSystem
         def diversity_link
           main_content.diversity_link.click
         end
+
+        def switch_to_welsh
+          feedback_notice.welsh_link.click
+        end
+
+        def switch_to_english
+          feedback_notice.english_link.click
+        end
       end
     end
   end

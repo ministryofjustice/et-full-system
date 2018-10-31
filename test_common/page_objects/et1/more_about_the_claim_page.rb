@@ -59,6 +59,14 @@ module EtFullSystem
           main_content.save_and_continue_button.click
         end
 
+        def switch_to_welsh
+          feedback_notice.welsh_link.click
+        end
+
+        def switch_to_english
+          feedback_notice.english_link.click
+        end
+
         def has_correct_translation?
           #your feedback header
           expect(feedback_notice).to have_language

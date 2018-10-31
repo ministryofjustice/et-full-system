@@ -48,6 +48,14 @@ module EtFullSystem
         def send_your_feedback
           form_actions.submit_feedback.click
         end
+
+        def switch_to_welsh
+          feedback_notice.welsh_link.click
+        end
+
+        def switch_to_english
+          feedback_notice.english_link.click
+        end
         
         def has_correct_translation?
           #your feedback header

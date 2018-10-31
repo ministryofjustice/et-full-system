@@ -24,6 +24,14 @@ module EtFullSystem
           main_content.return_button.click
         end
 
+        def switch_to_welsh
+          feedback_notice.welsh_link.click
+        end
+
+        def switch_to_english
+          feedback_notice.english_link.click
+        end
+
         def has_correct_translation?
           expect(feedback_notice).to have_language
           expect(main_content).to have_header

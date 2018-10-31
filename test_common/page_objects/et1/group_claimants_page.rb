@@ -63,6 +63,14 @@ module EtFullSystem
           element :save_and_complete_later, :button, 'shared.mobile_nav.save_and_complete'
         end
 
+        def switch_to_welsh
+          feedback_notice.welsh_link.click
+        end
+
+        def switch_to_english
+          feedback_notice.english_link.click
+        end
+
         def add_more_claimants
           main_content.add_more_claimants_link.click
         end

@@ -9,8 +9,8 @@ cy:
       sub_header: Cadarnhad o'r manylion a roddwyd
       edit: Golygu eich atebion
       previous: Blaenorol
-      hint: Bydd pwyso "Cyflwyno'r Ffurflen" isod yn anfon y manylion a gadarnhawyd isod i'w prosesu.
-      submit: "Cyflwyno'r ffurflen"
+      hint: Bydd pwyso "Cyflwyno'r ffurflen" isod yn anfon y manylion a gadarnhawyd isod i'w prosesu.
+      submit: Cyflwyno'r ffurflen
       session_reloaded: Mae eich sesiwn wedi ei hail-lwytho - efallai i hyn ddigwydd am fod eich cwci wedi dod i ben
     submit:
       sub_header: Diolch yn fawr
@@ -84,7 +84,7 @@ cy:
       hint: "A oeddech chi'n feichiog pan gawsoch eich diswyddo?"
     review:
       hint: Gwiriwch eich atebion
-      submit: Cyflwyno'r Ffurflen
+      submit: Cyflwyno'r ffurflen
     confirmation:
       hint: Diolch yn fawr
       message: Diolch i chi am lenwi'r holiadur monitro amrywiaeth hwn.
@@ -182,9 +182,6 @@ cy:
     no_answer: 'Nac oes'
     prefer-not-to-say: Mae'n well gen i beidio dweud
   pregnancy:
-    yes_answer: 'Oeddwn '
+    yes_answer: 'Oeddwn'
     no_answer: 'Nac oeddwn'
-    prefer-not-to-say: Mae'n well gen i beidio dweud
-
-
-
+    prefer-not-to-say: "Mae'n well gen i beidio dweud"

@@ -79,6 +79,14 @@ module EtFullSystem
           element :save_and_complete_later, :button, 'shared.mobile_nav.save_and_complete'
         end
 
+        def switch_to_welsh
+          feedback_notice.welsh_link.click
+        end
+
+        def switch_to_english
+          feedback_notice.english_link.click
+        end
+
         def has_correct_translation_for_group_claimants?
           #your feedback header
           expect(feedback_notice).to have_language

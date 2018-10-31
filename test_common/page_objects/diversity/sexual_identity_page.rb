@@ -86,6 +86,14 @@ module EtFullSystem
           main_content.save_and_continue.click
         end
 
+        def switch_to_welsh
+          feedback_notice.welsh_link.click
+        end
+
+        def switch_to_english
+          feedback_notice.english_link.click
+        end
+
         def set_for(answers)
           set_for_optional(answers, :sex, 'diversities_identity[sex]')
           set_for_optional(answers, :gender, 'diversities_identity[gender]')

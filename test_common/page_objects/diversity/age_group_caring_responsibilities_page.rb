@@ -67,6 +67,14 @@ module EtFullSystem
           main_content.save_and_continue.click
         end
 
+        def switch_to_welsh
+          feedback_notice.welsh_link.click
+        end
+
+        def switch_to_english
+          feedback_notice.english_link.click
+        end
+
         def set_for(answers)
           set_for_optional(answers, :age_group, 'diversities_age_caring[age_group]')
           set_for_optional(answers, :caring_responsibility, 'diversities_age_caring[caring_responsibility]')

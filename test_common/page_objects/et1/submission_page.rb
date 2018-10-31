@@ -34,6 +34,14 @@ module EtFullSystem
           main_content.submit_claim_button.click
         end
 
+        def switch_to_welsh
+          feedback_notice.welsh_link.click
+        end
+
+        def switch_to_english
+          feedback_notice.english_link.click
+        end
+
         def has_correct_translation?(claimants:, respondents:, claim:, employment:, representative:)
           expect(main_content.group_claim_section).to have_correct_translation(claimants: claimants)
           expect(main_content.additional_respondents_section).to have_correct_translation(respondents: respondents)

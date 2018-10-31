@@ -2,14 +2,14 @@ en:
   diversities:
     header: Diversity monitoring questionnaire
     index:
-      optional_text: "This is optional and won't affect your claim. The information is used to help make sure everyone in contact with HM Courts & Tribunals Service (HMCTS) gets equal treatment."
+      optional_text: This is optional and won't affect your claim. The information is used to help make sure everyone in contact with HM Courts & Tribunals Service (HMCTS) gets equal treatment.
       anonymous: Your answers will be anonymous.
       begin_form: Start now
     show:
       sub_header: Confirmation of supplied details
       edit: Edit your answers
       previous: Previous
-      hint: Pressing "Submit Form" below will send the details confirmed below for processing.
+      hint: Pressing "Submit form" below will send the details confirmed below for processing.
       submit: Submit form
       session_reloaded: Your session has been re loaded - this may have been caused by your cookie expiring
     submit:
@@ -30,14 +30,14 @@ en:
       hint: How do you identify?
       header: Indentity
       sex:
-        hint: What is your sex? (optional)
+        hint: What is your sex?
       sexual_identity:
-        hint: Which of the options below best describes your sexual identity? (optional)
+        hint: Which of the options below best describes your sexual identity?
       gender:
-        hint: What is your gender identity? (optional)
+        hint: What is your gender identity?
 
       gender_at_birth:
-        hint: Is your gender identity different to the sex you were assumed to be at birth? (optional)
+        hint: Is your gender identity different to the sex you were assumed to be at birth?
 
     relationship:
       header: Relationship
@@ -45,9 +45,9 @@ en:
     age_caring:
       hint: What is your age group and caring responsibilities?
       age_group:
-        hint: Which age group are you in? (optional)
+        hint: Which age group are you in?
       caring_responsibility:
-        hint: Do you have any caring responsibilities? (optional)
+        hint: Do you have any caring responsibilities?
         form_hint: For example, children, elderly relatives or partners
     religion:
       header: Religion
@@ -72,13 +72,13 @@ en:
         label: 'Other'
         data: 'Other ethnic group'
     ethnicity_subgroup:
-      header: What is your ethnic type? (optional)
+      header: What is your ethnic type?
 
     disability:
       header: Disability
-      act: "The Equality Act 2010 defines a disabled person as 'someone who has a physical or mental impairment and the impairment has a substantial and long-term adverse effect on his or her ability to carry out normal day-to-day activities'."
-      conditions: "Conditions covered may include, for example, severe depression, dyslexia, epilepsy and arthritis."
-      hint: "Do you have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more?"
+      act: The Equality Act 2010 defines a disabled person as 'someone who has a physical or mental impairment and the impairment has a substantial and long-term adverse effect on his or her ability to carry out normal day-to-day activities'.
+      conditions: Conditions covered may include, for example, severe depression, dyslexia, epilepsy and arthritis.
+      hint: Do you have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more?
     pregnancy:
       header: Pregnancy
       hint: Were you pregnant when you were dismissed?

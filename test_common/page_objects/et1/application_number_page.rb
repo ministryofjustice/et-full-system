@@ -52,6 +52,14 @@ module EtFullSystem
           main_content.save_and_continue.click
         end
 
+        def switch_to_welsh
+          feedback_notice.welsh_link.click
+        end
+
+        def switch_to_english
+          feedback_notice.english_link.click
+        end
+
         def has_correct_translation?
           #saving your claim heading
           expect(main_header).to have_page_header

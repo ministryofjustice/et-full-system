@@ -157,6 +157,14 @@ module EtFullSystem
           main_content.save_and_continue.click
         end
 
+        def switch_to_welsh
+          feedback_notice.welsh_link.click
+        end
+
+        def switch_to_english
+          feedback_notice.english_link.click
+        end
+
         def set_for(answers)
           set_for_optional(answers, :ethnicity, 'diversities_ethnicity[ethnicity]')
           set_for_optional(answers, :ethnicity_subgroup, 'diversities_ethnicity[ethnicity_subgroup]')

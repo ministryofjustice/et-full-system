@@ -98,6 +98,14 @@ module EtFullSystem
           main_content.save_and_continue_button.click
         end
 
+        def switch_to_welsh
+          feedback_notice.welsh_link.click
+        end
+
+        def switch_to_english
+          feedback_notice.english_link.click
+        end
+
         def has_mandatory_error_message?
           expect(main_content.error_message).to have_error_summary
           expect(main_content.error_message).to have_default_message
