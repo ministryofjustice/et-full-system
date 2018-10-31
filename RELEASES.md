@@ -1,3 +1,32 @@
+# v1.2.0 - Admin v1.4.1 & API v2.4.1
+Scheduled: **01/11/2018**
+
+## New
+
+* **ET3:** Add Google Tag Manager for better analytics. (RST-1424) 
+
+## Changes
+
+* **ET3:** Removed bootsnap for developers and test builds as it causes issues while debugging.
+It remains as is in production environments.
+* **ET3:** Add the ability to run a developer version of S3.
+This means we can test the rtf upload more reliably. (RST-1277)
+
+## Fixes
+
+_No fixes_
+
+## Security
+_No updates_
+
+## Info
+Deployment by Stath
+
+No downtime expected
+
+Potential risk as a data migration will take place on production data for Claims.
+This has been tested locally with no issues.
+
 # v1.1.1 - Admin v1.4.1 & API v2.4.1
 **11/10/2018**
 
