@@ -12,8 +12,9 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         section :main_content, '.container' do
-          element :header, :main_header, 'sexual_identity.header', exact: false
-          section :sex, :question_labelled, 'sexual_identity.sex' do
+          #How do you identify?
+          element :header, :main_header, 'diversities.identity.hint', exact: false
+          section :sex, :question_labelled, 'diversities.identity.sex.hint' do
             section :male, :form_labelled, 'sex.male' do
               element :field, 'input'
               delegate :set, to: :field
@@ -27,21 +28,21 @@ module EtFullSystem
               delegate :set, to: :field
             end
           end
-          section :gender, :question_labelled, 'sexual_identity.gender' do
-            section :male, :form_labelled, 'gender.male' do
+          section :gender, :question_labelled, 'diversities.identity.sexual_identity.gender.hint' do
+            section :male, :form_labelled, 'gender.male-including-female-to-male-trans-men' do
               element :field, 'input'
               delegate :set, to: :field
             end
-            section :female, :form_labelled, 'gender.female' do
+            section :female, :form_labelled, 'gender.female-including-male-to-female-trans-women' do
               element :field, 'input'
               delegate :set, to: :field
             end
-            section :prefer_not_to_say, :form_labelled, 'gender.prefer_not_to_say' do
+            section :prefer_not_to_say, :form_labelled, 'gender.prefer-not-to-say' do
               element :field, 'input'
               delegate :set, to: :field
             end
           end
-          section :gender_at_birth, :question_labelled, 'sexual_identity.gender_at_birth' do
+          section :gender_at_birth, :question_labelled, 'diversities.identity.gender_at_birth.hint' do
             section :yes, :form_labelled, 'gender_at_birth.yes_answer' do
               element :field, 'input'
               delegate :set, to: :field
@@ -55,8 +56,8 @@ module EtFullSystem
               delegate :set, to: :field
             end
           end
-          section :your_sexual_identity, :question_labelled, 'sexual_identity.your_sexual_identity' do
-            section :heterosexual, :form_labelled, 'your_sexual_identity.heterosexual-straight' do
+          section :your_sexual_identity, :question_labelled, 'diversities.identity.your_sexual_identity.hint' do
+            section :heterosexual, :form_labelled, 'sexual_identity.heterosexual-straight' do
               element :field, 'input'
               delegate :set, to: :field
             end
@@ -77,11 +78,12 @@ module EtFullSystem
               delegate :set, to: :field
             end
           end
-          element :save_and_continue_button, :diversity_input_button_named, 'sexual_identity.button_text'
+          #save and continue button
+          element :save_and_continue, :submit_text, 'helpers.submit.update'
         end
 
         def save_and_continue
-          main_content.save_and_continue_button.click
+          main_content.save_and_continue.click
         end
 
         def set_for(answers)
@@ -116,7 +118,7 @@ module EtFullSystem
         def set_for_optional(answers, key, name)
           data = answers.to_h
           if data[key] != nil
-            choose(data[key], name: name)
+            choose(factory_translate(data[key]), name: name)
           end
         end
       end

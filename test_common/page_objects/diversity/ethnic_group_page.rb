@@ -4,7 +4,6 @@ module EtFullSystem
     module Diversity
       class EthnicGroupPage < BasePage
         include RSpec::Matchers
-        set_url "#{::EtFullSystem::Test::Configuration.diversity_url}/ethnicity"
         section :feedback_notice, '.feedback-notice' do
           include ::EtFullSystem::Test::I18n
           element :language, :link_named, 'switch.language'
@@ -12,7 +11,8 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         section :main_content, '.container' do
-          element :header, :main_header, 'ethnicity.header'
+          #What is your ethnic group?
+          element :header, :main_header, 'diversities.ethnicity.hint'
           section :white, :form_labelled, 'ethnicity.white' do
             element :field, 'input'
             delegate :set, to: :field
@@ -37,8 +37,9 @@ module EtFullSystem
             element :field, 'input'
             delegate :set, to: :field
           end
-          section :white_subgroup, :diversity_ethnicity_group_containing, 'ethnicity_subgroup.english-welsh-scottish-northern-irish-british' do
-            element :header, 'label', 'ethnicity_subgroup.label'
+          #What is your ethnic type? (optional)
+          section :ethnicity_subgroup, '.ethnicity_subgroup' do
+            element :header, :form_labelled, 'diversities.ethnicity_subgroup.header'
             section :english, :form_labelled, 'ethnicity_subgroup.english-welsh-scottish-northern-irish-british' do
               element :field, 'input'
               delegate :set, to: :field
@@ -60,8 +61,9 @@ module EtFullSystem
               delegate :set, to: :field
             end
           end
-          section :mixed_subgroup, :diversity_ethnicity_group_containing, 'ethnicity_subgroup.white-and-black-caribbean' do
-            element :header, 'label', 'ethnicity_subgroup.label'
+          section :mixed_subgroup, '.mixed-multiple-ethnic-groups' do
+            #What is your ethnic type? (optional)
+            element :header, :form_labelled, 'ethnicity_subgroup.header'
             section :white_and_black_caribbean, :form_labelled, 'ethnicity_subgroup.white-and-black-caribbean' do
               element :field, 'input'
               delegate :set, to: :field
@@ -83,8 +85,9 @@ module EtFullSystem
               delegate :set, to: :field
             end
           end
-          section :asian_subgroup, :diversity_ethnicity_group_containing, 'ethnicity_subgroup.indian' do
-            element :header, 'label', 'ethnicity_subgroup.label'
+          section :asian_subgroup, '.asian-asian-british' do
+            #What is your ethnic type? (optional)
+            element :header, :form_labelled, 'ethnicity_subgroup.header'
             section :indian, :form_labelled, 'ethnicity_subgroup.indian' do
               element :field, 'input'
               delegate :set, to: :field
@@ -110,8 +113,9 @@ module EtFullSystem
               delegate :set, to: :field
             end
           end
-          section :black_subgroup, :diversity_ethnicity_group_containing, 'ethnicity_subgroup.african' do
-            element :header, 'label', 'ethnicity_subgroup.label'
+          section :black_subgroup, '.black-african-caribbean-black-british' do
+            #What is your ethnic type? (optional)
+            element :header, :form_labelled, 'ethnicity_subgroup.header'
             section :african, :form_labelled, 'ethnicity_subgroup.african' do
               element :field, 'input'
               delegate :set, to: :field
@@ -129,8 +133,9 @@ module EtFullSystem
               delegate :set, to: :field
             end
           end
-          section :other_subgroup, :diversity_ethnicity_group_containing, 'ethnicity_subgroup.arab' do
-            element :header, 'label', 'ethnicity_subgroup.label'
+          section :other_subgroup, '.other-ethnic-group' do
+            #What is your ethnic type? (optional)
+            element :header, :form_labelled, 'ethnicity_subgroup.header'
             section :arab, :form_labelled, 'ethnicity_subgroup.arab' do
               element :field, 'input'
               delegate :set, to: :field
@@ -144,11 +149,12 @@ module EtFullSystem
               delegate :set, to: :field
             end
           end
-          element :save_and_continue_button, :diversity_input_button_named, 'ethnicity.button_text'
+          #save and continue button
+          element :save_and_continue, :submit_text, 'helpers.submit.update'
         end
 
         def save_and_continue
-          main_content.save_and_continue_button.click
+          main_content.save_and_continue.click
         end
 
         def set_for(answers)
@@ -196,7 +202,7 @@ module EtFullSystem
         def set_for_optional(answers, key, name)
           data = answers.to_h
           if data[key] != nil
-            choose(data[key], name: name)
+            choose(factory_translate(data[key]), name: name)
           end
         end
       end

@@ -14,7 +14,7 @@ module EtFullSystem
         end
         #Claim outcome
         section :main_header, '.main-header' do
-          element :page_header, :page_title, 'claims.claim_outcome.header', exact: false
+          element :page_header, :page_title, 'claim_confirmations.show.header', exact: false
         end
         section :main_content, '#content .main-section .main-content' do
           #Choose your preferred outcome(s)

@@ -12,11 +12,14 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         section :main_content, '#content .container' do
-          element :header, :main_header, 'diversity.header'
+          #Diversity monitoring questionnaire
+          element :header, :main_header, 'diversities.header'
           section :content_section, '.main-section .main-content' do
-            element :optional_text, :paragraph, 'diversity.index.optional_text'
-            element :anonymous,:paragraph, 'diversity.index.anonymous'
-            element :start_diversity, :link_named, 'diversity.index.begin_form'
+            #This is optional and won't affect your claim. The information is used to help make sure everyone in contact with HM Courts & Tribunals Service (HMCTS) gets equal treatment
+            element :optional_text, :paragraph, 'diversities.index.optional_text'
+            #Your answers will be anonymous.
+            element :anonymous,:paragraph, 'diversities.index.anonymous'
+            element :start_diversity, :link_named, 'diversities.index.begin_form'
           end
         end
 

@@ -12,7 +12,8 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         section :main_content, '.container' do
-          element :header, :main_header, 'religion.header'
+          #What is your religion
+          element :header, :main_header, 'diversities.religion.hint'
           section :none, :form_labelled, 'religion.no-religion' do
             element :field, 'input'
             delegate :set, to: :field
@@ -49,15 +50,16 @@ module EtFullSystem
             element :field, 'input'
             delegate :set, to: :field
           end
-          section :describe_religion, :diversity_hidden_input, 'religion.describe_religion' do
+          section :describe_religion, :diversity_hidden_input, 'religion.free_text' do
             element :field, 'input'
             delegate :set, to: :field
           end
-          element :save_and_continue_button, :diversity_input_button_named, 'religion.button_text'
+          #save and continue button
+          element :save_and_continue, :submit_text, 'helpers.submit.update'
         end
 
         def save_and_continue
-          main_content.save_and_continue_button.click
+          main_content.save_and_continue.click
         end
 
         def set_for(answers)
@@ -67,7 +69,7 @@ module EtFullSystem
               choose('Any other religion', name: 'diversities_religion[religion]')
               main_content.other_religion.set(data[:religion])
             else
-             choose(data[:religion], name: 'diversities_religion[religion]')
+             choose(factory_translate(data[:religion]), name: 'diversities_religion[religion]')
             end
           end
           save_and_continue

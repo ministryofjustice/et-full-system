@@ -12,7 +12,8 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         section :main_content, '.container' do
-          element :header, :main_header, 'relationship.header'
+          #What is your relationship status?
+          element :header, :main_header, 'diversities.relationship.header.hint'
           section :single, :form_labelled, 'relationship.single-that-is-never-married-and-never-registered-in-a-same-sex-civil-partnership'do
             element :field, 'input'
             delegate :set, to: :field
@@ -53,17 +54,18 @@ module EtFullSystem
             element :field, 'input'
             delegate :set, to: :field
           end
-          element :save_and_continue_button, :diversity_input_button_named, 'relationship.button_text'
+          #save and continue button
+          element :save_and_continue, :submit_text, 'helpers.submit.update'
         end
 
         def save_and_continue
-          main_content.save_and_continue_button.click
+          main_content.save_and_continue.click
         end
 
         def set_for(answers)
           data = answers.to_h
           if data[:relationship] != nil
-            choose(data[:relationship], name: 'diversities_relationship[relationship]')
+            choose(factory_translate(data[:relationship]), name: 'diversities_relationship[relationship]')
           end
           save_and_continue
         end

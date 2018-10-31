@@ -12,8 +12,9 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         section :main_content, '.container' do
-          element :header, :main_header, 'age_group_caring_responsibility.header'
-          section :age_group, :question_labelled, 'age_group_caring_responsibility.age_group' do
+          #What is your age group and caring responsibilities?
+          element :header, :main_header, 'diversities.age_caring.hint'
+          section :age_group, :question_labelled, 'diversities.age_caring.age_group.hint' do
             section :u25, :form_labelled, 'age_group.under-25' do
               element :field, 'input'
               delegate :set, to: :field
@@ -43,8 +44,8 @@ module EtFullSystem
               delegate :set, to: :field
             end
           end
-          section :caring_responsibility, :question_labelled, 'age_group_caring_responsibility.caring_responsbilities.label' do
-            element :hint, :paragraph, 'age_group_caring_responsibility.caring_responsbilities.hint'
+          section :caring_responsibility, :question_labelled, 'diversities.age_caring.caring_responsibility.hint' do
+            element :hint, :paragraph, 'diversities.age_caring.caring_responsibility.form_hint'
             section :yes, :form_labelled, 'caring_responsibility.yes_answer' do
               element :field, 'input'
               delegate :set, to: :field
@@ -58,11 +59,12 @@ module EtFullSystem
               delegate :set, to: :field
             end
           end
-          element :save_and_continue_button, :diversity_input_button_named, 'age_group_caring_responsibility.button_text'
+          #save and continue button
+          element :save_and_continue, :submit_text, 'helpers.submit.update'
         end
 
         def save_and_continue
-          main_content.save_and_continue_button.click
+          main_content.save_and_continue.click
         end
 
         def set_for(answers)
@@ -92,7 +94,7 @@ module EtFullSystem
         def set_for_optional(answers, key, name)
           data = answers.to_h
           if data[key] != nil
-            choose(data[key], name: name)
+            choose(factory_translate(data[key]), name: name)
           end
         end
       end

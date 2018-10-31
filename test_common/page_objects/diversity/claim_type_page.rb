@@ -12,8 +12,10 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         section :main_content, '.container' do
-          element :header, :main_header, 'claim_type.header', exact: false
-          element :subheader, :paragraph, 'claim_type.sub_header'
+          #What is the type of your claim?
+          element :header, :main_header, 'diversities.claim_type.hint', exact: false
+          #This will help us analyse other information provided in this form
+          element :subheader, :paragraph, 'diversities.claim_type.sub_header'
           section :unfair_dismissal, :form_labelled, 'claim_type.unfair-dismissal-or-constructive-dismissal'do
             element :field, 'input'
             delegate :set, to: :field
@@ -34,17 +36,18 @@ module EtFullSystem
             element :field, 'input'
             delegate :set, to: :field
           end
-          element :save_and_continue_button, :diversity_input_button_named, 'claim_type.button_text'
+          #save and continue button
+          element :save_and_continue, :submit_text, 'helpers.submit.update'
         end
 
         def save_and_continue
-          main_content.save_and_continue_button.click
+          main_content.save_and_continue.click
         end
 
         def set_for(answers)
           data = answers.to_h
           if data[:claim_type] != nil
-            choose(data[:claim_type], name: 'diversities_claim_type[claim_type]')
+            choose(factory_translate(data[:claim_type]), name: 'diversities_claim_type[claim_type]')
           end
           save_and_continue
         end

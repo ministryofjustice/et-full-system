@@ -12,32 +12,35 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         section :main_content, '.container' do
-          element :header, :main_header, 'health.header', exact: false
-          element :definition, :paragraph, 'health.definition'
-          element :example, :paragraph, 'health.example'
-          section :yes, :form_labelled, 'health.yes_answer'do
+          include ::EtFullSystem::Test::I18n
+          #Do you have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more?
+          element :header, :main_header, 'diversities.disability.hint', exact: false
+          element :definition, :paragraph, 'diversities.disability.act'
+          element :example, :paragraph, 'diversities.disability.conditions'
+          section :yes, :form_labelled, 'disability.yes_answer'do
             element :field, 'input'
             delegate :set, to: :field
           end
-          section :no, :form_labelled, 'health.no_answer'do
+          section :no, :form_labelled, 'disability.no_answer'do
             element :field, 'input'
             delegate :set, to: :field
           end
-          section :prefer_not_to_say, :form_labelled, 'health.prefer_not_to_say'do
+          section :prefer_not_to_say, :form_labelled, 'disability.prefer_not_to_say'do
             element :field, 'input'
             delegate :set, to: :field
           end
-          element :save_and_continue_button, :diversity_input_button_named, 'health.button_text'
+          #save and continue button
+          element :save_and_continue, :submit_text, 'helpers.submit.update'
         end
 
         def save_and_continue
-          main_content.save_and_continue_button.click
+          main_content.save_and_continue.click
         end
 
         def set_for(answers)
           data = answers.to_h
           if data[:disability] != nil
-            choose(data[:disability], name: 'diversities_disability[disability]')
+            choose(factory_translate(data[:disability]), name: 'diversities_disability[disability]')
           end
           save_and_continue
         end
