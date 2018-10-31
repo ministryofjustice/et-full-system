@@ -12,58 +12,72 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         section :main_content, '.container' do
-          element :header, :main_header, 'submission.header'
-          section :claim_type_row, :table_row_with_th_labelled, 'submission.claim_type' do
+          #Check your answers
+          element :header, :main_header, 'diversities.review.hint'
+          #What is the type of your claim?
+          section :claim_type_row, :table_row_with_th_labelled, 'diversities.claim_type.hint' do
             element :answer, :return_diversity_answer
-            element :link, :link_named, 'submission.change_link'
+            element :link, :link_named, 'diversities.edit'
           end
-          section :sex_row, :table_row_with_th_labelled, 'submission.sex' do
+          #What is your sex?
+          section :sex_row, :table_row_with_th_labelled, 'diversities.sex.hint' do
             element :answer, :return_diversity_answer
-            element :link, :link_named, 'submission.change_link'
+            element :link, :link_named, 'diversities.edit'
           end
-          section :gender_row, :table_row_with_th_labelled, 'submission.gender' do
+          #What is your gender identity?
+          section :gender_row, :table_row_with_th_labelled, 'diversities.gender.hint' do
             element :answer, :return_diversity_answer
-            element :link, :link_named, 'submission.change_link'
+            element :link, :link_named, 'diversities.edit'
           end
-          section :gender_at_birth_row, :table_row_with_th_labelled, 'submission.gender_at_birth' do
+          #Is your gender identity different to the sex you were assumed to be at birth?
+          section :gender_at_birth_row, :table_row_with_th_labelled, 'diversities.gender_at_birth.hint' do
             element :answer, :return_diversity_answer
-            element :link, :link_named, 'submission.change_link'
+            element :link, :link_named, 'diversities.edit'
           end
-          section :sexual_identity_row, :table_row_with_th_labelled, 'submission.sexual_identity' do
+          #Which of the options below best describes your sexual identity?
+          section :sexual_identity_row, :table_row_with_th_labelled, 'diversities.sexual_identity.hint' do
             element :answer, :return_diversity_answer
-            element :link, :link_named, 'submission.change_link'
+            element :link, :link_named, 'diversities.edit'
           end
-          section :relationship_row, :table_row_with_th_labelled, 'submission.relationship' do
+          #What is your relationship status?
+          section :relationship_row, :table_row_with_th_labelled, 'diversities.relationship.hint' do
             element :answer, :return_diversity_answer
-            element :link, :link_named, 'submission.change_link'
+            element :link, :link_named, 'diversities.edit'
           end
-          section :age_row, :table_row_with_th_labelled, 'submission.age' do
+          #Which age group are you in?
+          section :age_row, :table_row_with_th_labelled, 'diversities.age.hint' do
             element :answer, :return_diversity_answer
-            element :link, :link_named, 'submission.change_link'
+            element :link, :link_named, 'diversities.edit'
           end
-          section :care_row, :table_row_with_th_labelled, 'submission.care' do
+          #Do you have any caring responsibilities?
+          section :care_row, :table_row_with_th_labelled, 'diversities.care.hint' do
             element :answer, :return_diversity_answer
-            element :link, :link_named, 'submission.change_link'
+            element :link, :link_named, 'diversities.edit'
           end
-          section :religion_row, :table_row_with_th_labelled, 'submission.religion' do
+          #What is your religion?
+          section :religion_row, :table_row_with_th_labelled, 'diversities.religion.hint' do
             element :answer, :return_diversity_answer
-            element :link, :link_named, 'submission.change_link'
+            element :link, :link_named, 'diversities.edit'
           end
-          section :ethnicity_row, :table_row_with_th_labelled, 'submission.ethnicity' do
+          #What is your ethnic group?
+          section :ethnicity_row, :table_row_with_th_labelled, 'diversities.ethnicity.hint' do
             element :answer, :return_diversity_answer
-            element :link, :link_named, 'submission.change_link'
+            element :link, :link_named, 'diversities.edit'
           end
-          section :ethnicity_type_row, :table_row_with_th_labelled, 'submission.ethnicity_type' do
+          #What is your ethnic type?
+          section :ethnicity_type_row, :table_row_with_th_labelled, 'diversities.ethnicity_type.hint' do
             element :answer, :return_diversity_answer
-            element :link, :link_named, 'submission.change_link'
+            element :link, :link_named, 'diversities.edit'
           end
-          section :health_row, :table_row_with_th_labelled, 'submission.health' do
+          #Do you have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more?
+          section :health_row, :table_row_with_th_labelled, 'diversities.health.hint' do
             element :answer, :return_diversity_answer
-            element :link, :link_named, 'submission.change_link'
+            element :link, :link_named, 'diversities.edit'
           end
-          section :pregnancy_row, :table_row_with_th_labelled, 'submission.pregnancy' do
+          #Were you pregnant when you were dismissed?
+          section :pregnancy_row, :table_row_with_th_labelled, 'diversities.pregnancy.hint' do
             element :answer, :return_diversity_answer
-            element :link, :link_named, 'submission.change_link'
+            element :link, :link_named, 'diversities.edit'
           end
           #Submit form
           element :submit_form, :submit_text, 'diversities.show.submit'
