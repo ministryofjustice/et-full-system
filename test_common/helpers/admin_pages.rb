@@ -68,6 +68,10 @@ module EtFullSystem
       def self.import_file_page
         Admin::ImportFilePage.new
       end
+
+      def self.diversity_responses_page
+        Admin::DiversityResponsesPage.new
+      end
     end
   end
 end
