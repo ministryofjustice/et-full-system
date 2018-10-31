@@ -48,7 +48,7 @@ module EtFullSystem
         JSON.parse(acas_logs.body).map(&:with_indifferent_access)
       end
 
-      def admin_diversity_data(data)
+      def admin_diversity_data
         login
         response = request(:get, "#{url}/diversity_responses.json?
           claim_type_contains=data[:claim_type]

@@ -10,7 +10,7 @@ cy:
       edit: Golygu eich atebion
       previous: Blaenorol
       hint: Bydd pwyso "Cyflwyno'r Ffurflen" isod yn anfon y manylion a gadarnhawyd isod i'w prosesu.
-      submit: Cyflwyno'r Ffurflen
+      submit: "Cyflwyno'r ffurflen"
       session_reloaded: Mae eich sesiwn wedi ei hail-lwytho - efallai i hyn ddigwydd am fod eich cwci wedi dod i ben
     submit:
       sub_header: Diolch yn fawr
