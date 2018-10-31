@@ -3,10 +3,15 @@ Scheduled: **01/11/2018**
 
 ## New
 
-* **ET3:** Add Google Tag Manager for better analytics. (RST-1424) 
+* **ET1 & ET3:** Add Google Tag Manager for better analytics. (RST-1424) 
 
 ## Changes
 
+* **ET1:** Refactored views to remove Rails presenters as they add complexity.
+ET1 views are now easier for developers to work with. (RST-1440)
+* **ET1:** Allow PDFs to be flattened based upon environment configuration.
+We can now retrieve answers more easily in environments other than test,
+although this is still flattened by default in production.
 * **ET3:** Removed bootsnap for developers and test builds as it causes issues while debugging.
 It remains as is in production environments.
 * **ET3:** Add the ability to run a developer version of S3.
