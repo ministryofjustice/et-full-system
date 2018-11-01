@@ -4,7 +4,7 @@ Scheduled: **01/11/2018**
 ## New
 
 * **ET1 & ET3:** Add Google Tag Manager for better analytics. (RST-1424) 
-* **Admin:** Add rake task for `employment_details` data extraction. (RST-1483)
+* **Admin:** Add rake task for Policy Team's data extraction. (RST-1483 & RST-1488)
 
 ## Changes
 
