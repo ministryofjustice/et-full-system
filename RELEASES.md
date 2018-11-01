@@ -1,4 +1,4 @@
-# v1.2.0 - ET1 v3.1.0, ET3 v2.3.0, Admin v1.5.0 & API vx.x.x
+# v1.2.0 - ET1 v3.1.0, ET3 v2.3.0, Admin v1.5.0 & API v2.5.0
 Scheduled: **01/11/2018**
 
 ## New
@@ -17,10 +17,13 @@ although this is still flattened by default in production.
 It remains as is in production environments.
 * **ET3:** Add the ability to run a developer version of S3.
 This means we can test the rtf upload more reliably. (RST-1277)
+* **API:** Make changes in the database to ensure `employment_details` are properly shown as empty when a Claim is first made. (RST-1483)
 
 ## Fixes
 
-_No fixes_
+* **API:** Fix a bug where hidden UTF characters were preventing ATOS from working properly.
+This will enable some cases which were held in sidekiq to go through.
+* **API:** Backdate the change to empty `employment_details` on all existing Claims. (RST-1483)
 
 ## Security
 _No updates_
