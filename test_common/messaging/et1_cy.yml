@@ -381,7 +381,7 @@ cy:
 
   helpers:
     submit:
-      update: Cadw a pharhau
+      update: "Cadw a pharhau"
       return: Cwblhau wedyn
       claim:
         create: Cychwyn hawliad

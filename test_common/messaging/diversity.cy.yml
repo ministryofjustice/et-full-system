@@ -10,7 +10,7 @@ cy:
       edit: Golygu eich atebion
       previous: Blaenorol
       hint: Bydd pwyso "Cyflwyno'r ffurflen" isod yn anfon y manylion a gadarnhawyd isod i'w prosesu.
-      submit: Cyflwyno'r ffurflen
+      submit: "Cyflwyno'r ffurflen"
       session_reloaded: Mae eich sesiwn wedi ei hail-lwytho - efallai i hyn ddigwydd am fod eich cwci wedi dod i ben
     submit:
       sub_header: Diolch yn fawr
@@ -30,14 +30,14 @@ cy:
       hint: "Sut ydych chi'n gweld eich hunaniaeth?"
       header: Hunaniaeth
       sex:
-        hint: "Beth yw eich rhyw?"
+        hint: "Beth yw eich rhyw? (dewisol)"
       sexual_identity:
-        hint: "Pa un o'r opsiynau isod sy'n disgrifio orau eich hunaniaeth rywiol?"
+        hint: "Pa un o'r opsiynau isod sy'n disgrifio orau eich hunaniaeth rywiol? (dewisol)"
       gender:
-        hint: "Beth yw eich hunaniaeth ryweddol?"
+        hint: "Beth yw eich hunaniaeth ryweddol? (dewisol)"
 
       gender_at_birth:
-        hint: "A yw eich hunaniaeth ryweddol yn wahanol i'ch rhyw tybiedig pan gawsoch eich geni?"
+        hint: "A yw eich hunaniaeth ryweddol yn wahanol i'ch rhyw tybiedig pan gawsoch eich geni? (dewisol)"
 
     relationship:
       header: Perthynas
@@ -104,7 +104,7 @@ cy:
     prefer-not-to-say: "Mae'n well gen i beidio dweud"
   sexual_identity:
     heterosexual-straight: Heterorywiol
-    gay-lesbian: Hoyw / Lesbiaidd
+    gay-lesbian: "Hoyw / Lesbiaidd"
     bisexual: Deurywiol
     other: Arall
     prefer-not-to-say: "Mae'n well gen i beidio dweud"
@@ -114,8 +114,8 @@ cy:
     no_answer: 'Nac ydi'
     prefer-not-to-say: "Mae'n well gen i beidio dweud"
   gender:
-    male-including-female-to-male-trans-men: Gwryw (yn cynnwys dynion trawsrywiol benyw i wryw)
-    female-including-male-to-female-trans-women: Benyw (yn cynnwys menywod trawsrywiol gwryw i fenyw)
+    male-including-female-to-male-trans-men: "Gwryw (yn cynnwys dynion trawsrywiol benyw i wryw)"
+    female-including-male-to-female-trans-women: "Benyw (yn cynnwys menywod trawsrywiol gwryw i fenyw)"
     prefer-not-to-say: "Mae'n well gen i beidio dweud"
   relationship:
     single-that-is-never-married-and-never-registered-in-a-same-sex-civil-partnership: "Sengl, hynny yw, heb briodi erioed a heb gofrestru erioed mewn partneriaeth sifil gyfunrywiol"
@@ -185,3 +185,17 @@ cy:
     yes_answer: 'Oeddwn'
     no_answer: 'Nac oeddwn'
     prefer-not-to-say: "Mae'n well gen i beidio dweud"
+  summary: 
+    claim: "Beth yw natur eich hawliad?"
+    sex: "Beth yw eich rhyw?"
+    gender: "Beth yw eich hunaniaeth ryweddol?"
+    gender_at_birth: "A yw eich hunaniaeth ryweddol yn wahanol i'ch rhyw tybiedig pan gawsoch eich geni?"
+    sexual_identity: "Pa un o'r opsiynau isod sy'n disgrifio orau eich hunaniaeth rywiol?"
+    relationship: "Beth yw statws eich perthynas?"
+    age: "Ym mha grŵp oedran ydych chi?"
+    care: "A oes gennych chi unrhyw gyfrifoldebau gofalu?"
+    religion: "Beth yw eich crefydd?"
+    ethnicity_group: "Beth yw eich grŵp ethnig?"
+    ethnicity_type: "Beth yw eich ethnig?"
+    health: "A oes gennych unrhyw gyflyrau neu anhwylderau iechyd meddwl neu iechyd corfforol sy'n parhau neu'n debygol o barhau am 12 mis neu ragor?"
+    pregnancy: "A oeddech chi'n feichiog pan gawsoch eich diswyddo?"
