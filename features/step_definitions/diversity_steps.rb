@@ -37,7 +37,7 @@ end
 
 
 Given("a claimant prefered not to answer ethnicity on the survey participant form") do
-  @diversity = build(:diversity, :not_blank, ethnicity: 'Prefer not to say', ethnicity_subgroup: nil)
+  @diversity = build(:diversity, :not_blank, ethnicity: :"ethnicity.prefer-not-to-say", ethnicity_subgroup: nil)
   diversity_load_page
   answer_diversity_page(@diversity)
 end
