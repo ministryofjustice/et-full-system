@@ -185,3 +185,16 @@ cy:
     yes_answer: 'Oeddwn'
     no_answer: 'Nac oeddwn'
     prefer-not-to-say: "Mae'n well gen i beidio dweud"
+  review: 
+    claim_type: "Beth yw natur eich hawliad?"
+    sex: "Beth yw eich rhyw?"
+    gender: "Beth yw eich hunaniaeth ryweddol?"
+    gender_at_birth: "A yw eich hunaniaeth ryweddol yn wahanol i'ch rhyw tybiedig pan gawsoch eich geni?"
+    sexual_identity: "Pa un o'r opsiynau isod sy'n disgrifio orau eich hunaniaeth rywiol?"
+    relationship: "Beth yw statws eich perthynas?"
+    age: "Ym mha grŵp oedran ydych chi?"
+    care: "A oes gennych chi unrhyw gyfrifoldebau gofalu?"
+    religion: "Beth yw eich crefydd?"
+    ethnicity: "Beth yw eich grŵp ethnig?"
+    health: "A oes gennych unrhyw gyflyrau neu anhwylderau iechyd meddwl neu iechyd corfforol sy'n parhau neu'n debygol o barhau am 12 mis neu ragor?"
+    pregnancy: "A oeddech chi'n feichiog pan gawsoch eich diswyddo?"
