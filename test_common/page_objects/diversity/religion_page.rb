@@ -50,10 +50,12 @@ module EtFullSystem
             element :field, 'input'
             delegate :set, to: :field
           end
-          section :describe_religion, :diversity_hidden_input, 'religion.free_text' do
+          section :describe_religion, '.diversities_religion_religion_text' do
+            element :describe_religion_hint, :form_hint, 'religion.free_text'
             element :field, 'input'
             delegate :set, to: :field
           end
+
           #save and continue button
           element :save_and_continue, :submit_text, 'helpers.submit.update'
         end
@@ -74,8 +76,8 @@ module EtFullSystem
           data = answers.to_h
           if data[:religion] != nil
             if data[:religion] == "Jehovah's Witnesses"
-              choose('Any other religion', name: 'diversities_religion[religion]')
-              main_content.other_religion.set(data[:religion])
+              choose(factory_translate(:"religion.any-other-religion"), name: 'diversities_religion[religion]')
+              main_content.describe_religion.set(data[:religion])
             else
              choose(factory_translate(data[:religion]), name: 'diversities_religion[religion]')
             end
