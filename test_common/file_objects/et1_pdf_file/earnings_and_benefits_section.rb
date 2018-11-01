@@ -6,20 +6,36 @@ module EtFullSystem
           def has_contents_for?(employment:, errors:, indent:)
             validate_fields section: :earnings_and_benefits, errors: errors, indent: indent do
               expected_values = {
-                  field_name('earnings_and_benefits', 'average_weekly_hours') => employment.average_weekly_hours.to_f.to_s,
-                  field_name('earnings_and_benefits', 'pay_before_tax', 'amount') => employment.pay_before_tax.split(' ').first,
-                  field_name('earnings_and_benefits', 'pay_before_tax', 'period') => employment.pay_before_tax.split(' ').last.downcase,
-                  field_name('earnings_and_benefits', 'paid_for_notice_period') => tri_state_for(employment.paid_for_notice_period),
-                  field_name('earnings_and_benefits', 'notice_period', 'weeks') => weekly_notice_period(employment.notice_period) || '',
-                  field_name('earnings_and_benefits', 'notice_period', 'months') => monthly_notice_period(employment.notice_period) || '',
-                  field_name('earnings_and_benefits', 'employers_pension_scheme') => employment.employers_pension_scheme.downcase,
-                  field_name('earnings_and_benefits', 'benefits') => employment.benefits
+                average_weekly_hours: employment.average_weekly_hours.to_f.to_s,
+                pay_before_tax: {
+                  'amount': employment.pay_before_tax,
+                  'period': employment.pay_before_tax_type.to_s.split('.').last
+                },
+                paid_for_notice_period: tri_state_for(employment.paid_for_notice_period),
+                notice_period: {
+                  weeks: weekly_notice_period(employment.notice_period) || '',
+                  months: monthly_notice_period(employment.notice_period) || ''
+                },
+                employers_pension_scheme: employers_pension_scheme(employment),
+                benefits: employment.benefits
               }
-              expect(field_values).to include expected_values
+              expect(mapped_field_values).to include expected_values
             end
           end
 
           private
+
+          def employers_pension_scheme(employment)
+            true_false = employment.employers_pension_scheme.to_s.split('.').last.downcase
+            if true_false == "true"
+              'yes'
+            elsif true_false == "false"
+              'no'
+            else
+              raise "Unexpected value for employers_pension_scheme - #{employment.employers_pension_scheme}"
+            end
+          end
+
 
           def weekly_notice_period(notice_period)
             amount, period = notice_period.split(' ')

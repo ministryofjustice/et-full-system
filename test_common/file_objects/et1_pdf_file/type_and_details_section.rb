@@ -10,27 +10,28 @@ module EtFullSystem
           # it simply to allow for the value to be added at some point soon.
           def has_contents_for?(claim:, errors:, indent:)
             validate_fields section: :type_and_details_of_claim, errors: errors, indent: indent do
+              claim_types = claim_types_for(claim.claim_types)
               expected_values = {
-                  field_name('type_and_details_of_claim', 'unfairly_dismissed') => yes_no_for(claim_type_for(claim.claim_type) == :unfairly_dismissed, yes: 'yes', no: 'Off'),
-                  field_name('type_and_details_of_claim', 'discriminated_age') => yes_no_for(claim_type_for(claim.claim_type) == :discriminated_age, yes: 'yes', no: 'Off'),
-                  field_name('type_and_details_of_claim', 'discriminated_race') => yes_no_for(claim_type_for(claim.claim_type) == :discriminated_race, yes: 'yes', no: 'Off'),
-                  field_name('type_and_details_of_claim', 'discriminated_gender_reassignment') => yes_no_for(claim_type_for(claim.claim_type) == :discriminated_gender_reassignment, yes: 'yes', no: 'Off'),
-                  field_name('type_and_details_of_claim', 'discriminated_disability') => yes_no_for(claim_type_for(claim.claim_type) == :discriminated_disability, yes: 'yes', no: 'Off'),
-                  field_name('type_and_details_of_claim', 'discriminated_pregnancy') => yes_no_for(claim_type_for(claim.claim_type) == :discriminated_pregnancy, yes: 'yes', no: 'Off'),
-                  field_name('type_and_details_of_claim', 'discriminated_marriage') => yes_no_for(claim_type_for(claim.claim_type) == :discriminated_marriage, yes: 'yes', no: 'Off'),
-                  field_name('type_and_details_of_claim', 'discriminated_sexual_orientation') => yes_no_for(claim_type_for(claim.claim_type) == :discriminated_sexual_orientation, yes: 'yes', no: 'Off'),
-                  field_name('type_and_details_of_claim', 'discriminated_sex') => yes_no_for(claim_type_for(claim.claim_type) == :discriminated_sex, yes: 'yes', no: 'Off'),
-                  field_name('type_and_details_of_claim', 'discriminated_religion') => yes_no_for(claim_type_for(claim.claim_type) == :discriminated_religion, yes: 'yes', no: 'Off'),
-                  field_name('type_and_details_of_claim', 'claiming_redundancy_payment') => yes_no_for(false, yes: 'yes', no: 'Off'),
-                  field_name('type_and_details_of_claim', 'owed_notice_pay') => yes_no_for(false, yes: 'yes', no: 'Off'),
-                  field_name('type_and_details_of_claim', 'owed_holiday_pay') => yes_no_for(false, yes: 'yes', no: 'Off'),
-                  field_name('type_and_details_of_claim', 'owed_arrears_of_pay') => yes_no_for(false, yes: 'yes', no: 'Off'),
-                  field_name('type_and_details_of_claim', 'owed_other_payments') => yes_no_for(false, yes: 'yes', no: 'Off'),
-                  field_name('type_and_details_of_claim', 'other_type_of_claim') => yes_no_for(false, yes: 'yes', no: 'Off'),
-                  field_name('type_and_details_of_claim', 'other_type_of_claim_details') => '',
-                  field_name('type_and_details_of_claim', 'claim_description') => claim.description
+                  unfairly_dismissed: yes_no_for(claim_types.include?(:is_unfair_dismissal), yes: 'yes', no: 'Off'),
+                  discriminated_age: yes_no_for(claim_types.include?(:discrimination_age), yes: 'yes', no: 'Off'),
+                  discriminated_race: yes_no_for(claim_types.include?(:discrimination_race), yes: 'yes', no: 'Off'),
+                  discriminated_gender_reassignment: yes_no_for(claim_types.include?(:discrimination_gender_reassignment), yes: 'yes', no: 'Off'),
+                  discriminated_disability: yes_no_for(claim_types.include?(:discrimination_disability), yes: 'yes', no: 'Off'),
+                  discriminated_pregnancy: yes_no_for(claim_types.include?(:discrimination_pregnancy_or_maternity), yes: 'yes', no: 'Off'),
+                  discriminated_marriage: yes_no_for(claim_types.include?(:discrimination_marriage_or_civil_partnership), yes: 'yes', no: 'Off'),
+                  discriminated_sexual_orientation: yes_no_for(claim_types.include?(:discrimination_sexual_orientation), yes: 'yes', no: 'Off'),
+                  discriminated_sex: yes_no_for(claim_types.include?(:discrimination_sex_including_equal_pay), yes: 'yes', no: 'Off'),
+                  discriminated_religion: yes_no_for(claim_types.include?(:discrimination_religion_or_belief), yes: 'yes', no: 'Off'),
+                  claiming_redundancy_payment: yes_no_for(claim_types.include?(:pay_redundancy), yes: 'yes', no: 'Off'),
+                  owed_notice_pay: yes_no_for(claim_types.include?(:pay_notice), yes: 'yes', no: 'Off'),
+                  owed_holiday_pay: yes_no_for(claim_types.include?(:pay_holiday), yes: 'yes', no: 'Off'),
+                  owed_arrears_of_pay: yes_no_for(claim_types.include?(:pay_arrears), yes: 'yes', no: 'Off'),
+                  owed_other_payments: yes_no_for(claim_types.include?(:pay_other), yes: 'yes', no: 'Off'),
+                  other_type_of_claim: yes_no_for(claim_types.include?(:is_other_type_of_claim), yes: 'yes', no: 'Off'),
+                  other_type_of_claim_details: claim.other_claimant_names,
+                  claim_description: claim.description
               }
-              expect(field_values).to include expected_values
+              expect(mapped_field_values).to include expected_values
             end
           end
         end

@@ -7,10 +7,10 @@ module EtFullSystem
             validate_fields section: :multiple_cases, errors: errors, indent: indent do
               # claimant.title is a selection of options - in this case we are interested in the key thats all - do not translate it
               expected_values = {
-                  field_name('multiple_cases', 'have_similar_claims') => claim.other_claimants.downcase,
-                  field_name('multiple_cases', 'other_claimants') => claim.other_claimant_names
+                  have_similar_claims: claim.other_claimants.to_s.split('.').last.downcase,
+                  other_claimants: claim.other_claimant_names
               }
-              expect(field_values).to include expected_values
+              expect(mapped_field_values).to include expected_values
             end
           end
         end

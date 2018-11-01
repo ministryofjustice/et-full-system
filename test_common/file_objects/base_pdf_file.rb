@@ -18,7 +18,11 @@ module EtFullSystem
 
         def field_values
           @field_values ||= form.fields.inject({}) do |acc, field|
-            acc[field.name] = field.value
+            if field.type == "Button" && field.options.present?
+              acc[field.name] = field.options.include?(field.value) ? field.value : nil
+            else
+              acc[field.name] = field.value
+            end
             acc
           end
         end

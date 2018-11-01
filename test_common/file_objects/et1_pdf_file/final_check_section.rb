@@ -7,9 +7,9 @@ module EtFullSystem
           def has_contents_for?(errors:, indent:)
             validate_fields section: :final_check, errors: errors, indent: indent do
               expected_values = {
-                  field_name('final_check', 'satisfied') => nil
+                  satisfied: nil
               }
-              expect(field_values).to include expected_values
+              expect(mapped_field_values).to include expected_values
             end
           end
         end

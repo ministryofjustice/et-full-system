@@ -21,9 +21,9 @@ module EtFullSystem
           Et1PdfFileSection::InformationToRegulatorsSection.new(tempfile).has_contents_for?(claim: claim, errors: errors, indent: indent + 1)
           Et1PdfFileSection::YourRepresentativeSection.new(tempfile).has_contents_for?(representative: representative, errors: errors, indent: indent + 1)
           Et1PdfFileSection::DisabilitySection.new(tempfile).has_contents_for?(claimant: claimants.first, errors: errors, indent: indent + 1)
-          Et1PdfFileSection::AdditionalRespondentsDetailsSection.new(tempfile).has_contents_for?(respondents: respondents, errors: errors, indent: indent + 1)
+          Et1PdfFileSection::AdditionalRespondentsSection.new(tempfile).has_contents_for?(respondents: respondents, errors: errors, indent: indent + 1)
           Et1PdfFileSection::FinalCheckSection.new(tempfile).has_contents_for?(errors: errors, indent: indent + 1)
-          Et1PdfFileSection::AdditionalInfoSection.new(tempfile).has_contents_for?(claim: claim, errors: errors, indent: indent + 1)
+          Et1PdfFileSection::AdditionalInformationSection.new(tempfile).has_contents_for?(claim: claim, errors: errors, indent: indent + 1)
           errors.empty?
         end
       end
