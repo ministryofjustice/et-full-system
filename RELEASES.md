@@ -1,5 +1,5 @@
 # v1.2.0 - ET1 v3.1.0, ET3 v2.3.0, Admin v1.5.0 & API v2.5.0
-Scheduled: **01/11/2018**
+**01/11/2018**
 
 ## New
 
@@ -31,10 +31,12 @@ _No updates_
 ## Info
 Deployment by Stath
 
-No downtime expected
+No downtime expected / observed
 
 Potential risk as a data migration will take place on production data for Claims.
 This has been tested locally with no issues.
+
+No risks were observed.
 
 # v1.1.1 - Admin v1.4.1 & API v2.4.1
 **11/10/2018**
