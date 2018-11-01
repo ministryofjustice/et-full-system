@@ -1,8 +1,9 @@
 Given(/^a claimant is on the Age Group Caring Responsibilities page$/) do
-  diversity_pages.claim_type_page.load
-  diversity_pages.claim_type_page.save_and_continue
-  diversity_pages.sexual_identity_page.save_and_continue
-  diversity_pages.relationship_status_page.save_and_continue
+  answers = build(:diversity, :blank)
+  diversity_load_page
+  diversity_pages.claim_type_page.set_for(answers)
+  diversity_pages.sexual_identity_page.set_for(answers)
+  diversity_pages.relationship_status_page.set_for(answers)
 end
 
 Then(/^Age Group Caring Responsibilities page copy texts are displayed in the correct language$/) do

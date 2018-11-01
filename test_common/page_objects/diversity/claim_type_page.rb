@@ -4,7 +4,6 @@ module EtFullSystem
     module Diversity
       class ClaimTypePage < BasePage
         include RSpec::Matchers
-        set_url "#{::EtFullSystem::Test::Configuration.diversity_url}/claim-type"
         section :feedback_notice, '.feedback-notice' do
           include ::EtFullSystem::Test::I18n
           element :language, :link_named, 'switch.language'
@@ -37,7 +36,7 @@ module EtFullSystem
             delegate :set, to: :field
           end
           #save and continue button
-          element :save_and_continue, :submit_text, 'helpers.submit.update'
+          element :save_and_continue, :submit_text, 'helpers.submit.update', exact: false
         end
 
         def save_and_continue

@@ -1,5 +1,5 @@
 Given("a claimant is on the Landing page") do
-  diversity_pages.diversity_landing_page.load
+  load_diversity_start_page
 end
 
 Then("Landing page copy texts are displayed in the correct language") do
