@@ -2,11 +2,11 @@ module EtFullSystem
   module Test
     module DiversityHelper
       def diversity_load_page
-        load_start_page
+        load_diversity_start_page
         diversity_pages.diversity_landing_page.start_diversity
       end
 
-      def load_start_page(in_language: ::EtFullSystem::Test::Messaging.instance.current_locale)
+      def load_diversity_start_page(in_language: ::EtFullSystem::Test::Messaging.instance.current_locale)
         diversity_pages.diversity_landing_page.load
         case in_language
           when :cy then diversity_pages.diversity_landing_page.switch_to_welsh

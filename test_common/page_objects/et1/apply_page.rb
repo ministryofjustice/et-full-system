@@ -28,7 +28,7 @@ module EtFullSystem
         element :acas_certificate_number_link, :listing_containing_text, 'claims.new.what_you_need_to_know.body_html.link', exact: false
         element :what_you_need_to_know_acas_details, :listing_containing_text, 'claims.new.what_you_need_to_know.body_html.acas_details'
         #start a claim
-        element :start_a_claim_button, :submit_text, 'diversities.index.begin_form'
+        element :start_a_claim_button, :submit_text, 'helpers.submit.claim.create'
         #return to a claim
         element :return_a_claim_button, :link_named, 'helpers.link.claim.return'
         #Support links
