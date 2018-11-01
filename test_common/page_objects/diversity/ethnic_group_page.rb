@@ -180,26 +180,39 @@ module EtFullSystem
           expect(main_content).to have_black
           expect(main_content).to have_other
           expect(main_content).to have_prefer_not_to_say
-          expect(main_content.white_subgroup).to have_english
-          expect(main_content.white_subgroup).to have_irish
-          expect(main_content.white_subgroup).to have_gypsy
-          expect(main_content.white_subgroup).to have_other_white
-          expect(main_content.white_subgroup).to have_none_of_the_above
+
+          choose(factory_translate(:"ethnicity.white"), name: 'diversities_ethnicity[ethnicity]')
+          expect(main_content.ethnicity_subgroup).to have_english
+          expect(main_content.ethnicity_subgroup).to have_irish
+          expect(main_content.ethnicity_subgroup).to have_gypsy
+          expect(main_content.ethnicity_subgroup).to have_other_white
+          expect(main_content.ethnicity_subgroup).to have_none_of_the_above
+          
+          choose(factory_translate(:"ethnicity.mixed-multiple-ethnic-groups"), name: 'diversities_ethnicity[ethnicity]')
           expect(main_content.mixed_subgroup).to have_white_and_black_caribbean
           expect(main_content.mixed_subgroup).to have_white_and_black_african
           expect(main_content.mixed_subgroup).to have_white_and_asian
           expect(main_content.mixed_subgroup).to have_mixed_background
           expect(main_content.mixed_subgroup).to have_none_of_the_above
+
+          choose(factory_translate(:"ethnicity.asian-asian-british"), name: 'diversities_ethnicity[ethnicity]')
           expect(main_content.asian_subgroup).to have_indian
           expect(main_content.asian_subgroup).to have_pakistani
           expect(main_content.asian_subgroup).to have_bangladeshi
           expect(main_content.asian_subgroup).to have_chinese
           expect(main_content.asian_subgroup).to have_other_asian
           expect(main_content.asian_subgroup).to have_none_of_the_above
+
+          choose(factory_translate(:"ethnicity.black-african-caribbean-black-british"), name: 'diversities_ethnicity[ethnicity]')
           expect(main_content.black_subgroup).to have_african
           expect(main_content.black_subgroup).to have_caribbean
           expect(main_content.black_subgroup).to have_other_black
           expect(main_content.black_subgroup).to have_none_of_the_above
+          expect(main_content.other_subgroup).to have_arab
+          expect(main_content.other_subgroup).to have_other_ethnic_group
+          expect(main_content.other_subgroup).to have_none_of_the_above
+
+          choose(factory_translate(:"ethnicity.other-ethnic-group"), name: 'diversities_ethnicity[ethnicity]')
           expect(main_content.other_subgroup).to have_arab
           expect(main_content.other_subgroup).to have_other_ethnic_group
           expect(main_content.other_subgroup).to have_none_of_the_above

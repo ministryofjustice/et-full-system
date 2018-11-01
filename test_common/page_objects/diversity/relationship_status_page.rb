@@ -13,7 +13,7 @@ module EtFullSystem
         end
         section :main_content, '.container' do
           #What is your relationship status?
-          element :header, :main_header, 'diversities.relationship.header.hint'
+          element :header, :main_header, 'diversities.relationship.hint'
           section :single, :form_labelled, 'relationship.single-that-is-never-married-and-never-registered-in-a-same-sex-civil-partnership'do
             element :field, 'input'
             delegate :set, to: :field
@@ -50,7 +50,7 @@ module EtFullSystem
             element :field, 'input'
             delegate :set, to: :field
           end
-          section :prefer_not_to_say, :form_labelled, 'relationship.prefer_not_to_say' do
+          section :prefer_not_to_say, :form_labelled, 'relationship.prefer-not-to-say' do
             element :field, 'input'
             delegate :set, to: :field
           end

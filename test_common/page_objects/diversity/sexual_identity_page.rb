@@ -23,12 +23,12 @@ module EtFullSystem
               element :field, 'input'
               delegate :set, to: :field
             end
-            section :prefer_not_to_say, :form_labelled, 'sex.prefer_not_to_say' do
+            section :prefer_not_to_say, :form_labelled, 'sex.prefer-not-to-say' do
               element :field, 'input'
               delegate :set, to: :field
             end
           end
-          section :gender, :question_labelled, 'diversities.identity.sexual_identity.gender.hint' do
+          section :gender, :question_labelled, 'diversities.identity.gender.hint' do
             section :male, :form_labelled, 'gender.male-including-female-to-male-trans-men' do
               element :field, 'input'
               delegate :set, to: :field
@@ -51,29 +51,29 @@ module EtFullSystem
               element :field, 'input'
               delegate :set, to: :field
             end
-            section :prefer_not_to_say, :form_labelled, 'gender_at_birth.prefer_not_to_say' do
+            section :prefer_not_to_say, :form_labelled, 'gender_at_birth.prefer-not-to-say' do
               element :field, 'input'
               delegate :set, to: :field
             end
           end
-          section :your_sexual_identity, :question_labelled, 'diversities.identity.your_sexual_identity.hint' do
+          section :your_sexual_identity, :question_labelled, 'diversities.identity.sexual_identity.hint' do
             section :heterosexual, :form_labelled, 'sexual_identity.heterosexual-straight' do
               element :field, 'input'
               delegate :set, to: :field
             end
-            section :gay, :form_labelled, 'your_sexual_identity.gay-lesbian' do
+            section :gay, :form_labelled, 'sexual_identity.gay-lesbian' do
               element :field, 'input'
               delegate :set, to: :field
             end
-            section :bisexual, :form_labelled, 'your_sexual_identity.bisexual' do
+            section :bisexual, :form_labelled, 'sexual_identity.bisexual' do
               element :field, 'input'
               delegate :set, to: :field
             end
-            section :other, :form_labelled, 'your_sexual_identity.other' do
+            section :other, :form_labelled, 'sexual_identity.other' do
               element :field, 'input'
               delegate :set, to: :field
             end
-            section :prefer_not_to_say, :form_labelled, 'your_sexual_identity.prefer_not_to_say' do
+            section :prefer_not_to_say, :form_labelled, 'sexual_identity.prefer-not-to-say' do
               element :field, 'input'
               delegate :set, to: :field
             end
@@ -105,15 +105,23 @@ module EtFullSystem
         def has_correct_translation?
           expect(feedback_notice).to have_language
           expect(main_content).to have_header
+          #What is your sex? (optional)
+          expect(main_content).to have_sex
           expect(main_content.sex).to have_male
           expect(main_content.sex).to have_female
           expect(main_content.sex).to have_prefer_not_to_say
+          #What is your gender identity? (optional)
+          expect(main_content).to have_gender
           expect(main_content.gender).to have_male
           expect(main_content.gender).to have_female
           expect(main_content.gender).to have_prefer_not_to_say
+          #Is your gender identity different to the sex you were assumed to be at birth? (optional)
+          expect(main_content).to have_gender_at_birth
           expect(main_content.gender_at_birth).to have_yes
           expect(main_content.gender_at_birth).to have_no
           expect(main_content.gender_at_birth).to have_prefer_not_to_say
+          #Which of the options below best describes your sexual identity? (optional)
+          expect(main_content).to have_your_sexual_identity
           expect(main_content.your_sexual_identity).to have_heterosexual
           expect(main_content.your_sexual_identity).to have_gay
           expect(main_content.your_sexual_identity).to have_bisexual

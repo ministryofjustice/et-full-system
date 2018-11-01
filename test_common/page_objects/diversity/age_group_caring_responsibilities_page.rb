@@ -39,7 +39,7 @@ module EtFullSystem
               element :field, 'input'
               delegate :set, to: :field
             end
-            section :prefer_not_to_say, :form_labelled, 'age_group.prefer_not_to_say' do
+            section :prefer_not_to_say, :form_labelled, 'age_group.prefer-not-to-say' do
               element :field, 'input'
               delegate :set, to: :field
             end
@@ -54,7 +54,7 @@ module EtFullSystem
               element :field, 'input'
               delegate :set, to: :field
             end
-            section :prefer_not_to_say, :form_labelled, 'caring_responsibility.prefer_not_to_say' do
+            section :prefer_not_to_say, :form_labelled, 'caring_responsibility.prefer-not-to-say' do
               element :field, 'input'
               delegate :set, to: :field
             end

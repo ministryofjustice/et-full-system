@@ -45,9 +45,9 @@ cy:
     age_caring:
       hint: "Beth yw eich grŵp oedran a'ch cyfrifoldebau gofalu?"
       age_group:
-        hint: "Ym mha grŵp oedran ydych chi?"
+        hint: "Ym mha grŵp oedran ydych chi? (dewisol)"
       caring_responsibility:
-        hint: "A oes gennych chi unrhyw gyfrifoldebau gofalu?"
+        hint: "A oes gennych chi unrhyw gyfrifoldebau gofalu? (dewisol)"
         form_hint: "Er enghraifft, plant, perthnasau neu bartneriaid oedrannus"
     religion:
       header: Crefydd
@@ -76,7 +76,7 @@ cy:
 
     disability:
       header: Anabledd
-      act: Mae Deddf Cydraddoldeb 2010 yn diffinio unigolyn anabl fel 'rhywun sydd â nam corfforol neu feddyliol sy'n cael effaith andwyol sylweddol a hirdymor ar ei allu/gallu i gyflawni gweithgareddau cyffredin pob dydd'.
+      act: "Mae Deddf Cydraddoldeb 2010 yn diffinio unigolyn anabl fel 'rhywun sydd â nam corfforol neu feddyliol sy'n cael effaith andwyol sylweddol a hirdymor ar ei allu/gallu i gyflawni gweithgareddau cyffredin pob dydd'."
       conditions: "Gall y cyflyrau a gwmpesir gynnwys, er enghraifft, iselder ysbryd difrifol, dyslecsia, epilepsi ac arthritis."
       hint: "A oes gennych unrhyw gyflyrau neu anhwylderau iechyd meddwl neu iechyd corfforol sy'n parhau neu'n debygol o barhau am 12 mis neu ragor?"
     pregnancy:
@@ -101,22 +101,22 @@ cy:
   sex:
     male: Gwryw
     female: Benyw
-    prefer-not-to-say: Mae'n well gen i beidio dweud
+    prefer-not-to-say: "Mae'n well gen i beidio dweud"
   sexual_identity:
     heterosexual-straight: Heterorywiol
     gay-lesbian: Hoyw / Lesbiaidd
     bisexual: Deurywiol
     other: Arall
-    prefer-not-to-say: Mae'n well gen i beidio dweud
+    prefer-not-to-say: "Mae'n well gen i beidio dweud"
   gender_at_birth:
     bananas: ''
     yes_answer: 'Ydi'
     no_answer: 'Nac ydi'
-    prefer-not-to-say: Mae'n well gen i beidio dweud
+    prefer-not-to-say: "Mae'n well gen i beidio dweud"
   gender:
     male-including-female-to-male-trans-men: Gwryw (yn cynnwys dynion trawsrywiol benyw i wryw)
     female-including-male-to-female-trans-women: Benyw (yn cynnwys menywod trawsrywiol gwryw i fenyw)
-    prefer-not-to-say: Mae'n well gen i beidio dweud
+    prefer-not-to-say: "Mae'n well gen i beidio dweud"
   relationship:
     single-that-is-never-married-and-never-registered-in-a-same-sex-civil-partnership: "Sengl, hynny yw, heb briodi erioed a heb gofrestru erioed mewn partneriaeth sifil gyfunrywiol"
     married: Priod
@@ -127,7 +127,7 @@ cy:
     separated-but-still-legally-in-a-same-sex-civil-partnership: Wedi gwahanu ond yn parhau i fod mewn partneriaeth sifil gyfunrywiol yn ôl y gyfraith
     formerly-in-a-same-sex-civil-partnership-which-is-now-legally-dissolved: Yn flaenorol mewn partneriaeth sifil gyfunrywiol sydd yn awr wedi ei diddymu'n gyfreithiol
     surviving-partner-from-a-same-sex-civil-partnership: Wedi colli partner sifil o’r un rhyw trwy farwolaeth
-    prefer-not-to-say: Mae'n well gen i beidio dweud
+    prefer-not-to-say: "Mae'n well gen i beidio dweud"
   age_group:
     under-25: Dan 25
     25-34: 25 - 34
@@ -135,11 +135,11 @@ cy:
     45-54: 45 - 54
     55-64: 55 - 64
     65-over: 65 a throsodd
-    prefer-not-to-say: Mae'n well gen i beidio dweud
+    prefer-not-to-say: "Mae'n well gen i beidio dweud"
   caring_responsibility:
     yes_answer: 'Oes'
     no_answer: 'Nac oes'
-    prefer-not-to-say: Mae'n well gen i beidio dweud
+    prefer-not-to-say: "Mae'n well gen i beidio dweud"
   religion:
     no-religion: Dim crefydd
     christian-including-church-of-england-catholic-protestant-and-all-other-christian-denominations: "Cristion (yn cynnwys Eglwys Loegr, yr Eglwys Gatholig, Protestannaidd a phob enwad Cristnogol arall)"
@@ -148,7 +148,7 @@ cy:
     jewish: Iddew
     muslim: Mwslim
     sikh: Sikh
-    prefer-not-to-say: Mae'n well gen i beidio dweud
+    prefer-not-to-say: "Mae'n well gen i beidio dweud"
     any-other-religion: Unrhyw grefydd arall
   ethnicity:
     white: Gwyn
@@ -180,7 +180,7 @@ cy:
   disability:
     yes_answer: 'Oes'
     no_answer: 'Nac oes'
-    prefer-not-to-say: Mae'n well gen i beidio dweud
+    prefer-not-to-say: "Mae'n well gen i beidio dweud"
   pregnancy:
     yes_answer: 'Oeddwn'
     no_answer: 'Nac oeddwn'

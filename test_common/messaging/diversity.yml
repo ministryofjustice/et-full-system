@@ -30,14 +30,14 @@ en:
       hint: How do you identify?
       header: Indentity
       sex:
-        hint: What is your sex?
+        hint: What is your sex? (optional)
       sexual_identity:
-        hint: Which of the options below best describes your sexual identity?
+        hint: Which of the options below best describes your sexual identity? (optional)
       gender:
-        hint: What is your gender identity?
+        hint: What is your gender identity? (optional)
 
       gender_at_birth:
-        hint: Is your gender identity different to the sex you were assumed to be at birth?
+        hint: Is your gender identity different to the sex you were assumed to be at birth? (optional)
 
     relationship:
       header: Relationship
@@ -45,9 +45,9 @@ en:
     age_caring:
       hint: What is your age group and caring responsibilities?
       age_group:
-        hint: Which age group are you in?
+        hint: Which age group are you in? (optional)
       caring_responsibility:
-        hint: Do you have any caring responsibilities?
+        hint: Do you have any caring responsibilities? (optional)
         form_hint: For example, children, elderly relatives or partners
     religion:
       header: Religion
@@ -117,7 +117,7 @@ en:
     female-including-male-to-female-trans-women: Female (including male-to-female trans women)
     prefer-not-to-say: Prefer not to say
   relationship:
-    single-that-is-never-married-and-never-registered-in-a-same-sex-civil-partnership: Single, that is, never married and never registered in a same-sex civil partnership
+    single-that-is-never-married-and-never-registered-in-a-same-sex-civil-partnership: "Single, that is, never married and never registered in a same-sex civil partnership"
     married: Married
     separated-but-still-legally-married: Separated, but still legally married
     divorced: Divorced

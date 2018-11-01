@@ -25,7 +25,7 @@ module EtFullSystem
             element :field, 'input'
             delegate :set, to: :field
           end
-          section :prefer_not_to_say, :form_labelled, 'disability.prefer_not_to_say'do
+          section :prefer_not_to_say, :form_labelled, 'disability.prefer-not-to-say'do
             element :field, 'input'
             delegate :set, to: :field
           end
