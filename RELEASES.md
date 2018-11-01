@@ -1,4 +1,4 @@
-# v1.2.0 - Admin v1.4.1 & API v2.4.1
+# v1.2.0 - ET1 v3.1.0, ET3 v2.3.0, Admin v1.5.0 & API vx.x.x
 Scheduled: **01/11/2018**
 
 ## New
