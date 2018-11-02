@@ -262,16 +262,15 @@ module EtFullSystem
             set_field s, :post_code, data
             set_field s, :telephone_number, data
           end
-          if data.key?(:work_address)
-            address = data[:work_address].to_h
+          if data.key?(:work_building)
             main_content.same_address.no.click
             main_content.work_address do |s|
-              set_field s, :building, address
-              set_field s, :street, address
-              set_field s, :locality, address
-              set_field s, :county, address
-              set_field s, :post_code, address
-              set_field s, :telephone_number, address
+              s.building.set(data[:work_building])
+              s.street.set(data[:work_street])
+              s.locality.set(data[:work_locality])
+              s.county.set(data[:work_county])
+              s.post_code.set(data[:work_post_code])
+              s.telephone_number.set(data[:work_telephone_number])
             end
           else
             main_content.same_address.yes.click

@@ -23,7 +23,7 @@ en:
       download_application:
         header: Download your claim
         link_html: Save a copy
-        info: for your records
+        info: "for your records"
 
       no_attachments: None
 

@@ -1,5 +1,7 @@
 When /^the completed form is submitted$/ do
   start_a_new_et1_claim
+  claim_number = et1_application_number_page.main_content.claims_number.text
+  @claimants = FactoryBot.create_list(:claimant, 1, :person_data, claim_number: claim_number)
   et1_answer_login
   et1_answer_claimant_questions
   et1_answer_group_claimants_questions
@@ -23,6 +25,8 @@ When /^I submit a completed ET1 form$/ do
   @claim = FactoryBot.create(:claim)
 
   start_a_new_et1_claim
+  claim_number = et1_application_number_page.main_content.claims_number.text
+  @claimants = FactoryBot.create_list(:claimant, 1, :person_data, claim_number: claim_number)
   et1_answer_login
   et1_answer_claimant_questions
   et1_answer_group_claimants_questions
@@ -39,7 +43,7 @@ When /^I submit a completed ET1 form$/ do
 end
 
 Then("the address lookup will be based on respondent's work address and will forwarded to {string}") do |string|
-  expect(et1_claim_submitted.main_content.content_section.confirmation_table.tbody.local_office_address.text).to end_with(string)
+  @respondents = FactoryBot.create_list(:respondent, 1, :yes_acas, office: string)
 end
 
 Then("submission details page includes RTF and CSV files") do
@@ -47,5 +51,5 @@ Then("submission details page includes RTF and CSV files") do
 end
 
 Then("the address lookup will be based on claimant's work address and will be forwarded to {string}") do |string|
-  expect(et1_claim_submitted.main_content.content_section.confirmation_table.tbody.local_office_address.text).to end_with(string)
+  @respondents = FactoryBot.create_list(:respondent, 1, :yes_acas, office: string)
 end

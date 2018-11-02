@@ -48,7 +48,7 @@ end
 Given("a claimant submitted an ET1 form without providing a work address {string}") do |string|
   @claimants = FactoryBot.create_list(:claimant, 1, :person_data)
   @representatives = FactoryBot.create_list(:representative, 1, :et3_information)
-  @respondents = FactoryBot.create_list(:respondent, 1, :employer, post_code: string)
+  @respondents = FactoryBot.create_list(:respondent, 1, :yes_acas, post_code: string)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 

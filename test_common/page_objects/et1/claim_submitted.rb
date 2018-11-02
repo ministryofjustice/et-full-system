@@ -16,43 +16,42 @@ module EtFullSystem
         section :main_header, '.main-header' do
           element :page_header, :page_title, 'claim_confirmations.show.header', exact: false
         end
-        section :main_content, '#content .main-section .main-content' do
-          #Your claim number
+        section :main_content, '.main-section' do
           section :callout_confirmation, '.callout-confirmation' do
-            element :your_claim_number, :paragraph, 'claim_confirmations.show.callout_detail'
-            element :number, :number, ''
+            #Your claim number
+            element :claim_number, :paragraph, 'claim_confirmations.show.callout_detail'
+            element :answer, :css, '.number'
           end
           #What happens next
           element :what_happens_next, :content_header, 'claim_confirmations.show.what_happens_next.header'
           section :numerical_list, '.numerical-list' do
+            #A copy of the claim will be sent to the respondent. They’ll have 28 days to reply.
             element :send_to_respondent, :paragraph, 'claim_confirmations.show.what_happens_next.send_to_respondent'
+            #We’ll contact you when we’ve sent your claim to the respondent and explain the next steps.
             element :next_steps, :paragraph, 'claim_confirmations.show.what_happens_next.next_steps'
           end
           #Submission details
-          section :confirmation_table, '.confirmation-table' do
-            element :submission_details, :caption, 'claim_confirmations.show.submission_details.header'
-            section :tbody, 'tbody' do
-              section :download_application, :table_row_with_th_labelled, 'claim_confirmations.show.download_application.header' do
-                element :answer, :return_diversity_answer
-                element :download_application_link, :link_named, 'claim_confirmations.show.download_application.info'
-                element :download_application_info, :link_named, 'claim_confirmations.show.download_application.info'
-              end
-              section :submission_information, :table_row_with_th_labelled, 'claim_confirmations.show.submission_details.submission_information' do
-                element :answer, :return_diversity_answer
-                element :submission_information_info, :td, 'claim_confirmations.show.submission_details.submission_with_office'
-              end
-              section :attachments, :table_row_with_th_labelled, 'claim_confirmations.show.submission_details.attachments' do
-                element :answer, :return_diversity_answer
-                element :attachments_info, :link_named, 'claim_confirmations.show.no_attachments'
-              end
+          section :submission_details, :table_captioned, 'claim_confirmations.show.submission_details.header' do
+            #Download your claim
+            section :download_application, :table_row_with_th_labelled, 'claim_confirmations.show.download_application.header' do
+              element :download_application_link, :link_named, 'claim_confirmations.show.download_application.link_html'
+            end
+            #Claim submitted
+            section :submission_information, :table_row_with_th_labelled, 'claim_confirmations.show.submission_details.submission_information' do
+              element :answer, :css, 'td'
+            end
+            #Attachments included
+            section :attachments, :table_row_with_th_labelled, 'claim_confirmations.show.submission_details.attachments' do
+              element :answer, :css, 'td'
+              element :no_attachments, :td_containing, 'claim_confirmations.show.no_attachments'
             end
           end
           element :print_this_page, :link_named, 'claim_confirmations.show.print_link_html'
-          element :for_your_record, :paragraph, 'claim_confirmations.show.print_link_info'
+          element :for_your_record, :paragraph, 'claim_confirmations.show.print_link_info', exact: false
           element :your_feedback, :link_named, 'claim_confirmations.show.feedback_html'
-          element :your_feedback_info, :paragraph, 'claim_confirmations.show.feedback_info'
-          element :diversity_info, :paragraph, 'claim_confirmations.show.diversity_html'
-          element :diversity_link, :link_named, 'claim_confirmations.show.diversity_link'
+          element :your_feedback_info, :paragraph, 'claim_confirmations.show.feedback_info', exact: false
+          element :diversity_info, :paragraph, 'claim_confirmations.show.diversity_html', exact: false
+          element :diversity_info, :link_named, 'claim_confirmations.show.diversity_link'
         end
 
         def diversity_link
@@ -65,6 +64,47 @@ module EtFullSystem
 
         def switch_to_english
           feedback_notice.english_link.click
+        end
+
+        def has_correct_translation?(claim_number, attachment, office)
+          #your feedback header
+          expect(feedback_notice).to have_language
+          expect(feedback_notice).to have_feedback_link
+          #Claim submitted
+          expect(self).to have_main_header
+          #Your claim number
+          expect(main_content.callout_confirmation).to have_claim_number
+          expect(main_content.callout_confirmation).to have_answer(text: claim_number)
+          #What happens next
+          expect(main_content).to have_what_happens_next
+          expect(main_content.numerical_list).to have_send_to_respondent 
+          expect(main_content.numerical_list).to have_next_steps
+          #Submission details
+          expect(main_content).to have_submission_details
+          #Down your claim
+          expect(main_content.submission_details).to have_download_application
+          expect(main_content.submission_details.download_application).to have_download_application_link
+          #Claim submitted
+          expect(main_content.submission_details).to have_submission_information
+          date = Time.now
+          expect(main_content.submission_details.submission_information).to have_answer(text: t('claim_confirmations.show.submission_details.submission_with_office', date: date.strftime("%d #{t("date.month_names")[date.month]} %Y"), office: office))
+          expect(main_content.submission_details).to have_attachments
+          if attachment != nil
+            #Attachments included
+            expect(main_content.submission_details.attachments).to have_answer(text: attachment)
+          else
+            #no attachments
+            expect(main_content.submission_details.attachments).to have_no_attachments
+          end
+          #Print this page
+          expect(main_content).to have_print_this_page
+          expect(main_content).to have_for_your_record
+          #Your feedback
+          expect(main_content).to have_your_feedback
+          expect(main_content).to have_your_feedback_info
+          #Helps us keep track
+          expect(main_content).to have_diversity_info
+          expect(main_content).to have_diversity_info
         end
       end
     end

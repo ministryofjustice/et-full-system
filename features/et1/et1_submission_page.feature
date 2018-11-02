@@ -1,6 +1,6 @@
 @javascript
 Feature:
-  As Representative's submission page
+  As Submission page
   I want to ensure that user can view the submission details in Welsh or in English
 
   Scenario: with a representative, respondent and claimant
