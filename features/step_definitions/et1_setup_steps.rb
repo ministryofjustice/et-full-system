@@ -1,7 +1,7 @@
 Given(/^an employee making a claim$/) do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondents = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 end
@@ -9,7 +9,7 @@ end
 Given(/^an employee making a claim without a respresentative$/) do
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
-  @respondents = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 end
@@ -17,7 +17,7 @@ end
 Given(/^2 employees making a claim$/) do
   @claimant = FactoryBot.create_list(:claimant, 2, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
-  @respondents = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 end
@@ -25,7 +25,7 @@ end
 Given(/^7 employees making a claim by uploading CSV file$/) do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data, :group_claims)
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
-  @respondents = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 end
@@ -33,7 +33,7 @@ end
 Given(/^an employee making a claim by uploading a Rich Text Format document$/) do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
-  @respondents = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create_list(:claim, 1, :upload_your_claim_statement)[0]
 end
@@ -41,7 +41,7 @@ end
 Given(/^an employee making a claim against 3 employers$/) do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
-  @respondents = FactoryBot.create_list(:conciliation_acas_number, 3)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 3)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 end
@@ -49,7 +49,7 @@ end
 Given("a claimant submitted an ET1 form without providing a work address {string}") do |string|
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
-  @respondents = FactoryBot.create_list(:respondent, 1, :yes_acas, post_code: string)
+  @respondent = FactoryBot.create_list(:respondent, 1, :yes_acas, post_code: string)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 
@@ -70,7 +70,7 @@ end
 Given("a claimant submitted an ET1 form with work address WD187SQ") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
-  @respondents = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 
@@ -91,7 +91,7 @@ end
 When("a claimant submitted an ET1 with special characters in the first and last name") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data, first_name: 'N/A.*_', last_name: 'N/A.*')
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
-  @respondents = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 
@@ -112,13 +112,13 @@ end
 Given("a claimant submitted an ET1 with no employment details") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
-  @respondents = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @claim = FactoryBot.create_list(:claim, 1, :upload_your_claim_statement)[0]
 end
 
 Given("a claimant submitted an ET1 who live outside UK") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data, country: 'Outside United Kingdom', post_code: "1065^&%$£@():?><*&")
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
-  @respondents = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @claim = FactoryBot.create_list(:claim, 1, :upload_your_claim_statement)[0]
 end

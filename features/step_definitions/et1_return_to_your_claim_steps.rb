@@ -1,5 +1,5 @@
 Given("a claimant is on the Return to your claim page") do
-  load_start_page
+  load_et1_start_page
   et1_apply_page.return_to_claim
 end
 
@@ -14,7 +14,7 @@ Given("I'm a return claimant") do
   et1_answer_login
   @page_left_off = current_url
   page.reset!
-  load_start_page
+  load_et1_start_page
   et1_apply_page.return_to_claim
 end
 

@@ -25,7 +25,7 @@ Feature:
     When I answer no to claims against more than one employer
     Then I should on Employment details page
 
-  Scenario: Claim against three employers
+  Scenario: Submit claim against three employers
     When I submit claim against three employers
     Then I should on Employment details page
 

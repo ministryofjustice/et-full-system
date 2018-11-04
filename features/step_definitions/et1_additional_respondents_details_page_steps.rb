@@ -7,7 +7,7 @@ Given("a claimant is on Additional respondent's details page") do
   et1_answer_claimant_questions
   et1_answer_group_claimants_questions
   et1_answer_representatives_questions
-  et1_respondents_details_page.set(@respondents)
+  et1_respondents_details_page.set(@respondent)
   et1_respondents_details_page.save_and_continue
 end
 
@@ -57,7 +57,7 @@ end
 
 When("I submit claim against three employers") do
   @respondent = FactoryBot.create_list(:acas_number_reason, 3, :yes_acas)
-  et1_additional_respondents_details_page.set(@respondents)
+  et1_additional_respondents_details_page.set(@respondent)
 end
 
 Then("remove one of additional respondent") do

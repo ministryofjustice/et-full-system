@@ -36,13 +36,13 @@ end
 
 When("I submit yes to Acas early conciliation certificate number") do
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
-  et1_respondents_details_page.set(@respondents)
+  et1_respondents_details_page.set(@respondent)
   et1_respondents_details_page.save_and_continue
 end
 
 When("I submit no to Acas early conciliation certificate number") do
   @respondent = FactoryBot.create_list(:acas_number_reason, 1, :no_acas)
-  et1_respondents_details_page.set(@respondents)
+  et1_respondents_details_page.set(@respondent)
   et1_respondents_details_page.save_and_continue
 end
 

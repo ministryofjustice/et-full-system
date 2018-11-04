@@ -1,8 +1,8 @@
 Then("I should see valid claim submitted page") do
-  if @respondents[0][:work_office]
-    office = @respondents[0][:work_office]
+  if @respondent[0][:work_office]
+    office = @respondent[0][:work_office]
   else
-    office = @respondents[0][:office]
+    office = @respondent[0][:office]
   end
   expect(et1_claim_submitted.has_correct_translation?(@claim_number, @claim[:rtf_file], @claimant[0][:group_claims_csv], office)).to be true
 end

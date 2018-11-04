@@ -5,7 +5,7 @@ Then(/^I can download the form and validate in PDF format$/) do
     admin_pages.jobs_page.run_export_claims_cron_job
   end
   expect { atos_interface }.to eventually have_zip_file_containing(:et1_claim_pdf_for, user: @claimant[0]), timeout: 30, sleep: 2
-  expect(atos_interface.download_from_any_zip_to_tempfile(:et1_claim_pdf_for, user: @claimant[0])).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondents, employment: @employment)
+  expect(atos_interface.download_from_any_zip_to_tempfile(:et1_claim_pdf_for, user: @claimant[0])).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
 end
 
 Then(/^I can download the form and validate in TXT format$/) do
@@ -15,7 +15,7 @@ Then(/^I can download the form and validate in TXT format$/) do
     admin_pages.jobs_page.run_export_claims_cron_job
   end
   expect { atos_interface }.to eventually have_zip_file_containing(:et1_claim_txt_for, user: @claimant[0]), timeout: 30, sleep: 2
-  expect(atos_interface.download_from_any_zip(:et1_claim_txt_for, user: @claimant[0])).to match_text_schema calculated_claim_matchers(user: @claimant[0], representative: @representative[0], respondents: @respondents, employment: @employment)
+  expect(atos_interface.download_from_any_zip(:et1_claim_txt_for, user: @claimant[0])).to match_text_schema calculated_claim_matchers(user: @claimant[0], representative: @representative[0], respondents: @respondent, employment: @employment)
 end
 
 Then(/^I can download the uploaded CSV data and validate in TXT format$/) do
@@ -25,7 +25,7 @@ Then(/^I can download the uploaded CSV data and validate in TXT format$/) do
     admin_pages.jobs_page.run_export_claims_cron_job
   end
   expect { atos_interface }.to eventually have_zip_file_containing(:et1a_claim_txt_for, user: @claimant[0]), timeout: 30, sleep: 2
-  expect(atos_interface.download_from_any_zip(:et1a_claim_txt_for, user: @claimant[0])).to match_text_schema calculated_et1a_claim_matchers(user: @claimant[0], respondents: @respondents)
+  expect(atos_interface.download_from_any_zip(:et1a_claim_txt_for, user: @claimant[0])).to match_text_schema calculated_et1a_claim_matchers(user: @claimant[0], respondents: @respondent)
 end
 
 Then(/^I can download the uploaded CSV data and validate in CSV format$/) do
@@ -53,7 +53,7 @@ Then(/^I can download the form and validate the TXT file contained 3 employers d
     admin_pages.jobs_page.run_export_claims_cron_job
   end
   expect { atos_interface }.to eventually have_zip_file_containing(:et1_claim_txt_for, user: @claimant[0]), timeout: 30, sleep: 2
-  expect(atos_interface.download_from_any_zip(:et1_claim_txt_for, user: @claimant[0])).to match_text_schema calculated_claim_matchers(user: @claimant[0], representative: @representative[0], respondents: @respondents, employment: @employment)
+  expect(atos_interface.download_from_any_zip(:et1_claim_txt_for, user: @claimant[0])).to match_text_schema calculated_claim_matchers(user: @claimant[0], representative: @representative[0], respondents: @respondent, employment: @employment)
 end
 
 Then("I can download the form and validate that the filename start with {string}") do |string|

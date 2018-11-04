@@ -1,5 +1,5 @@
 Given("a claimant is on the Your feedback page") do
-  load_start_page
+  load_et1_start_page
   et1_apply_page.feedback_notice.feedback_link.click
   expect(et1_your_feedback_page.header.text).to be_truthy
 end

@@ -39,5 +39,5 @@ end
 
 Then("I should be on Claim outcome page") do
   et1_claim_details_page.save_and_continue
-  expect(et1_claim_outcome_page.main_header).to have_page_header
+  expect(et1_claim_outcome_page).to have_main_header
 end

@@ -1,5 +1,5 @@
 Given("a claimant is on the Apply page") do
-  load_start_page
+  load_et1_start_page
 end
 
 Then("Apply page copy texts are displayed in the correct language") do

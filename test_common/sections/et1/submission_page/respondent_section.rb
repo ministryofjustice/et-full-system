@@ -26,7 +26,7 @@ module EtFullSystem
               expect(acas_number).to have_answer(text: with_not_entered(respondent.acas_number))
               expect(address).to have_answer(text: with_not_entered_address(respondent))
               expect(phone).to have_answer(text: with_not_entered(respondent.telephone_number))
-              expect(work_address).to have_answer(text: with_not_entered_address(respondent.work_address))
+              expect(work_address).to have_answer(text: with_not_entered_work_address(respondent))
             end
             true
           end
@@ -38,6 +38,14 @@ module EtFullSystem
               t('review.common.not_entered')
             else
               "#{obj.building}#{obj.street}#{obj.locality}#{obj.county}#{obj.post_code}"
+            end
+          end
+
+          def with_not_entered_work_address(obj)
+            if obj.nil? || (obj.work_building.nil? && obj.work_street.nil? && obj.work_locality.nil? && obj.work_county.nil? && obj.work_post_code.nil?)
+              t('review.common.not_entered')
+            else
+              "#{obj.work_building}#{obj.work_street}#{obj.work_locality}#{obj.work_county}#{obj.work_post_code}"
             end
           end
         end

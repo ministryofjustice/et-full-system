@@ -84,7 +84,7 @@ module EtFullSystem
           expect(feedback_notice).to have_language
           expect(feedback_notice).to have_feedback_link
           #Claim outcome
-          expect(main_header).to have_page_header
+          expect(self).to have_main_header
           #Choose your preferred outcome(s)
           expect(main_content).to have_claim_outcome
           ##What do you want if your claim is successful? (optional)
