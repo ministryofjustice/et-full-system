@@ -108,14 +108,6 @@ When("a claimant submitted an ET1 with special characters in the first and last 
   et1_submit_claim
 end
 
-Given("a group claimaints submitting an ET1 form by uploading CSV and Rich Text Format documents") do
-  @claimants = FactoryBot.create_list(:claimant, 1, :group_claims)
-  @representatives = FactoryBot.create_list(:representative, 1, :et3_information)
-  @respondents = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
-  @employment = FactoryBot.create(:employment)
-  @claim = FactoryBot.create_list(:claim, 1, :upload_your_claim_statement)[0]
-end
-
 Given("a claimant submitted an ET1 with no employment details") do
   @claimants = FactoryBot.create_list(:claimant, 1, :group_claims)
   @representatives = FactoryBot.create_list(:representative, 1, :et3_information)

@@ -66,7 +66,7 @@ module EtFullSystem
           feedback_notice.english_link.click
         end
 
-        def has_correct_translation?(claim_number, attachment, office)
+        def has_correct_translation?(claim_number, rtf_attachment, csv_attachment, office)
           #your feedback header
           expect(feedback_notice).to have_language
           expect(feedback_notice).to have_feedback_link
@@ -85,17 +85,9 @@ module EtFullSystem
           expect(main_content.submission_details).to have_download_application
           expect(main_content.submission_details.download_application).to have_download_application_link
           #Claim submitted
-          expect(main_content.submission_details).to have_submission_information
-          date = Time.now
-          expect(main_content.submission_details.submission_information).to have_answer(text: t('claim_confirmations.show.submission_details.submission_with_office', date: date.strftime("%d #{t("date.month_names")[date.month]} %Y"), office: office))
-          expect(main_content.submission_details).to have_attachments
-          if attachment != nil
-            #Attachments included
-            expect(main_content.submission_details.attachments).to have_answer(text: attachment)
-          else
-            #no attachments
-            expect(main_content.submission_details.attachments).to have_no_attachments
-          end
+          expect(has_forwarded_to_local_office?(office)).to be true
+          #attachment
+          expect(has_attachment?(rtf_attachment, csv_attachment)).to be true
           #Print this page
           expect(main_content).to have_print_this_page
           expect(main_content).to have_for_your_record
@@ -105,6 +97,29 @@ module EtFullSystem
           #Helps us keep track
           expect(main_content).to have_diversity_info
           expect(main_content).to have_diversity_info
+        end
+        
+        def has_forwarded_to_local_office?(office)
+          expect(main_content.submission_details).to have_submission_information
+          date = Time.now
+          expect(main_content.submission_details.submission_information).to have_answer(text: t('claim_confirmations.show.submission_details.submission_with_office', date: date.strftime("%d #{t("date.month_names")[date.month]} %Y"), office: office))
+        end
+
+        def has_attachment?(rtf_attachment, csv_attachment)
+          expect(main_content.submission_details).to have_attachments
+          if rtf_attachment != nil  && csv_attachment != nil
+            #Attachments included rtf and csv
+            expect(main_content.submission_details.attachments.answer.text).to eq("#{rtf_attachment} #{csv_attachment}")
+          elsif rtf_attachment != nil && csv_attachment == nil
+            #rtf only
+            expect(main_content.submission_details.attachments).to have_answer(text: rtf_attachment)
+          elsif csv_attachment != nil && rtf_attachment == nil
+            #csv only
+            expect(main_content.submission_details.attachments).to have_answer(text: csv_attachment)
+          else
+            #no attachments
+            expect(main_content.submission_details.attachments).to have_no_attachments
+          end
         end
       end
     end
