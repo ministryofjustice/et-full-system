@@ -1,7 +1,7 @@
 Given("a claimant is on Additional respondent's details page") do
-  @claimants = FactoryBot.create_list(:claimant, 1, :person_data)
-  @representatives = FactoryBot.create_list(:representative, 1, :et3_information)
-  @respondents = FactoryBot.create_list(:acas_number_reason, 1, :yes_acas)
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et3_information)
+  @respondent = FactoryBot.create_list(:acas_number_reason, 1, :yes_acas)
   start_a_new_et1_claim
   et1_answer_login
   et1_answer_claimant_questions
@@ -56,7 +56,7 @@ Then("I should on Employment details page") do
 end
 
 When("I submit claim against three employers") do
-  @respondents = FactoryBot.create_list(:acas_number_reason, 3, :yes_acas)
+  @respondent = FactoryBot.create_list(:acas_number_reason, 3, :yes_acas)
   et1_additional_respondents_details_page.set(@respondents)
 end
 

@@ -16,20 +16,20 @@ module EtFullSystem
       end
 
       def et1_answer_login
-        et1_application_number_page.set(@claimants)
+        et1_application_number_page.set(@claimant)
         et1_application_number_page.save_and_continue
       end
 
       def et1_answer_claimant_questions
-        et1_claimant_details_page.set(@claimants)
+        et1_claimant_details_page.set(@claimant)
         et1_claimant_details_page.save_and_continue
       end
 
       def et1_answer_group_claimants_questions
-        et1_group_claimants_page.set(@claimants)
-        group_claims_csv = @claimants[0].dig(:group_claims_csv)
+        et1_group_claimants_page.set(@claimant)
+        group_claims_csv = @claimant[0].dig(:group_claims_csv)
         if group_claims_csv
-          et1_group_claimants_upload_page.set(@claimants)
+          et1_group_claimants_upload_page.set(@claimant)
           et1_group_claimants_upload_page.save_and_continue
         else
           et1_group_claimants_page.save_and_continue
@@ -37,7 +37,7 @@ module EtFullSystem
       end
 
       def et1_answer_representatives_questions
-        et1_representatives_details_page.set(@representatives)
+        et1_representatives_details_page.set(@representative)
         et1_representatives_details_page.save_and_continue
       end
 

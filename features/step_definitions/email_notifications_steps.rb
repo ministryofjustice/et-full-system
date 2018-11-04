@@ -1,5 +1,5 @@
 Given /^a claimant continued from Saving your claim page$/ do
-  @claimants = FactoryBot.create_list(:claimant, 1, :answer_data)
+  @claimant = FactoryBot.create_list(:claimant, 1, :answer_data)
   start_a_new_et1_claim
   @my_et1_claim_number = et1_application_number_page.main_content.claim_number.text
   et1_answer_login
@@ -11,9 +11,9 @@ Then(/^an email is sent to notify user that a claim has been started$/) do
 end
 
 Given /^a claimant completes an ET1 form$/ do
-  @claimants = FactoryBot.create_list(:first_person, 1, :person_data)
+  @claimant = FactoryBot.create_list(:first_person, 1, :person_data)
   @representative = FactoryBot.create(:representative)
-  @respondents = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 

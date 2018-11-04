@@ -1,6 +1,6 @@
 Given("a claimant is on Respondent's details page") do
-  @claimants = FactoryBot.create_list(:claimant, 1, :person_data)
-  @representatives = FactoryBot.create_list(:representative, 1, :et3_information)
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et3_information)
   start_a_new_et1_claim
   et1_answer_login
   et1_answer_claimant_questions
@@ -35,13 +35,13 @@ Then("I can verify an invalid UK postcode is being used for Respondent's details
 end
 
 When("I submit yes to Acas early conciliation certificate number") do
-  @respondents = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   et1_respondents_details_page.set(@respondents)
   et1_respondents_details_page.save_and_continue
 end
 
 When("I submit no to Acas early conciliation certificate number") do
-  @respondents = FactoryBot.create_list(:acas_number_reason, 1, :no_acas)
+  @respondent = FactoryBot.create_list(:acas_number_reason, 1, :no_acas)
   et1_respondents_details_page.set(@respondents)
   et1_respondents_details_page.save_and_continue
 end

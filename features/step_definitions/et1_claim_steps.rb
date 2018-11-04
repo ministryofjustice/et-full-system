@@ -12,13 +12,13 @@ When /^the completed form is submitted$/ do
   et1_answer_claim_outcome_questions
   et1_answer_more_about_the_claim_questions
   et1_submit_claim
-  log_event :et1_claim_created, @claimants
+  log_event :et1_claim_created, @claimant
 end
 
 When /^I submit a completed ET1 form$/ do
-  @claimants = FactoryBot.create_list(:first_person, 1, :person_data)
+  @claimant = FactoryBot.create_list(:first_person, 1, :person_data)
   @representative = FactoryBot.create(:representative)
-  @respondents = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 
@@ -35,13 +35,13 @@ When /^I submit a completed ET1 form$/ do
   et1_answer_more_about_the_claim_questions
 
   et1_submit_claim
-  log_event :et1_claim_created, @claimants
+  log_event :et1_claim_created, @claimant
 end
 
 Then("the address lookup will be based on respondent's work address and will forwarded to {string}") do |string|
-  @respondents = FactoryBot.create_list(:respondent, 1, :yes_acas, office: string)
+  @respondent = FactoryBot.create_list(:respondent, 1, :yes_acas, office: string)
 end
 
 Then("the address lookup will be based on claimant's work address and will be forwarded to {string}") do |string|
-  @respondents = FactoryBot.create_list(:respondent, 1, :yes_acas, office: string)
+  @respondent = FactoryBot.create_list(:respondent, 1, :yes_acas, office: string)
 end
