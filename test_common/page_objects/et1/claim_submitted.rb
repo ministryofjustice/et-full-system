@@ -51,7 +51,7 @@ module EtFullSystem
           element :your_feedback, :link_named, 'claim_confirmations.show.feedback_html'
           element :your_feedback_info, :paragraph, 'claim_confirmations.show.feedback_info', exact: false
           element :diversity_info, :paragraph, 'claim_confirmations.show.diversity_html', exact: false
-          element :diversity_info, :link_named, 'claim_confirmations.show.diversity_link'
+          element :diversity_link, :link_named, 'claim_confirmations.show.diversity_link'
         end
 
         def diversity_link
