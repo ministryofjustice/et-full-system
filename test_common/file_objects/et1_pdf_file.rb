@@ -1,6 +1,7 @@
 require 'rspec/matchers'
 require 'pdf-forms'
 require_relative './base_pdf_file'
+require_relative './et1_pdf_file/base.rb'
 Dir.glob(File.absolute_path('./et1_pdf_file/**/*.rb', __dir__)).each { |f| require f }
 
 module EtFullSystem
