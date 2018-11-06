@@ -1,8 +1,9 @@
+require_relative './base.rb'
 module EtFullSystem
   module Test
     module FileObjects
       module Et1PdfFileSection
-        class WhatHappenedSinceSection < Base
+        class WhatHappenedSinceSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(errors:, indent:)
             validate_fields section: :what_happened_since, errors: errors, indent: indent do
               expected_values = {

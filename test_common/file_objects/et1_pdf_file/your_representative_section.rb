@@ -1,8 +1,9 @@
+require_relative './base.rb'
 module EtFullSystem
   module Test
     module FileObjects
       module Et1PdfFileSection
-        class YourRepresentativeSection < Base
+        class YourRepresentativeSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(representative:, errors:, indent:)
             validate_fields section: :your_representative, errors: errors, indent: indent do
               expected_values = {

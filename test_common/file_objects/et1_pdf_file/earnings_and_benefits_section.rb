@@ -1,8 +1,9 @@
+require_relative './base.rb'
 module EtFullSystem
   module Test
     module FileObjects
       module Et1PdfFileSection
-        class EarningsAndBenefitsSection < Base
+        class EarningsAndBenefitsSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(employment:, errors:, indent:)
             validate_fields section: :earnings_and_benefits, errors: errors, indent: indent do
               expected_values = {

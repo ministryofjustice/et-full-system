@@ -35,3 +35,4 @@ cache:
   directories:
   - $HOME/rubygems
   - $HOME/node_modules
+  - /usr/local/rvm

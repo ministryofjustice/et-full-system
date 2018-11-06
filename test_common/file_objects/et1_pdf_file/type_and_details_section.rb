@@ -1,8 +1,9 @@
+require_relative './base.rb'
 module EtFullSystem
   module Test
     module FileObjects
       module Et1PdfFileSection
-        class TypeAndDetailsSection < Base
+        class TypeAndDetailsSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           # Note that at present, the test framework suggests only one claim type but ET1 can have many selected - this code will need to expect
           # various fields to be Yes/No based on a list of claim types in the future.
           # Also, alot of values have hard coded true or falses as I expect these to come from factories but at the time of writing this there are
