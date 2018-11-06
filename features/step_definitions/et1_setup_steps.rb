@@ -89,7 +89,7 @@ Given("a claimant submitted an ET1 form with work address WD187SQ") do
 end
 
 When("a claimant submitted an ET1 with special characters in the first and last name") do
-  @claimant = FactoryBot.create_list(:claimant, 1, :person_data, first_name: 'N/A.*_', last_name: 'N/A.*')
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data, first_name: 'N/A.*_', last_name: "N/A.*#{Time.now.to_i}")
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment)
