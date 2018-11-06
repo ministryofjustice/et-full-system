@@ -7,18 +7,18 @@ module EtFullSystem
           def has_contents_for?(employment:, errors:, indent:)
             validate_fields section: :earnings_and_benefits, errors: errors, indent: indent do
               expected_values = {
-                average_weekly_hours: employment.average_weekly_hours.to_f.to_s,
+                average_weekly_hours: employment.try(:average_weekly_hours).try(:to_f).try(:to_s),
                 pay_before_tax: {
-                  'amount': employment.pay_before_tax,
-                  'period': employment.pay_before_tax_type.to_s.split('.').last
+                  'amount': employment.try(:pay_before_tax),
+                  'period': employment.try(:pay_before_tax_type).try(:to_s).try(:split, '.').try(:last)
                 },
-                paid_for_notice_period: tri_state_for(employment.paid_for_notice_period),
+                paid_for_notice_period: tri_state_for(employment.try(:paid_for_notice_period)),
                 notice_period: {
-                  weeks: weekly_notice_period(employment.notice_period) || '',
-                  months: monthly_notice_period(employment.notice_period) || ''
+                  weeks: weekly_notice_period(employment.try(:notice_period)) || '',
+                  months: monthly_notice_period(employment.try(:notice_period)) || ''
                 },
                 employers_pension_scheme: employers_pension_scheme(employment),
-                benefits: employment.benefits
+                benefits: employment.try(:benefits)
               }
               expect(mapped_field_values).to include expected_values
             end
@@ -27,6 +27,7 @@ module EtFullSystem
           private
 
           def employers_pension_scheme(employment)
+            return nil if employment.nil?
             true_false = employment.employers_pension_scheme.to_s.split('.').last.downcase
             if true_false == "true"
               'yes'
@@ -39,11 +40,13 @@ module EtFullSystem
 
 
           def weekly_notice_period(notice_period)
+            return nil if notice_period.nil?
             amount, period = notice_period.split(' ')
             period == 'Weekly' ? amount : nil
           end
 
           def monthly_notice_period(notice_period)
+            return nil if notice_period.nil?
             amount, period = notice_period.split(' ')
             period == 'Monthly' ? amount : nil
           end

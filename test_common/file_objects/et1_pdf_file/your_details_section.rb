@@ -5,8 +5,7 @@ module EtFullSystem
       module Et1PdfFileSection
         class YourDetailsSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(claimant:, errors:, indent:)
-            validate_fields section: :your_details, errors: errors, indent: indent do
-              expected_values = {
+            expected_values = {
                 title: title_for(claimant.title),
                 first_name: claimant.first_name,
                 last_name: claimant.last_name,
@@ -23,9 +22,8 @@ module EtFullSystem
                 alternative_telephone_number: claimant.alternative_telephone_number,
                 email_address: claimant.email_address,
                 correspondence: contact_preference_for(claimant.correspondence)
-              }
-              expect(mapped_field_values).to include expected_values
-            end
+            }
+            expect(mapped_field_values).to include expected_values
           end
 
         end
