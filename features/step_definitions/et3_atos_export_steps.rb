@@ -22,8 +22,7 @@ Then(/^I can download the ET3 form and validate in PDF format$/) do
   expect(pdf_file).to have_correct_contents_for(response: @claimant[0],
     respondent: @respondent[0],
     representative: @representative[0],
-    errors: errors,
-    indent: 1), -> { errors.join("\n") }
+    indent: 1)
 end
 
 Then("I can download the ET3 form and validate that the filename starts with {string}") do |string|

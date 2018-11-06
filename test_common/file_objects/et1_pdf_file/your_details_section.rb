@@ -4,7 +4,7 @@ module EtFullSystem
     module FileObjects
       module Et1PdfFileSection
         class YourDetailsSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
-          def has_contents_for?(claimant:, errors:, indent:)
+          def has_contents_for?(claimant:)
             expected_values = {
                 title: title_for(claimant.title),
                 first_name: claimant.first_name,

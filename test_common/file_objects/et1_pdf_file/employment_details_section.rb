@@ -4,7 +4,7 @@ module EtFullSystem
     module FileObjects
       module Et1PdfFileSection
         class EmploymentDetailsSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
-          def has_contents_for?(employment:, errors:, indent:)
+          def has_contents_for?(employment:)
             employment.nil? ? has_contents_for_no_employment? : has_contents_for_employment?(employment)
           end
 

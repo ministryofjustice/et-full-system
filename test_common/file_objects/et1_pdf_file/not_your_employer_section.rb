@@ -5,13 +5,11 @@ module EtFullSystem
       module Et1PdfFileSection
         class NotYourEmployerSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           # Note - I have included this for completeness - but I do not think the field ever gets populated
-          def has_contents_for?(errors:, indent:)
-            validate_fields section: :respondents_not_your_employer, errors: errors, indent: indent do
-              expected_values = {
-                  claim_type: nil
-              }
-              expect(mapped_field_values).to include expected_values
-            end
+          def has_contents_for?
+            expected_values = {
+                claim_type: nil
+            }
+            expect(mapped_field_values).to include expected_values
           end
         end
       end

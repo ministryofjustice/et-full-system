@@ -4,13 +4,11 @@ module EtFullSystem
     module FileObjects
       module Et1PdfFileSection
         class InformationToRegulatorsSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
-          def has_contents_for?(claim:, errors:, indent:)
-            validate_fields section: :information_to_regulators, errors: errors, indent: indent do
-              expected_values = {
-                  whistle_blowing: yes_no_for(claim.whistleblowing_claim, yes: 'yes', no: 'no'),
-              }
-              expect(mapped_field_values).to include expected_values
-            end
+          def has_contents_for?(claim:)
+            expected_values = {
+                whistle_blowing: yes_no_for(claim.whistleblowing_claim, yes: 'yes', no: 'no'),
+            }
+            expect(mapped_field_values).to include expected_values
           end
         end
       end

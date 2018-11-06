@@ -14,8 +14,8 @@ module EtFullSystem
             else
               expected_values = {
                   have_another_job: nil,
-                  start_date: '',
-                  salary: ''
+                  start_date: nil,
+                  salary: nil
               }
             end
             expect(mapped_field_values).to include expected_values

@@ -9,23 +9,23 @@ module EtFullSystem
     module FileObjects
       # Represents the ET3 PDF file and provides assistance in validating its contents
       class Et1PdfFile < BasePdfFile # rubocop:disable Metrics/ClassLength
-        def has_correct_contents_for?(claim: , claimants:, respondents:, representative:, employment:, errors: [], indent: 1)
-          Et1PdfFileSection::YourDetailsSection.new(tempfile).has_contents_for?(claimant: claimants.first, errors: errors, indent: indent + 1)
-          Et1PdfFileSection::RespondentsDetailsSection.new(tempfile).has_contents_for?(respondents: respondents, errors: errors, indent: indent + 1)
-          Et1PdfFileSection::MultipleCasesSection.new(tempfile).has_contents_for?(claim: claim, errors: errors, indent: indent + 1)
-          Et1PdfFileSection::NotYourEmployerSection.new(tempfile).has_contents_for?(errors: errors, indent: indent + 1)
-          Et1PdfFileSection::EmploymentDetailsSection.new(tempfile).has_contents_for?(employment: employment, errors: errors, indent: indent + 1)
+        def has_correct_contents_for?(claim: , claimants:, respondents:, representative:, employment:)
+          Et1PdfFileSection::YourDetailsSection.new(tempfile).has_contents_for?(claimant: claimants.first)
+          Et1PdfFileSection::RespondentsDetailsSection.new(tempfile).has_contents_for?(respondents: respondents)
+          Et1PdfFileSection::MultipleCasesSection.new(tempfile).has_contents_for?(claim: claim)
+          Et1PdfFileSection::NotYourEmployerSection.new(tempfile).has_contents_for?
+          Et1PdfFileSection::EmploymentDetailsSection.new(tempfile).has_contents_for?(employment: employment)
           Et1PdfFileSection::EarningsAndBenefitsSection.new(tempfile).has_contents_for?(employment: employment)
           Et1PdfFileSection::WhatHappenedSinceSection.new(tempfile).has_contents_for?(employment: employment)
-          Et1PdfFileSection::TypeAndDetailsSection.new(tempfile).has_contents_for?(claim: claim, errors: errors, indent: indent + 1)
-          Et1PdfFileSection::WhatDoYouWantSection.new(tempfile).has_contents_for?(claim: claim, errors: errors, indent: indent + 1)
-          Et1PdfFileSection::InformationToRegulatorsSection.new(tempfile).has_contents_for?(claim: claim, errors: errors, indent: indent + 1)
-          Et1PdfFileSection::YourRepresentativeSection.new(tempfile).has_contents_for?(representative: representative, errors: errors, indent: indent + 1)
-          Et1PdfFileSection::DisabilitySection.new(tempfile).has_contents_for?(claimant: claimants.first, errors: errors, indent: indent + 1)
-          Et1PdfFileSection::AdditionalRespondentsSection.new(tempfile).has_contents_for?(respondents: respondents, errors: errors, indent: indent + 1)
-          Et1PdfFileSection::FinalCheckSection.new(tempfile).has_contents_for?(errors: errors, indent: indent + 1)
-          Et1PdfFileSection::AdditionalInformationSection.new(tempfile).has_contents_for?(claim: claim, errors: errors, indent: indent + 1)
-          errors.empty?
+          Et1PdfFileSection::TypeAndDetailsSection.new(tempfile).has_contents_for?(claim: claim)
+          Et1PdfFileSection::WhatDoYouWantSection.new(tempfile).has_contents_for?(claim: claim)
+          Et1PdfFileSection::InformationToRegulatorsSection.new(tempfile).has_contents_for?(claim: claim)
+          Et1PdfFileSection::YourRepresentativeSection.new(tempfile).has_contents_for?(representative: representative)
+          Et1PdfFileSection::DisabilitySection.new(tempfile).has_contents_for?(claimant: claimants.first)
+          Et1PdfFileSection::AdditionalRespondentsSection.new(tempfile).has_contents_for?(respondents: respondents)
+          Et1PdfFileSection::FinalCheckSection.new(tempfile).has_contents_for?
+          Et1PdfFileSection::AdditionalInformationSection.new(tempfile).has_contents_for?(claim: claim)
+          true
         end
       end
     end
