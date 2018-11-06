@@ -109,7 +109,7 @@ module EtFullSystem
           expect(main_content.submission_details).to have_attachments
           if rtf_attachment != nil  && csv_attachment != nil
             #Attachments included rtf and csv
-            expect(main_content.submission_details.attachments).to have_answer(text: "#{rtf_attachment} #{csv_attachment}")
+            expect(main_content.submission_details.attachments.answer.text).to eq("#{rtf_attachment} #{csv_attachment}")
           elsif rtf_attachment != nil && csv_attachment == nil
             #rtf only
             expect(main_content.submission_details.attachments).to have_answer(text: rtf_attachment)
