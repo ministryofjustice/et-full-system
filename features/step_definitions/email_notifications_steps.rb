@@ -1,25 +1,25 @@
 Given /^a claimant continued from Saving your claim page$/ do
-  @claimant = FactoryBot.create_list(:claimant, 1, :answer_data)
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   start_a_new_et1_claim
-  @my_et1_claim_number = et1_application_number_page.main_content.claim_number.text
+  @claim_number = et1_application_number_page.main_content.claims_number.text
   et1_answer_login
 end
 
 Then(/^an email is sent to notify user that a claim has been started$/) do
-  et1_email = EtFullSystem::Test::Et1ClaimContinueEmailHtml.find(claim_number: @my_et1_claim_number)
+  et1_email = EtFullSystem::Test::Et1ClaimContinueEmailHtml.find(claim_number: @claim_number)
   expect(et1_email.has_correct_subject_for_complete_your_claim?).to be true
 end
 
 Given /^a claimant completes an ET1 form$/ do
-  @claimant = FactoryBot.create_list(:first_person, 1, :person_data)
-  @representative = FactoryBot.create(:representative)
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et3_information)
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 
 
   start_a_new_et1_claim
-  @my_et1_claim_number = et1_application_number_page.main_content.claim_number.text
+  @claim_number = et1_application_number_page.main_content.claims_number.text
   et1_answer_login
   et1_answer_claimant_questions
   et1_answer_group_claimants_questions
@@ -35,9 +35,9 @@ Given /^a claimant completes an ET1 form$/ do
 end
 
 Then(/^an email is sent to notify user that a claim has been successfully submitted$/) do
-  et1_email = EtFullSystem::Test::Et1ClaimCompletedEmailHtml.find(claim_number: @my_et1_claim_number)
-  expect(et1_email.claim_number).to eq(et1_claim_submitted.main_content.claim_number.text)
-  expect(et1_email.submission_submitted).to eq(et1_claim_submitted.main_content.content_section.confirmation_table.tbody.local_office_address.text)
+  et1_email = EtFullSystem::Test::Et1ClaimCompletedEmailHtml.find(claim_number: @claim_number)
+  date = Time.now
+  expect(et1_email.submission_submitted).to eq(t('claim_confirmations.show.submission_details.submission_with_office', date: date.strftime("%d #{t("date.month_names")[date.month]} %Y"), office: @respondent[0][:work_office]))
   expect(et1_email.has_correct_subject_for_claim_submitted?).to be true
 end
 

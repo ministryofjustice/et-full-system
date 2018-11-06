@@ -5,6 +5,7 @@ module EtFullSystem
   module Test
     class Et1ClaimContinueEmailHtml < SitePrism::Page
       include RSpec::Matchers
+      include ::EtFullSystem::Test::I18n
       element(:claim_number_element, :xpath, XPath.generate { |x| x.descendant(:td)[x.string.n.starts_with('Claim number')].child(:p)[2] })
       element(:claim_submitted_element, :xpath, XPath.generate { |x| x.descendant(:tr)[x.child(:td)[x.string.n.starts_with('Claim submitted:')]].child(:td)[2] })
     
@@ -47,7 +48,7 @@ module EtFullSystem
       end
 
       def has_correct_subject_for_complete_your_claim?
-        mail.subject == 'Employment tribunal: complete your claim'
+        mail.subject == t('base_mailer.access_details_email.subject')
       end
 
       attr_accessor :mail
