@@ -38,7 +38,6 @@ FactoryBot.define do
     have_representative 'Yes'
     representative_mobile '07987654321'
     representative_reference 'Rep Ref'
-    representative_contact_preference 'Fax'
     representative_fax '0207 345 6789'
     representative_contact_preference :"simple_form.options.representative.contact_preference.post"
   end
