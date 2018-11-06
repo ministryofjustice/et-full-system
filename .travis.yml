@@ -23,7 +23,7 @@ before_script:
 - ./bin/dev/test_exec bash -c "/app/bin/wait-for-it.sh selenium:4444 -t 600"
 - ./bin/dev/test_exec bundle
 script:
-- ./bin/dev/test_exec bash -c "ENVIRONMENT=local bundle exec parallel_cucumber features"
+- ./bin/dev/test_exec bash -c "ENVIRONMENT=local RECORD_VIDEO=false bundle exec parallel_cucumber features"
 addons:
   apt:
     packages:

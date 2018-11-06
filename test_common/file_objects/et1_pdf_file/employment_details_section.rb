@@ -10,7 +10,7 @@ module EtFullSystem
 
           private
 
-          def has_contents_for_employment(employment)
+          def has_contents_for_employment?(employment)
             expected_values = {
                 job_title: employment.job_title,
                 start_date: employment.start_date,
