@@ -2,7 +2,7 @@ module EtFullSystem
   module Test
     module FileObjects
       module Et1PdfFileSection
-        class RespondentsDetailsSection < Base
+        class RespondentsDetailsSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(respondents:, errors:, indent:)
             validate_fields section: :respondents_details, errors: errors, indent: indent do
               expected_values = {
@@ -20,12 +20,12 @@ module EtFullSystem
                   acas_number: respondents.first.acas_number
                 },
                 different_address: {
-                  building: respondents.first.work_address.try(:building) || '',
-                  street: respondents.first.work_address.try(:street) || '',
-                  locality: respondents.first.work_address.try(:locality) || '',
-                  county: respondents.first.work_address.try(:county) || '',
-                  post_code: post_code_for(respondents.first.work_address.try(:post_code), optional: true) || '',
-                  telephone_number: respondents.first.work_address.try(:telephone_number) || ''
+                  building: respondents.first.work_building || '',
+                  street: respondents.first.work_street || '',
+                  locality: respondents.first.work_locality || '',
+                  county: respondents.first.work_county || '',
+                  post_code: post_code_for(respondents.first.work_post_code, optional: true) || '',
+                  telephone_number: respondents.first.work_telephone_number || ''
                 },
                 respondent2: {
                   name: title_for(respondents[1].try(:name), optional: true),

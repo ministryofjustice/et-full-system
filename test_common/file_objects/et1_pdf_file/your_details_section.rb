@@ -2,7 +2,7 @@ module EtFullSystem
   module Test
     module FileObjects
       module Et1PdfFileSection
-        class YourDetailsSection < Base
+        class YourDetailsSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(claimant:, errors:, indent:)
             validate_fields section: :your_details, errors: errors, indent: indent do
               expected_values = {

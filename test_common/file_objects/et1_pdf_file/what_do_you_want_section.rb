@@ -2,7 +2,7 @@ module EtFullSystem
   module Test
     module FileObjects
       module Et1PdfFileSection
-        class WhatDoYouWantSection < Base
+        class WhatDoYouWantSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(claim:, errors:, indent:)
             validate_fields section: :what_do_you_want, errors: errors, indent: indent do
               outcome_types = outcome_types_for(claim.preferred_outcome)

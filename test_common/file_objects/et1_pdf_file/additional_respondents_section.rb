@@ -2,7 +2,7 @@ module EtFullSystem
   module Test
     module FileObjects
       module Et1PdfFileSection
-        class AdditionalRespondentsSection < Base
+        class AdditionalRespondentsSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(respondents:, errors:, indent:)
             validate_fields section: :respondents_details, errors: errors, indent: indent do
               # claimant.title is a selection of options - in this case we are interested in the key thats all - do not translate it
