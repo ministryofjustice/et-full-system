@@ -39,6 +39,6 @@ FactoryBot.define do
     factory :conciliation_acas_number, traits: [:work_address, :yes_acas]
     factory :acas_number_reason, traits: [:work_address, :no_acas]
     factory :no_work_address, traits: [:yes_acas]
-    factory :et3_data, traits: [:yes_acas, :et3]
+    factory :et3_data, traits: [:work_address, :yes_acas]
   end
 end
