@@ -61,9 +61,9 @@ module EtFullSystem
         ::EtFullSystem::Test::Messaging.instance.t(*args)
       end
 
-      def factory_translate(value)
+      def factory_translate(value, *args)
         return value unless value.is_a?(Symbol)
-        t(value)
+        t(value, *args)
       end
 
       class_methods do
