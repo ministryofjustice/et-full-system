@@ -5,8 +5,7 @@ RSpec::Matchers.define :eventually do |matcher, timeout: 5, sleep: 0.1|
   match do |actual|
     begin
       Timeout.timeout(timeout) do
-        attempts += 1
-        sleep sleep until matcher.matches?(actual.call)
+        attempts += 1 && sleep(sleep) until matcher.matches?(actual.call)
         return true
       end
     rescue Timeout::Error
