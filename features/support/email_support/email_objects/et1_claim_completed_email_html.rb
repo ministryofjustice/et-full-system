@@ -6,8 +6,7 @@ module EtFullSystem
     class Et1ClaimCompletedEmailHtml < SitePrism::Page
       include RSpec::Matchers
       include ::EtFullSystem::Test::I18n
-      element(:claim_number_element, :xpath, XPath.generate { |x| x.descendant(:td)[x.string.n.starts_with('Claim number')].child(:p)[2] })
-      element(:claim_submitted_element, :xpath, XPath.generate { |x| x.descendant(:tr)[x.child(:td)[x.string.n.starts_with('Claim submitted:')]].child(:td)[2] })
+      element(:claim_submitted_element, :xpath, XPath.generate { |x| x.descendant(:tr)[x.child(:td)[x.string.n.starts_with(t('claim_confirmations.show.header'))]].child(:td)[2] })
     
       def self.find(search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, claim_number:, sleep: 10, timeout: 120)
         item = find_email(claim_number, search_url, sleep: sleep, timeout: timeout)
@@ -15,7 +14,7 @@ module EtFullSystem
         new(item)
       end
 
-      def self.find_email(claim_number, search_url, timeout: 120, sleep: 10, subject_text: 'Employment tribunal: claim submitted')
+      def self.find_email(claim_number, search_url, timeout: 120, sleep: 10, subject_text: t('base_mailer.confirmation_email.subject'))
         Timeout.timeout(timeout) do
           item = nil
           until item.present? do
@@ -38,10 +37,6 @@ module EtFullSystem
         part = multipart.parts.detect { |p| p.content_type =~ %r{text\/html} }
         body = part.nil? ? '' : part.body.to_s
         load(body)
-      end
-
-      def claim_number
-        claim_number_element.text
       end
 
       def submission_submitted
