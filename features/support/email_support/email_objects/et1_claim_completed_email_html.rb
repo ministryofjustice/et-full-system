@@ -15,7 +15,7 @@ module EtFullSystem
         new(item)
       end
 
-      def self.find_email(claim_number, search_url, timeout: 120, sleep: 10, subject_text: 'Employment tribunal: claim submitted')
+      def self.find_email(claim_number, search_url, timeout: 120, sleep: 10, subject_text: t('base_mailer.confirmation_email.subject'))
         Timeout.timeout(timeout) do
           item = nil
           until item.present? do
