@@ -16,7 +16,7 @@ When /^the completed form is submitted$/ do
 end
 
 When /^I submit a completed ET1 form$/ do
-  @claimant = FactoryBot.create_list(:first_person, 1, :person_data)
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create(:representative)
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment)

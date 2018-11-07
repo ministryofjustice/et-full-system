@@ -43,9 +43,9 @@ Then("the deleted postcode is no longer saved in the system") do
 end
 
 When("a claimant submitted an ET1 form using postcode {string}") do |string|
-  @claimant = FactoryBot.create_list(:first_person, 1, :person_data)
-  @representative = FactoryBot.create_list(:representative, 1, :et3_information)
-  @respondent = FactoryBot.create_list(:respondent, 1, :employer, post_code: string)
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)  
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:respondent, 1, :yes_acas, post_code: string)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 
