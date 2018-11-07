@@ -119,19 +119,20 @@ module EtFullSystem
             end
           end
           #Did you work (or get paid for) a period of notice?
-          element :worked_notice_period_or_paid_in_lieu, :legend_header, 'claims.employment.worked_notice_period_or_paid_in_lieu'
-          section :period_of_notice, '.options' do
-            include ::EtFullSystem::Test::I18n
-            element :yes, :form_labelled, 'claims.employment.yes' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            element :no, :form_labelled, 'claims.employment.no' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            def set(value)
-              choose(factory_translate(value), name: 'employment[worked_notice_period_or_paid_in_lieu]')
+          section :worked_notice_period_or_paid_in_lieu, :legend_header, 'claims.employment.worked_notice_period_or_paid_in_lieu' do
+            section :period_of_notice, '.options' do
+              include ::EtFullSystem::Test::I18n
+              element :yes, :form_labelled, 'claims.employment.yes' do
+                element :selector, :css, 'input[type="radio"]'
+                def set(*args); selector.set(*args); end
+              end
+              element :no, :form_labelled, 'claims.employment.no' do
+                element :selector, :css, 'input[type="radio"]'
+                def set(*args); selector.set(*args); end
+              end
+              def set(value)
+                choose(factory_translate(value), name: 'employment[worked_notice_period_or_paid_in_lieu]')
+              end
             end
           end
           #For how many weeks or months did you get paid? (optional)
@@ -310,8 +311,8 @@ module EtFullSystem
           expect(main_content.employment_end_date).to have_year
           #Did you work (or get paid for) a period of notice?
           expect(main_content).to have_worked_notice_period_or_paid_in_lieu
-          expect(main_content.period_of_notice).to have_yes
-          expect(main_content.period_of_notice).to have_no
+          expect(main_content.worked_notice_period_or_paid_in_lieu.period_of_notice).to have_yes
+          expect(main_content.worked_notice_period_or_paid_in_lieu.period_of_notice).to have_no
           #For how many weeks or months did you get paid? (optional)
           expect(main_content.notice_period_value).to have_notice_pay_period_count
           expect(main_content.notice_period_value.notice_pay.employment_notice_pay_period_type).to have_weeks
@@ -349,7 +350,7 @@ module EtFullSystem
           #TODO this has stopped working - why?
           # expect(support).to have_save_and_complete_later
         end
-        
+
         def has_correct_error_message_for_current_work_situation?
           expect(main_content.error_message).to have_error_summary
           expect(main_content.error_message).to have_default_message
@@ -374,11 +375,11 @@ module EtFullSystem
               s.employment_job_title.set(data[:job_title])
               s.employment_start_date.set(data[:start_date])
               if data.key?(:notice_period)
-                s.period_of_notice.set(:"claims.employment.yes")
+                s.worked_notice_period_or_paid_in_lieu.period_of_notice.set(:"claims.employment.yes")
                 s.notice_period_value.set(data[:notice_period])
                 s.notice_period_value.notice_pay.employment_notice_pay_period_type.set(data[:notice_period_type])
               else
-                s.period_of_notice.set(:"claims.employment.no")
+                s.worked_notice_period_or_paid_in_lieu.period_of_notice.set(:"claims.employment.no")
               end
               s.employment_average_hours_worked_per_week.set(data[:average_weekly_hours])
               s.employment_gross_pay.set(data[:pay_before_tax])
