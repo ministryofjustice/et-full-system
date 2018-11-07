@@ -29,11 +29,11 @@ module EtFullSystem
             include ::EtFullSystem::Test::I18n
             element :yes, :form_labelled, 'claims.additional_respondents.yes' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :no, :form_labelled, 'claims.additional_respondents.no' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             def set(value)
               choose(factory_translate(value), name: 'additional_respondents[of_collection_type]')

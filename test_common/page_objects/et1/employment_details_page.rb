@@ -29,11 +29,11 @@ module EtFullSystem
             include ::EtFullSystem::Test::I18n
             element :yes, :form_labelled, 'claims.employment.yes' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :no, :form_labelled, 'claims.employment.no' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             def set(value)
               choose(factory_translate(value), name: 'employment[was_employed]')
@@ -46,15 +46,15 @@ module EtFullSystem
             include ::EtFullSystem::Test::I18n
             element :still_employed, :form_labelled, 'simple_form.options.employment.current_situation.still_employed' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :notice_period, :form_labelled, 'simple_form.options.employment.current_situation.notice_period' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :employment_terminated, :form_labelled, 'simple_form.options.employment.current_situation.employment_terminated' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             def set(value)
               choose(factory_translate(value), name: 'employment[current_situation]')
@@ -68,7 +68,7 @@ module EtFullSystem
             #The job you were doing at the time of the problem at work
             element :job_title_hint, :form_hint, 'simple_form.hints.employment.job_title'
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #Employment start date
           section :employment_start_date, :legend_header, 'claims.employment.start_date', exact: false do
@@ -77,15 +77,15 @@ module EtFullSystem
             element :employment_start_date_hint, :form_hint, 'simple_form.hints.employment.start_date'
             section :day, :question_labelled, 'simple_form.labels.employment.start_date.day' do
               element :field, :css, '#employment_start_date_day'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :month, :question_labelled, 'simple_form.labels.employment.start_date.month' do
               element :field, :css, '#employment_start_date_month'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :year, :question_labelled, 'simple_form.labels.employment.start_date.year' do
               element :field, :css, '#employment_start_date_year'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             def set(value)
               (day_value, month_value, year_value) = value.split("/")
@@ -101,15 +101,15 @@ module EtFullSystem
             element :employment_end_date_hint, :form_hint, 'simple_form.hints.employment.end_date', exact: false
             section :day, :question_labelled, 'simple_form.labels.employment.end_date.day' do
               element :field, :css, '#employment_notice_period_end_date_day'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :month, :question_labelled, 'simple_form.labels.employment.end_date.month' do
               element :field, :css, '#employment_notice_period_end_date_month'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :year, :question_labelled, 'simple_form.labels.employment.end_date.year' do
               element :field, :css, '#employment_notice_period_end_date_year'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             def set(value)
               (day_value, month_value, year_value) = value.split("/")
@@ -124,11 +124,11 @@ module EtFullSystem
             include ::EtFullSystem::Test::I18n
             element :yes, :form_labelled, 'claims.employment.yes' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :no, :form_labelled, 'claims.employment.no' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             def set(value)
               choose(factory_translate(value), name: 'employment[worked_notice_period_or_paid_in_lieu]')
@@ -139,16 +139,16 @@ module EtFullSystem
             element :notice_pay_period_count, :form_labelled, 'simple_form.labels.employment.notice_pay_period_count'
             section :notice_pay, '.inline-fields.slim-fieldset' do
               element :field, :css, '#employment_notice_pay_period_count'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
               section :employment_notice_pay_period_type, '.employment_notice_pay_period_type .options' do
                 include ::EtFullSystem::Test::I18n
                 element :weeks, :form_labelled, 'simple_form.options.employment.notice_pay_period_type.weeks' do
                   element :selector, :css, '#employment_notice_pay_period_type_weeks'
-                  delegate :set, to: :selector
+                  def set(*args); selector.set(*args); end
                 end
                 element :months, :form_labelled, 'simple_form.options.employment.notice_pay_period_type.months' do
                   element :selector, :css, '#employment_notice_pay_period_type_months'
-                  delegate :set, to: :selector
+                  def set(*args); selector.set(*args); end
                 end
                 def set(value)
                   choose(factory_translate(value), name: "employment[notice_pay_period_type]")
@@ -165,7 +165,7 @@ module EtFullSystem
             #Don’t include overtime
             element :overtime_hint, :form_hint, 'simple_form.hints.employment.average_hours_worked_per_week'
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #Pay, pension and benefits
           element :pay_pension_benefits, :legend_header, 'claims.employment.pay_legend'
@@ -176,16 +176,16 @@ module EtFullSystem
             element :gross_pay_hint, :form_hint, 'simple_form.hints.employment.gross_pay'
             section :gross_pay_count, '.prefixed-field.inline-fields' do
               element :field, :css, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
               section :employment_gross_pay_period_type, '.employment_gross_pay_period_type .options' do
                 include ::EtFullSystem::Test::I18n
                 element :weekly, :form_labelled, 'simple_form.options.employment.gross_pay_period_type.weekly' do
                   element :selector, :css, 'input[type="radio"]'
-                  delegate :set, to: :selector
+                  def set(*args); selector.set(*args); end
                 end
                 element :monthly, :form_labelled, 'simple_form.options.employment.gross_pay_period_type.monthly' do
                   element :selector, :css, 'input[type="radio"]'
-                  delegate :set, to: :selector
+                  def set(*args); selector.set(*args); end
                 end
                 def set(value)
                   choose(factory_translate(value), name: "employment[gross_pay_period_type]")
@@ -203,16 +203,16 @@ module EtFullSystem
             element :net_pay_hint, :form_hint, 'simple_form.hints.employment.net_pay'
             section :net_pay_count, '.prefixed-field.inline-fields' do
               element :field, :css, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
               section :employment_net_pay_period_type, '.employment_net_pay_period_type .options' do
                 include ::EtFullSystem::Test::I18n
                 element :weekly, :form_labelled, 'simple_form.options.employment.net_pay_period_type.weekly' do
                   element :selector, :css, 'input[type="radio"]'
-                  delegate :set, to: :selector
+                  def set(*args); selector.set(*args); end
                 end
                 element :monthly, :form_labelled, 'simple_form.options.employment.net_pay_period_type.monthly' do
                   element :selector, :css, 'input[type="radio"]'
-                  delegate :set, to: :selector
+                  def set(*args); selector.set(*args); end
                 end
                 def set(value)
                   choose(factory_translate(value), name: "employment[net_pay_period_type]")
@@ -230,11 +230,11 @@ module EtFullSystem
               include ::EtFullSystem::Test::I18n
               element :yes, :form_labelled, 'claims.employment.true' do
                 element :selector, :css, 'input[type="radio"]'
-                delegate :set, to: :selector
+                def set(*args); selector.set(*args); end
               end
               element :no, :form_labelled, 'claims.employment.false' do
                 element :selector, :css, 'input[type="radio"]'
-                delegate :set, to: :selector
+                def set(*args); selector.set(*args); end
               end
               def set(value)
                 choose(factory_translate(value), name: 'employment[enrolled_in_pension_scheme]')
@@ -247,7 +247,7 @@ module EtFullSystem
             #Details of benefit(s)
             element :benefit_details_hint, :form_hint, 'simple_form.hints.employment.benefit_details'
             element :field, :css, 'textarea'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
 
           #Save and continue

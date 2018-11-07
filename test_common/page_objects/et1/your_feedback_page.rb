@@ -21,17 +21,17 @@ module EtFullSystem
           #have you had any problems using this service? (optional)
           section :comments, :question_labelled, 'simple_form.labels.feedback.comments', exact: false do
             element :field, :css, "textarea"
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #do you have any other comments or suggestions? (optional)
           section :suggestions, :question_labelled, 'simple_form.labels.feedback.suggestions', exact: false do
             element :field, :css, "textarea"
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #your email address (optional)
           section :email_address, :question_labelled, 'simple_form.labels.feedback.email_address', exact: false do
             element :field, :css, "input"
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
         end
         #send feedback

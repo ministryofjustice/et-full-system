@@ -16,46 +16,46 @@ module EtFullSystem
           section :age_group, :question_labelled, 'diversities.age_caring.age_group.hint' do
             section :u25, :form_labelled, 'age_group.under-25' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :age_25_34, :form_labelled, 'age_group.25-34' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :age_35_44, :form_labelled, 'age_group.35-44' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :age_45_54, :form_labelled, 'age_group.45-54' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :age_55_64, :form_labelled, 'age_group.55-64' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :over_65, :form_labelled, 'age_group.65-over' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :prefer_not_to_say, :form_labelled, 'age_group.prefer-not-to-say' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
           end
           section :caring_responsibility, :question_labelled, 'diversities.age_caring.caring_responsibility.hint' do
             element :hint, :paragraph, 'diversities.age_caring.caring_responsibility.form_hint'
             section :yes, :form_labelled, 'caring_responsibility.yes_answer' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :no, :form_labelled, 'caring_responsibility.no_answer' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :prefer_not_to_say, :form_labelled, 'caring_responsibility.prefer-not-to-say' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
           end
           #save and continue button

@@ -26,11 +26,11 @@ module EtFullSystem
             include ::EtFullSystem::Test::I18n
             element :yes, :form_labelled, 'claims.additional_information.yes' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :no, :form_labelled, 'claims.additional_information.no' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             def set(value)
               choose(factory_translate(value), name: 'additional_information[has_miscellaneous_information]')
@@ -41,7 +41,7 @@ module EtFullSystem
             #Enter more detail about your claim. Limit is 2500 characters. (2500 characters remaining)
             element :additonal_miscellaneous_information_hint, :form_hint, 'simple_form.hints.additional_information.miscellaneous_information', exact: false
             element :field, :css, 'textarea'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #Save and continue
           element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
