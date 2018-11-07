@@ -19,9 +19,9 @@ module EtFullSystem
         def field_values
           @field_values ||= form.fields.inject({}) do |acc, field|
             if field.type == "Button" && field.options.present?
-              acc[field.name] = field.options.include?(field.value) ? field.value : nil
+              acc[field.name] = field.options.include?(field.value) ? unescape(field.value) : nil
             else
-              acc[field.name] = field.value
+              acc[field.name] = unescape(field.value)
             end
             acc
           end
@@ -40,6 +40,11 @@ module EtFullSystem
           errors << "Invalid '#{section.to_s.humanize}' section in pdf"
           errors.concat(err.message.lines.map { |l| "#{'  ' * indent}#{l.gsub(/\n\z/, '')}" })
           false
+        end
+
+        def unescape(val)
+          return val if val.nil?
+          CGI.unescape_html(val)
         end
       end
     end
