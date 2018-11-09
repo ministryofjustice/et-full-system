@@ -118,7 +118,7 @@ end
 
 Given("a claimant submitted an ET1 who live outside UK") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data, country: :"simple_form.options.claimant.address_country.other", post_code: "1065^&%$£@():?><*&")
-  @representative = FactoryBot.create_list(:representative, 1, :et3_information)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @claim = FactoryBot.create_list(:claim, 1, :upload_your_claim_statement)[0]
 end
