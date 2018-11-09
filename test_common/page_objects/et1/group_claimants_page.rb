@@ -30,11 +30,11 @@ module EtFullSystem
             element :group_claims, :form_labelled, 'simple_form.labels.additional_claimants.of_collection_type'
             element :yes, :form_labelled, 'simple_form.yes' do
               element :selector, :css, 'input'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :no, :form_labelled, 'simple_form.no' do
               element :selector, :css, 'input'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
           end
 

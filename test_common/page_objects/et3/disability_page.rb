@@ -10,14 +10,14 @@ module EtFullSystem
       section :disability_question, :single_choice_option, 'questions.disability.label', exact: false do
         section :yes, :gds_multiple_choice_option, 'questions.disability.yes.label', exact: false do
             element :selector, :css, 'input[type="radio"]'
-            delegate :set, to: :selector
+            def set(*args); selector.set(*args); end
           end
           section :no, :gds_multiple_choice_option, 'questions.disability.no.label', exact: false do
             element :selector, :css, 'input[type="radio"]'
-            delegate :set, to: :selector          
+            def set(*args); selector.set(*args); end
           end
           section :disability_information, :textarea_labelled, 'questions.disability.disability_information.label', exact: :false do
-            delegate :set, to: :root_element
+            def set(*args); root_element.set(*args); end
           end
           element :error_too_long, :exact_error_text, 'errors.messages.too_long', exact: false
 

@@ -18,15 +18,15 @@ module EtFullSystem
           element :example, :paragraph, 'diversities.disability.conditions'
           section :yes, :form_labelled, 'disability.yes_answer'do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :no, :form_labelled, 'disability.no_answer'do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :prefer_not_to_say, :form_labelled, 'disability.prefer-not-to-say'do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #save and continue button
           element :save_and_continue, :submit_text, 'helpers.submit.update'

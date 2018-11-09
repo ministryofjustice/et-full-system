@@ -16,65 +16,65 @@ module EtFullSystem
           section :sex, :question_labelled, 'diversities.identity.sex.hint' do
             section :male, :form_labelled, 'sex.male' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :female, :form_labelled, 'sex.female' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :prefer_not_to_say, :form_labelled, 'sex.prefer-not-to-say' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
           end
           section :gender, :question_labelled, 'diversities.identity.gender.hint' do
             section :male, :form_labelled, 'gender.male-including-female-to-male-trans-men' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :female, :form_labelled, 'gender.female-including-male-to-female-trans-women' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :prefer_not_to_say, :form_labelled, 'gender.prefer-not-to-say' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
           end
           section :gender_at_birth, :question_labelled, 'diversities.identity.gender_at_birth.hint' do
             section :yes, :form_labelled, 'gender_at_birth.yes_answer' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :no, :form_labelled, 'gender_at_birth.no_answer' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :prefer_not_to_say, :form_labelled, 'gender_at_birth.prefer-not-to-say' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
           end
           section :your_sexual_identity, :question_labelled, 'diversities.identity.sexual_identity.hint' do
             section :heterosexual, :form_labelled, 'sexual_identity.heterosexual-straight' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :gay, :form_labelled, 'sexual_identity.gay-lesbian' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :bisexual, :form_labelled, 'sexual_identity.bisexual' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :other, :form_labelled, 'sexual_identity.other' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :prefer_not_to_say, :form_labelled, 'sexual_identity.prefer-not-to-say' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
           end
           #save and continue button

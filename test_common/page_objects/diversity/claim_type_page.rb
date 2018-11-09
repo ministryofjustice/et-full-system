@@ -17,23 +17,23 @@ module EtFullSystem
           element :subheader, :paragraph, 'diversities.claim_type.sub_header'
           section :unfair_dismissal, :form_labelled, 'claim_type.unfair-dismissal-or-constructive-dismissal'do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :discrimination, :form_labelled, 'claim_type.discrimination'do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :redundancy_payment, :form_labelled, 'claim_type.redundancy-payment'do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :other_payments, :form_labelled, 'claim_type.other-payments-you-are-owed'do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :other_complaints, :form_labelled, 'claim_type.other-complaints'do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #save and continue button
           element :save_and_continue, :submit_text, 'helpers.submit.update', exact: false

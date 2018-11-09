@@ -31,7 +31,7 @@ module EtFullSystem
           #Or upload it as a separate document
           element :upload_document, :summary_text, 'claims.claim_details.claim_details_upload' do
             element :selector, :css, '.summary'
-            delegate :set, to: :selector
+            def set(*args); selector.set(*args); end
           end
           section :claim_details_claim_details_rtf, '.claim_details_claim_details_rtf' do
             #The document needs to be in Rich Text Format(RTF) (optional)
@@ -53,7 +53,7 @@ module EtFullSystem
             element :blank_claim_details_claim_details, :error, 'activemodel.errors.models.claim_details.attributes.claim_details.blank'
             element :claim_details_claim_details_hint, :form_hint, 'claims.claim_details.claim_details_hint_html'
             element :field, :css, 'textarea'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #Similar claims
           section :claim_details_other_known_claimants, :legend_header, 'claims.claim_details.similar_claims' do
@@ -64,11 +64,11 @@ module EtFullSystem
             include ::EtFullSystem::Test::I18n
             element :yes, :form_labelled, 'claims.claim_type.yes' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :no, :form_labelled, 'claims.claim_type.no' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             def set(value)
               choose(factory_translate(value), name: 'claim_details[other_known_claimants]')
@@ -80,7 +80,7 @@ module EtFullSystem
             #Limit is 350 characters. (350 characters remaining)
             element :claim_details_other_known_claimant_names_hint, :form_hint, 'simple_form.hints.claim_details.other_known_claimants', exact: false
             element :field, :css, 'textarea'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #Save and continue
           element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false

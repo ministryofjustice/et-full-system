@@ -29,24 +29,24 @@ module EtFullSystem
           section :unfair_dismissal, :legend_header, 'claims.claim_type.unfair_dismissal' do
             element :what_is_this, :summary_text, 'claims.claim_type.summary' do
               element :selector, :css, '.summary'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :unfair_dismissal_info, :paragraph, 'claims.claim_type.unfair_dismissal_summary_detail', exact: false
             element :unfair_dismissal_claim_type, :form_labelled, 'simple_form.labels.claim_type.is_unfair_dismissal' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
           end
           #Protective aware
           section :protective_award, :legend_header, 'claims.claim_type.protective_award' do
             element :what_is_this, :summary_text, 'claims.claim_type.summary' do
               element :selector, :css, '.summary'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :protective_award_info, :paragraph, 'claims.claim_type.protective_award_summary_detail', exact: false
             element :protective_award_claim_type, :form_labelled, 'simple_form.labels.claim_type.is_protective_award' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
           end
           #Discrimination
@@ -54,47 +54,47 @@ module EtFullSystem
             #Sex
             element :sex_including_equal_pay_claim_type, :form_labelled, 'simple_form.options.claim_type.discrimination_claims.sex_including_equal_pay' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             #Race
             element :race_claim_type, :form_labelled, 'simple_form.options.claim_type.discrimination_claims.race' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             #Pregnancy or maternity
             element :pregnancy_or_maternity_claim_type, :form_labelled, 'simple_form.options.claim_type.discrimination_claims.pregnancy_or_maternity' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             #Sexual orientation
             element :sexual_orientation_claim_type, :form_labelled, 'simple_form.options.claim_type.discrimination_claims.sexual_orientation' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             #Gender reassignment
             element :gender_reassignment_claim_type, :form_labelled, 'simple_form.options.claim_type.discrimination_claims.gender_reassignment' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             #Disability
             element :disability_claim_type, :form_labelled, 'simple_form.options.claim_type.discrimination_claims.disability' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             #Age
             element :age_claim_type, :form_labelled, 'simple_form.options.claim_type.discrimination_claims.age' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             #Religion or belief
             element :religion_or_belief_claim_type, :form_labelled, 'simple_form.options.claim_type.discrimination_claims.religion_or_belief' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             #Marriage or civil partnership
             element :marriage_or_civil_partnership_claim_type, :form_labelled, 'simple_form.options.claim_type.discrimination_claims.marriage_or_civil_partnership' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
           end
           #Pay
@@ -102,27 +102,27 @@ module EtFullSystem
             #Redundancy pay
             element :redundancy_claim_type, :form_labelled, 'simple_form.options.claim_type.pay_claims.redundancy' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             #Holiday pay
             element :holiday_claim_type, :form_labelled, 'simple_form.options.claim_type.pay_claims.holiday' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             #Other payments
             element :other_claim_type, :form_labelled, 'simple_form.options.claim_type.pay_claims.other' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             #Notice pay
             element :notice_claim_type, :form_labelled, 'simple_form.options.claim_type.pay_claims.notice' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             #Arrears of pay
             element :arrears_claim_type, :form_labelled, 'simple_form.options.claim_type.pay_claims.arrears' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
           end
           #Other type of claim (not shown above)
@@ -132,14 +132,14 @@ module EtFullSystem
             #Other type of claim
             element :other_type_of_claim, :form_labelled, 'simple_form.labels.claim_type.is_other_type_of_claim' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
           end
           #Give a very short description of your claim; you will have the opportunity to add more detail on the next page
           section :claim_type_other_claim_details, '#other_claim_details_wrapper' do
             element :other_claim_details_hint, :paragraph, 'simple_form.hints.claim_type.other_claim_details'
             element :field, :css, 'textarea'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #Whistleblowing claim
           section :whistleblowing_claim, :legend_header, 'claims.claim_type.whistleblowing' do
@@ -148,11 +148,11 @@ module EtFullSystem
             include ::EtFullSystem::Test::I18n
             element :yes, :form_labelled, 'claims.claim_type.yes' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :no, :form_labelled, 'claims.claim_type.no' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             def set(value)
               choose(factory_translate(value), name: 'claim_type[is_whistleblowing]')
@@ -164,11 +164,11 @@ module EtFullSystem
             include ::EtFullSystem::Test::I18n
             element :yes, :form_labelled, 'simple_form.yes' do
               element :selector, :css, 'input'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :no, :form_labelled, 'simple_form.no' do
               element :selector, :css, 'input'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             def set(value)
               choose(factory_translate(value), name: 'claim_type[send_claim_to_whistleblowing_entity]')

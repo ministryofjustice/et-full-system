@@ -15,43 +15,43 @@ module EtFullSystem
           element :header, :main_header, 'diversities.relationship.hint'
           section :single, :form_labelled, 'relationship.single-that-is-never-married-and-never-registered-in-a-same-sex-civil-partnership'do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :married, :form_labelled, 'relationship.married'do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :separated, :form_labelled, 'relationship.separated-but-still-legally-married'do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :divorced, :form_labelled, 'relationship.divorced'do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :widowed, :form_labelled, 'relationship.widowed'do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :registered_same_sex_civil_partnership, :form_labelled, 'relationship.in-a-registered-same-sex-civil-partnership'do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :separated_same_sex_civil_partnership, :form_labelled, 'relationship.separated-but-still-legally-in-a-same-sex-civil-partnership'do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :dissolved_same_sex_civil_partnership, :form_labelled, 'relationship.formerly-in-a-same-sex-civil-partnership-which-is-now-legally-dissolved'do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :surviving_partner_same_sex_civil_partnership, :form_labelled, 'relationship.surviving-partner-from-a-same-sex-civil-partnership'do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :prefer_not_to_say, :form_labelled, 'relationship.prefer-not-to-say' do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #save and continue button
           element :save_and_continue, :submit_text, 'helpers.submit.update'

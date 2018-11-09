@@ -23,12 +23,12 @@ module EtFullSystem
           #email address
           section :email_label, :question_labelled, 'simple_form.labels.application_number.email_address', exact: false do
             element :field, :css, "input"
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #create your memorable word
           section :memorable_word_label, :question_labelled, 'simple_form.labels.application_number.password', exact: false do
             element :field, :css, "input"
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           element :example_word, :paragraph, 'simple_form.hints.application_number.password'
           #print this page

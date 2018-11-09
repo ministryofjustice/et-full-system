@@ -15,15 +15,15 @@ module EtFullSystem
           element :header, :main_header, 'diversities.pregnancy.hint'
           section :yes, :form_labelled, 'pregnancy.yes_answer' do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :no, :form_labelled, 'pregnancy.no_answer' do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :prefer_not_to_say, :form_labelled, 'pregnancy.prefer-not-to-say' do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #save and continue button
           element :save_and_continue, :submit_text, 'helpers.submit.update'

@@ -8,14 +8,14 @@ module EtFullSystem
         section :make_employer_contract_claim_question, :single_choice_option, 'questions.make_employer_contract_claim.label', exact: true do
           section :no, :gds_multiple_choice_option, 'questions.make_employer_contract_claim.no.label', exact: true do
             element :selector, :css, 'input'
-            delegate :set, to: :selector
+            def set(*args); selector.set(*args); end
           end
           section :yes, :gds_multiple_choice_option, 'questions.make_employer_contract_claim.yes.label', exact: true do
             element :selector, :css, 'input'
-            delegate :set, to: :selector
+            def set(*args); selector.set(*args); end
           end
           section :claim_information, :textarea_labelled, 'questions.make_employer_contract_claim.claim_information.label', exact: true do
-            delegate :set, to: :root_element
+            def set(*args); root_element.set(*args); end
           end
           element :error_too_long, :exact_error_text, 'errors.messages.too_long', exact: false
           def set_for(user)

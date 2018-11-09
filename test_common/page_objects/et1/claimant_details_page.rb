@@ -36,13 +36,13 @@ module EtFullSystem
           #first name
           section :first_name, :question_labelled, 'simple_form.labels.claimant.first_name' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
             element :error_first_name, :error, 'activemodel.errors.models.claimant.attributes.first_name.blank'
           end
           #lastname name
           section :last_name, :question_labelled, 'simple_form.labels.claimant.last_name' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
             element :error_last_name, :error, 'activemodel.errors.models.claimant.attributes.last_name.blank'
           end
           #Date of birth
@@ -52,15 +52,15 @@ module EtFullSystem
             element :date_of_birth_hint, :paragraph, 'simple_form.hints.claimant.date_of_birth'
             section :day, :question_labelled, 'simple_form.labels.claimant.date_of_birth.day' do
               element :field, :css, '#claimant_date_of_birth_day'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :month, :question_labelled, 'simple_form.labels.claimant.date_of_birth.month' do
               element :field, :css, '#claimant_date_of_birth_month'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :year, :question_labelled, 'simple_form.labels.claimant.date_of_birth.year' do
               element :field, :css, '#claimant_date_of_birth_year'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             def set(value)
               (day_value, month_value, year_value) = value.split("/")
@@ -74,15 +74,15 @@ module EtFullSystem
             element :error_gender, :error, 'activemodel.errors.models.claimant.attributes.gender.blank'
             element :male, :form_labelled, 'simple_form.options.claimant.gender.male' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :female, :form_labelled, 'simple_form.options.claimant.gender.female' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :prefer_not_to_say, :form_labelled, 'simple_form.options.claimant.gender.prefer_not_to_say' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             def set(value)
               choose(factory_translate(value), name: 'claimant[gender]')
@@ -95,11 +95,11 @@ module EtFullSystem
             element :has_special_needs_hint, :paragraph, 'simple_form.hints.claimant.has_special_needs'
             element :yes, :form_labelled, 'simple_form.yes' do
               element :selector, :css, '#claimant_has_special_needs_true'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :no, :form_labelled, 'simple_form.no' do
               element :selector, :css, '#claimant_has_special_needs_false'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             def set(value)
               choose(factory_translate(value), name: 'claimant[has_special_needs]')
@@ -109,35 +109,35 @@ module EtFullSystem
           section :assistance, '.claimant_special_needs' do
             element :special_needs, :textarea_labelled, 'simple_form.labels.claimant.special_needs'
             element :field, :css, 'textarea'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #Claimant's contact details
           element :claimants_contact_details, :legend_header, 'claims.claimant.legend_contact_details', exact: false
           section :building, :question_labelled, 'simple_form.labels.claimant.address_building' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           element :error_building, :error, 'activemodel.errors.models.claimant.attributes.address_building.blank'
           section :street, :question_labelled, 'simple_form.labels.claimant.address_street' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           element :error_street, :error, 'activemodel.errors.models.claimant.attributes.address_street.blank'
           section :locality, :question_labelled, 'simple_form.labels.claimant.address_locality' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           element :error_locality, :error, 'activemodel.errors.models.claimant.attributes.address_locality.blank'
           #County
           section :county, :question_labelled, 'simple_form.labels.claimant.address_county' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           element :error_county, :error, 'activemodel.errors.models.claimant.attributes.address_county.blank'
           element :county_hint, :paragraph, 'simple_form.hints.claimant.address_county', exact: false
           section :post_code, :question_labelled, 'simple_form.labels.claimant.address_post_code' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           element :blank_post_code, :error, 'activemodel.errors.models.claimant.attributes.address_post_code.blank'
           element :invalid_post_code, :error, 'activemodel.errors.models.claimant.attributes.address_post_code.invalid'
@@ -150,16 +150,16 @@ module EtFullSystem
           element :error_address_county, :error, 'activemodel.errors.models.claimant.attributes.address_county.blank'
           section :telephone_number, :question_labelled, 'simple_form.labels.claimant.address_telephone_number' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :alternative_telephone_number, :question_labelled, 'simple_form.labels.claimant.mobile_number' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :email_address, :question_labelled, 'simple_form.labels.claimant.email_address', exact: false do
             element :invalid_email_address, :error, 'activemodel.errors.models.claimant.attributes.email_address.invalid'
             element :field, :css, 'input[type="email"]'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           element :blank_email_address, :error, 'activemodel.errors.models.claimant.attributes.email_address.blank'
           #correspondence
@@ -170,11 +170,11 @@ module EtFullSystem
             element :contact_preference, :paragraph, 'simple_form.hints.claimant.contact_preference', exact: false
             section :email_preference, :form_labelled, 'simple_form.options.claimant.contact_preference.email' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             section :post_preference, :form_labelled, 'simple_form.options.claimant.contact_preference.post' do 
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             def set(value)
               choose(factory_translate(value), name: 'claimant[contact_preference]')

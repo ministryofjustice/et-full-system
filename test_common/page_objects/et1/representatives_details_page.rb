@@ -27,11 +27,11 @@ module EtFullSystem
             element :representative_labelled, :form_labelled, 'simple_form.labels.representative.has_representative'
             element :yes, :form_labelled, 'simple_form.yes' do
               element :selector, :css, 'input'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :no, :form_labelled, 'simple_form.no' do
               element :selector, :css, 'input'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
           end
           #All correspondence
@@ -51,62 +51,62 @@ module EtFullSystem
           end
           section :organisation_name, :question_labelled, 'simple_form.labels.representative.organisation_name' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :name, :question_labelled, 'simple_form.labels.representative.name' do
             element :blank_organisation_name, :error, 'activemodel.errors.models.representative.attributes.name.blank'
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #Representative's contact details
           element :representative_contact_details, :legend_header, 'claims.representative.contact_legend'
           element :blank_building, :error, 'activemodel.errors.models.representative.attributes.address_building.blank'
           section :building, :question_labelled, 'simple_form.labels.representative.address_building' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           element :blank_street, :error, 'activemodel.errors.models.representative.attributes.address_building.blank'
           section :street, :question_labelled, 'simple_form.labels.representative.address_street' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           element :blank_locality, :error, 'activemodel.errors.models.representative.attributes.address_street.blank'
           section :locality, :question_labelled, 'simple_form.labels.representative.address_locality' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #County
           element :blank_county, :error, 'activemodel.errors.models.representative.attributes.address_locality.blank'
           section :county, :question_labelled, 'simple_form.labels.representative.address_county' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           element :blank_post_code, :error, 'activemodel.errors.models.representative.attributes.address_post_code.blank'
           element :invalid_post_code, :error, 'activemodel.errors.models.representative.attributes.address_post_code.invalid'
           element :county_hint, :paragraph, 'simple_form.hints.representative.address_county', exact: false
           section :post_code, :question_labelled, 'simple_form.labels.representative.address_post_code' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           element :blank_telephone_number, :error, 'activemodel.errors.models.representative.attributes.address_locality.blank'
           section :telephone_number, :question_labelled, 'simple_form.labels.representative.address_telephone_number' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           element :blank_mobile, :error, 'activemodel.errors.models.representative.attributes.address_locality.blank'
           section :alternative_telephone_number, :question_labelled, 'simple_form.labels.representative.mobile_number' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           element :invalid_email_address, :error, 'activemodel.errors.models.representative.attributes.email_address.invalid'
           element :blank_email_address, :error, 'activemodel.errors.models.representative.attributes.email_address.blank'
           section :email_address, :question_labelled, 'simple_form.labels.representative.email_address' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :dx_number, :question_labelled, 'simple_form.labels.representative.dx_number' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #What is Dx number?
           element :what_is_dx_number, :summary_text, 'claims.representative.what_is_dx.detail'

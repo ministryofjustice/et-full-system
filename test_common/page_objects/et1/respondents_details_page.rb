@@ -27,38 +27,38 @@ module EtFullSystem
           element :blank_respondent_name, :error, 'activemodel.errors.models.respondent.attributes.name.blank'
           section :name, :question_labelled, 'simple_form.labels.respondent.name' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           element :blank_building, :error, 'activemodel.errors.models.respondent.attributes.address_building.blank'
           section :building, :question_labelled, 'simple_form.labels.respondent.address_building' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           element :blank_street, :error, 'activemodel.errors.models.respondent.attributes.address_building.blank'
           section :street, :question_labelled, 'simple_form.labels.respondent.address_street' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           element :blank_locality, :error, 'activemodel.errors.models.respondent.attributes.address_street.blank'
           section :locality, :question_labelled, 'simple_form.labels.respondent.address_locality' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           element :blank_county, :error, 'activemodel.errors.models.respondent.attributes.address_locality.blank'
           element :county_hint, :paragraph, 'simple_form.hints.respondent.address_county', exact: false
           section :county, :question_labelled, 'simple_form.labels.respondent.address_county' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           element :blank_post_code, :error, 'activemodel.errors.models.respondent.attributes.address_post_code.blank'
           element :invalid_post_code, :error, 'activemodel.errors.models.respondent.attributes.address_post_code.invalid'
           section :post_code, :question_labelled, 'simple_form.labels.respondent.address_post_code' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :telephone_number, :question_labelled, 'simple_form.labels.respondent.address_telephone_number' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #Your work address
           element :work_address_header, :legend_header, 'claims.respondent.workaddress_legend'
@@ -67,11 +67,11 @@ module EtFullSystem
             element :work_address_labelled, :form_labelled, 'simple_form.labels.respondent.worked_at_same_address'
             element :yes, :form_labelled, 'simple_form.labels.respondent.yes' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :no, :form_labelled, 'simple_form.labels.respondent.no' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             def set(value)
               choose(factory_translate(value), name: 'respondent[worked_at_same_address]')
@@ -83,31 +83,31 @@ module EtFullSystem
             element :blank_building, :error, 'activemodel.errors.models.respondent.attributes.work_address_building.blank'
             section :building, :question_labelled, 'simple_form.labels.respondent.work_address_building' do
               element :field, :css, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             element :blank_street, :error, 'activemodel.errors.models.respondent.attributes.work_address_street.blank'
             section :street, :question_labelled, 'simple_form.labels.respondent.work_address_street' do
               element :field, :css, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             element :blank_locality, :error, 'activemodel.errors.models.respondent.attributes.work_address_locality.blank'
             section :locality, :question_labelled, 'simple_form.labels.respondent.work_address_locality' do
               element :field, :css, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             element :county_hint, :paragraph, 'simple_form.hints.respondent.address_county', exact: false
             section :county, :question_labelled, 'simple_form.labels.respondent.work_address_county' do
               element :field, :css, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             element :blank_post_code, :error, 'activemodel.errors.models.respondent.attributes.work_address_post_code.blank'
             section :post_code, :question_labelled, 'simple_form.labels.respondent.work_address_post_code' do
               element :field, :css, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :telephone_number, :question_labelled, 'simple_form.labels.respondent.work_address_telephone_number' do
               element :field, :css, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
           end
           #Acas early conciliation certificate number
@@ -116,12 +116,12 @@ module EtFullSystem
             element :acas_hint, :paragraph, 'claims.respondent.acas_early_conciliation_certificate_number_html', exact: false
             element :certificate_number, :link_named, 'claims.respondent.acas_early_conciliation_certificate_number_link', exact: false
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #I don't have an Acas number
           element :no_acas_number, :form_labelled, 'simple_form.labels.respondent.no_acas_number' do
             element :field, :css, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #Why don't you have an Acas number?
           element :no_acas_number_reason, :legend_header, 'claims.respondent.no_acas_number_reason'
@@ -131,19 +131,19 @@ module EtFullSystem
             element :blank_no_acas_number_reason, :error, 'activemodel.errors.models.respondent.attributes.no_acas_number_reason.blank'
             element :joint_claimant_has_acas_number, :form_labelled, 'simple_form.options.respondent.no_acas_number_reason.joint_claimant_has_acas_number' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :acas_has_no_jurisdiction, :form_labelled, 'simple_form.options.respondent.no_acas_number_reason.acas_has_no_jurisdiction' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :employer_contacted_acas, :form_labelled, 'simple_form.options.respondent.no_acas_number_reason.employer_contacted_acas' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :interim_relief, :form_labelled, 'simple_form.options.respondent.no_acas_number_reason.interim_relief' do
               element :selector, :css, 'input[type="radio"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             def set(value)
               choose(factory_translate(value), name: 'respondent[no_acas_number_reason]')

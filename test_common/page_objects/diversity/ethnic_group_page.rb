@@ -15,50 +15,50 @@ module EtFullSystem
           element :header, :main_header, 'diversities.ethnicity.hint'
           section :white, :form_labelled, 'ethnicity.white' do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :mixed, :form_labelled, 'ethnicity.mixed-multiple-ethnic-groups' do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :asian, :form_labelled, 'ethnicity.asian-asian-british' do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :black, :form_labelled, 'ethnicity.black-african-caribbean-black-british' do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :other, :form_labelled, 'ethnicity.other-ethnic-group' do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           section :prefer_not_to_say, :form_labelled, 'ethnicity.prefer-not-to-say' do
             element :field, 'input'
-            delegate :set, to: :field
+            def set(*args); field.set(*args); end
           end
           #What is your ethnic type? (optional)
           section :ethnicity_subgroup, '.ethnicity_subgroup' do
             element :header, :form_labelled, 'diversities.ethnicity_subgroup.header'
             section :english, :form_labelled, 'ethnicity_subgroup.english-welsh-scottish-northern-irish-british' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :irish, :form_labelled, 'ethnicity_subgroup.irish' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :gypsy, :form_labelled, 'ethnicity_subgroup.gypsy-or-irish-traveller' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :other_white, :form_labelled, 'ethnicity_subgroup.any-other-white-background' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :none_of_the_above, :form_labelled, 'ethnicity_subgroup.none-of-the-above' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
           end
           section :mixed_subgroup, '.mixed-multiple-ethnic-groups' do
@@ -66,23 +66,23 @@ module EtFullSystem
             element :header, :form_labelled, 'ethnicity_subgroup.header'
             section :white_and_black_caribbean, :form_labelled, 'ethnicity_subgroup.white-and-black-caribbean' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :white_and_black_african, :form_labelled, 'ethnicity_subgroup.white-and-black-african' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :white_and_asian, :form_labelled, 'ethnicity_subgroup.white-and-asian' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :mixed_background, :form_labelled, 'ethnicity_subgroup.any-other-mixed-multiple-ethnic-background' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :none_of_the_above, :form_labelled, 'ethnicity_subgroup.none-of-the-above' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
           end
           section :asian_subgroup, '.asian-asian-british' do
@@ -90,27 +90,27 @@ module EtFullSystem
             element :header, :form_labelled, 'ethnicity_subgroup.header'
             section :indian, :form_labelled, 'ethnicity_subgroup.indian' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :pakistani, :form_labelled, 'ethnicity_subgroup.pakistani' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :bangladeshi, :form_labelled, 'ethnicity_subgroup.bangladeshi' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :chinese, :form_labelled, 'ethnicity_subgroup.chinese' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :other_asian, :form_labelled, 'ethnicity_subgroup.any-other-asian-background' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :none_of_the_above, :form_labelled, 'ethnicity_subgroup.none-of-the-above' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
           end
           section :black_subgroup, '.black-african-caribbean-black-british' do
@@ -118,19 +118,19 @@ module EtFullSystem
             element :header, :form_labelled, 'ethnicity_subgroup.header'
             section :african, :form_labelled, 'ethnicity_subgroup.african' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :caribbean, :form_labelled, 'ethnicity_subgroup.caribbean' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :other_black, :form_labelled, 'ethnicity_subgroup.any-other-black-african-caribbean-background' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :none_of_the_above, :form_labelled, 'ethnicity_subgroup.none-of-the-above' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
           end
           section :other_subgroup, '.other-ethnic-group' do
@@ -138,15 +138,15 @@ module EtFullSystem
             element :header, :form_labelled, 'ethnicity_subgroup.header'
             section :arab, :form_labelled, 'ethnicity_subgroup.arab' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :other_ethnic_group, :form_labelled, 'ethnicity_subgroup.any-other-ethnic-group' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
             section :none_of_the_above, :form_labelled, 'ethnicity_subgroup.none-of-the-above' do
               element :field, 'input'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
           end
           #save and continue button

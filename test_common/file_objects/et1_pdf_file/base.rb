@@ -76,10 +76,11 @@ module EtFullSystem
             val.to_s.split('.').last
           end
 
-          # Postcodes in the pdf have no spaces in them, but the inputs might
+          # Postcodes in the pdf have no spaces in them, but the inputs might.  Also, the pdf
+          # will only ever remember the first 7 characters
           def post_code_for(val, optional: false)
             return nil if val.nil? && optional
-            val.tr(' ', '')
+            val.tr(' ', '').slice(0,7)
           end
 
           def date_in_past(date, optional: false)

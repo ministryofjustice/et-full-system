@@ -31,11 +31,11 @@ module EtFullSystem
             include ::EtFullSystem::Test::I18n
             element :yes, :form_labelled, 'simple_form.yes' do
               element :selector, :css, 'input'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             element :no, :form_labelled, 'simple_form.no' do
               element :selector, :css, 'input'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
           end
 

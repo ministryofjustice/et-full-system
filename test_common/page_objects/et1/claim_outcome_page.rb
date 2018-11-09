@@ -26,22 +26,22 @@ module EtFullSystem
             #Compensation
             element :compensation_only, :form_labelled, 'simple_form.options.claim_outcome.desired_outcomes.compensation_only' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             #A recommendation from a tribunal (that the employer takes action so that the problem at work doesn’t happen again)
             element :tribunal_recommendation, :form_labelled, 'simple_form.options.claim_outcome.desired_outcomes.tribunal_recommendation' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             #To get your old job back
             element :reinstated_employment_and_compensation, :form_labelled, 'simple_form.options.claim_outcome.desired_outcomes.reinstated_employment_and_compensation' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
             #To get another job with the same employer or associated employer
             element :new_employment_and_compensation, :form_labelled, 'simple_form.options.claim_outcome.desired_outcomes.new_employment_and_compensation' do
               element :selector, :css, 'input[type="checkbox"]'
-              delegate :set, to: :selector
+              def set(*args); selector.set(*args); end
             end
 
             section :claim_outcome_other_outcome, '.claim_outcome_other_outcome' do
@@ -51,7 +51,7 @@ module EtFullSystem
               #You can change these details later, or leave this section blank if you don’t know
               element :other_outcome_hint, :form_hint, 'simple_form.hints.claim_outcome.other_outcome'
               element :field, :css, 'textarea'
-              delegate :set, to: :field
+              def set(*args); field.set(*args); end
             end
           end
           #Save and continue

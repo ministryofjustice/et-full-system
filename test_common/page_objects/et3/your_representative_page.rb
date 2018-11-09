@@ -7,11 +7,11 @@ module EtFullSystem
         section :have_representative_question, :single_choice_option, 'questions.have_representative.label', exact: true do
           section :yes, :gds_multiple_choice_option, 'questions.have_representative.yes.label', exact: true do
             element :selector, :css, 'input'
-            delegate :set, to: :selector
+            def set(*args); selector.set(*args); end
           end
           section :no, :gds_multiple_choice_option, 'questions.have_representative.no.label', exact: true do
             element :selector, :css, 'input'
-            delegate :set, to: :selector
+            def set(*args); selector.set(*args); end
           end
           def set_for(user)
             if user.have_representative == 'Yes'
