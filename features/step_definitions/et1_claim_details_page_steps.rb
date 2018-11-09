@@ -1,6 +1,6 @@
 Given("a claimant is on Claim details page") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
-  @representative = FactoryBot.create_list(:representative, 1, :et3_information)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:acas_number_reason, 1, :yes_acas)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)

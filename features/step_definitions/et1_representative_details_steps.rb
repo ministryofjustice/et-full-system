@@ -1,6 +1,6 @@
 Given("a claimant is on Representative's details page") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
-  @representative = FactoryBot.create_list(:representative, 1, :et3_information)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   start_a_new_et1_claim
   et1_answer_login
   et1_answer_claimant_questions
@@ -49,7 +49,7 @@ Then("I can see the DX information details") do
 end
 
 Then("I should be able to select Employment advisor, Citizens Advice Bureau from type of representative") do
-  @representative = FactoryBot.create_list(:representative, 1, :et3_information, type: :"simple_form.options.representative.type.citizen_advice_bureau")
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information, type: :"simple_form.options.representative.type.citizen_advice_bureau")
   et1_representatives_details_page.main_content.representative.yes.click
   et1_representatives_details_page.main_content.type.set(@representative[0][:type])
 end
