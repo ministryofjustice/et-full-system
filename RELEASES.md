@@ -21,9 +21,9 @@
 ## Info
 Deployment by Stath
 
-No downtime expected
+No downtime expected/observed
 
-No risk expected
+No risk expected/observed
 
 # v1.2.0 - ET1 v3.1.0, ET3 v2.3.0, Admin v1.5.0 & API v2.5.0
 **01/11/2018**
