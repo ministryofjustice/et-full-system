@@ -1,3 +1,30 @@
+# v1.3.0 - ATOS v1.2.3, ET3 v2.3.1, Admin v1.6.0 & API v2.5.1
+**12/11/2018**
+
+## New
+
+* **Admin:** Add validation to new (and existing) usernames. (RST-1435)
+
+## Changes
+
+* **API:** Reference the updated ATOS gem, with increased security. (RST-1500)
+* **ET3:** Improve testing around the RTF upload. (RST-1473)
+
+## Fixes
+
+## Security
+
+* **API:** Update minio for testing uploads
+* **Admin, API, ATOS & ET3:** Update loofah gem, as a vulnerability was discovered in the version we were using. (RST-1492)
+* **ATOS:** Update other vulnerable gems (RST-1492)
+
+## Info
+Deployment by Stath
+
+No downtime expected/observed
+
+No risk expected/observed
+
 # v1.2.0 - ET1 v3.1.0, ET3 v2.3.0, Admin v1.5.0 & API v2.5.0
 **01/11/2018**
 
