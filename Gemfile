@@ -7,8 +7,8 @@ end
 
 group :test do
   gem 'rspec', '~> 3.7'
-  gem 'capybara', '~> 2.17'
-  gem 'site_prism', '~> 2.9'
+  gem 'capybara', '~> 3.10'
+  gem 'site_prism', '~> 3.0'
   gem 'i18n', '~> 0.8'
   gem 'activesupport', '~> 5.2'
   gem 'selenium-webdriver', '~> 3.10'
