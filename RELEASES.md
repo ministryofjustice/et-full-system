@@ -1,4 +1,4 @@
-# v1.3.0 - ET3 v2.3.0, Admin v1.6.0 & API v2.5.0
+# v1.3.0 - ET3 v2.3.0, Admin v1.6.0 & API v2.5.1
 **12/11/2018**
 
 ## New
@@ -7,9 +7,14 @@
 
 ## Changes
 
+* **API:** Reference the updated ATOS gem, with increased security. (RST-1500)
+
 ## Fixes
 
 ## Security
+
+* **API:** Update minio for testing uploads
+* **Admin, API, ATOS:** Update loofah gem, as a vulnerability was discovered in the version we were using. (RST-1492)
 
 ## Info
 Deployment by Stath
