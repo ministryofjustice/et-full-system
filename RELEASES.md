@@ -1,3 +1,23 @@
+# v1.3.0 - ET3 v2.3.0, Admin v1.6.0 & API v2.5.0
+**12/11/2018**
+
+## New
+
+* **Admin:** Add validation to new (and existing) usernames. (RST-1435)
+
+## Changes
+
+## Fixes
+
+## Security
+
+## Info
+Deployment by Stath
+
+No downtime expected
+
+No risk expected
+
 # v1.2.0 - ET1 v3.1.0, ET3 v2.3.0, Admin v1.5.0 & API v2.5.0
 **01/11/2018**
 
