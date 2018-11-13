@@ -1,6 +1,7 @@
 
 .idea
 tmp/**/*
+!tmp/.gitkeep
 config_aws.env
 **/.DS_Store
 node_modules
