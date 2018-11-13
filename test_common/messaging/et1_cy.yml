@@ -91,7 +91,7 @@ cy:
           compensation_only: Iawndal
           tribunal_recommendation: "Argymhelliad gan dribiwnlys (bod y cyflogwr yn cymryd camau gweithredu fel nad yw'r broblem yn y gwaith yn digwydd eto)"
           reinstated_employment_and_compensation: I gael fy hen swydd yn ôl
-          new_employment_and_compensation: "I gael swydd arall gyda'r un cyflogwr neu gyflogwr cysylltiedig "
+          new_employment_and_compensation: "I gael swydd arall gyda'r un cyflogwr neu gyflogwr cysylltiedig"
       claim_type:
         discrimination_claims:
           sex_including_equal_pay: "Rhyw (gan gynnwys tâl cyfartal)"
