@@ -5,8 +5,8 @@ module EtFullSystem
   module Test
     class Et1ClaimCompletedEmailHtml < SitePrism::Page
       include RSpec::Matchers
-      element(:claim_number_element, :xpath, XPath.generate { |x| x.descendant(:td)[x.string.n.starts_with('Claim number')].child(:p)[2] })
-      element(:claim_submitted_element, :xpath, XPath.generate { |x| x.descendant(:tr)[x.child(:td)[x.string.n.starts_with('Claim submitted:')]].child(:td)[2] })
+      include ::EtFullSystem::Test::I18n
+      element(:claim_submitted_element, :xpath, XPath.generate { |x| x.descendant(:tr)[x.child(:td)[x.string.n.starts_with(t('claim_confirmations.show.header'))]].child(:td)[2] })
     
       def self.find(search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, claim_number:, sleep: 10, timeout: 120)
         item = find_email(claim_number, search_url, sleep: sleep, timeout: timeout)
@@ -14,7 +14,7 @@ module EtFullSystem
         new(item)
       end
 
-      def self.find_email(claim_number, search_url, timeout: 120, sleep: 10, subject_text: 'Employment tribunal: claim submitted')
+      def self.find_email(claim_number, search_url, timeout: 120, sleep: 10, subject_text: t('base_mailer.confirmation_email.subject'))
         Timeout.timeout(timeout) do
           item = nil
           until item.present? do
@@ -39,16 +39,12 @@ module EtFullSystem
         load(body)
       end
 
-      def claim_number
-        claim_number_element.text
-      end
-
       def submission_submitted
         claim_submitted_element.text
       end
 
       def has_correct_subject_for_claim_submitted?
-        mail.subject == 'Employment tribunal: claim submitted'
+        mail.subject == t('base_mailer.confirmation_email.subject')
       end
 
       attr_accessor :mail

@@ -1,11 +1,13 @@
 require_relative '../sections'
 require_relative '../messaging'
+require 'rspec/matchers'
 module EtFullSystem
   module Test
     # @abstract
     # @private
     class BasePage < ::SitePrism::Page
       include ::EtFullSystem::Test::I18n
+      include RSpec::Matchers
 
       def messaging
         @messaging ||= ::EtFullSystem::Test::Messaging.instance

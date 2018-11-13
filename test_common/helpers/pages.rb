@@ -2,24 +2,28 @@ require_relative './admin_pages'
 module EtFullSystem
   module Test
     module Pages
-      def et1_new_claim_page
-        EtFullSystem::Test::Et1::NewClaimPage.new
+      def et1_apply_page
+        EtFullSystem::Test::Et1::ApplyPage.new
       end
 
-      def et1_identification_page
-        EtFullSystem::Test::Et1::IdentificationPage.new
+      def et1_your_feedback_page
+        EtFullSystem::Test::Et1::YourFeedbackPage.new
+      end
+
+      def et1_application_number_page
+        EtFullSystem::Test::Et1::ApplicationNumberPage.new
       end
 
       def et1_claimant_details_page
         EtFullSystem::Test::Et1::ClaimantDetailsPage.new
       end
 
-      def et1_group_claims_page
-        EtFullSystem::Test::Et1::GroupClaimsPage.new
+      def et1_group_claimants_page
+        EtFullSystem::Test::Et1::GroupClaimantsPage.new
       end
 
-      def et1_group_claims_upload_page
-        EtFullSystem::Test::Et1::GroupClaimsUploadPage.new
+      def et1_group_claimants_upload_page
+        EtFullSystem::Test::Et1::GroupClaimantsUploadPage.new
       end
 
       def et1_representatives_details_page
@@ -56,6 +60,10 @@ module EtFullSystem
 
       def et1_submission_page
         EtFullSystem::Test::Et1::SubmissionPage.new
+      end
+
+      def et1_return_to_your_claim_page
+        EtFullSystem::Test::Et1::ReturnToYourClaimPage.new
       end
 
       def et1_claim_submitted
@@ -108,6 +116,10 @@ module EtFullSystem
 
       def form_submission_page
         EtFullSystem::Test::Et3::FormSubmissionPage.new
+      end
+
+      def et1_guide_page
+        EtFullSystem::Test::Et1::GuidePage.new
       end
 
       def admin_pages

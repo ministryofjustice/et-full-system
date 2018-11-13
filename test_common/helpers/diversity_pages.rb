@@ -16,8 +16,8 @@ module EtFullSystem
         Diversity::RelationshipStatusPage.new
       end
 
-      def self.age_group_caring_responsibilities
-        Diversity::AgeGroupCaringResponsibilities.new
+      def self.age_group_caring_responsibilities_page
+        Diversity::AgeGroupCaringResponsibilitiesPage.new
       end
 
       def self.religion_page

@@ -379,35 +379,6 @@ or, if you prefer to just have a session open inside the 'test machine' - then d
 
 then just type in commands as normal - note the app is inside the '/app' folder in the docker machine.
 
-### Video Recording In Tests
-
-Video recording is enabled in the docker version of the test framework - it can also be used if not using docker, however, you
-will need to setup a vnc server which contains the 'desktop' that the test suite is talking to via selenium so is more involved.
-
-Video recording can be expensive in terms of time, so it can also be controller by you when running tests.
-
-By default, everything is recorded, but anything but failing tests are thrown away.
-
-To change this behaviour, set the RECORD_VIDEO environment variable before running the test to one of the following values
-
-* on_failure (default) - means record everything but throw away passing tests - useful for seeing what went wrong when developing
-* false - means don't record anything
-* true - means record everything
-* @tag1,@tag2,@anyothertag,~@butnotthisone - Uses cucumber tagging to work out whether to or not (these tags can be anything you want). Useful for presentational purposes for example
-
-#### Video Recording - How It Works
-
-Any docker images with the browser name ending in 'debug' from selenium includes a running VNC server so that you can watch the tests (see below for more details).
-So, in the 'Test Framework' dockerfile, the python command line tool called 'vnc2flv' is installed.
-
-In features/support/record_video.rb - this not only makes the decision before and after each scenario whether to record, throw away the
-recording etc... - but also, the filename of the recording, which directory it goes into etc..  It then hands over to 'test_common/video_recorder.rb' to do the work.
-
-vnc2flv needs to be told which VNC server to record from.  By default, this is assumed to to be the same server that selenium is running on (determined
-by the SELENIUM_URL environment variable).  However, if you are running your own stuff outside of docker and want to use this, you can set the RECORD_VNC_FROM environment
-variable to a url that looks like "vnc://host:port"
-
-
 ### Watching Your Tests Run
 
 When developing locally, you can have a browser window visible which is great whilst debugging, but very annoying when you want to get
@@ -469,20 +440,6 @@ The admin username (defaults to admin@example.com - same as seed data)
 
 The admin password (defaults to password - same as seed data)
 
-### RECORD_VIDEO
-
-Controls video recording during the test run - can be one of the following values
-
-* on_failure (default) - means record everything but throw away passing tests - useful for seeing what went wrong when developing
-* false - means don't record anything
-* true - means record everything
-* @tag1,@tag2,@anyothertag,~@butnotthisone - Uses cucumber tagging to work out whether to or not (these tags can be anything you want).  Can be useful for presentational purposes
-
-### RECORD_VNC_FROM
-
-If your VNC server is not on port 5900 on the same server that provides the selenium services, you can control where to record video
- from by setting this value to something like this :- "vnc://host:port"
- 
 ### SELENIUM_VNC_PORT
 
 If set, the VNC port that selenium exposes will be forwarded to this port.  Otherwise, it is random
@@ -552,25 +509,6 @@ For Windows
 
 I don't know - but if someone finds out, please update this readme
 
-#### Next, install vnc2flv
-
-Using pip, install vnc2flv as follows
-
-```
-
-sudo pip install vnc2flv
-
-```
-
-and you should get :-
-
-```
-Installing collected packages: vnc2flv
-  Running setup.py install for vnc2flv ... done
-Successfully installed vnc2flv-20100207
-
-
-```
 
 ## Running The Test Suite
 
@@ -612,3 +550,7 @@ staging: ./bin/dev/test_exec bundle exec cucumber ENVIRONMENT=staging
 ## Running test in parallel
 
 ./bin/dev/test_exec bundle exec parallel_cucumber features/ ENVIRONMENT=dev
+
+## Running test in different locale
+
+TEST_LOCALE=cy [if left blank it will default to english']

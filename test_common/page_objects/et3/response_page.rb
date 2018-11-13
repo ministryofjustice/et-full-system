@@ -8,14 +8,14 @@ module EtFullSystem
         section :defend_claim_question, :single_choice_option, 'questions.defend_claim.label', exact: false do
           section :yes, :gds_multiple_choice_option, 'questions.defend_claim.yes.label', exact: true do
             element :selector, :css, 'input'
-            delegate :set, to: :selector
+            def set(*args); selector.set(*args); end
           end
           section :no, :gds_multiple_choice_option, 'questions.defend_claim.no.label', exact: true do
             element :selector, :css, 'input'
-            delegate :set, to: :selector
+            def set(*args); selector.set(*args); end
           end
           section :defend_claim_facts, :textarea_labelled, 'questions.defend_claim.defend_claim_facts.label', exact: false do
-            delegate :set, to: :root_element
+            def set(*args); root_element.set(*args); end
           end
           element :error_too_long, :exact_error_text, 'errors.messages.too_long', exact: false
           element :error_inclusion, :exact_error_text, 'errors.messages.inclusion', exact: false

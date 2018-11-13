@@ -1,71 +1,160 @@
 require_relative './base_page'
+require_relative '../../../test_common/helpers/upload_helper'
 module EtFullSystem
   module Test
     module Et1
       class ClaimDetailsPage < BasePage
+        include RSpec::Matchers
+        #your feedback header
+        section :feedback_notice, '.feedback-notice' do
+          include ::EtFullSystem::Test::I18n
+          element :language, :link_named, 'switch.language'
+          element :welsh_link, :link_or_button, t('switch.language', locale: :en)
+          element :english_link, :link_or_button, t('switch.language', locale: :cy)
+          element :feedback_link, :paragraph, 'shared.feedback_link.feedback_statement_html'
+        end
+        #Claim details
+        section :main_header, '.main-header' do
+          element :page_header, :page_title, 'claims.claim_details.header', exact: false
+        end
         section :main_content, '#content .main-section .main-content' do
-          element :description, 'textarea[name="claim_details[claim_details]"]'
-          section :similar_claims, :xpath, (XPath.generate { |x| x.descendant(:fieldset)[x.descendant(:legend)[x.string.n.is("Similar claims")]] }) do
-            section :other_claimants, '.claim_details_other_known_claimants' do
-              def set(value)
-                choose value, name: "claim_details[other_known_claimants]"
-              end
-            end
-            element :names, 'textarea[name="claim_details[other_known_claimant_names]"]'
+          section :error_message, '#error-summary' do
+            element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
+            element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
           end
-
-          section :rtf_file, :xpath, (XPath.generate { |x| x.descendant(:details)[x.child(:summary)[x.string.n.is('Or upload it as a separate document')]] }) do
-            section :file_input, :css, 'input[type=file]' do
-              def set(value)
-                browser = page.driver.browser
-                if browser.respond_to?(:file_detector=)
-                  old_file_detector = browser.send(:bridge).file_detector
-                  browser.file_detector = lambda do |args|
-                    args.first.to_s
-                  end
-                end
-                root_element.set(value)
-              ensure
-                browser.file_detector = old_file_detector if browser && browser.respond_to?(:file_detector=)
-              end
-            end
-
+          #Describe your claim
+          element :describe_your_claim, :legend_header, 'claims.claim_details.claim_details'
+          #Write your claim statement below. Include the background, dates and people involved. 
+          element :describe_your_claim_info, :paragraph, 'claims.claim_details.claim_details_html', exact: false
+          #More about writing your claim statement.
+          element :about_claim_info, :link_named, 'claims.claim_details.claim_details_hint', exact: false
+          #Or upload it as a separate document
+          element :upload_document, :summary_text, 'claims.claim_details.claim_details_upload' do
+            element :selector, :css, '.summary'
+            def set(*args); selector.set(*args); end
+          end
+          section :claim_details_claim_details_rtf, '.claim_details_claim_details_rtf' do
+            #The document needs to be in Rich Text Format(RTF) (optional)
+            element :claim_details_claim_details_rtf_info, :form_labelled, 'simple_form.labels.claim_details.claim_details_rtf', exact: false
+            #You can usually save a file as RTF by selecting File> Save As> Export To> Format: Rich Text Format
+            element :claim_details_claim_details_rtf_hint, :form_hint, 'simple_form.hints.claim_details.claim_details_rtf', exact: false
+          end
+          section :file_upload, 'input#claim_details_claim_details_rtf' do
+            include ::EtFullSystem::Test::UploadHelper
             def set(value)
-              ensure_file_input_visible
-              file_input.set(value)
-            end
-
-            private
-
-            def ensure_file_input_visible
-              return if root_element[:open]
-              root_element.click
+              force_remote do
+                full_path = File.expand_path(File.join('test_common', 'fixtures', value))
+                root_element.set(full_path)
+              end
             end
           end
-
-          element :save_and_continue_button, 'form.edit_claim_details input[value="Save and continue"]'
+          #Limit is 2500 characters. (2500 characters remaining)
+          section :claim_details_claim_details, '.claim_details_claim_details' do
+            element :blank_claim_details_claim_details, :error, 'activemodel.errors.models.claim_details.attributes.claim_details.blank'
+            element :claim_details_claim_details_hint, :form_hint, 'claims.claim_details.claim_details_hint_html'
+            element :field, :css, 'textarea'
+            def set(*args); field.set(*args); end
+          end
+          #Similar claims
+          section :claim_details_other_known_claimants, :legend_header, 'claims.claim_details.similar_claims' do
+            #Do you know of any other claimants (not already listed) making similar claims against the same employer? (optional)
+            element :claim_details_other_known_claimants_label, :form_labelled, 'simple_form.labels.claim_details.other_known_claimants'
+            #A judge may combine similar claims to manage and hear them together. This may save you and the tribunal time and money.
+            element :claim_details_other_known_claimants_hint , :form_hint, 'simple_form.hints.claim_details.other_known_claimants'
+            include ::EtFullSystem::Test::I18n
+            element :yes, :form_labelled, 'claims.claim_type.yes' do
+              element :selector, :css, 'input[type="radio"]'
+              def set(*args); selector.set(*args); end
+            end
+            element :no, :form_labelled, 'claims.claim_type.no' do
+              element :selector, :css, 'input[type="radio"]'
+              def set(*args); selector.set(*args); end
+            end
+            def set(value)
+              choose(factory_translate(value), name: 'claim_details[other_known_claimants]')
+            end
+          end
+          #You can add the names of other people here. (optional)
+          section :other_known_claimant_names, '.claim_details_other_known_claimant_names' do
+            element :claim_details_other_known_claimant_names, :form_labelled, 'simple_form.labels.claim_details.other_known_claimant_names', exact: false
+            #Limit is 350 characters. (350 characters remaining)
+            element :claim_details_other_known_claimant_names_hint, :form_hint, 'simple_form.hints.claim_details.other_known_claimants', exact: false
+            element :field, :css, 'textarea'
+            def set(*args); field.set(*args); end
+          end
+          #Save and continue
+          element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
+        end
+        #Support links
+        section :support, 'aside[role="complementary"]' do
+          element :suport_header, :support_header, 'shared.aside.gethelp_header'
+          element :guide, :link_named, 'shared.aside.read_guide'
+          element :contact_use, :link_named, 'shared.aside.contact_us'
+          element :your_claim, :support_header, 'shared.aside.actions_header'
+          element :save_and_complete_later, :button, 'shared.mobile_nav.save_and_complete'
         end
 
         def save_and_continue
           main_content.save_and_continue_button.click
         end
 
-        def set_for(claim)
+        def switch_to_welsh
+          feedback_notice.welsh_link.click
+        end
+
+        def switch_to_english
+          feedback_notice.english_link.click
+        end
+
+        def has_mandatory_error_message?
+          expect(main_content.error_message).to have_error_summary
+          expect(main_content.error_message).to have_default_message
+          expect(main_content.claim_details_claim_details).to have_blank_claim_details_claim_details
+        end
+
+        def has_correct_translation?
+          #your feedback header
+          expect(feedback_notice).to have_language
+          expect(feedback_notice).to have_feedback_link
+          #Claim details
+          expect(main_header).to have_page_header
+          #Describe your claim
+          expect(main_content).to have_describe_your_claim_info
+          expect(main_content).to have_about_claim_info
+          expect(main_content).to have_upload_document
+          expect(main_content.claim_details_claim_details_rtf).to have_claim_details_claim_details_rtf_info
+          expect(main_content.claim_details_claim_details_rtf).to have_claim_details_claim_details_rtf_hint
+          #Limit is 2500 characters. (2500 characters remaining)
+          expect(main_content).to have_claim_details_other_known_claimants
+          expect(main_content.claim_details_other_known_claimants).to have_claim_details_other_known_claimants_label
+          expect(main_content.claim_details_other_known_claimants).to have_claim_details_other_known_claimants_hint
+          expect(main_content.claim_details_other_known_claimants).to have_yes
+          expect(main_content.claim_details_other_known_claimants).to have_no
+          #You can add the names of other people here. (optional)
+          expect(main_content.other_known_claimant_names).to have_claim_details_other_known_claimant_names
+          expect(main_content.other_known_claimant_names).to have_claim_details_other_known_claimant_names
+          #Save and continue
+          expect(main_content).to have_save_and_continue_button
+          #Support
+          expect(support).to have_suport_header
+          expect(support).to have_guide
+          expect(support).to have_contact_use
+          #Save your claim later
+          expect(support).to have_your_claim
+          #TODO this has stopped working - why?
+          # expect(support).to have_save_and_complete_later
+        end
+
+        def set(claim)
           data = claim.to_h
           return if claim.nil?
           if data.key?(:rtf_file)
-            full_path = File.expand_path(File.join('test_common', 'fixtures', data[:rtf_file]))
-            main_content.rtf_file.set(full_path)
+            main_content.upload_document.click
+            main_content.file_upload.set(data[:rtf_file])
           end
-          set_field main_content, :description, data
-          set_field main_content.similar_claims, :other_claimants, data
-          main_content.similar_claims.names.set data[:other_claimant_names] if data.key?(:other_claimant_names)
-        end
-
-        private
-
-        def set_field(s, key, data)
-          s.send(key).set(data[key]) if data.key?(key)
+          main_content.claim_details_claim_details.set(data[:description])
+          main_content.claim_details_other_known_claimants.set(data[:other_claimants])
+          main_content.other_known_claimant_names.set(data[:other_claimant_names]) if data.key?(:other_claimant_names)
         end
       end
     end

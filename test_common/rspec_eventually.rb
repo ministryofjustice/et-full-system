@@ -3,10 +3,9 @@ RSpec::Matchers.define :eventually do |matcher, timeout: 5, sleep: 0.1|
   supports_block_expectations
   attempts = 0
   match do |actual|
-    attempts += 1
     begin
       Timeout.timeout(timeout) do
-        sleep sleep until matcher.matches?(actual.call)
+        attempts += 1 && sleep(sleep) until matcher.matches?(actual.call)
         return true
       end
     rescue Timeout::Error

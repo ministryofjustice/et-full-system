@@ -1,19 +1,19 @@
 FactoryBot.define do
   factory :diversity, class: OpenStruct do
     trait :not_blank do
-      claim_type 'Unfair dismissal or constructive dismissal'
-      sex 'Female'
-      sexual_identity 'Bisexual'
-      age_group 'Under 25'
-      ethnicity 'Mixed / multiple ethnic groups'
-      ethnicity_subgroup 'Any other Mixed / multiple ethnic background'
-      disability 'Prefer not to say'
-      caring_responsibility 'Prefer not to say'
-      gender 'Female (including male-to-female trans women)'
-      gender_at_birth 'Yes'
-      pregnancy 'Prefer not to say'
-      relationship 'Formerly in a same-sex civil partnership which is now legally dissolved'
-      religion 'Christian (including Church of England, Catholic, Protestant and all other Christian denominations)'
+      claim_type :"claim_type.discrimination"
+      sex :"sex.female"
+      sexual_identity :"sexual_identity.heterosexual-straight"
+      gender_at_birth :"gender_at_birth.yes_answer"
+      age_group :"age_group.under-25"
+      ethnicity :"ethnicity.mixed-multiple-ethnic-groups"
+      ethnicity_subgroup :"ethnicity_subgroup.white-and-black-caribbean"
+      disability :"disability.prefer-not-to-say"
+      pregnancy :"pregnancy.yes_answer"
+      caring_responsibility :"caring_responsibility.yes_answer"
+      gender :"gender.male-including-female-to-male-trans-men"
+      relationship :"relationship.married"
+      religion :"religion.no-religion"
     end
 
     trait :blank do

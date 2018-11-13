@@ -3,13 +3,7 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     git-core \
     pdftk \
-    libmcrypt-dev mcrypt \
-    libav-tools \
-    python \
-    python-dev \
-    python-pip && \
-    pip install vnc2flv && \
-    apt-get remove -y python-dev python-pip
+    libmcrypt-dev mcrypt
 RUN gem update --system
 RUN gem install bundler
 RUN mkdir -p /app

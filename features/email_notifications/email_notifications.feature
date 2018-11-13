@@ -2,7 +2,7 @@
 @javascript
 Feature: Eamil notifications
   As an Employment tribunal
-  I want to ensure that users submitting E1 or ET3 forms get an email notification
+  I want to ensure that users submitting E1 or ET3 forms get an email notification in their preferred language
 
   Scenario: ET1 - Complete your claim
     Given a claimant continued from Saving your claim page
