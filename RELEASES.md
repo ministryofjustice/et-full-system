@@ -1,3 +1,70 @@
+# v1.3.0 - ATOS v1.2.3, ET3 v2.3.1, Admin v1.6.0 & API v2.5.1
+**12/11/2018**
+
+## New
+
+* **Admin:** Add validation to new (and existing) usernames. (RST-1435)
+
+## Changes
+
+* **API:** Reference the updated ATOS gem, with increased security. (RST-1500)
+* **ET3:** Improve testing around the RTF upload. (RST-1473)
+
+## Fixes
+
+## Security
+
+* **API:** Update minio for testing uploads
+* **Admin, API, ATOS & ET3:** Update loofah gem, as a vulnerability was discovered in the version we were using. (RST-1492)
+* **ATOS:** Update other vulnerable gems (RST-1492)
+
+## Info
+Deployment by Stath
+
+No downtime expected/observed
+
+No risk expected/observed
+
+# v1.2.0 - ET1 v3.1.0, ET3 v2.3.0, Admin v1.5.0 & API v2.5.0
+**01/11/2018**
+
+## New
+
+* **ET1 & ET3:** Add Google Tag Manager for better analytics. (RST-1424) 
+* **Admin:** Add rake task for Policy Team's data extraction. (RST-1483 & RST-1488)
+
+## Changes
+
+* **ET1:** Refactored views to remove Rails presenters as they add complexity.
+ET1 views are now easier for developers to work with. (RST-1440)
+* **ET1:** Allow PDFs to be flattened based upon environment configuration.
+We can now retrieve answers more easily in environments other than test,
+although this is still flattened by default in production.
+* **ET3:** Removed bootsnap for developers and test builds as it causes issues while debugging.
+It remains as is in production environments.
+* **ET3:** Add the ability to run a developer version of S3.
+This means we can test the rtf upload more reliably. (RST-1277)
+* **API:** Make changes in the database to ensure `employment_details` are properly shown as empty when a Claim is first made. (RST-1483)
+
+## Fixes
+
+* **API:** Fix a bug where hidden UTF characters were preventing ATOS from working properly.
+This will enable some cases which were held in sidekiq to go through.
+* **API:** Backdate the change to empty `employment_details` on all existing Claims. (RST-1483)
+
+## Security
+_No updates_
+
+## Info
+Deployment by Stath
+
+No downtime expected / observed
+
+Potential risk as a data migration will take place on production data for Claims.
+This has been tested locally with no issues.
+
+No risks were observed.
+
 # v1.1.1 - Admin v1.4.1 & API v2.4.1
 **11/10/2018**
 
