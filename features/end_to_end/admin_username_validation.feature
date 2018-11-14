@@ -5,7 +5,7 @@ Feature: Username validation
 
   Background: 
     When an administrator login
-    And load User page
+    And add a new user
 
   Scenario: Username validations
     When I enter "eee" characters in the username field

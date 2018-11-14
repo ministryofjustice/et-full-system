@@ -7,6 +7,7 @@ module EtFullSystem
         element :name, 'input[name="admin_user[name]"]'
         element :email, 'input[name="admin_user[email]"]'
         element :username, 'input[name="admin_user[username]"]'
+        element :username_error, '#admin_user_username_input .inline-errors'
         element :department, 'input[name="admin_user[department]"]'
         element :password, 'input[name="admin_user[password]"]'
         element :confirm_password, 'input[name="admin_user[password_confirmation]"]'
