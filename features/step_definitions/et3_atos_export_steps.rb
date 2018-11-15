@@ -4,7 +4,7 @@ Then(/^I can download the ET3 form and validate in TXT format$/) do
     expect { api.respondents_api }.to eventually include a_hash_including(name: @respondent[0].dig(:name))
     admin_pages.jobs_page.run_export_claims_cron_job
   end
-  expect { atos_interface }.to eventually have_zip_file_containing(:et3_response_txt_for, user: @respondent[0], reference: @my_et3_reference), timeout: 30, sleep: 2
+  expect { atos_interface }.to eventually have_zip_file_containing(:et3_response_txt_for, user: @respondent[0], reference: @my_et3_reference), timeout: 45, sleep: 2
   expect(atos_interface.download_from_any_zip(:et3_response_txt_for, user: @respondent[0], reference: @my_et3_reference)).to match_text_schema calculated_response_matchers(user: @claimant[0], representative: @representative[0], respondent: @respondent[0])
 end
 
@@ -16,7 +16,7 @@ Then(/^I can download the ET3 form and validate in PDF format$/) do
     expect { api.respondents_api }.to eventually include a_hash_including(name: @respondent[0].dig(:name))
     admin_pages.jobs_page.run_export_claims_cron_job
   end
-  expect { atos_interface }.to eventually have_zip_file_containing(:et3_response_pdf_for, user: @respondent[0], reference: @my_et3_reference), timeout: 30, sleep: 2
+  expect { atos_interface }.to eventually have_zip_file_containing(:et3_response_pdf_for, user: @respondent[0], reference: @my_et3_reference), timeout: 45, sleep: 2
   tempfile = atos_interface.download_from_any_zip_to_tempfile(:et3_response_pdf_for, user: @respondent[0], reference: @my_et3_reference)
   pdf_file = EtFullSystem::Test::FileObjects::Et3PdfFile.new(tempfile)
   expect(pdf_file).to have_correct_contents_for(response: @claimant[0],
@@ -32,7 +32,7 @@ Then("I can download the ET3 form and validate that the filename starts with {st
     expect { api.respondents_api }.to eventually include a_hash_including(name: @respondent[0].dig(:name))
     admin_pages.jobs_page.run_export_claims_cron_job
   end
-  expect { atos_interface }.to eventually have_zip_file_containing(:et3_filename_start_with, user: @respondent[0], reference: @my_et3_reference, local_postcode: string), timeout: 30, sleep: 2
+  expect { atos_interface }.to eventually have_zip_file_containing(:et3_filename_start_with, user: @respondent[0], reference: @my_et3_reference, local_postcode: string), timeout: 45, sleep: 2
 end
 
 Then("it will be forwarded to the Office address {string}") do |string|
@@ -49,5 +49,5 @@ Then(/^I can download the ET3 form and validate in RTF format$/) do
     expect { api.respondents_api }.to eventually include a_hash_including(name: @respondent[0].dig(:name))
     admin_pages.jobs_page.run_export_claims_cron_job
   end
-  expect { atos_interface }.to eventually have_zip_file_containing(:et3_response_rtf_for, user: @respondent[0], reference: @my_et3_reference), timeout: 30, sleep: 2
+  expect { atos_interface }.to eventually have_zip_file_containing(:et3_response_rtf_for, user: @respondent[0], reference: @my_et3_reference), timeout: 45, sleep: 2
 end

@@ -5,7 +5,7 @@ module EtFullSystem
       class BasePage < ::EtFullSystem::Test::BasePage
         include ::RSpec::Matchers
         elements :names, '.header ul li a'
-        section :menu, '#header ul#tabs' do
+        section :menu, '.header-item' do
           element :dashboard_menu_item, :link, 'Dashboard'
           element :acas_menu_item, :link, 'Acas'
           element :acas_certificates_menu_item, :link, 'Certificate Search'
@@ -28,6 +28,7 @@ module EtFullSystem
           element :users_menu_item, :link, 'Users'
           
           def choose_acas_certificates
+            sleep 1
             acas_menu_item.hover
             acas_certificates_menu_item.click
           end
