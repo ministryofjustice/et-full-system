@@ -11,7 +11,7 @@ module EtFullSystem
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
-        section :main_content, '.container' do
+        section :main_content, '#content .container' do
           #Diversity monitoring questionnaire
           element :header, :main_header, 'diversities.header'
           section :content_section, '.main-section' do
@@ -24,6 +24,7 @@ module EtFullSystem
         end
 
         def start_diversity
+          wait_until_main_content_visible
           main_content.content_section.start_diversity.click
         end
 
