@@ -24,7 +24,6 @@ module EtFullSystem
         end
 
         def start_diversity
-          wait_until_main_content_visible
           main_content.content_section.start_diversity.click
         end
 
