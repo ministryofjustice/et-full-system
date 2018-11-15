@@ -20,9 +20,9 @@ _No security updates_
 ## Info
 Deployment by Stath
 
-No downtime expected
+No downtime expected/observed
 
-No risk expected
+No risk expected/observed
 
 # v1.3.0 - ATOS v1.2.3, ET3 v2.3.1, Admin v1.6.0 & API v2.5.1
 **12/11/2018**
