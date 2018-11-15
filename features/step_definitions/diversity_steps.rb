@@ -25,7 +25,7 @@ end
 
 Then("the data is updated in ET Admin system") do  
   within_admin_window do
-    expect(admin_pages.diversity_responses_page).to have_response_for(@diversity), timeout: 30, sleep: 2
+    expect(admin_pages.diversity_responses_page).to have_response_for(@diversity)
   end
 end
 
