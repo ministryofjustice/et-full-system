@@ -14,7 +14,7 @@ module EtFullSystem
         section :main_content, '#content .container' do
           #Diversity monitoring questionnaire
           element :header, :main_header, 'diversities.header'
-          section :content_section, '.main-section .main-content' do
+          section :content_section, '.main-section' do
             #This is optional and won't affect your claim. The information is used to help make sure everyone in contact with HM Courts & Tribunals Service (HMCTS) gets equal treatment
             element :optional_text, :paragraph, 'diversities.index.optional_text'
             #Your answers will be anonymous.
