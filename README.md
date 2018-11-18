@@ -605,5 +605,5 @@ local: ./bin/dev/test_exec bundle exec cucumber
 dev: ./bin/dev/test_exec bundle exec cucumber ENVIRONMENT=dev
 staging: ./bin/dev/test_exec bundle exec cucumber ENVIRONMENT=staging
 
-## Running test in parallel using docker
-bundle exec parallel_cucumber features
+## Running tests in parallel using docker
+./bin/dev/text_exec bundle exec parallel_cucumber features
