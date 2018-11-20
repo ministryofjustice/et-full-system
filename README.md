@@ -177,6 +177,20 @@ The system is very configurable so it can be run on whichever ports you want etc
 
 There are lots of things with regard to automated testing to consider - please read [this document](docs/automated_testing.md) for more details
 
+## CI
+
+When the tests run in the CI, screenshots and html logs can be sent to s3 instead of remaining local.  This allows
+for a clickable link in the report which shows the html or screenshot.
+
+To configure this, the following environment variables are to be set
+
+SCREENSHOT_S3_ACCESS_KEY_ID=<correct access key id>
+SCREENSHOT_S3_SECRET_ACCESS_KEY=<correct secret access key>
+SCREENSHOT_S3_BUCKET=<bucket>
+SCREENSHOT_S3_REGION=<region>
+SCREENSHOT_S3_KEY_PREFIX=<any prefix - maybe build number>
+
+
 ### ACAS Testing
 
 The system will not connect to the external ACAS service as we have no control over it and we would not want builds failing
