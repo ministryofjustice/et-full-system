@@ -11,7 +11,7 @@ group :test do
   gem 'site_prism', '~> 3.0'
   gem 'i18n', '~> 0.8'
   gem 'activesupport', '~> 5.2'
-  gem 'selenium-webdriver', '~> 3.10'
+  gem 'selenium-webdriver', '~> 3.141'
   gem 'chromedriver-helper', '~> 1.1'
   gem 'geckodriver-helper', '~> 0.0'
   gem 'capybara-screenshot', '~> 1.0'
