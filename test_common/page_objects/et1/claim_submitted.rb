@@ -4,14 +4,6 @@ module EtFullSystem
     module Et1
       class ClaimSubmitted < BasePage
         include RSpec::Matchers
-        #your feedback header
-        section :feedback_notice, '.feedback-notice' do
-          include ::EtFullSystem::Test::I18n
-          element :language, :link_named, 'switch.language'
-          element :welsh_link, :link_or_button, t('switch.language', locale: :en)
-          element :english_link, :link_or_button, t('switch.language', locale: :cy)
-          element :feedback_link, :paragraph, 'shared.feedback_link.feedback_statement_html'
-        end
         #Claim submitted
         section :main_header, '.main-header' do
           element :page_header, :page_title, 'claim_confirmations.show.header', exact: false
@@ -70,6 +62,7 @@ module EtFullSystem
           #your feedback header
           expect(feedback_notice).to have_language
           expect(feedback_notice).to have_feedback_link
+          expect(feedback_notice).to have_feedback_info
           #Claim submitted
           expect(self).to have_main_header
           #Your claim number
