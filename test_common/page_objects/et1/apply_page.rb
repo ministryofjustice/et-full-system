@@ -5,14 +5,6 @@ module EtFullSystem
       class ApplyPage < BasePage
         include RSpec::Matchers
         set_url ::EtFullSystem::Test::Configuration.et1_url
-        #your feedback header
-        section :feedback_notice, '.feedback-notice' do
-          include ::EtFullSystem::Test::I18n
-          element :language, :link_named, 'switch.language'
-          element :welsh_link, :link_or_button, t('switch.language', locale: :en)
-          element :english_link, :link_or_button, t('switch.language', locale: :cy)
-          element :feedback_link, :paragraph, 'shared.feedback_link.feedback_statement_html'
-        end
         element :header, :main_header, 'claims.new.header'
         #are you in time?
         element :are_you_in_time_header, :content_header, 'claims.new.are_you_in_time.legend'
@@ -66,6 +58,7 @@ module EtFullSystem
           #your feedback header
           expect(feedback_notice).to have_language
           expect(feedback_notice).to have_feedback_link
+          expect(feedback_notice).to have_feedback_info
           expect(self).to have_header
           #are you in time?
           expect(self).to have_are_you_in_time_header

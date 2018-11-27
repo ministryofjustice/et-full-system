@@ -363,8 +363,8 @@ en:
       contact_us: Contact us
       contact_us_link: http://www.justice.gov.uk/contacts/hmcts/tribunals/employment
       signout: Save and complete later
-    feedback_link:
-      feedback_statement_html: This is a new service. Your feedback helps improve it for others.
+    feedback_link: Your feedback
+    feedback_statement_html: helps us to improve this service.
     mobile_nav:
       save_and_complete: "Save and complete later"
       support: Support

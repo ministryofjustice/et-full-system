@@ -4,14 +4,6 @@ module EtFullSystem
     module Et1
       class ReturnToYourClaimPage < BasePage
         include RSpec::Matchers
-        #your feedback header
-        section :feedback_notice, '.feedback-notice' do
-          include ::EtFullSystem::Test::I18n
-          element :language, :link_named, 'switch.language'
-          element :welsh_link, :link_or_button, t('switch.language', locale: :en)
-          element :english_link, :link_or_button, t('switch.language', locale: :cy)
-          element :feedback_link, :paragraph, 'shared.feedback_link.feedback_statement_html'
-        end
         #page title
         element :header, :main_header, 'user_sessions.new.header'
         section :main_content, '.container .main-section .main-content' do
