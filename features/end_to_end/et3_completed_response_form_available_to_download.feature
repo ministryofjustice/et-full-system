@@ -37,7 +37,7 @@ Feature: ET3 response to local office
     When the completed Employment Tribunal response form is submitted
     Then it will be forwarded to the Office address 'Alexandra House, 14-22 The Parsonage, Manchester M3 2JA'
     And phone number 'Telephone 0161 833 6100'
-    And I can download the ET3 form and validate that the filename starts with '99'
+    And I can download the ET3 form from the secondary atos and validate that the filename starts with '99'
 
   Scenario: Respondent answers to mandatory questions
     When an employer responds to mandatory questions
