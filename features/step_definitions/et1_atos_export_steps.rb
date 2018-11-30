@@ -8,6 +8,16 @@ Then(/^I can download the form and validate in PDF format$/) do
   expect(atos_interface.download_from_any_zip_to_tempfile(:et1_claim_pdf_for, user: @claimant[0])).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
 end
 
+Then(/^I can download the form from the secondary atos and validate in PDF format$/) do
+  within_admin_window do
+    api = EtFullSystem::Test::AdminApi.new
+    expect { api.claimants_api }.to eventually include(a_hash_including(first_name: @claimant[0].dig(:first_name))), timeout: 45, sleep: 2
+    admin_pages.jobs_page.run_export_claims_cron_job
+  end
+  expect { atos_secondary_interface }.to eventually have_zip_file_containing(:et1_claim_pdf_for, user: @claimant[0]), timeout: 45, sleep: 2
+  expect(atos_secondary_interface.download_from_any_zip_to_tempfile(:et1_claim_pdf_for, user: @claimant[0])).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
+end
+
 Then(/^I can download the form and validate in TXT format$/) do
   within_admin_window do
     api = EtFullSystem::Test::AdminApi.new

@@ -58,3 +58,13 @@ Feature:
     Given a claimant submitted an ET1 who live outside UK
     When the completed form is submitted
     Then  I can download the form and validate in PDF format
+
+  Scenario: Claimant home postcode BS11DZ will be forwarded to Bristol office
+    Given claimant home postcode 'BS11DZ' then submission office will be 'Bristol, Bristol Civil and Family Justice Centre, 2 Redcliff Street, Bristol, BS1 6GR'
+    When the completed form is submitted
+    Then I can download the form and validate in PDF format
+
+  Scenario: Claimant's work address is unknown
+    Given claimant work postcode 'Z12LL' then submission office will be 'Default, Alexandra House, 14-22 The Parsonage, Manchester M3 2JA'
+    When the completed form is submitted
+    Then I can download the form from the secondary atos and validate in PDF format
