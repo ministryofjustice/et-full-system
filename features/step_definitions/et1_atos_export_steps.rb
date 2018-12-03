@@ -64,7 +64,6 @@ Then("I can download the form and validate that the filename starts with {string
   end
   expect { atos_interface }.to eventually have_zip_file_containing(:et1_filename_start_with, user: @claimant[0], local_office: string), timeout: 45, sleep: 2
   expect(atos_interface.download_from_any_zip_to_tempfile(:et1_claim_pdf_for, user: @claimant[0])).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
-  expect { atos_secondary_interface }.not_to eventually (have_zip_file_containing(:et1_claim_pdf_for, user: @claimant[0])), timeout: 45, sleep: 2
 end
 
 Then("I can download the form from the secondary queue and that the filename starts with {string}") do |string|
@@ -75,5 +74,4 @@ Then("I can download the form from the secondary queue and that the filename sta
   end
   expect { atos_secondary_interface }.to eventually have_zip_file_containing(:et1_filename_start_with, user: @claimant[0], local_office: string), timeout: 45, sleep: 2
   expect(atos_secondary_interface.download_from_any_zip_to_tempfile(:et1_claim_pdf_for, user: @claimant[0])).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
-  expect { atos_interface }.not_to eventually (have_zip_file_containing(:et1_claim_pdf_for, user: @claimant[0])), timeout: 45, sleep: 2
 end

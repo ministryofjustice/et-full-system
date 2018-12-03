@@ -37,11 +37,3 @@ When /^I submit a completed ET1 form$/ do
   et1_submit_claim
   log_event :et1_claim_created, @claimant
 end
-
-Then("the address lookup will be based on respondent's work address and will forwarded to {string}") do |string|
-  @respondent = FactoryBot.create_list(:respondent, 1, :yes_acas, office: string)
-end
-
-Then("the address lookup will be based on claimant's work address and will be forwarded to {string}") do |string|
-  @respondent = FactoryBot.create_list(:respondent, 1, :yes_acas, office: string)
-end
