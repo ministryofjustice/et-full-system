@@ -1,3 +1,31 @@
+# v1.5.0 - ET1 v4.0.0
+**14/11/2018**
+
+## New
+
+Added ability to send claims and responses to multiple output queues ready for ATOS box rebuild (RST-1516)
+
+## Changes
+
+_No other changes_
+
+## Fixes
+
+_No fixes_
+
+## Security
+
+_No security updates_
+
+## Info
+
+Deployment by Gary
+
+No downtime expected/observed
+
+No risk expected/observed
+
+
 # v1.4.0 - ET1 v4.0.0
 **14/11/2018**
 
