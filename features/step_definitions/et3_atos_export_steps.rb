@@ -13,7 +13,7 @@ Then(/^I can download the ET3 form and validate in PDF format$/) do
   errors = []
   within_admin_window do
     api = EtFullSystem::Test::AdminApi.new
-    expect { api.respondents_api }.to eventually include a_hash_including(name: @respondent[0].dig(:name))
+    expect { api.respondents_api }.to eventually include(a_hash_including(name: @respondent[0].dig(:name))), timeout: 45, sleep: 2
     admin_pages.jobs_page.run_export_claims_cron_job
   end
   expect { atos_interface }.to eventually have_zip_file_containing(:et3_response_pdf_for, user: @respondent[0], reference: @my_et3_reference), timeout: 45, sleep: 2
