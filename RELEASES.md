@@ -1,3 +1,30 @@
+# 1.5.1
+**12/12/2018**
+
+## New
+
+_No new features_
+
+## Changes
+
+* ADMIN: Added the ability to specify a month and year for the Policy Data CSV.
+
+## Fixes
+
+_No fixes_
+
+## Security
+
+_No security updates_
+
+## Info
+
+Deployment by Stath
+
+No downtime expected
+
+No risk expected
+
 # v1.5.0
 **14/11/2018**
 
