@@ -21,9 +21,9 @@ _No security updates_
 
 Deployment by Stath
 
-No downtime expected
+No downtime expected/observed
 
-No risk expected
+No risk expected/observed
 
 # v1.5.0
 **14/11/2018**
