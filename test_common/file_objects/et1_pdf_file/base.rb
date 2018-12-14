@@ -80,7 +80,11 @@ module EtFullSystem
           # will only ever remember the first 7 characters
           def post_code_for(val, optional: false)
             return nil if val.nil? && optional
-            val.tr(' ', '').slice(0,7)
+            match = val.match(/\A\s*(\S+)\s*(\d\w\w)\s*\z/)
+            return val.slice(0,7) unless match
+            spaces = 4 - match[1].length
+            val = "#{match[1]}#{' ' * spaces}#{match[2]}"
+            val.slice(0,7)
           end
 
           def date_in_past(date, optional: false)
