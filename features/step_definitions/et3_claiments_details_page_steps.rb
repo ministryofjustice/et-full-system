@@ -3,7 +3,6 @@ Given(/^I am on the ET3 claimants details page$$/) do
   @claimant = FactoryBot.create_list(:et3_claimant, 1, :agree_with_employment_dates)
   start_a_new_et3_response  
   et3_answer_respondents_details
-  expect(claimants_details_page).to be_displayed
 end
 
 When(/^I successfully submit all the claimants details$/) do

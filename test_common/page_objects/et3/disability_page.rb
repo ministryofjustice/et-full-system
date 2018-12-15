@@ -3,14 +3,18 @@ module EtFullSystem
   module Test
     module Et3
       class DisabilityPage < BasePage
-      set_url '/respond/disability'
-
-      element :error_header, :error_titled, 'errors.header', exact: true
-
-      section :disability_question, :single_choice_option, 'questions.disability.label', exact: false do
-        section :yes, :gds_multiple_choice_option, 'questions.disability.yes.label', exact: false do
-            element :selector, :css, 'input[type="radio"]'
-            def set(*args); selector.set(*args); end
+        include RSpec::Matchers
+        section :switch_language, '.switch-language' do
+          include ::EtFullSystem::Test::I18n
+          element :language, :link_named, 'switch.language'
+          element :welsh_link, :link_or_button, t('switch.language', locale: :en)
+          element :english_link, :link_or_button, t('switch.language', locale: :cy)
+        end
+        element :error_header, :error_titled, 'errors.header', exact: true
+        section :disability_question, :single_choice_option, 'questions.disability.label', exact: false do
+          section :yes, :gds_multiple_choice_option, 'questions.disability.yes.label', exact: false do
+              element :selector, :css, 'input[type="radio"]'
+              def set(*args); selector.set(*args); end
           end
           section :no, :gds_multiple_choice_option, 'questions.disability.no.label', exact: false do
             element :selector, :css, 'input[type="radio"]'
@@ -20,21 +24,28 @@ module EtFullSystem
             def set(*args); root_element.set(*args); end
           end
           element :error_too_long, :exact_error_text, 'errors.messages.too_long', exact: false
-
-        def set_for(user_persona)
-          if user_persona.disability == "Yes"
-            yes.set(true)
-            disability_information.set(user_persona.disability_information)
-          else
-            no.set(true)
+          def set_for(user_persona)
+            if user_persona.disability == "Yes"
+              yes.set(true)
+              disability_information.set(user_persona.disability_information)
+            else
+              no.set(true)
+            end
           end
         end
-      end
+        # Save and continue
+        element :continue_button, :submit_text, 'components.save_and_continue_button'
+        def next
+          continue_button.click
+        end
 
-      element :continue_button, :button, "Save and continue"
-      def next
-        continue_button.click
-      end
+        def switch_to_welsh
+          switch_language.welsh_link.click
+        end
+
+        def switch_to_english
+          switch_language.english_link.click
+        end
       end
     end
   end

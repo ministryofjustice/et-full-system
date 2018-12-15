@@ -3,7 +3,13 @@ module EtFullSystem
   module Test
     module Et3
       class ConfirmationOfSuppliedDetailsPage < BasePage
-        set_url '/respond/confirmation_of_supplied_details'
+        include RSpec::Matchers
+        section :switch_language, '.switch-language' do
+          include ::EtFullSystem::Test::I18n
+          element :language, :link_named, 'switch.language'
+          element :welsh_link, :link_or_button, t('switch.language', locale: :en)
+          element :english_link, :link_or_button, t('switch.language', locale: :cy)
+        end
         element :error_header, :error_titled, 'errors.header', exact: true
         section :email_receipt_question, :question_labelled, 'questions.email_receipt.label', exact: false do
           element :field, :css, 'input'
@@ -228,10 +234,18 @@ module EtFullSystem
             element :upload_additional_information_answer, :return_answer
           end
         end
-
-        element :continue_button, :button, "Submit Form"
+        # Submit Form
+        element :continue_button, :submit_text, 'confirmation.submit'
         def next
           continue_button.click
+        end
+
+        def switch_to_welsh
+          switch_language.welsh_link.click
+        end
+  
+        def switch_to_english
+          switch_language.english_link.click
         end
       end
     end
