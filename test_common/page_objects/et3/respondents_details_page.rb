@@ -4,6 +4,7 @@ module EtFullSystem
     module Et3
       class RespondentsDetailsPage < BasePage
         set_url '/respond/respondents_details'
+        element :header, :content_header, 'respondents_details.header'
         element :error_header, :error_titled, 'errors.header', exact: true
         section :case_number_question, :question_labelled, 'questions.case_number.label', exact: false do
           element :field, :css, "input"

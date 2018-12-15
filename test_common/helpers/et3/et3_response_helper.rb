@@ -2,8 +2,17 @@ module EtFullSystem
   module Test
     module Et3ResponseHelper
       def start_a_new_et3_response
-        start_page.load
+        load_et3_start_page
         start_page.next
+      end
+
+      def load_et3_start_page(in_language: ::EtFullSystem::Test::Messaging.instance.current_locale)
+        start_page.load
+        case in_language
+        when :cy then start_page.switch_to_welsh
+        when :en then nil
+        else raise "We only support languages en and cy - #{in_language} is not supported"
+        end
       end
 
       def et3_answer_respondents_details

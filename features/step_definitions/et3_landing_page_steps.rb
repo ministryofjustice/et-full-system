@@ -1,8 +1,9 @@
 Given(/^I am on the ET3 landing page$/) do
-  start_page.load
-  expect(start_page).to be_displayed
-  expect(start_page).to have_header
-  expect(start_page).to have_introduction
+  load_et3_start_page
+end
+
+Then(/^introduction page copy texts are displayed in the correct language$/) do
+  expect(start_page.has_correct_translation?).to be true
 end
 
 When(/^I click on the begin this form button$/) do
@@ -10,7 +11,7 @@ When(/^I click on the begin this form button$/) do
 end
 
 Then(/^I should be taken to the respondents details page$/) do
-  expect(respondents_details_page).to be_displayed
+  expect(respondents_details_page).to have_header
 end
 
 Then(/^I should see other relevant links$/) do
