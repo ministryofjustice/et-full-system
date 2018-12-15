@@ -10,6 +10,7 @@ en:
       label: Name of individual, company or organisation
     contact:
       label: Name of contact (optional)
+      hint: For example, John Smith
     building_name:
       label: Building name or number
     street:
@@ -26,6 +27,7 @@ en:
       label: Contact number (optional)
     contact_mobile_number:
       label: Mobile number (optional)
+      hint: If different to your primary contact number
     contact_preference:
       label: How would you prefer us to contact you? (optional)
       email:
@@ -46,6 +48,7 @@ en:
         label: 'No'
       employment_at_site_number:
         label: How many people are employed at the place where the claimant worked?
+        hint: For example, 10
     # Claimant's Details Page
     claimants_name:
       label: Claimant's name (optional)
@@ -257,6 +260,22 @@ en:
   errors:
     header: Please review the following
     description: Clicking on an error will navigate you directly to the question. Please correct these errors before continuing.
+    respondents_details:
+      case_number_invalid: Case number is invalid
+      contact_name: Please enter your full name
+      contact_name_contain_numbers: Name of contact must not contain numbers
+      company_name: Name of individual, company or organisation can't be blank
+      building_name: Building name or number can't be blank
+      street: Street can't be blank
+      town: Town/City can't be blank
+      postcode_blank: Postcode can't be blank
+      postcode_invalid: This is not a valid UK postcode
+      contact_number_invalid: This is not a valid phone number
+      mobile_number_invalid: This is not a valid phone number
+      email_address_invalid: This is not a valid email address
+      organisation_employed_gb: Please enter how many people the organisation employs in Great Britain as a number
+      employed_elswhere: Please enter how many people are employed at the place where the claimant worked as a number
+      employed_elswhere_blank: Please indicate whether the organisation has more than one site in Great Britain
     messages:
       blank: can't be blank
       contains_no_spaces: must contain at least one space

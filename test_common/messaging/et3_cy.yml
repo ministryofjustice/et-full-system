@@ -10,6 +10,7 @@ cy:
       label: Enw'r unigolyn, cwmni neu sefydliad
     contact:
       label: Enw’r cyswllt (dewisol)
+      hint: Er enghraifft, John Smith
     building_name:
       label: Enw neu rif yr adeilad
     street:
@@ -26,6 +27,7 @@ cy:
       label: Rhif cyswllt (dewisol)
     contact_mobile_number:
       label: Rhif ffôn symudol (dewisol)
+      hint: "Os yw'n wahanol i'ch prif rif ffôn"
     contact_preference:
       label: Sut hoffech i ni gysylltu â chi? (dewisol)
       email:
@@ -258,7 +260,22 @@ cy:
       caption: Gwybodaeth Ychwanegol
   errors:
     header: Adolygwch y canlynol
-    description: Bydd clicio ar gwall yn mynd â chi'n syth at y cwestiwn. \nCywirwch y gwallau hyn cyn parhau.
+    description: Bydd clicio ar wall yn mynd â chi'n syth at y cwestiwn. Cywirwch y gwallau hyn cyn parhau.
+    respondents_details:
+      case_number_invalid: Mae Rhif yr Achos yn annilys
+      contact_name: Please enter your full name
+      company_name: Ni all Enw'r unigolyn, cwmni neu sefydliad fod yn wag
+      building_name: Ni all Enw neu rif yr adeilad fod yn wag
+      street: Ni all Stryd fod yn wag
+      town: Ni all Tref/Dinas fod yn wag
+      postcode_blank: Ni all Cod post fod yn wag
+      postcode_invalid: Nid yw hwn yn god post dilys yn y DU
+      contact_number_invalid: This is not a valid phone number
+      mobile_number_invalid: Nid yw hwn yn rhif ffôn dilys
+      email_address_invalid: Nid yw'r cyfeiriad e-bost hwn yn ddilys
+      organisation_employed_gb: Nodwch faint o bobl sy’n gyflogedig gan y sefydliad hwn ym Mhrydain Fawr fel rhif
+      employed_elswhere: Nodwch faint o bobl sy’n gyflogedig ar y safle ble'r oedd yr hawlydd yn gweithio fel rhif
+      employed_elswhere_blank: Nodwch p'un a oes gan y sefydliad hwn fwy nag un safle ym Mhrydian Fawr?
     messages:
       claimants_details:
         header_start_date_error: Ni all Pa bryd ddechreuodd ei gyflogaeth fod yn wag
