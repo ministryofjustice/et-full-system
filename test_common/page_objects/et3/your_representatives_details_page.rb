@@ -47,24 +47,7 @@ module EtFullSystem
           end
           element :error_inclusion, :exact_error_text, 'errors.messages.inclusion', exact: false
           def set_for(user)
-            case user.type
-              when 'Citizens advice bureau'
-                citizens_advice_bureau.set(true)
-              when 'Free representation unit'
-                free_representation_unit.set(true)
-              when 'Law centre'
-                law_centre.set(true)
-              when 'Union'
-                union.set(true)
-              when 'Solicitor'
-                solicitor.set(true)
-              when 'Private individual'
-                private_individual.set(true)
-              when 'Trade association'
-                trade_association.set(true)
-              when 'Other'
-                other.set(true)
-            end
+            choose(factory_translate(user_persona.type), name: 'your_representatives_details[type_of_representative]')
           end
         end
         section :representative_org_name_question, :question_labelled, 'questions.representative_org_name.label', exact: false do
@@ -119,6 +102,7 @@ module EtFullSystem
           def set(*args); field.set(*args); end
         end
         section :representative_contact_preference_question, :single_choice_option, 'questions.representative_contact_preference.label', exact: false do
+          include ET3::Test::I18n
           section :select_email, :gds_multiple_choice_option, 'questions.representative_contact_preference.email.label' do
             element :selector, :css, 'input[type="radio"]'
             def set(*args); selector.set(*args); end
@@ -138,16 +122,13 @@ module EtFullSystem
             def set(*args); root_element.set(*args); end
           end
           element :error_invalid, :exact_error_text, 'errors.messages.invalid', exact: false
-          def set_for(user)
-            case user.representative_contact_preference
-              when "Email"
-                select_email.set(true)
-                preference_email.set(user.representative_email)
-              when "Post"
-                select_post.set(true)
-              when "Fax"
-                select_fax.set(true)
-                preference_fax.set(user.representative_fax)
+          def set_for(user_persona)
+            choose(factory_translate(user_persona.representative_contact_preference), name: 'your_representatives_details[representative_contact_preference]')
+            if t(user_persona.representative_contact_preference) == t(:"questions.representative_contact_preference.fax.label")
+              preference_fax.set(user_persona.representative_fax)
+            end
+            if t(user_persona.representative_contact_preference) == t(:"questions.representative_contact_preference.email.label")
+              preference_email.set(user_persona.representative_email)
             end
           end
         end

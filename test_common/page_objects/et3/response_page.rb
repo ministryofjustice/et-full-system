@@ -26,11 +26,9 @@ module EtFullSystem
           element :error_too_long, :exact_error_text, 'errors.messages.too_long', exact: false
           element :error_inclusion, :exact_error_text, 'errors.messages.inclusion', exact: false
           def set_for(user)
-            if user.defend_claim == 'Yes'
-              yes.set(true)
-              defend_claim_facts.set(user.defend_claim_facts)
-            else
-              no.set(true)
+            choose(factory_translate(user_persona.defend_claim), name: 'response[defend_claim]')
+            if t(user_persona.defend_claim) == t('questions.defend_claim.yes.label')
+              defend_claim_facts.set(user_persona.defend_claim_facts)
             end
           end
         end

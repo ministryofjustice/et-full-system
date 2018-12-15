@@ -19,12 +19,8 @@ module EtFullSystem
             element :selector, :css, 'input'
             def set(*args); selector.set(*args); end
           end
-          def set_for(user)
-            if user.have_representative == 'Yes'
-              yes.set(true)
-            else
-              no.set(true)
-            end
+          def set_for(user_persona)
+            choose(factory_translate(user_persona.have_representative), name: 'your_representative[have_representative]')
           end
         end
         # Save and continue

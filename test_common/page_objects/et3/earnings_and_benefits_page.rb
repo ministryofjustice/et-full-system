@@ -26,11 +26,9 @@ module EtFullSystem
           end
           element :error_not_a_number, :exact_error_text, 'errors.messages.not_a_number', exact: false
           def set_for(user_persona)
-            if user_persona.agree_with_claimants_hours == 'No'
-              no.set(true)
+            choose(factory_translate(user_persona.agree_with_claimants_hours), name: 'earnings_and_benefits[agree_with_claimants_hours]')
+            if (user_persona.queried_hours)
               queried_hours.set(user_persona.queried_hours)
-            else
-              yes.set(true)
             end
           end
         end
@@ -73,26 +71,17 @@ module EtFullSystem
           end
           element :error_not_a_number, :exact_error_text, 'errors.messages.not_a_number', exact: false
           def set_for(user_persona)
-            if user_persona.agree_with_earnings_details == 'No'
-              no.set(true)
+            choose(factory_translate(user_persona.agree_with_earnings_details), name: 'earnings_and_benefits[agree_with_earnings_details]')
+            if t(user_persona.agree_with_earnings_details) == t('questions.agree_with_earnings_details.no.label')
               queried_pay_before_tax.set(user_persona.queried_pay_before_tax)
-              if user_persona.queried_pay_before_tax_period == 'Monthly'
-                queried_pay_before_tax.monthly.set(true)
-              elsif user_persona.queried_pay_before_tax_period == 'Weekly'
-                queried_pay_before_tax.weekly.set(true)
-              end
+              queried_pay_before_tax.monthly.set(user_persona.queried_pay_before_tax_period)
               queried_take_home_pay.set(user_persona.queried_take_home_pay)
-              if user_persona.queried_take_home_pay_period == 'Monthly'
-                queried_take_home_pay.monthly.set(true)
-              elsif user_persona.queried_take_home_pay_period == 'Weekly'
-                queried_take_home_pay.weekly.set(true)
-              end
-            else
-              yes.set(true)
+              queried_take_home_pay.monthly.set(user_persona.queried_take_home_pay_period)
             end
           end
         end
         section :agree_with_claimant_notice_question, :single_choice_option, 'questions.agree_with_claimant_notice.label', exact: false do
+          include ET3::Test::I18n
           section :yes, :gds_multiple_choice_option, 'questions.agree_with_claimant_notice.yes.label', exact: true do
             element :selector, :css, 'input'
             def set(*args); selector.set(*args); end
@@ -106,15 +95,14 @@ module EtFullSystem
           end
           element :error_too_long, :exact_error_text, 'errors.messages.too_long', exact: false
           def set_for(user_persona)
-            if user_persona.agree_with_claimant_notice == 'No'
-              no.set(true)
+            choose(factory_translate(user_persona.agree_with_claimant_notice), name: 'earnings_and_benefits[agree_with_claimant_notice]')
+            if t(user_persona.agree_with_claimant_notice) == t('questions.agree_with_claimant_notice.no.label')
               disagree_claimant_notice_reason.set(user_persona.disagree_claimant_notice_reason)
-            else
-              yes.set(true)
             end
           end
         end
         section :agree_with_claimant_pension_benefits_question, :single_choice_option, 'questions.agree_with_claimant_pension_benefits.label', exact: false do
+          include ET3::Test::I18n
           section :yes, :gds_multiple_choice_option, 'questions.agree_with_claimant_pension_benefits.yes.label', exact: true do
             element :selector, :css, 'input'
             def set(*args); selector.set(*args); end
@@ -128,11 +116,9 @@ module EtFullSystem
           end
           element :error_too_long, :exact_error_text, 'errors.messages.too_long', exact: false
           def set_for(user_persona)
-            if user_persona.agree_with_claimant_pension_benefits == 'No'
-              no.set(true)
+            choose(factory_translate(user_persona.agree_with_claimant_pension_benefits), name: 'earnings_and_benefits[agree_with_claimant_pension_benefits]')
+            if t(user_persona.agree_with_claimant_pension_benefits) == t('questions.agree_with_claimant_pension_benefits.no.label')
               disagree_claimant_pension_benefits_reason.set(user_persona.disagree_claimant_pension_benefits_reason)
-            else
-              yes.set(true)
             end
           end
         end

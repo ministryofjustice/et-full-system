@@ -19,7 +19,9 @@ module EtFullSystem
           element :error_contains_no_spaces, :exact_error_text, 'errors.messages.contains_no_spaces', exact: false
           def set(*args); field.set(*args); end
         end
+        # Do you agree with the details given by the claimant about Early Conciliation with Acas? (optional)
         section :agree_with_early_conciliation_details_question, :single_choice_option, 'questions.agree_with_early_conciliation_details.label', exact: false do
+          include ET3::Test::I18n
           section :yes, :gds_multiple_choice_option, 'questions.agree_with_early_conciliation_details.yes.label', exact: false do
             element :selector, :css, 'input[type="radio"]'
             def set(*args); selector.set(*args); end
@@ -31,13 +33,8 @@ module EtFullSystem
           section :disagree_conciliation_reason, :textarea_labelled, 'questions.agree_with_early_conciliation_details.disagree_conciliation_reason.label', exact: false do
             def set(*args); root_element.set(*args); end
           end
-          def set_for(user_persona)
-            if user_persona.agree_with_early_conciliation_details == 'No'
-              no.set(true)
-              disagree_conciliation_reason.set(user_persona.disagree_conciliation_reason)
-            else
-              yes.set(true)
-            end
+          def set_for(value)
+            choose(factory_translate(value), name: 'claimants_detail[agree_with_early_conciliation_details]')
           end
         end
         section :agree_with_employment_dates_question, :single_choice_option, 'questions.agree_with_employment_dates.label', exact: false do
@@ -87,27 +84,25 @@ module EtFullSystem
           end
           element :error_blank, :exact_error_text, 'errors.messages.blank', exact: false
           def set_for(user_persona)
-            if user_persona.agree_with_employment_dates == 'No'
-              no.set(true)
-              if user_persona.employment_start != nil
-                day, month, year = user_persona.employment_start.split('/')
-                employment_start.day.set(day)
-                employment_start.month.set(month)
-                employment_start.year.set(year)
-              end
-              if user_persona.employment_end != nil
-                day, month, year = user_persona.employment_end.split('/')
-                employment_end.day.set(day)
-                employment_end.month.set(month)
-                employment_end.year.set(year)
-              end
-              disagree_employment.set(user_persona.disagree_employment) unless user_persona.disagree_employment == nil
-            else
-              yes.set(true)
+            choose(factory_translate(user_persona.agree_with_employment_dates), name: 'claimants_detail[agree_with_employment_dates]')
+            if (t(user_persona.agree_with_employment_dates) == t('questions.agree_with_employment_dates.no.label'))
+              # Employment started
+              day, month, year = user_persona.employment_start.split('/')
+              employment_start.day.set(day)
+              employment_start.month.set(month)
+              employment_start.year.set(year)
+              # Employment ended
+              day, month, year = user_persona.employment_end.split('/')
+              employment_end.day.set(day)
+              employment_end.month.set(month)
+              employment_end.year.set(year)
+              disagree_employment.set(user_persona.disagree_employment)
             end
           end
         end
+        # Is their employment continuing? (optional)
         section :continued_employment_question, :single_choice_option, 'questions.continued_employment.label', exact: false do
+          include ::EtFullSystem::Test::I18n
           section :yes, :gds_multiple_choice_option, 'questions.continued_employment.yes.label' do
             element :selector, :css, "input"
             def set(*args); selector.set(*args); end
@@ -117,11 +112,12 @@ module EtFullSystem
             def set(*args); selector.set(*args); end
           end
           def set_for(user_persona)
-            yes.set(true) if user_persona.continued_employment == 'Yes'
-            no.set(true) if user_persona.continued_employment == 'No'
+            choose(factory_translate(user_persona), name: 'claimants_detail[continued_employment]')
           end
         end
+        # Is the claimant's description of their job or job title correct? (optional)
         section :agree_with_claimants_description_of_job_or_title_question, :single_choice_option, 'questions.agree_with_claimants_description_of_job_or_title.label', exact: false do
+          include ::EtFullSystem::Test::I18n
           section :yes, :gds_multiple_choice_option, 'questions.agree_with_claimants_description_of_job_or_title.yes.label' do
             element :selector, :css, "input"
             def set(*args); selector.set(*args); end
@@ -134,11 +130,9 @@ module EtFullSystem
             def set(*args); root_element.set(*args); end
           end
           def set_for(user_persona)
-            if user_persona.agree_with_claimants_description_of_job_or_title == 'No'
-              no.set(true)
+            choose(factory_translate(user_persona.agree_with_claimants_description_of_job_or_title), name: 'claimants_detail[agree_with_claimants_description_of_job_or_title]')
+            if (t(user_persona.agree_with_claimants_description_of_job_or_title) == t('questions.agree_with_claimants_description_of_job_or_title.no.label'))
               disagree_claimants_job_or_title.set(user_persona.disagree_claimants_job_or_title)
-            else 
-              yes.set(true)
             end
           end
         end
