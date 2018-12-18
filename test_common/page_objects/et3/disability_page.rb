@@ -12,6 +12,7 @@ module EtFullSystem
         end
         element :error_header, :error_titled, 'errors.header', exact: true
         section :disability_question, :single_choice_option, 'questions.disability.label', exact: false do
+          include ::EtFullSystem::Test::I18n
           section :yes, :gds_multiple_choice_option, 'questions.disability.yes.label', exact: false do
               element :selector, :css, 'input[type="radio"]'
               def set(*args); selector.set(*args); end

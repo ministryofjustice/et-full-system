@@ -21,7 +21,7 @@ module EtFullSystem
         end
         # Do you agree with the details given by the claimant about Early Conciliation with Acas? (optional)
         section :agree_with_early_conciliation_details_question, :single_choice_option, 'questions.agree_with_early_conciliation_details.label', exact: false do
-          include EtFullSystem::Test::I18n
+          include ::EtFullSystem::Test::I18n
           section :yes, :gds_multiple_choice_option, 'questions.agree_with_early_conciliation_details.yes.label', exact: false do
             element :selector, :css, 'input[type="radio"]'
             def set(*args); selector.set(*args); end
@@ -34,7 +34,7 @@ module EtFullSystem
             def set(*args); root_element.set(*args); end
           end
           def set_for(value)
-            choose(factory_translate(value), name: 'claimants_detail[agree_with_early_conciliation_details]')
+            choose(factory_translate(value.agree_with_early_conciliation_details), name: 'claimants_detail[agree_with_early_conciliation_details]')
           end
         end
         section :agree_with_employment_dates_question, :single_choice_option, 'questions.agree_with_employment_dates.label', exact: false do
@@ -83,6 +83,7 @@ module EtFullSystem
             def set(*args); field.set(*args); end
           end
           element :error_blank, :exact_error_text, 'errors.messages.blank', exact: false
+          include ::EtFullSystem::Test::I18n
           def set_for(user_persona)
             choose(factory_translate(user_persona.agree_with_employment_dates), name: 'claimants_detail[agree_with_employment_dates]')
             if (t(user_persona.agree_with_employment_dates) == t('questions.agree_with_employment_dates.no.label'))
@@ -112,7 +113,7 @@ module EtFullSystem
             def set(*args); selector.set(*args); end
           end
           def set_for(user_persona)
-            choose(factory_translate(user_persona), name: 'claimants_detail[continued_employment]')
+            choose(factory_translate(user_persona.continued_employment), name: 'claimants_detail[continued_employment]')
           end
         end
         # Is the claimant's description of their job or job title correct? (optional)

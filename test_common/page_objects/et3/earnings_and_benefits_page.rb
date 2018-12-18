@@ -12,6 +12,7 @@ module EtFullSystem
         end
         element :error_header, :error_titled, 'errors.header', exact: true
         section :agree_with_claimants_hours_question, :single_choice_option, 'questions.agree_with_claimants_hours.label', exact: false do
+          include ::EtFullSystem::Test::I18n
           section :yes, :gds_multiple_choice_option, 'questions.agree_with_claimants_hours.yes.label', exact: false do
             element :selector, :css, 'input'
             def set(*args); selector.set(*args); end
@@ -33,6 +34,7 @@ module EtFullSystem
           end
         end
         section :agree_with_earnings_details_question, :single_choice_option, 'questions.agree_with_earnings_details.label', exact: false do
+          include ::EtFullSystem::Test::I18n
           section :yes, :gds_multiple_choice_option, 'questions.agree_with_earnings_details.yes.label', exact: false do
             element :selector, :css, 'input'
             def set(*args); selector.set(*args); end
@@ -81,7 +83,7 @@ module EtFullSystem
           end
         end
         section :agree_with_claimant_notice_question, :single_choice_option, 'questions.agree_with_claimant_notice.label', exact: false do
-          include ET3::Test::I18n
+          include EtFullSystem::Test::I18n
           section :yes, :gds_multiple_choice_option, 'questions.agree_with_claimant_notice.yes.label', exact: true do
             element :selector, :css, 'input'
             def set(*args); selector.set(*args); end
@@ -102,7 +104,7 @@ module EtFullSystem
           end
         end
         section :agree_with_claimant_pension_benefits_question, :single_choice_option, 'questions.agree_with_claimant_pension_benefits.label', exact: false do
-          include ET3::Test::I18n
+          include EtFullSystem::Test::I18n
           section :yes, :gds_multiple_choice_option, 'questions.agree_with_claimant_pension_benefits.yes.label', exact: true do
             element :selector, :css, 'input'
             def set(*args); selector.set(*args); end

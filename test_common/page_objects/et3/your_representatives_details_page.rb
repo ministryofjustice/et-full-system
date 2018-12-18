@@ -46,7 +46,7 @@ module EtFullSystem
             def set(*args); selector.set(*args); end
           end
           element :error_inclusion, :exact_error_text, 'errors.messages.inclusion', exact: false
-          def set_for(user)
+          def set_for(user_persona)
             choose(factory_translate(user_persona.type), name: 'your_representatives_details[type_of_representative]')
           end
         end
@@ -102,7 +102,7 @@ module EtFullSystem
           def set(*args); field.set(*args); end
         end
         section :representative_contact_preference_question, :single_choice_option, 'questions.representative_contact_preference.label', exact: false do
-          include ET3::Test::I18n
+          include ::EtFullSystem::Test::I18n
           section :select_email, :gds_multiple_choice_option, 'questions.representative_contact_preference.email.label' do
             element :selector, :css, 'input[type="radio"]'
             def set(*args); selector.set(*args); end
@@ -124,10 +124,10 @@ module EtFullSystem
           element :error_invalid, :exact_error_text, 'errors.messages.invalid', exact: false
           def set_for(user_persona)
             choose(factory_translate(user_persona.representative_contact_preference), name: 'your_representatives_details[representative_contact_preference]')
-            if t(user_persona.representative_contact_preference) == t(:"questions.representative_contact_preference.fax.label")
+            if user_persona.representative_contact_preference == t(:"questions.representative_contact_preference.fax.label")
               preference_fax.set(user_persona.representative_fax)
             end
-            if t(user_persona.representative_contact_preference) == t(:"questions.representative_contact_preference.email.label")
+            if user_persona.representative_contact_preference == t(:"questions.representative_contact_preference.email.label")
               preference_email.set(user_persona.representative_email)
             end
           end

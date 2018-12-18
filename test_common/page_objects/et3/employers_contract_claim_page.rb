@@ -12,6 +12,7 @@ module EtFullSystem
         end
         element :error_header, :error_titled, 'errors.header', exact: true
         section :make_employer_contract_claim_question, :single_choice_option, 'questions.make_employer_contract_claim.label', exact: true do
+          include ::EtFullSystem::Test::I18n
           section :no, :gds_multiple_choice_option, 'questions.make_employer_contract_claim.no.label', exact: true do
             element :selector, :css, 'input'
             def set(*args); selector.set(*args); end
@@ -24,7 +25,7 @@ module EtFullSystem
             def set(*args); root_element.set(*args); end
           end
           element :error_too_long, :exact_error_text, 'errors.messages.too_long', exact: false
-          def set_for(user)
+          def set_for(user_persona)
             choose(factory_translate(user_persona.make_employer_contract_claim), name: 'employers_contract_claim[make_employer_contract_claim]')
             if t(user_persona.make_employer_contract_claim) == t('questions.disability.yes.label')
               claim_information.set(user_persona.claim_information)

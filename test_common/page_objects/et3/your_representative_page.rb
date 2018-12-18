@@ -11,6 +11,7 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         section :have_representative_question, :single_choice_option, 'questions.have_representative.label', exact: true do
+          include ::EtFullSystem::Test::I18n
           section :yes, :gds_multiple_choice_option, 'questions.have_representative.yes.label', exact: true do
             element :selector, :css, 'input'
             def set(*args); selector.set(*args); end

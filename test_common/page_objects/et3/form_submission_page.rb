@@ -12,7 +12,7 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         element :submission_confirmation, :element_with_text, 'submission.confirmation'
-        element :reference_number, :element_with_text, 'submission.reference'
+        element :reference_number, :css, '.bold.reference-number'
         element :thank_you, :element_with_text, 'submission.thank_you'
         element :office_contact, :element_with_text, 'submission.office_contact'
         element :submission_date, :element_with_text, 'submission.date', exact: false
