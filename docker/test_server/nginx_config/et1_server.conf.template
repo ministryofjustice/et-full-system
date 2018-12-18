@@ -26,4 +26,5 @@ server {
        passenger_env_var AWS_S3_FORCE_PATH_STYLE 'true';
        passenger_env_var RAILS_ENV 'local';
        passenger_env_var ET_API_URL 'http://api.${SERVER_DOMAIN}:${SERVER_PORT}/api/v2';
+       passenger_env_var RAVEN_DSN 'https://1b78623c8bab4dfb9aeb6f5dbb31ae34:0f4a38359e7e47f99e7e69449b32ef2b@sentry.io/1355286';
 }
