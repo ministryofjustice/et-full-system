@@ -21,7 +21,7 @@ module EtFullSystem
         end
         # Do you agree with the details given by the claimant about Early Conciliation with Acas? (optional)
         section :agree_with_early_conciliation_details_question, :single_choice_option, 'questions.agree_with_early_conciliation_details.label', exact: false do
-          include ET3::Test::I18n
+          include EtFullSystem::Test::I18n
           section :yes, :gds_multiple_choice_option, 'questions.agree_with_early_conciliation_details.yes.label', exact: false do
             element :selector, :css, 'input[type="radio"]'
             def set(*args); selector.set(*args); end
