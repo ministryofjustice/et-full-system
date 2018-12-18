@@ -16,6 +16,11 @@ CMD ["/sbin/my_init"]
 # Uncomment the features you want:
 #
 #   Ruby support
+
+# The following 2 lines are temporary - see https://github.com/phusion/passenger-docker/issues/234
+# Try to remove and build from scratch maybe after january 2019
+RUN curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
+RUN curl -sSL https://rvm.io/mpapis.asc -o /pd_build/ruby_support/mpapis-pubkey.asc
 #RUN /pd_build/ruby-2.0.*.sh
 #RUN /pd_build/ruby-2.1.*.sh
 #RUN /pd_build/ruby-2.2.*.sh
