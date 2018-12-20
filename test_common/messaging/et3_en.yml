@@ -276,6 +276,15 @@ en:
       organisation_employed_gb: Please enter how many people the organisation employs in Great Britain as a number
       employed_elswhere: Please enter how many people are employed at the place where the claimant worked as a number
       employed_elswhere_blank: Please indicate whether the organisation has more than one site in Great Britain
+    claimants_details:
+      agree_with_dates_of_employment: Please indicate whether you agree with the dates of employment provided by the claimant
+      client_name_error: Please enter your full name
+      header_start_date_error: When their employment started can't be blank
+      header_end_date_error: When their employment ended or will end can't be blank
+      start_date_blank: Employment start can't be blank
+      end_date_blank: Employment end can't be blank
+      disagree_dates: Why do you disagree with the dates given by the claimant can't be blank
+      date_error: Invalid date
     messages:
       blank: can't be blank
       contains_no_spaces: must contain at least one space

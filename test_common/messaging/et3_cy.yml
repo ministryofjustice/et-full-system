@@ -276,25 +276,15 @@ cy:
       organisation_employed_gb: Nodwch faint o bobl sy’n gyflogedig gan y sefydliad hwn ym Mhrydain Fawr fel rhif
       employed_elswhere: Nodwch faint o bobl sy’n gyflogedig ar y safle ble'r oedd yr hawlydd yn gweithio fel rhif
       employed_elswhere_blank: Nodwch p'un a oes gan y sefydliad hwn fwy nag un safle ym Mhrydian Fawr?
-    messages:
-      claimants_details:
-        header_start_date_error: Ni all Pa bryd ddechreuodd ei gyflogaeth fod yn wag
-        header_end_date_error: Ni all Pa bryd ddaeth ei gyflogaeth i ben, neu y bydd yn dod i ben fod yn wag
-        contains_numbers: "Enw'r hawlydd (dewisol) Ni ddylai enw'r hawlydd gynnwys rhifau"
-        start_date_blank: Ni all Employment start fod yn wag
-        end_date_blank: Ni all Employment end fod yn wag
-        disagree_dates: Ni all Pam yr ydych yn anghytuno â’r dyddiadau a roddwyd gan yr hawlydd fod yn wag
-      blank: "Ni ddylai %{attribute} fod yn wag"
-      contains_no_spaces: "Rhaid i %{attribute} gynnwys blychau"
-      contains_numbers: "Enw'r hawlydd (dewisol) Ni ddylai enw'r hawlydd gynnwys rhifau"
-      invalid: "Mae %{attribute} yn annilys "
-      invalid_email: "Nid yw'r cyfeiriad e-bost hwn yn ddilys "
-      invalid_name: "Nodwch eich enw llawn "
-      invalid_postcode: Nid yw hwn yn god post dilys yn y DU
-      invalid_phone_number: Nid yw hwn yn rhif ffôn dilys
-      not_a_number: "Nid yw %{attribute} yn rif "
-      too_long: "%{count} o nodau yw'r uchafswm a ganiateir "
-      inclusion: "Dewiswch opsiwn "
+    claimants_details:
+      agree_with_dates_of_employment: Nodwch p'un a ydych yn cytuno gyda'r dyddiadau cyflogaeth a roddwyd gan yr hawlydd
+      client_name_error: Nodwch eich enw llawn
+      header_start_date_error: Ni all Pa bryd ddechreuodd ei gyflogaeth fod yn wag
+      header_end_date_error: Ni all Pa bryd ddaeth ei gyflogaeth i ben, neu y bydd yn dod i ben fod yn wag
+      start_date_blank: Ni all Employment start fod yn wag
+      end_date_blank: Ni all Employment end fod yn wag
+      disagree_dates: Ni all Pam yr ydych yn anghytuno â’r dyddiadau a roddwyd gan yr hawlydd fod yn wag
+      date_error: Invalid date
     custom:
       organisation_employ_gb:
         not_a_number: Nodwch faint o bobl sy’n gyflogedig gan y sefydliad hwn ym Mhrydain Fawr fel rhif

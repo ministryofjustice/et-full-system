@@ -33,12 +33,15 @@ module EtFullSystem
           element :disagree_conciliation_reason, :textarea_labelled, 'questions.agree_with_early_conciliation_details.disagree_conciliation_reason.label', exact: false do
             def set(*args); root_element.set(*args); end
           end
-          def set_for(value)
-            choose(factory_translate(value), name: 'claimants_detail[agree_with_early_conciliation_details]')
+          def set_for(user)
+            choose(factory_translate(user.agree_with_early_conciliation_details), name: 'claimants_detail[agree_with_early_conciliation_details]')
+            if user.disagree_conciliation_reason
+              disagree_conciliation_reason.set(user.disagree_conciliation_reason)
+            end
           end
         end
         section :agree_with_employment_dates_question, :single_choice_option, 'questions.agree_with_employment_dates.label', exact: false do
-          element :error_inclusion, :exact_error_text, 'errors.custom.agree_with_employment_dates.inclusion', exact: false
+          # element :error_inclusion, :exact_error_text, 'errors.custom.agree_with_employment_dates.inclusion', exact: false
           element :yes, :gds_multiple_choice_option, 'questions.agree_with_employment_dates.yes.label', exact: false do
             element :selector, :css, 'input[type="radio"]'
             def set(*args); selector.set(*args); end
@@ -49,35 +52,35 @@ module EtFullSystem
           end
           section :employment_start, :single_choice_option, 'questions.agree_with_employment_dates.employment_start.label', exact: false do
             element :employment_start_hint, :form_hint, 'hint.claimants_detail.employment_start'
-            element :day, :question_labelled, 'questions.agree_with_employment_dates.employment_start.day.label', exact: true do
+            section :day, :question_labelled, 'questions.agree_with_employment_dates.employment_start.day.label', exact: true do
               element :field, :css, 'input'
               def set(*args); field.set(*args); end
             end
-            element :month, :question_labelled, 'questions.agree_with_employment_dates.employment_start.month.label', exact: true do
+            section :month, :question_labelled, 'questions.agree_with_employment_dates.employment_start.month.label', exact: true do
               element :field, :css, 'input'
               def set(*args); field.set(*args); end
             end
-            element :year, :question_labelled, 'questions.agree_with_employment_dates.employment_start.year.label', exact: true do
+            section :year, :question_labelled, 'questions.agree_with_employment_dates.employment_start.year.label', exact: true do
               element :field, :css, 'input'
               def set(*args); field.set(*args); end
             end
-            element :error_blank, :exact_error_text, 'errors.messages.blank', exact: false
+            element :error_blank, :exact_error_text, 'errors.claimants_details.start_date_blank', exact: false
           end
           section :employment_end, :single_choice_option, 'questions.agree_with_employment_dates.employment_end.label', exact: false do
             element :employment_end_hint, :form_hint, 'hint.claimants_detail.employment_end'
-            element :day, :question_labelled, 'questions.agree_with_employment_dates.employment_end.day.label', exact: true do
+            section :day, :question_labelled, 'questions.agree_with_employment_dates.employment_end.day.label', exact: true do
               element :field, :css, 'input'
               def set(*args); field.set(*args); end
             end
-            element :month, :question_labelled, 'questions.agree_with_employment_dates.employment_end.month.label', exact: true do
+            section :month, :question_labelled, 'questions.agree_with_employment_dates.employment_end.month.label', exact: true do
               element :field, :css, 'input'
               def set(*args); field.set(*args); end
             end
-            element :year, :question_labelled, 'questions.agree_with_employment_dates.employment_end.year.label', exact: true do
+            section :year, :question_labelled, 'questions.agree_with_employment_dates.employment_end.year.label', exact: true do
               element :field, :css, 'input'
               def set(*args); field.set(*args); end
             end
-            element :error_blank, :exact_error_text, 'errors.messages.blank', exact: false
+            element :error_blank, :exact_error_text, 'errors.claimants_details.end_date_blank', exact: false
           end
           section :disagree_employment, :question_labelled, 'questions.agree_with_employment_dates.disagree_employment.label', exact: false do
             element :field, :css, 'textarea'
@@ -90,6 +93,7 @@ module EtFullSystem
             choose(factory_translate(user_persona.agree_with_employment_dates), name: 'claimants_detail[agree_with_employment_dates]')
             if (t(user_persona.agree_with_employment_dates) == t('questions.agree_with_employment_dates.no.label'))
               # Employment started
+              binding.pry
               day, month, year = user_persona.employment_start.split('/')
               employment_start.day.set(day)
               employment_start.month.set(month)
@@ -114,7 +118,7 @@ module EtFullSystem
             element :selector, :css, "input"
             def set(*args); selector.set(*args); end
           end
-          def set_for(user_persona)
+          def set_for(user)
             choose(factory_translate(user), name: 'claimants_detail[continued_employment]')
           end
         end
