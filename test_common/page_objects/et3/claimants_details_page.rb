@@ -179,17 +179,6 @@ module EtFullSystem
           # Please give the details you believe to be correct (optional)
           expect(agree_with_claimants_description_of_job_or_title_question).to have_disagree_claimants_job_or_title
         end
-
-        def has_correct_blank_error_messages?
-          expect(self).to have_error_header
-          expect(case_number_question).to have_error_invalid
-          expect(name_question).to have_error_blank
-          expect(building_name_question).to have_error_blank
-          expect(street_question).to have_error_blank
-          expect(town_question).to have_error_blank
-          expect(postcode_question).to have_error_blank
-          expect(organisation_more_than_one_site_question).to have_inclusion
-        end
       end
     end
   end
