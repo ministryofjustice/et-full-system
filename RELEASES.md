@@ -13,6 +13,7 @@ _No new features_
 ## Fixes
 
 * **API:** Fix a database seeding issue that mainly impacted on testing (RST-1583)
+* **ET1**: Fix date fields allowing two digit dates that defaulted to the 1900s (RST-1557)
 
 ## Security
 
