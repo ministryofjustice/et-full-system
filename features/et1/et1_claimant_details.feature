@@ -36,6 +36,10 @@ Feature:
     When I submit an invalid date of birth for claimant details page
     Then I should see an invalid error message for date of birth claimant details page
 
+  Scenario: Invalid Date of birth error
+    When I submit an invalid year date for claimant details page
+    Then I should see an invalid error message for date of birth claimant details page
+
   # Scenario: Save and complete later
   #   When I click on Save and complete later
   #   Then I should be able to return to where I was left off
