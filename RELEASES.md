@@ -1,3 +1,31 @@
+# 1.6.0 - Admin v1.8.0
+**20/12/2018**
+
+## New
+
+_No new features_
+
+## Changes
+
+* **ATOS:** Upgrade some dependencies (RST-1566)
+* **Admin:** Refactor ET1 claim data to support `primary_respondent`, `secondary_respondent` and `primary_representative` (RST-1533)
+
+## Fixes
+
+_No fixes_
+
+## Security
+
+* **Admin, ATOS:** Upgrade to Rails 5.2.2 (RST-1548)
+
+## Info
+
+Deployment by Stath
+
+No downtime expected
+
+No risk expected
+
 # 1.5.1
 **12/12/2018**
 
