@@ -1,4 +1,4 @@
-# 1.6.0 - Admin v1.8.0
+# 1.6.0 - Admin v1.8.0, API v2.6.0, ATOS v1.3.1, ET1 v4.1.2
 **20/12/2018**
 
 ## New
@@ -16,7 +16,7 @@ _No new features_
 
 ## Security
 
-* **Admin, API, ATOS:** Upgrade to Rails 5.2.2 (RST-1548)
+* **Admin, API, ATOS, ET1:** Upgrade to Rails 5.2.2 (RST-1548)
 
 ## Info
 
