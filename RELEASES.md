@@ -7,16 +7,16 @@ _No new features_
 
 ## Changes
 
-* **ATOS:** Upgrade some dependencies (RST-1566)
-* **Admin:** Refactor ET1 claim data to support `primary_respondent`, `secondary_respondent` and `primary_representative` (RST-1533)
+* **API, ATOS:** Upgrade some dependencies (RST-1566)
+* **Admin, API:** Refactor ET1 claim data to support `primary_respondent`, `secondary_respondent` and `primary_representative` (RST-1533)
 
 ## Fixes
 
-_No fixes_
+* **API:** Fix a database seeding issue that mainly impacted on testing (RST-1583)
 
 ## Security
 
-* **Admin, ATOS:** Upgrade to Rails 5.2.2 (RST-1548)
+* **Admin, API, ATOS:** Upgrade to Rails 5.2.2 (RST-1548)
 
 ## Info
 
