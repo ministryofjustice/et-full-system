@@ -5,6 +5,14 @@ Given(/^I am on the ET3 claimants details page$$/) do
   et3_answer_respondents_details
 end
 
+Then("Claimants details page copy texts are displayed in the correct language") do
+  claimants_details_page.agree_with_early_conciliation_details_question.no.click
+  claimants_details_page.agree_with_employment_dates_question.no.click
+  claimants_details_page.agree_with_claimants_description_of_job_or_title_question.no.click
+
+  expect(claimants_details_page.has_correct_translation?).to be true
+end
+
 When(/^I successfully submit all the claimants details$/) do
   et3_answer_claimants_details
 end

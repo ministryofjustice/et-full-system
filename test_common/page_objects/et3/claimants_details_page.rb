@@ -22,56 +22,58 @@ module EtFullSystem
         # Do you agree with the details given by the claimant about Early Conciliation with Acas? (optional)
         section :agree_with_early_conciliation_details_question, :single_choice_option, 'questions.agree_with_early_conciliation_details.label', exact: false do
           include ::EtFullSystem::Test::I18n
-          section :yes, :gds_multiple_choice_option, 'questions.agree_with_early_conciliation_details.yes.label', exact: false do
+          element :yes, :gds_multiple_choice_option, 'questions.agree_with_early_conciliation_details.yes.label', exact: false do
             element :selector, :css, 'input[type="radio"]'
             def set(*args); selector.set(*args); end
           end
-          section :no, :gds_multiple_choice_option, 'questions.agree_with_early_conciliation_details.no.label', exact: false do
+          element :no, :gds_multiple_choice_option, 'questions.agree_with_early_conciliation_details.no.label', exact: false do
             element :selector, :css, 'input[type="radio"]'
             def set(*args); selector.set(*args); end
           end
-          section :disagree_conciliation_reason, :textarea_labelled, 'questions.agree_with_early_conciliation_details.disagree_conciliation_reason.label', exact: false do
+          element :disagree_conciliation_reason, :textarea_labelled, 'questions.agree_with_early_conciliation_details.disagree_conciliation_reason.label', exact: false do
             def set(*args); root_element.set(*args); end
           end
           def set_for(value)
-            choose(factory_translate(value.agree_with_early_conciliation_details), name: 'claimants_detail[agree_with_early_conciliation_details]')
+            choose(factory_translate(value), name: 'claimants_detail[agree_with_early_conciliation_details]')
           end
         end
         section :agree_with_employment_dates_question, :single_choice_option, 'questions.agree_with_employment_dates.label', exact: false do
           element :error_inclusion, :exact_error_text, 'errors.custom.agree_with_employment_dates.inclusion', exact: false
-          section :yes, :gds_multiple_choice_option, 'questions.agree_with_employment_dates.yes.label', exact: false do
+          element :yes, :gds_multiple_choice_option, 'questions.agree_with_employment_dates.yes.label', exact: false do
             element :selector, :css, 'input[type="radio"]'
             def set(*args); selector.set(*args); end
           end
-          section :no, :gds_multiple_choice_option, 'questions.agree_with_employment_dates.no.label', exact: false do
+          element :no, :gds_multiple_choice_option, 'questions.agree_with_employment_dates.no.label', exact: false do
             element :selector, :css, 'input[type="radio"]'
             def set(*args); selector.set(*args); end
           end
           section :employment_start, :single_choice_option, 'questions.agree_with_employment_dates.employment_start.label', exact: false do
-            section :day, :question_labelled, 'questions.agree_with_employment_dates.employment_start.day.label', exact: true do
+            element :employment_start_hint, :form_hint, 'hint.claimants_detail.employment_start'
+            element :day, :question_labelled, 'questions.agree_with_employment_dates.employment_start.day.label', exact: true do
               element :field, :css, 'input'
               def set(*args); field.set(*args); end
             end
-            section :month, :question_labelled, 'questions.agree_with_employment_dates.employment_start.month.label', exact: true do
+            element :month, :question_labelled, 'questions.agree_with_employment_dates.employment_start.month.label', exact: true do
               element :field, :css, 'input'
               def set(*args); field.set(*args); end
             end
-            section :year, :question_labelled, 'questions.agree_with_employment_dates.employment_start.year.label', exact: true do
+            element :year, :question_labelled, 'questions.agree_with_employment_dates.employment_start.year.label', exact: true do
               element :field, :css, 'input'
               def set(*args); field.set(*args); end
             end
             element :error_blank, :exact_error_text, 'errors.messages.blank', exact: false
           end
           section :employment_end, :single_choice_option, 'questions.agree_with_employment_dates.employment_end.label', exact: false do
-            section :day, :question_labelled, 'questions.agree_with_employment_dates.employment_end.day.label', exact: true do
+            element :employment_end_hint, :form_hint, 'hint.claimants_detail.employment_end'
+            element :day, :question_labelled, 'questions.agree_with_employment_dates.employment_end.day.label', exact: true do
               element :field, :css, 'input'
               def set(*args); field.set(*args); end
             end
-            section :month, :question_labelled, 'questions.agree_with_employment_dates.employment_end.month.label', exact: true do
+            element :month, :question_labelled, 'questions.agree_with_employment_dates.employment_end.month.label', exact: true do
               element :field, :css, 'input'
               def set(*args); field.set(*args); end
             end
-            section :year, :question_labelled, 'questions.agree_with_employment_dates.employment_end.year.label', exact: true do
+            element :year, :question_labelled, 'questions.agree_with_employment_dates.employment_end.year.label', exact: true do
               element :field, :css, 'input'
               def set(*args); field.set(*args); end
             end
@@ -104,30 +106,30 @@ module EtFullSystem
         # Is their employment continuing? (optional)
         section :continued_employment_question, :single_choice_option, 'questions.continued_employment.label', exact: false do
           include ::EtFullSystem::Test::I18n
-          section :yes, :gds_multiple_choice_option, 'questions.continued_employment.yes.label' do
+          element :yes, :gds_multiple_choice_option, 'questions.continued_employment.yes.label' do
             element :selector, :css, "input"
             def set(*args); selector.set(*args); end
           end
-          section :no, :gds_multiple_choice_option, 'questions.continued_employment.no.label' do
+          element :no, :gds_multiple_choice_option, 'questions.continued_employment.no.label' do
             element :selector, :css, "input"
             def set(*args); selector.set(*args); end
           end
           def set_for(user_persona)
-            choose(factory_translate(user_persona.continued_employment), name: 'claimants_detail[continued_employment]')
+            choose(factory_translate(user), name: 'claimants_detail[continued_employment]')
           end
         end
         # Is the claimant's description of their job or job title correct? (optional)
         section :agree_with_claimants_description_of_job_or_title_question, :single_choice_option, 'questions.agree_with_claimants_description_of_job_or_title.label', exact: false do
           include ::EtFullSystem::Test::I18n
-          section :yes, :gds_multiple_choice_option, 'questions.agree_with_claimants_description_of_job_or_title.yes.label' do
+          element :yes, :gds_multiple_choice_option, 'questions.agree_with_claimants_description_of_job_or_title.yes.label' do
             element :selector, :css, "input"
             def set(*args); selector.set(*args); end
           end
-          section :no, :gds_multiple_choice_option, 'questions.agree_with_claimants_description_of_job_or_title.no.label' do
+          element :no, :gds_multiple_choice_option, 'questions.agree_with_claimants_description_of_job_or_title.no.label' do
             element :selector, :css, "input"
             def set(*args); selector.set(*args); end
           end
-          section :disagree_claimants_job_or_title, :textarea_labelled, 'questions.agree_with_claimants_description_of_job_or_title.disagree_claimants_job_or_title.label', exact: false do
+          element :disagree_claimants_job_or_title, :textarea_labelled, 'questions.agree_with_claimants_description_of_job_or_title.disagree_claimants_job_or_title.label', exact: false do
             def set(*args); root_element.set(*args); end
           end
           def set_for(user_persona)
@@ -149,6 +151,44 @@ module EtFullSystem
   
         def switch_to_english
           switch_language.english_link.click
+        end
+
+        def has_correct_translation?
+          # Claimants's Details
+          expect(self).to have_header
+          # Claimant's name (optional)
+          expect(self).to have_claimants_name_question
+          # Do you agree with the details given by the claimant about Early Conciliation with Acas? (optional)
+          expect(self).to have_agree_with_early_conciliation_details_question
+          # Why do you disagree with the claimant? (optional)
+          expect(agree_with_early_conciliation_details_question).to have_disagree_conciliation_reason 
+          # Are the dates of employment given by the claimant correct?
+          expect(self).to have_agree_with_employment_dates_question
+          # For example, 31 03 2010
+          expect(agree_with_employment_dates_question.employment_start).to have_employment_start_hint
+          # When their employment ended or will end
+          expect(agree_with_employment_dates_question).to have_employment_end
+          # For example, 01 12 2017
+          expect(agree_with_employment_dates_question.employment_end).to have_employment_end_hint
+          # Why do you disagree with the dates given by the claimant
+          expect(agree_with_employment_dates_question).to have_disagree_employment
+          # Is their employment continuing? (optional)
+          expect(self).to have_continued_employment_question
+          # Is the claimant's description of their job or job title correct? (optional
+          expect(self).to have_agree_with_claimants_description_of_job_or_title_question
+          # Please give the details you believe to be correct (optional)
+          expect(agree_with_claimants_description_of_job_or_title_question).to have_disagree_claimants_job_or_title
+        end
+
+        def has_correct_blank_error_messages?
+          expect(self).to have_error_header
+          expect(case_number_question).to have_error_invalid
+          expect(name_question).to have_error_blank
+          expect(building_name_question).to have_error_blank
+          expect(street_question).to have_error_blank
+          expect(town_question).to have_error_blank
+          expect(postcode_question).to have_error_blank
+          expect(organisation_more_than_one_site_question).to have_inclusion
         end
       end
     end

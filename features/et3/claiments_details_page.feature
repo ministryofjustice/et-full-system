@@ -5,6 +5,9 @@ Feature: Claimants details page
 Background: ET3 claimants details page
   Given I am on the ET3 claimants details page
 
+Scenario: Verify Claimants details copy
+    Then Claimants details page copy texts are displayed in the correct language
+
 Scenario: Successfully submits all the claimants details
   When I successfully submit all the claimants details
   Then I should be taken to the earnings and benefits page
