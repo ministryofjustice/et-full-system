@@ -13,7 +13,7 @@ FactoryBot.define do
     end
 
     trait :yes_acas do
-      name { Faker::Company.name }
+      name 'Dummy Data'
       building { Faker::Address.building_number }
       street { Faker::Address.street_name }
       locality 'London'
@@ -25,7 +25,7 @@ FactoryBot.define do
     end
 
     trait :no_acas do
-      name { Faker::Company.name }
+      name 'Dummy Data'
       building { Faker::Address.building_number }
       street { Faker::Address.street_name }
       locality 'London'

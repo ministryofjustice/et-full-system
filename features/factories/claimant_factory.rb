@@ -14,8 +14,8 @@ FactoryBot.define do
     
     trait :person_data do
       title :"simple_form.options.claimant.title.miss"
-      first_name { Faker::Name.first_name }
-      last_name { Faker::Name.last_name }
+      first_name 'Dummy'
+      last_name 'Data'
       date_of_birth '21/11/1982'
       building { Faker::Address.building_number }
       street { Faker::Address.street_name }

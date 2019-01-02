@@ -4,8 +4,8 @@ FactoryBot.define do
 
   trait :et3_information do
     type 'Solicitor'
-    organisation_name { Faker::Company.bs }
-    name { Faker::Name.name }
+    organisation_name 'Dummy Data'
+    name 'Dummy Data'
     building '106'
     street 'Mayfair'
     locality 'London'
@@ -24,8 +24,8 @@ FactoryBot.define do
 
   trait :et1_information do
     type :"simple_form.options.representative.type.solicitor"
-    organisation_name { Faker::Company.bs }
-    name { Faker::Name.name }
+    organisation_name 'Dummy Data'
+    name 'Dummy Data'
     building '106'
     street 'Mayfair'
     locality 'London'
