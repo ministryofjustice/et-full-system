@@ -10,6 +10,10 @@ module EtFullSystem
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
+        # Confirmation of Supplied Details
+        section :main_header, '.content-header' do
+          element :header, :content_header, 'confirmation.header'
+        end
         element :error_header, :error_titled, 'errors.header', exact: true
         section :email_receipt_question, :question_labelled, 'questions.email_receipt.label', exact: false do
           element :field, :css, 'input'
@@ -68,7 +72,7 @@ module EtFullSystem
           section :employment_at_site_number_row, :table_row_with_td_labelled, 'questions.organisation_more_than_one_site.employment_at_site_number.label', exact: true do
             element :employment_at_site_number_answer, :return_answer
           end
-          element :back_to_top, 'a', text: 'Back to the top'
+          element :back_to_top, :link_named, 'confirmation.back_to_the_top'
         end
 
         section :confirmation_of_claimants_details_answers, :table_captioned, 'questions.confirmation_of_claimants_details_answers.caption', exact: true do
@@ -102,7 +106,7 @@ module EtFullSystem
           section :disagree_claimants_job_or_title_row, :table_row_with_td_labelled, 'questions.agree_with_claimants_description_of_job_or_title.disagree_claimants_job_or_title.label', exact: true do
             element :disagree_claimants_job_or_title_answer, :return_answer
           end
-          element :back_to_top, 'a', text: 'Back to the top'
+          element :back_to_top, :link_named, 'confirmation.back_to_the_top'
         end
         
         section :confirmation_of_earnings_and_benefits_answers, :table_captioned, 'questions.confirmation_of_earnings_and_benefits_answers.caption', exact: true do
@@ -139,7 +143,7 @@ module EtFullSystem
           section :disagree_claimant_pension_benefits_reason_row, :table_row_with_td_labelled, 'questions.agree_with_claimant_pension_benefits.disagree_claimant_pension_benefits_reason.label', exact: true do
             element :disagree_claimant_pension_benefits_reason_answer, :return_answer
           end
-          element :back_to_top, 'a', text: 'Back to the top'
+          element :back_to_top, :link_named, 'confirmation.back_to_the_top'
         end
   
         section :confirmation_of_response_answers, :table_captioned, 'questions.confirmation_of_response_answers.caption', exact: true do
@@ -149,14 +153,14 @@ module EtFullSystem
           section :defend_claim_facts_row, :table_row_with_td_labelled, 'questions.defend_claim.defend_claim_facts.label', exact: true do
             element :defend_claim_facts_answer, :return_answer
           end
-          element :back_to_top, 'a', text: 'Back to the top'
+          element :back_to_top, :link_named, 'confirmation.back_to_the_top'
         end
   
         section :confirmation_of_your_representative_answers, :table_captioned, 'questions.confirmation_of_your_representative_answers.caption', exact: true do
           section :have_representative_row, :table_row_with_td_labelled, 'questions.have_representative.label', exact: true do
             element :have_representative_answer, :return_answer
           end
-          element :back_to_top, 'a', text: 'Back to the top'
+          element :back_to_top, :link_named, 'confirmation.back_to_the_top'
         end
 
         section :confirmation_of_your_representatives_details_answers, :table_captioned, 'questions.confirmation_of_your_representatives_details_answers.caption', exact: true do
@@ -205,7 +209,7 @@ module EtFullSystem
           section :fax_row, :table_row_with_td_labelled, 'questions.representative_contact_preference.fax.input_label', exact: true do
             element :fax_answer, :return_answer
           end
-          element :back_to_top, 'a', text: 'Back to the top'
+          element :back_to_top, :link_named, 'confirmation.back_to_the_top'
         end
 
         section :confirmation_of_disability_answers, :table_captioned, 'questions.confirmation_of_disability_answers.caption', exact: true do
@@ -215,7 +219,7 @@ module EtFullSystem
           section :disability_information_row, :table_row_with_td_labelled, 'questions.disability.disability_information.label', exact: true do
             element :disability_information_answer, :return_answer
           end
-          element :back_to_top, 'a', text: 'Back to the top'
+          element :back_to_top, :link_named, 'confirmation.back_to_the_top'
         end
 
         section :confirmation_of_employer_contract_claim_answers, :table_captioned, 'questions.confirmation_of_employer_contract_claim_answers.caption', exact: true do
@@ -225,8 +229,8 @@ module EtFullSystem
           section :claim_information_row, :table_row_with_td_labelled, 'questions.make_employer_contract_claim.claim_information.label', exact: true do
             element :claim_information_answer, :return_answer
           end
-          element :edit_answers_link, 'a', text: 'Edit answers on this page'
-          element :back_to_top, 'a', text: 'Back to the top'
+          element :edit_answers_link, :link_named, 'confirmation.edit_answers'
+          element :back_to_top, :link_named, 'confirmation.back_to_the_top'
         end
 
         section :confirmation_of_additional_information_answers, :table_captioned, 'questions.confirmation_of_additional_information_answers.caption', exact: true do

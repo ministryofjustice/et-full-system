@@ -147,7 +147,6 @@ module EtFullSystem
       end
 
       def et3_edit_answer
-        user = @respondent[0]
         confirmation_of_supplied_details_page.confirmation_of_employer_contract_claim_answers.edit_answers_link.click
       end
 

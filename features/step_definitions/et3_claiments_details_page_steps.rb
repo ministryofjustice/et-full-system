@@ -22,7 +22,7 @@ When(/^I successfully submit required claimants details only$/) do
 end
 
 Then(/^I should be taken to the earnings and benefits page$/) do
-  expect(earnings_and_benefits_page).to have_header
+  expect(earnings_and_benefits_page.main_header).to have_header
 end
 
 When(/^I click on next without providing the required claimants details$/) do
@@ -30,8 +30,7 @@ When(/^I click on next without providing the required claimants details$/) do
 end
 
 Then(/^I should see the error message saying the claimants details cant be blank$/) do
-  expect(claimants_details_page).to have_error_header
-  # expect(claimants_details_page.agree_with_employment_dates_question).to have_error_inclusion
+  expect(claimants_details_page.error_summary).to have_error_list
 end
 
 But(/^I do not provide the correct employment dates or give a reason$/) do
@@ -43,7 +42,6 @@ When(/^I select no to are the dates given by the claimant correct$/) do
 end
 
 Then(/^I should see the error message saying the further information about dates cant be blank$/) do
-  binding.pry
   expect(claimants_details_page.agree_with_employment_dates_question.employment_start).to have_error_blank
   expect(claimants_details_page.agree_with_employment_dates_question.employment_end).to have_error_blank
   expect(claimants_details_page.agree_with_employment_dates_question.disagree_employment).to have_error_blank

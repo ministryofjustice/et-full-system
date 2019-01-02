@@ -285,6 +285,10 @@ en:
       end_date_blank: Employment end can't be blank
       disagree_dates: Why do you disagree with the dates given by the claimant can't be blank
       date_error: Invalid date
+    disability:
+      disability_blank: It would help us if you could say what this disability is and tell us what assistance, if any, you will need as your claim progresses through the system, including for any hearings that maybe held at tribunal premises can't be blank
+    response:
+      response_blank: Please select an option
     messages:
       blank: can't be blank
       contains_no_spaces: must contain at least one space
@@ -421,6 +425,8 @@ en:
     header: Confirmation of Supplied Details
     receipt_header: Email Receipt
     receipt_description: Please enter your email address so that we can provide you with a receipt of your transaction.
+    edit_answers: Edit answers on this page
+    back_to_the_top: Back to the top
     submit_guidance: 'Pressing "Submit Form" at the foot of the page will send the details confirmed below for processing.'
     submit: Submit Form
   submission:

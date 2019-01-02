@@ -10,6 +10,14 @@ module EtFullSystem
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
+        section :main_header, '.content-header' do
+          element :header, :content_header, 'disability.header'
+        end
+        section :error_summary, '.error-summary' do
+          element :error_heading, :main_header, 'errors.header'
+          element :description, :paragraph, 'errors.description'
+          element :error_header, :error_summary_list, 'errors.disability.disability_blank', exact: true
+        end
         element :error_header, :error_titled, 'errors.header', exact: true
         section :disability_question, :single_choice_option, 'questions.disability.label', exact: false do
           include ::EtFullSystem::Test::I18n

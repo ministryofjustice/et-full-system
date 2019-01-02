@@ -11,8 +11,15 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         # Claimant Details Details
-        element :header, :content_header, 'claimants_details.header'
-        element :error_header, :error_titled, 'errors.header', exact: true
+        section :main_header, '.content-header' do
+          element :header, :content_header, 'claimants_details.header'
+        end
+        section :error_summary, '.error-summary' do
+          element :error_heading, :main_header, 'errors.header'
+          element :description, :paragraph, 'errors.description'
+          element :error_list, :error_summary_list, 'errors.claimants_details.agree_with_dates_of_employment', exact: true
+        end
+        
         section :claimants_name_question, :question_labelled, 'questions.claimants_name.label', exact: false do
           element :field, :css, "input"
           element :error_contains_numbers, :exact_error_text, 'errors.messages.contains_numbers', exact: false
@@ -41,7 +48,6 @@ module EtFullSystem
           end
         end
         section :agree_with_employment_dates_question, :single_choice_option, 'questions.agree_with_employment_dates.label', exact: false do
-          # element :error_inclusion, :exact_error_text, 'errors.custom.agree_with_employment_dates.inclusion', exact: false
           element :yes, :gds_multiple_choice_option, 'questions.agree_with_employment_dates.yes.label', exact: false do
             element :selector, :css, 'input[type="radio"]'
             def set(*args); selector.set(*args); end
@@ -84,7 +90,7 @@ module EtFullSystem
           end
           section :disagree_employment, :question_labelled, 'questions.agree_with_employment_dates.disagree_employment.label', exact: false do
             element :field, :css, 'textarea'
-            element :error_blank, :exact_error_text, 'errors.messages.blank', exact: false
+            element :error_blank, :exact_error_text, 'errors.claimants_details.disagree_dates', exact: false
             def set(*args); field.set(*args); end
           end
           element :error_blank, :exact_error_text, 'errors.messages.blank', exact: false
@@ -93,7 +99,6 @@ module EtFullSystem
             choose(factory_translate(user_persona.agree_with_employment_dates), name: 'claimants_detail[agree_with_employment_dates]')
             if (t(user_persona.agree_with_employment_dates) == t('questions.agree_with_employment_dates.no.label'))
               # Employment started
-              binding.pry
               day, month, year = user_persona.employment_start.split('/')
               employment_start.day.set(day)
               employment_start.month.set(month)
@@ -159,7 +164,7 @@ module EtFullSystem
 
         def has_correct_translation?
           # Claimants's Details
-          expect(self).to have_header
+          expect(main_header).to have_header
           # Claimant's name (optional)
           expect(self).to have_claimants_name_question
           # Do you agree with the details given by the claimant about Early Conciliation with Acas? (optional)

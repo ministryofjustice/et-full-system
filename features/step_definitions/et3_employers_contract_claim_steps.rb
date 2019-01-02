@@ -9,7 +9,7 @@ Given(/^I am on the ET3 employers contract claim page$/) do
   et3_answer_defend_claim_question
   et3_answer_representative
   et3_answer_disability_question
-  expect(employers_contract_claim_page).to be_displayed
+  expect(employers_contract_claim_page.main_header).to have_header
 end
 
 When(/^I successfully submit whether I wish to make an employers contract claim$/) do
@@ -17,7 +17,7 @@ When(/^I successfully submit whether I wish to make an employers contract claim$
 end
 
 Then(/^I should be taken to the additional information page$/) do
-  expect(additional_information_page).to be_displayed
+  expect(additional_information_page.main_header).to have_header
 end
 
 When(/^I click on next without providing a response to employers contract claim question$/) do

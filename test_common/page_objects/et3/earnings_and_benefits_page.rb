@@ -10,7 +10,10 @@ module EtFullSystem
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
-        element :header, :content_header, 'earnings_and_benefits.header'
+        # Earnings and Benefits
+        section :main_header, '.content-header' do
+          element :header, :content_header, 'earnings_and_benefits.header'
+        end
         element :error_header, :error_titled, 'errors.header', exact: true
         section :agree_with_claimants_hours_question, :single_choice_option, 'questions.agree_with_claimants_hours.label', exact: false do
           include ::EtFullSystem::Test::I18n

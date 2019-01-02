@@ -10,6 +10,10 @@ module EtFullSystem
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
+        # Your representative page
+        section :main_header, '.content-header' do
+          element :header, :content_header, 'your_representative.header'
+        end
         section :have_representative_question, :single_choice_option, 'questions.have_representative.label', exact: true do
           include ::EtFullSystem::Test::I18n
           section :yes, :gds_multiple_choice_option, 'questions.have_representative.yes.label', exact: true do

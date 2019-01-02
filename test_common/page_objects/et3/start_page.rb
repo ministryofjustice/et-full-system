@@ -12,7 +12,9 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         # Introduction
-        element :header, :content_header, "introduction.header"
+        section :main_header, '.content-header' do
+          element :header, :content_header, "introduction.header"
+        end
         element :description, :element_with_text, "introduction.description"
         # What you need for this form
         section :what_you_need, :wrapper_headered, "introduction.what_title" do
@@ -52,7 +54,7 @@ module EtFullSystem
 
         def has_correct_translation?
           #Introduction
-          expect(self).to have_header
+          expect(main_header).to have_header
           expect(self).to have_description
           # What you need for this formex
           expect(self).to have_what_you_need
