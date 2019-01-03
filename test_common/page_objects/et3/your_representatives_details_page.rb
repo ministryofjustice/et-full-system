@@ -126,10 +126,10 @@ module EtFullSystem
           element :error_invalid, :exact_error_text, 'errors.messages.invalid', exact: false
           def set_for(user_persona)
             choose(factory_translate(user_persona.representative_contact_preference), name: 'your_representatives_details[representative_contact_preference]')
-            if user_persona.representative_contact_preference == t(:"questions.representative_contact_preference.fax.label")
+            if t(user_persona.representative_contact_preference) == t(:"questions.representative_contact_preference.fax.label")
               preference_fax.set(user_persona.representative_fax)
             end
-            if user_persona.representative_contact_preference == t(:"questions.representative_contact_preference.email.label")
+            if t(user_persona.representative_contact_preference) == t(:"questions.representative_contact_preference.email.label")
               preference_email.set(user_persona.representative_email)
             end
           end
