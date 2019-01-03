@@ -18,7 +18,7 @@ When(/^I submit my form$/) do
 end
 
 When(/^I am taken to the form submission page$/) do
-  expect(form_submission_page).to be_displayed
+  expect(form_submission_page).to have_header
 end
 
 Then(/^I should see my answers to the questions$/) do

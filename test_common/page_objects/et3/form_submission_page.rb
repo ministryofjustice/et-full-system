@@ -11,7 +11,7 @@ module EtFullSystem
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
-        element :header, :content_header, 'submission.confirmation'
+        element :header, :main_header, 'submission.confirmation'
         element :submission_confirmation, :element_with_text, 'submission.confirmation'
         element :reference_number, :css, '.bold.reference-number'
         element :thank_you, :element_with_text, 'submission.thank_you'
