@@ -6,7 +6,7 @@ module EtFullSystem
       # Represents the ET3 PDF file and provides assistance in validating its contents
       class Et3PdfFile < Base # rubocop:disable Metrics/ClassLength
         include ::RSpec::Matchers
-
+        include ::EtFullSystem::Test::I18n
         def initalize(tempfile)
           self.tempfile = tempfile
         end
@@ -51,45 +51,45 @@ module EtFullSystem
             expect(field_values).to include '2.3 dx number' => respondent.dx_number
             expect(field_values).to include '2.4 phone number' => respondent.contact_number
             expect(field_values).to include '2.4 mobile number' => respondent.contact_mobile_number
-            if respondent.contact_preference == 'nil'
+            if t(respondent.contact_preference) == 'nil'
               expect(field_values).to include '2.5' => 'Off'
             else
-              expect(field_values).to include '2.5' => respondent.contact_preference
+              expect(field_values).to include '2.5' => t(respondent.contact_preference).downcase
             end
             expect(field_values).to include '2.6 email address' => respondent.email_address
             expect(field_values).to include '2.6 fax number' => ''
             expect(field_values).to include '2.7' => respondent.organisation_employ_gb
-            expect(field_values).to include '2.8' => respondent.organisation_more_than_one_site.downcase
+            expect(field_values).to include '2.8' => t(respondent.organisation_more_than_one_site).downcase
             expect(field_values).to include '2.9' => ''
           end
         end
 
         def has_acas_for?(response, errors: [], indent: 1)
           validate_fields section: :acas, errors: errors, indent: indent do
-            expect(field_values).to include 'new 3.1' => response.agree_with_early_conciliation_details
+            expect(field_values).to include 'new 3.1' => t(response.agree_with_early_conciliation_details)
             expect(field_values).to include 'new 3.1 If no, please explain why' => response.disagree_conciliation_reason
           end
         end
 
         def has_employment_details_for?(response, errors: [], indent: 1)
           validate_fields section: :employment, errors: errors, indent: indent do
-            expect(field_values).to include '3.1' => response.agree_with_employment_dates.downcase
+            expect(field_values).to include '3.1' => t(response.agree_with_employment_dates).downcase
             expect(field_values).to include '3.1 employment started' => response.employment_start
             expect(field_values).to include '3.1 employment end' => response.employment_end
             expect(field_values).to include '3.1 disagree' => response.disagree_employment
-            expect(field_values).to include '3.2' => response.continued_employment.downcase
+            expect(field_values).to include '3.2' => t(response.continued_employment).downcase
 
-            if response.agree_with_claimants_description_of_job_or_title == 'nil'
+            if t(response.agree_with_claimants_description_of_job_or_title) == 'nil'
               expect(field_values).to include '3.3' => 'Off'
             else
-            expect(field_values).to include '3.3' => response.agree_with_claimants_description_of_job_or_title.downcase
+            expect(field_values).to include '3.3' => t(response.agree_with_claimants_description_of_job_or_title).downcase
             end
           end
         end
 
         def has_earnings_for?(response, errors: [], indent: 1)
           validate_fields section: :earnings, errors: errors, indent: indent do
-            if response.agree_with_claimants_hours == 'nil'
+            if t(response.agree_with_claimants_hours) == 'nil'
              expect(field_values).to include '4.1' => 'Off'
              expect(field_values).to include '4.2' => 'Off'
              expect(field_values).to include '4.4 tick box' => 'Off'
@@ -98,13 +98,13 @@ module EtFullSystem
              expect(field_values).to include '4.2 normal take-home pay tick box' => 'Off'
              expect(field_values).to include '4.2 pay before tax tick box' => 'Off'
             else
-              expect(field_values).to include '4.1' => response.agree_with_claimants_hours.downcase
-              expect(field_values).to include '4.2' => response.agree_with_earnings_details.downcase
-              expect(field_values).to include '4.4 tick box' => response.agree_with_claimant_pension_benefits.downcase
-              expect(field_values).to include '4.3 tick box' => response.agree_with_claimant_notice.downcase
-              expect(field_values).to include '4.3 tick box' => response.agree_with_claimant_notice.downcase
-              expect(field_values).to include '4.2 normal take-home pay tick box' => response.queried_take_home_pay_period.downcase
-              expect(field_values).to include '4.2 pay before tax tick box' => response.queried_pay_before_tax_period.downcase
+              expect(field_values).to include '4.1' => t(response.agree_with_claimants_hours).downcase
+              expect(field_values).to include '4.2' => t(response.agree_with_earnings_details).downcase
+              expect(field_values).to include '4.4 tick box' => t(response.agree_with_claimant_pension_benefits).downcase
+              expect(field_values).to include '4.3 tick box' => t(response.agree_with_claimant_notice).downcase
+              expect(field_values).to include '4.3 tick box' => t(response.agree_with_claimant_notice).downcase
+              expect(field_values).to include '4.2 normal take-home pay tick box' => t(response.queried_take_home_pay_period).downcase
+              expect(field_values).to include '4.2 pay before tax tick box' => t(response.queried_pay_before_tax_period).downcase
             end
             expect(field_values).to include '4.1 if no' => decimal_for(response.queried_hours)
             expect(field_values).to include '4.2 pay before tax' => decimal_for(response.queried_pay_before_tax)
@@ -116,17 +116,17 @@ module EtFullSystem
 
         def has_response_for?(response, errors: [], indent: 1)
           validate_fields section: :response, errors: errors, indent: indent do
-            expect(field_values).to include '5.1 tick box' => response.defend_claim.downcase
+            expect(field_values).to include '5.1 tick box' => t(response.defend_claim).downcase
             expect(field_values).to include '5.1 if yes' => response.defend_claim_facts
           end
         end
 
         def has_contract_claim_for?(respondent, errors: [], indent: 1)
           validate_fields section: :contract_claim, errors: errors, indent: indent do
-            if respondent.make_employer_contract_claim == 'nil'
+            if t(respondent.make_employer_contract_claim) == 'nil'
             expect(field_values).to include '6.2 tick box' => 'Off'
             else
-              expect(field_values).to include '6.2 tick box' => respondent.make_employer_contract_claim.downcase
+              expect(field_values).to include '6.2 tick box' => t(respondent.make_employer_contract_claim).downcase
             end
             expect(field_values).to include '6.3' => respondent.claim_information
           end
@@ -147,10 +147,10 @@ module EtFullSystem
             expect(field_values).to include '7.5 phone number' => representative.telephone_number
             expect(field_values).to include '7.6' => representative.representative_mobile
             expect(field_values).to include '7.7' => representative.representative_reference
-            if representative.representative_contact_preference == 'nil'
+            if t(representative.representative_contact_preference) == 'nil'
               expect(field_values).to include '7.8 tick box' => 'Off'
             else
-              expect(field_values).to include '7.8 tick box' => representative.representative_contact_preference.downcase
+              expect(field_values).to include '7.8 tick box' => t(representative.representative_contact_preference).downcase
             end
             expect(field_values).to include '7.9' => ''
             expect(field_values).to include '7.10' => representative.representative_fax
@@ -159,10 +159,10 @@ module EtFullSystem
 
         def has_disability_for?(respondent, errors: [], indent: 1)
           validate_fields section: :disability, errors: errors, indent: indent do
-            if respondent.disability == 'nil'
+            if t(respondent.disability) == 'nil'
               expect(field_values).to include '8.1 tick box' => 'Off'
             else
-              expect(field_values).to include '8.1 tick box' => respondent.disability.downcase
+              expect(field_values).to include '8.1 tick box' => t(respondent.disability).downcase
             end
             expect(field_values).to include '8.1 if yes' => respondent.disability_information
           end
