@@ -1,4 +1,3 @@
-require 'singleton'
 require 'zip'
 require 'httparty'
 require 'active_support'
@@ -16,7 +15,6 @@ module EtFullSystem
     # keeps track of the zip files across all processes (so we can tidy them up even when one file within a zip
     # belongs to a claim created in process 1 and another in process 2)
     class AtosInterface
-      include Singleton
 
       def delete_zip_files
         api.list_zip_filenames.each { |filename| api.delete_zip_file(filename) }
@@ -44,21 +42,18 @@ module EtFullSystem
         tempfile
       end
 
+      def initialize(username:, password:)
+        self.api = AtosInterfaceApi.new base_url: Configuration.atos_api_url,
+                                        username: username,
+                                        password: password
+      end
+
       private
 
       def find_file_in_any_zip(identifier, **args)
         all_filenames_in_all_zip_files.find do |filename|
           filename_matches?(filename, identifier, **args)
         end
-      end
-
-      private
-
-      def initialize
-        self.api = AtosInterfaceApi.new base_url: Configuration.atos_api_url,
-                                        username: Configuration.atos_username,
-                                        password: Configuration.atos_password
-        super
       end
 
       def filename_matches?(filename, identifier, **args)

@@ -18,15 +18,23 @@ Then(/^I can download the ET3 form and validate in PDF format$/) do
   end
   expect { atos_interface }.to eventually have_zip_file_containing(:et3_response_pdf_for, user: @respondent[0], reference: @my_et3_reference), timeout: 45, sleep: 2
   tempfile = atos_interface.download_from_any_zip_to_tempfile(:et3_response_pdf_for, user: @respondent[0], reference: @my_et3_reference)
-  pdf_file = EtFullSystem::Test::FileObjects::Et3PdfFile.new(tempfile)
+  pdf_file = EtFullSystem::Test::FileObjects::Et3PdfFile.new(tempfile, locale: EtFullSystem::Test::Messaging.instance.current_locale)
   expect(pdf_file).to have_correct_contents_for(response: @claimant[0],
     respondent: @respondent[0],
     representative: @representative[0],
     indent: 1)
 end
 
+Then("I can download the ET3 form from the secondary atos and validate that the filename starts with '99'") do
+  within_admin_window do
+    api = EtFullSystem::Test::AdminApi.new
+    expect { api.respondents_api }.to eventually include a_hash_including(name: @respondent[0].dig(:name))
+    admin_pages.jobs_page.run_export_claims_cron_job
+  end
+  expect { atos_secondary_interface }.to eventually have_zip_file_containing(:et3_filename_start_with, user: @respondent[0], reference: @my_et3_reference, local_postcode: '99'), timeout: 45, sleep: 2
+end
+
 Then("I can download the ET3 form and validate that the filename starts with {string}") do |string|
-  errors = []
   within_admin_window do
     api = EtFullSystem::Test::AdminApi.new
     expect { api.respondents_api }.to eventually include a_hash_including(name: @respondent[0].dig(:name))

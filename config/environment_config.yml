@@ -4,7 +4,9 @@ defaults: &defaults
   admin_email: admin@example.com
   atos_username: atos
   atos_password: password
-local: 
+  atos_secondary_username: atos2
+  atos_secondary_password: password
+local:
   <<: *defaults
   et1_url: http://et1.et.127.0.0.1.nip.io:3100/
   diversity_url: http://et1.et.127.0.0.1.nip.io:3100/apply/diversity

@@ -65,6 +65,7 @@ module EtFullSystem
             "Et Offices",
             "Exported Files",
             "Exports",
+            "External Systems",
             "Generate References",
             "Jobs",
             "Office Postcodes",
