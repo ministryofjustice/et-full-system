@@ -61,18 +61,18 @@ FactoryBot.define do
     agree_with_early_conciliation_details 'No'
     disagree_conciliation_reason ''
     continued_employment 'No'
-    agree_with_claimants_description_of_job_or_title 'nil'
+    agree_with_claimants_description_of_job_or_title nil
     disagree_claimants_job_or_title ''
-    agree_with_claimants_hours 'nil'
+    agree_with_claimants_hours nil
     queried_hours ''
-    agree_with_earnings_details 'nil'
+    agree_with_earnings_details nil
     queried_pay_before_tax ''
-    queried_pay_before_tax_period 'nil'
+    queried_pay_before_tax_period nil
     queried_take_home_pay ''
-    queried_take_home_pay_period 'nil'
-    agree_with_claimant_notice 'nil'
+    queried_take_home_pay_period nil
+    agree_with_claimant_notice nil
     disagree_claimant_notice_reason ''
-    agree_with_claimant_pension_benefits 'nil'
+    agree_with_claimant_pension_benefits nil
     disagree_claimant_pension_benefits_reason ''
     defend_claim 'No'
     defend_claim_facts ''
