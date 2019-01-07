@@ -38,13 +38,13 @@ FactoryBot.define do
     dx_number ''
     contact_number ''
     contact_mobile_number ''
-    contact_preference 'nil'
+    contact_preference nil
     email_address ''
     organisation_employ_gb ''
-    make_employer_contract_claim 'nil'
+    make_employer_contract_claim nil
     claim_information ''
     email_receipt ''
-    disability 'nil'
+    disability nil
     disability_information ''
   end
 end

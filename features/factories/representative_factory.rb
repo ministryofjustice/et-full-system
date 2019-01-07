@@ -58,7 +58,7 @@ FactoryBot.define do
     have_representative 'No'
     representative_mobile ''
     representative_reference ''
-    representative_contact_preference 'nil'
+    representative_contact_preference nil
     representative_fax ''
     employer_contract_claim ''
   end
