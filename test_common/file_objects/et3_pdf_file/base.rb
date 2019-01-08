@@ -22,6 +22,11 @@ module EtFullSystem
             self.class.name.demodulize.underscore.gsub(/_section\z/, '')
           end
 
+          def yes_no_for(val, yes: 'true', no: 'false')
+            return off if val.nil?
+            val ? yes : no
+          end
+
           def mapped_field_values
             return @mapped_field_values if defined?(@mapped_field_values)
             lookup = t("response_pdf_fields.#{i18n_section}", locale: locale)

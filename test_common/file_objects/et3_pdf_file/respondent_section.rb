@@ -19,7 +19,7 @@ module EtFullSystem
               address_dx_number: respondent[:dx_number] || '',
               phone_number: respondent[:contact_number] || '',
               mobile_number: respondent[:contact_mobile_number] || '',
-              contact_preference: respondent.fetch(:contact_preference, nil),
+              contact_preference: t(respondent[:contact_preference]).downcase,
               email_address: respondent.fetch(:email_address, ''),
               fax_number: '',
               employ_gb: respondent[:organisation_employ_gb].to_s,

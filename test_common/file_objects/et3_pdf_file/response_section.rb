@@ -6,7 +6,7 @@ module EtFullSystem
         class ResponseSection < ::EtFullSystem::Test::FileObjects::Et3PdfFileSection::Base
           def has_contents_for?(response:)
             expected_values = {
-              defend_claim: response[:defend_claim] == 'Yes',
+              defend_claim: yes_no_for(t(response[:defend_claim]), yes: true, no: false),
               defend_claim_facts: response[:defend_claim_facts] || ''
             }
             expect(mapped_field_values).to include(expected_values)

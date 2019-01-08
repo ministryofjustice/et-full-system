@@ -6,7 +6,7 @@ module EtFullSystem
         class DisabilitySection < ::EtFullSystem::Test::FileObjects::Et3PdfFileSection::Base
           def has_contents_for?(respondent:)
             expected_values = {
-              has_disability: tri_state(respondent[:disability]),
+              has_disability: yes_no_for(t(respondent[:disability]), yes: true, no: false),
               information: respondent[:disability_information] || ''
             }
             expect(mapped_field_values).to include(expected_values)
