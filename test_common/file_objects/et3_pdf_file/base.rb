@@ -22,8 +22,8 @@ module EtFullSystem
             self.class.name.demodulize.underscore.gsub(/_section\z/, '')
           end
 
-          def yes_no_for(val, yes: 'true', no: 'false')
-            return off if val.nil?
+          def true_false_for(val, yes: true,  no: false)
+            return nil if val.nil?
             val ? yes : no
           end
 
