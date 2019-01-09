@@ -26,7 +26,7 @@ FactoryBot.define do
     type :"simple_form.options.representative.type.solicitor"
     organisation_name { Faker::Company.bs }
     name { Faker::Name.name }
-    building '106'
+    building '106'  
     street 'Mayfair'
     locality 'London'
     county 'Greater London'
@@ -55,7 +55,7 @@ FactoryBot.define do
     alternative_telephone_number ''
     email_address  ''
     dx_number  ''
-    have_representative :"questons.have_representative.no.label"
+    have_representative :"questions.have_representative.no.label"
     representative_mobile ''
     representative_reference ''
     representative_contact_preference nil

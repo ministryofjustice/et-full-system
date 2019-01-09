@@ -38,7 +38,11 @@ When(/^I change my answer on the employer contract form page$/) do
 end
 
 Then(/^I should see my updated answer on the confirmation of supplied details page$/) do
-  expect(et3_displays_edited_answer).to eq 'false'
+  if ::EtFullSystem::Test::Messaging.instance.current_locale == :cy
+    expect(et3_displays_edited_answer).to eq 'Nac oes'
+  else
+    expect(et3_displays_edited_answer).to eq 'false'
+  end
 end
 
 Then(/^I should see each page section has a back to top link$/) do

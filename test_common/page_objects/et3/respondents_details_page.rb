@@ -112,15 +112,17 @@ module EtFullSystem
           element :error_invalid_email, :exact_error_text, 'errors.respondents_details.email_address_invalid', exact: false
           element :error_invalid_fax, :exact_error_text, 'errors.respondents_details.invalid', exact: false
           def set_for(user)
-            choose(factory_translate(user.contact_preference), name: 'respondents_detail[contact_preference]')
-            if t(user.contact_preference) == t('questions.contact_preference.email.label')
-              preference_email.set(user.email_address)
-            end
-            if t(user.contact_preference) == t('questions.contact_preference.post.label')
-              preference_email.set(user.post)
-            end
-            if t(user.contact_preference) == t('questions.contact_preference.fax.label')
-              preference_fax.set(user.fax_number)
+            if (user.contact_preference != nil)
+              choose(factory_translate(user.contact_preference), name: 'respondents_detail[contact_preference]')
+              if t(user.contact_preference) == t('questions.contact_preference.email.label')
+                preference_email.set(user.email_address)
+              end
+              if t(user.contact_preference) == t('questions.contact_preference.post.label')
+                preference_email.set(user.post)
+              end
+              if t(user.contact_preference) == t('questions.contact_preference.fax.label')
+                preference_fax.set(user.fax_number)
+              end
             end
           end
         end

@@ -15,7 +15,8 @@ module EtFullSystem
         element :submission_confirmation, :element_with_text, 'submission.confirmation'
         element :reference_number, :css, '.bold.reference-number'
         element :thank_you, :element_with_text, 'submission.thank_you'
-        element :office_contact, :element_with_text, 'submission.office_contact'
+        element :local_office_address, :css, '.office-address'
+        element :local_office_phone, :css, '.office-phone'
         element :submission_date, :element_with_text, 'submission.date', exact: false
         element :valid_pdf_download, :link_named, 'links.form_submission.valid_pdf_download'
         element :invalid_pdf_download, :link_named, 'links.form_submission.invalid_pdf_download'

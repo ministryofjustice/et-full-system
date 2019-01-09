@@ -34,9 +34,11 @@ module EtFullSystem
           end
           element :error_too_long, :exact_error_text, 'errors.messages.too_long', exact: false
           def set_for(user_persona)
-            choose(factory_translate(user_persona.disability), name: 'disability[disability]')
-            if t(user_persona.disability) == t('questions.disability.yes.label') && user_persona.disability_information != nil
-              disability_information.set(user_persona.disability_information)
+            if(user_persona.disability != nil)
+              choose(factory_translate(user_persona.disability), name: 'disability[disability]')
+              if t(user_persona.disability) == t('questions.disability.yes.label') && user_persona.disability_information != nil
+                disability_information.set(user_persona.disability_information)
+              end
             end
           end
         end
