@@ -20,7 +20,7 @@ module EtFullSystem
               phone_number: representative[:telephone_number] || '',
               mobile_number: representative[:representative_mobile] || '',
               reference: representative[:representative_reference] || '',
-              contact_preference: contact_preference(representative[:representative_contact_preference]),
+              contact_preference: representative[:representative_contact_preference].to_s.split('.')[-2],
               fax_number: representative[:representative_fax] || ''
             }
             # @TODO Re add the code below once the email address is being filled in
@@ -60,15 +60,6 @@ module EtFullSystem
               fax_number: ''
             }
             expect(mapped_field_values).to include(expected_values)
-          end
-
-          def contact_preference(preference)
-            return nil if preference.nil?
-            if t(preference) == 'Ffacs'
-              'fax'
-            else
-              t(preference).downcase
-            end 
           end
         end
       end
