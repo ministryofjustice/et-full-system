@@ -737,3 +737,7 @@ cy:
           - 'Off'
       information:
         field_name: 'gynnwys ar gyfer unrhyw wrandawiadau a'
+  response_email:
+    reference: 'Eich cyfeirnod yw: %{reference}. Dylech ei ddyfynnu ar bob gohebiaeth.'
+    submission_date: 'Dyddiad cyflwyno: %{submission_date}'
+    subject: 'E-bost yn cadarnhau bod eich ymateb i’r hawliad Tribiwnlys Cyflogaeth ar-lein wedi cyrraedd'

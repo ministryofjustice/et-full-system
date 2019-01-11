@@ -1,17 +1,34 @@
 require 'mail'
 require_relative './base'
-require_relative './office_helper'
+
 require 'rack/utils'
 module EtFullSystem
   module Test
     class Et3ResponseEmailHtml < SitePrism::Page
       include RSpec::Matchers
-      include EtFullSystem::Test::OfficeHelper
       include EtFullSystem::Test::I18n
 
-      def self.find(search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, reference:, locale:, sleep: 10, timeout: 120)
-        instances = search_url.map { |mail| Et3ResponseEmailHtml.new(mail, locale: locale) }
-        instances.detect { |instance| oinstance.has_correct_subject? && instance.has_reference_element?(reference) }
+      def self.find(search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, reference:, locale:, sleep: 30, timeout: 120)
+        item = find_email(reference, search_url, sleep: sleep, timeout: timeout)
+        raise "ET3 Mail with reference #{reference} not found" unless item.present?
+        new(item, locale: locale)
+      end
+
+      def self.find_email(reference, search_url, timeout: 120, sleep: 10)
+        Timeout.timeout(timeout) do
+          item = nil
+          until item.present? do
+            query = Rack::Utils.build_query(kind: 'containing', query: reference, start: 0, limit: 1)
+            url = URI.parse(search_url)
+            url.query = query
+            response = HTTParty.get(url, headers: { accept: 'application/json' })
+            item = response.parsed_response['items'].first
+            sleep sleep unless item.present?
+          end
+          Mail.new item.dig('Raw', 'Data')
+        end
+      rescue Timeout::Error
+        return nil
       end
 
       def initialize(mail, locale:)
@@ -30,16 +47,11 @@ module EtFullSystem
         false
       end
 
-      def has_correct_content_for?(input_data, reference:) # rubocop:disable Naming/PredicateName
-        office = office_for(case_number: input_data.case_number)
+      def has_correct_content_for?(submission_date:, reference:) # rubocop:disable Naming/PredicateName
         aggregate_failures 'validating content' do
           assert_reference_element(reference)
           expect(has_correct_subject?).to be true
-          expect(has_correct_to_address_for?(input_data)).to be true
-          assert_office_name_element(office.name)
-          assert_office_address_element(office.address)
-          assert_office_telephone_element(office.telephone)
-          assert_submission_date
+          assert_submission_date_element(submission_date)
           expect(attached_pdf_for(reference: reference)).to be_present
         end
         true
@@ -68,25 +80,6 @@ module EtFullSystem
         true
       rescue Capybara::ElementNotFound
         false
-      end
-
-      def assert_submission_date
-        now = Time.zone.now
-
-        return if has_submission_date_element?(now.strftime('%d/%m/%Y'))
-        assert_submission_date_element((now - 1.minute).strftime('%d/%m/%Y'))
-      end
-
-      def assert_office_address_element(office_address)
-        assert_selector(:css,'p', text: t('response_email.office_address', locale: locale, address: office_address), wait: 0)
-      end
-
-      def assert_office_telephone_element(telephone)
-        assert_selector(:css, 'p', text: t('response_email.office_telephone', locale: locale, telephone: telephone), wait: 0)
-      end
-
-      def assert_office_name_element(office_name)
-        assert_selector(:css, 'p', text: t('response_email.office_name', locale: locale, office_name: office_name), wait: 0)
       end
 
       def attached_pdf_for(reference:)
