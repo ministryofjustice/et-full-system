@@ -8,22 +8,18 @@ Feature:
   Scenario: M3 2JA - manchester
     Given claimant home postcode 'M3 2JA' then submission office will be 'Manchester, Alexandra House, 14-22 The Parsonage, Manchester M3 2JA'
     When the completed form is submitted
-    Then I should see valid claim submitted page
 
   Scenario: G2 7TS - Glasgow
     Given claimant work postcode 'G2 7TS' then submission office will be 'Glasgow, Eagle Building, 215 Bothwell Street, Glasgow, G2 7TS'
     When the completed form is submitted
-    Then I should see valid claim submitted page
 
   Scenario: LS6 1BY - Leeds
     Given claimant work postcode 'LS6 1BY' then submission office will be 'Leeds, 4th Floor, City Exchange, 11 Albion Street, Leeds LS1 5ES'
     When the completed form is submitted
-    Then I should see valid claim submitted page
 
   Scenario: B1 1BY - Birmingham
     Given claimant work postcode 'B1 1BY' then submission office will be 'Midlands (West) ET, Centre City Tower, 5-7 Hill Street, Birmingham B5 4UU'
     When the completed form is submitted
-    Then I should see valid claim submitted page
 
   Scenario: Case number starting with 24 will be forwarded to Manchester
     Given an employer responds to a claim with case number starting '2454321/2017'
