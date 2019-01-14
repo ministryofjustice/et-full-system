@@ -262,13 +262,13 @@ cy:
     header: Adolygwch y canlynol
     description: Bydd clicio ar wall yn mynd â chi'n syth at y cwestiwn. Cywirwch y gwallau hyn cyn parhau.
     respondents_details:
-      case_number_invalid: Mae Rhif yr Achos yn annilys
+      case_number_invalid: Mae rhif yr Achos yn annilys
       contact_name: Please enter your full name
-      company_name: Ni all Enw'r unigolyn, cwmni neu sefydliad fod yn wag
-      building_name: Ni all Enw neu rif yr adeilad fod yn wag
-      street: Ni all Stryd fod yn wag
-      town: Ni all Tref/Dinas fod yn wag
-      postcode_blank: Ni all Cod post fod yn wag
+      company_name: Ni all enw'r unigolyn, cwmni neu sefydliad fod yn wag
+      building_name: Ni all enw neu rif yr adeilad fod yn wag
+      street: Ni all stryd fod yn wag
+      town: Ni all tref/dinas fod yn wag
+      postcode_blank: Ni all cod post fod yn wag
       postcode_invalid: Nid yw hwn yn god post dilys yn y DU
       contact_number_invalid: This is not a valid phone number
       mobile_number_invalid: Nid yw hwn yn rhif ffôn dilys
@@ -281,12 +281,12 @@ cy:
       client_name_error: Nodwch eich enw llawn
       header_start_date_error: Ni all Pa bryd ddechreuodd ei gyflogaeth fod yn wag
       header_end_date_error: Ni all Pa bryd ddaeth ei gyflogaeth i ben, neu y bydd yn dod i ben fod yn wag
-      start_date_blank: Ni all Employment start fod yn wag
-      end_date_blank: Ni all Employment end fod yn wag
-      disagree_dates: Ni all Pam yr ydych yn anghytuno â’r dyddiadau a roddwyd gan yr hawlydd fod yn wag
+      start_date_blank: Ni all pa bryd ddechreuodd ei gyflogaeth fod yn wag
+      end_date_blank: Ni all pa bryd ddaeth ei gyflogaeth i ben, neu y bydd yn dod i ben fod yn wag
+      disagree_dates: "Ni all pam yr ydych yn anghytuno â’r dyddiadau a roddwyd gan yr hawlydd fod yn wag"
       date_error: Invalid date
     disability:
-      disability_blank: Ni all Byddai o gymorth i ni pe baech yn nodi beth yw'ch anabledd, a dweud pa gymorth, os o gwbl, fydd arnoch ei angen wrth i'ch hawliad fynd drwy'r system, gan gynnwys ar gyfer unrhyw wrandawiadau a gynhelir mewn adeilad tribiwnlys fod yn wag
+      disability_blank: Ni all byddai o gymorth i ni pe baech yn nodi beth yw'ch anabledd, a dweud pa gymorth, os o gwbl, fydd arnoch ei angen wrth i'ch hawliad fynd drwy'r system, gan gynnwys ar gyfer unrhyw wrandawiadau a gynhelir mewn adeilad tribiwnlys fod yn wag
     response:
       response_blank: Dewiswch opsiwn
     custom:
@@ -412,7 +412,7 @@ cy:
     header: "Cadarnhau'r manylion a roddwyd"
     receipt_header: "Nodyn yn cadarnhau bod y neges e-bost wedi cyrraedd"
     receipt_description: "Nodwch eich cyfeiriad e-bost fel y gallwn roi derbynneb o'ch taliad ichi."
-    edit_answers: Golygu atebion at y dudalen hon
+    edit_answers: Golygu atebion ar y dudalen hon
     back_to_the_top: Yn ôl i frig y dudalen
     submit_guidance: Bydd clicio ar "Cyflwyno Ffurflen " ar waelod y dudalen yn anfon y manylion a gadarnheir isod i'w prosesu.
     submit: Cyflwyno Ffurflen

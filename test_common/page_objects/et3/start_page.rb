@@ -56,7 +56,7 @@ module EtFullSystem
           #Introduction
           expect(main_header).to have_header
           expect(self).to have_description
-          # What you need for this formex
+          # What you need for this form
           expect(self).to have_what_you_need
           expect(what_you_need).to have_header
           expect(what_you_need).to have_bullet_one
