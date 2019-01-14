@@ -13,6 +13,7 @@ module EtFullSystem
         when :en then nil
         else raise "We only support languages en and cy - #{in_language} is not supported"
         end
+        start_page.assert_language(:cy)
       end
 
       def et3_answer_respondents_details

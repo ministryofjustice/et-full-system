@@ -52,6 +52,15 @@ module EtFullSystem
           switch_language.english_link.click
         end
 
+        def assert_language(locale)
+          case locale
+          when :cy then switch_language.wait_until_english_link_visible
+          when :en then switch_language.wait_until_welsh_link_visible
+          else
+            raise "Unknown locale #{locale}"
+          end
+        end
+
         def has_correct_translation?
           #Introduction
           expect(main_header).to have_header
