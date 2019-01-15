@@ -80,6 +80,7 @@ RUN echo "app ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && chmod 0440 /etc/
 RUN usermod -u $APP_UID app
 USER app
 RUN bash --login -c "rvm --default use 2.5.1"
+RUN bash --login -c "gem install bundler --version=1.17.3"
 
 RUN cd /home/app
 ENV HOME /home/app
