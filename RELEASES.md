@@ -1,3 +1,32 @@
+# 1.6.0 - Admin v1.8.0, API v2.6.0, ATOS v1.3.1, ET1 v4.1.2, ET3 v2.3.2
+**20/12/2018**
+
+## New
+
+_No new features_
+
+## Changes
+
+* **API, ATOS, ET3:** Upgrade some dependencies (RST-1566)
+* **Admin, API:** Refactor ET1 claim data to support `primary_respondent`, `secondary_respondent` and `primary_representative` (RST-1533)
+
+## Fixes
+
+* **API:** Fix a database seeding issue that mainly impacted on testing (RST-1583)
+* **ET1**: Fix date fields allowing two digit dates that defaulted to the 1900s (RST-1557)
+
+## Security
+
+* **Admin, API, ATOS, ET1, ET3:** Upgrade to Rails 5.2.2 (RST-1548)
+
+## Info
+
+Deployment by Stath
+
+No downtime expected
+
+No risk expected
+
 # 1.5.1
 **12/12/2018**
 

@@ -14,6 +14,7 @@ server {
        passenger_env_var BUNDLE_EXCLUDE '';
        passenger_env_var ET_API_URL 'http://api.${SERVER_DOMAIN}:${SERVER_PORT}/api';
        passenger_env_var RAILS_ENV 'production';
+       passenger_env_var RAVEN_DSN 'https://7f2374c2e0cd4650bf5129c9fe45215e:e0ae53d01bd7454da963790ee204ffa0@sentry.io/1376078';
 
        passenger_app_env production;
 }
