@@ -1,4 +1,4 @@
-# 1.7.0 - ET1 v4.2.0
+# 1.7.0 - Admin v1.8.1, ET1 v4.2.0 
 **22/01/2019**
 
 ## New
@@ -8,12 +8,14 @@
 ## Changes
 
 * **ET1:** Ensure empty hash is sent to API when 'no address' is meant (RST-1630)
+* **Admin:** Improve performance on Claims page by removing dropdown filters (RST-1621)
 
 ## Fixes
 
 
 ## Security
 
+* **Admin:** Update Rubyzip gem (RST-1501)
 
 ## Info
 
