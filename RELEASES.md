@@ -1,3 +1,28 @@
+# 1.7.0 - ET1 v4.2.0
+**22/01/2019**
+
+## New
+
+* **ET1:** Add tracking for all sidekiq failed jobs (RST-1622)
+
+## Changes
+
+* **ET1:** Ensure empty hash is sent to API when 'no address' is meant (RST-1630)
+
+## Fixes
+
+
+## Security
+
+
+## Info
+
+Deployment by Stath
+
+No downtime expected
+
+No risk expected
+
 # 1.6.0 - Admin v1.8.0, API v2.6.0, ATOS v1.3.1, ET1 v4.1.2, ET3 v2.3.2
 **20/12/2018**
 
