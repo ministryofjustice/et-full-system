@@ -5,6 +5,9 @@ Feature: Respondents details page
 Background: ET3 respondents details page
   Given I am on the ET3 respondents details page
 
+Scenario: Verify Respondents details copy
+    Then Respondents details page copy texts are displayed in the correct language
+  
 Scenario: Successfully submits all respondents details 
   When I successfully submit all the respondents details
   Then I should be taken to the claimants details page

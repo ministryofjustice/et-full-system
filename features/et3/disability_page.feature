@@ -12,3 +12,7 @@ Scenario: Successfully submits whether I have a disability
 Scenario: Proceed without answering the disability question
   When I click on next without answering the disability question
   Then I should be taken to the employers contract claim page
+
+Scenario: Displays required information error message
+  When I click on yes without providing the required disability question
+  Then I should see the error message saying the disability details cant be blank

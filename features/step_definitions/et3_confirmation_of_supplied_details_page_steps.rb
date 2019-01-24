@@ -18,7 +18,7 @@ When(/^I submit my form$/) do
 end
 
 When(/^I am taken to the form submission page$/) do
-  expect(form_submission_page).to be_displayed
+  expect(form_submission_page).to have_header
 end
 
 Then(/^I should see my answers to the questions$/) do
@@ -38,7 +38,11 @@ When(/^I change my answer on the employer contract form page$/) do
 end
 
 Then(/^I should see my updated answer on the confirmation of supplied details page$/) do
-  expect(et3_displays_edited_answer).to eq 'false'
+  if ::EtFullSystem::Test::Messaging.instance.current_locale == :cy
+    expect(et3_displays_edited_answer).to eq 'Nac oes'
+  else
+    expect(et3_displays_edited_answer).to eq 'No'
+  end
 end
 
 Then(/^I should see each page section has a back to top link$/) do

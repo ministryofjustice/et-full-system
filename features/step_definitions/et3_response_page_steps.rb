@@ -5,7 +5,7 @@ Given(/^I am on the ET3 response page$/) do
   et3_answer_respondents_details
   et3_answer_claimants_details
   et3_answer_earnings_and_benefits
-  expect(response_page).to be_displayed
+  expect(response_page.main_header).to have_header
 end
 
 When(/^I successfully submit my response$/) do
@@ -13,7 +13,7 @@ When(/^I successfully submit my response$/) do
 end
 
 Then(/^I should be taken to your representative page$/) do
-  expect(your_representative_page).to be_displayed
+  expect(your_representative_page.main_header).to have_header
 end
 
 When(/^I try to continue without providing a response to claim question$/) do
@@ -21,6 +21,6 @@ When(/^I try to continue without providing a response to claim question$/) do
 end
 
 Then(/^I should see the error message saying the response to claim cant be blank$/) do
-  expect(response_page).to have_error_header
-  expect(response_page.defend_claim_question).to have_error_inclusion
+  expect(response_page.error_summary).to have_error_header
+  expect(response_page.defend_claim_question).to have_error
 end

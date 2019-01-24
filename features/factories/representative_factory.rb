@@ -3,7 +3,7 @@ FactoryBot.define do
   end
 
   trait :et3_information do
-    type 'Solicitor'
+    type {:"questions.type_of_representative.solicitor.label"}
     organisation_name { Faker::Company.bs }
     name { Faker::Name.name }
     building '106'
@@ -15,10 +15,10 @@ FactoryBot.define do
     alternative_telephone_number '02222 654321'
     email_address  'sivvoy.taing@hmcts.net'
     dx_number  'dx1234567890'
-    have_representative 'Yes'
+    have_representative :"questions.have_representative.yes.label"
     representative_mobile '07987654321'
     representative_reference 'Rep Ref'
-    representative_contact_preference 'Fax'
+    representative_contact_preference {:"questions.representative_contact_preference.fax.label"}
     representative_fax '0207 345 6789'
   end
 
@@ -26,7 +26,7 @@ FactoryBot.define do
     type :"simple_form.options.representative.type.solicitor"
     organisation_name { Faker::Company.bs }
     name { Faker::Name.name }
-    building '106'
+    building '106'  
     street 'Mayfair'
     locality 'London'
     county 'Greater London'
@@ -55,7 +55,7 @@ FactoryBot.define do
     alternative_telephone_number ''
     email_address  ''
     dx_number  ''
-    have_representative 'No'
+    have_representative :"questions.have_representative.no.label"
     representative_mobile ''
     representative_reference ''
     representative_contact_preference nil

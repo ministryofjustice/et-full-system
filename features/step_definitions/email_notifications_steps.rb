@@ -61,7 +61,6 @@ When(/^a respondent completes an ET3 form$/) do
 end
 
 Then(/^an email is sent to notify user that a respondent has been successfully submitted$/) do
-  et3_email = EtFullSystem::Test::Et3ResponseEmailHtml.find(reference: @my_et3_reference)
-  expect(et3_email.submission_date).to eq(form_submission_page.submission_date.text)
-  expect(et3_email.has_correct_subject?).to be true
+  email_sent = ::EtFullSystem::Test::Et3ResponseEmailHtml.find(reference: @my_et3_reference, locale: ::EtFullSystem::Test::Messaging.instance.current_locale)
+  expect(email_sent).to have_correct_content_for(submission_date: form_submission_page.submission_date.text, reference: @my_et3_reference)
 end

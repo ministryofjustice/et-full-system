@@ -26,7 +26,7 @@ Then(/^I should see the date\/time my application was submitted$/) do
 end
 
 Then(/^I can download a PDF of my application$/) do
-  expect(form_submission_page).to have_download_pdf
+  expect(form_submission_page).to have_valid_pdf_download
 end
 
 Then(/^I can return to gov.uk$/) do

@@ -2,8 +2,18 @@ module EtFullSystem
   module Test
     module Et3ResponseHelper
       def start_a_new_et3_response
-        start_page.load
+        load_et3_start_page
         start_page.next
+      end
+
+      def load_et3_start_page(in_language: ::EtFullSystem::Test::Messaging.instance.current_locale)
+        start_page.load
+        case in_language
+        when :cy then start_page.switch_to_welsh
+        when :en then nil
+        else raise "We only support languages en and cy - #{in_language} is not supported"
+        end
+        start_page.assert_language(in_language)
       end
 
       def et3_answer_respondents_details
@@ -44,7 +54,7 @@ module EtFullSystem
         claimants_details_page.claimants_name_question.set(user.claimants_name)
         claimants_details_page.agree_with_early_conciliation_details_question.set_for(user)
         claimants_details_page.agree_with_employment_dates_question.set_for(user)
-        claimants_details_page.continued_employment_question.set_for(user)
+        claimants_details_page.continued_employment_question.set_for(user.continued_employment)
         claimants_details_page.agree_with_claimants_description_of_job_or_title_question.set_for(user)
 
         claimants_details_page.next
@@ -55,10 +65,6 @@ module EtFullSystem
         claimants_details_page.agree_with_employment_dates_question.set_for(user)
 
         claimants_details_page.next
-      end
-
-      def et3_answer_no_to_employment_dates_question
-         claimants_details_page.agree_with_employment_dates_question.no.selector.click
       end
 
       def et3_answer_earnings_and_benefits
@@ -80,8 +86,7 @@ module EtFullSystem
 
       def et3_answer_representative
         user = @representative[0]
-
-        if user.have_representative == 'Yes'
+        if t(user.have_representative) == t('questions.have_representative.yes.label')
           your_representative_page.have_representative_question.set_for(user)
           your_representative_page.next
           your_representatives_details_page.type_of_representative_question.set_for(user)
@@ -142,7 +147,6 @@ module EtFullSystem
       end
 
       def et3_edit_answer
-        user = @respondent[0]
         confirmation_of_supplied_details_page.confirmation_of_employer_contract_claim_answers.edit_answers_link.click
       end
 

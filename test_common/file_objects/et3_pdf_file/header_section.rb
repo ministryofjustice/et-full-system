@@ -6,7 +6,7 @@ module EtFullSystem
         class HeaderSection < ::EtFullSystem::Test::FileObjects::Et3PdfFileSection::Base
           def has_contents_for?(respondent:)
             # @TODO Review this conditional after march 2019 - once the pdf has been sorted, it should have the date_received and rtf fields
-            if locale == 'cy'
+            if locale == :cy
               expected_values = {
                 case_number: respondent.case_number
               }

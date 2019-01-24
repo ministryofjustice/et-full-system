@@ -19,7 +19,7 @@ module EtFullSystem
               address_dx_number: respondent[:dx_number] || '',
               phone_number: respondent[:contact_number] || '',
               mobile_number: respondent[:contact_mobile_number] || '',
-              contact_preference: respondent.fetch(:contact_preference, nil),
+              contact_preference: contact_preference(respondent[:contact_preference]),
               email_address: respondent.fetch(:email_address, ''),
               fax_number: '',
               employ_gb: respondent[:organisation_employ_gb].to_s,
@@ -27,10 +27,15 @@ module EtFullSystem
               employment_at_site_number: respondent[:employment_at_site_number].to_s
             }
             # @TODO Review this conditional after march 2019 - the welsh pdf should have the contact preference field added
-            if locale == 'cy'
+            if locale == :cy
               expected_values.delete(:contact_preference)
             end
             expect(mapped_field_values).to match(expected_values)
+          end
+
+          def contact_preference(preference)
+            return nil if preference.nil?
+            t(preference).downcase
           end
         end
       end
