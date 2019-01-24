@@ -115,14 +115,8 @@ module EtFullSystem
         # Is their employment continuing? (optional)
         section :continued_employment_question, :single_choice_option, 'questions.continued_employment.label', exact: false do
           include ::EtFullSystem::Test::I18n
-          element :yes, :gds_multiple_choice_option, 'questions.continued_employment.yes.label' do
-            element :selector, :css, "input"
-            def set(*args); selector.set(*args); end
-          end
-          element :no, :gds_multiple_choice_option, 'questions.continued_employment.no.label' do
-            element :selector, :css, "input"
-            def set(*args); selector.set(*args); end
-          end
+          element :yes, :gds_multiple_choice_option, 'questions.continued_employment.yes.label'
+          element :no, :gds_multiple_choice_option, 'questions.continued_employment.no.label'
           def set_for(user)
             choose(factory_translate(user), name: 'claimants_detail[continued_employment]')
           end
@@ -130,17 +124,9 @@ module EtFullSystem
         # Is the claimant's description of their job or job title correct? (optional)
         section :agree_with_claimants_description_of_job_or_title_question, :single_choice_option, 'questions.agree_with_claimants_description_of_job_or_title.label', exact: false do
           include ::EtFullSystem::Test::I18n
-          element :yes, :gds_multiple_choice_option, 'questions.agree_with_claimants_description_of_job_or_title.yes.label' do
-            element :selector, :css, "input"
-            def set(*args); selector.set(*args); end
-          end
-          element :no, :gds_multiple_choice_option, 'questions.agree_with_claimants_description_of_job_or_title.no.label' do
-            element :selector, :css, "input"
-            def set(*args); selector.set(*args); end
-          end
-          element :disagree_claimants_job_or_title, :textarea_labelled, 'questions.agree_with_claimants_description_of_job_or_title.disagree_claimants_job_or_title.label', exact: false do
-            def set(*args); root_element.set(*args); end
-          end
+          element :yes, :gds_multiple_choice_option, 'questions.agree_with_claimants_description_of_job_or_title.yes.label'
+          element :no, :gds_multiple_choice_option, 'questions.agree_with_claimants_description_of_job_or_title.no.label'
+          element :disagree_claimants_job_or_title, :textarea_labelled, 'questions.agree_with_claimants_description_of_job_or_title.disagree_claimants_job_or_title.label', exact: false
           def set_for(user_persona)
             choose(factory_translate(user_persona.agree_with_claimants_description_of_job_or_title), name: 'claimants_detail[agree_with_claimants_description_of_job_or_title]')
             if (t(user_persona.agree_with_claimants_description_of_job_or_title) == t('questions.agree_with_claimants_description_of_job_or_title.no.label'))
