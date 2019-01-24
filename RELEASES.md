@@ -1,3 +1,42 @@
+# 1.7.0 - Admin v1.8.1, API v2.7.0, ET1 v4.2.0, ET3 v3.0.0
+**23/01/2019**
+
+## New
+
+* **ET1:** Add tracking for all sidekiq failed jobs (RST-1622)
+* **API:** Add ability to use different template, such as EN/CY email templates (RST-1511)
+* **ET3:** Welsh translation of ET3 is hidden behind an environment variable (RST-1510)
+* **ET3:** Add test coverage (non-prod)
+
+## Changes
+
+* **ET1:** Ensure empty hash is sent to API when 'no address' is meant (RST-1630)
+* **API:** Add handling for the above (RST-1629)
+* **Admin:** Improve performance on Claims page by removing dropdown filters (RST-1621)
+* **API:** Refactor test code to prevent warnings (non-prod change)
+* **ET3:** Request representative's full name (RST-1610)
+* **ET3:** Request respondent's full name (RST-1611)
+
+## Fixes
+
+* **API:** Fix a bug preventing ET1 from performing postcode lookups (RST-1627)
+
+## Security
+
+* **Admin:** Update Rubyzip gem (RST-1501)
+* **API:** Upgrade pg, unicorn, site_prism, aws-sdk-s3 and pdf-forms gems. (RST-1568)
+* **API:** Remove puma gem (RST-1568)
+* **ET3:** Upgrade chromedriver-helper, selenium-webdriver, gecko-webdriver, faker, dotenv-rails, webmock and capybara screenshot (RST-1566)
+* **ET3:** Upgrade unicorn, uk_postcode, dropzonejs-rails, uglifier and remove puma (RST-1568)
+
+## Info
+
+Deployment by Stath
+
+No downtime expected/observed
+
+No risk expected/observed
+
 # 1.6.0 - Admin v1.8.0, API v2.6.0, ATOS v1.3.1, ET1 v4.1.2, ET3 v2.3.2
 **20/12/2018**
 
