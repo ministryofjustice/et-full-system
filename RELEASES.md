@@ -1,5 +1,5 @@
 # 1.7.0 - Admin v1.8.1, API v2.7.0, ET1 v4.2.0, ET3 v3.0.0
-**22/01/2019**
+**23/01/2019**
 
 ## New
 
@@ -33,9 +33,9 @@
 
 Deployment by Stath
 
-No downtime expected
+No downtime expected/observed
 
-No risk expected
+No risk expected/observed
 
 # 1.6.0 - Admin v1.8.0, API v2.6.0, ATOS v1.3.1, ET1 v4.1.2, ET3 v2.3.2
 **20/12/2018**
