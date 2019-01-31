@@ -1,3 +1,32 @@
+# 1.7.1 - API v2.7.1, ATOS File Transfer v1.3.2
+
+**31/01/2019**
+
+## New
+
+_No new functionality_
+
+## Changes
+
+* API and ATOS File Transfer - RST 1654 & RST 1666 - No functionality changes, this is simply to allow developers to switch into azure mode for testing etc...  
+
+## Fixes
+
+* Bug Fix - RST-1674 - API should handle case insensitive ET1 filename for csv and rtf, causing problems for ET1 claims when using uppercase file extensions
+
+## Security
+
+* _No security updates_
+
+## Info
+
+Deployment by Gary
+
+No downtime expected/observed
+
+No risk expected/observed
+
+
 # 1.7.0 - Admin v1.8.1, API v2.7.0, ET1 v4.2.0, ET3 v3.0.0
 **23/01/2019**
 
