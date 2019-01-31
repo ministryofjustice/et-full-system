@@ -45,6 +45,7 @@ services:
       RAILS_ENV: 'production' # Caution - ET1 runs as local
       SERVER_PORT: ${SERVER_PORT:-3100}
       SERVER_DOMAIN: ${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
+      CLOUD_PROVIDER: ${CLOUD_PROVIDER:-amazon}
       MY_ET3:
       MY_ET1:
       MY_API:
