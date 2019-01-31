@@ -17,6 +17,8 @@ group :test do
   gem 'capybara-screenshot', '~> 1.0'
   gem 'cucumber', '~> 3.1'
   gem 'aws-sdk-s3', '~> 1.9'
+  gem 'azure-storage', '~> 0.15.0.preview', require: false
+
   # Rubyzip used to test zip files
   gem 'rubyzip', '~> 1.2', '>= 1.2.1'
   # HTTParty - used to download from ATOS API during tests
