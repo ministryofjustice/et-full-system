@@ -26,6 +26,7 @@ services:
       - et1_bundle:/home/app/full_system/systems/et1/.bundle
       - et3_bundle:/home/app/full_system/systems/et3/.bundle
       - api_bundle:/home/app/full_system/systems/api/.bundle
+      - atos_bundle:/home/app/full_system/systems/atos/.bundle
       - admin_bundle:/home/app/full_system/systems/admin/.bundle
     environment:
       DB_HOST: 'db'
@@ -95,6 +96,7 @@ volumes:
   et3_bundle:
   admin_bundle:
   api_bundle:
+  atos_bundle:
 networks:
   et_full_system:
 
