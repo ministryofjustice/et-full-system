@@ -48,6 +48,9 @@ RUN rm -f /etc/service/redis/down
 # Install minio
 RUN bash -lc "cd /usr/local/bin && wget https://dl.minio.io/server/minio/release/linux-amd64/minio && chmod +x minio"
 
+# Install azurite
+RUN bash -lc "npm install -g azurite"
+
 # Install Mailhog
 RUN bash -lc "cd /usr/local/bin && wget https://github.com/mailhog/MailHog/releases/download/v1.0.0/MailHog_linux_amd64 -O mailhog && chmod +x mailhog"
 
@@ -64,12 +67,19 @@ RUN mkdir /etc/service/s3
 COPY docker/test_server/s3.sh /etc/service/s3/run
 RUN chmod +x /etc/service/s3/run
 
+RUN mkdir /etc/service/azure_storage
+COPY docker/test_server/azure_storage.sh /etc/service/azure_storage/run
+RUN chmod +x /etc/service/azure_storage/run
+
 RUN mkdir /etc/service/smtp
 COPY docker/test_server/smtp.sh /etc/service/smtp/run
 RUN chmod +x /etc/service/smtp/run
 
 # Create the minio_data directory for the minio server
 RUN mkdir -p /home/app/minio_data; chown app:app /home/app/minio_data; chmod 0777 /home/app/minio_data
+
+# Create the azure_storage_data directory for the azure storage server
+RUN mkdir -p /home/app/azure_storage_data; chown app:app /home/app/azure_storage_data; chmod 0777 /home/app/azure_storage_data
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
