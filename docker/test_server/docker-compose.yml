@@ -23,6 +23,7 @@ services:
       - et3_assets:/home/app/full_system/systems/et3/public/assets
       - admin_assets:/home/app/full_system/systems/admin/public/assets
       - s3_data:/home/app/minio_data
+      - azure_storage_data:/home/app/azure_storage_data
       - et1_bundle:/home/app/full_system/systems/et1/.bundle
       - et3_bundle:/home/app/full_system/systems/et3/.bundle
       - api_bundle:/home/app/full_system/systems/api/.bundle
@@ -44,6 +45,7 @@ services:
       RAILS_ENV: 'production' # Caution - ET1 runs as local
       SERVER_PORT: ${SERVER_PORT:-3100}
       SERVER_DOMAIN: ${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
+      CLOUD_PROVIDER: ${CLOUD_PROVIDER:-amazon}
       MY_ET3:
       MY_ET1:
       MY_API:
@@ -62,6 +64,8 @@ services:
           - et1.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
           - et3.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
           - s3.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
+          - azure_blob_storage.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
+          - azure.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
           - atos.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
           - mail.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}
 
@@ -91,6 +95,7 @@ volumes:
   et3_assets:
   admin_assets:
   s3_data:
+  azure_storage_data:
   et1_bundle:
   et3_bundle:
   admin_bundle:
