@@ -31,6 +31,9 @@ to enter any S3 credential which quite rightly, developers do not really want to
 Note that this uses a server called 'minio' which is available for just about any platform.
 Minio has a web interface at http://s3.et.127.0.0.1.nip.io:3100 (unless you have changed the domain or port - then adjust as necessary)
 
+Also, in preparation for azure migration, we now have an azure blob server running.  To run the server in azure mode, set
+the environment variable CLOUD_PROVIDER=azure
+
 ## External Dependencies
 
 ### Docker Compose
@@ -244,6 +247,7 @@ The key environment variables are :-
 SERVER_DOMAIN - Defaults to 'et.127.0.0.1.nip.io' (correct for default server)
 SERVER_PORT - Defaults to '3100' (correct for default server)
 SMTP_PORT - The mail server by default exposes port 1025 to your localhost in case you need it.  If this port is already used you may need to change this.
+CLOUD_PROVIDER - Defaults to amazon if not set.  Can be amazon OR azure only
 
 These environment variables are the same for both the server and the test suite (if automated test are
  required to be run) and should match.
