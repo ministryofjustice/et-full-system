@@ -1,7 +1,7 @@
 server {
        listen *:${SERVER_PORT};
        server_name atos.${SERVER_DOMAIN} atos.et;
-       root ${ATOS_GEM_PATH}/public;
+       root /home/app/full_system/systems/atos/public;
        access_log /var/log/atos_server_access.log combined;
        error_log /var/log/atos_server_error.log;
        client_max_body_size 100M;

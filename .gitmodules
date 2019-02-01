@@ -11,3 +11,6 @@
 [submodule "systems/api"]
 	path = systems/api
 	url = git@github.com:ministryofjustice/et_api.git
+[submodule "systems/atos"]
+	path = systems/atos
+	url = git@github.com:ministryofjustice/et_atos_file_transfer.git
