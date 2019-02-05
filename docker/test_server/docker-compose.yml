@@ -55,6 +55,7 @@ services:
       MY_ATOS:
       ATOS_API_USERNAME: atos
       ATOS_API_PASSWORD: password
+      RAILS_LOG_TO_STDOUT: 'true'
 
     command: /bin/bash -c "/home/app/full_system/docker/test_server/docker_run"
     networks:

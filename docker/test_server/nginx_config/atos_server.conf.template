@@ -2,8 +2,8 @@ server {
        listen *:${SERVER_PORT};
        server_name atos.${SERVER_DOMAIN} atos.et;
        root /home/app/full_system/systems/atos/public;
-       access_log /var/log/atos_server_access.log combined;
-       error_log /var/log/atos_server_error.log;
+       access_log /home/app/full_system/systems/atos/lib/rails_container/log/nginx_access.log combined;
+       error_log /dev/stdout;
        client_max_body_size 100M;
 
        passenger_enabled on;
@@ -26,6 +26,7 @@ server {
        passenger_env_var AZURE_STORAGE_ACCESS_KEY 'Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==';
        passenger_env_var AZURE_STORAGE_CONTAINER 'et-api-test-container';
        passenger_env_var CLOUD_PROVIDER '${CLOUD_PROVIDER}';
+       passenger_env_var RAILS_LOG_TO_STDOUT 'true';
 
        passenger_app_env production;
 

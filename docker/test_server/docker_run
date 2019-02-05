@@ -47,7 +47,7 @@ else
 fi
 
 if [ -z "$MY_ATOS" ]; then
-    sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN envsubst '\$SERVER_PORT \$SERVER_DOMAIN' < /home/app/full_system/docker/test_server/nginx_config/atos_server.conf.template > /etc/nginx/sites-enabled/atos_server.conf"
+    sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN CLOUD_PROVIDER=$CLOUD_PROVIDER envsubst '\$SERVER_PORT \$SERVER_DOMAIN \$SERVER_DOMAIN \$CLOUD_PROVIDER' < /home/app/full_system/docker/test_server/nginx_config/atos_server.conf.template > /etc/nginx/sites-enabled/atos_server.conf"
 else
     sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN MY_ATOS=$MY_ATOS envsubst '\$SERVER_PORT \$SERVER_DOMAIN \$MY_ATOS' < /home/app/full_system/docker/test_server/nginx_config/atos_local.conf.template > /etc/nginx/sites-enabled/atos_server.conf"
 fi

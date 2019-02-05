@@ -5,4 +5,5 @@ server {
        sendfile off;
        expires 0;
        add_header        Cache-Control private;
+       error_log /dev/stdout;
 }
