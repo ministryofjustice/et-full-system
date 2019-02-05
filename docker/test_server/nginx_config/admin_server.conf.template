@@ -3,7 +3,7 @@ server {
        server_name admin.${SERVER_DOMAIN};
        root /home/app/full_system/systems/admin/public;
        access_log /home/app/full_system/systems/admin/log/nginx_access.log combined;
-       error_log /home/app/full_system/systems/admin/log/nginx_error.log;
+       error_log /dev/stdout;
 
        passenger_enabled on;
        passenger_user app;
@@ -37,6 +37,7 @@ server {
        passenger_env_var AZURE_STORAGE_ACCESS_KEY 'Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==';
        passenger_env_var AZURE_STORAGE_CONTAINER 'et-api-test-container';
        passenger_env_var CLOUD_PROVIDER '${CLOUD_PROVIDER}';
+       passenger_env_var RAILS_LOG_TO_STDOUT 'true';
 
        passenger_app_env production;
 
