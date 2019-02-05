@@ -56,6 +56,15 @@ services:
       ATOS_API_USERNAME: atos
       ATOS_API_PASSWORD: password
       RAILS_LOG_TO_STDOUT: 'true'
+      AZURE_STORAGE_BLOB_HOST: 'http://azure_blob_storage.${SERVER_DOMAIN:-et.127.0.0.1.nip.io}:${SERVER_PORT:-3100}'
+      AZURE_STORAGE_BLOB_FORCE_PATH_STYLE: 'true'
+      AZURE_STORAGE_ACCOUNT: 'devstoreaccount1'
+      AZURE_STORAGE_ACCESS_KEY: 'Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw=='
+      AZURE_STORAGE_CONTAINER: 'et-api-test-container'
+      AZURE_STORAGE_DIRECT_UPLOAD_ACCOUNT: 'devstoreaccount1'
+      AZURE_STORAGE_DIRECT_UPLOAD_ACCESS_KEY: 'Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw=='
+      AZURE_STORAGE_DIRECT_UPLOAD_CONTAINER: 'et-api-direct-test-container'
+
 
     command: /bin/bash -c "/home/app/full_system/docker/test_server/docker_run"
     networks:
