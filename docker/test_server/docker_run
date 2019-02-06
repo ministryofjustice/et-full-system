@@ -47,7 +47,7 @@ else
 fi
 
 if [ -z "$MY_ATOS" ]; then
-    sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN CLOUD_PROVIDER=$CLOUD_PROVIDER envsubst '\$SERVER_PORT \$SERVER_DOMAIN \$SERVER_DOMAIN \$CLOUD_PROVIDER' < /home/app/full_system/docker/test_server/nginx_config/atos_server.conf.template > /etc/nginx/sites-enabled/atos_server.conf"
+    sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN CLOUD_PROVIDER=$CLOUD_PROVIDER envsubst '\$SERVER_PORT \$SERVER_DOMAIN \$CLOUD_PROVIDER' < /home/app/full_system/docker/test_server/nginx_config/atos_server.conf.template > /etc/nginx/sites-enabled/atos_server.conf"
 else
     sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN MY_ATOS=$MY_ATOS envsubst '\$SERVER_PORT \$SERVER_DOMAIN \$MY_ATOS' < /home/app/full_system/docker/test_server/nginx_config/atos_local.conf.template > /etc/nginx/sites-enabled/atos_server.conf"
 fi
@@ -86,8 +86,7 @@ else
     sudo bash -c "SERVER_PORT=$SERVER_PORT SERVER_DOMAIN=$SERVER_DOMAIN MY_FAKE_ACAS=$MY_FAKE_ACAS envsubst '\$SERVER_PORT \$SERVER_DOMAIN \$MY_FAKE_ACAS' < /home/app/full_system/docker/test_server/nginx_config/fake_acas_local.conf.template > /etc/nginx/sites-enabled/fake_acas_server.conf"
 fi
 
-echo "------------------------------------------------ STARTING WEB SERVER ---------------------------------------------------"
-
-/home/app/full_system/docker/test_server/setup_buckets > /home/app/setup_buckets.log &
+echo "------------------------------------------------ STARTING WEB SERVER & STORAGE ---------------------------------------------------"
+/home/app/full_system/docker/test_server/setup_buckets &
 sudo -E DB_HOST=$DB_HOST DB_USERNAME=$DB_USERNAME /sbin/my_init
 
