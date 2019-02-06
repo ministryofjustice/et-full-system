@@ -262,7 +262,7 @@ cy:
     header: Adolygwch y canlynol
     description: Bydd clicio ar wall yn mynd â chi'n syth at y cwestiwn. Cywirwch y gwallau hyn cyn parhau.
     respondents_details:
-      case_number_invalid: Mae rhif yr Achos yn annilys
+      case_number_invalid: Mae rhif yr achos yn annilys
       contact_name: Please enter your full name
       company_name: Ni all enw'r unigolyn, cwmni neu sefydliad fod yn wag
       building_name: Ni all enw neu rif yr adeilad fod yn wag
