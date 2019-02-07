@@ -5,12 +5,12 @@ Feature:
   I want to be sure that the completed ET files are being sent to the right office
   So I can triage an employees claim against their employer
 
-  Scenario: M3 2JA - manchester
-    Given claimant home postcode 'M3 2JA' then submission office will be 'Manchester, Alexandra House, 14-22 The Parsonage, Manchester M3 2JA'
+  Scenario: SY19 7AA - wales
+    Given claimant home postcode 'SY19 7AA' then submission office will be 'Manchester, Alexandra House, 14-22 The Parsonage, Manchester M3 2JA'
     When the completed form is submitted
 
-  Scenario: G2 7TS - Glasgow
-    Given claimant work postcode 'G2 7TS' then submission office will be 'Glasgow, Eagle Building, 215 Bothwell Street, Glasgow, G2 7TS'
+  Scenario: N16 0AA - watford
+    Given claimant work postcode 'N16 0AA' then submission office will be 'Glasgow, Eagle Building, 215 Bothwell Street, Glasgow, G2 7TS'
     When the completed form is submitted
 
   Scenario: LS6 1BY - Leeds
