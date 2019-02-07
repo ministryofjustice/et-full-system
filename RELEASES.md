@@ -24,9 +24,9 @@ _No new functionality_
 
 Deployment by Stath
 
-No downtime expected
+No downtime expected/observed
 
-No risk expected
+No risk expected/observed
 
 _Note: Welsh to be enabled in production by Ben_
 
