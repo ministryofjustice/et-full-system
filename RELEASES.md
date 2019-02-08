@@ -1,3 +1,35 @@
+# 1.7.2 - ET3 v3.0.1
+
+**07/02/2019**
+
+## New
+
+_No new functionality_
+
+**NB: Welsh will be enabled in prod with this release**
+
+## Changes
+
+* **ET3:** Request claimant's full name (RST-1530)
+
+## Fixes
+
+* **ET3:** Two string amendments for Welsh (RST-1645, RST-1646)
+
+## Security
+
+* **ET3:** Gem updates
+
+## Info
+
+Deployment by Stath
+
+No downtime expected/observed
+
+No risk expected/observed
+
+_Note: Welsh to be enabled in production by Ben_
+
 # 1.7.1 - API v2.7.1, ATOS File Transfer v1.3.2
 
 **31/01/2019**
