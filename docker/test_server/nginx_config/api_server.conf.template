@@ -3,7 +3,7 @@ server {
        server_name api.${SERVER_DOMAIN} api.et;
        root /home/app/full_system/systems/api/public;
        access_log /home/app/full_system/systems/api/log/nginx_access.log combined;
-       error_log /home/app/full_system/systems/api/log/nginx_error.log;
+       error_log /dev/stdout;
        client_max_body_size 100M;
 
        passenger_enabled on;
@@ -29,11 +29,15 @@ server {
        passenger_env_var ATOS_API_PASSWORD 'password';
        passenger_env_var RAILS_MAX_THREADS 10;
        passenger_env_var RAVEN_DSN 'https://929365547a42468fb521248a96100646:139af8327fa340b88088efeae059fca8@sentry.io/1254109';
+       passenger_env_var RAILS_LOG_TO_STDOUT 'true';
        passenger_env_var AZURE_STORAGE_BLOB_HOST 'http://azure_blob_storage.${SERVER_DOMAIN}:${SERVER_PORT}';
        passenger_env_var AZURE_STORAGE_BLOB_FORCE_PATH_STYLE 'true';
        passenger_env_var AZURE_STORAGE_ACCOUNT 'devstoreaccount1';
        passenger_env_var AZURE_STORAGE_ACCESS_KEY 'Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==';
        passenger_env_var AZURE_STORAGE_CONTAINER 'et-api-test-container';
+       passenger_env_var AZURE_STORAGE_DIRECT_UPLOAD_ACCOUNT 'devstoreaccount1';
+       passenger_env_var AZURE_STORAGE_DIRECT_UPLOAD_ACCESS_KEY 'Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==';
+       passenger_env_var AZURE_STORAGE_DIRECT_UPLOAD_CONTAINER 'et-api-direct-container';
        passenger_env_var CLOUD_PROVIDER '${CLOUD_PROVIDER}';
 
        passenger_app_env production;
