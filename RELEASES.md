@@ -1,3 +1,35 @@
+# 1.7.3 - ET1 v4.2.1
+
+**12/02/2019**
+
+## New
+
+_No new functionality_
+
+## Changes
+
+_No functionality changes_
+
+## Fixes
+
+_No bug fixes_
+
+## Security
+
+_No security fixes_
+
+## Performance
+
+* ET1 - Attempt at reducing the number of timeouts reported in sidekiq (RST-1706)
+
+## Info
+
+Deployment by Gary
+
+No downtime expected/observed
+
+No risk expected/observed
+
 # 1.7.2 - ET3 v3.0.1
 
 **07/02/2019**
