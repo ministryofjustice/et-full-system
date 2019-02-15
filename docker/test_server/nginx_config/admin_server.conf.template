@@ -38,6 +38,7 @@ server {
        passenger_env_var AZURE_STORAGE_CONTAINER 'et-api-test-container';
        passenger_env_var CLOUD_PROVIDER '${CLOUD_PROVIDER}';
        passenger_env_var RAILS_LOG_TO_STDOUT 'true';
+       passenger_env_var RAVEN_DSN 'https://ff44444af15e43a287fa10eb4f3fd825:b5764132fc3a42e98d8a7f8ba3042a90@sentry.io/1389908';
 
        passenger_app_env production;
 

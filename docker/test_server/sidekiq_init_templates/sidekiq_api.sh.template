@@ -25,7 +25,7 @@ export AZURE_STORAGE_ACCESS_KEY='Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFs
 export AZURE_STORAGE_CONTAINER='et-api-test-container'
 export AZURE_STORAGE_DIRECT_UPLOAD_ACCOUNT='devstoreaccount1'
 export AZURE_STORAGE_DIRECT_UPLOAD_ACCESS_KEY='Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw=='
-export AZURE_STORAGE_DIRECT_UPLOAD_CONTAINER='et-api-direct-container'
+export AZURE_STORAGE_DIRECT_UPLOAD_CONTAINER='et-api-direct-test-container'
 export CLOUD_PROVIDER='${CLOUD_PROVIDER}'
 
 exec /sbin/setuser app bash --login -c "/usr/local/rvm/bin/rvm use && /home/app/full_system/systems/api/run_sidekiq.sh >>/home/app/full_system/systems/api/log/nginx_sidekiq.log 2>&1"
