@@ -19,6 +19,8 @@ task :setup_buckets do
     bucket.create unless bucket.exists?
   end
 end
+
+desc "Deletes all exported zip files from the server"
 task :delete_zip_files_from_server do
   atos1 = EtFullSystem::Test::AtosInterface.new username: EtFullSystem::Test::Configuration.atos_username,
                                                 password: EtFullSystem::Test::Configuration.atos_password
