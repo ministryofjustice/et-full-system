@@ -1,6 +1,6 @@
 @et3 @javascript
 
-Feature: Terms and Conditions Page
+Feature: Terms and conditions Page
   As a respondent of a claim
   I would like to know my terms and conditions before submitting my response
 

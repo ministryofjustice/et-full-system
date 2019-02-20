@@ -10,6 +10,9 @@ module EtFullSystem
           element :download_link, :link_named, 'components.sidebar.download_link'
           element :more_category_link, :link_named, 'components.sidebar.more_category_link'
         end
+        section :footer, '#footer .footer-wrapper' do
+          element :terms, :link_named, 'footer.terms'
+        end
       end
     end
   end

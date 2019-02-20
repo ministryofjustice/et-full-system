@@ -643,3 +643,12 @@ en:
     reference: 'This is your reference number: %{reference} which should be quoted on all correspondence.'
     submission_date: 'Submission date: %{submission_date}'
     subject: 'Your Response to Employment Tribunal claim online form receipt'
+  footer:
+    terms: Terms and conditions
+  terms_and_conditions:
+    common:
+      privacy_policy_href: privacy policy
+      cookie_policy_href: cookie policy
+      contact_href: Contact us
+    header: Terms and conditions
+    introduction: By using this service you’re agreeing to these terms of use. This includes the privacy policy.
