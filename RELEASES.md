@@ -1,4 +1,4 @@
-# 1.7.5 - ET1 v4.2.2, ET3 v3.0.2, API v2.7.3, Admin v1.8.2
+# 1.7.5 - ET1 v4.2.2, ET3 v3.0.2, API v2.7.3, Admin v1.8.2, ATOS v1.3.3
 
 **25/02/2019**
 
@@ -14,7 +14,7 @@ _No new functionality_
 
 ## Fixes
 
-_No bug fixes_
+* ATOS file transfer application now boots in azure mode (not yet used)
 
 ## Security
 
