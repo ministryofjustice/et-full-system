@@ -1,4 +1,4 @@
-# 1.7.5 - ET1 v4.2.2
+# 1.7.5 - ET1 v4.2.2, ET3 v3.0.2
 
 **15/02/2019**
 
@@ -23,7 +23,10 @@ _No security fixes_
 * Logging improvements
 * Reduce code base by removing old payment code from when fees were removed 2 years ago
 * Simplified the 'state' of a claim to reduce sidekiq errors
-* Gem updates (low risk) simply to get the code base up to date
+
+## Technical Debt Reduction
+
+* Gem updates (low risk) simply to get the code base up to date (ET1 and ET3)
 
 ## Info
 
