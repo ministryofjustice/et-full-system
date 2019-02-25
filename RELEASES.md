@@ -1,6 +1,6 @@
-# 1.7.5 - ET1 v4.2.2, ET3 v3.0.2
+# 1.7.5 - ET1 v4.2.2, ET3 v3.0.2, API v2.7.3
 
-**15/02/2019**
+**25/02/2019**
 
 ## New
 
@@ -8,7 +8,8 @@ _No new functionality_
 
 ## Changes
 
-_No Changes in functionality_
+* API create response (ET3 submission) can now handle azure file data - ready for changes to ET3 (in progress)
+* API create claim (ET1 submission) can now handle azure file data - ready for changes to ET1 (in progress)
 
 ## Fixes
 
@@ -20,6 +21,7 @@ _No security fixes_
 
 ## Performance
 
+* API Web server changed to higher performance 'puma' to hopefully address timeout issues or at least reduce them
 * Logging improvements
 * Reduce code base by removing old payment code from when fees were removed 2 years ago
 * Simplified the 'state' of a claim to reduce sidekiq errors
