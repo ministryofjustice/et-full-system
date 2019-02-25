@@ -1,3 +1,39 @@
+# 1.7.5 - ET1 v4.2.2
+
+**15/02/2019**
+
+## New
+
+_No new functionality_
+
+## Changes
+
+_No Changes in functionality_
+
+## Fixes
+
+_No bug fixes_
+
+## Security
+
+_No security fixes_
+
+## Performance
+
+* Logging improvements
+* Reduce code base by removing old payment code from when fees were removed 2 years ago
+* Simplified the 'state' of a claim to reduce sidekiq errors
+* Gem updates (low risk) simply to get the code base up to date
+
+## Info
+
+Deployment by Gary
+
+No downtime expected/observed
+
+No risk expected/observed
+
+
 # 1.7.4 - API v4.2.1
 
 **15/02/2019**
