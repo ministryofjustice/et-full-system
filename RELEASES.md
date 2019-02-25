@@ -1,4 +1,4 @@
-# 1.7.5 - ET1 v4.2.2, ET3 v3.0.2, API v2.7.3
+# 1.7.5 - ET1 v4.2.2, ET3 v3.0.2, API v2.7.3, Admin v1.8.2
 
 **25/02/2019**
 
@@ -10,6 +10,7 @@ _No new functionality_
 
 * API create response (ET3 submission) can now handle azure file data - ready for changes to ET3 (in progress)
 * API create claim (ET1 submission) can now handle azure file data - ready for changes to ET1 (in progress)
+* Admin now azure ready (switchable - not yet in use)
 
 ## Fixes
 
@@ -17,7 +18,7 @@ _No bug fixes_
 
 ## Security
 
-_No security fixes_
+* Admin has had its login system (devise) upgraded to latest version
 
 ## Performance
 
