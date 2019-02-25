@@ -1,3 +1,35 @@
+# 1.7.4 - API v4.2.1
+
+**15/02/2019**
+
+## New
+
+_No new functionality_
+
+## Changes
+
+Several changes getting ready for azure, none of which are enabled yet
+
+## Fixes
+
+* Bug Fix - RST-1711 API - Live Issue - CSV file was failing
+
+## Security
+
+_No security fixes_
+
+## Performance
+
+_No performance changes_
+
+## Info
+
+Deployment by Gary
+
+No downtime expected/observed
+
+No risk expected/observed
+
 # 1.7.3 - ET1 v4.2.1
 
 **12/02/2019**

@@ -73,5 +73,5 @@ Then("I can download the form from the secondary queue and that the filename sta
     admin_pages.jobs_page.run_export_claims_cron_job
   end
   expect { atos_secondary_interface }.to eventually have_zip_file_containing(:et1_filename_start_with, user: @claimant[0], local_office: string), timeout: 45, sleep: 2
-  expect(atos_secondary_interface.download_from_any_zip_to_tempfile(:et1_claim_pdf_for, user: @claimant[0])).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
+  expect(atos_secondary_interface.download_from_any_zip_to_tempfile(:et1_claim_pdf_for, user: @claimant[0])).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment), timeout: 45, sleep: 2
 end
