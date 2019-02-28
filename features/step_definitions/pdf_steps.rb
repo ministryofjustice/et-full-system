@@ -13,3 +13,35 @@ Given("an employee making a claim against {string} respondents") do |string|
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 end
+
+Given("an employee making a claim with joint claim acas number") do
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:acas_number_reason, 1, :no_acas, no_acas_number_reason: :"simple_form.options.respondent.no_acas_number_reason.joint_claimant_has_acas_number")
+  @employment = FactoryBot.create(:employment)
+  @claim = FactoryBot.create(:claim)
+end
+
+Given("an employee making a claim with no jurisdiction") do
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:acas_number_reason, 1, :no_acas, no_acas_number_reason: :"simple_form.options.respondent.no_acas_number_reason.acas_has_no_jurisdiction")
+  @employment = FactoryBot.create(:employment)
+  @claim = FactoryBot.create(:claim)
+end
+
+Given("an employee making a claim with employer contacted acas") do
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:acas_number_reason, 1, :no_acas, no_acas_number_reason: :"simple_form.options.respondent.no_acas_number_reason.employer_contacted_acas")
+  @employment = FactoryBot.create(:employment)
+  @claim = FactoryBot.create(:claim)
+end
+
+Given("an employee making a claim with interim relief") do
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:acas_number_reason, 1, :no_acas, no_acas_number_reason: :"simple_form.options.respondent.no_acas_number_reason.interim_relief")
+  @employment = FactoryBot.create(:employment)
+  @claim = FactoryBot.create(:claim)
+end

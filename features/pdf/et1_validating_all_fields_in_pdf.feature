@@ -15,32 +15,22 @@ Feature:
     When the completed form is submitted
     Then I can download the form and validate in PDF format
 
-  Scenario: Respondent details - 3 Respondents
-    Given an employee making a claim against '3' respondents
-    When the completed form is submitted
-    Then I can download the form and validate in PDF format
-
-  Scenario: Respondent details - Acas number
-    Given an employee making a claim with an acas number
-    When the completed form is submitted
-    Then I can download the form and validate in PDF format
-
   Scenario: Respondent details - Another person has the Acas number
-    Given an employee making a claim with no acas number "Another person I'm making the claim with has an Acas early conciliation certificate number"
+    Given an employee making a claim with joint claim acas number
     When the completed form is submitted
     Then I can download the form and validate in PDF format
 
   Scenario: Respondent details - Acas doesnt have the power
-    Given an employee making a claim with no acas number "Acas doesn’t have the power to conciliate on some or all of my claim"
+    Given an employee making a claim with no jurisdiction
     When the completed form is submitted
     Then I can download the form and validate in PDF format
 
   Scenario: Respondent details - Employer already been in touch
-    Given an employee making a claim with no acas number "My employer has already been in touch with Acas"
+    Given an employee making a claim with employer contacted acas
     When the completed form is submitted
     Then I can download the form and validate in PDF format
 
   Scenario: Respondent details - Unfair dismissal
-    Given an employee making a claim with no acas number "My claim consists only of a complaint of unfair dismissal which contains an application for interim relief. (See guidance)"
+    Given an employee making a claim with interim relief
     When the completed form is submitted
     Then I can download the form and validate in PDF format
