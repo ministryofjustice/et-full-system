@@ -11,17 +11,12 @@ Feature:
     Then I can download the form and validate in PDF format
 
   Scenario: Your details - contact by email
-    Given an employee making a claim wishing to be contact by 'Email'
-    When the completed form is submitted
-    Then I can download the form and validate in PDF format
-
-  Scenario: Your details - contact by fax
-    Given an employee making a claim wishing to be contact by 'fax'
+    Given an employee making a claim wishing to be contact by 'email'
     When the completed form is submitted
     Then I can download the form and validate in PDF format
 
   Scenario: Respondent details - 3 Respondents
-    Given an employee making a claim
+    Given an employee making a claim against '3' respondents
     When the completed form is submitted
     Then I can download the form and validate in PDF format
 

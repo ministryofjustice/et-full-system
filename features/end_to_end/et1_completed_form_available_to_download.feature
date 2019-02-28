@@ -26,7 +26,13 @@ Feature:
     Then I can download the form and validate in PDF format
 
   Scenario: 2 people making a claim
-    Given 2 employees making a claim
+    Given '2' employees making a claim
+    When the completed form is submitted
+    Then I can download the form and validate in PDF format
+
+  #Bug telephone number is not displaying when there are more than one respondents  
+  Scenario: Respondent details - 3 Respondents
+    Given an employee making a claim against '3' respondents
     When the completed form is submitted
     Then I can download the form and validate in PDF format
 

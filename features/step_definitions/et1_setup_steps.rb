@@ -14,8 +14,8 @@ Given(/^an employee making a claim without a respresentative$/) do
   @claim = FactoryBot.create(:claim)
 end
 
-Given(/^2 employees making a claim$/) do
-  @claimant = FactoryBot.create_list(:claimant, 2, :person_data)
+Given("{string} employees making a claim") do |string|
+  @claimant = FactoryBot.create_list(:claimant, string.to_i, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment)

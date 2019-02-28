@@ -58,6 +58,7 @@ module EtFullSystem
                     }
                 }
             }
+            binding.pry
             expect(mapped_field_values).to include expected_values
           end
         end
