@@ -34,3 +34,8 @@ Feature:
     Given an employee making a claim with interim relief
     When the completed form is submitted
     Then I can download the form and validate in PDF format
+
+  Scenario: Not aware of multiple cases against the same employer
+    Given an employee making a claim against an employer not aware of multiple cases against the same employer
+    When the completed form is submitted
+    Then I can download the form and validate in PDF format

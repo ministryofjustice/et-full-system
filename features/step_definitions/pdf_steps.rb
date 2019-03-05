@@ -45,3 +45,11 @@ Given("an employee making a claim with interim relief") do
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 end
+
+Given("an employee making a claim against an employer not aware of multiple cases against the same employer") do
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @employment = FactoryBot.create(:employment)
+  @claim = FactoryBot.create(:claim, other_claimants: :"claims.claim_type.no", other_claimant_names: '')
+end
