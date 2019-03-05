@@ -139,7 +139,9 @@ module EtFullSystem
           end
           main_content.claim_details_claim_details.set(data[:description])
           main_content.claim_details_other_known_claimants.set(data[:other_claimants])
-          main_content.other_known_claimant_names.set(data[:other_claimant_names]) if data.key?(:other_claimant_names)
+          if t(data[:other_claimants]) == 'Yes'
+            main_content.other_known_claimant_names.set(data[:other_claimant_names])
+          end
         end
       end
     end

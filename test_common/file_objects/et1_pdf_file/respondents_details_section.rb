@@ -16,7 +16,7 @@ module EtFullSystem
                     telephone_number: respondents.first.telephone_number
                 },
                 acas: {
-                    have_acas: yes_no_for(respondents.first.acas_number.present?, yes: 'yes', no: 'no'),
+                    have_acas: yes_no_for(respondents.first.acas_number.present?, yes: 'Yes', no: 'no'),
                     acas_number: respondents.first.acas_number || ''
                 },
                 different_address: {
