@@ -5,7 +5,7 @@ module EtFullSystem
       module Et1PdfFileSection
         class WhatHappenedSinceSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(employment:)
-            if employment.present?
+            if employment.employment_continuing == :"claims.employment.yes"
               expected_values = {
                   have_another_job: tri_state_for(nil),
                   start_date: '',

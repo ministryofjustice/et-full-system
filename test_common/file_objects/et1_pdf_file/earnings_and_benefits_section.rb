@@ -5,13 +5,8 @@ module EtFullSystem
       module Et1PdfFileSection
         class EarningsAndBenefitsSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(employment:)
-            employment.present? ? has_contents_for_employment?(employment) : has_contents_for_no_employment?
-          end
-
-          private
-
-          def has_contents_for_employment?(employment)
-            expected_values = {
+            if employment.employment_continuing == :"claims.employment.yes"
+              expected_values = {
                 average_weekly_hours: employment.try(:average_weekly_hours).try(:to_f).try(:to_s),
                 pay_before_tax: {
                     'amount': employment.try(:pay_before_tax),
@@ -24,12 +19,9 @@ module EtFullSystem
                 },
                 employers_pension_scheme: employers_pension_scheme(employment),
                 benefits: employment.try(:benefits)
-            }
-            expect(mapped_field_values).to include expected_values
-          end
-
-          def has_contents_for_no_employment?
-            expected_values = {
+              }
+            else
+              expected_values = {
                 average_weekly_hours: nil,
                 pay_before_tax: {
                     'amount': nil,
@@ -42,9 +34,12 @@ module EtFullSystem
                 },
                 employers_pension_scheme: nil,
                 benefits: nil
-            }
+              }
+            end
             expect(mapped_field_values).to include expected_values
           end
+
+          private
 
           def employers_pension_scheme(employment)
             return nil if employment.nil?

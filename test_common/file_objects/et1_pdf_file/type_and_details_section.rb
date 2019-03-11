@@ -27,8 +27,7 @@ module EtFullSystem
                 owed_holiday_pay: yes_no_for(claim_types.include?(:pay_holiday), yes: 'yes', no: 'Off'),
                 owed_arrears_of_pay: yes_no_for(claim_types.include?(:pay_arrears), yes: 'yes', no: 'Off'),
                 owed_other_payments: yes_no_for(claim_types.include?(:pay_other), yes: 'yes', no: 'Off'),
-                other_type_of_claim: yes_no_for(claim_types.include?(:other_claimants), yes: 'yes', no: 'Off'),
-                other_type_of_claim_details: claim.other_claimant_names,
+                other_type_of_claim: yes_no_for(claim_types.include?(:is_other_type_of_claim), yes: 'yes', no: 'Off'),
                 claim_description: claim.description
             }
             expect(mapped_field_values).to include expected_values

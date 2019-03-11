@@ -39,3 +39,14 @@ Feature:
     Given an employee making a claim against an employer not aware of multiple cases against the same employer
     When the completed form is submitted
     Then I can download the form and validate in PDF format
+
+  # TODO: Can't map this anywhere on ET1 form
+  # Scenario: Cases where the respondent was not your employer
+  #   Given an employee making a claim against a trade union
+  #   When the completed form is submitted
+  #   Then I can download the form and validate in PDF format 
+
+  Scenario: Employment details
+    Given an employee making a claim against an employer who no longer work for them
+    When the completed form is submitted
+    Then I can download the form and validate in PDF format

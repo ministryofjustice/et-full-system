@@ -351,10 +351,8 @@ module EtFullSystem
 
         def set(employment)
           data = employment.to_h
-          if data.nil? || data == {}
-            main_content.your_employment_details.set(:"claims.employment.no")
-          else
-            main_content.your_employment_details.set(:"claims.employment.yes")
+          main_content.your_employment_details.set(data[:employment_continuing])
+          if data[:employment_continuing] == :"claims.employment.yes"
             main_content do |s|
               s.employment_current_situation.set(data[:current_work_situation])
               s.employment_job_title.set(data[:job_title])
