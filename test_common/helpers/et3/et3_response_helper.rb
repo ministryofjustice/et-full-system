@@ -153,6 +153,9 @@ module EtFullSystem
       def et3_displays_edited_answer
         confirmation_of_supplied_details_page.confirmation_of_employer_contract_claim_answers.make_employer_contract_claim_row.make_employer_contract_claim_answer.text
       end
+
+      def terms_and_conditions
+      end
     end
   end
 end

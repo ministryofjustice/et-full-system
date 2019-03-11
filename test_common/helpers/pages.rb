@@ -130,6 +130,10 @@ module EtFullSystem
         @diversity_pages = DiversityPages
       end
 
+      def terms_and_conditions_page
+        EtFullSystem::Test::Et3::TermsAndConditionsPage.new
+      end
+
     end
   end
 end

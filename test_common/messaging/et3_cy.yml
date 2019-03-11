@@ -741,3 +741,12 @@ cy:
     reference: 'Eich cyfeirnod yw: %{reference}. Dylech ei ddyfynnu ar bob gohebiaeth.'
     submission_date: 'Dyddiad cyflwyno: %{submission_date}'
     subject: 'E-bost yn cadarnhau bod eich ymateb i’r hawliad Tribiwnlys Cyflogaeth ar-lein wedi cyrraedd'
+  footer:
+    terms: Terms and conditions
+  terms_and_conditions:
+    common:
+      privacy_policy_href: privacy policy
+      cookie_policy_href: cookie policy
+      contact_href: Contact us
+    header: Terms and conditions
+    introduction: By using this service you’re agreeing to these terms of use. This includes the privacy policy.
