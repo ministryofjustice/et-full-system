@@ -79,8 +79,8 @@ module EtFullSystem
 
       private
 
-      def request(method, *args)
-        self.last_response = HTTParty.send(method, *args)
+      def request(method, url, options = {})
+        self.last_response = HTTParty.send(method, url, options.merge(verify: false))
         self.cookies_hash = HTTParty::CookieHash.new
         cookies_hash.add_cookies(last_response.headers['set-cookie'])
         last_response
