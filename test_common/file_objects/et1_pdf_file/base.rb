@@ -7,8 +7,16 @@ module EtFullSystem
       # Represents the ET3 PDF file and provides assistance in validating its contents
       module Et1PdfFileSection
         class Base < ::EtFullSystem::Test::FileObjects::BasePdfFile
+          UndefinedField = Object.new
+
+          def initialize(*args, template:)
+            super(*args)
+            self.template = template
+          end
 
           private
+
+          attr_accessor :template
 
           def i18n_section
             self.class.name.demodulize.underscore.gsub(/_section\z/, '')
@@ -16,22 +24,45 @@ module EtFullSystem
 
           def mapped_field_values
             return @mapped_field_values if defined?(@mapped_field_values)
-            lookup = t("claim_pdf_fields.#{i18n_section}")
+
+            lookup = t("claim_pdf_fields.#{i18n_section}", locale: template)
             @mapped_field_values = lookup.inject({}) do |acc, (key, value)|
-              acc[key.to_sym] = mapped_value(value)
+              v = mapped_value(value, key: key)
+              acc[key.to_sym] = v unless v === UndefinedField # rubocop:disable Style/CaseEquality
               acc
             end
           end
 
-          def mapped_value(value)
+          def mapped_value(value, key:, path:)
             if value.is_a?(Hash) && !value.key?(:field_name)
               value.inject({}) do |acc, (inner_key, inner_value)|
-                acc[inner_key] = mapped_value(inner_value)
+                v = mapped_value(inner_value, key: inner_key, path: path + [key.to_s] )
+                acc[inner_key] = v unless v == UndefinedField
                 acc
               end
+            elsif value.is_a?(Hash) && value[:field_name] == false
+              UndefinedField
+            else
+              field_value_for(value, key: key, path: path)
+            end
+          end
+
+          def field_value_for(value, key:, path:)
+            if value.key?(:select_values)
+              raw = raw_value_from_pdf(value)
+              ret = value[:select_values].detect { |(_, v)| v == raw }.try(:first)
+              return true if ret == :true # rubocop:disable Lint/BooleanSymbol
+              return false if ret == :false # rubocop:disable Lint/BooleanSymbol
+              return ret.to_s if ret
+              return nil if raw == value[:unselected_value]
+              raise "Invalid value - '#{raw}' is not in the selected_values list or the unselected_value for field '#{path.join('.')}.#{key}' ('#{value[:field_name]}') for section #{self.class.name}"
             else
               field_values[value[:field_name]]
             end
+          end
+
+          def raw_value_from_pdf(value)
+            value[:field_name].is_a?(Array) ? value[:field_name].map { |f| field_values[f] } : field_values[value[:field_name]]
           end
 
           def field_name(*args)

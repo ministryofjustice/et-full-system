@@ -2,7 +2,7 @@ require 'faker'
 
 FactoryBot.define do
   factory :employment, class: OpenStruct do
-    trait :yes_employment do
+    trait :employment_continuing_yes do
       employment_continuing :"claims.employment.yes"
       current_work_situation :"simple_form.options.employment.current_situation.still_employed"
       job_title { Faker::Company.profession }
@@ -27,7 +27,7 @@ FactoryBot.define do
     end
   end
 
-  trait :no_employment do
+  trait :employment_continuing_no do
     employment_continuing :"claims.employment.no"
   end
 end
