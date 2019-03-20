@@ -1,3 +1,84 @@
+# 1.7.6 - ET1 v4.2.3, ET3 v3.1.0, API v2.7.4, Admin v1.8.3, ATOS v1.3.4
+
+**14/03/2019**
+
+## New
+
+_No new functionality_
+
+## Changes
+
+* 
+
+## Fixes
+
+* Fixes for azure in all systems (not yet used)
+* API now does file transfer work as a background job - ensuring the web server comes back quicker - reducing timeouts in ET1
+
+## Security
+
+* All systems upgraded to Rails 5.2.2.1 due to a critical vulnerability
+
+## Performance
+
+* 
+
+## Technical Debt Reduction
+
+* 
+
+## Info
+
+Deployment by Gary
+
+No downtime expected/observed
+
+No risk expected/observed
+
+
+
+# 1.7.5 - ET1 v4.2.2, ET3 v3.0.2, API v2.7.3, Admin v1.8.2, ATOS v1.3.3
+
+**25/02/2019**
+
+## New
+
+_No new functionality_
+
+## Changes
+
+* API create response (ET3 submission) can now handle azure file data - ready for changes to ET3 (in progress)
+* API create claim (ET1 submission) can now handle azure file data - ready for changes to ET1 (in progress)
+* Admin now azure ready (switchable - not yet in use)
+
+## Fixes
+
+* ATOS file transfer application now boots in azure mode (not yet used)
+
+## Security
+
+* Admin has had its login system (devise) upgraded to latest version
+
+## Performance
+
+* API Web server changed to higher performance 'puma' to hopefully address timeout issues or at least reduce them
+* Logging improvements
+* Reduce code base by removing old payment code from when fees were removed 2 years ago
+* Simplified the 'state' of a claim to reduce sidekiq errors
+
+## Technical Debt Reduction
+
+* Gem updates (low risk) simply to get the code base up to date (ET1 and ET3)
+
+## Info
+
+Deployment by Gary
+
+No downtime expected/observed
+
+No risk expected/observed
+
+
 # 1.7.4 - API v4.2.1
 
 **15/02/2019**
