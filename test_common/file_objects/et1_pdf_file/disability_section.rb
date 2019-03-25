@@ -6,8 +6,8 @@ module EtFullSystem
         class DisabilitySection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(claimant:)
             expected_values = {
-                has_special_needs: claimant.special_needs,
-                special_needs: claimant.special_needs
+              has_special_needs: yes_no_for(claimant.special_needs.present?, yes: 'yes', no: 'no'),
+              special_needs: claimant.special_needs
             }
             expect(mapped_field_values).to include expected_values
           end
