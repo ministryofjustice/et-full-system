@@ -51,3 +51,12 @@ azure_dev:
   api_url: https://et-api-dev-azure.et.dsd.io
   atos_api_url: https://et-atos-api-dev-azure.et.dsd.io
   sidekiq_url: https://et-dev-azure.et.dsd.io/apply/sidekiq
+azure_staging: 
+  <<: *defaults
+  et1_url: https://et-stg-azure.et.dsd.io
+  diversity_url: https://et-stg-azure.et.dsd.io/en/apply/diversity/claim-type
+  et3_url: https://et3-stg-azure.et.dsd.io
+  admin_url: https://et-admin-stg-azure.et.dsd.io
+  api_url: https://et-api-stg-azure.et.dsd.io
+  atos_api_url: https://et-atos-api-stg-azure.et.dsd.io
+  sidekiq_url: https://et-stg-azure.et.dsd.io/apply/sidekiq
