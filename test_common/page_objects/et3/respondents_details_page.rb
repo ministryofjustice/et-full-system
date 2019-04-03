@@ -12,7 +12,7 @@ module EtFullSystem
         end
         # Respondent's Details
         element :header, :content_header, 'respondents_details.header'
-        element :error_header, :error_titled, 'errors.header', exact: true
+        element :error_header, :error_summary_heading, 'errors.header'
         # Case number
         section :case_number_question, :question_labelled, 'questions.case_number.label', exact: false do
           element :field, :css, "input"
