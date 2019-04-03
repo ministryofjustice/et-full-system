@@ -8,15 +8,10 @@ module EtFullSystem
             if employment.employment_details == :"claims.employment.yes"
               expected_values = {
                 average_weekly_hours: employment.try(:average_weekly_hours).try(:to_f).try(:to_s),
-                pay_before_tax: {
-                    'amount': employment.try(:pay_before_tax),
-                    'period': employment.try(:pay_before_tax_type).try(:to_s).try(:split, '.').try(:last)
-                },
-                paid_for_notice_period: tri_state_for(employment.try(:paid_for_notice_period)),
-                notice_period: {
-                    weeks: weekly_notice_period(employment.try(:notice_period_type)) || '',
-                    months: monthly_notice_period(employment.try(:notice_period_type)) || ''
-                },
+                pay_before_tax: pay_tax(employment.try(:pay_before_tax), t(employment.try(:pay_before_tax_type)).downcase),
+                pay_after_tax: pay_tax(employment.try(:pay_after_tax), t(employment.try(:pay_after_tax_type)).downcase),
+                paid_for_notice_period: tri_state_for(employment.try(:paid_for_notice_period)).downcase,
+                notice_period: notice_period(employment.try(:notice_period), t(employment.try(:notice_period_type)).downcase),
                 employers_pension_scheme: employers_pension_scheme(employment),
                 benefits: employment.try(:benefits)
               }
@@ -53,17 +48,16 @@ module EtFullSystem
             end
           end
 
-
-          def weekly_notice_period(notice_period)
-            return nil if notice_period.nil?
-            amount, period = notice_period.split(' ')
-            period == 'Weekly' ? amount : nil
+          def notice_period(notice_period, notice_period_type)
+            if notice_period_type == 'months'
+              {:weeks=>"", :months=>"#{notice_period}.0"}
+            else
+              {:weeks=>"#{notice_period}.0", :months=>""}
+            end
           end
 
-          def monthly_notice_period(notice_period)
-            return nil if notice_period.nil?
-            amount, period = notice_period.split(' ')
-            period == 'Monthly' ? amount : nil
+          def pay_tax(amount, period)
+              {:amount=>"#{amount}", :period=>"#{period}"}
           end
         end
       end
