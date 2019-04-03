@@ -86,21 +86,47 @@ module EtFullSystem
               year.set(year_value)
             end
           end
+          #Notice period end date
+          section :notice_period, :css, 'fieldset[data-show-array="notice_period"]' do
+            # section :notice_period_end_date, :legend_header, 'claims.employment.notice_period_end_date', exact: false do
+              element :invalid_employment_notice_period_end_date, :error, 'activemodel.errors.models.employment.attributes.notice_period_end_date.invalid'
+              #The date your employment ends. For example, 22 04 2014
+              element :employment_notice_period_end_date_hint, :form_hint, 'simple_form.hints.employment.notice_period_end_date'
+              section :day, :question_labelled, 'simple_form.labels.employment.notice_period_end_date.day' do
+                element :field, :css, '#employment_notice_period_end_date_day'
+                def set(*args); field.set(*args); end
+              end
+              section :month, :question_labelled, 'simple_form.labels.employment.notice_period_end_date.month' do
+                element :field, :css, '#employment_notice_period_end_date_month'
+                def set(*args); field.set(*args); end
+              end
+              section :year, :question_labelled, 'simple_form.labels.employment.notice_period_end_date.year' do
+                element :field, :css, '#employment_notice_period_end_date_year'
+                def set(*args); field.set(*args); end
+              end
+              def set(value)
+                (day_value, month_value, year_value) = value.split("/")
+                day.set(day_value)
+                month.set(month_value)
+                year.set(year_value)
+              end
+            # end
+          end
           #Employment end date
           section :employment_end_date, :legend_header, 'claims.employment.end_date', exact: false do
             element :invalid_employment_end_date, :error, 'activemodel.errors.models.employment.attributes.end_date.invalid'
             #For example, 22 04 2014 (if you don’t know the exact date then put your best estimate)
             element :employment_end_date_hint, :form_hint, 'simple_form.hints.employment.end_date', exact: false
             section :day, :question_labelled, 'simple_form.labels.employment.end_date.day' do
-              element :field, :css, '#employment_notice_period_end_date_day'
+              element :field, :css, '#employment_end_date_day'
               def set(*args); field.set(*args); end
             end
             section :month, :question_labelled, 'simple_form.labels.employment.end_date.month' do
-              element :field, :css, '#employment_notice_period_end_date_month'
+              element :field, :css, '#employment_end_date_month'
               def set(*args); field.set(*args); end
             end
             section :year, :question_labelled, 'simple_form.labels.employment.end_date.year' do
-              element :field, :css, '#employment_notice_period_end_date_year'
+              element :field, :css, '#employment_end_date_year'
               def set(*args); field.set(*args); end
             end
             def set(value)
@@ -242,6 +268,74 @@ module EtFullSystem
             element :field, :css, 'textarea'
             def set(*args); field.set(*args); end
           end
+          #New Job
+          section :notice_period_end_date, :legend_header, 'claims.employment.new_job_legend', exact: false do
+            #Have you got a new job? (optional)
+            element :employment_intro, :form_labelled, 'simple_form.labels.employment.was_employed'
+            section :new_job, '.employment_found_new_job' do
+              include ::EtFullSystem::Test::I18n
+              element :yes, :form_labelled, 'claims.employment.new_job_legend.yes' do
+                element :selector, :css, 'input[type="radio"]'
+                def set(*args); selector.set(*args); end
+              end
+              element :no, :form_labelled, 'claims.employment.new_job_legend.no' do
+                element :selector, :css, 'input[type="radio"]'
+                def set(*args); selector.set(*args); end
+              end
+              def set(value)
+                choose(factory_translate(value), name: 'employment[found_new_job]')
+              end
+            end
+          end
+          section :new_job_start_date, '.reveal_new_job' do
+            #New job start date
+            element :invalid_new_job_start_date, :error, 'activemodel.errors.models.employment.attributes.new_job_start_date.invalid'
+            #The date your employment ends. For example, 22 04 2014
+            element :employment_new_job_start_date_hint, :form_hint, 'simple_form.hints.employment.new_job_start_date'
+            section :day, :question_labelled, 'simple_form.labels.employment.start_date.day' do
+              element :field, :css, '#employment_new_job_start_date_day'
+              def set(*args); field.set(*args); end
+            end
+            section :month, :question_labelled, 'simple_form.labels.employment.start_date.month' do
+              element :field, :css, '#employment_new_job_start_date_month'
+              def set(*args); field.set(*args); end
+            end
+            section :year, :question_labelled, 'simple_form.labels.employment.start_date.year' do
+              element :field, :css, '#employment_new_job_start_date_year'
+              def set(*args); field.set(*args); end
+            end
+            def set(value)
+              (day_value, month_value, year_value) = value.split("/")
+              day.set(day_value)
+              month.set(month_value)
+              year.set(year_value)
+            end
+            #New job pay before tax (optional)
+            element :new_job_gross_pay, :form_labelled, 'simple_form.labels.employment.new_job_gross_pay'
+            #This is your gross pay, before tax and other deductions. You can find it on your payslip. Don’t include any overtime payments
+            element :new_job_gross_pay_hint, :form_hint, 'simple_form.hints.employment.new_job_gross_pay'
+            section :new_job_gross_pay_count, '.prefixed-field.inline-fields' do
+              element :field, :css, 'input'
+              def set(*args); field.set(*args); end
+              section :employment_new_job_start_date_type, '.employment_new_job_start_date_type.options' do
+                include ::EtFullSystem::Test::I18n
+                element :weekly, :form_labelled, 'simple_form.options.employment.new_job_gross_pay_frequency.weekly' do
+                  element :selector, :css, 'input[type="radio"]'
+                  def set(*args); selector.set(*args); end
+                end
+                element :monthly, :form_labelled, 'simple_form.options.employment.new_job_gross_pay_frequency.monthly' do
+                  element :selector, :css, 'input[type="radio"]'
+                  def set(*args); selector.set(*args); end
+                end
+                def set(value)
+                  choose(factory_translate(value), name: "employment[new_job_gross_pay_frequency]")
+                end
+              end
+            end
+            def set(value)
+              new_job_gross_pay_count.set(value)
+            end
+          end
 
           #Save and continue
           element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
@@ -351,18 +445,25 @@ module EtFullSystem
 
         def set(employment)
           data = employment.to_h
-          main_content.your_employment_details.set(data[:employment_continuing])
-          if data[:employment_continuing] == :"claims.employment.yes"
+          main_content.your_employment_details.set(data[:employment_details])
+          if data[:employment_details] == :"claims.employment.yes"
             main_content do |s|
               s.employment_current_situation.set(data[:current_work_situation])
               s.employment_job_title.set(data[:job_title])
               s.employment_start_date.set(data[:start_date])
-              if data.key?(:notice_period)
-                s.worked_notice_period_or_paid_in_lieu.period_of_notice.set(:"claims.employment.yes")
+  
+              if data[:current_work_situation] == :"simple_form.options.employment.current_situation.notice_period"
+                s.notice_period.set(data[:notice_period_end_date])
+              end
+              if data[:current_work_situation] == :"simple_form.options.employment.current_situation.employment_terminated"
+                s.employment_end_date.set(data[:end_date])
+              end
+              if data[:paid_for_notice_period] == :"claims.employment.yes"
+                s.worked_notice_period_or_paid_in_lieu.period_of_notice.set(data[:paid_for_notice_period])
                 s.notice_period_value.set(data[:notice_period])
                 s.notice_period_value.notice_pay.employment_notice_pay_period_type.set(data[:notice_period_type])
               else
-                s.worked_notice_period_or_paid_in_lieu.period_of_notice.set(:"claims.employment.no")
+                s.worked_notice_period_or_paid_in_lieu.period_of_notice.set(data[:paid_for_notice_period])
               end
               s.employment_average_hours_worked_per_week.set(data[:average_weekly_hours])
               s.employment_gross_pay.set(data[:pay_before_tax])

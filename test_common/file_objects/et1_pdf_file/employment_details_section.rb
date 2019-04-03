@@ -5,12 +5,11 @@ module EtFullSystem
       module Et1PdfFileSection
         class EmploymentDetailsSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(employment:)
-            if employment.employment_continuing == :"claims.employment.yes"
+            if employment.employment_details == :"claims.employment.yes"
               expected_values = {
                 job_title: employment.job_title,
                 start_date: employment.start_date,
-                # employment_continuing: yes_no_for(employment.end_date.nil? || date_in_future(employment.end_date).present?).downcase,
-                employment_continuing: employment.end_date.nil? || date_in_future(employment.end_date).present?.downcase,
+                employment_continuing: employment.end_date.nil? || date_in_future(employment.end_date).present?,
                 ended_date: date_in_past(employment.try(:end_date), optional: true) || '',
                 ending_date: date_in_future(employment.try(:end_date), optional: true) || ''
               }

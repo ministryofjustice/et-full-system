@@ -46,7 +46,34 @@ Feature:
   #   When the completed form is submitted
   #   Then I can download the form and validate in PDF format 
 
-  Scenario: Employment details
-    Given an employee making a claim against an employer who no longer work for them
+  Scenario: Employment details - No never employed
+    Given an employee making a claim against an employer who never worked for them
     When the completed form is submitted
     Then I can download the form and validate in PDF format
+
+  Scenario: Employment details - working a notice period for this employer
+    Given an employee making a claim against an employer who is working against their notice period
+    When the completed form is submitted
+    Then I can download the form and validate in PDF format
+
+  Scenario: Employment details - no longer working for this employer
+    Given an employee making a claim against an employer who is no longer working for them
+    When the completed form is submitted
+    Then I can download the form and validate in PDF format
+
+  # Scenario: Employment details - no did not work (or get paid for) a period of notice?
+  #   Given an employee making a claim against an employer who no longer work for them
+  #   When the completed form is submitted
+  #   Then I can download the form and validate in PDF format
+
+  # Scenario: Employment details - no not aware of employer's pension scheme?
+  #   Given an employee making a claim against an employer who no longer work for them
+  #   When the completed form is submitted
+  #   Then I can download the form and validate in PDF format
+
+  # Scenario: Employment details - Pay, pension and benefits - weekly
+  #   Given an employee making a claim against an employer who no longer work for them
+  #   When the completed form is submitted
+  #   Then I can download the form and validate in PDF format
+
+    

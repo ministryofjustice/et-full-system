@@ -5,7 +5,7 @@ module EtFullSystem
       module Et1PdfFileSection
         class EarningsAndBenefitsSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(employment:)
-            if employment.employment_continuing == :"claims.employment.yes"
+            if employment.employment_details == :"claims.employment.yes"
               expected_values = {
                 average_weekly_hours: employment.try(:average_weekly_hours).try(:to_f).try(:to_s),
                 pay_before_tax: {
@@ -14,8 +14,8 @@ module EtFullSystem
                 },
                 paid_for_notice_period: tri_state_for(employment.try(:paid_for_notice_period)),
                 notice_period: {
-                    weeks: weekly_notice_period(employment.try(:notice_period)) || '',
-                    months: monthly_notice_period(employment.try(:notice_period)) || ''
+                    weeks: weekly_notice_period(employment.try(:notice_period_type)) || '',
+                    months: monthly_notice_period(employment.try(:notice_period_type)) || ''
                 },
                 employers_pension_scheme: employers_pension_scheme(employment),
                 benefits: employment.try(:benefits)

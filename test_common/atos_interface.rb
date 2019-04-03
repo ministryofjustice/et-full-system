@@ -178,20 +178,21 @@ module EtFullSystem
       end
 
       def list_zip_filenames
-        response = HTTParty.get("#{base_url}/list", basic_auth: { username: username, password: password })
+        response = HTTParty.get("#{base_url}/list", basic_auth: { username: username, password: password }, verify: false)
         raise "An error has occured listing the files from the atos server - the response body was \n\n#{response.body}" unless response.success?
         response.body.lines.map(&:strip)
       end
 
       def download(zip_filename, to:)
         puts "ATOS API - Downloading #{zip_filename}"
-        HTTParty.get("#{base_url}/download/#{zip_filename}", basic_auth: { username: username, password: password }) do |chunk|
+        HTTParty.get("#{base_url}/download/#{zip_filename}", basic_auth: { username: username, password: password }, verify: false) do |chunk|
           to.write(chunk)
         end
       end
 
       def delete_zip_file(filename)
-        response = HTTParty.post("#{base_url}/delete", 
+        response = HTTParty.post("#{base_url}/delete",
+          verify: false,
           basic_auth: { username: username, password: password }, 
           body: {
             filename: filename

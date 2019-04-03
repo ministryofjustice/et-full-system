@@ -215,7 +215,7 @@ en:
         found_new_job: Have you got a new job?
         notice_pay_period_count: For how many weeks or months did you get paid? (optional)
         was_employed: "Have you ever been employed by the person or organisation that you’re making this claim against? (optional)"
-        new_job_gross_pay: New job pay before tax
+        new_job_gross_pay: New job pay before tax (optional)
         start_date:
           day: "Day"
           month: "Month"
@@ -968,6 +968,10 @@ en:
         field_name: '5.1 employment start'
       employment_continuing:
         field_name: '5.1 tick boxes'
+        select_values:
+          false: 'no'
+          true: 'yes'
+        unselected_value: 'Off'
       ended_date:
         field_name: '5.1 employment end'
       ending_date:
