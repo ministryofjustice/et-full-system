@@ -1002,7 +1002,11 @@ en:
         field_name: '6.5'
     what_happened_since:
       have_another_job:
-        field_name: '7.1 tick boxes'
+        field_name: 7.1 tick boxes
+        unselected_value: 'Off'
+        select_values:
+          false: 'no'
+          true: 'yes'
       start_date:
         field_name: '7.2'
       salary:

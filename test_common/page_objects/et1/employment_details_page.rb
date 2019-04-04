@@ -286,56 +286,59 @@ module EtFullSystem
                 choose(factory_translate(value), name: 'employment[found_new_job]')
               end
             end
-          end
-          section :new_job_start_date, '.reveal_new_job' do
+
             #New job start date
-            element :invalid_new_job_start_date, :error, 'activemodel.errors.models.employment.attributes.new_job_start_date.invalid'
-            #The date your employment ends. For example, 22 04 2014
-            element :employment_new_job_start_date_hint, :form_hint, 'simple_form.hints.employment.new_job_start_date'
-            section :day, :question_labelled, 'simple_form.labels.employment.start_date.day' do
-              element :field, :css, '#employment_new_job_start_date_day'
-              def set(*args); field.set(*args); end
-            end
-            section :month, :question_labelled, 'simple_form.labels.employment.start_date.month' do
-              element :field, :css, '#employment_new_job_start_date_month'
-              def set(*args); field.set(*args); end
-            end
-            section :year, :question_labelled, 'simple_form.labels.employment.start_date.year' do
-              element :field, :css, '#employment_new_job_start_date_year'
-              def set(*args); field.set(*args); end
-            end
-            def set(value)
-              (day_value, month_value, year_value) = value.split("/")
-              day.set(day_value)
-              month.set(month_value)
-              year.set(year_value)
-            end
-            #New job pay before tax (optional)
-            element :new_job_gross_pay, :form_labelled, 'simple_form.labels.employment.new_job_gross_pay'
-            #This is your gross pay, before tax and other deductions. You can find it on your payslip. Don’t include any overtime payments
-            element :new_job_gross_pay_hint, :form_hint, 'simple_form.hints.employment.new_job_gross_pay'
-            section :new_job_gross_pay_count, '.prefixed-field.inline-fields' do
-              element :field, :css, 'input'
-              def set(*args); field.set(*args); end
-              section :employment_new_job_start_date_type, '.employment_new_job_start_date_type.options' do
-                include ::EtFullSystem::Test::I18n
-                element :weekly, :form_labelled, 'simple_form.options.employment.new_job_gross_pay_frequency.weekly' do
-                  element :selector, :css, 'input[type="radio"]'
-                  def set(*args); selector.set(*args); end
-                end
-                element :monthly, :form_labelled, 'simple_form.options.employment.new_job_gross_pay_frequency.monthly' do
-                  element :selector, :css, 'input[type="radio"]'
-                  def set(*args); selector.set(*args); end
-                end
-                def set(value)
-                  choose(factory_translate(value), name: "employment[new_job_gross_pay_frequency]")
-                end
+            section :new_job_start_date, :legend_header, 'claims.employment.new_job_start_date' do
+              element :invalid_new_job_start_date, :error, 'activemodel.errors.models.employment.attributes.new_job_start_date.invalid'
+              #The date your employment ends. For example, 22 04 2014
+              element :employment_new_job_start_date_hint, :form_hint, 'simple_form.hints.employment.new_job_start_date'
+              section :day, :question_labelled, 'simple_form.labels.employment.start_date.day' do
+                element :field, :css, '#employment_new_job_start_date_day'
+                def set(*args); field.set(*args); end
+              end
+              section :month, :question_labelled, 'simple_form.labels.employment.start_date.month' do
+                element :field, :css, '#employment_new_job_start_date_month'
+                def set(*args); field.set(*args); end
+              end
+              section :year, :question_labelled, 'simple_form.labels.employment.start_date.year' do
+                element :field, :css, '#employment_new_job_start_date_year'
+                def set(*args); field.set(*args); end
+              end
+              def set(value)
+                (day_value, month_value, year_value) = value.split("/")
+                day.set(day_value)
+                month.set(month_value)
+                year.set(year_value)
               end
             end
-            def set(value)
-              new_job_gross_pay_count.set(value)
-            end
           end
+
+          #   #New job pay before tax (optional)
+          #   element :new_job_gross_pay, :form_labelled, 'simple_form.labels.employment.new_job_gross_pay'
+          #   #This is your gross pay, before tax and other deductions. You can find it on your payslip. Don’t include any overtime payments
+          #   element :new_job_gross_pay_hint, :form_hint, 'simple_form.hints.employment.new_job_gross_pay'
+          #   section :new_job_gross_pay_count, '.prefixed-field.inline-fields' do
+          #     element :field, :css, 'input'
+          #     def set(*args); field.set(*args); end
+          #     section :employment_new_job_start_date_type, '.employment_new_job_start_date_type.options' do
+          #       include ::EtFullSystem::Test::I18n
+          #       element :weekly, :form_labelled, 'simple_form.options.employment.new_job_gross_pay_frequency.weekly' do
+          #         element :selector, :css, 'input[type="radio"]'
+          #         def set(*args); selector.set(*args); end
+          #       end
+          #       element :monthly, :form_labelled, 'simple_form.options.employment.new_job_gross_pay_frequency.monthly' do
+          #         element :selector, :css, 'input[type="radio"]'
+          #         def set(*args); selector.set(*args); end
+          #       end
+          #       def set(value)
+          #         choose(factory_translate(value), name: "employment[new_job_gross_pay_frequency]")
+          #       end
+          #     end
+          #   end
+          #   def set(value)
+          #     new_job_gross_pay_count.set(value)
+          #   end
+          # end
 
           #Save and continue
           element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
@@ -472,6 +475,12 @@ module EtFullSystem
               s.employment_net_pay.net_pay_count.employment_net_pay_period_type.set(data[:pay_after_tax_type])
               s.employment_enrolled_in_pension_scheme.pension_scheme.set(data[:employers_pension_scheme])
               s.employment_benefit_details.set(data[:benefits])
+
+              if data[:new_job] == :"claims.employment.yes"
+                s.notice_period_end_date.new_job.set(data[:new_job])
+                binding.pry
+                s.new_job_start_date.set(data[:new_job_start_date])
+              end
             end
           end
         end
