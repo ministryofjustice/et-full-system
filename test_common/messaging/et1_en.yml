@@ -593,6 +593,9 @@ en:
       header: Claim details
       claim_details: Describe your claim
       claim_details_upload: Or upload it as a separate document
+      drag_text: "Drag and drop .rtf files here"
+      or_text: "or"
+      upload_button: "Click here to upload rtf file"
       claim_details_html: "Write your claim statement below. Include the background, dates and people involved."
       claim_details_hint: More about writing your claim statement
       claim_details_hint_html: "Limit is 2500 characters. (2500 characters remaining)"
