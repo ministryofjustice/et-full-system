@@ -39,8 +39,10 @@ group :development, :test do
   gem 'parallel_tests'
 end
 
+gem 'thor', '~> 0.20.3'
+gem 'et_full_system', '0.1.5', path: 'vendor/gems/et_full_system'
 group :production do
-  gem 'et_fake_acas_server', git: 'https://github.com/ministryofjustice/et_fake_acas_server.git', ref: 'ba78be596b80a6006b543a03f1b40ff6b130d5fc'
+  gem 'et_fake_acas_server', git: 'https://github.com/ministryofjustice/et_fake_acas_server.git', ref: 'bca2a727c0bd8a16915eee499d0bb3e97ddc5cf0'
 end
 
 gem 'rake'
