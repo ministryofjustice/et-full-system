@@ -40,7 +40,7 @@ group :development, :test do
 end
 
 gem 'thor', '~> 0.20.3'
-gem 'et_full_system', '0.1.17', git: 'https://github.com/hmcts/et_full_system_gem.git', ref: '2b684106ae42affaffe454ac190f65d55d9baab9'
+gem 'et_full_system', '0.1.19', git: 'https://github.com/hmcts/et_full_system_gem.git', ref: '77d2920a4f66953cef535cf42ef4eb5bce8fedc9'
 group :production do
   gem 'et_fake_acas_server', git: 'https://github.com/ministryofjustice/et_fake_acas_server.git', ref: 'bca2a727c0bd8a16915eee499d0bb3e97ddc5cf0'
 end
