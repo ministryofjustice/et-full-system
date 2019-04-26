@@ -1,4 +1,4 @@
 #!/bin/sh
-/home/app/full_system/bin/wait-for-it.sh s3.et.127.0.0.1.nip.io:3100 -t 900
-cd /home/app/full_system && bundle && rake setup_buckets
-cd /home/app/full_system/systems/api && rake configure_azure_storage_containers configure_azure_storage_cors
+# Only used by old 'docker_run' script - @TODO Decide on whether to remove or not
+cd /home/app/full_system
+bundle exec et_full_system local file_storage setup

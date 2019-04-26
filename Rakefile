@@ -12,11 +12,23 @@ task :setup_buckets do
       force_path_style: ENV.fetch('AWS_S3_FORCE_PATH_STYLE', 'true') == 'true'
   }
   s3 = Aws::S3::Client.new(config)
-  Aws::S3::Bucket.new(client: s3, name: 'et1bucket').tap do |bucket|
-    bucket.create unless bucket.exists?
-  end
-  Aws::S3::Bucket.new(client: s3, name: 'etapibucket').tap do |bucket|
-    bucket.create unless bucket.exists?
+  retry_countdown = 10
+  begin
+    Aws::S3::Bucket.new(client: s3, name: 'et1bucket').tap do |bucket|
+      bucket.create unless bucket.exists?
+    end
+    Aws::S3::Bucket.new(client: s3, name: 'etapibucket').tap do |bucket|
+      bucket.create unless bucket.exists?
+    end
+  rescue Seahorse::Client::NetworkingError, Aws::S3::Errors::NotFound, Aws::S3::Errors::Http502Error, Aws::Errors::ServiceError
+    retry_countdown -= 1
+    if retry_countdown.zero?
+      fail "Could not connect to the S3 server after 10 retries"
+    else
+      STDERR.puts "Retrying connection to S3 server in 30 seconds"
+      sleep 30
+      retry
+    end
   end
 end
 

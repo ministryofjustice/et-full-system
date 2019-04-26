@@ -39,4 +39,4 @@ volumes:
 networks:
   test_framework:
     external:
-      name: test_server_et_full_system
+      name: ${DOCKER_ET_NETWORK:-test_server_et_full_system}
