@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/hmcts/et_full_system_gem.git
-  revision: 77d2920a4f66953cef535cf42ef4eb5bce8fedc9
-  ref: 77d2920a4f66953cef535cf42ef4eb5bce8fedc9
+  revision: 73b9170aca6932201193ceb1bed494361d9da319
+  ref: 73b9170aca6932201193ceb1bed494361d9da319
   specs:
     et_full_system (0.1.19)
       aws-sdk-s3 (~> 1.9)
