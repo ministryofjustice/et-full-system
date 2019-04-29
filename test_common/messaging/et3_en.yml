@@ -235,7 +235,7 @@ en:
       button: Click here to upload a file
     # Confirmation of Supplied Details Page
     email_receipt:
-      label: Email Address (optional)
+      label: Email address (optional)
     # Captions for Tables on CoSD Page
     table:
       caption: Confirmation of Supplied Details
@@ -422,13 +422,13 @@ en:
     drag_text: "Drag and drop .rtf files here"
     or_text: "or"
   confirmation:
-    header: Confirmation of Supplied Details
+    header: Check and submit your response
     receipt_header: Email Receipt
     receipt_description: Please enter your email address so that we can provide you with a receipt of your transaction.
     edit_answers: Edit answers on this page
     back_to_the_top: Back to the top
     submit_guidance: 'Pressing "Submit Form" at the foot of the page will send the details confirmed below for processing.'
-    submit: Submit Form
+    submit: Submit your response
   submission:
     confirmation: Response complete
     thank_you: Thank you for your submission. It has been forwarded to the following office which will contact you in due course.
