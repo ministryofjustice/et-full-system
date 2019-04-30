@@ -1,3 +1,45 @@
+# 1.7.7 - ET1 v4.2.4, ET3 v3.1.2, API v2.7.6, Admin v1.8.4, ATOS v1.3.5
+
+**25/04/2019**
+
+## New
+
+* API side validation of csv file in preparation for azure phase 2 (not yet used)
+* Duplicate filtering - When ET1 retries, any duplicates generate will now be filtered at API level
+* Import claim command added in API ready for azure phase 2
+* System is now more configurable ready for azure
+
+
+## Changes
+
+* ET3 Clears session at the beginning of the form to ensure noone elses data can be viewed from previous session
+
+## Fixes
+
+* RST-1824 - Email was trying to be sent before pdf was generated - raising sentry error
+
+## Security
+
+* Updates to fix vulnerability in 'libxslt' linux library in all 5 services
+
+## Performance
+
+* 
+
+## Technical Debt Reduction
+
+* Low risk library updates done
+
+## Info
+
+Deployment by Gary
+
+No downtime expected/observed
+
+No risk expected/observed
+
+
+
 # 1.7.6 - ET1 v4.2.3, ET3 v3.1.0, API v2.7.4, Admin v1.8.3, ATOS v1.3.4
 
 **14/03/2019**
@@ -8,7 +50,7 @@ _No new functionality_
 
 ## Changes
 
-* 
+*
 
 ## Fixes
 
@@ -21,11 +63,11 @@ _No new functionality_
 
 ## Performance
 
-* 
+*
 
 ## Technical Debt Reduction
 
-* 
+*
 
 ## Info
 
