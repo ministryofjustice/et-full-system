@@ -1,3 +1,34 @@
+# 1.7.8 - Admin v1.8.5
+
+**30/04/2019**
+
+## New
+
+
+## Changes
+
+
+## Fixes
+
+
+## Security
+
+
+## Performance
+
+
+## Technical Debt Reduction
+
+* ADMIN: Low risk library updates done (RST-1854)
+
+## Info
+
+Deployment by Stath
+
+No downtime expected
+
+No risk expected
+
 # 1.7.7 - ET1 v4.2.4, ET3 v3.1.2, API v2.7.6, Admin v1.8.4, ATOS v1.3.5
 
 **25/04/2019**
