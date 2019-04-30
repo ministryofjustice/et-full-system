@@ -1,9 +1,10 @@
-# 1.7.8 - Admin v1.8.5, API v2.8.0
+# 1.7.8 - Admin v1.8.5, API v2.8.0, ET3 v3.2.0
 
 **30/04/2019**
 
 ## New
 
+* ET3: Add footer and legal pages to ET (RST-1616, 1742, 1754, 1755)
 
 ## Changes
 
@@ -20,7 +21,7 @@
 
 ## Technical Debt Reduction
 
-* ADMIN, API: Low risk library updates done (RST-1854, RST-1853)
+* ADMIN, API, ET3: Low risk library updates done (RST-1854, RST-1853, RST-1566, RST-1568)
 
 ## Info
 
