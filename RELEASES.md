@@ -1,4 +1,4 @@
-# 1.7.8 - Admin v1.8.5
+# 1.7.8 - Admin v1.8.5, API v2.8.0
 
 **30/04/2019**
 
@@ -7,6 +7,7 @@
 
 ## Changes
 
+* API: Add office data to metadata when creating a claim (RST-1657)
 
 ## Fixes
 
@@ -19,7 +20,7 @@
 
 ## Technical Debt Reduction
 
-* ADMIN: Low risk library updates done (RST-1854)
+* ADMIN, API: Low risk library updates done (RST-1854, RST-1853)
 
 ## Info
 
