@@ -21,5 +21,5 @@ export AWS_S3_FORCE_PATH_STYLE=true
 export ET_API_URL=http://api.${SERVER_DOMAIN}:${SERVER_PORT}/api/v2
 export RAILS_LOG_TO_STDOUT='true'
 export RAVEN_DSN='https://1b78623c8bab4dfb9aeb6f5dbb31ae34:0f4a38359e7e47f99e7e69449b32ef2b@sentry.io/1355286'
-
+export SIDEKIQ_ALIVE_PORT=7434
 exec /sbin/setuser app bash --login -c "/usr/local/rvm/bin/rvm use && bundle exec sidekiq >>/home/app/full_system/systems/et1/log/nginx_sidekiq.log 2>&1"
