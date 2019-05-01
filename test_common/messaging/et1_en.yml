@@ -846,7 +846,11 @@ en:
       title:
         field_name: '1.1 title tick boxes'
         select_values:
-          miss: 'miss'
+          Miss: 'miss'
+          Mr: 'mr'
+          Mrs: 'mrs'
+          Ms: 'ms'
+        unselected_value: 'Off'
       first_name:
         field_name: '1.2 first names'
       last_name:

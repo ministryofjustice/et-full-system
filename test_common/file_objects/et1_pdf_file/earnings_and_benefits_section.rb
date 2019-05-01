@@ -10,7 +10,7 @@ module EtFullSystem
                 average_weekly_hours: employment.try(:average_weekly_hours).try(:to_f).try(:to_s),
                 pay_before_tax: pay_tax(employment.try(:pay_before_tax), t(employment.try(:pay_before_tax_type)).downcase),
                 pay_after_tax: pay_tax(employment.try(:pay_after_tax), t(employment.try(:pay_after_tax_type)).downcase),
-                paid_for_notice_period: tri_state_for(employment.try(:paid_for_notice_period)).downcase,
+                paid_for_notice_period: tri_state_for(employment.try(:paid_for_notice_period)),
                 notice_period: notice_period(employment.try(:notice_period), t(employment.try(:notice_period_type)).downcase),
                 employers_pension_scheme: employers_pension_scheme(employment),
                 benefits: employment.try(:benefits)
@@ -31,6 +31,7 @@ module EtFullSystem
                 benefits: nil
               }
             end
+            binding.pry
             expect(mapped_field_values).to include expected_values
           end
 

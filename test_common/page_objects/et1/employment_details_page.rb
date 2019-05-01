@@ -461,6 +461,7 @@ module EtFullSystem
               if data[:current_work_situation] == :"simple_form.options.employment.current_situation.employment_terminated"
                 s.employment_end_date.set(data[:end_date])
               end
+              binding.pry
               if data[:paid_for_notice_period] == :"claims.employment.yes"
                 s.worked_notice_period_or_paid_in_lieu.period_of_notice.set(data[:paid_for_notice_period])
                 s.notice_period_value.set(data[:notice_period])
