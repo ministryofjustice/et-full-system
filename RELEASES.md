@@ -1,3 +1,36 @@
+# 1.7.8 - Admin v1.8.5, API v2.8.0, ET3 v3.2.0
+
+**30/04/2019**
+
+## New
+
+* ET3: Add footer and legal pages to ET (RST-1616, 1742, 1754, 1755)
+
+## Changes
+
+* API: Add office data to metadata when creating a claim (RST-1657)
+
+## Fixes
+
+
+## Security
+
+
+## Performance
+
+
+## Technical Debt Reduction
+
+* ADMIN, API, ET3: Low risk library updates done (RST-1854, RST-1853, RST-1566, RST-1568)
+
+## Info
+
+Deployment by Stath
+
+No downtime expected/observed
+
+No risk expected/observed
+
 # 1.7.7 - ET1 v4.2.4, ET3 v3.1.2, API v2.7.6, Admin v1.8.4, ATOS v1.3.5
 
 **25/04/2019**
