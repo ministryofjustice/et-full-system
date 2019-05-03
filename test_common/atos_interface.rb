@@ -52,7 +52,7 @@ module EtFullSystem
       def download_from_zip_to_tempfile(zip_filename, identifier, **args)
         tempfile = Tempfile.new
         filename = find_file_in_zip(zip_filename, identifier, **args)
-        raise "No zip file containing #{identifier} - #{args} was found in zip file #{zip_filename}" unless filename.present?
+        raise "No file #{identifier} was found in zip file #{zip_filename} - The args were #{args}" unless filename.present?
         all_filenames_in_all_zip_files.extract_from_zip(zip_filename, filename, to: File.dirname(tempfile.path), as: File.basename(tempfile.path))
         tempfile.rewind
         tempfile

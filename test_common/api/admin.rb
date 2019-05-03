@@ -20,8 +20,9 @@ module EtFullSystem
       end
 
       def login
+        return if logged_in?
         get_token
-        request(:post, "#{url}/login",
+        resp = request(:post, "#{url}/login",
           headers: {
             'Content-Type' => 'application/x-www-form-urlencoded'
           },
@@ -34,6 +35,9 @@ module EtFullSystem
             },
             authenticity_token: csrf_token
           })
+        raise "An error occured trying to login" unless resp.success?
+
+        self.logged_in = true
       end
 
       def respondents_api
@@ -104,9 +108,15 @@ module EtFullSystem
             sleep(sleep)
           end
         end
+      rescue Timeout::Error
+        raise "An ATOS zip file for reference #{reference} was not found"
       end
 
       private
+
+      def logged_in?
+        logged_in
+      end
 
       def find_claim(claim_application_reference:, timeout: 30, sleep: 0.5)
         login
@@ -144,7 +154,7 @@ module EtFullSystem
         last_response
       end
       
-      attr_accessor :cookies_hash, :last_response, :csrf_token, :sidekiq_authenticity_token, :sidekiq_cron_form_url, :atos_interface
+      attr_accessor :cookies_hash, :last_response, :csrf_token, :sidekiq_authenticity_token, :sidekiq_cron_form_url, :atos_interface, :logged_in
     end
   end
 end
