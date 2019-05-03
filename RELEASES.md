@@ -1,3 +1,35 @@
+# 1.7.9 - ATOS v1.3.6
+
+**03/05/2019**
+
+## New
+
+
+## Changes
+
+* ATOS: Add Azure configuration for file storage
+
+## Fixes
+
+
+## Security
+
+
+## Performance
+
+
+## Technical Debt Reduction
+
+* ATOS: Low risk library updates (RST-1871)
+
+## Info
+
+Deployment by Stath
+
+No downtime expected
+
+No risk expected
+
 # 1.7.8 - Admin v1.8.5, API v2.8.0, ET3 v3.2.0
 
 **30/04/2019**
