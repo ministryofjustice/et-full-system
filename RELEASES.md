@@ -1,4 +1,4 @@
-# 1.7.9 - ATOS v1.3.6
+# 1.7.9 - ATOS v1.3.6, ET1 v4.2.5
 
 **03/05/2019**
 
@@ -11,6 +11,7 @@
 
 ## Fixes
 
+* ET1: Fix a non-production bug in ET1
 
 ## Security
 
@@ -20,7 +21,7 @@
 
 ## Technical Debt Reduction
 
-* ATOS: Low risk library updates (RST-1871)
+* ATOS, ET1: Low risk library updates (RST-1871, RST-1861)
 
 ## Info
 
