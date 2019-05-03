@@ -24,6 +24,13 @@ module EtFullSystem
         find_file_in_any_zip(identifier, **args)
       end
 
+      def zip_file_for_reference(claim_reference)
+        filename = all_filenames_in_all_zip_files.find_zip_containing_reference(claim_reference)
+        return nil if filename.nil?
+
+        AtosZipFile.new(filename, atos_interface: self)
+      end
+
       def download_from_any_zip(identifier, **args)
         filename = find_file_in_any_zip(identifier, **args)
         raise "No zip file containing #{identifier} - #{args} was found" unless filename.present?
@@ -42,6 +49,15 @@ module EtFullSystem
         tempfile
       end
 
+      def download_from_zip_to_tempfile(zip_filename, identifier, **args)
+        tempfile = Tempfile.new
+        filename = find_file_in_zip(zip_filename, identifier, **args)
+        raise "No zip file containing #{identifier} - #{args} was found in zip file #{zip_filename}" unless filename.present?
+        all_filenames_in_all_zip_files.extract_from_zip(zip_filename, filename, to: File.dirname(tempfile.path), as: File.basename(tempfile.path))
+        tempfile.rewind
+        tempfile
+      end
+
       def initialize(username:, password:)
         self.api = AtosInterfaceApi.new base_url: Configuration.atos_api_url,
                                         username: username,
@@ -52,6 +68,12 @@ module EtFullSystem
 
       def find_file_in_any_zip(identifier, **args)
         all_filenames_in_all_zip_files.find do |filename|
+          filename_matches?(filename, identifier, **args)
+        end
+      end
+
+      def find_file_in_zip(zip_filename, identifier, **args)
+        all_filenames_in_all_zip_files.find_in_zip(zip_filename) do |filename|
           filename_matches?(filename, identifier, **args)
         end
       end
@@ -104,6 +126,21 @@ module EtFullSystem
       attr_accessor :api
     end
 
+    class AtosZipFile
+      def initialize(zip_filename, atos_interface:)
+        self.zip_filename = zip_filename
+        self.atos_interface = atos_interface
+      end
+
+      def download_file(identifier, **args)
+        atos_interface.download_from_zip_to_tempfile(zip_filename, identifier, **args)
+      end
+
+      private
+
+      attr_accessor :zip_filename, :atos_interface
+    end
+
     class AtosInterfaceZipFilenameRepo
       include Enumerable
 
@@ -122,10 +159,37 @@ module EtFullSystem
         end
       end
 
+      def find_in_zip(zip_filename)
+        fetch unless fetched?
+        files_in_filename(zip_filename).find do |filename|
+          yield filename
+        end
+      end
+
+      def find_zip_containing_reference(reference)
+        fetch unless fetched?
+        filenames.find do |zip_filename|
+          files_in_filename(zip_filename).any? do |filename|
+            filename.start_with?(reference)
+          end
+        end
+      end
+
       def extract(filename, to:, as: filename)
         fetch unless fetched?
         zip_filename = zip_filename_for(filename)
         raise "No zip file contains #{filename}" unless zip_filename.present?
+        tmp_file = Tempfile.new
+        tmp_file.binmode
+        api.download(zip_filename, to: tmp_file)
+        tmp_file.rewind
+        ::Zip::File.open(tmp_file.path) do |z|
+          z.extract(filename, File.join(to, as)) { true }
+        end
+      end
+
+      def extract_from_zip(zip_filename, filename, to:, as: filename)
+        fetch unless fetched?
         tmp_file = Tempfile.new
         tmp_file.binmode
         api.download(zip_filename, to: tmp_file)

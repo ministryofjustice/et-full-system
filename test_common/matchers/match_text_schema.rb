@@ -31,8 +31,8 @@ module EtFullSystem
       def actual_as_array(actual)
         case actual
         when String then actual.lines("\r\n").map {|l| l.gsub(/\r\n\z/, '')}
-        when IO then actual.read.lines("\r\n").map {|l| l.gsub(/\r\n\z/, '')}
-        else raise "Must be a string or a file containing the data to be read"
+        when IO, Tempfile then actual.read.lines("\r\n").map {|l| l.gsub(/\r\n\z/, '')}
+        else raise "Must be a string or a file containing the data to be read - a #{actual.class.name} was provided"
         end
       end
 

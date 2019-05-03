@@ -4,6 +4,12 @@ module EtFullSystem
     class AdminApi
       include ::RSpec::Matchers
       include ::EtFullSystem::Test::I18n
+
+      # @param [::EtFullSystem::Test::AtosInterface] atos_interface
+      def initialize(atos_interface:)
+        self.atos_interface = atos_interface
+      end
+
       def url
         Configuration.admin_url
       end
@@ -77,7 +83,59 @@ module EtFullSystem
         end
       end
 
+
+      def run_export_cron_job
+        setup_for_export_cron_job
+        resp = request(:post, sidekiq_cron_form_url, body: {authenticity_token: sidekiq_authenticity_token, enque: 'Enqueue Now'}, cookies: cookies_hash)
+        raise "An error occured trying to run the export cron job" unless resp.success?
+      end
+
+      def atos_zip_file_for_claim(claim_application_reference:, timeout: 30, sleep: 0.5)
+        claim = find_claim(claim_application_reference: claim_application_reference, timeout: timeout)
+        atos_zip_file_for(reference: claim['reference'], sleep: sleep, timeout: timeout)
+      end
+
+      def atos_zip_file_for(reference:, timeout: 30, sleep: 0.5)
+        Timeout.timeout(timeout) do
+          loop do
+            run_export_cron_job
+            zip_file = atos_interface.zip_file_for_reference(reference)
+            break zip_file unless zip_file.nil?
+            sleep(sleep)
+          end
+        end
+      end
+
       private
+
+      def find_claim(claim_application_reference:, timeout: 30, sleep: 0.5)
+        login
+        Timeout.timeout(timeout) do
+          loop do
+            response = request(:get, "#{url}/claims.json?q[submission_reference_equals]=#{claim_application_reference}", cookies: cookies_hash)
+            claims = JSON.parse(response.body)
+            break claims[0] unless claims.empty?
+            sleep(sleep)
+          end
+        end
+      rescue Timeout::Error
+        Raise "The claim with application_reference #{application_reference} was not stored in the API"
+
+      end
+
+      def setup_for_export_cron_job
+        return if sidekiq_cron_form_url.present?
+
+        login
+        sidekiq_cron_url = "#{url}/sidekiq/cron"
+        response = request(:get, sidekiq_cron_url, cookies: cookies_hash)
+        doc = Nokogiri::HTML response.body
+        form_xpath = XPath.generate { |x| x.descendant(:form)[x.child(:input)[x.attr(:value).contains('Enqueue Now')]] }
+        form = doc.xpath(form_xpath.to_s)
+        self.sidekiq_authenticity_token = form.css('input[name=authenticity_token]')[0][:value]
+        self.sidekiq_cron_form_url = URI.parse(sidekiq_cron_url).tap {|u| u.path = form[0][:action] }.to_s
+
+      end
 
       def request(method, url, options = {})
         self.last_response = HTTParty.send(method, url, options.merge(verify: false))
@@ -86,7 +144,7 @@ module EtFullSystem
         last_response
       end
       
-      attr_accessor :cookies_hash, :last_response, :csrf_token
+      attr_accessor :cookies_hash, :last_response, :csrf_token, :sidekiq_authenticity_token, :sidekiq_cron_form_url, :atos_interface
     end
   end
 end
