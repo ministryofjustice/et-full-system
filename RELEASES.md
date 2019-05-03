@@ -21,7 +21,7 @@
 
 ## Technical Debt Reduction
 
-* ATOS, ET1: Low risk library updates (RST-1871, RST-1861)
+* ATOS, ET1, ET3: Low risk library updates (RST-1871, RST-1861, RST-1872)
 
 ## Info
 
