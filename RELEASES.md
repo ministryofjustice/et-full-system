@@ -27,9 +27,9 @@
 
 Deployment by Stath
 
-No downtime expected
+No downtime expected - ET1 had some downtime due to a faulty instance
 
-No risk expected
+No risk expected - ET1 users may have been unable to access ET1 due to the above
 
 # 1.7.8 - Admin v1.8.5, API v2.8.0, ET3 v3.2.0
 
