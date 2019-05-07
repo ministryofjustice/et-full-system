@@ -1,3 +1,36 @@
+# 1.7.9 - ATOS v1.3.6, ET1 v4.2.5, ET3 v3.2.1
+
+**03/05/2019**
+
+## New
+
+
+## Changes
+
+* ATOS: Add Azure configuration for file storage
+
+## Fixes
+
+* ET1: Fix a non-production bug in ET1
+
+## Security
+
+
+## Performance
+
+
+## Technical Debt Reduction
+
+* ATOS, ET1, ET3: Low risk library updates (RST-1871, RST-1861, RST-1872)
+
+## Info
+
+Deployment by Stath
+
+No downtime expected - ET1 had some downtime due to a faulty instance
+
+No risk expected - ET1 users may have been unable to access ET1 due to the above
+
 # 1.7.8 - Admin v1.8.5, API v2.8.0, ET3 v3.2.0
 
 **30/04/2019**
