@@ -129,7 +129,7 @@ module EtFullSystem
           end
         end
       rescue Timeout::Error
-        Raise "The claim with application_reference #{application_reference} was not stored in the API"
+        Raise "The claim with application_reference #{claim_application_reference} was not stored in the API"
 
       end
 
