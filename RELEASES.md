@@ -1,3 +1,37 @@
+# 1.7.10 - API v2.8.1, Admin v1.8.6, ATOS v1.3.7, ET3 v3.2.2, ET1 v4.2.6
+
+**07/05/2019**
+
+## New
+
+
+## Changes
+
+* API, Admin, ATOS,ET1, ET3: Enable Azure staging deployments
+
+## Fixes
+
+
+## Security
+
+
+## Performance
+
+
+## Technical Debt Reduction
+
+
+
+## Info
+
+Deployment by Stath
+
+Note: This deployment was to Azure Staging ahead of Penetration Testing
+
+No downtime expected/observed
+
+No risk expected/observed
+
 # 1.7.9 - ATOS v1.3.6, ET1 v4.2.5, ET3 v3.2.1
 
 **03/05/2019**
