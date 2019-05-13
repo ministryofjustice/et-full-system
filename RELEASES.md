@@ -1,3 +1,35 @@
+# 1.7.11 - ET3 v3.2.4, ET1 v4.2.8
+
+**13/05/2019**
+
+## New
+
+
+## Changes
+
+* ET1, ET3: Added welsh banner to show downtime
+
+## Fixes
+
+
+## Security
+
+
+## Performance
+
+
+## Technical Debt Reduction
+
+
+
+## Info
+
+Deployment by Gary
+
+No downtime expected/observed
+
+No risk expected/observed
+
 # 1.7.10 - API v2.8.1, Admin v1.8.6, ATOS v1.3.7, ET3 v3.2.2, ET1 v4.2.6
 
 **07/05/2019**
