@@ -114,6 +114,10 @@ module EtFullSystem
             expect(main_content.submission_details.attachments).to have_no_attachments
           end
         end
+
+        def claim_number
+          main_content.callout_confirmation.answer.text
+        end
       end
     end
   end

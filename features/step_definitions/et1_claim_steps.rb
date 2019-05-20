@@ -12,7 +12,6 @@ When /^the completed form is submitted$/ do
   et1_answer_claim_outcome_questions
   et1_answer_more_about_the_claim_questions
   et1_submit_claim
-  log_event :et1_claim_created, @claimant
 end
 
 When /^I submit a completed ET1 form$/ do
@@ -35,5 +34,4 @@ When /^I submit a completed ET1 form$/ do
   et1_answer_more_about_the_claim_questions
 
   et1_submit_claim
-  log_event :et1_claim_created, @claimant
 end

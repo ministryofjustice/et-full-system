@@ -1,3 +1,177 @@
+# 1.7.11 - ET3 v3.2.4, ET1 v4.2.8
+
+**13/05/2019**
+
+## New
+
+
+## Changes
+
+* ET1, ET3: Added welsh banner to show downtime
+
+## Fixes
+
+
+## Security
+
+
+## Performance
+
+
+## Technical Debt Reduction
+
+
+
+## Info
+
+Deployment by Gary
+
+No downtime expected/observed
+
+No risk expected/observed
+
+# 1.7.10 - API v2.8.1, Admin v1.8.6, ATOS v1.3.7, ET3 v3.2.2, ET1 v4.2.6
+
+**07/05/2019**
+
+## New
+
+
+## Changes
+
+* API, Admin, ATOS,ET1, ET3: Enable Azure staging deployments
+
+## Fixes
+
+
+## Security
+
+
+## Performance
+
+
+## Technical Debt Reduction
+
+
+
+## Info
+
+Deployment by Stath
+
+Note: This deployment was to Azure Staging ahead of Penetration Testing
+
+No downtime expected/observed
+
+No risk expected/observed
+
+# 1.7.9 - ATOS v1.3.6, ET1 v4.2.5, ET3 v3.2.1
+
+**03/05/2019**
+
+## New
+
+
+## Changes
+
+* ATOS: Add Azure configuration for file storage
+
+## Fixes
+
+* ET1: Fix a non-production bug in ET1
+
+## Security
+
+
+## Performance
+
+
+## Technical Debt Reduction
+
+* ATOS, ET1, ET3: Low risk library updates (RST-1871, RST-1861, RST-1872)
+
+## Info
+
+Deployment by Stath
+
+No downtime expected - ET1 had some downtime due to a faulty instance
+
+No risk expected - ET1 users may have been unable to access ET1 due to the above
+
+# 1.7.8 - Admin v1.8.5, API v2.8.0, ET3 v3.2.0
+
+**30/04/2019**
+
+## New
+
+* ET3: Add footer and legal pages to ET (RST-1616, 1742, 1754, 1755)
+
+## Changes
+
+* API: Add office data to metadata when creating a claim (RST-1657)
+
+## Fixes
+
+
+## Security
+
+
+## Performance
+
+
+## Technical Debt Reduction
+
+* ADMIN, API, ET3: Low risk library updates done (RST-1854, RST-1853, RST-1566, RST-1568)
+
+## Info
+
+Deployment by Stath
+
+No downtime expected/observed
+
+No risk expected/observed
+
+# 1.7.7 - ET1 v4.2.4, ET3 v3.1.2, API v2.7.6, Admin v1.8.4, ATOS v1.3.5
+
+**25/04/2019**
+
+## New
+
+* API side validation of csv file in preparation for azure phase 2 (not yet used)
+* Duplicate filtering - When ET1 retries, any duplicates generate will now be filtered at API level
+* Import claim command added in API ready for azure phase 2
+* System is now more configurable ready for azure
+
+
+## Changes
+
+* ET3 Clears session at the beginning of the form to ensure noone elses data can be viewed from previous session
+
+## Fixes
+
+* RST-1824 - Email was trying to be sent before pdf was generated - raising sentry error
+
+## Security
+
+* Updates to fix vulnerability in 'libxslt' linux library in all 5 services
+
+## Performance
+
+* 
+
+## Technical Debt Reduction
+
+* Low risk library updates done
+
+## Info
+
+Deployment by Gary
+
+No downtime expected/observed
+
+No risk expected/observed
+
+
+
 # 1.7.6 - ET1 v4.2.3, ET3 v3.1.0, API v2.7.4, Admin v1.8.3, ATOS v1.3.4
 
 **14/03/2019**
@@ -8,7 +182,7 @@ _No new functionality_
 
 ## Changes
 
-* 
+*
 
 ## Fixes
 
@@ -21,11 +195,11 @@ _No new functionality_
 
 ## Performance
 
-* 
+*
 
 ## Technical Debt Reduction
 
-* 
+*
 
 ## Info
 
