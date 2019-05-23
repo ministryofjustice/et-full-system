@@ -994,7 +994,11 @@ en:
         period:
           field_name: '6.2 normal pay tick boxes'
       paid_for_notice_period:
-        field_name: '6.3 tick boxes'
+        field_name: 6.3 tick boxes
+        unselected_value: 'Off'
+        select_values:
+          false: 'no'
+          true: 'yes'
       notice_period:
         weeks:
           field_name: '6.3 weeks'

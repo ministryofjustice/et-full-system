@@ -461,12 +461,11 @@ module EtFullSystem
               if data[:current_work_situation] == :"simple_form.options.employment.current_situation.employment_terminated"
                 s.employment_end_date.set(data[:end_date])
               end
-              binding.pry
               if data[:paid_for_notice_period] == :"claims.employment.yes"
                 s.worked_notice_period_or_paid_in_lieu.period_of_notice.set(data[:paid_for_notice_period])
                 s.notice_period_value.set(data[:notice_period])
                 s.notice_period_value.notice_pay.employment_notice_pay_period_type.set(data[:notice_period_type])
-              else
+              elsif data[:paid_for_notice_period] == :"claims.employment.no"
                 s.worked_notice_period_or_paid_in_lieu.period_of_notice.set(data[:paid_for_notice_period])
               end
               s.employment_average_hours_worked_per_week.set(data[:average_weekly_hours])
@@ -479,7 +478,6 @@ module EtFullSystem
 
               if data[:new_job] == :"claims.employment.yes"
                 s.notice_period_end_date.new_job.set(data[:new_job])
-                binding.pry
                 s.new_job_start_date.set(data[:new_job_start_date])
               end
             end

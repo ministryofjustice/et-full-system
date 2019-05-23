@@ -1022,6 +1022,10 @@ cy:
         field_name: '5.1 employment start'
       employment_continuing:
         field_name: '5.1 tick boxes'
+        select_values:
+          false: 'no'
+          true: 'yes'
+        unselected_value: 'Off'
       ended_date:
         field_name: '5.1 employment end'
       ending_date:
@@ -1040,7 +1044,11 @@ cy:
         period:
           field_name: '6.2 normal pay tick boxes'
       paid_for_notice_period:
-        field_name: '6.3 tick boxes'
+        field_name: 6.3 tick boxes
+        unselected_value: 'Off'
+        select_values:
+          false: 'no'
+          true: 'yes'
       notice_period:
         weeks:
           field_name: '6.3 weeks'
@@ -1052,7 +1060,11 @@ cy:
         field_name: '6.5'
     what_happened_since:
       have_another_job:
-        field_name: '7.1 tick boxes'
+        field_name: 7.1 tick boxes
+        unselected_value: 'Off'
+        select_values:
+          false: 'no'
+          true: 'yes'
       start_date:
         field_name: '7.2'
       salary:

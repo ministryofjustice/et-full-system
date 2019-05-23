@@ -31,8 +31,8 @@ FactoryBot.define do
       current_work_situation :"simple_form.options.employment.current_situation.still_employed"
       job_title { Faker::Company.profession }
       start_date '18/11/2009'
-      # notice_period '3'
-      notice_period_type :"simple_form.options.employment.notice_pay_period_type.months"
+      notice_period nil
+      notice_period_type nil
       average_weekly_hours '38'
       pay_before_tax '3000'
       pay_before_tax_type :"simple_form.options.employment.gross_pay_period_type.monthly"
@@ -40,7 +40,12 @@ FactoryBot.define do
       pay_after_tax_type :"simple_form.options.employment.net_pay_period_type.monthly"
       employers_pension_scheme :"claims.employment.true"
       benefits 'Company car, private health care'
-      paid_for_notice_period :"claims.employment.no"
+      paid_for_notice_period nil
+      #New Job
+      new_job :"claims.employment.no"
+      new_job_start_date nil
+      new_job_before_tax nil
+      new_job_pay_before_tax nil
       # end_date nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in pdf code and submission page code
       # paid_for_notice_period nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in pdf code
       # new_job nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in submission page code
