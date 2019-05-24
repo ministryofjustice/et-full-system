@@ -18,7 +18,7 @@ module EtFullSystem
                 alternative_telephone_number: representative.alternative_telephone_number,
                 reference: nil, # Should be populated by ET1 but it isnt yet
                 email_address: representative.email_address,
-                communication_preference: 'Off', # ET1 Doesnt capture this
+                communication_preference: nil, # ET1 Doesnt capture this
                 fax_number: nil # ET1 Doesnt capture this
             }
             expect(mapped_field_values).to include expected_values

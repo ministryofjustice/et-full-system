@@ -311,34 +311,32 @@ module EtFullSystem
                 year.set(year_value)
               end
             end
-          end
 
-          #   #New job pay before tax (optional)
-          #   element :new_job_gross_pay, :form_labelled, 'simple_form.labels.employment.new_job_gross_pay'
-          #   #This is your gross pay, before tax and other deductions. You can find it on your payslip. Don’t include any overtime payments
-          #   element :new_job_gross_pay_hint, :form_hint, 'simple_form.hints.employment.new_job_gross_pay'
-          #   section :new_job_gross_pay_count, '.prefixed-field.inline-fields' do
-          #     element :field, :css, 'input'
-          #     def set(*args); field.set(*args); end
-          #     section :employment_new_job_start_date_type, '.employment_new_job_start_date_type.options' do
-          #       include ::EtFullSystem::Test::I18n
-          #       element :weekly, :form_labelled, 'simple_form.options.employment.new_job_gross_pay_frequency.weekly' do
-          #         element :selector, :css, 'input[type="radio"]'
-          #         def set(*args); selector.set(*args); end
-          #       end
-          #       element :monthly, :form_labelled, 'simple_form.options.employment.new_job_gross_pay_frequency.monthly' do
-          #         element :selector, :css, 'input[type="radio"]'
-          #         def set(*args); selector.set(*args); end
-          #       end
-          #       def set(value)
-          #         choose(factory_translate(value), name: "employment[new_job_gross_pay_frequency]")
-          #       end
-          #     end
-          #   end
-          #   def set(value)
-          #     new_job_gross_pay_count.set(value)
-          #   end
-          # end
+            #New job pay before tax (optional)
+            element :new_job_gross_pay, :form_labelled, 'simple_form.labels.employment.new_job_gross_pay'
+            #This is your gross pay, before tax and other deductions. You can find it on your payslip. Don’t include any overtime payments
+            element :new_job_pay_before_tax_hint, :form_hint, 'simple_form.hints.employment.new_job_gross_pay'
+            section :new_job_pay_before_tax, '.prefixed-field.inline-fields' do
+              section :currency_field, '.currency_field' do
+                element :field, :css, 'input'
+                def set(*args); field.set(*args); end
+              end
+              section :new_job_pay_before_tax_type, '.input' do
+                include ::EtFullSystem::Test::I18n
+                element :weekly, :form_labelled, 'simple_form.options.employment.new_job_gross_pay_frequency.weekly' do
+                  element :selector, :css, "#employment_new_job_gross_pay_frequency_weekly"
+                  def set(*args); selector.set(*args); end
+                end
+                element :monthly, :form_labelled, 'simple_form.options.employment.new_job_gross_pay_frequency.monthly' do
+                  element :selector, :css, "#employment_new_job_gross_pay_frequency_monthly"
+                  def set(*args); selector.set(*args); end
+                end
+                def set(value)
+                  choose(factory_translate(value), name: "employment[new_job_gross_pay_frequency]")
+                end
+              end
+            end
+          end
 
           #Save and continue
           element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
@@ -478,7 +476,9 @@ module EtFullSystem
 
               if data[:new_job] == :"claims.employment.yes"
                 s.notice_period_end_date.new_job.set(data[:new_job])
-                s.new_job_start_date.set(data[:new_job_start_date])
+                s.notice_period_end_date.new_job_start_date.set(data[:new_job_start_date])
+                s.notice_period_end_date.new_job_pay_before_tax.currency_field.set(data[:new_job_pay_before_tax])
+                s.notice_period_end_date.new_job_pay_before_tax.new_job_pay_before_tax_type.set(data[:new_job_pay_before_tax_type])
               end
             end
           end

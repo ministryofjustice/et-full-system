@@ -66,7 +66,7 @@ Given("an employee making a claim against an employer who never worked for them"
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
-  @employment = FactoryBot.create(:employment, :employment_continuing_no)
+  @employment = FactoryBot.create(:employment, :no_employment_details)
   @claim = FactoryBot.create(:claim)
 end
 

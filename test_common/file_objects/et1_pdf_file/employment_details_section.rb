@@ -11,7 +11,7 @@ module EtFullSystem
                 start_date: employment.start_date,
                 employment_continuing: employment.end_date.nil? || date_in_future(employment.end_date).present?,
                 ended_date: date_in_past(employment.try(:end_date), optional: true) || '',
-                ending_date: date_in_future(employment.try(:end_date), optional: true) || ''
+                ending_date: date_in_future(employment.try(:notice_period_end_date), optional: true) || ''
               }
             else
               expected_values = {

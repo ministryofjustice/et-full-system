@@ -8,7 +8,8 @@ FactoryBot.define do
       job_title { Faker::Company.profession }
       start_date '18/11/2009'
       notice_period_end_date '01/01/2025'
-      notice_period_type :"simple_form.options.employment.notice_pay_period_type.months"
+      notice_period nil
+      notice_period_type nil
       average_weekly_hours '38'
       pay_before_tax '3000'
       pay_before_tax_type :"simple_form.options.employment.gross_pay_period_type.monthly"
@@ -77,7 +78,7 @@ FactoryBot.define do
       #New Job
       new_job :"claims.employment.yes"
       new_job_start_date '18/11/2009'
-      new_job_before_tax :"simple_form.options.employment.new_job_gross_pay_frequency.monthly"
+      new_job_pay_before_tax_type :"simple_form.options.employment.new_job_gross_pay_frequency.monthly"
       new_job_pay_before_tax '3000'
     end
 

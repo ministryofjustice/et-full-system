@@ -18,6 +18,7 @@ FactoryBot.define do
       :"simple_form.options.claim_type.pay_claims.arrears",
       :"simple_form.labels.claim_type.is_other_type_of_claim"]
     whistleblowing_claim :"claims.claim_type.yes"
+    other_type_of_claim_details 'other type of claim details'
     send_to_relevant_person :"simple_form.yes"
     description 'Full text version of claim'
     other_claimants :"claims.claim_type.yes"

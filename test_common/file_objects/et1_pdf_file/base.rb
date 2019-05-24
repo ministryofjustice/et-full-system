@@ -47,8 +47,11 @@ module EtFullSystem
               ret = value[:select_values].detect { |(_, v)| v == raw }.try(:first)
               return ret if ret == true || ret == false
               return ret.to_s if ret
-              return nil if raw == value[:unselected_value]
-  
+              if value[:unselected_value].is_a? Array
+                return nil if value[:unselected_value].include?(raw)
+              else
+                return nil if value[:unselected_value] == raw
+              end  
               raise "Invalid value - '#{raw}' is not in the selected_values list or the unselected_value for field '#{path.join('.')}.#{key}' ('#{value[:field_name]}') for section #{self.class.name}"
             else
               field_values[value[:field_name]]
