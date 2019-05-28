@@ -17,14 +17,12 @@ FactoryBot.define do
       pay_after_tax_type :"simple_form.options.employment.net_pay_period_type.monthly"
       employers_pension_scheme :"claims.employment.true"
       benefits 'Company car, private health care'
-      # end_date nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in pdf code and submission page code
-      # paid_for_notice_period nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in pdf code
-      # new_job nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in submission page code
-      # new_job_gross_pay nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in submission page code
-      # new_job_gross_pay_type nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in submission page code
-      # notice_pay nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in submission page code
-      # notice_pay_type nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in submission page code
-      # notice_period_end_date nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in submission page code
+      paid_for_notice_period nil
+      #New Job
+      new_job :"claims.employment.no"
+      new_job_start_date ''
+      new_job_before_tax ''
+      new_job_pay_before_tax ''
     end
 
     trait :still_employed do
@@ -44,17 +42,9 @@ FactoryBot.define do
       paid_for_notice_period nil
       #New Job
       new_job :"claims.employment.no"
-      new_job_start_date nil
-      new_job_before_tax nil
-      new_job_pay_before_tax nil
-      # end_date nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in pdf code and submission page code
-      # paid_for_notice_period nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in pdf code
-      # new_job nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in submission page code
-      # new_job_gross_pay nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in submission page code
-      # new_job_gross_pay_type nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in submission page code
-      # notice_pay nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in submission page code
-      # notice_pay_type nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in submission page code
-      # notice_period_end_date nil # This isnt used to fill in any forms yet, but perhaps should be.  It is being validated against in submission page code
+      new_job_start_date ''
+      new_job_before_tax ''
+      new_job_pay_before_tax ''
     end
 
     trait :employment_terminated do
@@ -75,6 +65,7 @@ FactoryBot.define do
       pay_after_tax_type :"simple_form.options.employment.net_pay_period_type.monthly"
       employers_pension_scheme :"claims.employment.true"
       benefits 'Company car, private health care'
+      paid_for_notice_period nil
       #New Job
       new_job :"claims.employment.yes"
       new_job_start_date '18/11/2009'
