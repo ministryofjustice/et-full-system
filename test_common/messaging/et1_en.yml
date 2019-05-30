@@ -557,6 +557,9 @@ en:
       current_situation: What is your current work situation in relation to the employer you're making a claim against?
       start_date: Employment start date
       end_date: Employment end date
+      paid_for_notice_period:
+        "yes": 'Yes'
+        "no": 'No'
       worked_notice_period_or_paid_in_lieu: Did you work (or get paid for) a period of notice?
       new_job_start_date: New job start date
       notice_period_end_date: Notice period end date

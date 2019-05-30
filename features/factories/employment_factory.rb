@@ -7,9 +7,11 @@ FactoryBot.define do
       current_work_situation :"simple_form.options.employment.current_situation.notice_period"
       job_title { Faker::Company.profession }
       start_date '18/11/2009'
-      notice_period_end_date '01/01/2025'
+      #Did you work (or get paid for) a period of notice?
+      paid_for_notice_period :"claims.employment.paid_for_notice_period.no"
       notice_period nil
       notice_period_type nil
+      notice_period_end_date '01/01/2025'
       average_weekly_hours '38'
       pay_before_tax '3000'
       pay_before_tax_type :"simple_form.options.employment.gross_pay_period_type.monthly"
@@ -17,7 +19,6 @@ FactoryBot.define do
       pay_after_tax_type :"simple_form.options.employment.net_pay_period_type.monthly"
       employers_pension_scheme :"claims.employment.true"
       benefits 'Company car, private health care'
-      paid_for_notice_period nil
       #New Job
       new_job :"claims.employment.new_job.no"
       new_job_start_date ''
@@ -30,7 +31,9 @@ FactoryBot.define do
       current_work_situation :"simple_form.options.employment.current_situation.still_employed"
       job_title { Faker::Company.profession }
       start_date '18/11/2009'
-      notice_period nil
+      #Did you work (or get paid for) a period of notice?
+      paid_for_notice_period :"claims.employment.paid_for_notice_period.no"
+      notice_period '3'
       notice_period_type nil
       average_weekly_hours '38'
       pay_before_tax '3000'
@@ -39,7 +42,6 @@ FactoryBot.define do
       pay_after_tax_type :"simple_form.options.employment.net_pay_period_type.monthly"
       employers_pension_scheme :"claims.employment.true"
       benefits 'Company car, private health care'
-      paid_for_notice_period nil
       #New Job
       new_job :"claims.employment.new_job.no"
       new_job_start_date ''
@@ -54,7 +56,7 @@ FactoryBot.define do
       start_date '18/11/2009'
       end_date '01/01/2019'
       #Did you work (or get paid for) a period of notice?
-      paid_for_notice_period :"claims.employment.yes"
+      paid_for_notice_period :"claims.employment.paid_for_notice_period.yes"
       notice_period '3'
       notice_period_type :"simple_form.options.employment.notice_pay_period_type.months"
       average_weekly_hours '38'

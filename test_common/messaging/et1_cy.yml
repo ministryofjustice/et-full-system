@@ -609,6 +609,9 @@ cy:
       current_situation: "Beth yw eich sefyllfa bresennol yn y gwaith o ran y cyflogwr yr ydych chi'n gwneud hawliad yn ei erbyn?"
       start_date: Dyddiad cychwyn cyflogaeth
       end_date: Dyddiad gorffen cyflogaeth
+      paid_for_notice_period:
+        "yes": 'Do'
+        "no": 'Naddo'
       worked_notice_period_or_paid_in_lieu: "A wnaethoch weithio cyfnod rhybudd (neu gael tâl amdano)?"
       new_job_start_date: Dyddiad cychwyn swydd newydd
       notice_period_end_date: Dyddiad gorffen y cyfnod rhybudd
