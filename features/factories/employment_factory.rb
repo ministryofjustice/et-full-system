@@ -19,7 +19,7 @@ FactoryBot.define do
       benefits 'Company car, private health care'
       paid_for_notice_period nil
       #New Job
-      new_job :"claims.employment.no"
+      new_job :"claims.employment.new_job.no"
       new_job_start_date ''
       new_job_before_tax ''
       new_job_pay_before_tax ''
@@ -41,7 +41,7 @@ FactoryBot.define do
       benefits 'Company car, private health care'
       paid_for_notice_period nil
       #New Job
-      new_job :"claims.employment.no"
+      new_job :"claims.employment.new_job.no"
       new_job_start_date ''
       new_job_before_tax ''
       new_job_pay_before_tax ''
@@ -65,9 +65,8 @@ FactoryBot.define do
       pay_after_tax_type :"simple_form.options.employment.net_pay_period_type.monthly"
       employers_pension_scheme :"claims.employment.true"
       benefits 'Company car, private health care'
-      paid_for_notice_period nil
       #New Job
-      new_job :"claims.employment.yes"
+      new_job :"claims.employment.new_job.yes"
       new_job_start_date '18/11/2009'
       new_job_pay_before_tax_type :"simple_form.options.employment.new_job_gross_pay_frequency.monthly"
       new_job_pay_before_tax '3000'
@@ -75,6 +74,11 @@ FactoryBot.define do
 
     trait :no_employment_details do
       employment_details :"claims.employment.no"
+      #New Job
+      new_job nil
+      new_job_start_date ''
+      new_job_before_tax ''
+      new_job_pay_before_tax ''
     end
   end
 end

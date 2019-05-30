@@ -446,9 +446,9 @@ module EtFullSystem
 
         def set(employment)
           data = employment.to_h
-          main_content.your_employment_details.set(data[:employment_details])
           if data[:employment_details] == :"claims.employment.yes"
             main_content do |s|
+              s.your_employment_details.set(data[:employment_details])
               s.employment_current_situation.set(data[:current_work_situation])
               s.employment_job_title.set(data[:job_title])
               s.employment_start_date.set(data[:start_date])
@@ -474,13 +474,15 @@ module EtFullSystem
               s.employment_enrolled_in_pension_scheme.pension_scheme.set(data[:employers_pension_scheme])
               s.employment_benefit_details.set(data[:benefits])
 
-              if data[:new_job] == :"claims.employment.yes"
+              if data[:new_job] == :"claims.employment.new_job.yes"
                 s.notice_period_end_date.new_job.set(data[:new_job])
                 s.notice_period_end_date.new_job_start_date.set(data[:new_job_start_date])
                 s.notice_period_end_date.new_job_pay_before_tax.currency_field.set(data[:new_job_pay_before_tax])
                 s.notice_period_end_date.new_job_pay_before_tax.new_job_pay_before_tax_type.set(data[:new_job_pay_before_tax_type])
               end
             end
+          else
+            main_content.your_employment_details.set(:"claims.employment.no")
           end
         end
       end

@@ -56,6 +56,7 @@ Feature:
     When the completed form is submitted
     Then I can download the form and validate in PDF format
 
+  # Bug in welsh version see: https://tools.hmcts.net/jira/browse/RST-1951
   Scenario: Employment details - no longer working for this employer
     Given an employee making a claim against an employer who is no longer working for them
     When the completed form is submitted
