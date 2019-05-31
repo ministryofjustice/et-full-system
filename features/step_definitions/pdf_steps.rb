@@ -93,3 +93,11 @@ Given("an employee making a claim against an employer who no longer work for the
   @employment = FactoryBot.create(:employment, :notice_period)
   @claim = FactoryBot.create(:claim)
 end
+
+Given("an employee making a claim against an employer who is not aware of pension scheme") do
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @employment = FactoryBot.create(:employment, :notice_period)
+  @claim = FactoryBot.create(:claim)
+end

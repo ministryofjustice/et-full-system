@@ -17,7 +17,7 @@ FactoryBot.define do
       pay_before_tax_type :"simple_form.options.employment.gross_pay_period_type.monthly"
       pay_after_tax '2000' 
       pay_after_tax_type :"simple_form.options.employment.net_pay_period_type.monthly"
-      employers_pension_scheme :"claims.employment.true"
+      employers_pension_scheme :"claims.employment.false"
       benefits 'Company car, private health care'
       #New Job
       new_job :"claims.employment.new_job.no"

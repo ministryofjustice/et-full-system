@@ -1050,8 +1050,8 @@ en:
       paid_for_notice_period:
         field_name: 6.3 tick boxes
         unselected_value:
-            - 'Off'
-            - null
+          - 'Off'
+          - null
         select_values:
           false: 'no'
           true: 'yes'

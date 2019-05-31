@@ -67,10 +67,10 @@ Feature:
     When the completed form is submitted
     Then I can download the form and validate in PDF format
 
-  # Scenario: Employment details - no not aware of employer's pension scheme?
-  #   Given an employee making a claim against an employer who no longer work for them
-  #   When the completed form is submitted
-  #   Then I can download the form and validate in PDF format
+  Scenario: Employment details - no not aware of employer's pension scheme?
+    Given an employee making a claim against an employer who is not aware of pension scheme
+    When the completed form is submitted
+    Then I can download the form and validate in PDF format
 
   # Scenario: Employment details - Pay, pension and benefits - weekly
   #   Given an employee making a claim against an employer who no longer work for them
