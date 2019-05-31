@@ -72,9 +72,9 @@ Feature:
     When the completed form is submitted
     Then I can download the form and validate in PDF format
 
-  # Scenario: Employment details - Pay, pension and benefits - weekly
-  #   Given an employee making a claim against an employer who no longer work for them
-  #   When the completed form is submitted
-  #   Then I can download the form and validate in PDF format
+  Scenario: About the claim - no to Are you reporting suspected wrongdoing at work?
+    Given an employee making a claim against an employer who doesn't suspect any wrongdoing at work
+    When the completed form is submitted
+    Then I can download the form and validate in PDF format
 
     

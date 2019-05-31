@@ -16,7 +16,7 @@ FactoryBot.define do
       pay_before_tax '3000'
       pay_before_tax_type :"simple_form.options.employment.gross_pay_period_type.monthly"
       pay_after_tax '2000' 
-      pay_after_tax_type :"simple_form.options.employment.net_pay_period_type.monthly"
+      pay_after_tax_type :"simple_form.options.employment.net_pay_period_type.weekly"
       employers_pension_scheme :"claims.employment.false"
       benefits 'Company car, private health care'
       #New Job
@@ -37,7 +37,7 @@ FactoryBot.define do
       notice_period_type nil
       average_weekly_hours '38'
       pay_before_tax '3000'
-      pay_before_tax_type :"simple_form.options.employment.gross_pay_period_type.monthly"
+      pay_before_tax_type :"simple_form.options.employment.gross_pay_period_type.weekly"
       pay_after_tax '2000' 
       pay_after_tax_type :"simple_form.options.employment.net_pay_period_type.monthly"
       employers_pension_scheme :"claims.employment.true"
@@ -58,13 +58,13 @@ FactoryBot.define do
       #Did you work (or get paid for) a period of notice?
       paid_for_notice_period :"claims.employment.paid_for_notice_period.yes"
       notice_period '3'
-      notice_period_type :"simple_form.options.employment.notice_pay_period_type.months"
+      notice_period_type :"simple_form.options.employment.notice_pay_period_type.weekly"
       average_weekly_hours '38'
       # Pay, pension and benefits
       pay_before_tax '3000'
       pay_before_tax_type :"simple_form.options.employment.gross_pay_period_type.monthly"
       pay_after_tax '2000' 
-      pay_after_tax_type :"simple_form.options.employment.net_pay_period_type.monthly"
+      pay_after_tax_type :"simple_form.options.employment.net_pay_period_type.weekly"
       employers_pension_scheme :"claims.employment.true"
       benefits 'Company car, private health care'
       #New Job
