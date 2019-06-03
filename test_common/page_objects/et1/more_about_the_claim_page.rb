@@ -81,11 +81,9 @@ module EtFullSystem
         def set(claim)
           data = claim.to_h
           return if data.nil?
-          if data.key?(:other_important_details)
-            main_content.other_important_details.set(:'claims.additional_information.yes')
+          main_content.other_important_details.set(data[:other_additional_information])
+          if data[:other_important_details] != ''
             main_content.additional_information_miscellaneous_information.set data[:other_important_details]
-          else
-            main_content.other_important_details.set(:'claims.additional_information.no')
           end
         end
       end

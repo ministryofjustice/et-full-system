@@ -125,3 +125,11 @@ Given("an employee making a claim without wanting any claims outcome") do
   @employment = FactoryBot.create(:employment, :notice_period)
   @claim = FactoryBot.create(:claim, :nil_to_claim_outcome)
 end
+
+Given("an employee making a claim without providing anymore information") do
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @employment = FactoryBot.create(:employment, :notice_period)
+  @claim = FactoryBot.create(:claim, :no_to_other_important_details)
+end

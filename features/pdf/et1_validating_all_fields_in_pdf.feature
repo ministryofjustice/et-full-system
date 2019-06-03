@@ -86,3 +86,8 @@ Feature:
     Given an employee making a claim without wanting any claims outcome
     When the completed form is submitted
     Then I can download the form and validate in PDF format
+
+  Scenario: More about the claim - no to provide additional information
+    Given an employee making a claim without providing anymore information
+    When the completed form is submitted
+    Then I can download the form and validate in PDF format
