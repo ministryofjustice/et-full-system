@@ -16,10 +16,10 @@ end
 
 When /^I submit a completed ET1 form$/ do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
-  @representative = FactoryBot.create(:representative)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
-  @employment = FactoryBot.create(:employment, :employment_continuing_yes)
-  @claim = FactoryBot.create(:claim)
+  @employment = FactoryBot.create(:employment, :still_employed)
+  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 
   start_a_new_et1_claim
   et1_answer_login

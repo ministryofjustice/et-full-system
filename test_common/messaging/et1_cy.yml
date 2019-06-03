@@ -1284,7 +1284,9 @@ cy:
         field_name: 11.8 email
       communication_preference:
         field_name: 11.9 tick boxes
-        unselected_value: 'Off'
+        unselected_value:
+          - 'Off'
+          - null
         select_values:
           email: email
           fax: fax
