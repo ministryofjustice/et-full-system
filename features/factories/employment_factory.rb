@@ -58,7 +58,7 @@ FactoryBot.define do
       #Did you work (or get paid for) a period of notice?
       paid_for_notice_period :"claims.employment.paid_for_notice_period.yes"
       notice_period '3'
-      notice_period_type :"simple_form.options.employment.notice_pay_period_type.weekly"
+      notice_period_type :"simple_form.options.employment.notice_pay_period_type.weeks"
       average_weekly_hours '38'
       # Pay, pension and benefits
       pay_before_tax '3000'

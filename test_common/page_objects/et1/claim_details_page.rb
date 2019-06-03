@@ -138,8 +138,8 @@ module EtFullSystem
             main_content.file_upload.set(data[:rtf_file])
           end
           main_content.claim_details_claim_details.set(data[:description])
-          main_content.claim_details_other_known_claimants.set(data[:other_claimants])
-          if data[:other_claimants] == :"claims.claim_type.yes"
+          main_content.claim_details_other_known_claimants.set(data[:similar_claims])
+          if data[:similar_claims] == :"claims.claim_type.yes"
             main_content.other_known_claimant_names.set(data[:other_claimant_names])
           end
         end

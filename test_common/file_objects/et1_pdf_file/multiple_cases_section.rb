@@ -5,7 +5,7 @@ module EtFullSystem
       module Et1PdfFileSection
         class MultipleCasesSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(claim:)
-            other_claims = claim.other_claimants.to_s.split('.').last
+            other_claims = claim.similar_claims.to_s.split('.').last
             if other_claims == "yes"
               expected_values = {
                   have_similar_claims: true,

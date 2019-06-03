@@ -77,4 +77,12 @@ Feature:
     When the completed form is submitted
     Then I can download the form and validate in PDF format
 
-    
+  Scenario: Claim details - no to Multiple cases
+    Given an employee making a unique claims
+    When the completed form is submitted
+    Then I can download the form and validate in PDF format
+
+  Scenario: Claim outcome - leaving all fields blank
+    Given an employee making a claim without wanting any claims outcome
+    When the completed form is submitted
+    Then I can download the form and validate in PDF format

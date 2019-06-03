@@ -102,10 +102,26 @@ Given("an employee making a claim against an employer who is not aware of pensio
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
 
-Given("an employee making a claim against an employer who is not doesn't suspect any wrongdoing at work") do
+Given("an employee making a claim against an employer who doesn't suspect any wrongdoing at work") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment, :notice_period)
   @claim = FactoryBot.create(:claim, :no_to_whistleblowing_claim)
+end
+
+Given("an employee making a unique claims") do
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @employment = FactoryBot.create(:employment, :notice_period)
+  @claim = FactoryBot.create(:claim, :no_to_multiple_claims)
+end
+
+Given("an employee making a claim without wanting any claims outcome") do
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @employment = FactoryBot.create(:employment, :notice_period)
+  @claim = FactoryBot.create(:claim, :nil_to_claim_outcome)
 end
