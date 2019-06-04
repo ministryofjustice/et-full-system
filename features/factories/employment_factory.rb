@@ -20,7 +20,7 @@ FactoryBot.define do
       employers_pension_scheme :"claims.employment.false"
       benefits 'Company car, private health care'
       #New Job
-      new_job :"claims.employment.new_job.no"
+      new_job nil
       new_job_start_date ''
       new_job_before_tax ''
       new_job_pay_before_tax ''
@@ -43,7 +43,7 @@ FactoryBot.define do
       employers_pension_scheme :"claims.employment.true"
       benefits 'Company car, private health care'
       #New Job
-      new_job :"claims.employment.new_job.no"
+      new_job nil
       new_job_start_date ''
       new_job_before_tax ''
       new_job_pay_before_tax ''

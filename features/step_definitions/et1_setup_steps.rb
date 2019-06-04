@@ -34,8 +34,8 @@ Given(/^an employee making a claim by uploading a Rich Text Format document$/) d
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
-  @employment = FactoryBot.create(:employment)
-  @claim = FactoryBot.create_list(:claim, 1, :upload_your_claim_statement)[0]
+  @employment = FactoryBot.create(:employment, :still_employed)
+  @claim = FactoryBot.create(:claim, :upload_your_claim_statement)
 end
 
 Given(/^an employee making a claim against 3 employers$/) do
