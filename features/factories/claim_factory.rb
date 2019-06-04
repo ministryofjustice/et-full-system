@@ -115,5 +115,4 @@ FactoryBot.define do
     other_additional_information :'claims.additional_information.no'
     other_important_details ''
   end
-
 end
