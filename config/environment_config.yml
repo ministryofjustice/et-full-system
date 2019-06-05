@@ -25,6 +25,7 @@ production:
   # et3_url: https://tribunal-response.employmenttribunals.service.gov.uk/
   # atos_api_url: https://atos-api.employmenttribunals.service.gov.uk
   # admin_url: https://admin.employmenttribunals.service.gov.uk/admin
+  # api_url: https://et-atos-api-dev-azure.dev.et.dsd.io
 dev: 
   <<: *defaults
   et1_url: https://et-dev-azure.dev.et.dsd.io
