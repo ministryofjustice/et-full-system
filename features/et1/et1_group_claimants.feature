@@ -18,7 +18,7 @@ Feature:
     Then I can very that the copy texts correctly dispayed for group claimants
 
   Scenario: Two Claimants
-    Given two employees making a claim
+    Given '2' employees making a claim
     Then I should be able to submit two claimant details
     
   Scenario: Verify copy texts for Upload user details in separate spreadsheet

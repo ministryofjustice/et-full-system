@@ -14,7 +14,7 @@ Feature:
     Then I should see a valid submission page
 
   Scenario: two people making a claim
-    Given two employees making a claim
+    Given '2' employees making a claim
     And the claimant is on the Submission page
     Then I should see a valid submission page
 

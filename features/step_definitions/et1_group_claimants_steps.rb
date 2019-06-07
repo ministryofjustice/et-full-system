@@ -26,14 +26,6 @@ Then("I can very that the copy texts correctly dispayed for group claimants") do
   expect(et1_group_claimants_page.has_correct_translation_for_group_claimants?).to be true
 end
 
-Given("two employees making a claim") do
-  @claimant = FactoryBot.create_list(:claimant, 2, :person_data)
-  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, 3)
-  @employment = FactoryBot.create(:employment, :still_employed)
-  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
-end
-
 Then("I should be able to submit two claimant details") do
   et1_group_claimants_page.set(@claimant)
   et1_group_claimants_page.save_and_continue
