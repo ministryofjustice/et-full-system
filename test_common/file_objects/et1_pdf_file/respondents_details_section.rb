@@ -16,8 +16,8 @@ module EtFullSystem
                     telephone_number: respondents.first.telephone_number
                 },
                 acas: {
-                    have_acas: yes_no_for(respondents.first.acas_number),
-                    acas_number: respondents.first.acas_number
+                    have_acas: respondents.first.acas_number.present?,
+                    acas_number: respondents.first.acas_number || ''
                 },
                 different_address: {
                     building: respondents.first.work_building || '',
@@ -38,7 +38,7 @@ module EtFullSystem
                         telephone_number: respondents[1].try(:telephone_number)
                     },
                     acas: {
-                        have_acas: yes_no_for(respondents[1].try(:acas_number), optional: true),
+                        have_acas: respondents[1].nil? ? nil : respondents[1].acas_number.present?,
                         acas_number: respondents[1].try(:acas_number)
                     }
                 },
@@ -53,7 +53,7 @@ module EtFullSystem
                         telephone_number: respondents[2].try(:telephone_number)
                     },
                     acas: {
-                        have_acas: yes_no_for(respondents[2].try(:acas_number), optional: true),
+                        have_acas: respondents[2].nil? ? nil : respondents[2].acas_number.present?,
                         acas_number: respondents[2].try(:acas_number)
                     }
                 }

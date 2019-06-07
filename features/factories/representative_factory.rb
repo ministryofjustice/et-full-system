@@ -42,6 +42,26 @@ FactoryBot.define do
     representative_contact_preference :"simple_form.options.representative.contact_preference.post"
   end
 
+  trait :et1_no_representative do
+    type ''
+    organisation_name ''
+    name ''
+    building ''  
+    street ''
+    locality ''
+    county ''
+    post_code ''
+    telephone_number ''
+    alternative_telephone_number ''
+    email_address  ''
+    dx_number  ''
+    have_representative 'No'
+    representative_mobile ''
+    representative_reference ''
+    representative_fax ''
+    representative_contact_preference ''
+  end
+
   trait :et3_no_representative do
     type ''
     organisation_name ''

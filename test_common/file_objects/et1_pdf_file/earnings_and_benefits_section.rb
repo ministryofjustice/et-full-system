@@ -5,31 +5,28 @@ module EtFullSystem
       module Et1PdfFileSection
         class EarningsAndBenefitsSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(employment:)
-            employment.present? ? has_contents_for_employment?(employment) : has_contents_for_no_employment?
-          end
-
-          private
-
-          def has_contents_for_employment?(employment)
-            expected_values = {
+            if employment.employment_details == :"claims.employment.yes" && employment.paid_for_notice_period == :"claims.employment.paid_for_notice_period.yes"
+              expected_values = {
                 average_weekly_hours: employment.try(:average_weekly_hours).try(:to_f).try(:to_s),
-                pay_before_tax: {
-                    'amount': employment.try(:pay_before_tax),
-                    'period': employment.try(:pay_before_tax_type).try(:to_s).try(:split, '.').try(:last)
-                },
-                paid_for_notice_period: tri_state_for(employment.try(:paid_for_notice_period)),
-                notice_period: {
-                    weeks: weekly_notice_period(employment.try(:notice_period)) || '',
-                    months: monthly_notice_period(employment.try(:notice_period)) || ''
-                },
+                pay_before_tax: pay_tax(employment.try(:pay_before_tax), employment.pay_before_tax_type.to_s.split('.').last),
+                pay_after_tax: pay_tax(employment.try(:pay_after_tax), employment.pay_after_tax_type.to_s.split('.').last),
+                paid_for_notice_period: employment.paid_for_notice_period.to_s.split('.').last == "yes",
+                notice_period: notice_period(employment.notice_period, employment.notice_period_type),
                 employers_pension_scheme: employers_pension_scheme(employment),
                 benefits: employment.try(:benefits)
-            }
-            expect(mapped_field_values).to include expected_values
-          end
-
-          def has_contents_for_no_employment?
-            expected_values = {
+              }
+            elsif employment.employment_details == :"claims.employment.yes" && employment.paid_for_notice_period == :"claims.employment.paid_for_notice_period.no"
+              expected_values = {
+                average_weekly_hours: employment.try(:average_weekly_hours).try(:to_f).try(:to_s),
+                pay_before_tax: pay_tax(employment.try(:pay_before_tax), employment.pay_before_tax_type.to_s.split('.').last),
+                pay_after_tax: pay_tax(employment.try(:pay_after_tax), employment.pay_after_tax_type.to_s.split('.').last),
+                paid_for_notice_period: nil,
+                notice_period: notice_period(employment.notice_period, employment.notice_period_type),
+                employers_pension_scheme: employers_pension_scheme(employment),
+                benefits: employment.try(:benefits)
+              }
+            else
+              expected_values = {
                 average_weekly_hours: nil,
                 pay_before_tax: {
                     'amount': nil,
@@ -42,33 +39,37 @@ module EtFullSystem
                 },
                 employers_pension_scheme: nil,
                 benefits: nil
-            }
+              }
+            end
             expect(mapped_field_values).to include expected_values
+          end
+
+          private
+
+          def boolean_or_nil(value, true_value)
+            return nil if value.nil?
+
+            value == true_value
           end
 
           def employers_pension_scheme(employment)
             return nil if employment.nil?
-            true_false = employment.employers_pension_scheme.to_s.split('.').last.downcase
-            if true_false == "true"
-              'yes'
-            elsif true_false == "false"
-              'no'
+            employment.employers_pension_scheme.to_s.split('.').last.downcase == 'true'
+          end
+
+          def notice_period(notice_period, notice_period_type)
+            key = notice_period_type.to_s.split('.').last
+            if key == "months"
+              {:weeks=>"", :months=>"#{notice_period}.0"}
+            elsif key == "weeks"
+              {:weeks=>"#{notice_period}.0", :months=>""}
             else
-              raise "Unexpected value for employers_pension_scheme - #{employment.employers_pension_scheme}"
+              {:weeks=>"", :months=>""}
             end
           end
 
-
-          def weekly_notice_period(notice_period)
-            return nil if notice_period.nil?
-            amount, period = notice_period.split(' ')
-            period == 'Weekly' ? amount : nil
-          end
-
-          def monthly_notice_period(notice_period)
-            return nil if notice_period.nil?
-            amount, period = notice_period.split(' ')
-            period == 'Monthly' ? amount : nil
+          def pay_tax(amount, period)
+              {:amount=>"#{amount}", :period=>"#{period}"}
           end
         end
       end

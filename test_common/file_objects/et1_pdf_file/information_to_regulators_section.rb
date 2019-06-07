@@ -6,7 +6,7 @@ module EtFullSystem
         class InformationToRegulatorsSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(claim:)
             expected_values = {
-                whistle_blowing: yes_no_for(claim.whistleblowing_claim, yes: 'yes', no: 'no'),
+              whistle_blowing: claim.whistleblowing_claim.to_s.split('.').last == 'yes',
             }
             expect(mapped_field_values).to include expected_values
           end

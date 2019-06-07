@@ -26,10 +26,6 @@ Then("I can very that the copy texts correctly dispayed for group claimants") do
   expect(et1_group_claimants_page.has_correct_translation_for_group_claimants?).to be true
 end
 
-Given("two employees making a claim") do
-  @claimant = FactoryBot.create_list(:claimant, 2, :person_data)
-end
-
 Then("I should be able to submit two claimant details") do
   et1_group_claimants_page.set(@claimant)
   et1_group_claimants_page.save_and_continue

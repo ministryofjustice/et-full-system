@@ -260,6 +260,7 @@ module EtFullSystem
           else
             main_content.same_address.yes.click
           end
+
           main_content.acas_certificate_number.set(data[:acas_number]) if data.key?(:acas_number)
           if data.key?(:no_acas_number_reason)
             main_content.no_acas_number.click

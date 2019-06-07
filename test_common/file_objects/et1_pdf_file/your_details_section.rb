@@ -6,7 +6,7 @@ module EtFullSystem
         class YourDetailsSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(claimant:)
             expected_values = {
-                title: title_for(claimant.title),
+                title: title_for(claimant.title).camelcase,
                 first_name: claimant.first_name,
                 last_name: claimant.last_name,
                 dob_day: claimant.date_of_birth.split('/')[0],

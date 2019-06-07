@@ -19,7 +19,6 @@ local:
 production:
   <<: *defaults
   # et1_url: https://www.employmenttribunals.service.gov.uk/
-  # et1_url: https://staging1.et.dsd.io/
   # diversity_url: https://www.employmenttribunals.service.gov.uk/apply/diversity
   # et1_admin_url: https://www.employmenttribunals.service.gov.uk/apply/admin
   # et3_url: https://tribunal-response.employmenttribunals.service.gov.uk/

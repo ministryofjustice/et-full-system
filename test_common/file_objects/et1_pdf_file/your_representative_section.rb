@@ -5,6 +5,7 @@ module EtFullSystem
       module Et1PdfFileSection
         class YourRepresentativeSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(representative:)
+            if representative.have_representative == 'Yes'
             expected_values = {
                 name_of_organisation: representative.organisation_name,
                 name_of_representative: representative.name,
@@ -18,9 +19,27 @@ module EtFullSystem
                 alternative_telephone_number: representative.alternative_telephone_number,
                 reference: nil, # Should be populated by ET1 but it isnt yet
                 email_address: representative.email_address,
-                communication_preference: 'Off', # ET1 Doesnt capture this
+                communication_preference: nil, # ET1 Doesnt capture this
                 fax_number: nil # ET1 Doesnt capture this
             }
+          else 
+            expected_values = {
+              name_of_organisation: nil,
+              name_of_representative: nil,
+              building: nil,
+              street: nil,
+              locality: nil,
+              county: nil,
+              post_code: nil,
+              dx_number: nil,
+              telephone_number: nil,
+              alternative_telephone_number: nil,
+              reference: nil,
+              email_address: nil,
+              communication_preference: nil,
+              fax_number: nil
+          }
+          end
             expect(mapped_field_values).to include expected_values
           end
         end

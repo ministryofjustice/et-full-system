@@ -5,17 +5,23 @@ module EtFullSystem
       module Et1PdfFileSection
         class WhatHappenedSinceSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(employment:)
-            if employment.present?
+            if employment.employment_details == :"claims.employment.no"
               expected_values = {
-                  have_another_job: tri_state_for(nil),
-                  start_date: '',
-                  salary: ''
+                have_another_job: nil,
+                start_date: nil,
+                salary: nil
+            }
+            elsif employment.new_job == :"claims.employment.new_job.yes"
+              expected_values = {
+                  have_another_job: employment.new_job.to_s.split('.').last == "yes",
+                  start_date: date_for(employment.new_job_start_date),
+                  salary: employment.new_job_pay_before_tax
               }
             else
               expected_values = {
                   have_another_job: nil,
-                  start_date: nil,
-                  salary: nil
+                  start_date: '',
+                  salary: ''
               }
             end
             expect(mapped_field_values).to include expected_values
