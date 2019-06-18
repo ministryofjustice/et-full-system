@@ -14,3 +14,6 @@
 [submodule "systems/atos"]
 	path = systems/atos
 	url = git@github.com:hmcts/et-atos-file-transfer.git
+[submodule "systems/et_ccd_export"]
+	path = systems/et_ccd_export
+	url = git@github.com:hmcts/et-ccd-export.git
