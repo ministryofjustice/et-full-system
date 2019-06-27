@@ -14,26 +14,26 @@ module EtFullSystem
       end
 
       def get_cookies
-        response = request(:get, url)
+        response = request(:get, "#{url}/login?response_type=code&client_id=ccd_gateway&redirect_uri=#{Configuration.oauth2redirect}")
         self.csrf_token = response.body.match(/_csrf" value="([^"]*)"/)[1]
       end
 
       def login
         return if logged_in?
         get_cookies
-        resp = request(:post, url,
+        resp = request(:post, "#{url}/login?response_type=code&client_id=ccd_gateway&redirect_uri=#{Configuration.oauth2redirect}",
           headers: {
             'Content-Type' => 'application/x-www-form-urlencoded'
           },
           cookies: cookies_hash,
           body: {
-            username: 'm@m.com',
-            password: 'p',
-            continue: 'http://localhost:3451/oauth2redirect',
+            username: Configuration.ccd_username,
+            password: Configuration.ccd_password,
+            continue: Configuration.oauth2redirect,
             upliftToken: '',
             response_type: 'code',
             _csrf: csrf_token,
-            redirect_uri: 'http://localhost:3451/oauth2redirect',
+            redirect_uri: Configuration.oauth2redirect,
             client_id: 'ccd_gateway',
             scope: '',
             state: ''

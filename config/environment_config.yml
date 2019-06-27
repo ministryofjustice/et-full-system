@@ -18,7 +18,8 @@ local:
   admin_url: http://admin.et.127.0.0.1.nip.io:3100/admin
   sidekiq_url: http://et1.et.127.0.0.1.nip.io:3100/apply/sidekiq
   mailhog_search_url: http://mail.et.127.0.0.1.nip.io:3100/api/v2/search
-  ccd_client_url: https://localhost:3501/login?response_type=code&client_id=ccd_gateway&redirect_uri=http%3A%2F%2Flocalhost%3A3451%2Foauth2redirect
+  ccd_client_url: https://localhost:3501
+  oauth2redirect: http://localhost:3451/oauth2redirect
 production:
   <<: *defaults
   # et1_url: https://www.employmenttribunals.service.gov.uk/
