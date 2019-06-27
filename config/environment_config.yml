@@ -6,6 +6,8 @@ defaults: &defaults
   atos_password: password
   atos_secondary_username: atos2
   atos_secondary_password: password
+  ccd_username: m@m.com
+  ccd_password: p
 local:
   <<: *defaults
   et1_url: http://et1.et.127.0.0.1.nip.io:3100/
@@ -16,6 +18,7 @@ local:
   admin_url: http://admin.et.127.0.0.1.nip.io:3100/admin
   sidekiq_url: http://et1.et.127.0.0.1.nip.io:3100/apply/sidekiq
   mailhog_search_url: http://mail.et.127.0.0.1.nip.io:3100/api/v2/search
+  ccd_client_url: https://localhost:3501/login?response_type=code&client_id=ccd_gateway&redirect_uri=http%3A%2F%2Flocalhost%3A3451%2Foauth2redirect
 production:
   <<: *defaults
   # et1_url: https://www.employmenttribunals.service.gov.uk/
@@ -25,6 +28,7 @@ production:
   # atos_api_url: https://atos-api.employmenttribunals.service.gov.uk
   # admin_url: https://admin.employmenttribunals.service.gov.uk/admin
   # api_url: https://api.employmenttribunals.service.gov.uk
+  # ccd_client_url: http://localhost:3451
 dev: 
   <<: *defaults
   et1_url: https://et-dev-azure.dev.et.dsd.io
@@ -34,6 +38,7 @@ dev:
   api_url: https://et-api-dev-azure.dev.et.dsd.io
   atos_api_url: https://et-atos-api-dev-azure.dev.et.dsd.io
   sidekiq_url: https://et-dev-azure.dev.et.dsd.io/apply/sidekiq
+  # ccd_client_url: http://localhost:3451
 staging: 
   <<: *defaults
   et1_url: https://et-stg-azure.staging.et.dsd.io
@@ -47,3 +52,4 @@ staging:
   atos_password: password
   atos_secondary_username: atos2
   atos_secondary_password: password
+  # ccd_client_url: http://localhost:3451

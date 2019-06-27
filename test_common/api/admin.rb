@@ -112,12 +112,6 @@ module EtFullSystem
         raise "An ATOS zip file for reference #{reference} was not found"
       end
 
-      private
-
-      def logged_in?
-        logged_in
-      end
-
       def find_claim(claim_application_reference:, timeout: 30, sleep: 0.5)
         login
         Timeout.timeout(timeout) do
@@ -130,7 +124,12 @@ module EtFullSystem
         end
       rescue Timeout::Error
         raise "The claim with application_reference #{claim_application_reference} was not stored in the API"
+      end
 
+      private
+
+      def logged_in?
+        logged_in
       end
 
       def setup_for_export_cron_job
