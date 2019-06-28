@@ -3,25 +3,31 @@ module EtFullSystem
   module Test
     class CcdApi
       include ::RSpec::Matchers
-      include ::EtFullSystem::Test::I18n
 
       def initialize
         self.cookies_hash = HTTParty::CookieHash.new
       end
 
-      def url
+      def ccd_url
         Configuration.ccd_client_url
       end
 
+      def oauth2redirect
+        Configuration.oauth2redirect
+      end
+
+      def case_url
+        Configuration.ccd_case_url
+      end
+
       def get_cookies
-        response = request(:get, "#{url}/login?response_type=code&client_id=ccd_gateway&redirect_uri=#{Configuration.oauth2redirect}")
+        response = request(:get, "#{ccd_url}/login?response_type=code&client_id=ccd_gateway&redirect_uri=#{oauth2redirect}")
         self.csrf_token = response.body.match(/_csrf" value="([^"]*)"/)[1]
       end
 
-      def login
-        return if logged_in?
-        get_cookies
-        resp = request(:post, "#{url}/login?response_type=code&client_id=ccd_gateway&redirect_uri=#{Configuration.oauth2redirect}",
+      def get_oauth2redirect_code
+        response = request(:post, "#{ccd_url}/login?response_type=code&client_id=ccd_gateway&redirect_uri=#{oauth2redirect}",
+          follow_redirects: false,
           headers: {
             'Content-Type' => 'application/x-www-form-urlencoded'
           },
@@ -29,17 +35,45 @@ module EtFullSystem
           body: {
             username: Configuration.ccd_username,
             password: Configuration.ccd_password,
-            continue: Configuration.oauth2redirect,
+            continue: oauth2redirect,
             upliftToken: '',
             response_type: 'code',
             _csrf: csrf_token,
-            redirect_uri: Configuration.oauth2redirect,
+            redirect_uri: oauth2redirect,
             client_id: 'ccd_gateway',
             scope: '',
             state: ''
           })
-        raise "An error occured trying to login" unless resp.success?
-        self.logged_in = true
+          self.oauth2redirect_code = response.headers['location'].split("=").pop()
+      end
+
+      def get_access_token
+        response = request(:get, "#{case_url}/oauth2?code=#{oauth2redirect_code}&redirect_uri=#{oauth2redirect}",
+          headers: {
+            'Content-Type' => 'application/x-www-form-urlencoded'
+          }
+        )
+        self.access_token = cookies_hash[:accessToken]
+      end
+
+      def get_ccd_case(fee_group_reference) 
+        response = request(:get, "#{case_url}/aggregated/caseworkers/:uid/jurisdictions/EMPLOYMENT/case-types/EmpTrib_MVP_1.0_Manc/cases?view=WORKBASKET&state=1_Submitted&page=1&case.feeGroupReference=#{fee_group_reference}&page=1&sortDirection=desc",
+          headers: {
+            'Content-Type' => 'application/json'
+          },
+          cookies: {
+            accessToken: access_token
+          }
+        )
+        self.case_response = response['results']
+      end
+
+      def login
+        return if logged_in?
+        get_cookies
+        get_oauth2redirect_code
+        get_access_token
+        get_ccd_case('332000000100')
       end
 
       private
@@ -56,7 +90,7 @@ module EtFullSystem
         last_response
       end
       
-      attr_accessor :cookies_hash, :last_response, :csrf_token, :logged_in
+      attr_accessor :cookies_hash, :last_response, :csrf_token, :oauth2redirect_code, :access_token, :case_response, :logged_in
     end
   end
 end
