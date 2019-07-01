@@ -68,12 +68,13 @@ module EtFullSystem
         self.case_response = response['results']
       end
 
-      def login
+      def login(reference_number)
         return if logged_in?
         get_cookies
         get_oauth2redirect_code
         get_access_token
-        get_ccd_case('332000000100')
+        binding.pry
+        get_ccd_case(reference_number)
       end
 
       private
