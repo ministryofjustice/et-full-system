@@ -12,4 +12,3 @@ EtCcdClient.config do |c|
   c.idam_ui_redirect_url = EtFullSystem::Test::Configuration.ccd_idam_ui_redirect_url
   c.verify_ssl = false
 end
-

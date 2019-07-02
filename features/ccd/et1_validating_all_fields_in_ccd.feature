@@ -6,8 +6,8 @@ Feature:
   So civil servant can triage an employees claim against their employer
 
   Scenario: Your details - contact by post
-    # Given an employee making a claim wishing to be contacted by 'post'
-    # When the completed form is submitted
+    Given an employee making a claim wishing to be contacted by 'post'
+    When the completed form is submitted
     Then the claim should be present in CCD
 
   # Scenario: Your details - contact by email
