@@ -11,5 +11,7 @@ EtCcdClient.config do |c|
   c.idam_ui_base_url = EtFullSystem::Test::Configuration.ccd_idam_ui_base_url
   c.idam_ui_redirect_url = EtFullSystem::Test::Configuration.ccd_idam_ui_redirect_url
   c.verify_ssl = false
+  c.logger = ::ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
+  c.logger.level = ActiveSupport::Logger::DEBUG
 end
 
