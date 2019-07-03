@@ -17,6 +17,7 @@ include EtFullSystem::Test::Et1ClaimHelper
 include EtFullSystem::Test::Et3ResponseHelper
 include EtFullSystem::Test::DiversityHelper
 include EtFullSystem::Test::CommonAdminWindow
+include EtFullSystem::Test::AtosInterfaceHelper
 include EtFullSystem::Test::Housekeeping
 include EtFullSystem::Test::Et1Export
 include EtFullSystem::Test::Et3Export
