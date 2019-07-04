@@ -4,6 +4,7 @@ module EtFullSystem
       def self.diversity_landing_page
         Diversity::LandingPage.new
       end
+      
       def self.claim_type_page
         Diversity::ClaimTypePage.new
       end

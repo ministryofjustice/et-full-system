@@ -4,7 +4,6 @@ Given("an employee making a claim wishing to be contacted by {string}") do |stri
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
-
 end
 
 Given("an employee making a claim against {string} respondents") do |string|
