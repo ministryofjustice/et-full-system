@@ -8,10 +8,9 @@ EtCcdClient.config do |c|
   c.use_sidam = EtFullSystem::Test::Configuration.ccd_use_sidam
   c.sidam_username = EtFullSystem::Test::Configuration.ccd_sidam_username
   c.sidam_password = EtFullSystem::Test::Configuration.ccd_sidam_password
-  c.idam_ui_base_url = EtFullSystem::Test::Configuration.ccd_idam_ui_base_url
-  c.idam_ui_redirect_url = EtFullSystem::Test::Configuration.ccd_idam_ui_redirect_url
+  c.case_management_ui_base_url = EtFullSystem::Test::Configuration.ccd_case_management_ui_base_url
+  c.case_management_ui_redirect_url = EtFullSystem::Test::Configuration.ccd_case_management_ui_redirect_url
   c.verify_ssl = false
   c.logger = ::ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
   c.logger.level = ActiveSupport::Logger::DEBUG
 end
-
