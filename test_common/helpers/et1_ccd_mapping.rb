@@ -2,6 +2,8 @@ module EtFullSystem
   module Test
     module Et1CcdMapping
       include ::EtFullSystem::Test::I18n
+      include RSpec::Matchers
+      
       def json_object(data)
         hash = data[0].to_h
         hash.map do |key, value|
@@ -27,7 +29,7 @@ module EtFullSystem
             "claimant_title1" => et1_online_data[:title],
             "claimant_last_name" => et1_online_data[:last_name],
             "claimant_first_names" => et1_online_data[:first_name],
-            "claimant_date_of_birth" => et1_online_data[:date_of_birth]
+            "claimant_date_of_birth" => Date.parse(et1_online_data[:date_of_birth]).strftime("%Y-%m-%d")
           }
         }
       end
@@ -36,20 +38,20 @@ module EtFullSystem
         et1_online_data = json_object(data)
         {
           "representativeClaimantType" => {
-            "representative_dx" => "dx1234567890",
-            "name_of_organisation" => "generate dynamic supply-chains",
-            "name_of_representative" => "Alphonso Walter",
+            "representative_dx" => et1_online_data[:dx_number],
+            "name_of_organisation" => et1_online_data[:organisation_name],
+            "name_of_representative" => et1_online_data[:name],
             "representative_address" => {
-              "County" => "Greater London",
-              "PostCode" => "SW1H 9PP",
-              "PostTown" => "London",
-              "AddressLine1" => "106",
-              "AddressLine2" => "Mayfair"
+              "County" => t1_online_data[:county],
+              "PostCode" => t1_online_data[:post_code],
+              "PostTown" => t1_online_data[:locality],
+              "AddressLine1" => t1_online_data[:building],
+              "AddressLine2" => t1_online_data[:street]
             },
-            "representative_occupation" => "Solicitor",
-            "representative_phone_number" => "01111 123456",
-            "representative_email_address" => "sivvoy.taing@hmcts.net",
-            "representative_mobile_number" => "02222 654321"
+            "representative_occupation" => t1_online_data[:type],
+            "representative_phone_number" => t1_online_data[:telephone_number],
+            "representative_email_address" => t1_online_data[:email_address],
+            "representative_mobile_number" => t1_online_data[:alternative_telephone_number]
           }
         }
       end
@@ -59,13 +61,13 @@ module EtFullSystem
         {
           "claimantWorkAddress" => {
             "claimant_work_address" => {
-              "County" => "Greater London",
-              "PostCode" => "WD18 7SQ",
-              "PostTown" => "London",
-              "AddressLine1" => "101",
-              "AddressLine2" => "Petty France"
+              "County" => et1_online_data[:work_county],
+              "PostCode" => et1_online_data[:work_post_code],
+              "PostTown" => et1_online_data[:work_locality],
+              "AddressLine1" => et1_online_data[:work_building],
+              "AddressLine2" => et1_online_data[:work_street]
             },
-            "claimant_work_phone_number"=>"03333 423554"
+            "claimant_work_phone_number" => [et1_online_data:work_telephone_number]
           }
         }
       end
@@ -74,15 +76,15 @@ module EtFullSystem
         et1_online_data = json_object(data)
         {
           "respondentSumType" => {
-            "respondent_ACAS" => "AC123456/78/90",
-            "respondent_name" => "Douglas, Hand and Breitenberg",
-            "respondent_phone1" => "02222 321654",
+            "respondent_ACAS" => et1_online_data[:acas_number],
+            "respondent_name" => et1_online_data[:name],
+            "respondent_phone1" => et1_online_data[:telephone_number],
             "respondent_address" => {
-              "County" => "Greater London",
-              "PostCode" => "SW1H 9QR",
-              "PostTown" => "London",
-              "AddressLine1" => "1681",
-              "AddressLine2" => "Guy Village"
+              "County" => et1_online_data[:county],
+              "PostCode" => et1_online_data[:post_code],
+              "PostTown" =>et1_online_data[:locality],
+              "AddressLine1" => et1_online_data[:building],
+              "AddressLine2" => et1_online_data[:street]
             },
             "respondent_ACAS_question"=>"Yes"
           }
