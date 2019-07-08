@@ -5,7 +5,7 @@ module EtFullSystem
       module Et1PdfFileSection
         class YourRepresentativeSection < EtFullSystem::Test::FileObjects::Et1PdfFileSection::Base
           def has_contents_for?(representative:)
-            if representative.have_representative == 'Yes'
+            if representative.representative_have == 'Yes'
             expected_values = {
                 name_of_organisation: representative.organisation_name,
                 name_of_representative: representative.name,
