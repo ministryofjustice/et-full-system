@@ -2,7 +2,7 @@ require 'faker'
 
 FactoryBot.define do
   factory :claimant, class: OpenStruct do
-      gender {:"simple_form.options.claimant.gender.male"}
+      gender {:"simple_form.options.claimant.gender.prefer_not_to_say"}
       country {:"simple_form.options.claimant.address_country.united_kingdom"}
       has_special_needs {:"simple_form.yes"}
       special_needs {'My special needs are as follows'}
@@ -13,7 +13,7 @@ FactoryBot.define do
       memorable_word {'password'}
     
     trait :person_data do
-      title {:"simple_form.options.claimant.title.miss"}
+      title {:"simple_form.options.claimant.title.ms"}
       first_name { Faker::Name.first_name }
       last_name { Faker::Name.last_name }
       date_of_birth {'21/11/1982'}

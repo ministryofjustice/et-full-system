@@ -7,6 +7,7 @@ FactoryBot.define do
       current_work_situation {:"simple_form.options.employment.current_situation.notice_period"}
       job_title { Faker::Company.profession }
       start_date {'18/11/2009'}
+      end_date {''}
       #Did you work (or get paid for) a period of notice?
       paid_for_notice_period {:"claims.employment.paid_for_notice_period.no"}
       notice_period {nil}
@@ -31,10 +32,12 @@ FactoryBot.define do
       current_work_situation {:"simple_form.options.employment.current_situation.still_employed"}
       job_title { Faker::Company.profession }
       start_date {'18/11/2009'}
+      end_date {''}
       #Did you work (or get paid for) a period of notice?
       paid_for_notice_period {:"claims.employment.paid_for_notice_period.no"}
       notice_period {'3'}
       notice_period_type {nil}
+      notice_period_end_date {''}
       average_weekly_hours {'38'}
       pay_before_tax {'3000'}
       pay_before_tax_type {:"simple_form.options.employment.gross_pay_period_type.weekly"}
@@ -59,6 +62,7 @@ FactoryBot.define do
       paid_for_notice_period {:"claims.employment.paid_for_notice_period.yes"}
       notice_period {'3'}
       notice_period_type {:"simple_form.options.employment.notice_pay_period_type.weeks"}
+      notice_period_end_date {''}
       average_weekly_hours {'38'}
       # Pay, pension and benefits
       pay_before_tax {'3000'}
