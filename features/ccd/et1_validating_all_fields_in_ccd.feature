@@ -85,7 +85,22 @@ Feature:
     When the completed form is submitted
     Then the claim should be present in CCD
 
-  Scenario: Respondent details - Making claim against 3 employers
+  Scenario: Multiple additional respondents
     Given an employee making a claim against 3 employers
+    When the completed form is submitted
+    Then the claim should be present in CCD
+
+  Scenario: Respondent details - same address as to the one given above
+    Given an employee making a claim where the respondent provided the same address
+    When the completed form is submitted
+    Then the claim should be present in CCD
+
+  Scenario: Additional respondents - with acas number
+    Given an employee making a claim where the additional respondents provided an acas number
+    When the completed form is submitted
+    Then the claim should be present in CCD
+
+  Scenario: Additional respondents - I don\'t have an Acas number
+    Given an employee making a claim where the additional respondents gave reason for not having an acas number
     When the completed form is submitted
     Then the claim should be present in CCD

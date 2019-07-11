@@ -46,6 +46,30 @@ Given("an employee submitting mandatory respresentative fields") do
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
 
+Given("an employee making a claim where the respondent provided the same address") do
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:no_work_address, 1, :yes_acas)
+  @employment = FactoryBot.create(:employment, :still_employed)
+  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)  
+end
+
+Given("an employee making a claim where the additional respondents provided an acas number") do
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 2)
+  @employment = FactoryBot.create(:employment, :still_employed)
+  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim) 
+end
+
+Given("an employee making a claim where the additional respondents gave reason for not having an acas number") do
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:acas_number_reason, 1, :no_acas, no_acas_number_reason: :"simple_form.options.respondent.no_acas_number_reason.acas_has_no_jurisdiction")
+  @employment = FactoryBot.create(:employment, :still_employed)
+  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim) 
+end
+
 Then /^the claim should be present in CCD$/ do
   admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
   reference_number = admin_api.get_reference_number(claim_application_reference: @claim_application_reference)

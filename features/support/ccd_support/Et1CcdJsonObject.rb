@@ -181,16 +181,29 @@ module EtFullSystem
         end
 
         def claimant_work_address(respondent)
-          {
-            "claimant_work_address" => {
-              "County" => respondent[:work_county],
-              "PostCode" => respondent[:work_post_code],
-              "PostTown" => respondent[:work_locality],
-              "AddressLine1" => respondent[:work_building],
-              "AddressLine2" => respondent[:work_street]
-            },
-            "claimant_work_phone_number" => respondent[:work_telephone_number]
-          }
+          if respondent[:work_county] == nil
+            {
+              "claimant_work_address" => {
+                "County" => respondent[:county],
+                "PostCode" => respondent[:post_code],
+                "PostTown" => respondent[:locality],
+                "AddressLine1" => respondent[:building],
+                "AddressLine2" => respondent[:street]
+              },
+              "claimant_work_phone_number" => respondent[:telephone_number]
+            }
+          else
+            {
+              "claimant_work_address" => {
+                "County" => respondent[:work_county],
+                "PostCode" => respondent[:work_post_code],
+                "PostTown" => respondent[:work_locality],
+                "AddressLine1" => respondent[:work_building],
+                "AddressLine2" => respondent[:work_street]
+              },
+              "claimant_work_phone_number" => respondent[:work_telephone_number]
+            }
+          end
         end
 
         def respondent_sum_type(respondent, secondary: false)
