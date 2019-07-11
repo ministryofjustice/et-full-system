@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/hmcts/et-ccd-client-ruby.git
-  revision: eb0ed5c0bcd235223de0af8b9d99c3cecb808f6e
-  tag: v0.1.15
+  revision: d0791b251ac609fabb34eaf928ef11aa2dad856a
+  tag: v0.1.14
   specs:
-    et_ccd_client (0.1.15)
+    et_ccd_client (0.1.14)
       addressable (~> 2.6)
       mechanize (~> 2.7, >= 2.7.6)
       rest-client (~> 2.0, >= 2.0.2)

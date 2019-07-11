@@ -1,3 +1,5 @@
+require 'et_ccd_client'
+
 EtCcdClient.config do |c|
   c.auth_base_url = EtFullSystem::Test::Configuration.ccd_auth_base_url
   c.idam_base_url = EtFullSystem::Test::Configuration.ccd_idam_base_url
