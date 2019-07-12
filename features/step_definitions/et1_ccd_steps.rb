@@ -77,6 +77,7 @@ Then /^the claim should be present in CCD$/ do
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdJsonObject.find_by_reference(reference_number)
   ccd_object.assert_primary_reference(reference_number)
   ccd_object.assert_primary_claimants(@claimant)
+  # ccd_object.assert_multiple_claimants(@claimant.drop(1))
   ccd_object.assert_primary_representative(@representative)
   ccd_object.assert_primary_employment(@employment)
   ccd_object.assert_primary_respondent(@respondent.first)
