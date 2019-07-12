@@ -104,3 +104,8 @@ Feature:
     Given an employee making a claim where the additional respondents gave reason for not having an acas number
     When the completed form is submitted
     Then the claim should be present in CCD
+
+  Scenario: Multiple claimants - 3 people making a claim
+    Given '3' employees making a claim
+    When the completed form is submitted
+    Then the claim should be present in CCD
