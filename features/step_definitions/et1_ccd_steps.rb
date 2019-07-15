@@ -69,6 +69,13 @@ Given("an employee making a claim where the additional respondents gave reason f
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim) 
 end
+Given("a claimant submitting mandatory respondent's Details fields") do
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas, telephone_number: '')
+  @employment = FactoryBot.create(:employment, :still_employed)
+  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
+end
 
 Then /^the claim should be present in CCD$/ do
   admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
@@ -77,6 +84,7 @@ Then /^the claim should be present in CCD$/ do
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdJsonObject.find_by_reference(reference_number)
   ccd_object.assert_primary_reference(reference_number)
   ccd_object.assert_primary_claimants(@claimant)
+  #Multiple claimants
   # ccd_object.assert_multiple_claimants(@claimant.drop(1))
   ccd_object.assert_primary_representative(@representative)
   ccd_object.assert_primary_employment(@employment)
