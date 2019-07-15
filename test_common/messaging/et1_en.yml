@@ -872,7 +872,8 @@ en:
         select_values:
           female: female
           male: male
-        unselected_value: 'Off'
+          prefer_not_to_say:
+            - nil
       building:
         field_name: 1.5 number
       street:
