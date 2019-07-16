@@ -9,9 +9,9 @@ module EtFullSystem
               expected_values = {
                 job_title: employment.job_title,
                 start_date: employment.start_date,
-                employment_continuing: employment.end_date.nil? || date_in_future(employment.end_date).present?,
-                ended_date: date_in_past(employment.try(:end_date), optional: true) || '',
-                ending_date: date_in_future(employment.try(:notice_period_end_date), optional: true) || ''
+                employment_continuing: employment.end_date.empty? || date_in_future(employment.end_date).present?,
+                ended_date: employment.end_date,
+                ending_date: employment.notice_period_end_date
               }
             else
               expected_values = {

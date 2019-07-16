@@ -294,7 +294,7 @@ module EtFullSystem
             set_field(s, :gender, data)
           end
 
-          if data[:has_special_needs] == t(:"simple_form.yes")
+          if data[:has_special_needs] == :"simple_form.yes"
             main_content.claimant_has_special_needs.set(data[:has_special_needs])
             main_content.assistance.special_needs.set(data[:special_needs])
           end
