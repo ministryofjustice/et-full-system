@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/hmcts/et-ccd-client-ruby.git
-  revision: d0791b251ac609fabb34eaf928ef11aa2dad856a
-  tag: v0.1.14
+  revision: 83e6fdc6f236a8635a920bb411e87702587b877a
+  tag: v0.1.21
   specs:
-    et_ccd_client (0.1.14)
+    et_ccd_client (0.1.21)
       addressable (~> 2.6)
       mechanize (~> 2.7, >= 2.7.6)
       rest-client (~> 2.0, >= 2.0.2)
@@ -134,7 +134,7 @@ GEM
     geckodriver-helper (0.24.0)
       archive-zip (~> 0.7)
     gherkin (5.1.0)
-    hashdiff (0.4.0)
+    hashdiff (1.0.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     httparty (0.16.4)
