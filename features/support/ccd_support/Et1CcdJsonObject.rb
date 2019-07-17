@@ -55,11 +55,11 @@ module EtFullSystem
           expect(response['case_fields']).to include case_details(case_fields)
         end
 
-        def assert_primary_employment(employment)
+        def assert_primary_employment(employment, claimants)
           if employment[:employment_details] == :"claims.employment.no"
-            expect(response['case_fields']).to include "claimantOtherType" => a_hash_including("claimant_disabled" => "No")
+            expect(response['case_fields']).to include "claimantOtherType" => a_hash_including("claimant_disabled" => t(claimants[0][:has_special_needs]), "claimant_disabled_details" => claimants[0][:special_needs])
           else
-            expect(response['case_fields']).to include "claimantOtherType" => a_hash_including(claimant_other_type(employment).as_json)
+            expect(response['case_fields']).to include "claimantOtherType" => a_hash_including(claimant_other_type(employment, claimants).as_json)
           end
         end
 
@@ -143,35 +143,33 @@ module EtFullSystem
           }
         end
 
-        def claimant_other_type(employment)
+        def claimant_other_type(employment, claimants)
+          common = {
+            "claimant_disabled" => t(claimants[0][:has_special_needs]),
+            "claimant_employed_currently" => "Yes", 
+            "claimant_occupation" => employment[:job_title],
+            "claimant_employed_from" => Date.parse(employment[:start_date]).strftime("%Y-%m-%d")
+          }
+
           if currently_employed?(employment)
-            {
-              "claimant_disabled" => "No",
-              "claimant_employed_currently" => "Yes", 
-              "claimant_occupation" => employment[:job_title],
-              "claimant_employed_from" => Date.parse(employment[:start_date]).strftime("%Y-%m-%d"),
+            common.merge! \
               "claimant_employed_to" => nil,
               "claimant_employed_notice_period" => nil
-            }
           elsif working_noticed_period?(employment)
-            {
-              "claimant_disabled" => "No",
-              "claimant_employed_currently" => "Yes", 
-              "claimant_occupation" => employment[:job_title],
-              "claimant_employed_from" => Date.parse(employment[:start_date]).strftime("%Y-%m-%d"),
+            common.merge! \
               "claimant_employed_to" => nil,
               "claimant_employed_notice_period" => Date.parse(employment[:notice_period_end_date]).strftime("%Y-%m-%d")
-            }
           else employment_terminated?(employment)
-            {
-              "claimant_disabled" => "No",
-              "claimant_employed_currently" => "Yes", 
-              "claimant_occupation" => employment[:job_title],
-              "claimant_employed_from" => Date.parse(employment[:start_date]).strftime("%Y-%m-%d"),
+            common.merge! \
               "claimant_employed_to" => Date.parse(employment[:end_date]).strftime("%Y-%m-%d"),
               "claimant_employed_notice_period" => nil
-            }
           end
+
+          if claimants[0][:has_special_needs].to_s.split(".").last == "yes"
+            common["claimant_disabled_details"] = claimants[0][:special_needs]
+          end
+          
+          common
         end
 
         def working_noticed_period?(employment)
