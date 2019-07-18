@@ -7,7 +7,7 @@ module EtFullSystem
           "claimant_first_names" => claimant[:first_name], 
           "claimant_last_name" => claimant[:last_name], 
           "claimant_date_of_birth" => Date.parse(claimant[:date_of_birth]).strftime("%Y-%m-%d"),
-          "claimant_gender" => claimant[:gender].to_s.split(".").last == "prefer_not_to_say" ? "N/K" : t(claimant[:gender])
+          "claimant_gender" => claimant[:gender].to_s.split(".").last == "prefer_not_to_say" ? "Not Known" : t(claimant[:gender])
         }
       end
 
