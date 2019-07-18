@@ -2,20 +2,17 @@ module EtFullSystem
   module Test
     module Ccd
       class Base
-        def initialize(ccd)
-          self.ccd = ccd
-        end
 
-        def ccd
+        def self.ccd
           return @ccd if defined?(@ccd)
           @ccd = ::EtCcdClient::UiClient.new
-          @ccd.login(username: 'm@m.com', password: 'p')
+          @ccd.login(username: 'm@m.com', password: 'Pa55word11')
           @ccd
         end
 
-        private
-
-        attr_accessor :ccd
+        def ccd
+          self.class.ccd
+        end
       end
     end
   end

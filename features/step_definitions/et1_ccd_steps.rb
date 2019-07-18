@@ -81,11 +81,9 @@ Then /^the claim should be present in CCD$/ do
   admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
   reference_number = admin_api.get_reference_number(claim_application_reference: @claim_application_reference)
 
-  ccd_object = EtFullSystem::Test::Ccd::Et1CcdJsonObject.find_by_reference(reference_number)
+  ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(reference_number)
   ccd_object.assert_primary_reference(reference_number)
   ccd_object.assert_primary_claimants(@claimant)
-  #Multiple claimants
-  # ccd_object.assert_multiple_claimants(@claimant.drop(1))
   ccd_object.assert_primary_representative(@representative)
   ccd_object.assert_primary_employment(@employment, @claimant)
   ccd_object.assert_primary_respondent(@respondent.first)
@@ -96,15 +94,9 @@ Then /^the multiple claimaints should be present in CCD$/ do
   admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
   reference_number = admin_api.get_reference_number(claim_application_reference: @claim_application_reference)
 
-  ccd_case = EtFullSystem::Test::Ccd::Et1CcdJsonObject.caseworker_search_latest_by_multiple_reference(resource.reference, case_type_id: 'CCD_Bulk_Action_Manc_v3')
-
-  ccd_object.assert_primary_reference(reference_number)
-  ccd_object.assert_primary_claimants(@claimant)
-  #Multiple claimants
-  # ccd_object.assert_multiple_claimants(@claimant.drop(1))
-  ccd_object.assert_primary_representative(@representative)
-  ccd_object.assert_primary_employment(@employment, @claimant)
-  ccd_object.assert_primary_respondent(@respondent.first)
-  ccd_object.assert_secondary_respondents(@respondent.drop(1))
+  ccd_object = EtFullSystem::Test::Ccd::Et1CcdMultipleClaimants.find_multiples_by_reference(reference_number)
+  ccd_object.assert_multiple_reference(reference_number)
+  ccd_object.assert_single_claims_pending_status
+  ccd_object.assert_primary_claimant_first_record(@claimant, @representative, @employment, @respondent)
 end
 

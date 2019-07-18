@@ -1,0 +1,131 @@
+require 'et_ccd_client'
+require_relative './base'
+require_relative './acas_exemption_helper'
+require_relative './et1_claimant_type'
+
+module EtFullSystem
+  module Test
+    module Ccd
+      class Et1CcdSingleClaimant < Base
+        include ::EtFullSystem::Test::I18n
+        include RSpec::Matchers
+        include ::EtFullSystem::Test::AcasExemptionHelper
+        include ::EtFullSystem::Test::Et1ClaimantType
+
+  
+        def initialize(response)
+          self.response = response
+        end
+  
+        def self.find_by_reference(reference_number, timeout: 10, sleep: 0.1)
+          Timeout.timeout(timeout) do
+            response = nil
+            until response.present? do
+              response = ccd.caseworker_search_latest_by_reference(reference_number, case_type_id: 'EmpTrib_MVP_1.0_Manc')
+              sleep sleep unless response.present?
+            end
+            new(response)
+          rescue Timeout::Error
+            return nil
+          end
+        end
+
+        def assert_primary_claimants(claimants)
+          expect(response['case_fields']).to include "claimantType" => a_hash_including(claimant_type(claimants[0]).as_json)
+          expect(response['case_fields']).to include "claimantType" => a_hash_including(claimant_type_address(claimants[0]).as_json)
+          expect(response['case_fields']).to include "claimantIndType" => a_hash_including(claimant_ind_type(claimants[0]).as_json)
+        end
+
+        def assert_multiple_claimants(claimants)
+          claimants.each_with_index do |claimant, i|
+            expect(response['case_fields']['data'][i]).to include a_hash_including(respondent_sum_type(claimant, secondary: true).as_json)
+          end
+        end
+
+        def assert_primary_representative(representative)
+          if representative[0]['representative_have'] == 'No'
+            expect(response['case_fields']).to include "claimantRepresentedQuestion" => "No"
+          else
+            expect(response['case_fields']).to include "representativeClaimantType" => a_hash_including(representative_address(representative[0]).as_json)
+            expect(response['case_fields']).to include "representativeClaimantType" => a_hash_including(representative_claimant_type(representative[0]).as_json)
+          end
+        end
+
+        def assert_primary_reference(case_fields)
+          expect(response['case_fields']).to include case_details(case_fields)
+        end
+
+        def assert_primary_employment(employment, claimants)
+          if employment[:employment_details] == :"claims.employment.no"
+            expect(response['case_fields']).to include "claimantOtherType" => a_hash_including("claimant_disabled" => t(claimants[0][:has_special_needs]), "claimant_disabled_details" => claimants[0][:special_needs])
+          else
+            expect(response['case_fields']).to include "claimantOtherType" => a_hash_including(claimant_other_type(employment, claimants).as_json)
+          end
+        end
+
+        def assert_primary_respondent(respondent)
+          expect(response['case_fields']).to include "claimantWorkAddress" => a_hash_including(claimant_work_address(respondent).as_json)
+          expect(response['case_fields']).to include "respondentSumType" => a_hash_including(respondent_sum_type(respondent).as_json)
+        end
+
+        def assert_secondary_respondents(respondents)
+          respondents.each_with_index do |respondent, i|
+            expect(response['case_fields']['respondentCollection'][i]).to include "value" => a_hash_including(respondent_sum_type(respondent, secondary: true).as_json)
+          end
+        end
+
+        private
+
+        attr_accessor :response
+
+        def claimant_type(claimant)
+          {
+            "claimant_phone_number" => claimant[:telephone_number],
+            "claimant_mobile_number" => claimant[:alternative_telephone_number],
+            "claimant_email_address" => claimant[:email_address],
+            "claimant_contact_preference" => claimant[:correspondence].to_s.split(".").last.titleize
+          } 
+        end
+
+        def claimant_type_address(claimant)
+          {
+            "claimant_addressUK" => {
+              "County" => claimant[:county],
+              "Country" => claimant[:country].to_s.split(".").last == "united_kingdom" ? "United Kingdom" : nil,
+              "PostCode" => claimant[:post_code],
+              "PostTown" => claimant[:locality],
+              "AddressLine1" => claimant[:building],
+              "AddressLine2" => claimant[:street]
+              }
+          }
+        end
+
+        def case_details(case_fields)
+          {
+            "receiptDate" => Time.now.strftime("%Y-%m-%d"),
+            "feeGroupReference" => case_fields,
+            "claimant_TypeOfClaimant" => "Individual",
+            "caseType" => "Single"
+          }
+        end
+
+        def working_noticed_period?(employment)
+          employment[:notice_period_end_date] != ''
+        end
+
+        def currently_employed?(employment)
+          employment[:notice_period_end_date] == '' && employment[:end_date] == ''
+        end
+
+        def employment_terminated?(employment)
+          employment[:end_date] != ''
+        end
+
+        def acas_number?(respondent)
+          respondent[:acas_number] != nil
+        end
+  
+      end
+    end
+  end
+end
