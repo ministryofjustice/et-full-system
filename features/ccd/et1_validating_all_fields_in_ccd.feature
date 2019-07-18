@@ -110,13 +110,11 @@ Feature:
     When the completed form is submitted
     Then the claim should be present in CCD
 
-  #WIP - need to add test to validate multiple claimants
   Scenario: Multiple claimants - manually entering 3 claimaint's details
     Given '3' employees making a claim
     When the completed form is submitted
     Then the multiple claimaints should be present in CCD
-
-  #WIP - need to add test to validate multiple claimants
+    
   Scenario: Multiple claimants - uploading multiple claimants using CSV file
     Given 7 employees making a claim by uploading CSV file
     When the completed form is submitted

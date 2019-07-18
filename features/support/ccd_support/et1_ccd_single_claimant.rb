@@ -25,9 +25,9 @@ module EtFullSystem
               sleep sleep unless response.present?
             end
             new(response)
-          rescue Timeout::Error
-            return nil
           end
+        rescue Timeout::Error
+          return nil
         end
 
         def assert_primary_claimants(claimants)
@@ -78,28 +78,6 @@ module EtFullSystem
 
         attr_accessor :response
 
-        def claimant_type(claimant)
-          {
-            "claimant_phone_number" => claimant[:telephone_number],
-            "claimant_mobile_number" => claimant[:alternative_telephone_number],
-            "claimant_email_address" => claimant[:email_address],
-            "claimant_contact_preference" => claimant[:correspondence].to_s.split(".").last.titleize
-          } 
-        end
-
-        def claimant_type_address(claimant)
-          {
-            "claimant_addressUK" => {
-              "County" => claimant[:county],
-              "Country" => claimant[:country].to_s.split(".").last == "united_kingdom" ? "United Kingdom" : nil,
-              "PostCode" => claimant[:post_code],
-              "PostTown" => claimant[:locality],
-              "AddressLine1" => claimant[:building],
-              "AddressLine2" => claimant[:street]
-              }
-          }
-        end
-
         def case_details(case_fields)
           {
             "receiptDate" => Time.now.strftime("%Y-%m-%d"),
@@ -107,22 +85,6 @@ module EtFullSystem
             "claimant_TypeOfClaimant" => "Individual",
             "caseType" => "Single"
           }
-        end
-
-        def working_noticed_period?(employment)
-          employment[:notice_period_end_date] != ''
-        end
-
-        def currently_employed?(employment)
-          employment[:notice_period_end_date] == '' && employment[:end_date] == ''
-        end
-
-        def employment_terminated?(employment)
-          employment[:end_date] != ''
-        end
-
-        def acas_number?(respondent)
-          respondent[:acas_number] != nil
         end
   
       end
