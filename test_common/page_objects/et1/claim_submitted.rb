@@ -95,7 +95,7 @@ module EtFullSystem
         def has_forwarded_to_local_office?(office)
           expect(main_content.submission_details).to have_submission_information
           date = Time.now
-          expect(main_content.submission_details.submission_information).to have_answer(text: t('claim_confirmations.show.submission_details.submission_with_office', date: date.strftime("%d #{t("date.month_names")[date.month]} %Y"), office: office))
+          expect(main_content.submission_details.submission_information).to have_answer(text: t('claim_confirmations.show.submission_details.submission_date', date: date.strftime("%d #{t("date.month_names")[date.month]} %Y")))
         end
 
         def has_attachment?(rtf_attachment, csv_attachment)
