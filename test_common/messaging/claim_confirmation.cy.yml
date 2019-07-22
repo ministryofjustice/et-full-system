@@ -29,8 +29,7 @@ cy:
         submission_information: Hawliad wedi'i gyflwyno
         attachments: Atodiadau wedi'u cynnwys
         payment_amount: Ffi cyflwyno wedi'i thalu
-        submission_without_office: "Cyflwynwyd ar %{date}"
-        submission_with_office: "Cyflwynwyd ar %{date} i swyddfa tribiwnlys %{office}"
+        submission_date: "Cyflwynwyd ar %{date}"
         submission_with_office_wales: "Cyflwynwyd ar %{date} i swyddfa tribiwnlys Cymru, Tribiwnlys Cyflogaeth, 3ydd Llawr, Llys Ynadon Caerdydd a’r Fro, Plas Fitzalan, Caerdydd, CF24 0RA"
 
       print_link_html: Argraffwch y dudalen hon
