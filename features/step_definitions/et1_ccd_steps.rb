@@ -93,10 +93,19 @@ end
 Then /^the multiple claimaints should be present in CCD$/ do
   admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
   reference_number = admin_api.get_reference_number(claim_application_reference: @claim_application_reference)
-
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdMultipleClaimants.find_multiples_by_reference(reference_number)
   ccd_object.assert_multiple_reference(reference_number)
   ccd_object.assert_single_claims_pending_status
-  ccd_object.assert_primary_claimant_first_record(@claimant, @representative, @employment, @respondent)
+  ccd_object.assert_primary_claimant(@claimant, @representative, @employment, @respondent)
+  ccd_object.assert_secondary_claimant(@claimant, @representative, @employment, @respondent)
 end
 
+Given("{string} employees making a claim with multiple respondents") do |string|
+  @claimant = FactoryBot.create_list(:claimant, string.to_i, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent.concat FactoryBot.create_list(:conciliation_acas_number, string.to_i - 1, :yes_acas, :secondary)
+  @employment = FactoryBot.create(:employment, :still_employed)
+  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
+end

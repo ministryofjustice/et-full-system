@@ -36,6 +36,10 @@ FactoryBot.define do
       office {'London Central, Victory House, 30-34 Kingsway, London WC2B 6EX'}
     end
 
+    trait :secondary do
+      telephone_number {nil}
+    end
+
     factory :conciliation_acas_number, traits: [:work_address, :yes_acas]
     factory :acas_number_reason, traits: [:work_address, :no_acas]
     factory :no_work_address, traits: [:yes_acas]

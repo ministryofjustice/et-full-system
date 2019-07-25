@@ -41,7 +41,7 @@ module EtFullSystem
           end
         end
 
-        def assert_primary_claimant_first_record(claimant, representative, employment, respondents)
+        def assert_primary_claimant(claimant, representative, employment, respondents)
           case_references = response.dig('case_fields', 'caseIdCollection').map { |obj| obj.dig('value', 'ethos_CaseReference') }
           aggregate_failures 'validating key fields' do
             created_case = ccd.caseworker_search_latest_by_ethos_case_reference(case_references.first, case_type_id: 'EmpTrib_MVP_1.0_Manc')
@@ -67,9 +67,40 @@ module EtFullSystem
             expect(created_case['case_fields']).to include "respondentSumType" => a_hash_including(respondent_sum_type(respondents[0]).as_json)
 
             respondents.drop(1).each_with_index do |respondent, i|
-              expect(created_case['case_fields']['respondentCollection'][i]).to include "value" => a_hash_including(respondent_sum_type(respondent, secondary: true).as_json)
+              expect(created_case['case_fields']['respondentCollection'][i]).to include "value" => a_hash_including(respondent_sum_type(respondent))
             end
           end
+        end
+
+        def assert_secondary_claimant(claimants, representative, employment, respondents)
+          case_references = response.dig('case_fields', 'caseIdCollection').map { |obj| obj.dig('value', 'ethos_CaseReference') }
+          secondary_claimants_left = claimants.drop(1)
+          cases = case_references.map do |ref|
+            ccd_case = ccd.caseworker_search_latest_by_ethos_case_reference(ref, case_type_id: 'EmpTrib_MVP_1.0_Manc')
+            ccd_case['case_fields']
+          end
+          primary_case = cases.first
+          secondary_cases = cases.drop(1)
+
+          secondary_cases.each do |secondary_case|
+            claimant = secondary_claimants_left.find do |c|
+              #claimant
+              secondary_case["claimantIndType"] == claimant_ind_type(c, secondary: true)
+              secondary_case["claimantType"] == secondary_claimant_type_address(c, secondary: true)
+            end
+            raise "validating claimant details: #{secondary_claimants_left}" if claimant.nil?
+            secondary_claimants_left.delete(claimant)
+            #representative
+            secondary_case["representativeClaimantType"] == secondary_representative(representative[0])
+            #employment
+            secondary_case["claimantOtherType"] == {}
+            #respondents
+            respondents.drop(1).each_with_index do |respondent, i|
+              expect(secondary_case['respondentCollection'][i]).to include "value" => a_hash_including(respondent_sum_type(respondent))
+            end
+            
+          end
+          expect(secondary_claimants_left).to be_empty
         end
 
         private
