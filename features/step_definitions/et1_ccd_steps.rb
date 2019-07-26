@@ -87,7 +87,7 @@ Then /^the claim should be present in CCD$/ do
   ccd_object.assert_primary_representative(@representative)
   ccd_object.assert_primary_employment(@employment, @claimant)
   ccd_object.assert_primary_respondent(@respondent.first)
-  ccd_object.assert_secondary_respondents(@respondent.drop(1))
+  ccd_object.assert_secondary_respondents(@respondent)
 end
 
 Then /^the multiple claimaints should be present in CCD$/ do
