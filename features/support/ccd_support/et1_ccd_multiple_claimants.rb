@@ -1,7 +1,6 @@
 require 'et_ccd_client'
 require_relative './base'
 require_relative './et1_claimant_type'
-require 'csv'
 
 module EtFullSystem
   module Test

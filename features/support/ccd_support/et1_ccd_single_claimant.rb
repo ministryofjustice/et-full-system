@@ -36,12 +36,6 @@ module EtFullSystem
           expect(response['case_fields']).to include "claimantIndType" => a_hash_including(claimant_ind_type(claimants[0]).as_json)
         end
 
-        # def assert_multiple_claimants(claimants)
-        #   claimants.each_with_index do |claimant, i|
-        #     expect(response['case_fields']['data'][i]).to include a_hash_including(respondent_sum_type(claimant, secondary: true).as_json)
-        #   end
-        # end
-
         def assert_primary_representative(representative)
           if representative[0]['representative_have'] == 'No'
             expect(response['case_fields']).to include "claimantRepresentedQuestion" => "No"
