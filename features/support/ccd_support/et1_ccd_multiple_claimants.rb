@@ -1,6 +1,7 @@
 require 'et_ccd_client'
 require_relative './base'
 require_relative './et1_claimant_type'
+require 'csv'
 
 module EtFullSystem
   module Test
@@ -72,8 +73,20 @@ module EtFullSystem
           end
         end
 
+        def multiple_claimants_xls(claimants)
+          if claimants[0].dig(:group_claims_csv)
+            filename = File.expand_path(File.join('test_common', 'fixtures', 'simple_user_with_csv_group_claims.csv'))
+            data = []
+            CSV.foreach(filename, :headers => true) do |csv_row|
+              data << csv_row
+            end
+            return data
+          end
+        end
+
         def assert_secondary_xls_claimants(claimants, representative, employment, respondents)
           case_references = response.dig('case_fields', 'caseIdCollection').map { |obj| obj.dig('value', 'ethos_CaseReference') }
+          secondary_claimants_left = multiple_claimants_xls(claimants)
           cases = case_references.map do |ref|
             ccd_case = ccd.caseworker_search_latest_by_ethos_case_reference(ref, case_type_id: 'EmpTrib_MVP_1.0_Manc')
             ccd_case['case_fields']
@@ -82,13 +95,13 @@ module EtFullSystem
           secondary_cases = cases.drop(1)
 
           secondary_cases.each do |secondary_case|
-            claimant = claimants.find do |c|
+            claimant = secondary_claimants_left.find do |c|
               #claimant
               secondary_case["claimantIndType"] == claimant_csv_ind_type(c)
               secondary_case["claimantType"] == secondary_xls_claimant_type_address(c)
             end
-            raise "validating claimant details: #{claimants}" if claimant.nil?
-            claimants.delete(claimant)
+            raise "validating claimant details: #{secondary_claimants_left}" if claimant.nil?
+            secondary_claimants_left.delete(claimant)
             #representative
             secondary_case["representativeClaimantType"] == secondary_representative(representative[0])
             #employment
@@ -99,7 +112,7 @@ module EtFullSystem
             end
             
           end
-          expect(claimants).to be_empty
+          expect(secondary_claimants_left).to be_empty
         end
 
         def assert_secondary_claimant(claimants, representative, employment, respondents)

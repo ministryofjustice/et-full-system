@@ -102,12 +102,7 @@ Then /^the multiple claimaints should be present in CCD$/ do
   ccd_object.assert_primary_claimant(@claimant, @representative, @employment, @respondent)
 
   if @claimant[0].dig(:group_claims_csv)
-    filename = File.expand_path(File.join('test_common', 'fixtures', 'simple_user_with_csv_group_claims.csv'))
-    claimants = []
-    CSV.foreach(filename, :headers => true) do |csv_row|
-      claimants << csv_row
-    end
-    ccd_object.assert_secondary_xls_claimants(claimants, @representative, @employment, @respondent)
+    ccd_object.assert_secondary_xls_claimants(@claimant, @representative, @employment, @respondent)
   else
     ccd_object.assert_secondary_claimant(@claimant, @representative, @employment, @respondent)
   end
