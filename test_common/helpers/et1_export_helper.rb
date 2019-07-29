@@ -8,7 +8,7 @@ module EtFullSystem
       # @return [Array<String,RSpec::Matchers::BuiltIn::BaseMatcher>] An array of simple strings and rspec matchers for use
       #  as one huge expectation based on the input user.
       def calculated_claim_matchers(args)
-        gender = args.dig(:user, :gender).to_s.split(".").last == "prefer_not_to_say" ? "Not Known" : t(claimant[:gender])
+        gender = args.dig(:user, :gender).to_s.split(".").last == "prefer_not_to_say" ? "N/K" : t(claimant[:gender])
         [
           'ET1 - Online Application to an Employment Tribunal',
           '',
