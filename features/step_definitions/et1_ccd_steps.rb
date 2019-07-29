@@ -57,7 +57,8 @@ end
 Given("an employee making a claim where the additional respondents provided an acas number") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, 2)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent.concat FactoryBot.create_list(:conciliation_acas_number, 1 - 1, :yes_acas, :secondary)
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim) 
 end
@@ -65,7 +66,8 @@ end
 Given("an employee making a claim where the additional respondents gave reason for not having an acas number") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:acas_number_reason, 1, :no_acas, no_acas_number_reason: :"simple_form.options.respondent.no_acas_number_reason.acas_has_no_jurisdiction")
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent.concat FactoryBot.create_list(:conciliation_acas_number, 1 - 1, :yes_acas, :secondary)
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim) 
 end
@@ -95,9 +97,20 @@ Then /^the multiple claimaints should be present in CCD$/ do
   reference_number = admin_api.get_reference_number(claim_application_reference: @claim_application_reference)
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdMultipleClaimants.find_multiples_by_reference(reference_number)
   ccd_object.assert_multiple_reference(reference_number)
-  ccd_object.assert_single_claims_pending_status
+
+  ccd_object.assert_claimants_pending_status
   ccd_object.assert_primary_claimant(@claimant, @representative, @employment, @respondent)
-  ccd_object.assert_secondary_claimant(@claimant, @representative, @employment, @respondent)
+
+  if @claimant[0].dig(:group_claims_csv)
+    filename = File.expand_path(File.join('test_common', 'fixtures', 'simple_user_with_csv_group_claims.csv'))
+    claimants = []
+    CSV.foreach(filename, :headers => true) do |csv_row|
+      claimants << csv_row
+    end
+    ccd_object.assert_secondary_xls_claimants(claimants, @representative, @employment, @respondent)
+  else
+    ccd_object.assert_secondary_claimant(@claimant, @representative, @employment, @respondent)
+  end
 end
 
 Given("{string} employees making a claim with multiple respondents") do |string|

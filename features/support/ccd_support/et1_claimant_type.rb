@@ -12,6 +12,16 @@ module EtFullSystem
           }
       end
 
+      def claimant_csv_ind_type(claimant)
+        {
+          "claimant_title1" => claimant["Title"], 
+          "claimant_first_names" => claimant["First name"].downcase, 
+          "claimant_last_name" => claimant["Last name"].downcase, 
+          "claimant_date_of_birth" => Date.parse(claimant["Date of birth"]).strftime("%Y-%m-%d"),
+          "claimant_gender" => nil
+        }
+      end
+
       def respondent_sum_type(respondent)
         common = {
           "respondent_ACAS" => respondent[:acas_number],
@@ -160,6 +170,21 @@ module EtFullSystem
             "AddressLine2" => claimant[:street]
             }
         }
+      end
+
+      def secondary_xls_claimant_type_address(claimant)
+        {"claimant_addressUK" =>
+          {"AddressLine1" => claimant["Building number or name"], 
+            "AddressLine2" => claimant["Street"].downcase, 
+            "PostTown" => claimant["Town/city"].downcase, 
+            "County" => claimant["County"].downcase, 
+            "Country" => nil, 
+            "PostCode" => claimant["Postcode"].downcase
+          },
+        "claimant_phone_number" => nil,
+        "claimant_mobile_number" => nil,
+        "claimant_email_address" => nil,
+        "claimant_contact_preference" => nil}
       end
 
       def secondary_claimant_type_address(claimant, secondary: true)

@@ -1,6 +1,7 @@
 require 'et_ccd_client'
 require_relative './base'
 require_relative './et1_claimant_type'
+require 'csv'
 
 module EtFullSystem
   module Test
@@ -31,7 +32,7 @@ module EtFullSystem
           expect(response['case_fields']).to include "multipleReference" => reference_number
         end
 
-        def assert_single_claims_pending_status
+        def assert_claimants_pending_status
           case_collection = response.dig('case_fields', 'caseIdCollection').map { |obj| obj.dig('value', 'ethos_CaseReference') }
           aggregate_failures 'validating key fields' do
             case_collection.each do |ref|
@@ -70,6 +71,36 @@ module EtFullSystem
               expect(created_case['case_fields']['respondentCollection'][i]).to include "value" => a_hash_including(respondent_sum_type(respondent))
             end
           end
+        end
+
+        def assert_secondary_xls_claimants(claimants, representative, employment, respondents)
+          case_references = response.dig('case_fields', 'caseIdCollection').map { |obj| obj.dig('value', 'ethos_CaseReference') }
+          cases = case_references.map do |ref|
+            ccd_case = ccd.caseworker_search_latest_by_ethos_case_reference(ref, case_type_id: 'EmpTrib_MVP_1.0_Manc')
+            ccd_case['case_fields']
+          end
+          primary_case = cases.first
+          secondary_cases = cases.drop(1)
+
+          secondary_cases.each do |secondary_case|
+            claimant = claimants.find do |c|
+              #claimant
+              secondary_case["claimantIndType"] == claimant_csv_ind_type(c)
+              secondary_case["claimantType"] == secondary_xls_claimant_type_address(c)
+            end
+            raise "validating claimant details: #{claimants}" if claimant.nil?
+            claimants.delete(claimant)
+            #representative
+            secondary_case["representativeClaimantType"] == secondary_representative(representative[0])
+            #employment
+            secondary_case["claimantOtherType"] == {}
+            #respondents
+            respondents.drop(1).each_with_index do |respondent, i|
+              expect(secondary_case['respondentCollection'][i]).to include "value" => a_hash_including(respondent_sum_type(respondent))
+            end
+            
+          end
+          expect(claimants).to be_empty
         end
 
         def assert_secondary_claimant(claimants, representative, employment, respondents)
