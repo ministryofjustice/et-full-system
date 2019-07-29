@@ -64,7 +64,6 @@ module EtFullSystem
 
         def assert_secondary_respondents(respondents)
           respondents.drop(1).each_with_index do |respondent, i|
-            binding.pry
             expect(response['case_fields']['respondentCollection'][i]).to include "value" => a_hash_including(respondent_sum_type(respondent))
           end
         end

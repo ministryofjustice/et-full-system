@@ -120,7 +120,7 @@ Feature:
     When the completed form is submitted
     Then the multiple claimaints should be present in CCD
 
-  Scenario: Multiple claimants - with multiple respondents
+  Scenario: Multiple claimants and multiple respondents
     Given '3' employees making a claim with multiple respondents
     When the completed form is submitted
     Then the multiple claimaints should be present in CCD
