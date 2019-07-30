@@ -1,10 +1,11 @@
 GIT
   remote: https://github.com/hmcts/et-ccd-client-ruby.git
-  revision: 83e6fdc6f236a8635a920bb411e87702587b877a
-  tag: v0.1.21
+  revision: b204abd9eb6391b40c866f8007c55cd520876d28
+  tag: v0.1.24
   specs:
-    et_ccd_client (0.1.21)
+    et_ccd_client (0.1.24)
       addressable (~> 2.6)
+      connection_pool (~> 2.2, >= 2.2.2)
       mechanize (~> 2.7, >= 2.7.6)
       rest-client (~> 2.0, >= 2.0.2)
       rotp (~> 5.0)
@@ -170,7 +171,7 @@ GEM
     multipart-post (2.1.1)
     mustermann (1.0.3)
     net-http-digest_auth (1.4.1)
-    net-http-persistent (3.0.1)
+    net-http-persistent (3.1.0)
       connection_pool (~> 2.2)
     netrc (0.11.0)
     nokogiri (1.10.3)
