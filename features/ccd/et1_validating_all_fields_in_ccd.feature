@@ -86,7 +86,7 @@ Feature:
     Then the claim should be present in CCD
 
   Scenario: Multiple additional respondents
-    Given an employee making a claim against 3 employers
+    Given an employee making a claim against 5 employers
     When the completed form is submitted
     Then the claim should be present in CCD
 
