@@ -119,7 +119,7 @@ Given("a claimant submitted an ET1 with no employment details") do
 end
 
 Given("a claimant submitted an ET1 who live outside UK") do
-  @claimant = FactoryBot.create_list(:claimant, 1, :person_data, country: :"simple_form.options.claimant.address_country.other", post_code: "1065^&%$£@():?><*&")
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data, country: :"simple_form.options.claimant.address_country.other", post_code: "^&%$£@:?<*")
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment, :still_employed)
