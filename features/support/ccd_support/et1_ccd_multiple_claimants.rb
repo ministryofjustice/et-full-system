@@ -10,16 +10,17 @@ module EtFullSystem
         include ::EtFullSystem::Test::I18n
         include RSpec::Matchers
         include ::EtFullSystem::Test::Et1ClaimantType
-  
+
         def initialize(response)
           self.response = response
         end
 
-        def self.find_multiples_by_reference(reference_number, timeout: 60, sleep: 0.1)
+        def self.find_multiples_by_reference(reference_number, timeout: 60, sleep: 0.5)
           Timeout.timeout(timeout) do
             response = nil
             until response.present? do
               response = ccd.caseworker_search_latest_by_multiple_reference(reference_number, case_type_id: 'CCD_Bulk_Action_Manc_v3')
+              puts response
               sleep sleep unless response.present?
             end
             new(response)
@@ -110,7 +111,7 @@ module EtFullSystem
             respondents.drop(1).each_with_index do |respondent, i|
               expect(secondary_case['respondentCollection'][i]).to include "value" => a_hash_including(respondent_sum_type(respondent))
             end
-            
+
           end
           expect(secondary_claimants_left).to be_empty
         end
@@ -141,7 +142,7 @@ module EtFullSystem
             respondents.drop(1).each_with_index do |respondent, i|
               expect(secondary_case['respondentCollection'][i]).to include "value" => a_hash_including(respondent_sum_type(respondent))
             end
-            
+
           end
           expect(secondary_claimants_left).to be_empty
         end
@@ -149,7 +150,7 @@ module EtFullSystem
         private
 
         attr_accessor :response
-  
+
       end
     end
   end

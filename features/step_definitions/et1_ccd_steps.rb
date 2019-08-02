@@ -51,7 +51,7 @@ Given("an employee making a claim where the respondent provided the same address
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:no_work_address, 1, :yes_acas)
   @employment = FactoryBot.create(:employment, :still_employed)
-  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)  
+  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
 
 Given("an employee making a claim where the additional respondents provided an acas number") do
@@ -60,7 +60,7 @@ Given("an employee making a claim where the additional respondents provided an a
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @respondent.concat FactoryBot.create_list(:conciliation_acas_number, 1 - 1, :yes_acas, :secondary)
   @employment = FactoryBot.create(:employment, :still_employed)
-  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim) 
+  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
 
 Given("an employee making a claim where the additional respondents gave reason for not having an acas number") do
@@ -69,7 +69,7 @@ Given("an employee making a claim where the additional respondents gave reason f
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @respondent.concat FactoryBot.create_list(:conciliation_acas_number, 1 - 1, :yes_acas, :secondary)
   @employment = FactoryBot.create(:employment, :still_employed)
-  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim) 
+  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
 Given("a claimant submitting mandatory respondent's Details fields") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
@@ -82,7 +82,6 @@ end
 Then /^the claim should be present in CCD$/ do
   admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
   reference_number = admin_api.get_reference_number(claim_application_reference: @claim_application_reference)
-  sleep 1
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(reference_number)
   ccd_object.assert_primary_reference(reference_number)
   ccd_object.assert_primary_claimants(@claimant)
@@ -96,7 +95,6 @@ Then /^the multiple claimaints should be present in CCD$/ do
   admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
   reference_number = admin_api.get_reference_number(claim_application_reference: @claim_application_reference)
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdMultipleClaimants.find_multiples_by_reference(reference_number)
-  sleep 1
   ccd_object.assert_multiple_reference(reference_number)
 
   ccd_object.assert_claimants_pending_status
@@ -112,7 +110,7 @@ end
 Given("{string} employees making a claim with multiple respondents") do |string|
   @claimant = FactoryBot.create_list(:claimant, string.to_i, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  
+
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @respondent.concat FactoryBot.create_list(:conciliation_acas_number, string.to_i - 1, :yes_acas, :secondary)
   @employment = FactoryBot.create(:employment, :still_employed)

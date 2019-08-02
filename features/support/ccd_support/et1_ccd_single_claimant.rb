@@ -12,12 +12,12 @@ module EtFullSystem
         include ::EtFullSystem::Test::AcasExemptionHelper
         include ::EtFullSystem::Test::Et1ClaimantType
 
-  
+
         def initialize(response)
           self.response = response
         end
-  
-        def self.find_by_reference(reference_number, timeout: 10, sleep: 0.1)
+
+        def self.find_by_reference(reference_number, timeout: 10, sleep: 0.5)
           Timeout.timeout(timeout) do
             response = nil
             until response.present? do
@@ -80,7 +80,7 @@ module EtFullSystem
             "caseType" => "Single"
           }
         end
-  
+
       end
     end
   end
