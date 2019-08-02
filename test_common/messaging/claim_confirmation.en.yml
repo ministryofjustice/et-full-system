@@ -33,8 +33,7 @@ en:
         attachments: Attachments included
         tribunal_office: Watford, watfordet@justice.gov.uk, 01923 281 750
         payment_amount: Issue fee paid
-        submission_without_office: Submitted %{date}
-        submission_with_office: Submitted %{date} to tribunal office %{office}
+        submission_date: Submitted %{date}
 
       print_link_html: "Print this page"
       print_link_info: "for your records"

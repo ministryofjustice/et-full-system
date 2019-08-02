@@ -14,8 +14,8 @@ cy:
           Rydych wedi cychwyn gwneud cais am help i dalu ffioedd.
           Mae'n rhaid i chi nawr gwblhau eich cais o fewn 7 diwrnod neu gellir gwrthod eich hawliad.
         remission_link_text: "Gwneud cais am help i dalu ffioedd"
-        send_to_respondent: "Fe anfonir copi o'r hawliad at yr atebydd. Bydd ganddynt 28 diwrnod i ymateb."
-        next_steps: "Byddwn yn cysylltu â chi pan fyddwn wedi anfon eich hawliad at yr atebydd i esbonio beth yw'r camau nesaf."
+        send_to_respondent: "Byddwn yn cysylltu â chi unwaith y byddwn wedi anfon eich hawliad at yr atebydd i egluro beth fydd yn digwydd nesaf. Ar hyn o bryd, mae’n cymryd oddeutu 25 diwrnod."
+        next_steps: "Unwaith y byddwn wedi anfon eich hawliad atynt, mae gan yr atebydd 28 diwrnod i ymateb."
         next_steps_final_step: |
           Byddwn yn adolygu eich cais am help i dalu ffioedd ac yn rhoi gwybod i chi beth yw'r canlyniad.
       download_application:
@@ -29,8 +29,7 @@ cy:
         submission_information: Hawliad wedi'i gyflwyno
         attachments: Atodiadau wedi'u cynnwys
         payment_amount: Ffi cyflwyno wedi'i thalu
-        submission_without_office: "Cyflwynwyd ar %{date}"
-        submission_with_office: "Cyflwynwyd ar %{date} i swyddfa tribiwnlys %{office}"
+        submission_date: "Cyflwynwyd ar %{date}"
         submission_with_office_wales: "Cyflwynwyd ar %{date} i swyddfa tribiwnlys Cymru, Tribiwnlys Cyflogaeth, 3ydd Llawr, Llys Ynadon Caerdydd a’r Fro, Plas Fitzalan, Caerdydd, CF24 0RA"
 
       print_link_html: Argraffwch y dudalen hon

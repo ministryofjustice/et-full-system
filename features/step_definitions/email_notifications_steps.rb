@@ -37,7 +37,7 @@ end
 Then(/^an email is sent to notify user that a claim has been successfully submitted$/) do
   et1_email = EtFullSystem::Test::Et1ClaimCompletedEmailHtml.find(claim_number: @claim_number)
   date = Time.now
-  expect(et1_email.submission_submitted).to eq(t('claim_confirmations.show.submission_details.submission_with_office', date: date.strftime("%d #{t("date.month_names")[date.month]} %Y"), office: @respondent[0][:work_office]))
+  expect(et1_email.submission_submitted).to eq(t('claim_confirmations.show.submission_details.submission_date', date: date.strftime("%d #{t("date.month_names")[date.month]} %Y")))
   expect(et1_email.has_correct_subject_for_claim_submitted?).to be true
 end
 
