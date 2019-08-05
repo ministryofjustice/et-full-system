@@ -56,8 +56,8 @@ module EtFullSystem
         self.access_token = cookies_hash[:accessToken]
       end
 
-      def get_ccd_case(fee_group_reference) 
-        response = request(:get, "#{case_url}/aggregated/caseworkers/:uid/jurisdictions/EMPLOYMENT/case-types/EmpTrib_MVP_1.0_Manc/cases?view=WORKBASKET&state=1_Submitted&page=1&case.feeGroupReference=#{fee_group_reference}&page=1&sortDirection=desc",
+      def get_ccd_case(fee_group_reference)
+        response = request(:get, "#{case_url}/aggregated/caseworkers/:uid/jurisdictions/EMPLOYMENT/case-types/Manchester_Dev/cases?view=WORKBASKET&state=1_Submitted&page=1&case.feeGroupReference=#{fee_group_reference}&page=1&sortDirection=desc",
           headers: {
             'Content-Type' => 'application/json'
           },
@@ -84,7 +84,7 @@ module EtFullSystem
         end
         last_response
       end
-      
+
       attr_accessor :cookies_hash, :last_response, :csrf_token, :oauth2redirect_code, :access_token, :case_response
     end
   end

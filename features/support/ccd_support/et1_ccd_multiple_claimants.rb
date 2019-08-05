@@ -19,7 +19,7 @@ module EtFullSystem
           Timeout.timeout(timeout) do
             response = nil
             until response.present? do
-              response = ccd.caseworker_search_latest_by_multiple_reference(reference_number, case_type_id: 'CCD_Bulk_Action_Manc_v3')
+              response = ccd.caseworker_search_latest_by_multiple_reference(reference_number, case_type_id: 'Manchester_Multiples_Dev')
               puts response
               sleep sleep unless response.present?
             end
@@ -37,7 +37,7 @@ module EtFullSystem
           case_collection = response.dig('case_fields', 'caseIdCollection').map { |obj| obj.dig('value', 'ethos_CaseReference') }
           aggregate_failures 'validating key fields' do
             case_collection.each do |ref|
-              created_case = ccd.caseworker_search_latest_by_ethos_case_reference(ref, case_type_id: 'EmpTrib_MVP_1.0_Manc')
+              created_case = ccd.caseworker_search_latest_by_ethos_case_reference(ref, case_type_id: 'Manchester_Dev')
               expect(created_case['case_fields']).to include 'state' => 'Pending'
             end
           end
@@ -46,7 +46,7 @@ module EtFullSystem
         def assert_primary_claimant(claimant, representative, employment, respondents)
           case_references = response.dig('case_fields', 'caseIdCollection').map { |obj| obj.dig('value', 'ethos_CaseReference') }
           aggregate_failures 'validating key fields' do
-            created_case = ccd.caseworker_search_latest_by_ethos_case_reference(case_references.first, case_type_id: 'EmpTrib_MVP_1.0_Manc')
+            created_case = ccd.caseworker_search_latest_by_ethos_case_reference(case_references.first, case_type_id: 'Manchester_Dev')
 
             expect(created_case['case_fields']).to include "claimantIndType" => a_hash_including(claimant_ind_type(claimant[0]).as_json)
             expect(created_case['case_fields']).to include "claimantType" => a_hash_including(claimant_type(claimant[0]).as_json)
@@ -89,7 +89,7 @@ module EtFullSystem
           case_references = response.dig('case_fields', 'caseIdCollection').map { |obj| obj.dig('value', 'ethos_CaseReference') }
           secondary_claimants_left = multiple_claimants_xls(claimants)
           cases = case_references.map do |ref|
-            ccd_case = ccd.caseworker_search_latest_by_ethos_case_reference(ref, case_type_id: 'EmpTrib_MVP_1.0_Manc')
+            ccd_case = ccd.caseworker_search_latest_by_ethos_case_reference(ref, case_type_id: 'Manchester_Dev')
             ccd_case['case_fields']
           end
           primary_case = cases.first
@@ -120,7 +120,7 @@ module EtFullSystem
           case_references = response.dig('case_fields', 'caseIdCollection').map { |obj| obj.dig('value', 'ethos_CaseReference') }
           secondary_claimants_left = claimants.drop(1)
           cases = case_references.map do |ref|
-            ccd_case = ccd.caseworker_search_latest_by_ethos_case_reference(ref, case_type_id: 'EmpTrib_MVP_1.0_Manc')
+            ccd_case = ccd.caseworker_search_latest_by_ethos_case_reference(ref, case_type_id: 'Manchester_Dev')
             ccd_case['case_fields']
           end
           primary_case = cases.first

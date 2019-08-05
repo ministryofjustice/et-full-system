@@ -6,6 +6,7 @@ EtCcdClient.config do |c|
   c.data_store_base_url = EtFullSystem::Test::Configuration.ccd_data_store_base_url
   rewrite = EtFullSystem::Test::Configuration.ccd_document_store_url_rewrite
   c.document_store_url_rewrite = rewrite == false ? false : rewrite.split(':')
+  c.gateway_api_url = EtFullSystem::Test::Configuration.ccd_gateway_api_url
   c.jurisdiction_id = EtFullSystem::Test::Configuration.ccd_jurisdiction_id
   c.microservice = EtFullSystem::Test::Configuration.ccd_microservice
   c.microservice_secret = EtFullSystem::Test::Configuration.ccd_microservice_secret

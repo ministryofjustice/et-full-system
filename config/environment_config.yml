@@ -24,6 +24,8 @@ local: &local
   ccd_auth_base_url: http://ccd.et.127.0.0.1.nip.io:3100/auth
   ccd_idam_base_url: http://ccd.et.127.0.0.1.nip.io:3100/idam
   ccd_data_store_base_url: http://ccd.et.127.0.0.1.nip.io:3100/data_store
+  ccd_gateway_api_url: http://ccd.et.127.0.0.1.nip.io:3100/api-gateway
+  ccd_document_store_url_rewrite: false
   ccd_jurisdiction_id: EMPLOYMENT
   ccd_microservice: ccd_gw
   ccd_microservice_secret: AAAAAAAAAAAAAAAC
@@ -36,8 +38,10 @@ local_ccd_docker:
   <<: *local
   ccd_use_sidam: false
   ccd_auth_base_url: http://localhost:4502
-  ccd_idam_base_url: http://localhost:4501
+  ccd_idam_base_url: http://localhost:5000
   ccd_data_store_base_url: http://localhost:4452
+  ccd_gateway_api_url: http://localhost:3453
+  ccd_document_store_url_rewrite: localhost:4506:dm-store:8080
   ccd_case_management_ui_base_url: http://localhost:3451
   ccd_case_management_ui_redirect_url: http://localhost:3451/oauth2redirect
   ccd_sidam_username: invalid

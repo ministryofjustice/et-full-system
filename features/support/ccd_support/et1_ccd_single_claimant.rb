@@ -21,7 +21,7 @@ module EtFullSystem
           Timeout.timeout(timeout) do
             response = nil
             until response.present? do
-              response = ccd.caseworker_search_latest_by_reference(reference_number, case_type_id: 'EmpTrib_MVP_1.0_Manc')
+              response = ccd.caseworker_search_latest_by_reference(reference_number, case_type_id: 'Manchester_Dev')
               sleep sleep unless response.present?
             end
             new(response)
