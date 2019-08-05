@@ -1,3 +1,4 @@
+require 'httparty'
 require 'et_ccd_client'
 require_relative './base'
 require_relative './acas_exemption_helper'
@@ -66,6 +67,21 @@ module EtFullSystem
           respondents.drop(1).each_with_index do |respondent, i|
             expect(response['case_fields']['respondentCollection'][i]).to include "value" => a_hash_including(respondent_sum_type(respondent))
           end
+        end
+
+        def download_pdf_file
+          download = response['case_fields']['documentCollection'][0]['value']['uploadedDocument']['document_binary_url']
+          tempfile = Tempfile.new
+          File.open(tempfile, 'wb')  do |f|
+            block = proc { |response|
+              response.read_body do |chunk|
+                f.write chunk
+              end
+            }
+            RestClient::Request.new(method: :get, url: download, block_response: block).execute
+          end
+          # tempfile.rewind
+          tempfile
         end
 
         private

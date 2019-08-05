@@ -89,6 +89,8 @@ Then /^the claim should be present in CCD$/ do
   ccd_object.assert_primary_employment(@employment, @claimant)
   ccd_object.assert_primary_respondent(@respondent.first)
   ccd_object.assert_secondary_respondents(@respondent)
+
+  expect(ccd_object.download_pdf_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
 end
 
 Then /^the multiple claimaints should be present in CCD$/ do
