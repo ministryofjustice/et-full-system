@@ -107,6 +107,8 @@ Then /^the multiple claimaints should be present in CCD$/ do
   else
     ccd_object.assert_secondary_claimant(@claimant, @representative, @employment, @respondent)
   end
+
+  # expect(ccd_object.download_primary_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
 end
 
 Given("{string} employees making a claim with multiple respondents") do |string|
