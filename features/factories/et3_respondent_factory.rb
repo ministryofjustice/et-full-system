@@ -29,22 +29,22 @@ FactoryBot.define do
   end
 
   trait :upload_additional_information do
-    rtf_file 'simple_user_with_rtf.rtf'
+    rtf_file {'simple_user_with_rtf.rtf'}
   end
 
   trait :et3_respondent_optionals do
-    contact ''
-    county ''
-    dx_number ''
-    contact_number ''
-    contact_mobile_number ''
-    contact_preference nil
-    email_address ''
-    organisation_employ_gb ''
-    make_employer_contract_claim nil
-    claim_information ''
-    email_receipt ''
-    disability nil
-    disability_information ''
+    contact {''}
+    county {''}
+    dx_number {''}
+    contact_number {''}
+    contact_mobile_number {''}
+    contact_preference {nil}
+    email_address {''}
+    organisation_employ_gb {''}
+    make_employer_contract_claim {nil}
+    claim_information {''}
+    email_receipt {''}
+    disability {nil}
+    disability_information {''}
   end
 end

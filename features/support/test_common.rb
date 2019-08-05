@@ -10,6 +10,7 @@ require_relative '../../test_common/rspec_eventually'
 require_relative '../../test_common/housekeeping'
 require_relative '../../test_common/matchers'
 require_relative '../../test_common/api/admin'
+require_relative '../../test_common/ccd_config'
 include EtFullSystem::Test::Pages
 include EtFullSystem::Test::Et1ClaimHelper
 include EtFullSystem::Test::Et3ResponseHelper

@@ -17,10 +17,10 @@ module EtFullSystem
           #What happens next
           element :what_happens_next, :content_header, 'claim_confirmations.show.what_happens_next.header'
           section :numerical_list, '.numerical-list' do
-            #A copy of the claim will be sent to the respondent. They’ll have 28 days to reply.
-            element :send_to_respondent, :paragraph, 'claim_confirmations.show.what_happens_next.send_to_respondent'
-            #We’ll contact you when we’ve sent your claim to the respondent and explain the next steps.
-            element :next_steps, :paragraph, 'claim_confirmations.show.what_happens_next.next_steps'
+            #We'll contact you once we have sent your claim to the respondent and explain what happens next. At present, this is taking us an of average of 25 days.
+            element :send_to_respondent, :paragraph, 'claim_confirmations.show.what_happens_next.send_to_respondent', exact: false
+            #Once we have sent them your claim, the respondent has 28 days to reply
+            element :next_steps, :paragraph, 'claim_confirmations.show.what_happens_next.next_steps', exact: false
           end
           #Submission details
           section :submission_details, :table_captioned, 'claim_confirmations.show.submission_details.header' do
@@ -95,7 +95,7 @@ module EtFullSystem
         def has_forwarded_to_local_office?(office)
           expect(main_content.submission_details).to have_submission_information
           date = Time.now
-          expect(main_content.submission_details.submission_information).to have_answer(text: t('claim_confirmations.show.submission_details.submission_date', date: date.strftime("%d #{t("date.month_names")[date.month]} %Y")))
+          expect(main_content.submission_details.submission_information.text).to eq("Claim submitted Submitted " + date.strftime("%d #{t("date.month_names")[date.month]} %Y"))
         end
 
         def has_attachment?(rtf_attachment, csv_attachment)

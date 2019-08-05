@@ -38,10 +38,11 @@ Given(/^an employee making a claim by uploading a Rich Text Format document$/) d
   @claim = FactoryBot.create(:claim, :upload_your_claim_statement)
 end
 
-Given(/^an employee making a claim against 3 employers$/) do
+Given("an employee making a claim against {int} employers") do |string|
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, 3)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent.concat FactoryBot.create_list(:conciliation_acas_number, string - 1, :yes_acas, :secondary)
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -118,7 +119,7 @@ Given("a claimant submitted an ET1 with no employment details") do
 end
 
 Given("a claimant submitted an ET1 who live outside UK") do
-  @claimant = FactoryBot.create_list(:claimant, 1, :person_data, country: :"simple_form.options.claimant.address_country.other", post_code: "1065^&%$£@():?><*&")
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data, country: :"simple_form.options.claimant.address_country.other", post_code: "^&%$£@:?<*")
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment, :still_employed)

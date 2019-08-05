@@ -187,7 +187,7 @@ module EtFullSystem
 
         def set(user)
           data = user[0].to_h
-          if data[:have_representative] == 'Yes'
+          if data[:representative_have] == 'Yes'
             main_content.representative.yes.click
             main_content do |s|
               set_field s, :type, data

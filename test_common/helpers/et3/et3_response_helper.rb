@@ -86,7 +86,7 @@ module EtFullSystem
 
       def et3_answer_representative
         user = @representative[0]
-        if t(user.have_representative) == t('questions.have_representative.yes.label')
+        if user.representative_have == :"questions.have_representative.yes.label"
           your_representative_page.have_representative_question.set_for(user)
           your_representative_page.next
           your_representatives_details_page.type_of_representative_question.set_for(user)
@@ -106,6 +106,7 @@ module EtFullSystem
         else
           your_representative_page.next
         end
+
       end
 
       def et3_answer_disability_question

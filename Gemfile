@@ -29,7 +29,7 @@ group :test do
   gem 'factory_bot'
   gem 'settingslogic'
   gem 'mail'
-  gem 'et_ccd_client', git: 'https://github.com/hmcts/et-ccd-client-ruby.git', tag: 'v0.1.1'
+  gem 'et_ccd_client', git: 'https://github.com/hmcts/et-ccd-client-ruby.git', tag: 'v0.1.39'
 end
 
 group :development, :test do
@@ -41,5 +41,5 @@ group :development, :test do
 end
 
 gem 'thor', '~> 0.20.3'
-gem 'et_full_system', '~> 0.1'
+gem 'et_full_system', '~> 0.1.52'
 gem 'rake'

@@ -112,6 +112,20 @@ module EtFullSystem
         raise "An ATOS zip file for reference #{reference} was not found"
       end
 
+      def get_reference_number(claim_application_reference:, timeout: 30, sleep: 0.5)
+        login
+        Timeout.timeout(timeout) do
+          loop do
+            response = request(:get, "#{url}/claims.json?q[submission_reference_equals]=#{claim_application_reference}", cookies: cookies_hash)
+            claims = JSON.parse(response.body)
+            return claims[0]['reference'] unless claims.empty?
+            sleep(sleep)
+          end
+        end
+      rescue Timeout::Error
+        raise "The claim with application_reference #{claim_application_reference} was not stored in the API"
+      end
+
       private
 
       def logged_in?

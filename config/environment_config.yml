@@ -6,8 +6,13 @@ defaults: &defaults
   atos_password: password
   atos_secondary_username: atos2
   atos_secondary_password: password
-local:
+  ccd_username: m@m.com
+  ccd_password: p
+local: &local
   <<: *defaults
+  ccd_client_url: https://localhost:3501
+  oauth2redirect: http://localhost:3451/oauth2redirect
+  ccd_case_url: http://localhost:3453
   et1_url: http://et1.et.127.0.0.1.nip.io:3100/
   diversity_url: http://et1.et.127.0.0.1.nip.io:3100/apply/diversity
   et1_admin_url: http://et1.et.127.0.0.1.nip.io:3100/apply/admin
@@ -16,6 +21,31 @@ local:
   admin_url: http://admin.et.127.0.0.1.nip.io:3100/admin
   sidekiq_url: http://et1.et.127.0.0.1.nip.io:3100/apply/sidekiq
   mailhog_search_url: http://mail.et.127.0.0.1.nip.io:3100/api/v2/search
+  ccd_auth_base_url: http://ccd.et.127.0.0.1.nip.io:3100/auth
+  ccd_idam_base_url: http://ccd.et.127.0.0.1.nip.io:3100/idam
+  ccd_data_store_base_url: http://ccd.et.127.0.0.1.nip.io:3100/data_store
+  ccd_gateway_api_url: http://ccd.et.127.0.0.1.nip.io:3100/api-gateway
+  ccd_document_store_url_rewrite: false
+  ccd_jurisdiction_id: EMPLOYMENT
+  ccd_microservice: ccd_gw
+  ccd_microservice_secret: AAAAAAAAAAAAAAAC
+  ccd_use_sidam:  true
+  ccd_sidam_username: m@m.com
+  ccd_sidam_password: p
+  ccd_case_management_ui_base_url: http://ccd.et.127.0.0.1.nip.io:3100/case-management-web
+  ccd_case_management_ui_redirect_url: http://ccd.et.127.0.0.1.nip.io:3100/case-management-web/oauth2redirect
+local_ccd_docker:
+  <<: *local
+  ccd_use_sidam: false
+  ccd_auth_base_url: http://localhost:4502
+  ccd_idam_base_url: http://localhost:5000
+  ccd_data_store_base_url: http://localhost:4452
+  ccd_gateway_api_url: http://localhost:3453
+  ccd_document_store_url_rewrite: localhost:4506:dm-store:8080
+  ccd_case_management_ui_base_url: http://localhost:3451
+  ccd_case_management_ui_redirect_url: http://localhost:3451/oauth2redirect
+  ccd_sidam_username: invalid
+  ccd_sidam_password: invalid
 production:
   <<: *defaults
   # et1_url: https://www.employmenttribunals.service.gov.uk/
@@ -25,7 +55,8 @@ production:
   # atos_api_url: https://atos-api.employmenttribunals.service.gov.uk
   # admin_url: https://admin.employmenttribunals.service.gov.uk/admin
   # api_url: https://api.employmenttribunals.service.gov.uk
-dev: 
+  # ccd_client_url: http://localhost:3451
+dev:
   <<: *defaults
   et1_url: https://et-dev-azure.dev.et.dsd.io
   diversity_url: https://et-dev-azure.dev.et.dsd.io/en/apply/diversity
@@ -34,7 +65,8 @@ dev:
   api_url: https://et-api-dev-azure.dev.et.dsd.io
   atos_api_url: https://et-atos-api-dev-azure.dev.et.dsd.io
   sidekiq_url: https://et-dev-azure.dev.et.dsd.io/apply/sidekiq
-staging: 
+  # ccd_client_url: http://localhost:3451
+staging:
   <<: *defaults
   et1_url: https://et-stg-azure.staging.et.dsd.io
   diversity_url: https://et-stg-azure.staging.et.dsd.io/en/apply/diversity
@@ -47,3 +79,4 @@ staging:
   atos_password: password
   atos_secondary_username: atos2
   atos_secondary_password: password
+  # ccd_client_url: http://localhost:3451
