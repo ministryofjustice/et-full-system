@@ -1,7 +1,8 @@
 require 'et_ccd_client'
+require 'csv'
 require_relative './base'
 require_relative './et1_claimant_type'
-require 'csv'
+require_relative './ccd_file_helper'
 
 module EtFullSystem
   module Test
@@ -10,6 +11,7 @@ module EtFullSystem
         include ::EtFullSystem::Test::I18n
         include RSpec::Matchers
         include ::EtFullSystem::Test::Et1ClaimantType
+        include ::EtFullSystem::Test::CcdFileHelper
 
         def initialize(response)
           self.response = response
@@ -71,7 +73,26 @@ module EtFullSystem
             respondents.drop(1).each_with_index do |respondent, i|
               expect(created_case['case_fields']['respondentCollection'][i]).to include "value" => a_hash_including(respondent_sum_type(respondent))
             end
+
           end
+        end
+
+        def find_pdf_file
+          case_references = response.dig('case_fields', 'caseIdCollection').first.dig('value', 'ethos_CaseReference')
+          created_case = ccd.caseworker_search_latest_by_ethos_case_reference(case_references, case_type_id: 'Manchester_Dev')
+          download_file(created_case, 'pdf')
+        end
+
+        def find_rtf_file
+          case_references = response.dig('case_fields', 'caseIdCollection').first.dig('value', 'ethos_CaseReference')
+          created_case = ccd.caseworker_search_latest_by_ethos_case_reference(case_references, case_type_id: 'Manchester_Dev')
+          download_file(created_case, 'rtf')
+        end
+
+        def find_csv_file
+          case_references = response.dig('case_fields', 'caseIdCollection').first.dig('value', 'ethos_CaseReference')
+          created_case = ccd.caseworker_search_latest_by_ethos_case_reference(case_references, case_type_id: 'Manchester_Dev')
+          download_file(created_case, 'csv')
         end
 
         def multiple_claimants_xls(claimants)
@@ -92,6 +113,7 @@ module EtFullSystem
             ccd_case = ccd.caseworker_search_latest_by_ethos_case_reference(ref, case_type_id: 'Manchester_Dev')
             ccd_case['case_fields']
           end
+
           primary_case = cases.first
           secondary_cases = cases.drop(1)
 
@@ -111,7 +133,6 @@ module EtFullSystem
             respondents.drop(1).each_with_index do |respondent, i|
               expect(secondary_case['respondentCollection'][i]).to include "value" => a_hash_including(respondent_sum_type(respondent))
             end
-
           end
           expect(secondary_claimants_left).to be_empty
         end

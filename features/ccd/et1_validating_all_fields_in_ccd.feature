@@ -110,6 +110,16 @@ Feature:
     When the completed form is submitted
     Then the claim should be present in CCD
 
+  Scenario: Single claimaint - RTF format
+    Given an employee making a claim by uploading a Rich Text Format document
+    When the completed form is submitted
+    Then the RTF file should be present in CCD
+
+  Scenario: Multiple claimants - RTF format
+    Given an multiple claimants making a claim by uploading a Rich Text Format document
+    When the completed form is submitted
+    Then the multiple claimaints with RTF file should be present in CCD
+
   Scenario: Multiple claimants - manually entering 3 claimaint's details
     Given '3' employees making a claim
     When the completed form is submitted

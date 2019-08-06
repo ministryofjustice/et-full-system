@@ -79,6 +79,14 @@ Given("a claimant submitting mandatory respondent's Details fields") do
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
 
+Given("an multiple claimants making a claim by uploading a Rich Text Format document") do
+  @claimant = FactoryBot.create_list(:claimant, 3, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @employment = FactoryBot.create(:employment, :still_employed)
+  @claim = FactoryBot.create(:claim, :upload_your_claim_statement)
+end
+
 Then /^the claim should be present in CCD$/ do
   admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
   reference_number = admin_api.get_reference_number(claim_application_reference: @claim_application_reference)
@@ -90,7 +98,22 @@ Then /^the claim should be present in CCD$/ do
   ccd_object.assert_primary_respondent(@respondent.first)
   ccd_object.assert_secondary_respondents(@respondent)
 
-  expect(ccd_object.download_pdf_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
+  expect(ccd_object.find_pdf_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)  
+end
+
+Then /^the RTF file should be present in CCD$/ do
+  admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
+  reference_number = admin_api.get_reference_number(claim_application_reference: @claim_application_reference)
+  ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(reference_number)
+  ccd_object.assert_primary_reference(reference_number)
+  ccd_object.assert_primary_claimants(@claimant)
+  ccd_object.assert_primary_representative(@representative)
+  ccd_object.assert_primary_employment(@employment, @claimant)
+  ccd_object.assert_primary_respondent(@respondent.first)
+  ccd_object.assert_secondary_respondents(@respondent)
+
+  expect(ccd_object.find_pdf_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
+  expect(File.size(ccd_object.find_rtf_file)).to eq File.size(File.expand_path(File.join('test_common', 'fixtures', @claim['rtf_file'])))
 end
 
 Then /^the multiple claimaints should be present in CCD$/ do
@@ -104,11 +127,21 @@ Then /^the multiple claimaints should be present in CCD$/ do
 
   if @claimant[0].dig(:group_claims_csv)
     ccd_object.assert_secondary_xls_claimants(@claimant, @representative, @employment, @respondent)
+    # expect(ccd_object.find_csv_file).to match_text_schema calculated_et1a_claim_matchers(user: @claimant[0], respondents: @respondent)
   else
     ccd_object.assert_secondary_claimant(@claimant, @representative, @employment, @respondent)
   end
 
-  # expect(ccd_object.download_primary_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
+  expect(ccd_object.find_pdf_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
+end
+
+Then /^the multiple claimaints with RTF file should be present in CCD$/ do
+  admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
+  reference_number = admin_api.get_reference_number(claim_application_reference: @claim_application_reference)
+  ccd_object = EtFullSystem::Test::Ccd::Et1CcdMultipleClaimants.find_multiples_by_reference(reference_number)
+  ccd_object.assert_multiple_reference(reference_number)
+
+  expect(File.size(ccd_object.find_rtf_file)).to eq File.size(File.expand_path(File.join('test_common', 'fixtures', @claim['rtf_file'])))
 end
 
 Given("{string} employees making a claim with multiple respondents") do |string|

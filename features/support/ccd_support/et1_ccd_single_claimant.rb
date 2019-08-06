@@ -3,6 +3,7 @@ require 'et_ccd_client'
 require_relative './base'
 require_relative './acas_exemption_helper'
 require_relative './et1_claimant_type'
+require_relative './ccd_file_helper'
 
 module EtFullSystem
   module Test
@@ -12,6 +13,7 @@ module EtFullSystem
         include RSpec::Matchers
         include ::EtFullSystem::Test::AcasExemptionHelper
         include ::EtFullSystem::Test::Et1ClaimantType
+        include ::EtFullSystem::Test::CcdFileHelper
 
 
         def initialize(response)
@@ -69,19 +71,12 @@ module EtFullSystem
           end
         end
 
-        def download_pdf_file
-          download = response['case_fields']['documentCollection'][0]['value']['uploadedDocument']['document_binary_url']
-          tempfile = Tempfile.new
-          File.open(tempfile, 'wb')  do |f|
-            block = proc { |response|
-              response.read_body do |chunk|
-                f.write chunk
-              end
-            }
-            RestClient::Request.new(method: :get, url: download, block_response: block).execute
-          end
-          # tempfile.rewind
-          tempfile
+        def find_pdf_file
+          download_file(response, 'pdf')
+        end
+
+        def find_rtf_file
+          download_file(response, 'rtf')
         end
 
         private
