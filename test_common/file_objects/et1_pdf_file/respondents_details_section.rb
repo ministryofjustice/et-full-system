@@ -27,6 +27,7 @@ module EtFullSystem
                     post_code: post_code_for(respondents.first.work_post_code, optional: true) || '',
                     telephone_number: respondents.first.work_telephone_number || ''
                 },
+                additional_respondents: respondents.length > 1 ? true : false, 
                 respondent2: {
                     name: title_for(respondents[1].try(:name), optional: true),
                     address: {
@@ -35,7 +36,7 @@ module EtFullSystem
                         locality: respondents[1].try(:locality),
                         county: respondents[1].try(:county),
                         post_code: post_code_for(respondents[1].try(:post_code), optional: true),
-                        telephone_number: respondents[1].try(:telephone_number)
+                        telephone_number: respondents.length == 1 ? respondents[2].try(:telephone_number) : ""
                     },
                     acas: {
                         have_acas: respondents[1].nil? ? nil : respondents[1].acas_number.present?,
@@ -50,7 +51,7 @@ module EtFullSystem
                         locality: respondents[2].try(:locality),
                         county: respondents[2].try(:county),
                         post_code: post_code_for(respondents[2].try(:post_code), optional: true),
-                        telephone_number: respondents[2].try(:telephone_number)
+                        telephone_number: respondents.length == 1 ? respondents[2].try(:telephone_number) : ""
                     },
                     acas: {
                         have_acas: respondents[2].nil? ? nil : respondents[2].acas_number.present?,
