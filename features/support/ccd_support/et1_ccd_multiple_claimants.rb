@@ -168,23 +168,6 @@ module EtFullSystem
           expect(secondary_claimants_left).to be_empty
         end
 
-        def download_primary_file
-          case_references = response['case_fields']['caseIdCollection'].first.dig('value', 'ethos_CaseReference')
-          created_case = ccd.caseworker_search_latest_by_ethos_case_reference(case_references, case_type_id: 'Manchester_Dev')
-
-          download = created_case['case_fields']['documentCollection'][0]['value']['uploadedDocument']['document_binary_url']
-          tempfile = Tempfile.new
-          File.open(tempfile, 'wb')  do |f|
-            block = proc { |response|
-              response.read_body do |chunk|
-                f.write chunk
-              end
-            }
-            RestClient::Request.new(method: :get, url: download, block_response: block).execute
-          end
-          tempfile
-        end
-
         private
 
         attr_accessor :response

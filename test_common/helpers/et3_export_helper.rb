@@ -26,7 +26,7 @@ module EtFullSystem
           '',
           starting_with('**In the claim of: ').and(ending_with(args.dig(:user, :claimants_name))),
           starting_with('**Case number: ').and(ending_with(args.dig(:respondent, :case_number))),
-          starting_with('**Tribunal office: ').and(ending_with('@hmcts.gsi.gov.uk')),
+          starting_with('**Tribunal office: ').and(ending_with('@justice.gov.uk')),
           '',
           "## Section 1: Claimant's name",
           '',
