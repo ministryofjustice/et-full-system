@@ -115,10 +115,15 @@ Feature:
     When the completed form is submitted
     Then the RTF file should be present in CCD
 
+  Scenario: Multiple claimaints - RTF, PDF and CSV format
+    Given an employee submitting an ET1 form by uploading CSV and RTF documents
+    When the completed form is submitted
+    Then the multiple claimaints should be present in CCD
+
   Scenario: Multiple claimants - RTF format
     Given an multiple claimants making a claim by uploading a Rich Text Format document
     When the completed form is submitted
-    Then the multiple claimaints with RTF file should be present in CCD
+    Then the multiple claimaints should be present in CCD
 
   Scenario: Multiple claimants - manually entering 3 claimaint's details
     Given '3' employees making a claim
