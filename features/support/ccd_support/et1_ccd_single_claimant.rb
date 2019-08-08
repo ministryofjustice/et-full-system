@@ -1,7 +1,9 @@
+require 'httparty'
 require 'et_ccd_client'
 require_relative './base'
 require_relative './acas_exemption_helper'
 require_relative './et1_claimant_type'
+require_relative './ccd_file_helper'
 
 module EtFullSystem
   module Test
@@ -11,6 +13,7 @@ module EtFullSystem
         include RSpec::Matchers
         include ::EtFullSystem::Test::AcasExemptionHelper
         include ::EtFullSystem::Test::Et1ClaimantType
+        include ::EtFullSystem::Test::CcdFileHelper
 
 
         def initialize(response)
@@ -66,6 +69,14 @@ module EtFullSystem
           respondents.drop(1).each_with_index do |respondent, i|
             expect(response['case_fields']['respondentCollection'][i]).to include "value" => a_hash_including(respondent_sum_type(respondent))
           end
+        end
+
+        def find_pdf_file
+          download_file(response, 'pdf')
+        end
+
+        def find_rtf_file
+          download_file(response, 'rtf')
         end
 
         private
