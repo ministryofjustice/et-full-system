@@ -29,7 +29,7 @@ group :test do
   gem 'factory_bot'
   gem 'settingslogic'
   gem 'mail'
-  gem 'et_ccd_client', git: 'https://github.com/hmcts/et-ccd-client-ruby.git', tag: 'v0.1.39'
+  gem 'et_ccd_client', git: 'https://github.com/hmcts/et-ccd-client-ruby.git', tag: 'v0.1.42'
 end
 
 group :development, :test do
