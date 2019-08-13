@@ -6,8 +6,8 @@ defaults: &defaults
   atos_password: password
   atos_secondary_username: atos2
   atos_secondary_password: password
-  ccd_username: m@m.com
-  ccd_password: p
+  ccd_sidam_username: m@m.com
+  ccd_sidam_password: p
 local: &local
   <<: *defaults
   ccd_client_url: https://localhost:3501
@@ -65,6 +65,11 @@ dev:
   api_url: https://et-api-dev-azure.dev.et.dsd.io
   atos_api_url: https://et-atos-api-dev-azure.dev.et.dsd.io
   sidekiq_url: https://et-dev-azure.dev.et.dsd.io/apply/sidekiq
+  ccd_idam_base_url: https://idam-api-idam-demo.service.core-compute-idam-demo.internal
+  ccd_document_store_url_rewrite: false
+  ccd_sidam_username: eric.ccdcooper@gmail.com
+  ccd_sidam_password: Nagoya0102
+  ccd_gateway_api_url: https://ccd-api-gateway-web-demo.service.core-compute-demo.internal
   # ccd_client_url: http://localhost:3451
 staging:
   <<: *defaults
@@ -79,4 +84,5 @@ staging:
   atos_password: password
   atos_secondary_username: atos2
   atos_secondary_password: password
+  # ccd_client_url: http://localhost:3451
   # ccd_client_url: http://localhost:3451
