@@ -88,7 +88,8 @@ module EtFullSystem
             "receiptDate" => Time.now.strftime("%Y-%m-%d"),
             "feeGroupReference" => case_fields,
             "claimant_TypeOfClaimant" => "Individual",
-            "caseType" => "Single"
+            "caseType" => "Single",
+            "positionType" => "received by auto-import"
           }
         end
 
