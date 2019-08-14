@@ -131,7 +131,7 @@ Then /^the multiple claimaints should be present in CCD$/ do
   ccd_object.assert_multiple_reference(reference_number)
 
   ccd_object.assert_claimants_pending_status
-  ccd_object.assert_primary_claimant(@claimant, @representative, @employment, @respondent)
+  ccd_object.assert_primary_claimant(@claimant, @representative, @employment, @respondent, reference_number)
 
   if @claimant[0].dig(:group_claims_csv)
     ccd_object.assert_secondary_xls_claimants(@claimant, @representative, @employment, @respondent)
