@@ -11,6 +11,7 @@ require_relative '../../test_common/housekeeping'
 require_relative '../../test_common/matchers'
 require_relative '../../test_common/api/admin'
 require_relative '../../test_common/ccd_config'
+require_relative './ccd_support/ccd_office_lookup'
 include EtFullSystem::Test::Pages
 include EtFullSystem::Test::Et1ClaimHelper
 include EtFullSystem::Test::Et3ResponseHelper
@@ -20,6 +21,7 @@ include EtFullSystem::Test::AtosInterfaceHelper
 include EtFullSystem::Test::Housekeeping
 include EtFullSystem::Test::Et1Export
 include EtFullSystem::Test::Et3Export
+include EtFullSystem::Test::CcdOfficeLookUp
 Before do
   EtFullSystem::Test::CommonAdminWindow.reset
 end

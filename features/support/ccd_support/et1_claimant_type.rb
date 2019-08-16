@@ -163,13 +163,17 @@ module EtFullSystem
         {
           "claimant_addressUK" => {
             "County" => claimant[:county],
-            "Country" => secondary ? nil : claimant[:country].to_s.split(".").last == "united_kingdom" ? "United Kingdom" : nil,
+            "Country" => secondary ? nil : claimant_country(claimant),
             "PostCode" => claimant[:post_code],
             "PostTown" => claimant[:locality],
             "AddressLine1" => claimant[:building],
             "AddressLine2" => claimant[:street]
             }
         }
+      end
+
+      def claimant_country(claimant)
+        claimant[:country].to_s.split(".").last == "united_kingdom" ? "United Kingdom" : nil
       end
 
       def secondary_xls_claimant_type_address(claimant)
