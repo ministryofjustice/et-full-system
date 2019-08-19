@@ -6,12 +6,12 @@ Feature:
   So civil servant can triage an employees claim against their employer
 
   Scenario: Your details - contact by post
-    Given an employee making a claim wishing to be contacted by 'post'
+    Given an employee making a claim wanting to be contacted by 'post'
     When the completed form is submitted
     Then I can download the form and validate in PDF format
 
   Scenario: Your details - contact by email
-    Given an employee making a claim wishing to be contacted by 'email'
+    Given an employee making a claim wanting to be contacted by 'email'
     When the completed form is submitted
     Then I can download the form and validate in PDF format
 

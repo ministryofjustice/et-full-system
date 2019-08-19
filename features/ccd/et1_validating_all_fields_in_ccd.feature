@@ -6,12 +6,12 @@ Feature:
   So civil servant can triage an employees claim against their employer
 
   Scenario: Your details - title Ms, Gender prefer not to say, contact by post
-    Given an employee making a claim wishing to be contacted by 'post'
+    Given an employee making a claim wanting to be contacted by 'post'
     When the completed form is submitted
     Then the claim should be present in CCD
 
   Scenario: Your details - contact by email
-    Given an employee making a claim wishing to be contacted by 'email'
+    Given an employee making a claim wanting to be contacted by 'email'
     When the completed form is submitted
     Then the claim should be present in CCD
 
@@ -26,7 +26,7 @@ Feature:
     Then the claim should be present in CCD
 
   Scenario: Your details - title Miss, Gender Female
-    Given a woman employee making a claim
+    Given a female employee making a claim
     When the completed form is submitted
     Then the claim should be present in CCD
 
