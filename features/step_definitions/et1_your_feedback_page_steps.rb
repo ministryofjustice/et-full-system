@@ -8,10 +8,32 @@ Then("Your feedback page copy texts are displayed in the correct language") do
   expect(et1_your_feedback_page.has_correct_translation?).to be true
 end
 
-When("I submit Your feedback") do
-  et1_submit_your_feedback
-end
-
-Then("I should see thank you for your feedback message") do
+Then("I should see thank you on your feedback message") do
   expect(et1_your_feedback_page.flash_heading.flash_message).to be_truthy
 end
+
+When("I submit Your feedback") do
+  @email_address = 'anonymous@example.com'
+  @unique_string = SecureRandom.hex 10
+  et1_submit_your_feedback(@email_address, @unique_string)
+end
+
+Then("email notification came from anonymous person") do
+  et1_feedback = EtFullSystem::Test::Et1FeedbackHtml.find(email_address: @email_address)
+  expect(et1_feedback.has_correct_email_address?(@email_address)).to be true
+  expect(et1_feedback.has_correct_subject_for_feedback_submitted?).to be true
+end
+
+When("I submit Your feedback form with a valid email address") do
+  @unique_string = SecureRandom.hex 10
+  @email_address = "#{@unique_string}@hmcts.net"
+  
+  et1_submit_your_feedback(@email_address, @unique_string)
+end
+
+Then("I should see user's email address shown in the address form") do
+  et1_feedback = EtFullSystem::Test::Et1FeedbackHtml.find(email_address: @email_address)
+  expect(et1_feedback.has_correct_email_address?(@email_address)).to be true
+  expect(et1_feedback.has_correct_subject_for_feedback_submitted?).to be true
+end
+
