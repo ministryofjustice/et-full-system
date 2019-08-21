@@ -79,13 +79,12 @@ module EtFullSystem
         log_event :et1_claim_submitted, application_reference: @claim_application_reference
       end
 
-      def et1_submit_your_feedback
+      def et1_submit_your_feedback(email_address, name)
         et1_your_feedback_page.main_content.comments.set('feedback page has no validation')
-        et1_your_feedback_page.main_content.suggestions.set("Don't understand why user is allowed to submit blank page")
-        et1_your_feedback_page.main_content.email_address.set('no validating here either')
+        et1_your_feedback_page.main_content.suggestions.set(name)
+        et1_your_feedback_page.main_content.email_address.set(email_address)
         et1_your_feedback_page.send_your_feedback
       end
     end
   end
 end
-

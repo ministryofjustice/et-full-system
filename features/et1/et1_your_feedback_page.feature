@@ -13,3 +13,8 @@ Feature:
   Scenario: Submit a feedback
     When I submit Your feedback
     Then I should see thank you for your feedback message
+    And email notification came from anonymous person
+
+  Scenario: Email notification
+    When I submit Your feedback form with a valid email address
+    Then I should see user's email address shown in the address form
