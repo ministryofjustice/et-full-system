@@ -4,6 +4,12 @@ Then(/^I can download the form and validate in PDF format$/) do
   expect(zip_file.download_file(:et1_claim_pdf_for, user: @claimant[0])).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
 end
 
+Then("the claim should be present in ATOS") do
+  api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
+  zip_file = api.atos_zip_file_for_claim(claim_application_reference: @claim_application_reference)
+  expect(zip_file.download_file(:et1_claim_pdf_for, user: @claimant[0])).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
+end
+
 Then(/^I can download the form and validate in TXT format$/) do
   api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
   zip_file = api.atos_zip_file_for_claim(claim_application_reference: @claim_application_reference)

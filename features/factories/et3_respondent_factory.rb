@@ -12,6 +12,17 @@ FactoryBot.define do
     organisation_more_than_one_site {:"questions.organisation_more_than_one_site.no.label"}
   end
 
+  factory :et3_dummy_data, class: OpenStruct do
+    case_number {"2454321/2017"}
+    name { 'dumm data' }
+    building_name {'dumm data'}
+    street_name {'dumm data' }
+    town {'dumm data'}
+    county {'dumm data'}
+    postcode {'M1 1AQ'}
+    organisation_more_than_one_site {:"questions.organisation_more_than_one_site.no.label"}
+  end
+
   trait :et3_respondent_answers do
     contact { Faker::Name.name }
     county {"london"}
