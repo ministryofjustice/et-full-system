@@ -1,3 +1,19 @@
+Given("a DUMMY USER making a claim") do
+  @claimant = FactoryBot.create_list(:claimant, 1, :dummy_data, )
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas, work_post_code: 'M1 1AQ', expected_office: 24)
+  @employment = FactoryBot.create(:employment, :still_employed)
+  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
+end
+
+Given("a DUMMY USER submitting an ET1 form by uploading CSV and RTF documents") do
+  @claimant = FactoryBot.create_list(:claimant, 1, :dummy_data, :group_claims)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas, work_post_code: 'M1 1AQ', expected_office: 24)
+  @employment = FactoryBot.create(:employment, :still_employed)
+  @claim = FactoryBot.create(:claim, :upload_your_claim_statement)
+end
+
 Given("a Male employee making a claim") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data, title: :"simple_form.options.claimant.title.mr", gender: :"simple_form.options.claimant.gender.male")
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)

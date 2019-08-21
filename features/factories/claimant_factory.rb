@@ -24,6 +24,18 @@ FactoryBot.define do
       post_code {'SW1H 9AJ'}
     end
 
+    trait :dummy_data do
+      title {:"simple_form.options.claimant.title.ms"}
+      first_name { 'DUMMY DATA' }
+      last_name { 'DUMMY DATA'}
+      date_of_birth {'21/11/1982'}
+      building { 'DUMMY DATA' }
+      street { 'DUMMY DATA' }
+      locality {'London'}
+      county {'Manchester'}
+      post_code {'M1 1AQ'}
+    end
+
     trait :group_claims do
       group_claims_csv {'simple_user_with_csv_group_claims.csv'}
     end
