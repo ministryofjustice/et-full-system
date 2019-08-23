@@ -2,6 +2,10 @@ require 'faker'
 
 FactoryBot.define do
   factory :employment, class: OpenStruct do
+    trait :no_employment do
+      employment_details {:"claims.employment.no"}
+    end
+
     trait :notice_period do
       employment_details {:"claims.employment.yes"}
       current_work_situation {:"simple_form.options.employment.current_situation.notice_period"}

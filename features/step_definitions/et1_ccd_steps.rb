@@ -22,7 +22,7 @@ Given("a Male employee making a claim") do
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
 
-Given("a female woman employee making a claim") do
+Given("a married woman employee making a claim") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data, title: :"simple_form.options.claimant.title.mrs", gender: :"simple_form.options.claimant.gender.female")
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas, work_post_code: 'G1 2FF', expected_office: 41)
@@ -30,7 +30,7 @@ Given("a female woman employee making a claim") do
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
 
-Given("a woman employee making a claim") do
+Given("a female employee making a claim") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data, title: :"simple_form.options.claimant.title.miss", gender: :"simple_form.options.claimant.gender.female")
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas, work_post_code: 'M1 1AQ', expected_office: 24)

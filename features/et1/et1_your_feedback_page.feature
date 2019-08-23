@@ -12,7 +12,7 @@ Feature:
   
   Scenario: Submit a feedback
     When I submit Your feedback
-    Then I should see thank you for your feedback message
+    Then I should see thank you on your feedback message
     And email notification came from anonymous person
 
   Scenario: Email notification
