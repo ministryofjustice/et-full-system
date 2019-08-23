@@ -45,9 +45,9 @@ end
 When("a claimant submitted an ET1 form using postcode {string}") do |string|
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)  
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:respondent, 1, :yes_acas, post_code: string)
-  @employment = FactoryBot.create(:employment)
-  @claim = FactoryBot.create(:claim)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas, work_post_code: string)
+  @employment = FactoryBot.create(:employment, :no_employment)
+  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 
   start_a_new_et1_claim
   et1_answer_login

@@ -9,13 +9,13 @@ Feature:
     Given a DUMMY USER making a claim
     When the completed form is submitted
     Then the claim should be present in CCD
-    Then the claim should be present in ATOS
+    And the claim should be present in ATOS
 
   Scenario: ET1 Multiple claimaints - RTF, PDF and CSV format submitted to Manchester (M1 1AQ)
     Given a DUMMY USER submitting an ET1 form by uploading CSV and RTF documents
     When the completed form is submitted
     Then the multiple claimaints should be present in CCD
-    Then the claim should be present in ATOS
+    And the claim should be present in ATOS
 
   Scenario: ET3 - very basic details submitted to Manchester (M1 1AQ)
     Given a DUMMY USER responds to a claim
