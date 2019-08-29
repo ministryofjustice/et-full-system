@@ -4,9 +4,9 @@ services:
     build:
       context: .
     links:
-      - selenium
+      - zalenium
     environment:
-      SELENIUM_URL: 'http://selenium:4444/wd/hub'
+      SELENIUM_URL: 'http://zalenium:4444/wd/hub'
       DRIVER: chrome
       AWS_ACCESS_KEY_ID: accessKey1
       AWS_SECRET_ACCESS_KEY: verySecretKey1
@@ -25,15 +25,39 @@ services:
       - test_gem_cache:/usr/local/bundle
     networks:
       - test_framework
-  selenium:
-    image: "selenium/standalone-chrome-debug"
+  zalenium:
+    image: "dosel/zalenium"
+    hostname: zalenium
+    tty: true
     volumes:
-      - /dev/shm:/dev/shm
+      - /tmp/videos:/home/seluser/videos
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "${SELENIUM_PORT:-4444}:4444"
-      - "${SELENIUM_VNC_PORT:-5900}:5900"
+    command: >
+      start --desiredContainers 2
+            --maxDockerSeleniumContainers 8
+            --screenWidth 1280 --screenHeight 720
+            --timeZone "Europe/Berlin"
+            --videoRecordingEnabled true
+            --sauceLabsEnabled false
+            --browserStackEnabled false
+            --testingBotEnabled false
+            --startTunnel false
+    environment:
+      HOST_UID:
+      HOST_GID:
+      SAUCE_USERNAME:
+      SAUCE_ACCESS_KEY:
+      BROWSER_STACK_USER:
+      BROWSER_STACK_KEY:
+      TESTINGBOT_KEY:
+      TESTINGBOT_SECRET:
+      zalenium_https_proxy: http://proxyout.reform.hmcts.net:8080
+
     networks:
       - test_framework
+
 volumes:
   test_gem_cache:
 networks:

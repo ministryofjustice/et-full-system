@@ -44,8 +44,8 @@ local_ccd_docker:
   ccd_document_store_url_rewrite: localhost:4506:dm-store:8080
   ccd_case_management_ui_base_url: http://localhost:3451
   ccd_case_management_ui_redirect_url: http://localhost:3451/oauth2redirect
-  ccd_sidam_username: invalid
-  ccd_sidam_password: invalid
+  ccd_sidam_username: m@m.com
+  ccd_sidam_password: Pa55word11
 production:
   <<: *defaults
   # et1_url: https://www.employmenttribunals.service.gov.uk/
@@ -70,6 +70,7 @@ dev:
   ccd_sidam_username: eric.ccdcooper@gmail.com
   ccd_sidam_password: Nagoya0102
   ccd_gateway_api_url: https://ccd-api-gateway-web-demo.service.core-compute-demo.internal
+  proxy: proxyout.reform.hmcts.net:8080
   # ccd_client_url: http://localhost:3451
 staging:
   <<: *defaults
