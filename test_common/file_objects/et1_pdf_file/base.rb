@@ -94,7 +94,9 @@ module EtFullSystem
 
           # Converts a translation symbol to the correct value for the pdf - at present they seem to be the same
           # but they dont have to be - so any translation to be done in here.
-          def gender_for(val)
+          def gender_for(val, optional: false)
+            return nil if val.nil? && optional
+
             val.to_s.split('.').last
           end
 

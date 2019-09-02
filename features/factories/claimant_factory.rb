@@ -36,6 +36,12 @@ FactoryBot.define do
       post_code {'M1 1AQ'}
     end
 
+    trait :person_with_no_gender_information do
+      person_data
+      gender { nil }
+      title { nil }
+    end
+
     trait :group_claims do
       group_claims_csv {'simple_user_with_csv_group_claims.csv'}
     end
