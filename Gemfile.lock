@@ -22,8 +22,6 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
-    archive-zip (0.12.0)
-      io-like (~> 0.3.0)
     aws-eventstream (1.0.3)
     aws-partitions (1.184.0)
     aws-sdk-core (3.59.0)
@@ -64,9 +62,6 @@ GEM
       launchy
     childprocess (1.0.1)
       rake (< 13.0)
-    chromedriver-helper (1.2.0)
-      archive-zip (~> 0.10)
-      nokogiri (~> 1.8)
     cliver (0.3.2)
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
@@ -131,8 +126,6 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.13.1)
       faraday (>= 0.7.4, < 1.0)
-    geckodriver-helper (0.24.0)
-      archive-zip (~> 0.7)
     gherkin (5.1.0)
     hashdiff (1.0.0)
     http-cookie (1.0.3)
@@ -142,7 +135,6 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
-    io-like (0.3.0)
     jmespath (1.4.0)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -253,6 +245,10 @@ GEM
     unf_ext (0.0.7.6)
     unicode-display_width (1.6.0)
     unicode_utils (1.4.0)
+    webdrivers (4.1.2)
+      nokogiri (~> 1.6)
+      rubyzip (~> 1.0)
+      selenium-webdriver (>= 3.0, < 4.0)
     webmock (3.6.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -269,7 +265,6 @@ DEPENDENCIES
   azure-storage (~> 0.15.0.preview)
   capybara (~> 3.10)
   capybara-screenshot (~> 1.0)
-  chromedriver-helper (~> 1.1)
   cucumber (~> 3.1)
   debase (~> 0.2)
   dotenv (~> 2.2, >= 2.2.2)
@@ -277,7 +272,6 @@ DEPENDENCIES
   et_full_system (~> 0.1.52)
   factory_bot
   faker (~> 1.8, >= 1.8.7)
-  geckodriver-helper (~> 0.0)
   httparty (~> 0.16.2)
   i18n (~> 0.8)
   mail
@@ -292,6 +286,7 @@ DEPENDENCIES
   settingslogic
   site_prism (~> 3.0)
   thor (~> 0.20.3)
+  webdrivers (~> 4.0)
 
 BUNDLED WITH
    1.17.3
