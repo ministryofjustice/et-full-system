@@ -114,7 +114,6 @@ module EtFullSystem
           #Errors on page
           expect(main_content.error_message).to have_error_summary
           expect(main_content.error_message).to have_default_message
-          expect(main_content.about_claimant_2.title).to have_blank_title
           expect(main_content.about_claimant_2.first_name).to have_blank_first_name
           expect(main_content.about_claimant_2.last_name).to have_blank_last_name
           expect(main_content.about_claimant_2).to have_blank_date_of_birth

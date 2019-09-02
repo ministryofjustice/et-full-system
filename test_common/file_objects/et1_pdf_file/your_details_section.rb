@@ -7,7 +7,7 @@ module EtFullSystem
           def has_contents_for?(claimant:)
             if claimant.gender == :"simple_form.options.claimant.gender.prefer_not_to_say"
               expected_values = {
-                title: title_for(claimant.title).camelcase,
+                title: title_for(claimant.title)&.camelcase,
                 first_name: claimant.first_name,
                 last_name: claimant.last_name,
                 dob_day: claimant.date_of_birth.split('/')[0],
@@ -25,13 +25,13 @@ module EtFullSystem
                 correspondence: contact_preference_for(claimant.correspondence)
               }
             else expected_values = {
-                title: title_for(claimant.title).camelcase,
+                title: title_for(claimant.title)&.camelcase,
                 first_name: claimant.first_name,
                 last_name: claimant.last_name,
                 dob_day: claimant.date_of_birth.split('/')[0],
                 dob_month: claimant.date_of_birth.split('/')[1],
                 dob_year: claimant.date_of_birth.split('/')[2],
-                gender: gender_for(claimant.gender),
+                gender: gender_for(claimant.gender, optional: true),
                 building: claimant.building,
                 street: claimant.street,
                 locality: claimant.locality,

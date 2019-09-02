@@ -18,7 +18,7 @@ module EtFullSystem
           #information about the person
           element :personal_details_description, :paragraph, 'claims.claimant.personal_details_description', exact: false
           #title
-          section :title, :question_labelled, 'simple_form.labels.claimant.title' do
+          section :title, :question_labelled, 'simple_form.labels.claimant.title', exact: false do
             include EtFullSystem::Test::I18n
             def set(value)
               root_element.select(factory_translate value)
@@ -61,7 +61,7 @@ module EtFullSystem
               year.set(year_value)
             end
           end
-          section :gender, :question_labelled, 'claims.claimant.gender' do
+          section :gender, :question_labelled, 'claims.claimant.gender', exact: false do
             include ::EtFullSystem::Test::I18n
             element :error_gender, :error, 'activemodel.errors.models.claimant.attributes.gender.blank'
             element :male, :form_labelled, 'simple_form.options.claimant.gender.male' do
@@ -77,7 +77,7 @@ module EtFullSystem
               def set(*args); selector.set(*args); end
             end
             def set(value)
-              choose(factory_translate(value), name: 'claimant[gender]')
+              choose(factory_translate(value), name: 'claimant[gender]') unless value.nil?
             end
           end
           #has special needs
@@ -267,11 +267,9 @@ module EtFullSystem
           #Errors on page
           expect(main_content.error_message).to have_error_summary
           expect(main_content.error_message).to have_default_message
-          expect(main_content.title).to have_error_title
           expect(main_content.first_name).to have_error_first_name
           expect(main_content.last_name).to have_error_last_name
           expect(main_content.date_of_birth).to have_error_date_of_birth
-          expect(main_content.gender).to have_error_gender
           expect(main_content).to have_error_building
           expect(main_content).to have_error_street
           expect(main_content).to have_error_locality

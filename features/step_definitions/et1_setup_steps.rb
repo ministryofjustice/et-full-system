@@ -1,5 +1,5 @@
 Given(/^an employee making a claim$/) do
-  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_with_no_gender_information)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
   @employment = FactoryBot.create(:employment, :still_employed)

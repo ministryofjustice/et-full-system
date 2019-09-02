@@ -62,7 +62,7 @@ module EtFullSystem
               expect(address).to have_answer_for(claimant)
               expect(email).to have_answer(text: with_not_entered(claimant.email_address))
               expect(assistance_required).to have_answer(text: with_not_entered(factory_translate claimant.has_special_needs))
-              expect(full_name).to have_answer(text: "#{factory_translate(claimant.title)} #{claimant.first_name} #{claimant.last_name}")
+              expect(full_name).to have_answer(text: [factory_translate(claimant.title), claimant.first_name, claimant.last_name].compact.join(' '))
               expect(mobile).to have_answer(text: with_not_entered(claimant.alternative_telephone_number))
               expect(phone).to have_answer(text: with_not_entered(claimant.telephone_number))
               expect(gender).to have_answer(text: with_not_entered(factory_translate claimant.gender))

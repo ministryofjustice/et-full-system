@@ -922,8 +922,7 @@ cy:
         select_values:
           female: female
           male: male
-          prefer_not_to_say:
-            - nil
+        unselected_value: 'Off'
       building:
         field_name: 1.5 number
       street:
