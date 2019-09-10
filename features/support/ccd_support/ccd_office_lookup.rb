@@ -2,6 +2,7 @@ module EtFullSystem
   module Test
     module CcdOfficeLookUp
       def office_lookup
+        puts "WARNING - DEPRECATION - Please switch to using settings.ccd_case_type_ids instead of office_lookup - called by #{caller.first}"
         {
           "single":
           {

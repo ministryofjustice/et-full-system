@@ -40,6 +40,16 @@ module EtFullSystem
         self.logged_in = true
       end
 
+      def claims
+        login
+        claims = request(:get, "#{url}/claims.json", cookies: cookies_hash)
+        JSON.parse(claims.body).map(&:with_indifferent_access)
+      end
+
+      def find_latest_claim
+        claims.last
+      end
+
       def respondents_api
         login
         claimants = request(:get, "#{url}/respondents.json", cookies: cookies_hash)
@@ -126,12 +136,6 @@ module EtFullSystem
         raise "The claim with application_reference #{claim_application_reference} was not stored in the API"
       end
 
-      private
-
-      def logged_in?
-        logged_in
-      end
-
       def find_claim(claim_application_reference:, timeout: 30, sleep: 0.5)
         login
         Timeout.timeout(timeout) do
@@ -146,6 +150,13 @@ module EtFullSystem
         raise "The claim with application_reference #{claim_application_reference} was not stored in the API"
 
       end
+
+      private
+
+      def logged_in?
+        logged_in
+      end
+
 
       def setup_for_export_cron_job
         return if sidekiq_cron_form_url.present?

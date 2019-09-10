@@ -20,6 +20,22 @@ module EtFullSystem
           self.response = response
         end
 
+        def self.find_latest(case_type_id, timeout: 10, sleep: 0.5)
+          response = ccd.caseworker_list_cases(case_type_id: case_type_id).first
+          return nil if response.nil?
+
+          new(response)
+        end
+
+        def self.find_and_wait_for_latest(case_type_id, timeout: 10, sleep: 0.5)
+          response = wait_for(timeout: timeout, sleep: sleep) do
+            ccd.caseworker_list_cases(case_type_id: case_type_id).first
+          end
+          return nil if response.nil?
+
+          new(response)
+        end
+
         def self.find_by_reference(reference_number, ccd_office_lookup, timeout: 10, sleep: 0.5)
           Timeout.timeout(timeout) do
             response = nil
@@ -31,6 +47,15 @@ module EtFullSystem
           end
         rescue Timeout::Error
           return nil
+        end
+
+        def self.find_by_ethos_case_reference(reference_number, ccd_office_lookup, timeout: 10, sleep: 0.5)
+          response = wait_for(timeout: timeout, sleep: sleep) do
+            ccd.caseworker_search_latest_by_ethos_case_reference(reference_number, case_type_id: ccd_office_lookup)
+          end
+          return nil if response.nil?
+
+          new(response)
         end
 
         def assert_primary_claimants(claimants)
@@ -70,12 +95,40 @@ module EtFullSystem
           end
         end
 
+        def assert_et3_documents(respondent)
+          # First, wait for it to arrive - the app is going to add to the collection so we cant assume it
+          # will be there when we check
+          expect(response.dig('case_fields', 'documentCollection')).to \
+            include \
+            a_hash_including 'id' => nil,
+            'value' => a_hash_including(
+              'typeOfDocument' => 'ET3',
+              'shortDescription' => "ET3 response from #{respondent.name}",
+              'uploadedDocument' => a_hash_including(
+                'document_url' => an_instance_of(String),
+                'document_binary_url' => an_instance_of(String),
+                'document_filename' => 'et3_atos_export.pdf'
+              )
+            )
+        end
+
+        def has_et3_documents?(respondent)
+          assert_et3_documents(respondent)
+          true
+        rescue RSpec::Expectations::ExpectationNotMetError
+          false
+        end
+
         def find_pdf_file
           download_file(response, 'pdf')
         end
 
         def find_rtf_file
           download_file(response, 'rtf')
+        end
+
+        def ethos_case_reference
+          response.dig('case_fields', 'ethosCaseReference')
         end
 
         private
@@ -90,6 +143,25 @@ module EtFullSystem
             "caseType" => "Single",
             "positionType" => "received by auto-import"
           }
+        end
+
+        def self.wait_for(timeout: 10, sleep: 1)
+          Timeout.timeout(timeout) do
+            response = nil
+            until response.present? do
+              response = yield
+              sleep sleep unless response.present?
+            end
+            response
+          end
+        rescue Timeout::Error
+          return nil
+        end
+
+        def wait_for(**args)
+          self.class.wait_for(**args) do
+            yield
+          end
         end
 
       end

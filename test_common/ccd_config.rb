@@ -10,4 +10,6 @@ EtCcdClient.config do |c|
   c.verify_ssl = false
   c.logger = ::ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
   c.logger.level = ActiveSupport::Logger::DEBUG
+  proxy = EtFullSystem::Test::Configuration['proxy']
+  c.proxy = proxy unless proxy.nil? || proxy == false
 end
