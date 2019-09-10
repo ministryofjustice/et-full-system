@@ -60,13 +60,12 @@ module EtFullSystem
           end
         end
 
-        def assert_primary_respondent(respondent)
+        def assert_claimant_work_address(respondent)
           expect(response['case_fields']).to include "claimantWorkAddress" => a_hash_including(claimant_work_address(respondent).as_json)
-          expect(response['case_fields']).to include "respondentSumType" => a_hash_including(respondent_sum_type(respondent).as_json)
         end
 
-        def assert_secondary_respondents(respondents)
-          respondents.drop(1).each_with_index do |respondent, i|
+        def assert_respondents(respondents)
+          respondents.each_with_index do |respondent, i|
             expect(response['case_fields']['respondentCollection'][i]).to include "value" => a_hash_including(respondent_sum_type(respondent))
           end
         end

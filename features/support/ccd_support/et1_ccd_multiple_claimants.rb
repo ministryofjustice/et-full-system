@@ -69,9 +69,8 @@ module EtFullSystem
             end
 
             expect(created_case['case_fields']).to include "claimantWorkAddress" => a_hash_including(claimant_work_address(respondents[0]).as_json)
-            expect(created_case['case_fields']).to include "respondentSumType" => a_hash_including(respondent_sum_type(respondents[0]).as_json)
 
-            respondents.drop(1).each_with_index do |respondent, i|
+            respondents.each_with_index do |respondent, i|
               expect(created_case['case_fields']['respondentCollection'][i]).to include "value" => a_hash_including(respondent_sum_type(respondent))
             end
 
