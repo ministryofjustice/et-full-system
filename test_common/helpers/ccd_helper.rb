@@ -9,7 +9,9 @@ module EtFullSystem
       end
 
       def find_or_create_any_claim_in_ccd
-        ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_latest(settings.ccd_case_type_ids.manchester.single)
+        ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
+        ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.
+            find_latest(ccd_office_lookup.office_lookup[:manchester][:single][:case_type_id])
         return ccd_object unless ccd_object.nil? || ccd_object.ethos_case_reference.nil? || ccd_object.ethos_case_reference !=~ /\A\d\d\d\d\d\d\d\/\d\d\d\d\z/
 
         @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
@@ -30,7 +32,7 @@ module EtFullSystem
         et1_answer_claim_outcome_questions
         et1_answer_more_about_the_claim_questions
         et1_submit_claim
-        EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_and_wait_for_latest(settings.ccd_case_type_ids.manchester.single).tap do |result|
+        EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_and_wait_for_latest(ccd_office_lookup.office_lookup[:manchester][:single][:case_type_id]).tap do |result|
           raise "No claims were present in CCD and for some reason one could not be created - suggests a problem with the app or maybe a wrong office code" if result.nil?
         end
       end

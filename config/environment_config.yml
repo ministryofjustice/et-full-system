@@ -8,15 +8,6 @@ defaults: &defaults
   atos_secondary_password: password
   ccd_sidam_username: m@m.com
   ccd_sidam_password: p
-  ccd_case_type_ids:
-    manchester:
-      single: Manchester_Dev
-      multiple: Manchester_Multiples_Dev
-      office_code: 24
-    scotland:
-      single: Scotland_Dev
-      multiple: Scotland_Multiples_Dev
-      office_code: 41
 local: &local
   <<: *defaults
   ccd_client_url: https://localhost:3501
@@ -105,5 +96,11 @@ staging:
   atos_password: password
   atos_secondary_username: atos2
   atos_secondary_password: password
-  # ccd_client_url: http://localhost:3451
+  ccd_idam_base_url: https://wrong.com
+  ccd_document_store_url_rewrite: false
+  ccd_sidam_username: eric.ccdcooper@gmail.com
+  ccd_sidam_password: Nagoya0102
+  ccd_gateway_api_url: https://wrong.com
+
+  proxy: proxyout.reform.hmcts.net:8080
   # ccd_client_url: http://localhost:3451

@@ -68,8 +68,8 @@ module EtFullSystem
           if representative[0]['representative_have'] == 'No'
             expect(response['case_fields']).to include "claimantRepresentedQuestion" => "No"
           else
-            expect(response['case_fields']).to include "representativeClaimantType" => a_hash_including(representative_address(representative[0]).as_json)
-            expect(response['case_fields']).to include "representativeClaimantType" => a_hash_including(representative_claimant_type(representative[0]).as_json)
+            expect(response.dig('case_fields', 'representativeClaimantType')).to include representative_address(representative[0]).as_json
+            expect(response.dig('case_fields', 'representativeClaimantType')).to include representative_claimant_type(representative[0]).as_json
           end
         end
 

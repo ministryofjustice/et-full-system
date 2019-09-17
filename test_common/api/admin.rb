@@ -68,6 +68,12 @@ module EtFullSystem
         JSON.parse(acas_logs.body).map(&:with_indifferent_access)
       end
 
+      def external_systems(query = {})
+        login
+        external_systems = request(:get, "#{url}/external_systems.json?#{query.to_query}", cookies: cookies_hash)
+        JSON.parse(external_systems.body).map(&:with_indifferent_access)
+      end
+
       def admin_diversity_data
         login
         response = request(:get, "#{url}/diversity_responses.json?
@@ -173,7 +179,16 @@ module EtFullSystem
       end
 
       def request(method, url, options = {})
-        self.last_response = HTTParty.send(method, url, options.merge(verify: false))
+        proxy = EtFullSystem::Test::Configuration['proxy']
+        options = options.merge(verify: false)
+        if proxy
+          proxy_uri = URI.parse("http://#{proxy}")
+          options[:http_proxyaddr] = proxy_uri.host
+          options[:http_proxyport] = proxy_uri.port
+          options[:http_proxyuser] = proxy_uri.user
+          options[:http_proxypass] = proxy_uri.password
+        end
+        self.last_response = HTTParty.send(method, url, options)
         self.cookies_hash = HTTParty::CookieHash.new
         cookies_hash.add_cookies(last_response.headers['set-cookie'])
         last_response
