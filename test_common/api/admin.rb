@@ -90,6 +90,19 @@ module EtFullSystem
         JSON.parse(responses.body).map(&:with_indifferent_access)
       end
 
+      def processed_response(reference, timeout: 30, sleep: 0.5)
+        login
+        Timeout.timeout(timeout) do
+          loop do
+            responses = responses q: {reference_equals: reference}
+            return responses.first if responses.first[:uploaded_files].any? {|f| f['filename'] =~ /\Aet3_.*\.pdf\z/}
+            sleep(sleep)
+          end
+        end
+      rescue Timeout::Error
+        raise "The response with reference #{reference} was either not found or never had all of its files"
+      end
+
       def admin_diversity_data
         login
         response = request(:get, "#{url}/diversity_responses.json?
@@ -119,7 +132,8 @@ module EtFullSystem
         end
       end
 
-      def export_response_to_ccd(external_system_id:, response_id:)
+      def export_response_to_ccd(external_system_id:, response_reference:)
+        response = processed_response(response_reference)
         mechanize_login
         #  {"utf8"=>"✓", "authenticity_token"=>"r5OI+QKjssqdg7YkdFI2pHxVTD+xi82wGjaLQQA0/J7O7OC6gBi7gzoywY08yV9rXBO3kFR0yloBMY1ALjPXyg==", "batch_action"=>"export", "batch_action_inputs"=>"{\"external_system_id\":\"17\"}", "collection_selection_toggle_all"=>"on", "collection_selection"=>["1"], "q"=>{"reference_equals"=>"242000000200"}}
         p = agent.current_page
@@ -130,7 +144,7 @@ module EtFullSystem
                    {
                        batch_action: 'export',
                        batch_action_inputs: {external_system_id: external_system_id}.to_json,
-                       collection_selection: [response_id.to_s],
+                       collection_selection: [response[:id].to_s],
                        authenticity_token: token
                    }.to_json,
                   'Content-Type' => 'application/json',
