@@ -35,8 +35,8 @@ services:
     ports:
       - "${SELENIUM_PORT:-4444}:4444"
     command: >
-      start --desiredContainers 2
-            --maxDockerSeleniumContainers 8
+      start --desiredContainers 4
+            --maxDockerSeleniumContainers 12
             --screenWidth 1280 --screenHeight 800
             --timeZone "Europe/Berlin"
             --videoRecordingEnabled true

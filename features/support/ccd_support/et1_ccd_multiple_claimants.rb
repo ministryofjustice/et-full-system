@@ -144,7 +144,6 @@ module EtFullSystem
             ccd_case = ccd.caseworker_search_latest_by_ethos_case_reference(ref, case_type_id: ccd_office)
             ccd_case['case_fields']
           end
-          primary_case = cases.first
           secondary_cases = cases.drop(1)
 
           secondary_cases.each do |secondary_case|
@@ -160,8 +159,8 @@ module EtFullSystem
             #employment
             secondary_case["claimantOtherType"] == {}
             #respondents
-            respondents.drop(1).each_with_index do |respondent, i|
-              expect(secondary_case['respondentCollection'][i]).to include "value" => a_hash_including(respondent_sum_type(respondent))
+            respondents.each_with_index do |respondent, i|
+              expect(secondary_case['respondentCollection'][i]&.fetch('value', {})).to include respondent_sum_type(respondent)
             end
 
           end

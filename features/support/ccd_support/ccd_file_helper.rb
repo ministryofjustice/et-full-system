@@ -7,8 +7,9 @@ module EtFullSystem
         end
 
         url = document['value']['uploadedDocument']['document_binary_url']
+        filename = document['value']['uploadedDocument']['document_filename']
 
-        tempfile = Tempfile.new
+        tempfile = Tempfile.new([File.basename(filename, ".*"), File.extname(filename)], File.absolute_path('../../../tmp', __dir__))
         File.open(tempfile, 'wb')  do |f|
           block = proc { |response|
             response.read_body do |chunk|
