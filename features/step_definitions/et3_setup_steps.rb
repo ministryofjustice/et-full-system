@@ -27,3 +27,11 @@ When(/^an employer responds to a claim with an additional information$/) do
   @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers, :upload_additional_information)
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
 end
+
+Given(/^an employer responds to an existing claim$/) do
+  @existing_claim = find_or_create_any_claim_in_ccd
+  ethos_case_reference = @existing_claim.ethos_case_reference
+  @claimant = FactoryBot.create_list(:et3_claimant, 1, :disagree_with_employment_dates)
+  @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers, case_number: ethos_case_reference)
+  @representative = FactoryBot.create_list(:representative, 1, :et3_information)
+end

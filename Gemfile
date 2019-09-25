@@ -22,13 +22,14 @@ group :test do
   gem 'rubyzip', '~> 1.2', '>= 1.2.1'
   # HTTParty - used to download from ATOS API during tests
   gem 'httparty', '~> 0.16.2'
+  gem 'mechanize', '~> 2.7', '>= 2.7.6'
   gem 'pry'
   # Pdf forms to test pdf content
   gem 'pdf-forms', '~> 1.1', '>= 1.1.1'
   gem 'factory_bot'
   gem 'settingslogic'
   gem 'mail'
-  gem 'et_ccd_client', git: 'https://github.com/hmcts/et-ccd-client-ruby.git', tag: 'v0.1.43'
+  gem 'et_ccd_client', git: 'https://github.com/hmcts/et-ccd-client-ruby.git', tag: 'v0.1.51'
 end
 
 group :development, :test do
@@ -40,5 +41,4 @@ group :development, :test do
 end
 
 gem 'thor', '~> 0.20.3'
-gem 'et_full_system', '~> 0.1.52'
 gem 'rake'

@@ -2,7 +2,7 @@ require 'faker'
 
 FactoryBot.define do
   factory :et3_respondent, class: OpenStruct do
-    case_number {"1454321/2017"}
+    case_number {"2454321/2017"}
     name { Faker::Company.name }
     building_name {"the-shard"}
     street_name { Faker::Address.street_name }

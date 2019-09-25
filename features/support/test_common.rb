@@ -22,6 +22,9 @@ include EtFullSystem::Test::Housekeeping
 include EtFullSystem::Test::Et1Export
 include EtFullSystem::Test::Et3Export
 include EtFullSystem::Test::CcdOfficeLookUp
+include EtFullSystem::Test::Admin
+include EtFullSystem::Test::CcdHelper
+include EtFullSystem::Test::SettingsHelper
 Before do
   EtFullSystem::Test::CommonAdminWindow.reset
 end
