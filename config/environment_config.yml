@@ -96,11 +96,11 @@ staging:
   atos_password: password
   atos_secondary_username: atos2
   atos_secondary_password: password
-  ccd_idam_base_url: https://wrong.com
+  ccd_idam_base_url: https://idam-api-idam-stg.service.core-compute-idam-demo.internal
   ccd_document_store_url_rewrite: false
   ccd_sidam_username: eric.ccdcooper@gmail.com
   ccd_sidam_password: Nagoya0102
-  ccd_gateway_api_url: https://wrong.com
+  ccd_gateway_api_url: https://ccd-api-gateway-web-stg.service.core-compute-demo.internal
 
-  proxy: proxyout.reform.hmcts.net:8080
+  proxy: 172.16.0.7:8080
   # ccd_client_url: http://localhost:3451

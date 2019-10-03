@@ -50,9 +50,9 @@ module EtFullSystem
         self.logged_in = true
       end
 
-      def claims
+      def claims(query={})
         login
-        claims = request(:get, "#{url}/claims.json", cookies: cookies_hash)
+        claims = request(:get, "#{url}/claims.json?#{query.to_query}", cookies: cookies_hash)
         JSON.parse(claims.body).map(&:with_indifferent_access)
       end
 
@@ -204,6 +204,19 @@ module EtFullSystem
       rescue Timeout::Error
         raise "The claim with application_reference #{claim_application_reference} was not stored in the API"
 
+      end
+
+      def processed_claim(application_reference:, timeout: 30, sleep: 0.5)
+        login
+        Timeout.timeout(timeout) do
+          loop do
+            filtered_claims = claims q: {submission_reference_equals: application_reference}
+            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:uploaded_files].any? {|f| f['filename'] =~ /\Aet1_.*\.pdf\z/}
+            sleep(sleep)
+          end
+        end
+      rescue Timeout::Error
+        raise "The claim with application reference #{application_reference} was either not found or never had all of its files"
       end
 
       private
