@@ -139,3 +139,9 @@ Feature:
     Given '3' employees making a claim with multiple respondents
     When the completed form is submitted
     Then the multiple claimaints should be present in CCD
+
+  Scenario: A claim for the default office should go wherever the administrator wants
+    Given a claimant submitted an ET1 with a work post code of "Z1 2LL"
+    When the completed form is submitted
+    And the administrator exports the claim to the scotland office
+    Then the claim should be present in the "glasgow" office CCD system

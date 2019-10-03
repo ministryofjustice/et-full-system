@@ -154,6 +154,7 @@ Then /^the multiple claimaints should be present in CCD$/ do
 
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdMultipleClaimants.find_multiples_by_reference(reference_number, ccd_office_lookup.office_lookup[office][:multiple][:case_type_id])
   ccd_object.assert_multiple_reference(reference_number)
+  ccd_object.assert_multiple_title(@respondent.first.name)
 
   ccd_object.assert_claimants_pending_status(ccd_office_lookup.office_lookup[office][:single][:case_type_id])
   ccd_object.assert_primary_claimant(@claimant, @representative, @employment, @respondent, reference_number, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
@@ -180,4 +181,29 @@ Given("{string} employees making a claim with multiple respondents") do |string|
   @respondent.concat FactoryBot.create_list(:conciliation_acas_number, string.to_i - 1, :yes_acas, :secondary)
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
+end
+
+
+Given(/^a claimant submitted an ET1 with a work post code of "([^"]*)"$/) do |post_code|
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas, work_post_code: post_code, expected_office: :default)
+  @employment = FactoryBot.create(:employment, :still_employed)
+  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
+end
+
+Then(/^the claim should be present in the "([^"]*)" office CCD system$/) do |office|
+  admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
+  reference_number = admin_api.get_reference_number(claim_application_reference: @claim_application_reference)
+  ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
+  ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(reference_number, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
+
+  ccd_object.assert_primary_reference(reference_number)
+  ccd_object.assert_primary_claimants(@claimant)
+  ccd_object.assert_primary_representative(@representative)
+  ccd_object.assert_primary_employment(@employment, @claimant)
+  ccd_object.assert_claimant_work_address(@respondent.first)
+  ccd_object.assert_respondents(@respondent)
+
+  expect(ccd_object.find_pdf_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
 end

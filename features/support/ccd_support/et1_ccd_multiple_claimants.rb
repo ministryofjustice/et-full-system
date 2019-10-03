@@ -35,6 +35,10 @@ module EtFullSystem
           expect(response['case_fields']).to include "multipleReference" => reference_number
         end
 
+        def assert_multiple_title(title)
+          expect(response['case_fields']).to include "bulkCaseTitle" => title
+        end
+
         def assert_claimants_pending_status(ccd_office)
           case_collection = response.dig('case_fields', 'caseIdCollection').map { |obj| obj.dig('value', 'ethos_CaseReference') }
           aggregate_failures 'validating key fields' do
