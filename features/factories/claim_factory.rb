@@ -21,6 +21,11 @@ FactoryBot.define do
     end
     other_type_of_claim_details {'Give a very short description of your claim; you will have the opportunity to add more detail on the next page'}
     description {'Full text version of claim'}
+
+    trait :simple do
+      claim_types { [:"simple_form.labels.claim_type.is_unfair_dismissal"] }
+      other_type_of_claim_details { nil }
+    end
   end
 
   trait :upload_your_claim_statement do

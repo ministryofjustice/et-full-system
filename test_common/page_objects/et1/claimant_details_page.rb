@@ -297,6 +297,7 @@ module EtFullSystem
             main_content.assistance.special_needs.set(data[:special_needs])
           end
 
+          main_content.claimant_contact_preference.set(data[:correspondence])
           main_content.tap do |s|
             set_field(s, :building, data)
             set_field(s, :street, data)
@@ -308,7 +309,6 @@ module EtFullSystem
             set_field(s, :alternative_telephone_number, data)
             set_field(s, :email_address, data)
           end
-          main_content.claimant_contact_preference.set(data[:correspondence])
         end
 
         def save_and_continue

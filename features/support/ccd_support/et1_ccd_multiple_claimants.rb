@@ -31,10 +31,6 @@ module EtFullSystem
           return nil
         end
 
-        def assert_multiple_reference(reference_number)
-          expect(response['case_fields']).to include "multipleReference" => reference_number
-        end
-
         def assert_multiple_title(title)
           expect(response['case_fields']).to include "bulkCaseTitle" => title
         end

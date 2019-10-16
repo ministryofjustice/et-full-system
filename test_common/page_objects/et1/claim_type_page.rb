@@ -259,7 +259,7 @@ module EtFullSystem
             main_content.send(section).send(element).click
           end
           data = claim.to_h
-          main_content.claim_type_other_claim_details.set(data[:other_type_of_claim_details])
+          main_content.claim_type_other_claim_details.set(data[:other_type_of_claim_details]) unless data[:other_type_of_claim_details].nil?
           set_field main_content, :whistleblowing_claim, data
           set_field main_content, :send_to_relevant_person, data
         end

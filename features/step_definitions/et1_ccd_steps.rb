@@ -95,6 +95,23 @@ Given("a claimant submitting mandatory respondent's Details fields") do
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
 
+Given("a claimant submitting data to trigger a 422 error using fake ccd") do
+  @claimant = FactoryBot.create_list(:claimant, 1, :fake_ccd_error_422_claimant)
+  @representative = []
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas, telephone_number: '', work_post_code: 'M1 1AQ', expected_office: :manchester)
+  @employment = nil
+  @claim = FactoryBot.create(:claim, :simple)
+end
+
+Given("a claimant submitting data to trigger a 422 error in a secondary claimant using fake ccd") do
+  @claimant = FactoryBot.create_list(:claimant, 3, :person_data)
+  @claimant[1] = FactoryBot.create(:claimant, :fake_ccd_error_422_claimant)
+  @representative = []
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas, telephone_number: '', work_post_code: 'M1 1AQ', expected_office: :manchester)
+  @employment = nil
+  @claim = FactoryBot.create(:claim, :simple)
+end
+
 Given("an multiple claimants making a claim by uploading a Rich Text Format document") do
   @claimant = FactoryBot.create_list(:claimant, 3, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
@@ -149,11 +166,11 @@ end
 Then /^the multiple claimaints should be present in CCD$/ do
   admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
   reference_number = admin_api.get_reference_number(claim_application_reference: @claim_application_reference)
+  claim = admin_api.exported_to_ccd_claim(reference: reference_number)
   office = @respondent[0]["expected_office"]
   ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
 
-  ccd_object = EtFullSystem::Test::Ccd::Et1CcdMultipleClaimants.find_multiples_by_reference(reference_number, ccd_office_lookup.office_lookup[office][:multiple][:case_type_id])
-  ccd_object.assert_multiple_reference(reference_number)
+  ccd_object = EtFullSystem::Test::Ccd::Et1CcdMultipleClaimants.find_multiples_by_reference(claim.dig('last_ccd_export', 'external_data', 'case_reference'), ccd_office_lookup.office_lookup[office][:multiple][:case_type_id])
   ccd_object.assert_multiple_title(@respondent.first.name)
 
   ccd_object.assert_claimants_pending_status(ccd_office_lookup.office_lookup[office][:single][:case_type_id])
@@ -206,4 +223,13 @@ Then(/^the claim should be present in the "([^"]*)" office CCD system$/) do |off
   ccd_object.assert_respondents(@respondent)
 
   expect(ccd_object.find_pdf_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
+end
+
+Given(/^a claimant submitting data to trigger a 502 error once only in a secondary claimant using fake ccd$/) do
+  @claimant = FactoryBot.create_list(:claimant, 3, :person_data)
+  @claimant[1] = FactoryBot.create(:claimant, :fake_ccd_error_502_once_claimant)
+  @representative = []
+  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas, telephone_number: '', work_post_code: 'M1 1AQ', expected_office: :manchester)
+  @employment = nil
+  @claim = FactoryBot.create(:claim, :simple)
 end

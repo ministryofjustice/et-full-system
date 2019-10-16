@@ -14,6 +14,11 @@ module EtFullSystem
             find_latest(ccd_office_lookup.office_lookup[:manchester][:single][:case_type_id])
         return ccd_object unless ccd_object.nil? || ccd_object.ethos_case_reference.nil? || ccd_object.ethos_case_reference !=~ /\A\d\d\d\d\d\d\d\/\d\d\d\d\z/
 
+        create_any_claim_in_ccd
+      end
+
+      def create_any_claim_in_ccd
+        ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
         @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
         @representative = FactoryBot.create_list(:representative, 1, :et1_information)
         @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas, work_post_code: 'M1 1AQ', expected_office: 24)
