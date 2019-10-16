@@ -103,6 +103,19 @@ module EtFullSystem
         raise "The response with reference #{reference} was either not found or never had all of its files"
       end
 
+      def exported_to_ccd_claim(reference:, timeout: 30, sleep: 0.5)
+        login
+        Timeout.timeout(timeout) do
+          loop do
+            claims = claims q: {reference_equals: reference}
+            return claims.first if claims.first['ccd_state'].start_with?('complete')
+            sleep(sleep)
+          end
+        end
+      rescue Timeout::Error
+        raise "The claim with reference #{reference} was either not found or was never successfully exported to ccd"
+      end
+
       def admin_diversity_data
         login
         response = request(:get, "#{url}/diversity_responses.json?
@@ -217,6 +230,45 @@ module EtFullSystem
         end
       rescue Timeout::Error
         raise "The claim with application reference #{application_reference} was either not found or never had all of its files"
+      end
+
+      def wait_for_claim_failed_in_ccd_export(reference, timeout: 30, sleep: 0.5)
+        login
+        Timeout.timeout(timeout) do
+          loop do
+            filtered_claims = claims q: {reference: reference}
+            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ccd_state] == 'failed'
+            sleep(sleep)
+          end
+        end
+      rescue Timeout::Error
+        raise "The claim with reference #{reference} was either not found or never had a status of 'failed'"
+      end
+
+      def wait_for_claim_success_in_ccd_export(reference, timeout: 30, sleep: 0.5)
+        login
+        Timeout.timeout(timeout) do
+          loop do
+            filtered_claims = claims q: {reference: reference}
+            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ccd_state] == 'complete'
+            sleep(sleep)
+          end
+        end
+      rescue Timeout::Error
+        raise "The claim with reference #{reference} was either not found or never had a status of 'complete'"
+      end
+
+      def wait_for_response_success_in_ccd_export(case_number:, timeout: 30, sleep: 0.5)
+        login
+        Timeout.timeout(timeout) do
+          loop do
+            filtered_responses = responses q: {case_number_equals: case_number}
+            return filtered_responses.first if filtered_responses.first.present? && filtered_responses.first[:ccd_state] == 'complete'
+            sleep(sleep)
+          end
+        end
+      rescue Timeout::Error
+        raise "The response with case_number #{case_number} was either not found or never had a status of 'complete'"
       end
 
       private

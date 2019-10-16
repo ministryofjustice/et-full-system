@@ -24,6 +24,30 @@ FactoryBot.define do
       post_code {'SW1H 9AJ'}
     end
 
+    trait :fake_ccd_error_422_claimant do
+      title {:"simple_form.options.claimant.title.ms"}
+      first_name { 'Force' }
+      last_name { "Error422-#{Time.now.to_i}" }
+      date_of_birth {'21/11/1982'}
+      building { Faker::Address.building_number }
+      street { Faker::Address.street_name }
+      locality {'London'}
+      county {'Manchester'}
+      post_code {'SW1H 9AJ'}
+    end
+
+    trait :fake_ccd_error_502_once_claimant do
+      title {:"simple_form.options.claimant.title.ms"}
+      first_name { 'Force' }
+      last_name { "Error502-#{Time.now.to_i}" }
+      date_of_birth {'21/11/1982'}
+      building { Faker::Address.building_number }
+      street { Faker::Address.street_name }
+      locality {'London'}
+      county {'Manchester'}
+      post_code {'SW1H 9AJ'}
+    end
+
     trait :dummy_data do
       title {:"simple_form.options.claimant.title.ms"}
       first_name { 'DUMMY' }

@@ -113,7 +113,6 @@ module EtFullSystem
 
       def representative_claimant_type(representative)
         {
-          "representative_dx" => representative[:dx_number],
           "name_of_organisation" => representative[:organisation_name],
           "name_of_representative" => representative[:name],
           "representative_occupation" => t(representative[:type]),
