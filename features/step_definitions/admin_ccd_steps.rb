@@ -12,7 +12,7 @@ end
 Then(/^the claim in the admin should show that the export completely failed to CCD$/) do
   # Look up and wait for the claim to be processed.  A user would typically not need to do this as they are not as fast as this test suite
   claim = admin_api.processed_claim(application_reference: @claim_application_reference)
-  admin_api.wait_for_claim_failed_in_ccd_export(claim['reference'], timeout: 90, sleep: 1)
+  admin_api.wait_for_claim_failed_in_ccd_export(claim['reference'], timeout: 240, sleep: 1)
 
 end
 
