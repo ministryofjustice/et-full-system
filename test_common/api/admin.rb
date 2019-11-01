@@ -168,8 +168,7 @@ module EtFullSystem
 
       def run_export_cron_job
         setup_for_export_cron_job
-        resp = request(:post, sidekiq_cron_form_url, body: {authenticity_token: sidekiq_authenticity_token, enque: 'Enqueue Now'}, cookies: cookies_hash)
-        raise "An error occured trying to run the export cron job" unless resp.success?
+        sidekiq_cron_agent.current_page.form(action: "/admin/sidekiq/cron/export_claims_job/enque").submit
       end
 
       def atos_zip_file_for_claim(claim_application_reference:, timeout: 30, sleep: 0.5)
@@ -245,6 +244,19 @@ module EtFullSystem
         raise "The claim with reference #{reference} was either not found or never had a status of 'failed'"
       end
 
+      def wait_for_claim_erroring_in_ccd_export(reference, timeout: 30, sleep: 0.5)
+        login
+        Timeout.timeout(timeout) do
+          loop do
+            filtered_claims = claims q: {reference: reference}
+            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ccd_state] == 'erroring'
+            sleep(sleep)
+          end
+        end
+      rescue Timeout::Error
+        raise "The claim with reference #{reference} was either not found or never had a status of 'erroring'"
+      end
+
       def wait_for_claim_success_in_ccd_export(reference, timeout: 30, sleep: 0.5)
         login
         Timeout.timeout(timeout) do
@@ -281,18 +293,15 @@ module EtFullSystem
         mechanize_logged_in
       end
 
-
       def setup_for_export_cron_job
-        return if sidekiq_cron_form_url.present?
+        return if sidekiq_cron_agent.present?
+        mechanize_login
+        self.sidekiq_cron_agent = Mechanize.new do |a|
+          a.cookie_jar = agent.cookie_jar
+        end
+        sidekiq_cron_agent.get("#{url}/sidekiq/cron")
+        sidekiq_cron_agent.click "Cron"
 
-        login
-        sidekiq_cron_url = "#{url}/sidekiq/cron"
-        response = request(:get, sidekiq_cron_url, cookies: cookies_hash)
-        doc = Nokogiri::HTML response.body
-        form_xpath = XPath.generate { |x| x.descendant(:form)[x.child(:input)[x.attr(:value).contains('Enqueue Now')]] }
-        form = doc.xpath(form_xpath.to_s)
-        self.sidekiq_authenticity_token = form.css('input[name=authenticity_token]')[0][:value]
-        self.sidekiq_cron_form_url = URI.parse(sidekiq_cron_url).tap {|u| u.path = form[0][:action] }.to_s
 
       end
 
@@ -316,7 +325,7 @@ module EtFullSystem
         @agent ||= Mechanize.new
       end
       
-      attr_accessor :cookies_hash, :last_response, :csrf_token, :sidekiq_authenticity_token, :sidekiq_cron_form_url, :atos_interface, :logged_in, :mechanize_logged_in
+      attr_accessor :sidekiq_cron_agent, :cookies_hash, :last_response, :csrf_token, :sidekiq_authenticity_token, :sidekiq_cron_form_url, :atos_interface, :logged_in, :mechanize_logged_in
     end
   end
 end

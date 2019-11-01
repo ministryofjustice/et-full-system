@@ -12,12 +12,19 @@ module EtFullSystem
           end
         end
         section :main_table, 'table.index' do
-          element :row, :css, 'tr'
-          def row_for_reference(reference)
-            find(:xpath, XPath.generate {|x| x.descendant(:tr)[x.child(:td)[x.string.n.equals reference]]})
+          section :row_with_reference, :admin_claim_row do
+
+            element :failed_ccd_state_link, :link, "failed"
+            element :erroring_ccd_state_link, :link, "erroring"
+            element :checkbox, :checkbox
+
+            def select_row
+              checkbox.check
+            end
           end
+
           def select_claim_with_reference(reference)
-            row_for_reference(reference).find(:checkbox).check
+            row_with_reference(reference: reference).select_row
           end
         end
         section :batch_actions, :xpath, XPath.generate {|x| x.descendant(:div)[x.child(:a)[x.string.n.equals 'Batch Actions']]} do
@@ -56,6 +63,16 @@ module EtFullSystem
           batch_actions.select_export_selected
           office_chooser.choose_office(external_system_name)
           flash_messages.claims_queued_for_export
+        end
+
+        def follow_export_for_failed_ccd_state(reference)
+          row = main_table.row_with_reference(reference: reference)
+          row.failed_ccd_state_link.click
+        end
+
+        def follow_export_for_erroring_ccd_state(reference)
+          row = main_table.row_with_reference(reference: reference)
+          row.erroring_ccd_state_link.click
         end
       end
     end
