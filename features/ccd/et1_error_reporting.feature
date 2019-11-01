@@ -10,6 +10,14 @@ Feature:
     Given a claimant submitting data to trigger a 422 error using fake ccd
     When the completed form is submitted
     Then the claim in the admin should show that the export completely failed to CCD
+    And the claim in the admin should show that the export completely failed to CCD for the right reason
+
+  @local
+  Scenario: Submitting a claim which will cause an error which the system will not recover from but admin user views before failure
+    Given a claimant submitting data to trigger a 422 error using fake ccd
+    When the completed form is submitted
+    Then the claim in the admin should show that the export to CCD is erroring
+    And the claim in the admin should show that the export to CCD is erroring for the right reason
 
   @local
   Scenario: Submitting a claim where one of the secondary claimants will cause an error which the system will not recover from

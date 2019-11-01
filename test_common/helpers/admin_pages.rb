@@ -32,9 +32,16 @@ module EtFullSystem
       def self.claimants_page
         Admin::ClaimantsPage.new
       end
-      
+
+
+      # @return [::Admin::ClaimsPage] The page object for claims
       def self.claims_page
         Admin::ClaimsPage.new
+      end
+
+      # @return [::Admin::ExportPage] The page object for a single export
+      def self.export_page
+        Admin::ExportPage.new
       end
 
       def self.job_sidekiq_cron_page

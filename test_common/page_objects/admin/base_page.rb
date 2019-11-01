@@ -43,6 +43,10 @@ module EtFullSystem
           def click_users
             users_menu_item.click
           end
+
+          def click_claims
+            claims_menu_item.click
+          end
         end
         def self.base_url
           Configuration.admin_url
