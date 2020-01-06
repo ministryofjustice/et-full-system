@@ -171,16 +171,16 @@ module EtFullSystem
         sidekiq_cron_agent.current_page.form(action: "/admin/sidekiq/cron/export_claims_job/enque").submit
       end
 
-      def atos_zip_file_for_claim(claim_application_reference:, timeout: 30, sleep: 0.5)
+      def atos_zip_file_for_claim(claim_application_reference:, ignore_before: 15.minutes.ago, timeout: 30, sleep: 0.5)
         claim = find_claim(claim_application_reference: claim_application_reference, timeout: timeout)
-        atos_zip_file_for(reference: claim['reference'], sleep: sleep, timeout: timeout)
+        atos_zip_file_for(reference: claim['reference'], ignore_before: ignore_before, sleep: sleep, timeout: timeout)
       end
 
-      def atos_zip_file_for(reference:, timeout: 30, sleep: 0.5)
+      def atos_zip_file_for(reference:, ignore_before:, timeout: 30, sleep: 0.5)
         Timeout.timeout(timeout) do
           loop do
             run_export_cron_job
-            zip_file = atos_interface.zip_file_for_reference(reference)
+            zip_file = atos_interface.zip_file_for_reference(reference, ignore_before: ignore_before)
             break zip_file unless zip_file.nil?
             sleep(sleep)
           end

@@ -153,7 +153,7 @@ module EtFullSystem
         {
           "claimant_phone_number" => secondary ? nil : claimant[:telephone_number],
           "claimant_mobile_number" => secondary ? nil : claimant[:alternative_telephone_number],
-          "claimant_email_address" => secondary ? nil : claimant[:email_address],
+          "claimant_email_address" => secondary ? nil : (claimant[:correspondence].to_s =~ /email\z/ ? claimant[:email_address] : nil),
           "claimant_contact_preference" => secondary ? nil : claimant[:correspondence].to_s.split(".").last.titleize
         } 
       end

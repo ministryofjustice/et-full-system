@@ -1,5 +1,5 @@
 Given("an employee making a claim wanting to be contacted by {string}") do |string|
-  @claimant = FactoryBot.create_list(:claimant, 1, :person_data, correspondence: :"simple_form.options.claimant.contact_preference.#{string}")
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data, :"contact_by_#{string}")
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
   @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas, work_post_code: 'G1 2FF', expected_office: :glasgow)
   @employment = FactoryBot.create(:employment, :still_employed)

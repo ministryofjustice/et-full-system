@@ -54,9 +54,8 @@ module EtFullSystem
           end
           #Your work address
           element :work_address_header, :legend_header, 'claims.respondent.workaddress_legend'
-          section :same_address, '.respondent_worked_at_same_address' do
+          section :same_address, :legend_header, 'simple_form.labels.respondent.worked_at_same_address' do
             include ::EtFullSystem::Test::I18n
-            element :work_address_labelled, :form_labelled, 'simple_form.labels.respondent.worked_at_same_address'
             element :yes, :form_labelled, 'simple_form.labels.respondent.yes' do
               element :selector, :css, 'input[type="radio"]'
               def set(*args); selector.set(*args); end
@@ -108,7 +107,9 @@ module EtFullSystem
             element :acas_hint, :paragraph, 'claims.respondent.acas_early_conciliation_certificate_number_html', exact: false
             element :certificate_number, :link_named, 'claims.respondent.acas_early_conciliation_certificate_number_link', exact: false
             element :field, :css, 'input'
-            def set(*args); field.set(*args); end
+            def set(*args)
+              field.set(*args)
+            end
           end
           #I don't have an Acas number
           element :no_acas_number, :form_labelled, 'simple_form.labels.respondent.no_acas_number' do
@@ -146,6 +147,7 @@ module EtFullSystem
         end
 
         def save_and_continue
+          page.scroll_to(main_content.save_and_continue_button, align: :bottom)
           main_content.save_and_continue_button.click
         end
 
@@ -178,7 +180,6 @@ module EtFullSystem
           expect(main_content).to have_telephone_number
           #Your work address
           expect(main_content).to have_work_address_header
-          expect(main_content.same_address).to have_work_address_labelled
           expect(main_content.same_address).to have_yes
           expect(main_content.same_address).to have_no
           #Different work address
@@ -271,7 +272,11 @@ module EtFullSystem
         private
 
         def set_field(s, key, data)
-          s.send(key).set(data[key]) if data.key?(key)
+          if data.key?(key)
+            s.send(key).set(data[key])
+          else
+            s.send(key).set('')
+          end
         end
       end
     end

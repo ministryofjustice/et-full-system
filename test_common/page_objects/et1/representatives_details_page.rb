@@ -15,8 +15,8 @@ module EtFullSystem
           end
           #The person representing you
           element :representative_header, :legend_header, 'claims.representative.form_legend'
+          element :representative_labelled, :legend_translated, 'simple_form.labels.representative.has_representative'
           section :representative, '.representative_has_representative' do
-            element :representative_labelled, :form_labelled, 'simple_form.labels.representative.has_representative'
             element :yes, :form_labelled, 'simple_form.yes' do
               element :selector, :css, 'input'
               def set(*args); selector.set(*args); end
@@ -108,6 +108,7 @@ module EtFullSystem
         end
 
         def save_and_continue
+          page.scroll_to(main_content.save_and_continue_button, align: :bottom)
           main_content.save_and_continue_button.click
         end
 
@@ -128,7 +129,7 @@ module EtFullSystem
           expect(main_header).to have_page_header
           #The person representating you
           expect(main_content).to have_representative_header
-          expect(main_content.representative).to have_representative_labelled
+          expect(main_content).to have_representative_labelled
           expect(main_content.representative).to have_yes
           expect(main_content.representative).to have_no
           #All correspondence
@@ -211,7 +212,11 @@ module EtFullSystem
         private
         
         def set_field(s, key, data)
-          s.send(key).set(data[key]) if data.key?(key)
+          if data.key?(key)
+            s.send(key).set(data[key])
+          else
+            s.send(key).set('')
+          end
         end
       end
     end

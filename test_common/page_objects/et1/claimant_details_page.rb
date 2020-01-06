@@ -81,9 +81,8 @@ module EtFullSystem
             end
           end
           #has special needs
-          section :claimant_has_special_needs, '.form-group-reveal' do
+          section :claimant_has_special_needs, :legend_header, 'simple_form.labels.claimant.has_special_needs' do
             include ::EtFullSystem::Test::I18n
-            element :has_special_needs, :form_labelled, 'simple_form.labels.claimant.has_special_needs'
             element :has_special_needs_hint, :paragraph, 'simple_form.hints.claimant.has_special_needs'
             element :yes, :form_labelled, 'simple_form.yes' do
               element :selector, :css, '#claimant_has_special_needs_true'
@@ -155,10 +154,9 @@ module EtFullSystem
           end
           element :blank_email_address, :error, 'activemodel.errors.models.claimant.attributes.email_address.blank'
           #correspondence
-          section :claimant_contact_preference, '.claimant_contact_preference' do
+          section :claimant_contact_preference, :legend_header, 'simple_form.labels.claimant.contact_preference' do
             include ::EtFullSystem::Test::I18n
             element :error_claimant_contact_preference, :error, 'activemodel.errors.models.claimant.attributes.contact_preference.blank'
-            element :correspondence, :form_labelled, 'simple_form.labels.claimant.contact_preference'
             element :contact_preference, :paragraph, 'simple_form.hints.claimant.contact_preference', exact: false
             section :email_preference, :form_labelled, 'simple_form.options.claimant.contact_preference.email' do
               element :selector, :css, 'input[type="radio"]'
@@ -209,7 +207,6 @@ module EtFullSystem
           expect(main_content.gender).to have_female
           expect(main_content.gender).to have_prefer_not_to_say
           #has special needs
-          expect(main_content.claimant_has_special_needs).to have_has_special_needs
           expect(main_content.claimant_has_special_needs).to have_has_special_needs_hint
           expect(main_content.claimant_has_special_needs).to have_yes
           expect(main_content.claimant_has_special_needs).to have_no
@@ -227,7 +224,6 @@ module EtFullSystem
           expect(main_content).to have_alternative_telephone_number
           expect(main_content).to have_email_address
           #Best way to send correspondence
-          expect(main_content.claimant_contact_preference).to have_correspondence
           expect(main_content.claimant_contact_preference).to have_contact_preference
           expect(main_content.claimant_contact_preference).to have_email_preference
           expect(main_content.claimant_contact_preference).to have_post_preference
@@ -307,11 +303,12 @@ module EtFullSystem
             set_field(s, :country, data)
             set_field(s, :telephone_number, data)
             set_field(s, :alternative_telephone_number, data)
-            set_field(s, :email_address, data)
+            set_field(s, :email_address, data) if data[:correspondence].to_s.split('.').last == 'email'
           end
         end
 
         def save_and_continue
+          page.scroll_to(main_content.save_and_continue_button, align: :bottom)
           main_content.save_and_continue_button.click
         end
 

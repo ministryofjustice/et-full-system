@@ -16,17 +16,11 @@ module EtFullSystem
 
           #People making a claim with you
           element :legend_group_claims, :legend_header, 'claims.additional_claimants.subheader', exact: false
-          section :additional_claimants_of_collection_type, '.additional_claimants_of_collection_type' do
+          section :additional_claimants_of_collection_type, :legend_header, 'simple_form.labels.additional_claimants.of_collection_type' do
             include ::EtFullSystem::Test::I18n
-            element :group_claims, :form_labelled, 'simple_form.labels.additional_claimants.of_collection_type'
-            element :yes, :form_labelled, 'simple_form.yes' do
-              element :selector, :css, 'input'
-              def set(*args); selector.set(*args); end
-            end
-            element :no, :form_labelled, 'simple_form.no' do
-              element :selector, :css, 'input'
-              def set(*args); selector.set(*args); end
-            end
+
+            element :yes, :form_labelled, 'simple_form.yes'
+            element :no, :form_labelled, 'simple_form.no'
           end
 
           section :number_claimants_info, '#number_claimants_info' do
@@ -58,6 +52,7 @@ module EtFullSystem
         end
 
         def save_and_continue
+          page.scroll_to(main_content.save_and_continue_button, align: :bottom)
           main_content.save_and_continue_button.click
         end
 
@@ -70,7 +65,6 @@ module EtFullSystem
           expect(main_header).to have_page_header
           #people making a claim with you
           expect(main_content).to have_legend_group_claims
-          expect(main_content.additional_claimants_of_collection_type).to have_group_claims
           expect(main_content.additional_claimants_of_collection_type).to have_yes
           expect(main_content.additional_claimants_of_collection_type).to have_no
           #save and continue

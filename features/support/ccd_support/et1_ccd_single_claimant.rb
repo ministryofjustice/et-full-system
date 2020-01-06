@@ -59,9 +59,9 @@ module EtFullSystem
         end
 
         def assert_primary_claimants(claimants)
-          expect(response['case_fields']).to include "claimantType" => a_hash_including(claimant_type(claimants[0]).as_json)
-          expect(response['case_fields']).to include "claimantType" => a_hash_including(claimant_type_address(claimants[0]).as_json)
-          expect(response['case_fields']).to include "claimantIndType" => a_hash_including(claimant_ind_type(claimants[0]).as_json)
+          expect(response.dig('case_fields', 'claimantType')).to include claimant_type(claimants[0]).as_json
+          expect(response.dig('case_fields', 'claimantType')).to include claimant_type_address(claimants[0]).as_json
+          expect(response.dig('case_fields', 'claimantIndType')).to include claimant_ind_type(claimants[0]).as_json
         end
 
         def assert_primary_representative(representative)

@@ -20,40 +20,18 @@ module EtFullSystem
         api.list_zip_filenames.each { |filename| api.delete_zip_file(filename) }
       end
 
-      def has_zip_file_containing?(identifier, **args)
-        find_file_in_any_zip(identifier, **args)
-      end
-
-      def zip_file_for_reference(claim_reference)
-        filename = all_filenames_in_all_zip_files.find_zip_containing_reference(claim_reference)
+      def zip_file_for_reference(claim_reference, ignore_before:)
+        filename = all_filenames_in_all_zip_files(ignore_before: ignore_before).find_zip_containing_reference(claim_reference)
         return nil if filename.nil?
 
         AtosZipFile.new(filename, atos_interface: self)
       end
 
-      def download_from_any_zip(identifier, **args)
-        filename = find_file_in_any_zip(identifier, **args)
-        raise "No zip file containing #{identifier} - #{args} was found" unless filename.present?
-        Dir.mktmpdir do |dir|
-          all_filenames_in_all_zip_files.extract(filename, to: dir)
-          File.read(File.join(dir, filename))
-        end
-      end
-
-      def download_from_any_zip_to_tempfile(identifier, **args)
-        tempfile = Tempfile.new
-        filename = find_file_in_any_zip(identifier, **args)
-        raise "No zip file containing #{identifier} - #{args} was found" unless filename.present?
-        all_filenames_in_all_zip_files.extract(filename, to: File.dirname(tempfile.path), as: File.basename(tempfile.path))
-        tempfile.rewind
-        tempfile
-      end
-
-      def download_from_zip_to_tempfile(zip_filename, identifier, **args)
+      def download_from_zip_to_tempfile(zip_filename, identifier, ignore_before:, **args)
         filename = find_file_in_zip(zip_filename, identifier, **args)
         raise "No file #{identifier} was found in zip file #{zip_filename} - The args were #{args}" unless filename.present?
         tempfile = Tempfile.new([identifier.to_s, File.extname(filename)], File.absolute_path('../tmp', __dir__))
-        all_filenames_in_all_zip_files.extract_from_zip(zip_filename, filename, to: File.dirname(tempfile.path), as: File.basename(tempfile.path))
+        all_filenames_in_all_zip_files(ignore_before: ignore_before).extract_from_zip(zip_filename, filename, to: File.dirname(tempfile.path), as: File.basename(tempfile.path))
         tempfile.rewind
         tempfile
       end
@@ -65,12 +43,6 @@ module EtFullSystem
       end
 
       private
-
-      def find_file_in_any_zip(identifier, **args)
-        all_filenames_in_all_zip_files.find do |filename|
-          filename_matches?(filename, identifier, **args)
-        end
-      end
 
       def find_file_in_zip(zip_filename, identifier, **args)
         all_filenames_in_all_zip_files.find_in_zip(zip_filename) do |filename|
@@ -115,8 +87,8 @@ module EtFullSystem
         end
       end
 
-      def all_filenames_in_all_zip_files
-        AtosInterfaceZipFilenameRepo.new(cache: filename_cache, api: api)
+      def all_filenames_in_all_zip_files(ignore_before: 30.minutes.ago)
+        AtosInterfaceZipFilenameRepo.new(cache: filename_cache, api: api, ignore_before: ignore_before)
       end
 
       def filename_cache
@@ -132,8 +104,8 @@ module EtFullSystem
         self.atos_interface = atos_interface
       end
 
-      def download_file(identifier, **args)
-        atos_interface.download_from_zip_to_tempfile(zip_filename, identifier, **args)
+      def download_file(identifier, ignore_before:, **args)
+        atos_interface.download_from_zip_to_tempfile(zip_filename, identifier, ignore_before: ignore_before, **args)
       end
 
       private
@@ -144,10 +116,11 @@ module EtFullSystem
     class AtosInterfaceZipFilenameRepo
       include Enumerable
 
-      def initialize(cache:, api:)
+      def initialize(cache:, api:, ignore_before:)
         self.filename_cache = cache
         self.api = api
         self.filenames = []
+        self.ignore_before = ignore_before
       end
 
       def each
@@ -223,7 +196,7 @@ module EtFullSystem
       end
 
       def fetch
-        self.filenames = api.list_zip_filenames
+        self.filenames = filtered_filenames(api.list_zip_filenames)
         @fetched = true
       end
 
@@ -231,7 +204,17 @@ module EtFullSystem
         @fetched
       end
 
-      attr_accessor :filename_cache, :filenames, :api
+      def filtered_filenames(filenames)
+        filenames.select do |filename|
+          m = filename.match(/\AET_Fees_(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)\.zip\z/)
+          _, day, month, year, hour, minute, second = m.to_a
+          file_time = Time.parse("20#{year}-#{month}-#{day} #{hour}:#{minute}:#{second}")
+          file_time > ignore_before
+        end
+      end
+
+
+      attr_accessor :filename_cache, :filenames, :api, :ignore_before
     end
 
     class AtosInterfaceApi

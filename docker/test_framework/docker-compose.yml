@@ -37,7 +37,7 @@ services:
     command: >
       start --desiredContainers 4
             --maxDockerSeleniumContainers 12
-            --screenWidth 1280 --screenHeight 800
+            --screenWidth 1600 --screenHeight 1200
             --timeZone "Europe/Berlin"
             --videoRecordingEnabled true
             --sauceLabsEnabled false

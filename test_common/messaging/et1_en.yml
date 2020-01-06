@@ -140,7 +140,7 @@ en:
           year: Year
 
         mobile_number: Alternative phone or mobile number (optional)
-        email_address: Email address (optional)
+        email_address: Email address
         fax_number: Fax
         has_special_needs: "Do you have a disability which means you require assistance at the tribunal hearing? (optional)"
         special_needs: Describe the assistance you require (optional)

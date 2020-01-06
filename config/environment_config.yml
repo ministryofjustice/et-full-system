@@ -13,10 +13,10 @@ local: &local
   ccd_client_url: https://localhost:3501
   oauth2redirect: http://localhost:3451/oauth2redirect
   ccd_case_url: http://localhost:3453
-  et1_url: http://et1.et.127.0.0.1.nip.io:3100/
+  et1_url: http://et1.et.127.0.0.1.nip.io:3100
   diversity_url: http://et1.et.127.0.0.1.nip.io:3100/apply/diversity
   et1_admin_url: http://et1.et.127.0.0.1.nip.io:3100/apply/admin
-  et3_url: http://et3.et.127.0.0.1.nip.io:3100/
+  et3_url: http://et3.et.127.0.0.1.nip.io:3100
   atos_api_url: http://atos.et.127.0.0.1.nip.io:3100
   admin_url: http://admin.et.127.0.0.1.nip.io:3100/admin
   sidekiq_url: http://et1.et.127.0.0.1.nip.io:3100/apply/sidekiq

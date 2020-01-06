@@ -21,7 +21,7 @@ module EtFullSystem
                 post_code: post_code_for(claimant.post_code),
                 telephone_number: claimant.telephone_number,
                 alternative_telephone_number: claimant.alternative_telephone_number,
-                email_address: claimant.email_address,
+                email_address: claimant.correspondence.to_s =~ /email\z/ ? claimant.email_address : '',
                 correspondence: contact_preference_for(claimant.correspondence)
               }
             else expected_values = {
@@ -39,7 +39,7 @@ module EtFullSystem
                 post_code: post_code_for(claimant.post_code),
                 telephone_number: claimant.telephone_number,
                 alternative_telephone_number: claimant.alternative_telephone_number,
-                email_address: claimant.email_address,
+                email_address: claimant.correspondence.to_s =~ /email\z/ ? claimant.email_address : '',
                 correspondence: contact_preference_for(claimant.correspondence)
             }
             end
