@@ -7,7 +7,7 @@ module EtFullSystem
       include ::EtFullSystem::Test::I18n
 
       # @param [::EtFullSystem::Test::AtosInterface] atos_interface
-      def initialize(atos_interface:)
+      def initialize(atos_interface: nil)
         self.atos_interface = atos_interface
       end
 
@@ -23,10 +23,13 @@ module EtFullSystem
       def mechanize_login
         return if mechanize_logged_in?
         page = agent.get(url)
+        self.csrf_token = page.search('meta[name=csrf-token]').first['content']
+
         page.form.field_with(name: 'admin_user[username]').value = ::EtFullSystem::Test::Configuration.admin_username
         page.form.field_with(name: 'admin_user[password]').value = ::EtFullSystem::Test::Configuration.admin_password
         result = agent.submit(page.form)
         raise "Login failed" if result.search(XPath.generate {|x| x.descendant[x.string.n.contains("Signed in successfully")]}.to_s).empty?
+        self.mechanize_logged_in = true
       end
 
       def login
@@ -82,6 +85,25 @@ module EtFullSystem
         login
         external_systems = request(:get, "#{url}/external_systems.json?#{query.to_query}", cookies: cookies_hash)
         JSON.parse(external_systems.body).map(&:with_indifferent_access)
+      end
+
+      def office_postcodes(query = {})
+        mechanize_login
+        response = agent.get("#{url}/office_postcodes.json?#{query.to_query}", 'Accept' => 'application/json')
+        JSON.parse(response.body).map(&:with_indifferent_access)
+      end
+
+      # @TODO This currently doesnt work - needs investigation - comes up with a 422 error
+      def delete_office_postcode(postcode_record)
+        mechanize_login
+        response = agent.post("#{url}/office_postcodes/#{postcode_record[:id]}", {_method: 'delete', authenticity_token: csrf_token}, 'Accept' => 'application/json')
+        tmp = 1
+      end
+
+      def find_office_postcode(postcode, timeout: 5, sleep: 0.1, raise: false)
+        wait_for(timeout: timeout, sleep: sleep, raise: raise) do
+          office_postcodes(q: {postcode_equals: postcode}).first
+        end
       end
 
       def responses(query = {})
@@ -284,6 +306,19 @@ module EtFullSystem
       end
 
       private
+
+      def wait_for(timeout: 5, sleep: 0.1, raise: true)
+        Timeout.timeout(timeout) do
+          loop do
+            result = yield
+            return result unless result.nil?
+            sleep(sleep)
+          end
+        end
+      rescue Timeout::Error
+        raise "wait_for timed out waiting for #{timeout} seconds" if raise
+        nil
+      end
 
       def logged_in?
         logged_in

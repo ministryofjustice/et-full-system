@@ -2,7 +2,13 @@ module EtFullSystem
   module Test
     module Admin
       class NewOfficePostcodesPage < Admin::BasePage
-        element :select_office_id, 'select[id="office_post_code_office_id"]'
+        section :select_office_id, 'li[id="office_post_code_office_input"]' do
+          def select(value)
+            find(:css, '.select2-container').click
+            results = find(:xpath, XPath.generate {|x| x.anywhere.descendant(:ul)[x.attr(:id) == 'select2-office_post_code_office_id-results']})
+            results.find(:xpath, XPath.generate {|x| x.child(:li)[x.string.n.equals value]}).click
+          end
+        end
         element :input_postcode, 'input[id="office_post_code_postcode"]'
         element :inline_errors, '.inline-errors'
         element :create_office_post_code, 'input[type="submit"]'

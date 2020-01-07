@@ -2,7 +2,7 @@ require 'rspec/matchers'
 module EtFullSystem
   module Test
     module Admin
-      class OfficePostcodesPage < Admin::BasePage
+      class OfficePostcodesPage < ::EtFullSystem::Test::Admin::BasePage
         include ::RSpec::Matchers
         element :new_office_postcode, '#titlebar_right .action_item'
         element :success_error_msg, '.flash_notice' 
@@ -27,8 +27,10 @@ module EtFullSystem
         end
 
         def add_new_office_postcode(postcode_id, local_office)
-          search_by_postcode(postcode_id)
-          if postcode_exist(postcode_id)
+          postcode_record = admin_api.find_office_postcode(postcode_id, timeout: 1, sleep: 0.5, raise: false)
+          # @TODO Improve this - do it all via API
+          if postcode_record
+            search_by_postcode(postcode_id)
             delete_postcode
           end
           new_office_postcode.click
@@ -41,9 +43,20 @@ module EtFullSystem
             return false
         end
 
+        def find_postcode(postcode)
+          url = "#{self.class.base_url}/office_postcodes?q[postcode_contains]=#{postcode}&commit=Filter&order=id_desc"
+          results = JSON.parse(ajax_get(url))
+          results.first
+        end
+
         def delete_postcode
           main_content.tbody.action_table.delete.click
           page.driver.browser.switch_to.alert.accept
+        end
+
+        def ajax_delete_postcode(postcode_record)
+          url = "#{self.class.base_url}/office_postcodes/#{postcode_record['id']}"
+          response = ajax_delete(url)
         end
 
         def edit_postcode
