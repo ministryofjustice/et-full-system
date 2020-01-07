@@ -12,10 +12,6 @@ module EtFullSystem
         ::EtFullSystem::Test::Configuration.admin_password
       end
 
-      def within_admin_window(&block)
-        within_window(admin_window, &block)
-      end
-
       def reset
         Thread.current[WINDOW_VAR_NAME] = nil
       end

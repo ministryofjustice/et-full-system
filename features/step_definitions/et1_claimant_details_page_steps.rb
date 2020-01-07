@@ -40,6 +40,7 @@ Then("I should see an error message for leaving email address field blank") do
 end
 
 When("entering an invalid email address") do
+  et1_claimant_details_page.main_content.claimant_contact_preference.set(:"simple_form.options.claimant.contact_preference.email")
   et1_claimant_details_page.main_content.email_address.set('blah@blah')
   et1_claimant_details_page.save_and_continue.click
 end

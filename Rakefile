@@ -1,5 +1,6 @@
 require_relative 'test_common/configuration'
 require_relative 'test_common/atos_interface.rb'
+require "parallel_tests/tasks"
 require 'aws-sdk-s3'
 require 'azure/storage'
 desc 'Configures the buckets needed by the applications (local environment only)'

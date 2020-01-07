@@ -29,11 +29,9 @@ end
 
 And(/^the claim in the admin should show that the export completely failed to CCD for the right reason$/) do
   claim = admin_api.processed_claim(application_reference: @claim_application_reference)
-  within_admin_window do
-    admin_pages.dashboard_page.menu.click_claims
-    admin_pages.claims_page.follow_export_for_failed_ccd_state(claim['reference'])
-    admin_pages.export_page.assert_erroring_event('422 Unprocessable Entity - Case data validation failed')
-  end
+  admin_pages.dashboard_page.menu.click_claims
+  admin_pages.claims_page.follow_export_for_failed_ccd_state(claim['reference'])
+  admin_pages.export_page.assert_erroring_event('422 Unprocessable Entity - Case data validation failed')
 end
 
 Then(/^the claim in the admin should show that the export to CCD is erroring$/) do

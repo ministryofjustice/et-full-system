@@ -23,10 +23,8 @@ When(/^a claimant answered all questions on the survey participant form$/) do
   answer_diversity_page(@diversity)
 end
 
-Then("the data is updated in ET Admin system") do  
-  within_admin_window do
-    expect(admin_pages.diversity_responses_page).to have_response_for(@diversity)
-  end
+Then("the data is updated in ET Admin system") do
+  expect(admin_pages.diversity_responses_page).to have_response_for(@diversity)
 end
 
 Given("a claimant answered {string} on the survey participant form") do |string|
