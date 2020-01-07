@@ -25,6 +25,6 @@ module Capybara
   end
 end
 
-Capybara::Screenshot.register_driver(:exotic_browser_driver) do |driver, path|
+Capybara::Screenshot.register_driver(:firefox) do |driver, path|
   driver.browser.save_screenshot(path)
 end
