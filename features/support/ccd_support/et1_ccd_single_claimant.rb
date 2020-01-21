@@ -79,7 +79,7 @@ module EtFullSystem
 
         def assert_primary_employment(employment, claimants)
           if employment[:employment_details] == :"claims.employment.no"
-            expect(response['case_fields']).to include "claimantOtherType" => a_hash_including("claimant_disabled" => t(claimants[0][:has_special_needs]), "claimant_disabled_details" => claimants[0][:special_needs])
+            expect(response['case_fields']).to include "claimantOtherType" => a_hash_including("claimant_disabled" => claimants[0][:has_special_needs].to_s.split('.').last.titleize, "claimant_disabled_details" => claimants[0][:special_needs])
           else
             expect(response['case_fields']).to include "claimantOtherType" => a_hash_including(claimant_other_type(employment, claimants).as_json)
           end

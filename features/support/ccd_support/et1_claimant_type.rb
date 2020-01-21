@@ -2,9 +2,9 @@ module EtFullSystem
   module Test
     module Et1ClaimantType
       def claimant_ind_type(claimant, secondary: false)
-          gender = claimant[:gender].to_s.split(".").last == "prefer_not_to_say" ? "Not Known" : t(claimant[:gender])
+          gender = { 'prefer_not_to_say' => 'Not Known', 'male' => 'Male', 'female' => 'Female' }[claimant[:gender].to_s.split(".").last]
           {
-            "claimant_title1" => t(claimant[:title]), 
+            "claimant_title1" => claimant[:title].to_s.split('.').last.titleize,
             "claimant_first_names" => claimant[:first_name], 
             "claimant_last_name" => claimant[:last_name], 
             "claimant_date_of_birth" => Date.parse(claimant[:date_of_birth]).strftime("%Y-%m-%d"),
@@ -73,7 +73,7 @@ module EtFullSystem
 
       def claimant_other_type(employment, claimant)
         common = {
-          "claimant_disabled" => t(claimant[0][:has_special_needs]),
+          "claimant_disabled" => claimant[0][:has_special_needs].to_s.split('.').last.titleize,
           "claimant_employed_currently" => "Yes", 
           "claimant_occupation" => employment[:job_title],
           "claimant_employed_from" => Date.parse(employment[:start_date]).strftime("%Y-%m-%d")
@@ -115,7 +115,7 @@ module EtFullSystem
         {
           "name_of_organisation" => representative[:organisation_name],
           "name_of_representative" => representative[:name],
-          "representative_occupation" => t(representative[:type]),
+          "representative_occupation" => representative[:type].to_s.split('.').last.titleize,
           "representative_phone_number" => representative[:telephone_number],
           "representative_email_address" => representative[:email_address],
           "representative_mobile_number" => representative[:alternative_telephone_number]

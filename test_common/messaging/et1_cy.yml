@@ -147,7 +147,7 @@ cy:
           year: "Blwyddyn"
 
         mobile_number: Rhif ffôn neu rif ffôn symudol arall (dewisol)
-        email_address: "Cyfeiriad e-bost (dewisol)"
+        email_address: "Cyfeiriad e-bost"
         fax_number: Ffacs
         has_special_needs: "Oes gennych chi anabledd sy'n golygu eich bod angen cymorth yn y gwrandawiad tribiwnlys? (dewisol)"
         special_needs: Disgrifiwch y cymorth sydd ei angen arnoch
@@ -161,7 +161,6 @@ cy:
         applying_for_remission: "Ydych chi eisiau gwneud cais am help i dalu eich ffi (a elwir yn \"help i dalu ffioedd\")?"
         contact_preference: "Y ffordd orau i anfon gohebiaeth atoch (yr hawlydd)"
         _destroy: 'Dileu''r hawlydd yma'
-        email_address: "Cyfeiriad e-bost (dewisol)"
         gender: Rhywedd
 
       additional_claimants:

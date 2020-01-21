@@ -22,7 +22,7 @@ Then(/^I should see my application reference number$/) do
 end
 
 Then(/^I should see the date\/time my application was submitted$/) do
-  expect(form_submission_page).to have_submission_date
+  expect(form_submission_page).to have_submission_date(i18n_params: {submitted_date: Date.today.strftime('%d/%m/%Y'), office_address: 'Alexandra House, 14-22 The Parsonage, Manchester M3 2JA'})
 end
 
 Then(/^I can download a PDF of my application$/) do
