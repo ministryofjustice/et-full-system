@@ -257,21 +257,24 @@ module EtFullSystem
         login
         Timeout.timeout(timeout) do
           loop do
-            filtered_claims = claims q: {reference: reference}
+            filtered_claims = claims q: {reference_equals: reference}
             return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ccd_state] == 'failed'
+            yield filtered_claims.first if block_given?
             sleep(sleep)
           end
         end
       rescue Timeout::Error
-        raise "The claim with reference #{reference} was either not found or never had a status of 'failed'"
+        raise "The claim with reference #{reference} was not found" if filtered_claims.empty?
+        raise "The claim with reference #{reference} never had a status of 'failed'"
       end
 
       def wait_for_claim_erroring_in_ccd_export(reference, timeout: 30, sleep: 0.5)
         login
         Timeout.timeout(timeout) do
           loop do
-            filtered_claims = claims q: {reference: reference}
+            filtered_claims = claims q: {reference_equals: reference}
             return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ccd_state] == 'erroring'
+            yield if block_given?
             sleep(sleep)
           end
         end
@@ -283,7 +286,7 @@ module EtFullSystem
         login
         Timeout.timeout(timeout) do
           loop do
-            filtered_claims = claims q: {reference: reference}
+            filtered_claims = claims q: {reference_equals: reference}
             return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ccd_state] == 'complete'
             sleep(sleep)
           end

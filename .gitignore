@@ -10,3 +10,5 @@ node_modules
 rubybin/
 report*.html
 cucumber_failures.log
+
+!.idea/runConfigurations

@@ -12,7 +12,10 @@ end
 Then(/^the claim in the admin should show that the export completely failed to CCD$/) do
   # Look up and wait for the claim to be processed.  A user would typically not need to do this as they are not as fast as this test suite
   claim = admin_api.processed_claim(application_reference: @claim_application_reference)
-  admin_api.wait_for_claim_failed_in_ccd_export(claim['reference'], timeout: 720, sleep: 1)
+  admin_api.wait_for_claim_failed_in_ccd_export(claim['reference'], timeout: 1500, sleep: 5) do |found_claim|
+    broadcast_message("Waiting for claim reference #{claim['reference']} to fail - currently #{found_claim[:ccd_state]}")
+    page.execute_script('true;')
+  end
 
 end
 
@@ -29,6 +32,8 @@ end
 
 And(/^the claim in the admin should show that the export completely failed to CCD for the right reason$/) do
   claim = admin_api.processed_claim(application_reference: @claim_application_reference)
+  config = ::EtFullSystem::Test::Configuration
+  admin_pages.dashboard_page.admin_login(config.admin_username, config.admin_password)
   admin_pages.dashboard_page.menu.click_claims
   admin_pages.claims_page.follow_export_for_failed_ccd_state(claim['reference'])
   admin_pages.export_page.assert_erroring_event('422 Unprocessable Entity - Case data validation failed')
@@ -37,12 +42,16 @@ end
 Then(/^the claim in the admin should show that the export to CCD is erroring$/) do
   # Look up and wait for the claim to be processed.  A user would typically not need to do this as they are not as fast as this test suite
   claim = admin_api.processed_claim(application_reference: @claim_application_reference)
-  admin_api.wait_for_claim_erroring_in_ccd_export(claim['reference'], timeout: 30, sleep: 1)
+  admin_api.wait_for_claim_erroring_in_ccd_export(claim['reference'], timeout: 30, sleep: 1) do
+    page.execute_script('true;')
+  end
 end
 
 And(/^the claim in the admin should show that the export to CCD is erroring for the right reason$/) do
   claim = admin_api.processed_claim(application_reference: @claim_application_reference)
-    admin_pages.dashboard_page.menu.click_claims
-    admin_pages.claims_page.follow_export_for_erroring_ccd_state(claim['reference'])
-    admin_pages.export_page.assert_erroring_event('422 Unprocessable Entity - Case data validation failed')
+  config = ::EtFullSystem::Test::Configuration
+  admin_pages.dashboard_page.admin_login(config.admin_username, config.admin_password)
+  admin_pages.dashboard_page.menu.click_claims
+  admin_pages.claims_page.follow_export_for_erroring_ccd_state(claim['reference'])
+  admin_pages.export_page.assert_erroring_event('422 Unprocessable Entity - Case data validation failed')
 end

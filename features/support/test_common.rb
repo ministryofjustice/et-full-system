@@ -1,5 +1,6 @@
 require_relative '../../test_common/configuration'
 require_relative '../../test_common/capybara'
+require_relative '../../test_common/message_broadcast'
 require_relative '../../test_common/page_objects'
 require_relative '../../test_common/file_objects'
 require_relative '../../test_common/messaging'
@@ -25,6 +26,7 @@ include EtFullSystem::Test::CcdOfficeLookUp
 include EtFullSystem::Test::Admin
 include EtFullSystem::Test::CcdHelper
 include EtFullSystem::Test::SettingsHelper
+include EtFullSystem::Test::MessageBroadcast
 Before do
   EtFullSystem::Test::CommonAdminWindow.reset
 end
