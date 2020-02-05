@@ -43,6 +43,16 @@ module EtFullSystem
 
       alias t translate
 
+      # Localizes certain objects, such as dates and numbers to local formatting.
+      def localize(object, options = nil)
+        options = options ? options.dup : {}
+        locale = options.delete(:locale)
+        format = options.delete(:format) || :default
+        backend.localize(locale, object, format, options)
+      end
+      alias :l :localize
+
+
       private
 
       def initialize(messaging_dir: File.absolute_path('../messaging', __FILE__))
