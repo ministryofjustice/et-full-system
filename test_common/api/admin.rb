@@ -255,6 +255,7 @@ module EtFullSystem
 
       def wait_for_claim_failed_in_ccd_export(reference, timeout: 30, sleep: 0.5)
         login
+        filtered_claims = []
         Timeout.timeout(timeout) do
           loop do
             filtered_claims = claims q: {reference_equals: reference}

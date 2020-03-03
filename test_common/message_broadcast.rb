@@ -3,6 +3,8 @@ module EtFullSystem
     module MessageBroadcast
       def broadcast_message(message)
         page&.driver&.browser&.manage&.add_cookie(name: 'zaleniumMessage', value: message)
+      rescue Selenium::WebDriver::Error::WebDriverError
+        nil
       end
     end
   end

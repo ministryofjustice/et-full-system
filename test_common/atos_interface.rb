@@ -183,6 +183,8 @@ module EtFullSystem
         ::Zip::File.open(tmp_file.path).glob('**/*').map(&:name).tap do |files|
           filename_cache[zip_filename] = files
         end
+      rescue Zip::Error
+        []
       ensure
         if tmp_file
           tmp_file.close
