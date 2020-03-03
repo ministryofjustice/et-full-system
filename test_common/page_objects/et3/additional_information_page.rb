@@ -42,20 +42,11 @@ module EtFullSystem
           data = respondent.to_h
           return if respondent.nil?
           if data.key?(:rtf_file)
-            page.execute_script <<-JS
-              fakeFileInput = window.$('<input/>').attr(
-                {id: 'fakeFileInput', type:'file'}
-              ).appendTo('body');
-            JS
-
             force_remote do
-             attach_file("fakeFileInput", File.expand_path(File.join('test_common', 'fixtures', data[:rtf_file])))
+              page.attach_file nil, File.expand_path(File.join('test_common', 'fixtures', data[:rtf_file])) do
+                page.click_button 'Click here to upload rtf file'
+              end
             end
-            page.execute_script("var fileList = [fakeFileInput.get(0).files[0]]")
-            page.execute_script <<-JS
-              var e = jQuery.Event('drop', { dataTransfer : { files : [fakeFileInput.get(0).files[0]] } });
-              $('.dropzone')[0].dropzone.listeners[0].events.drop(e);
-            JS
           end
           sleep 2
           page.has_content?('Remove file')
