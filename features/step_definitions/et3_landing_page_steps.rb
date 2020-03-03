@@ -17,6 +17,5 @@ end
 Then(/^I should see other relevant links$/) do
   expect(start_page.sidebar.claim_link['href']).to eq t('components.sidebar.claim_href')
   expect(start_page.sidebar.response_link['href']).to eq t('components.sidebar.response_href')
-  expect(start_page.sidebar.download_link['href']).to eq t('components.sidebar.download_href')
   expect(start_page.sidebar.more_category_link['href']).to eq t('components.sidebar.more_category_href')
 end

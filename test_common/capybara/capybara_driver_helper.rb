@@ -14,7 +14,8 @@ Capybara.register_driver :firefox do |app|
   profile = Selenium::WebDriver::Firefox::Profile.new
   profile['browser.cache.disk.enable'] = false
   profile['browser.cache.memory.enable'] = false
-  Capybara::Selenium::Driver.new(app, browser: :remote, desired_capabilities: :firefox, url: ENV.fetch('SELENIUM_URL', 'http://localhost:4444/wd/hub'))
+  caps = Selenium::WebDriver::Remote::Capabilities.firefox(idle_timeout: 150)
+  Capybara::Selenium::Driver.new(app, browser: :remote, desired_capabilities: caps, url: ENV.fetch('SELENIUM_URL', 'http://localhost:4444/wd/hub'))
 end
 
 Capybara.register_driver :chrome do |app|
@@ -39,6 +40,10 @@ Capybara.register_driver :chromedriver_headless do |app|
 end
 
 Capybara.register_driver :firefoxdriver do |app|
+  Capybara::Selenium::Driver.new(app, browser: :firefox)
+end
+
+Capybara.register_driver :firefoxdriver_headless do |app|
   options = Selenium::WebDriver::Firefox::Options.new
   options.headless!
   Capybara::Selenium::Driver.new(app, browser: :firefox, options: options)
