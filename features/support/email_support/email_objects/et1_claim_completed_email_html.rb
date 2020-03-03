@@ -8,13 +8,13 @@ module EtFullSystem
       include ::EtFullSystem::Test::I18n
       element(:claim_submitted_element, :xpath, XPath.generate { |x| x.descendant(:tr)[x.child(:td)[x.string.n.starts_with(t('claim_confirmations.show.header'))]].child(:td)[2] })
     
-      def self.find(search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, claim_number:, sleep: 10, timeout: 120)
+      def self.find(search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, claim_number:, sleep: 10, timeout: 50)
         item = find_email(claim_number, search_url, sleep: sleep, timeout: timeout)
         raise "ET1 Mail with claim number #{claim_number} not found" unless item.present?
         new(item)
       end
 
-      def self.find_email(claim_number, search_url, timeout: 120, sleep: 10, subject_text: t('base_mailer.confirmation_email.subject'))
+      def self.find_email(claim_number, search_url, timeout: 50, sleep: 10, subject_text: t('base_mailer.confirmation_email.subject'))
         Timeout.timeout(timeout) do
           item = nil
           until item.present? do

@@ -36,6 +36,8 @@ module EtFullSystem
           new(response)
         end
 
+
+        # @return [EtFullSystem::Test::Ccd::Et1CcdSingleClaimant,NilClass] The found object or nil if not found
         def self.find_by_reference(reference_number, ccd_office_lookup, timeout: 10, sleep: 0.5)
           Timeout.timeout(timeout) do
             response = nil
@@ -120,7 +122,7 @@ module EtFullSystem
         end
 
         def find_pdf_file
-          download_file(response, 'pdf')
+          download_file(response, /\Aet1.*\.pdf\z/)
         end
 
         def find_rtf_file
@@ -129,6 +131,14 @@ module EtFullSystem
 
         def ethos_case_reference
           response.dig('case_fields', 'ethosCaseReference')
+        end
+
+        def assert_acas_pdf_file
+          expect(find_file_document(response, /\Aacas.*\.pdf\z/)).to be_present, 'Cannot find acas file - should start with acas and end in .pdf'
+        end
+
+        def assert_no_acas_pdf_file
+          expect(find_file_document(response, /\Aacas.*\.pdf\z/)).not_to be_present, 'Found an acas file starting with acas and end in .pdf but this was not expected'
         end
 
         private

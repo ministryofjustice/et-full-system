@@ -13,7 +13,7 @@ end
 Given /^a claimant completes an ET1 form$/ do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1)
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 

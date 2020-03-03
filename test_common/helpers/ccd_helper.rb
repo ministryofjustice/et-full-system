@@ -21,7 +21,7 @@ module EtFullSystem
         ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
         @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
         @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-        @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas, work_post_code: 'M1 1AQ', expected_office: 24)
+        @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, :yes_acas, work_post_code: 'M1 1AQ', expected_office: 24)
         @employment = FactoryBot.create(:employment, :still_employed)
         @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
         start_a_new_et1_claim

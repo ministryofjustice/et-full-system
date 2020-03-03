@@ -19,7 +19,7 @@ FactoryBot.define do
       locality {'London'}
       county {'Greater London'}
       post_code {'SW1H 9QR'}
-      acas_number {'AC123456/78/90'}
+      acas_number {'R000100/18/68'}
       telephone_number {'02222 321654'}
       office {'London Central, Victory House, 30-34 Kingsway, London WC2B 6EX'}
     end
@@ -40,7 +40,17 @@ FactoryBot.define do
       telephone_number {nil}
     end
 
-    factory :conciliation_acas_number, traits: [:work_address, :yes_acas]
+    trait :conciliation_acas_number do
+      work_address
+      yes_acas
+    end
+
+    trait :invalid_acas_number do
+      work_address
+      yes_acas
+      acas_number { 'R000201/18/68' }
+    end
+
     factory :acas_number_reason, traits: [:work_address, :no_acas]
     factory :no_work_address, traits: [:yes_acas]
     factory :et3_data, traits: [:work_address, :yes_acas]

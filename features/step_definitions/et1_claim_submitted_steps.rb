@@ -26,7 +26,7 @@ end
 Given("a group claimaints submitting an ET1 form by uploading CSV and Rich Text Format documents") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data, :group_claims)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number)
   @employment = FactoryBot.create(:employment, :no_employment_details)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end

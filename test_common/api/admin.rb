@@ -288,6 +288,7 @@ module EtFullSystem
           loop do
             filtered_claims = claims q: {reference_equals: reference}
             return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ccd_state] == 'complete'
+            yield if block_given?
             sleep(sleep)
           end
         end
