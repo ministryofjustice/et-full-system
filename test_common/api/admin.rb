@@ -23,12 +23,12 @@ module EtFullSystem
       def mechanize_login
         return if mechanize_logged_in?
         page = agent.get(url)
-        self.csrf_token = page.search('meta[name=csrf-token]').first['content']
-
         page.form.field_with(name: 'admin_user[username]').value = ::EtFullSystem::Test::Configuration.admin_username
         page.form.field_with(name: 'admin_user[password]').value = ::EtFullSystem::Test::Configuration.admin_password
         result = agent.submit(page.form)
         raise "Login failed" if result.search(XPath.generate {|x| x.descendant[x.string.n.contains("Signed in successfully")]}.to_s).empty?
+
+        self.csrf_token = page.search('meta[name=csrf-token]').first['content']
         self.mechanize_logged_in = true
       end
 
@@ -93,12 +93,20 @@ module EtFullSystem
         JSON.parse(response.body).map(&:with_indifferent_access)
       end
 
-      # @TODO This currently doesnt work - needs investigation - comes up with a 422 error
-      def delete_office_postcode(postcode_record)
+      def delete_user_by_email(email)
         mechanize_login
-        response = agent.post("#{url}/office_postcodes/#{postcode_record[:id]}", {_method: 'delete', authenticity_token: csrf_token}, 'Accept' => 'application/json')
-        tmp = 1
+        query = { q: { email_equals: email } }
+        response_for_csrf = agent.get("#{url}/users?#{query.to_query}")
+        csrf_token = response_for_csrf.search('meta[name=csrf-token]').first['content']
+        response = agent.get("#{url}/users.json?#{query.to_query}")
+        users = JSON.parse(response.body).map(&:with_indifferent_access)
+        user_record = users.first
+        return if user_record.nil?
+
+        agent.post("#{url}/users/#{user_record[:id]}.json", {_method: 'delete'}, 'Accept' => 'application/json', 'X-CSRF-Token' => csrf_token)
       end
+
+
 
       def find_office_postcode(postcode, timeout: 5, sleep: 0.1, raise: false)
         wait_for(timeout: timeout, sleep: sleep, raise: raise) do
