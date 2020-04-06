@@ -30,14 +30,14 @@ cy:
       hint: "Sut ydych chi'n gweld eich hunaniaeth?"
       header: Hunaniaeth
       sex:
-        hint: "Beth yw eich rhyw? (dewisol)"
+        hint: "Beth yw eich rhyw?"
       sexual_identity:
-        hint: "Pa un o'r opsiynau isod sy'n disgrifio orau eich hunaniaeth rywiol? (dewisol)"
+        hint: "Pa un o'r opsiynau isod sy'n disgrifio orau eich hunaniaeth rywiol?"
       gender:
-        hint: "Beth yw eich hunaniaeth ryweddol? (dewisol)"
+        hint: "Beth yw eich hunaniaeth ryweddol?"
 
       gender_at_birth:
-        hint: "A yw eich hunaniaeth ryweddol yn wahanol i'ch rhyw tybiedig pan gawsoch eich geni? (dewisol)"
+        hint: "A yw eich hunaniaeth ryweddol yn wahanol i'ch rhyw tybiedig pan gawsoch eich geni?"
 
     relationship:
       header: Perthynas
@@ -45,9 +45,9 @@ cy:
     age_caring:
       hint: "Beth yw eich grŵp oedran a'ch cyfrifoldebau gofalu?"
       age_group:
-        hint: "Ym mha grŵp oedran ydych chi? (dewisol)"
+        hint: "Ym mha grŵp oedran ydych chi?"
       caring_responsibility:
-        hint: "A oes gennych chi unrhyw gyfrifoldebau gofalu? (dewisol)"
+        hint: "A oes gennych chi unrhyw gyfrifoldebau gofalu?"
         form_hint: "Er enghraifft, plant, perthnasau neu bartneriaid oedrannus"
     religion:
       header: Crefydd

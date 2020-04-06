@@ -12,9 +12,9 @@ module EtFullSystem
         end
         # Your representative page
         section :main_header, '.content-header' do
-          element :header, :content_header, 'your_representative.header'
+          element :header, :content_header, 'questions.have_representative.title'
         end
-        section :have_representative_question, :single_choice_option, 'questions.have_representative.label', exact: true do
+        section :representative_question, :single_choice_option, 'questions.have_representative.label', exact: true do
           include ::EtFullSystem::Test::I18n
           section :yes, :gds_multiple_choice_option, 'questions.have_representative.yes.label', exact: true do
             element :selector, :css, 'input'

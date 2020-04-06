@@ -24,20 +24,20 @@ module EtFullSystem
             }
           else 
             expected_values = {
-              name_of_organisation: nil,
-              name_of_representative: nil,
-              building: nil,
-              street: nil,
-              locality: nil,
-              county: nil,
-              post_code: nil,
-              dx_number: nil,
-              telephone_number: nil,
-              alternative_telephone_number: nil,
-              reference: nil,
-              email_address: nil,
-              communication_preference: nil,
-              fax_number: nil
+              name_of_organisation: be_blank,
+              name_of_representative: be_blank,
+              building: be_blank,
+              street: be_blank,
+              locality: be_blank,
+              county: be_blank,
+              post_code: be_blank,
+              dx_number: be_blank,
+              telephone_number: be_blank,
+              alternative_telephone_number: be_blank,
+              reference: be_blank,
+              email_address: be_blank,
+              communication_preference: be_blank,
+              fax_number: be_blank
           }
           end
             expect(mapped_field_values).to include expected_values

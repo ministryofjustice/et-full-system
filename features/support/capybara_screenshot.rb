@@ -28,3 +28,11 @@ end
 Capybara::Screenshot.register_driver(:firefox) do |driver, path|
   driver.browser.save_screenshot(path)
 end
+
+Capybara::Screenshot.register_driver(:firefoxdriver) do |driver, path|
+  driver.browser.save_screenshot(path)
+end
+
+Capybara::Screenshot.register_driver(:firefoxdriver_headless) do |driver, path|
+  driver.browser.save_screenshot(path)
+end

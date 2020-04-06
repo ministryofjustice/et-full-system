@@ -44,7 +44,7 @@ module EtFullSystem
           if data.key?(:rtf_file)
             force_remote do
               page.attach_file nil, File.expand_path(File.join('test_common', 'fixtures', data[:rtf_file])) do
-                page.click_button 'Click here to upload rtf file'
+                page.click_button t('questions.upload_additional_information.button')
               end
             end
           end

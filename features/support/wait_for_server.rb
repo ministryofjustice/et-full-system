@@ -16,7 +16,7 @@ module EtFullSystem
           end
         end
       rescue Timeout::Error
-        raise "The test suite cannot start as the server cannot be accessed"
+        raise "The test suite cannot start as the server cannot be accessed at #{url}"
       end
 
 

@@ -210,8 +210,8 @@ module EtFullSystem
         filenames.select do |filename|
           m = filename.match(/\AET_Fees_(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)\.zip\z/)
           _, day, month, year, hour, minute, second = m.to_a
-          file_time = Time.parse("20#{year}-#{month}-#{day} #{hour}:#{minute}:#{second}")
-          file_time > ignore_before
+          file_time = Time.find_zone("UTC").parse("20#{year}-#{month}-#{day} #{hour}:#{minute}:#{second}")
+          (file_time > ignore_before)
         end
       end
 

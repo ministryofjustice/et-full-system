@@ -29,33 +29,33 @@ module EtFullSystem
                 },
                 additional_respondents: respondents.length > 1 ? true : false, 
                 respondent2: {
-                    name: title_for(respondents[1].try(:name), optional: true),
+                    name: title_for(respondents[1].try(:name), optional: true) || '',
                     address: {
-                        building: respondents[1].try(:building),
-                        street: respondents[1].try(:street),
-                        locality: respondents[1].try(:locality),
-                        county: respondents[1].try(:county),
-                        post_code: post_code_for(respondents[1].try(:post_code), optional: true),
-                        telephone_number: respondents.length == 1 ? respondents[2].try(:telephone_number) : ""
+                        building: respondents[1].try(:building) || '',
+                        street: respondents[1].try(:street) || '',
+                        locality: respondents[1].try(:locality) || '',
+                        county: respondents[1].try(:county) || '',
+                        post_code: post_code_for(respondents[1].try(:post_code), optional: true) || '',
+                        telephone_number: ''
                     },
                     acas: {
                         have_acas: respondents[1].nil? ? nil : respondents[1].acas_number.present?,
-                        acas_number: respondents[1].try(:acas_number)
+                        acas_number: respondents[1].try(:acas_number) || ''
                     }
                 },
                 respondent3: {
-                    name: title_for(respondents[2].try(:name), optional: true),
+                    name: title_for(respondents[2].try(:name), optional: true) || '',
                     address: {
-                        building: respondents[2].try(:building),
-                        street: respondents[2].try(:street),
-                        locality: respondents[2].try(:locality),
-                        county: respondents[2].try(:county),
-                        post_code: post_code_for(respondents[2].try(:post_code), optional: true),
-                        telephone_number: respondents.length == 1 ? respondents[2].try(:telephone_number) : ""
+                        building: respondents[2].try(:building) || '',
+                        street: respondents[2].try(:street) || '',
+                        locality: respondents[2].try(:locality) || '',
+                        county: respondents[2].try(:county) || '',
+                        post_code: post_code_for(respondents[2].try(:post_code), optional: true) || '',
+                        telephone_number: ''
                     },
                     acas: {
                         have_acas: respondents[2].nil? ? nil : respondents[2].acas_number.present?,
-                        acas_number: respondents[2].try(:acas_number)
+                        acas_number: respondents[2].try(:acas_number) || ''
                     }
                 }
             }

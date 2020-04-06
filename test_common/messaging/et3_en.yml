@@ -156,7 +156,8 @@ en:
         label: Please set out the facts which you rely on to defend the claim (optional)
     # Your Representatives Page
     have_representative:
-      label: Do you have a representative? (optional)
+      title: Do you have a representative?
+      label: This is someone who has agreed to act on your behalf.
       'yes':
         label: 'Yes'
       'no':
@@ -232,7 +233,7 @@ en:
     # Additional Informatation Page
     upload_additional_information:
       label: Please upload a file to provide any important additional information about your response which you have not been able to include so far (optional)
-      button: Click here to upload a file
+      button: Click here to upload rtf file
     # Confirmation of Supplied Details Page
     email_receipt:
       label: Email address (optional)

@@ -155,7 +155,8 @@ cy:
         label: "Rhowch y ffeithiau yr ydych yn dibynnu arnynt i amddiffyn yr hawliad hwn (dewisol)"
     # Your Representatives Page
     have_representative:
-      label: "A oes gennych chi gynrychiolydd? (dewisol)"
+      title: "A oes gennych chi gynrychiolydd?"
+      label: "Dyma rywun sydd wedi cytuno i weithredu ar eich rhan."
       'yes':
         label: Oes
       'no':
