@@ -2,9 +2,7 @@ module EtFullSystem
   module Test
     module CcdFileHelper
       def download_file(response, file_type)
-        document = response['case_fields']['documentCollection'].find do |document|
-          document['value']['uploadedDocument']['document_filename'].end_with?(".#{file_type}")
-        end
+        document = find_file_document(response, file_type)
 
         url = document['value']['uploadedDocument']['document_binary_url']
         filename = document['value']['uploadedDocument']['document_filename']
@@ -19,6 +17,16 @@ module EtFullSystem
           RestClient::Request.new(method: :get, url: url, block_response: block).execute
         end
         tempfile
+      end
+
+      def find_file_document(response, file_type)
+        response['case_fields']['documentCollection'].find do |document|
+          if file_type.is_a?(String)
+            document['value']['uploadedDocument']['document_filename'].end_with?(".#{file_type}")
+          elsif file_type.is_a?(Regexp)
+            document['value']['uploadedDocument']['document_filename'] =~ file_type
+          end
+        end
       end
     end
   end

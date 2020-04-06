@@ -7,13 +7,13 @@ module EtFullSystem
       include RSpec::Matchers
       include ::EtFullSystem::Test::I18n
     
-      def self.find(search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, email_address:, sleep: 10, timeout: 120)
+      def self.find(search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, email_address:, sleep: 10, timeout: 50)
         item = find_email(email_address, search_url, sleep: sleep, timeout: timeout)
         raise "ET1 Feedback  #{email_address} not found" unless item.present?
         new(item)
       end
 
-      def self.find_email(email_address, search_url, timeout: 120, sleep: 10, subject_text: 'New ATET User Feedback')
+      def self.find_email(email_address, search_url, timeout: 50, sleep: 10, subject_text: 'New ATET User Feedback')
         Timeout.timeout(timeout) do
           item = nil
           until item.present? do

@@ -13,7 +13,7 @@ end
 Given /^a claimant completes an ET1 form$/ do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1)
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number)
   @employment = FactoryBot.create(:employment)
   @claim = FactoryBot.create(:claim)
 
@@ -61,6 +61,8 @@ When(/^a respondent completes an ET3 form$/) do
 end
 
 Then(/^an email is sent to notify user that a respondent has been successfully submitted$/) do
+  date = Date.today
+  month = t('date.month_names')[date.month]
   email_sent = ::EtFullSystem::Test::Et3ResponseEmailHtml.find(reference: @my_et3_reference, locale: ::EtFullSystem::Test::Messaging.instance.current_locale)
-  expect(email_sent).to have_correct_content_for(submission_date: form_submission_page.submission_date.text, reference: @my_et3_reference)
+  expect(email_sent).to have_correct_content_for(submission_date: Date.today.strftime('%d/%m/%Y'), reference: @my_et3_reference)
 end

@@ -40,6 +40,8 @@ module EtFullSystem
 
         def switch_to_welsh
           feedback_notice.welsh_link.click
+        rescue Capybara::ElementNotFound => ex
+          raise ex unless feedback_notice.has_english_link?
         end
 
         def switch_to_english

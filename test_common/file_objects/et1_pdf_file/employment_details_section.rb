@@ -15,11 +15,11 @@ module EtFullSystem
               }
             else
               expected_values = {
-                job_title: nil,
-                start_date: nil,
-                employment_continuing: nil,
-                ended_date: nil,
-                ending_date: nil
+                job_title: be_blank,
+                start_date: be_blank,
+                employment_continuing: be_blank,
+                ended_date: be_blank,
+                ending_date: be_blank
               }
             end
             expect(mapped_field_values).to include expected_values

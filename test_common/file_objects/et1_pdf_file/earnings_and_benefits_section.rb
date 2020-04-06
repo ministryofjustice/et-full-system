@@ -27,18 +27,18 @@ module EtFullSystem
               }
             else
               expected_values = {
-                average_weekly_hours: nil,
+                average_weekly_hours: be_blank,
                 pay_before_tax: {
-                    'amount': nil,
-                    'period': nil
+                    'amount': be_blank,
+                    'period': be_blank
                 },
-                paid_for_notice_period: nil,
+                paid_for_notice_period: be_blank,
                 notice_period: {
-                    weeks: nil,
-                    months: nil
+                    weeks: be_blank,
+                    months: be_blank
                 },
-                employers_pension_scheme: nil,
-                benefits: nil
+                employers_pension_scheme: be_blank,
+                benefits: be_blank
               }
             end
             expect(mapped_field_values).to include expected_values

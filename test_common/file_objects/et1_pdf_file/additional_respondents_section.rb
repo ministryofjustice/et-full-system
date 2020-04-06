@@ -16,7 +16,7 @@ module EtFullSystem
                     county: respondents[3].try(:county),
                     post_code: post_code_for(respondents[3].try(:post_code), optional: true),
                     telephone_number: "",
-                    have_acas: respondents[2].nil? ? nil : respondents[2].acas_number.present?,
+                    have_acas: respondents[2].nil? ? be_blank : respondents[2].acas_number.present?,
                     acas_number: respondents[3].try(:acas_number)
 
                 },
@@ -28,33 +28,33 @@ module EtFullSystem
                     county: respondents[4].try(:county),
                     post_code: post_code_for(respondents[4].try(:post_code), optional: true),
                     telephone_number: "",
-                    have_acas: respondents[2].nil? ? nil : respondents[2].acas_number.present?,
+                    have_acas: respondents[2].nil? ? be_blank : respondents[2].acas_number.present?,
                     acas_number: respondents[4].try(:acas_number)
                 }
             }
             else
               expected_values = {
                 respondent4: {
-                  name: nil,
-                  building: nil,
-                  street: nil,
-                  locality: nil,
-                  county: nil,
-                  post_code: nil,
-                  telephone_number: nil,
-                  have_acas: nil,
-                  acas_number: nil
+                  name: be_blank,
+                  building: be_blank,
+                  street: be_blank,
+                  locality: be_blank,
+                  county: be_blank,
+                  post_code: be_blank,
+                  telephone_number: be_blank,
+                  have_acas: be_blank,
+                  acas_number: be_blank
                 },
                 respondent5: {
-                  name: nil,
-                  building: nil,
-                  street: nil,
-                  locality: nil,
-                  county: nil,
-                  post_code: nil,
-                  telephone_number: nil,
-                  have_acas: nil,
-                  acas_number: nil
+                  name: be_blank,
+                  building: be_blank,
+                  street: be_blank,
+                  locality: be_blank,
+                  county: be_blank,
+                  post_code: be_blank,
+                  telephone_number: be_blank,
+                  have_acas: be_blank,
+                  acas_number: be_blank
                 }
               }    
             end

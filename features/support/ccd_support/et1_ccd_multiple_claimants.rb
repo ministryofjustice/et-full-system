@@ -22,7 +22,7 @@ module EtFullSystem
             response = nil
             until response.present? do
               response = ccd.caseworker_search_latest_by_multiple_reference(reference_number, case_type_id: ccd_office)
-              puts response
+              yield if block_given?
               sleep sleep unless response.present?
             end
             new(response)

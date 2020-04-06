@@ -1,6 +1,6 @@
 Then(/^I can download the form and validate in PDF format$/) do
   api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
-  zip_file = api.atos_zip_file_for_claim(claim_application_reference: @claim_application_reference, ignore_before: @test_start_time, timeout: 600)
+  zip_file = api.atos_zip_file_for_claim(claim_application_reference: @claim_application_reference, ignore_before: @test_start_time)
   expect(zip_file.download_file(:et1_claim_pdf_for, user: @claimant[0], ignore_before: @test_start_time)).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
 end
 
@@ -49,5 +49,5 @@ end
 Then("I can download the form from the secondary queue and that the filename starts with {string}") do |string|
   api = EtFullSystem::Test::AdminApi.new atos_interface: atos_secondary_interface
   zip_file = api.atos_zip_file_for_claim(claim_application_reference: @claim_application_reference, ignore_before: @test_start_time)
-  expect(zip_file.download_file(:et1_claim_pdf_for, user: @claimant[0], ignore_before: @test_start_time)).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment), timeout: 45, sleep: 2
+  expect(zip_file.download_file(:et1_claim_pdf_for, user: @claimant[0], ignore_before: @test_start_time)).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
 end

@@ -8,13 +8,13 @@ module EtFullSystem
       include RSpec::Matchers
       include EtFullSystem::Test::I18n
 
-      def self.find(search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, reference:, locale:, sleep: 30, timeout: 120)
+      def self.find(search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, reference:, locale:, sleep: 10, timeout: 50)
         item = find_email(reference, search_url, sleep: sleep, timeout: timeout)
         raise "ET3 Mail with reference #{reference} not found" unless item.present?
         new(item, locale: locale)
       end
 
-      def self.find_email(reference, search_url, timeout: 120, sleep: 10)
+      def self.find_email(reference, search_url, timeout: 50, sleep: 5)
         Timeout.timeout(timeout) do
           item = nil
           until item.present? do

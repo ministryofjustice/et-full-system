@@ -11,7 +11,7 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         section :main_header, '.content-header' do
-          element :header, :content_header, 'response.header'
+          element :header, :content_header, 'questions.have_representative.title'
         end
         section :error_summary, '.error-summary' do
           element :error_heading, :main_header, 'errors.header'

@@ -1,7 +1,15 @@
 Given("an employee making a claim wanting to be contacted by {string}") do |string|
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data, :"contact_by_#{string}")
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas, work_post_code: 'G1 2FF', expected_office: :glasgow)
+  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, work_post_code: 'G1 2FF', expected_office: :glasgow)
+  @employment = FactoryBot.create(:employment, :still_employed)
+  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
+end
+
+Given("an employee making a claim with an invalid acas certificate wanting to be contacted by {string}") do |string|
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data, :"contact_by_#{string}")
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @respondent = FactoryBot.create_list(:respondent,  1, :invalid_acas_number, work_post_code: 'G1 2FF', expected_office: :glasgow)
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -9,7 +17,7 @@ end
 Given("an employee making a claim against {string} respondents") do |string|
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, string.to_i, :yes_acas)
+  @respondent = FactoryBot.create_list(:respondent,  string.to_i, :conciliation_acas_number)
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -49,7 +57,7 @@ end
 Given("an employee making a claim against an employer not aware of multiple cases against the same employer") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number)
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :no_to_other_claimants)
 end
@@ -57,7 +65,7 @@ end
 Given("an employee making a claim against a trade union") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number)
   @employment = FactoryBot.create(:employment, :no_employment_details)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -65,7 +73,7 @@ end
 Given("an employee making a claim against an employer who never worked for them") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas, work_post_code: 'G1 2FF', expected_office: :glasgow)
+  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, work_post_code: 'G1 2FF', expected_office: :glasgow)
   @employment = FactoryBot.create(:employment, :no_employment_details)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -73,7 +81,7 @@ end
 Given("an employee making a claim against an employer who is working against their notice period") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas, work_post_code: 'G1 2FF', expected_office: :glasgow)
+  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, work_post_code: 'G1 2FF', expected_office: :glasgow)
   @employment = FactoryBot.create(:employment, :notice_period)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -81,7 +89,7 @@ end
 Given("an employee making a claim against an employer who is no longer working for them") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number)
   @employment = FactoryBot.create(:employment, :employment_terminated)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -89,7 +97,7 @@ end
 Given("an employee making a claim against an employer who no longer work for them") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number)
   @employment = FactoryBot.create(:employment, :notice_period)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -97,7 +105,7 @@ end
 Given("an employee making a claim against an employer who is not aware of pension scheme") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number)
   @employment = FactoryBot.create(:employment, :notice_period)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -105,7 +113,7 @@ end
 Given("an employee making a claim against an employer who doesn't suspect any wrongdoing at work") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number)
   @employment = FactoryBot.create(:employment, :notice_period)
   @claim = FactoryBot.create(:claim, :no_to_whistleblowing_claim)
 end
@@ -113,7 +121,7 @@ end
 Given("an employee making a unique claims") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number)
   @employment = FactoryBot.create(:employment, :notice_period)
   @claim = FactoryBot.create(:claim, :no_to_multiple_claims)
 end
@@ -121,7 +129,7 @@ end
 Given("an employee making a claim without wanting any claims outcome") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number)
   @employment = FactoryBot.create(:employment, :notice_period)
   @claim = FactoryBot.create(:claim, :nil_to_claim_outcome)
 end
@@ -129,7 +137,7 @@ end
 Given("an employee making a claim without providing anymore information") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number)
   @employment = FactoryBot.create(:employment, :notice_period)
   @claim = FactoryBot.create(:claim, :no_to_other_important_details)
 end

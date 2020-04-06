@@ -1,5 +1,4 @@
 
-.idea
 tmp/**/*
 !tmp/.gitkeep
 config_aws.env
@@ -10,3 +9,12 @@ node_modules
 rubybin/
 report*.html
 cucumber_failures.log
+
+.idea/shelf
+.idea/modules
+.idea/markdown-navigator
+.idea/et-full-system.iml
+.idea/markdown-navigator.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/workspace.xml

@@ -1,7 +1,7 @@
 module EtFullSystem
   module Test
     class WaitForServer
-      def initialize(url, timeout: 1800, sleep: 30)
+      def initialize(url, timeout: 3600, sleep: 30)
         self.url = url
         self.timeout = timeout
         self.sleep_duration = sleep
@@ -16,7 +16,7 @@ module EtFullSystem
           end
         end
       rescue Timeout::Error
-        raise "The test suite cannot start as the server cannot be accessed"
+        raise "The test suite cannot start as the server cannot be accessed at #{url}"
       end
 
 

@@ -156,7 +156,8 @@ en:
         label: Please set out the facts which you rely on to defend the claim (optional)
     # Your Representatives Page
     have_representative:
-      label: Do you have a representative? (optional)
+      title: Do you have a representative?
+      label: This is someone who has agreed to act on your behalf.
       'yes':
         label: 'Yes'
       'no':
@@ -232,7 +233,7 @@ en:
     # Additional Informatation Page
     upload_additional_information:
       label: Please upload a file to provide any important additional information about your response which you have not been able to include so far (optional)
-      button: Click here to upload a file
+      button: Click here to upload rtf file
     # Confirmation of Supplied Details Page
     email_receipt:
       label: Email address (optional)
@@ -320,7 +321,7 @@ en:
       edit_page: Edit answers on this page
     form_submission:
       invalid_pdf_download: Not quite ready yet - a PDF version of your completed form will be available for download shortly
-      valid_pdf_download: A PDF version of your completed form is now available for download
+      valid_pdf_download: download your response
   components:
     save_and_continue_button: Save and continue
     single_choice_option_section:
@@ -430,10 +431,12 @@ en:
     submit_guidance: 'Pressing "Submit Form" at the foot of the page will send the details confirmed below for processing.'
     submit: Submit your response
   submission:
-    confirmation: Response complete
-    thank_you: Thank you for your submission. It has been forwarded to the following office which will contact you in due course.
-    office_contact: "Alexandra House, 14-22 The Parsonage, Manchester, M3 2JA"
-    date: "Submission Date:"
+    confirmation: Response submitted
+    thank_you: We've sent a copy of your response to %{respondent_email}. You can also
+    thank_you_without_email: You can
+    office_contact: "If you need to contact them, please email %{office_email} or call %{office_phone}"
+    date: "Your response submitted on %{submitted_date}, has been sent to %{office_address}"
+    include_quote_case: "You will need to include or quote your case number."
     return_link: Return to GOV.UK
     return_href: https://gov.uk
 

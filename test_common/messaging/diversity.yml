@@ -30,14 +30,14 @@ en:
       hint: How do you identify?
       header: Indentity
       sex:
-        hint: What is your sex? (optional)
+        hint: What is your sex?
       sexual_identity:
-        hint: Which of the options below best describes your sexual identity? (optional)
+        hint: Which of the options below best describes your sexual identity?
       gender:
-        hint: What is your gender identity? (optional)
+        hint: What is your gender identity?
 
       gender_at_birth:
-        hint: Is your gender identity different to the sex you were assumed to be at birth? (optional)
+        hint: Is your gender identity different to the sex you were assumed to be at birth?
 
     relationship:
       header: Relationship
@@ -45,9 +45,9 @@ en:
     age_caring:
       hint: What is your age group and caring responsibilities?
       age_group:
-        hint: Which age group are you in? (optional)
+        hint: Which age group are you in?
       caring_responsibility:
-        hint: Do you have any caring responsibilities? (optional)
+        hint: Do you have any caring responsibilities?
         form_hint: For example, children, elderly relatives or partners
     religion:
       header: Religion

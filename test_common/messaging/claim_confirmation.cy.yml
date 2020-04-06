@@ -14,8 +14,8 @@ cy:
           Rydych wedi cychwyn gwneud cais am help i dalu ffioedd.
           Mae'n rhaid i chi nawr gwblhau eich cais o fewn 7 diwrnod neu gellir gwrthod eich hawliad.
         remission_link_text: "Gwneud cais am help i dalu ffioedd"
-        send_to_respondent: "Byddwn yn cysylltu â chi unwaith y byddwn wedi anfon eich hawliad at yr atebydd i egluro beth fydd yn digwydd nesaf. Ar hyn o bryd, mae’n cymryd oddeutu 25 diwrnod."
-        next_steps: "Unwaith y byddwn wedi anfon eich hawliad atynt, mae gan yr atebydd 28 diwrnod i ymateb."
+        send_to_respondent: Byddwn yn cysylltu â chi unwaith y byddwn wedi anfon eich hawliad at yr atebydd i egluro beth fydd yn digwydd nesaf. Ar hyn o bryd nid yw’n bosib pennu amserlen benodol
+        next_steps: "Yng ngoleuni’r sefyllfa bresennol gyda COVID-19, gallwch weld cyfarwyddyd diweddaraf GLlTEM yma:"
         next_steps_final_step: |
           Byddwn yn adolygu eich cais am help i dalu ffioedd ac yn rhoi gwybod i chi beth yw'r canlyniad.
       download_application:

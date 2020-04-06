@@ -7,9 +7,9 @@ module EtFullSystem
           def has_contents_for?(employment:)
             if employment.employment_details == :"claims.employment.no"
               expected_values = {
-                have_another_job: nil,
-                start_date: nil,
-                salary: nil
+                have_another_job: be_blank,
+                start_date: be_blank,
+                salary: be_blank
             }
             elsif employment.new_job == :"claims.employment.new_job.yes"
               expected_values = {
@@ -19,9 +19,9 @@ module EtFullSystem
               }
             else
               expected_values = {
-                  have_another_job: nil,
-                  start_date: '',
-                  salary: ''
+                  have_another_job: be_blank,
+                  start_date: be_blank,
+                  salary: be_blank
               }
             end
             expect(mapped_field_values).to include expected_values

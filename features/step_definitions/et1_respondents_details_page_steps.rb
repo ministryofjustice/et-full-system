@@ -35,7 +35,7 @@ Then("I can verify an invalid UK postcode is being used for Respondent's details
 end
 
 When("I submit yes to Acas early conciliation certificate number") do
-  @respondent = FactoryBot.create_list(:conciliation_acas_number, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number)
   et1_respondents_details_page.set(@respondent)
   et1_respondents_details_page.save_and_continue
 end

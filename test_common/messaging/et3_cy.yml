@@ -155,7 +155,8 @@ cy:
         label: "Rhowch y ffeithiau yr ydych yn dibynnu arnynt i amddiffyn yr hawliad hwn (dewisol)"
     # Your Representatives Page
     have_representative:
-      label: "A oes gennych chi gynrychiolydd? (dewisol)"
+      title: "A oes gennych chi gynrychiolydd?"
+      label: "Dyma rywun sydd wedi cytuno i weithredu ar eich rhan."
       'yes':
         label: Oes
       'no':
@@ -307,7 +308,7 @@ cy:
       edit_page: "Golygu atebion at y dudalen hon"
     form_submission:
       invalid_pdf_download: Ddim yn barod at hyn o bryd - bydd fersiwn PDF o'ch ffurflen at gael i'w lawrlwytho maes o law
-      valid_pdf_download: "Mae fersiwn PDF o'ch ffurflen wedi'i llenwi nawr ar gael i'w lawrlwytho"
+      valid_pdf_download: "lawrlwythwch eich ymateb"
   components:
     save_and_continue_button: "Cadw a pharhau"
     single_choice_option_section:
@@ -418,10 +419,11 @@ cy:
     submit: Cyflwyno eich ymateb
   submission:
     confirmation: "Ymateb wedi'i gwblhau"
-    reference: 142000000100
-    thank_you: "Diolch am gyflwyno eich cais. Mae wedi cael ei anfon ymlaen i'r swyddfa ganlynol a fydd yn cysylltu â chi maes o law."
-    office_contact: "Alexandra House, 14-22 The Parsonage, Manchester, M3 2JA"
-    date: "Dyddiad Cyflwyno:"
+    thank_you: "Rydym wedi anfon copi o’ch ymateb i %{email}. Gallwch chi hefyd"
+    thank_you_without_email: "Gallwch chi "
+    office_contact: "Os oes arnoch angen cysylltu â nhw, anfonwch neges e-bost i %{office_email} neu ffoniwch %{office_phone}"
+    date: "Mae eich ymateb, a gyflwynwyd ar %{submitted_date}, wedi cael ei anfon i %{office_address}"
+    include_quote_case: "Bydd angen ichi gynnwys neu ddyfynnu eich rhif achos."
     return_link: Dychwelyd i GOV.UK
     return_href: https://gov.uk
   # PDF File lookup

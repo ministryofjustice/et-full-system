@@ -2,6 +2,7 @@ module EtFullSystem
   module Test
     module Et3
       class BasePage < ::SitePrism::Page
+        include EtFullSystem::Test::I18n
         section :sidebar, :sidebar_titled, 'components.sidebar.header' do
           element :claim_link, :link_named, 'components.sidebar.claim_link'
           element :response_link, :link_named, 'components.sidebar.response_link'

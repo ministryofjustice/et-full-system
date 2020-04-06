@@ -29,14 +29,14 @@ Feature: ET3 response to local office
     Given an employer responds to a claim with case number starting '1354321/2017'
     When the completed Employment Tribunal response form is submitted
     Then it will be forwarded to the Office address 'Centre City Tower, 5-7 Hill Street, Birmingham B5 4UU'
-    And phone number 'Telephone 0121 600 7780'
+    And phone number '0121 600 7780' with email 'midlandswestet@justice.gov.uk'
     Then I can download the ET3 form and validate that the filename starts with '13'
 
   Scenario: Case number starting with 99 will be forwarded to the Default Office
     Given an employer responds to a claim with case number starting '9954321/2017'
     When the completed Employment Tribunal response form is submitted
     Then it will be forwarded to the Office address 'Alexandra House, 14-22 The Parsonage, Manchester M3 2JA'
-    And phone number 'Telephone 0161 833 6100'
+    And phone number '0161 833 5113' with email 'employmentJurisdictionalSupportTeamInbox@justice.gov.uk'
     And I can download the ET3 form from the secondary atos and validate that the filename starts with '99'
 
   Scenario: Respondent answers to mandatory questions

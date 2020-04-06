@@ -5,6 +5,7 @@ module EtFullSystem
   module Test
     module Admin
       class UsersPage < Admin::BasePage
+        set_url '/admin/users'
         include ::EtFullSystem::Test::UploadHelper
         include ::RSpec::Matchers
         section :title_bar, '#title_bar' do
@@ -42,6 +43,14 @@ module EtFullSystem
         end
         section :filters_contents, '.panel_contents #new_q' do
           section :email_section, '#q_email_input' do
+            section :matcher, '.select2-container' do
+              def select(value)
+                root_element.click
+                results = find(:xpath, XPath.generate {|x| x.anywhere.descendant(:ul)[x.attr(:id) == 'select2--results']})
+                results.find(:xpath, XPath.generate {|x| x.child(:li)[x.string.n.equals value]}).click
+              end
+
+            end
             element :filter_by_email, 'select.select2-hidden-accessible'
             element :email_input, '#q_email'
           end
@@ -57,7 +66,7 @@ module EtFullSystem
         end
 
         def search_by_email(filter_by, email_address)
-          filters_contents.email_section.filter_by_email.select(filter_by)
+          filters_contents.email_section.matcher.select(filter_by)
           filters_contents.email_section.email_input.set(email_address)
           filters_contents.filter_button.click
         end
