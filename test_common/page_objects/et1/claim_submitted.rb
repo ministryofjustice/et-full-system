@@ -32,6 +32,11 @@ module EtFullSystem
             section :submission_information, :table_row_with_th_labelled, 'claim_confirmations.show.submission_details.submission_information' do
               element :answer, :css, 'td'
             end
+            # Tribunal office
+            section :tribunal_office, :table_row_with_th_labelled, 'claim_confirmations.show.submission_details.tribunal_office' do
+              element :answer, :css, 'td'
+            end
+
             #Attachments included
             section :attachments, :table_row_with_th_labelled, 'claim_confirmations.show.submission_details.attachments' do
               element :answer, :css, 'td'
@@ -94,6 +99,7 @@ module EtFullSystem
         
         def has_forwarded_to_local_office?(office)
           expect(main_content.submission_details).to have_submission_information
+          expect(main_content.submission_details.tribunal_office).to have_answer(text: office)
           date = Time.now
           expect(main_content.submission_details.submission_information.answer.text).to eq(t('claim_confirmations.show.submission_details.submission_date', date: date.strftime("%d #{t("date.month_names")[date.month]} %Y")))
         end

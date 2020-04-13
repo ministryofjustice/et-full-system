@@ -9,7 +9,7 @@ FactoryBot.define do
         work_county {'Greater London'}
         work_post_code {'WD18 7SQ'}
         work_telephone_number {'03333 423554'}
-        work_office {'Watford, 3rd Floor, Radius House, 51 Clarendon Rd, Watford, WD17 1HP'}
+        work_office {'Watford, watfordet@justice.gov.uk, 01923 281 750'}
     end
 
     trait :yes_acas do
@@ -21,7 +21,7 @@ FactoryBot.define do
       post_code {'SW1H 9QR'}
       acas_number {'R000100/18/68'}
       telephone_number {'02222 321654'}
-      office {'London Central, Victory House, 30-34 Kingsway, London WC2B 6EX'}
+      office {'London Central, londoncentralet@justice.gov.uk, 020 7273 8603'}
     end
 
     trait :no_acas do
@@ -33,7 +33,7 @@ FactoryBot.define do
       post_code {'SW1H 9QR'}
       no_acas_number_reason {:"simple_form.options.respondent.no_acas_number_reason.joint_claimant_has_acas_number"}
       telephone_number {'02222 321654'}
-      office {'London Central, Victory House, 30-34 Kingsway, London WC2B 6EX'}
+      office {'London Central, londoncentralet@justice.gov.uk, 020 7273 8603'}
     end
 
     trait :secondary do

@@ -152,7 +152,7 @@ cy:
       'no':
         label: Nac ydw
       defend_claim_facts:
-        label: "Rhowch y ffeithiau yr ydych yn dibynnu arnynt i amddiffyn yr hawliad hwn (dewisol)"
+        label: "Dywedwch wrthym y ffeithiau rydych chi'n dibynnu arnyn nhw i amddiffyn yr hawliad."
     # Your Representatives Page
     have_representative:
       title: "A oes gennych chi gynrychiolydd?"

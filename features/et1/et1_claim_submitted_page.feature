@@ -9,12 +9,12 @@ Feature:
     Then I should see valid claim submitted page
 
   Scenario: Claimant home postcode BS11DZ will be forwarded to Bristol office
-    Given claimant home postcode 'BS11DZ' then submission office will be 'Bristol, Bristol Civil and Family Justice Centre, 2 Redcliff Street, Bristol, BS1 6GR'
+    Given claimant home postcode 'BS11DZ' then submission office will be 'Bristol, bristolet@justice.gov.uk, 01224 593 137'
     When the completed form is submitted
     Then I should see valid claim submitted page
 
   Scenario: Claimant's work address is unknown
-    Given claimant work postcode 'Z12LL' then submission office will be 'Default, Alexandra House, 14-22 The Parsonage, Manchester M3 2JA'
+    Given claimant work postcode 'Z12LL' then submission office will be 'Default, employmentJurisdictionalSupportTeamInbox@justice.gov.uk, 0161 833 5113'
     When the completed form is submitted
     Then I should see valid claim submitted page
 
