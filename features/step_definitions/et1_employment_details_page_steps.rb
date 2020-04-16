@@ -1,7 +1,7 @@
 Given("a claimant is on Employment details page") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:acas_number_reason, 1, :yes_acas)
+  @respondent = FactoryBot.create_list(:respondent, 1, :no_acas, :both_addresses, :yes_acas)
   start_a_new_et1_claim
   et1_answer_login
   et1_answer_claimant_questions

@@ -98,8 +98,11 @@ module EtFullSystem
         end
         
         def has_forwarded_to_local_office?(office)
+          raise ArgumentError, "office is nil" if office.nil?
+
           expect(main_content.submission_details).to have_submission_information
-          expect(main_content.submission_details.tribunal_office).to have_answer(text: office)
+          office_text = "#{office[:name]}, #{office[:email]}, #{office[:telephone]}"
+          expect(main_content.submission_details.tribunal_office).to have_answer(text: office_text)
           date = Time.now
           expect(main_content.submission_details.submission_information.answer.text).to eq(t('claim_confirmations.show.submission_details.submission_date', date: date.strftime("%d #{t("date.month_names")[date.month]} %Y")))
         end

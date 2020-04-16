@@ -65,11 +65,11 @@ Feature:
     Then  I can download the form and validate in PDF format
 
   Scenario: Claimant home postcode BS11DZ will be forwarded to Bristol office
-    Given claimant home postcode 'BS1 1DZ' then submission office will be 'Bristol, bristolet@justice.gov.uk, 01224 593 137'
+    Given claimant home postcode 'BS1 1DZ' then submission office will be '14'
     When the completed form is submitted 
     Then I can download the form and validate that the filename starts with '14'
 
   Scenario: Claimant's work address is unknown
-    Given claimant work postcode 'Z1 2LL' then submission office will be 'Default, employmentJurisdictionalSupportTeamInbox@justice.gov.uk, 0161 833 5113'
+    Given claimant work postcode 'Z1 2LL' then submission office will be '99'
     When the completed form is submitted
     Then I can download the form from the secondary queue and that the filename starts with '99'

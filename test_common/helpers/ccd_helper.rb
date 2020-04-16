@@ -21,7 +21,7 @@ module EtFullSystem
         ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
         @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
         @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-        @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, :yes_acas, work_post_code: 'M1 1AQ', expected_office: 24)
+        @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'M1 1AQ', expected_office: '24')
         @employment = FactoryBot.create(:employment, :still_employed)
         @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
         start_a_new_et1_claim
@@ -37,7 +37,7 @@ module EtFullSystem
         et1_answer_claim_outcome_questions
         et1_answer_more_about_the_claim_questions
         et1_submit_claim
-        EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_and_wait_for_latest(ccd_office_lookup.office_lookup[:manchester][:single][:case_type_id]).tap do |result|
+        EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_and_wait_for_latest(ccd_office_lookup.office_lookup['24'][:single][:case_type_id]).tap do |result|
           raise "No claims were present in CCD and for some reason one could not be created - suggests a problem with the app or maybe a wrong office code" if result.nil?
         end
       end

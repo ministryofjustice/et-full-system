@@ -1,7 +1,7 @@
 Given("a DUMMY USER making a claim") do
   @claimant = FactoryBot.create_list(:claimant, 1, :dummy_data, )
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, work_post_code: 'M1 1AQ', expected_office: :manchester)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'M1 1AQ', expected_office: '24')
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -9,7 +9,7 @@ end
 Given("a DUMMY USER submitting an ET1 form by uploading CSV and RTF documents") do
   @claimant = FactoryBot.create_list(:claimant, 1, :dummy_data, :group_claims)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, work_post_code: 'M1 1AQ', expected_office: :manchester)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'M1 1AQ', expected_office: '24')
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :upload_your_claim_statement)
 end
@@ -17,7 +17,7 @@ end
 Given("a Male employee making a claim") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data, title: :"simple_form.options.claimant.title.mr", gender: :"simple_form.options.claimant.gender.male")
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, work_post_code: 'M1 1AQ', expected_office: :manchester)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'M1 1AQ', expected_office: '24')
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -25,7 +25,7 @@ end
 Given("a married woman employee making a claim") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data, title: :"simple_form.options.claimant.title.mrs", gender: :"simple_form.options.claimant.gender.female")
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, work_post_code: 'G1 2FF', expected_office: :glasgow)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'G1 2FF', expected_office: '41')
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -33,7 +33,7 @@ end
 Given("a female employee making a claim") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data, title: :"simple_form.options.claimant.title.miss", gender: :"simple_form.options.claimant.gender.female")
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, work_post_code: 'M1 1AQ', expected_office: :manchester)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'M1 1AQ', expected_office: '24')
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -41,7 +41,7 @@ end
 Given("a claimant who does not require assistance at the tribunal hearing submitted an ET1 online") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data, has_special_needs: :"simple_form.no")
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, work_post_code: 'G1 2FF', expected_office: :glasgow)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'G1 2FF', expected_office: '41')
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -49,7 +49,7 @@ end
 Given("a claimant submitting mandatory Claimant's Details fields") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data, telephone_number: '', alternative_telephone_number: '', email_address: '', correspondence: :"simple_form.options.claimant.contact_preference.post")
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, work_post_code: 'M1 1AQ', expected_office: :manchester)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'M1 1AQ', expected_office: '24')
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -57,7 +57,7 @@ end
 Given("an employee submitting mandatory respresentative fields") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information, organisation_name: '', telephone_number: '', alternative_telephone_number: '', email_address: '', dx_number: '')
-  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, work_post_code: 'M1 1AQ', expected_office: :manchester)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'M1 1AQ', expected_office: '24')
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -65,7 +65,7 @@ end
 Given("an employee making a claim where the respondent provided the same address") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:no_work_address, 1, :yes_acas, post_code: 'G1 2FF', expected_office: :glasgow)
+  @respondent = FactoryBot.create_list(:respondent, 1, :yes_acas, :main_address, post_code: 'G1 2FF', expected_office: '41')
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -73,8 +73,8 @@ end
 Given("an employee making a claim where the additional respondents provided an acas number") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, work_post_code: 'M1 1AQ', expected_office: :manchester)
-  @respondent.concat FactoryBot.create_list(:respondent,  1 - 1, :conciliation_acas_number, :secondary)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'M1 1AQ', expected_office: '24')
+  @respondent.concat FactoryBot.create_list(:respondent,  1 - 1, :yes_acas, :both_addresses, :secondary)
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -82,15 +82,15 @@ end
 Given("an employee making a claim where the additional respondents gave reason for not having an acas number") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, work_post_code: 'G1 2FF', expected_office: :glasgow)
-  @respondent.concat FactoryBot.create_list(:respondent,  1 - 1, :conciliation_acas_number, :secondary)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'G1 2FF', expected_office: '41')
+  @respondent.concat FactoryBot.create_list(:respondent,  1 - 1, :yes_acas, :both_addresses, :secondary)
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
 Given("a claimant submitting mandatory respondent's Details fields") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, telephone_number: '', work_post_code: 'M1 1AQ', expected_office: :manchester)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, telephone_number: '', work_post_code: 'M1 1AQ', expected_office: '24')
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -98,7 +98,7 @@ end
 Given("a claimant submitting data to trigger a 422 error using fake ccd") do
   @claimant = FactoryBot.create_list(:claimant, 1, :fake_ccd_error_422_claimant)
   @representative = []
-  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, telephone_number: '', work_post_code: 'M1 1AQ', expected_office: :manchester)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, telephone_number: '', work_post_code: 'M1 1AQ', expected_office: '24')
   @employment = nil
   @claim = FactoryBot.create(:claim, :simple)
 end
@@ -107,7 +107,7 @@ Given("a claimant submitting data to trigger a 422 error in a secondary claimant
   @claimant = FactoryBot.create_list(:claimant, 3, :person_data)
   @claimant[1] = FactoryBot.create(:claimant, :fake_ccd_error_422_claimant)
   @representative = []
-  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, telephone_number: '', work_post_code: 'M1 1AQ', expected_office: :manchester)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, telephone_number: '', work_post_code: 'M1 1AQ', expected_office: '24')
   @employment = nil
   @claim = FactoryBot.create(:claim, :simple)
 end
@@ -115,7 +115,7 @@ end
 Given("an multiple claimants making a claim by uploading a Rich Text Format document") do
   @claimant = FactoryBot.create_list(:claimant, 3, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, work_post_code: 'G1 2FF', expected_office: :glasgow)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'G1 2FF', expected_office: '41')
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :upload_your_claim_statement)
 end
@@ -123,7 +123,7 @@ end
 Given("an employee submitting an ET1 form by uploading CSV and RTF documents") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data, :group_claims)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, work_post_code: 'M1 1AQ', expected_office: :manchester)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'M1 1AQ', expected_office: '24')
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :upload_your_claim_statement)
 end
@@ -233,8 +233,8 @@ Given("{string} employees making a claim with multiple respondents") do |string|
   @claimant = FactoryBot.create_list(:claimant, string.to_i, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
 
-  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, work_post_code: 'G1 2FF', expected_office: :glasgow)
-  @respondent.concat FactoryBot.create_list(:respondent,  string.to_i - 1, :conciliation_acas_number, :secondary)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'G1 2FF', expected_office: '41')
+  @respondent.concat FactoryBot.create_list(:respondent,  string.to_i - 1, :yes_acas, :both_addresses, :secondary)
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -243,7 +243,7 @@ end
 Given(/^a claimant submitted an ET1 with a work post code of "([^"]*)"$/) do |post_code|
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   @representative = FactoryBot.create_list(:representative, 1, :et1_information)
-  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, work_post_code: post_code, expected_office: :default)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: post_code, expected_office: '99')
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
 end
@@ -268,7 +268,7 @@ Given(/^a claimant submitting data to trigger a 502 error once only in a seconda
   @claimant = FactoryBot.create_list(:claimant, 3, :person_data)
   @claimant[1] = FactoryBot.create(:claimant, :fake_ccd_error_502_once_claimant)
   @representative = []
-  @respondent = FactoryBot.create_list(:respondent,  1, :conciliation_acas_number, telephone_number: '', work_post_code: 'M1 1AQ', expected_office: :manchester)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, telephone_number: '', work_post_code: 'M1 1AQ', expected_office: '24')
   @employment = nil
   @claim = FactoryBot.create(:claim, :simple)
 end

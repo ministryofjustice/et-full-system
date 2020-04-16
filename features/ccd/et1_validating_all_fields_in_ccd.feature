@@ -144,4 +144,4 @@ Feature:
     Given a claimant submitted an ET1 with a work post code of "Z1 2LL"
     When the completed form is submitted
     And the administrator exports the claim to the scotland office
-    Then the claim should be present in the "glasgow" office CCD system
+    Then the claim should be present in the "41" office CCD system

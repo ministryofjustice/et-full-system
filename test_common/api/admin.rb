@@ -93,6 +93,12 @@ module EtFullSystem
         JSON.parse(response.body).map(&:with_indifferent_access)
       end
 
+      def offices(query = {})
+        mechanize_login
+        response = agent.get("#{url}/et_offices.json?per_page=50&#{query.to_query}", 'Accept' => 'application/json')
+        JSON.parse(response.body).map(&:with_indifferent_access)
+      end
+
       def delete_user_by_email(email)
         mechanize_login
         query = { q: { email_equals: email } }
@@ -316,6 +322,14 @@ module EtFullSystem
         end
       rescue Timeout::Error
         raise "The response with case_number #{case_number} was either not found or never had a status of 'complete'"
+      end
+
+      def office_data_for(office_code)
+        cached_office_data.detect {|office_data| office_data['code'].to_s == office_code}
+      end
+
+      def cached_office_data
+        Thread.current[:admin_api_cached_office_data] ||= offices
       end
 
       private
