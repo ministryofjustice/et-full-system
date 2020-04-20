@@ -35,16 +35,6 @@ module EtFullSystem
           expect(response['case_fields']).to include "bulkCaseTitle" => title
         end
 
-        def assert_claimants_pending_status(ccd_office)
-          case_collection = response.dig('case_fields', 'caseIdCollection').map { |obj| obj.dig('value', 'ethos_CaseReference') }
-          aggregate_failures 'validating key fields' do
-            case_collection.each do |ref|
-              created_case = ccd.caseworker_search_latest_by_ethos_case_reference(ref, case_type_id: ccd_office)
-              expect(created_case['case_fields']).to include 'state' => 'Pending'
-            end
-          end
-        end
-
         def assert_primary_claimant(claimant, representative, employment, respondents, reference_number, ccd_office)
           case_references = response.dig('case_fields', 'caseIdCollection').map { |obj| obj.dig('value', 'ethos_CaseReference') }
           aggregate_failures 'validating key fields' do
@@ -174,8 +164,6 @@ module EtFullSystem
         def case_details(reference_number)
           {
             "receiptDate" => Time.now.strftime("%Y-%m-%d"),
-            "state" => "Pending",
-            "stateAPI" => "Pending",
             "feeGroupReference" => reference_number,
             "claimant_TypeOfClaimant" => "Individual",
             "positionType" => "received by auto-import"
