@@ -1,6 +1,5 @@
 When /^the completed form is submitted$/ do
   start_a_new_et1_claim
-  @claim_number = et1_application_number_page.main_content.claims_number.text
   et1_answer_login
   et1_answer_claimant_questions
   et1_answer_group_claimants_questions

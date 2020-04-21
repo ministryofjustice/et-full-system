@@ -207,9 +207,8 @@ module EtFullSystem
         sidekiq_cron_agent.current_page.form(action: "/admin/sidekiq/cron/export_claims_job/enque").submit
       end
 
-      def atos_zip_file_for_claim(claim_application_reference:, ignore_before: 15.minutes.ago, timeout: 40, sleep: 1)
-        claim = find_claim(claim_application_reference: claim_application_reference, timeout: timeout)
-        atos_zip_file_for(reference: claim['reference'], ignore_before: ignore_before, sleep: sleep, timeout: timeout)
+      def atos_zip_file_for_claim(claim_reference:, ignore_before: 15.minutes.ago, timeout: 40, sleep: 1)
+        atos_zip_file_for(reference: claim_reference, ignore_before: ignore_before, sleep: sleep, timeout: timeout)
       end
 
       def atos_zip_file_for(reference:, ignore_before:, timeout: 40, sleep: 1)
@@ -225,46 +224,17 @@ module EtFullSystem
         raise "An ATOS zip file for reference #{reference} was not found"
       end
 
-      def get_reference_number(claim_application_reference:, timeout: 30, sleep: 0.5)
+      def processed_claim(claim_reference:, timeout: 30, sleep: 0.5)
         login
         Timeout.timeout(timeout) do
           loop do
-            response = request(:get, "#{url}/claims.json?q[submission_reference_equals]=#{claim_application_reference}", cookies: cookies_hash)
-            claims = JSON.parse(response.body)
-            return claims[0]['reference'] unless claims.empty?
-            sleep(sleep)
-          end
-        end
-      rescue Timeout::Error
-        raise "The claim with application_reference #{claim_application_reference} was not stored in the API"
-      end
-
-      def find_claim(claim_application_reference:, timeout: 30, sleep: 0.5)
-        login
-        Timeout.timeout(timeout) do
-          loop do
-            response = request(:get, "#{url}/claims.json?q[submission_reference_equals]=#{claim_application_reference}", cookies: cookies_hash)
-            claims = JSON.parse(response.body)
-            break claims[0] unless claims.empty?
-            sleep(sleep)
-          end
-        end
-      rescue Timeout::Error
-        raise "The claim with application_reference #{claim_application_reference} was not stored in the API"
-
-      end
-
-      def processed_claim(application_reference:, timeout: 30, sleep: 0.5)
-        login
-        Timeout.timeout(timeout) do
-          loop do
-            filtered_claims = claims q: {submission_reference_equals: application_reference}
+            filtered_claims = claims q: {reference_equals: claim_reference}
             return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:uploaded_files].any? {|f| f['filename'] =~ /\Aet1_.*\.pdf\z/}
             sleep(sleep)
           end
         end
       rescue Timeout::Error
-        raise "The claim with application reference #{application_reference} was either not found or never had all of its files"
+        raise "The claim with application reference #{claim_reference} was either not found or never had all of its files"
       end
 
       def wait_for_claim_failed_in_ccd_export(reference, timeout: 30, sleep: 0.5)

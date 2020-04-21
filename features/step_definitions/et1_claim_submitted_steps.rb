@@ -1,6 +1,6 @@
 Then("I should see valid claim submitted page") do
   office_data = admin_api.office_data_for(@respondent[0][:expected_office])
-  expect(et1_claim_submitted.has_correct_translation?(@claim_number, @claim[:rtf_file], @claimant[0][:group_claims_csv], office_data)).to be true
+  expect(et1_claim_submitted.has_correct_translation?(@claim_reference, @claim[:rtf_file], @claimant[0][:group_claims_csv], office_data)).to be true
 end
 
 Given("claimant home postcode {string} then submission office will be {string}") do |string, string2|

@@ -130,12 +130,11 @@ end
 
 Then /^the claim should be present in CCD$/ do
   admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
-  reference_number = admin_api.get_reference_number(claim_application_reference: @claim_application_reference)
   office = @respondent[0]["expected_office"]
   ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
-  ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(reference_number, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
+  ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
 
-  ccd_object.assert_primary_reference(reference_number)
+  ccd_object.assert_primary_reference(@claim_reference)
   ccd_object.assert_primary_claimants(@claimant)
   ccd_object.assert_primary_representative(@representative)
   ccd_object.assert_primary_employment(@employment, @claimant)
@@ -146,13 +145,11 @@ Then /^the claim should be present in CCD$/ do
 end
 
 Then /^the claim should be present in CCD with an attached acas certificate$/ do
-  admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
-  reference_number = admin_api.get_reference_number(claim_application_reference: @claim_application_reference)
   office = @respondent[0]["expected_office"]
   ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
-  ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(reference_number, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
+  ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
 
-  ccd_object.assert_primary_reference(reference_number)
+  ccd_object.assert_primary_reference(@claim_reference)
   ccd_object.assert_primary_claimants(@claimant)
   ccd_object.assert_primary_representative(@representative)
   ccd_object.assert_primary_employment(@employment, @claimant)
@@ -163,13 +160,11 @@ Then /^the claim should be present in CCD with an attached acas certificate$/ do
 end
 
 Then /^the claim should be present in CCD with no attached acas certificate$/ do
-  admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
-  reference_number = admin_api.get_reference_number(claim_application_reference: @claim_application_reference)
   office = @respondent[0]["expected_office"]
   ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
-  ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(reference_number, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
+  ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
 
-  ccd_object.assert_primary_reference(reference_number)
+  ccd_object.assert_primary_reference(@claim_reference)
   ccd_object.assert_primary_claimants(@claimant)
   ccd_object.assert_primary_representative(@representative)
   ccd_object.assert_primary_employment(@employment, @claimant)
@@ -180,13 +175,11 @@ Then /^the claim should be present in CCD with no attached acas certificate$/ do
 end
 
 Then /^the RTF file should be present in CCD$/ do
-  admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
-  reference_number = admin_api.get_reference_number(claim_application_reference: @claim_application_reference)
   office = @respondent[0]["expected_office"]
   ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
-  ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(reference_number, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
+  ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
   
-  ccd_object.assert_primary_reference(reference_number)
+  ccd_object.assert_primary_reference(@claim_reference)
   ccd_object.assert_primary_claimants(@claimant)
   ccd_object.assert_primary_representative(@representative)
   ccd_object.assert_primary_employment(@employment, @claimant)
@@ -199,21 +192,20 @@ end
 
 Then /^the multiple claimaints should be present in CCD$/ do
   admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
-  reference_number = admin_api.get_reference_number(claim_application_reference: @claim_application_reference)
-  claim = admin_api.exported_to_ccd_claim(reference: reference_number)
+  claim = admin_api.exported_to_ccd_claim(reference: @claim_reference)
   office = @respondent[0]["expected_office"]
   ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
 
   multiple_reference = claim.dig('last_ccd_export', 'external_data', 'case_reference')
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdMultipleClaimants.find_multiples_by_reference(multiple_reference, ccd_office_lookup.office_lookup[office][:multiple][:case_type_id]) do
-    broadcast_message("Waiting for multiples for reference #{reference_number} to be sent to CCD")
+    broadcast_message("Waiting for multiples for reference #{@claim_reference} to be sent to CCD")
     page.execute_script('true')
   end
-  raise "multiple not found for reference #{reference_number} looking for multiple reference #{multiple_reference} at #{Time.now.strftime('%d/%m/%y %H:%M:%S')}" if ccd_object.nil?
+  raise "multiple not found for reference #{@claim_reference} looking for multiple reference #{multiple_reference} at #{Time.now.strftime('%d/%m/%y %H:%M:%S')}" if ccd_object.nil?
   ccd_object.assert_multiple_title(@respondent.first.name)
 
   ccd_object.assert_claimants_pending_status(ccd_office_lookup.office_lookup[office][:single][:case_type_id])
-  ccd_object.assert_primary_claimant(@claimant, @representative, @employment, @respondent, reference_number, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
+  ccd_object.assert_primary_claimant(@claimant, @representative, @employment, @respondent, @claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
 
   if @claimant[0].dig(:group_claims_csv)
     ccd_object.assert_secondary_xls_claimants(@claimant, @representative, @employment, @respondent, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
@@ -249,12 +241,10 @@ Given(/^a claimant submitted an ET1 with a work post code of "([^"]*)"$/) do |po
 end
 
 Then(/^the claim should be present in the "([^"]*)" office CCD system$/) do |office|
-  admin_api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
-  reference_number = admin_api.get_reference_number(claim_application_reference: @claim_application_reference)
   ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
-  ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(reference_number, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
+  ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
 
-  ccd_object.assert_primary_reference(reference_number)
+  ccd_object.assert_primary_reference(@claim_reference)
   ccd_object.assert_primary_claimants(@claimant)
   ccd_object.assert_primary_representative(@representative)
   ccd_object.assert_primary_employment(@employment, @claimant)

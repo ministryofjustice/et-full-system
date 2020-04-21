@@ -19,7 +19,6 @@ Given /^a claimant completes an ET1 form$/ do
 
 
   start_a_new_et1_claim
-  @claim_number = et1_application_number_page.main_content.claims_number.text
   et1_answer_login
   et1_answer_claimant_questions
   et1_answer_group_claimants_questions
@@ -35,7 +34,7 @@ Given /^a claimant completes an ET1 form$/ do
 end
 
 Then(/^an email is sent to notify user that a claim has been successfully submitted$/) do
-  et1_email = EtFullSystem::Test::Et1ClaimCompletedEmailHtml.find(claim_number: @claim_number)
+  et1_email = EtFullSystem::Test::Et1ClaimCompletedEmailHtml.find(claim_number: @claim_reference)
   date = Time.now
   expect(et1_email.submission_submitted).to eq(t('claim_confirmations.show.submission_details.submission_date', date: date.strftime("%d #{t("date.month_names")[date.month]} %Y")))
   expect(et1_email.has_correct_subject_for_claim_submitted?).to be true

@@ -25,7 +25,6 @@ module EtFullSystem
         @employment = FactoryBot.create(:employment, :still_employed)
         @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
         start_a_new_et1_claim
-        @claim_number = et1_application_number_page.main_content.claims_number.text
         et1_answer_login
         et1_answer_claimant_questions
         et1_answer_group_claimants_questions

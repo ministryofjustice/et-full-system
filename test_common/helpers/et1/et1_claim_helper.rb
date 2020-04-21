@@ -75,8 +75,8 @@ module EtFullSystem
 
       def et1_submit_claim
         et1_submission_page.submit_claim
-        @claim_application_reference = et1_claim_submitted.claim_number
-        log_event :et1_claim_submitted, application_reference: @claim_application_reference
+        @claim_reference = et1_claim_submitted.claim_number
+        log_event :et1_claim_submitted, claim_reference: @claim_reference
       end
 
       def et1_submit_your_feedback(email_address, name)
