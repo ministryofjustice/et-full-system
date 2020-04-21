@@ -1,7 +1,9 @@
+require_relative '../helpers/admin.rb'
 module EtFullSystem
   module Test
     module FileObjects
       class Base
+        include Admin
         def initialize(tempfile)
           self.tempfile = tempfile
         end

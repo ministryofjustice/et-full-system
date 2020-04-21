@@ -10,6 +10,7 @@ module EtFullSystem
       # Represents the ET3 PDF file and provides assistance in validating its contents
       class Et1PdfFile < BasePdfFile # rubocop:disable Metrics/ClassLength
         def has_correct_contents_for?(claim: , claimants:, respondents:, representative:, employment:)
+          Et1PdfFileSection::OfficialUseOnlySection.new(tempfile).has_contents_for?(claim: claim, respondent: respondents.first)
           Et1PdfFileSection::YourDetailsSection.new(tempfile).has_contents_for?(claimant: claimants.first)
           Et1PdfFileSection::RespondentsDetailsSection.new(tempfile).has_contents_for?(respondents: respondents)
           Et1PdfFileSection::MultipleCasesSection.new(tempfile).has_contents_for?(claim: claim)
