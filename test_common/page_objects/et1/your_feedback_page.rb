@@ -28,7 +28,7 @@ module EtFullSystem
         end
         #send feedback
         section :form_actions, '.form-actions' do
-          element :submit_feedback, :input_with_value, 'helpers.submit.feedback.create'
+          element :submit_feedback, :submit_text, 'helpers.submit.feedback.create'
         end
         #Support links
         section :support, 'aside[role="complementary"]' do
@@ -38,7 +38,7 @@ module EtFullSystem
         end
 
         def send_your_feedback
-          sleep(5)
+          sleep 5.seconds #TODO: Discuss whether this is the correct approach, and whether this is an application issue
           form_actions.submit_feedback.click
         end
 
