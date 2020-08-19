@@ -37,8 +37,9 @@ module EtFullSystem
           element :contact_use, :link_named, 'shared.aside.contact_us'
         end
 
+        expected_elements :header, :main_content, :form_actions, :support
+
         def send_your_feedback
-          sleep 5.seconds #TODO: Discuss whether this is the correct approach, and whether this is an application issue
           form_actions.submit_feedback.click
         end
 
