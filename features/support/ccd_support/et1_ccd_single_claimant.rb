@@ -151,7 +151,7 @@ module EtFullSystem
             "feeGroupReference" => case_fields,
             "claimant_TypeOfClaimant" => "Individual",
             "caseType" => "Single",
-            "positionType" => "received by auto-import"
+            "positionType" => "Received by Auto-Import"
           }
         end
 

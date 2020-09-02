@@ -2,7 +2,7 @@ cy:
   claim_confirmations:
     show:
       header: Hawliad wedi'i gyflwyno
-      callout_detail: "Eich rhif hawliad"
+      callout_detail: Eich cyfeirnod cyflwyno
       feedback_html: Mae eich adborth
       feedback_info: "yn ein helpu i wella'r gwasanaeth hwn."
       diversity_html: "Helpwch ni i gadw cofnodion cywir . Llenwch ein"

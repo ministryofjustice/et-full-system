@@ -11,10 +11,10 @@ Feature:
     Then Your feedback page copy texts are displayed in the correct language
   
   Scenario: Submit a feedback
-    When I submit Your feedback
+    When I submit Your feedback delaying 4 seconds
     Then I should see thank you on your feedback message
     And email notification came from anonymous person
 
   Scenario: Email notification
-    When I submit Your feedback form with a valid email address
+    When I submit Your feedback form with a valid email address delaying 4 seconds
     Then I should see user's email address shown in the address form

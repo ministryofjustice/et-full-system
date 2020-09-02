@@ -86,6 +86,7 @@ module EtFullSystem
         EtFullSystem::Test::Et3::EarningsAndBenefitsPage.new
       end
 
+      # @return [EtFullSystem::Test::Et3::ResponsePage]
       def response_page
         EtFullSystem::Test::Et3::ResponsePage.new
       end

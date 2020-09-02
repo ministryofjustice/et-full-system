@@ -4,7 +4,7 @@ Given(/^I am on the ET3 earnings and benefits page$/) do
   start_a_new_et3_response
   et3_answer_respondents_details
   et3_answer_claimants_details
-  expect(earnings_and_benefits_page.main_header).to have_header
+  expect(earnings_and_benefits_page).to have_defend_claim_question
 end
 
 When(/^I successfully submit information about my earnings and benefits$/) do
@@ -12,7 +12,7 @@ When(/^I successfully submit information about my earnings and benefits$/) do
 end
 
 Then(/^I should be taken to the response page$/) do
-  expect(response_page.main_header).to have_header
+  expect(response_page).to have_defend_claim_question
 end
 
 When(/^I click on next without providing the optional earnings and benefits details$/) do

@@ -204,7 +204,6 @@ Then /^the multiple claimaints should be present in CCD$/ do
   raise "multiple not found for reference #{@claim_reference} looking for multiple reference #{multiple_reference} at #{Time.now.strftime('%d/%m/%y %H:%M:%S')}" if ccd_object.nil?
   ccd_object.assert_multiple_title(@respondent.first.name)
 
-  ccd_object.assert_claimants_pending_status(ccd_office_lookup.office_lookup[office][:single][:case_type_id])
   ccd_object.assert_primary_claimant(@claimant, @representative, @employment, @respondent, @claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
 
   if @claimant[0].dig(:group_claims_csv)
