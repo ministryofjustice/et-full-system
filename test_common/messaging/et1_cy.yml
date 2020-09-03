@@ -503,7 +503,7 @@ cy:
 
       are_you_in_time:
         legend: "Ydych chi o fewn y terfyn amser?"
-        body_html: Fel arfer mae'n rhaid i chi wneud eich hawliad o fewn 3 mis i'ch cyflogaeth ddod i ben neu i'r broblem ddigwydd.
+        body_html: Fel arfer, mae'n rhaid i chi wneud hawliad i'r tribiwnlys o fewn 3 mis o'ch cyflogaeth yn dod i ben neu o’r dyddiad y bu i’r broblem ddigwydd.
         link: Dysgu mwy am pryd allwch wneud cais
       have_you_contacted_acas:
         legend: "Ydych chi wedi cysylltu ag Acas?"

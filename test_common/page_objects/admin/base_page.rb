@@ -66,6 +66,7 @@ module EtFullSystem
             "Atos Files",
             "Claimants",
             "Claims",
+            "Commands",
             "Diversity Responses",
             "Et Offices",
             "Exported Files",
