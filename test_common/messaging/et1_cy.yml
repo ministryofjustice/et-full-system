@@ -27,6 +27,9 @@ cy:
         contact_preference:
           email: E-bost
           post: Post
+        allow_video_attendance:
+          'yes': 'Gallaf'
+          'no': 'Na allaf'
         title:
           mr: Mr
           mrs: Mrs
@@ -160,6 +163,7 @@ cy:
         address_country: Gwlad
         applying_for_remission: "Ydych chi eisiau gwneud cais am help i dalu eich ffi (a elwir yn \"help i dalu ffioedd\")?"
         contact_preference: "Y ffordd orau i anfon gohebiaeth atoch (yr hawlydd)"
+        allow_video_attendance: "A allech chi gymryd rhan mewn gwrandawiad drwy fideo? (angen mynediad i'r rhyngrwyd)."
         _destroy: 'Dileu''r hawlydd yma'
         gender: Rhywedd
 
@@ -319,6 +323,7 @@ cy:
         has_representative: Rhywun sydd wedi cytuno i'ch cynrychioli (er enghraifft, i baratoi eich achos a/neu gweithredu ar eich rhan os bydd gwrandawiad).
         applying_for_remission: Efallai na fydd rhaid i chi dalu ffi os nad oes gennych lawer o gynilion a'ch bod yn cael budd-daliadau neu ar incwm isel. Ydw i'n gymwys i gael help?
         contact_preference: "Noder, os oes gennych gynrychiolydd (ee cyfreithiwr), yna fe anfonir pob gohebiaeth atynt"
+        allow_video_attendance: "Ceir rhagor o fanylion am wrandawiadau fideo drwy ddilyn y ddolen a ganlyn: https://www.gov.uk/guidance/hmcts-telephone-and-video-hearings-during-coronavirus-outbreak"
         address_county: "Ee os Llundain, Llundain Fwyaf; os Manceinion, Manceinion Fwyaf"
       claimants:
         address_county: "Ee os Llundain, Llundain Fwyaf; os Manceinion, Manceinion Fwyaf"
@@ -779,6 +784,8 @@ cy:
               blank: Dywedwch p'un a ydych angen cymorth yn y gwrandawiad tribiwnlys
             contact_preference:
               blank: "Dywedwch p'un a hoffech i ohebiaeth gael ei hanfon at yr hawlydd drwy'r post neu e-bost"
+            allow_video_attendance:
+              blank: "Dywedwch p’un a fyddech yn gallu mynychu gwrandawiad trwy gyswllt fideo"
             address_building:
               blank: Rhowch rif neu enw adeilad cyfeiriad yr hawlydd
             address_street:
@@ -899,90 +906,159 @@ cy:
   claim_pdf_fields:
     your_details:
       title:
-        field_name: 1.1 title tick boxes
+        field_name:
+          - Check Box1
+          - Check Box2
+          - Check Box3
+          - Check Box4
         select_values:
-          Miss: miss
-          Mr: mr
-          Mrs: mrs
-          Ms: ms
-        unselected_value: 'Off'
+          Miss:
+            - 'Off'
+            - 'Off'
+            - 'Yes'
+            - 'Off'
+          Mr:
+            - 'Yes'
+            - 'Off'
+            - 'Off'
+            - 'Off'
+          Mrs:
+            - 'Off'
+            - 'Yes'
+            - 'Off'
+            - 'Off'
+          Ms:
+            - 'Off'
+            - 'Off'
+            - 'Off'
+            - 'Yes'
+        unselected_value:
+          - 'Off'
+          - 'Off'
+          - 'Off'
+          - 'Off'
       first_name:
-        field_name: 1.2 first names
+        field_name: undefined
       last_name:
-        field_name: 1.3 surname
+        field_name: undefined_2
       dob_day:
-        field_name: 1.4 DOB day
+        field_name: undefined_3
       dob_month:
-        field_name: 1.4 DOB month
+        field_name: undefined_4
       dob_year:
-        field_name: 1.4 DOB year
+        field_name: undefined_5
       gender:
-        field_name: 1.4 gender
+        field_name:
+          - Check Box6
+          - Check Box5
         select_values:
-          female: female
-          male: male
-        unselected_value: 'Off'
+          female:
+            - 'Off'
+            - 'Yes'
+          male:
+            - 'Yes'
+            - 'Off'
+        unselected_value:
+          - 'Off'
+          - 'Off'
       building:
-        field_name: 1.5 number
+        field_name: Rhifneuenw
       street:
-        field_name: 1.5 street
+        field_name: Stryd
       locality:
-        field_name: 1.5 town city
+        field_name: nas
       county:
-        field_name: 1.5 county
+        field_name: r
       post_code:
-        field_name: 1.5 postcode
+        field_name: Cod post
       telephone_number:
-        field_name: 1.6 phone number
+        field_name: 'tu â chi yn ystod y dydd'
       alternative_telephone_number:
-        field_name: 1.7 mobile number
+        field_name: 'Rhifffônsymudolosywnwahanol'
       email_address:
-        field_name: 1.9 email
+        field_name: dogfennaun electronig
       correspondence:
-        field_name: 1.8 tick boxes
+        field_name:
+          - Check Box7
+          - Check Box8
+          - Check Box9
         select_values:
-          email: email
-          fax: fax
-          post: post
-        unselected_value: 'Off'
+          email:
+            - 'Yes'
+            - 'Off'
+            - 'Off'
+          post:
+            - 'Off'
+            - 'Yes'
+            - 'Off'
+          fax:
+            - 'Off'
+            - 'Off'
+            - 'Yes'
+        unselected_value:
+          - 'Off'
+          - 'Off'
+          - 'Off'
+      allow_video_attendance:
+        field_name:
+          - Check Box10
+          - Check Box11
+        select_values:
+          false:
+            - 'Off'
+            - 'Yes'
+          true:
+            - 'Yes'
+            - 'Off'
+        unselected_value:
+          - 'Off'
+          - 'Off'
     respondents_details:
       name:
-        field_name: '2.1'
+        field_name: wchychwanegurhagoroatebwyr
       address:
         building:
-          field_name: 2.2 number
+          field_name: Rhifneuenw_2
         street:
-          field_name: 2.2 street
+          field_name: Stryd_2
         locality:
-          field_name: 2.2 town city
+          field_name: nas_2
         county:
-          field_name: 2.2 county
+          field_name: r_2
         post_code:
-          field_name: 2.2 postcode
+          field_name: Cod post_2
         telephone_number:
-          field_name: 2.2 phone number
+          field_name: f ffon
       acas:
         have_acas:
-          field_name: Check Box1
+          field_name:
+            - Check Box12
+            - Check Box13
           select_values:
-            true: 'Yes'
-            false: 'no'
-          unselected_value: 'Off'
+            true:
+              - 'Yes'
+              - 'Off'
+            false:
+              - 'Off'
+              - 'Yes'
+          unselected_value:
+            - 'Off'
+            - 'Off'
         acas_number:
-          field_name: Text2
+          field_name: 'cynnar'
       different_address:
         building:
-          field_name: 2.3 number
+          field_name: Rhifneuenw_3
         street:
-          field_name: 2.3 street
+          field_name: Stryd_3
         locality:
-          field_name: 2.3 town city
+          field_name: nas_3
         county:
-          field_name: 2.3 county
+          field_name: r_3
         post_code:
-          field_name: 2.3 postcode
+          field_name: Cod post_3
         telephone_number:
-          field_name: 2.3 phone number
+          field_name: undefined_7
       additional_respondents:
         field_name: 2.4 tick box
         select_values:
@@ -990,385 +1066,470 @@ cy:
           true: 'yes'
       respondent2:
         name:
-          field_name: 2.4 R2 name
+          field_name: undefined_8
         address:
           building:
-            field_name: 2.4 R2 number
+            field_name: Rhifneuenw_4
           street:
-            field_name: 2.4 R2 street
+            field_name: Stryd_4
           locality:
-            field_name: 2.4 R2 town
+            field_name: nas_4
           county:
-            field_name: 2.4 R2 county
+            field_name: r_4
           post_code:
-            field_name: 2.4 R2 postcode
+            field_name: Cod post_4
           telephone_number:
-            field_name: 2.4 R2 phone number
+            field_name: undefined_9
         acas:
           have_acas:
-            field_name: Check Box8
+            field_name:
+              - Check Box18
+              - Check Box19
             unselected_value:
               - 'Off'
-              - null
+              - 'Off'
             select_values:
-              true: 'Yes'
-              false: 'no'
+              true:
+                - 'Yes'
+                - 'Off'
+              false:
+                - 'Off'
+                - 'Yes'
           acas_number:
-            field_name: Text9
+            field_name: cynnar_2
       respondent3:
         name:
-          field_name: 2.4 R3 name
+          field_name: undefined_10
         address:
           building:
-            field_name: 2.4 R3 number
+            field_name: Rhifneuenw_5
           street:
-            field_name: 2.4 R3 street
+            field_name: Stryd_5
           locality:
-            field_name: 2.4 R3 town city
+            field_name: nas_5
           county:
-            field_name: 2.4 R3 county
+            field_name: r_5
           post_code:
-            field_name: 2.4 R3 postcode
+            field_name: Cod post_5
           telephone_number:
-            field_name: 2.4 R3 phone number
+            field_name: undefined_11
         acas:
           have_acas:
-            field_name: Check Box15
+            field_name:
+              - Check Box24
+              - Check Box25
             unselected_value:
               - 'Off'
-              - null
+              - 'Off'
             select_values:
-              true: 'Yes'
-              false: 'no'
+              true:
+                - 'Yes'
+                - 'Off'
+              false:
+                - 'Off'
+                - 'Yes'
           acas_number:
-            field_name: Text16
+            field_name: cynnar_3
     multiple_cases:
       have_similar_claims:
-        field_name: 3.1 tick boxes
-        unselected_value: 'Off'
+        field_name:
+          - Check Box31
+          - Check Box30
+        unselected_value:
+          - 'Off'
+          - 'Off'
         select_values:
-          false: 'no'
-          true: 'yes'
+          false:
+            - 'Off'
+            - 'Off'
+          true:
+            - 'Yes'
+            - 'Off'
       other_claimants:
-        field_name: 3.1 if yes
+        field_name: ad gyda
     not_your_employer:
       claim_type:
         field_name: '4.1'
     employment_details:
       job_title:
-        field_name: '5.2'
+        field_name: Nodwch pa swydd yr ydychyr oeddech ynei
       start_date:
-        field_name: 5.1 employment start
+        field_name: ch swydd
       employment_continuing:
-        field_name: 5.1 tick boxes
+        field_name:
+          - Check Box33
+          - Check Box32
         select_values:
-          false: 'no'
-          true: 'yes'
+          false:
+            - 'Off'
+            - 'Yes'
+          true:
+            - 'Yes'
+            - 'Off'
         unselected_value:
           - 'Off'
-          - null
+          - 'Off'
       ended_date:
-        field_name: 5.1 employment end
+        field_name: Os daeth eich swydd i ben pa bryd
       ending_date:
-        field_name: 5.1 not ended
+        field_name: chimewncyfnodrhybuddosydychpabrydy
     earnings_and_benefits:
       average_weekly_hours:
-        field_name: '6.1'
+        field_name: 'tiedig â hi'
       pay_before_tax:
         amount:
-          field_name: 6.2 pay before tax
+          field_name: fill_4
         period:
-          field_name: 6.2 pay before tax tick boxes
+          field_name:
+            - Check Box35
+            - Check Box34
           select_values:
-            weekly: weekly
-            monthly: monthly
+            weekly:
+              - 'Yes'
+              - 'Off'
+            monthly:
+              - 'Off'
+              - 'Yes'
           unselected_value:
             - 'Off'
-            - null
+            - 'Off'
       pay_after_tax:
         amount:
-          field_name: 6.2 normal pay
+          field_name: fill_5
         period:
-          field_name: 6.2 normal pay tick boxes
+          field_name:
+            - Check Box36
+            - Check Box37
           select_values:
-            weekly: weekly
-            monthly: monthly
+            weekly:
+              - 'Yes'
+              - 'Off'
+            monthly:
+              - 'Off'
+              - 'Yes'
           unselected_value:
             - 'Off'
-            - null
+            - 'Off'
       paid_for_notice_period:
-        field_name: 6.3 tick boxes
+        field_name:
+          - Check Box39
+          - Check Box38
+        select_values:
+          false:
+            - 'Off'
+            - 'Yes'
+          true:
+            - 'Yes'
+            - 'off'
         unselected_value:
           - 'Off'
-          - null
-        select_values:
-          false: 'no'
-          true: 'yes'
+          - 'Off'
       notice_period:
         weeks:
-          field_name: 6.3 weeks
+          field_name: wythnos
         months:
-          field_name: 6.3 months
+          field_name: mis
       employers_pension_scheme:
-        field_name: 6.4 tick boxes
+        field_name:
+          - Check Box42
+          - Check Box41
         select_values:
-          false: 'no'
-          true: 'yes'
+          false:
+            - 'Off'
+            - 'Yes'
+          true:
+            - 'Yes'
+            - 'Off'
         unselected_value:
           - 'Off'
-          - null
+          - 'Off'
       benefits:
-        field_name: '6.5'
+        field_name: aybganeich
     what_happened_since:
       have_another_job:
-        field_name: 7.1 tick boxes
+        field_name:
+          - Check Box44
+          - Check Box43
         unselected_value:
           - 'Off'
-          - null
+          - 'Off'
         select_values:
-          false: 'no'
-          true: 'yes'
+          false:
+            - 'Off'
+            - 'Yes'
+          true:
+            - 'Yes'
+            - 'Off'
       start_date:
-        field_name: '7.2'
+        field_name: Nodwch pa bryd ddechreuodd y swydd neu pa
       salary:
-        field_name: '7.3'
+        field_name: fill_6
     type_and_details:
       unfairly_dismissed:
-        field_name: 8.1 unfairly tick box
+        field_name: Check Box45
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       discriminated:
-        field_name: 8.1 discriminated
+        field_name: Check Box46
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       discriminated_age:
-        field_name: 8.1 age
+        field_name: Check Box55
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       discriminated_race:
-        field_name: 8.1 race
+        field_name: Check Box50
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       discriminated_gender_reassignment:
-        field_name: 8.1 gender reassignment
+        field_name: Check Box54
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       discriminated_disability:
-        field_name: 8.1 disability
+        field_name: Check Box49
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       discriminated_pregnancy:
-        field_name: 8.1 pregnancy
+        field_name: Check Box53
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       discriminated_marriage:
-        field_name: 8.1 marriage
+        field_name: Check Box48
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       discriminated_sexual_orientation:
-        field_name: 8.1 sexual orientation
+        field_name: Check Box52
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       discriminated_sex:
-        field_name: 8.1 sex
+        field_name: Check Box47
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       discriminated_religion:
-        field_name: 8.1 religion
+        field_name: Check Box51
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       claiming_redundancy_payment:
-        field_name: 8.1 redundancy
+        field_name: Check Box56
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       owed:
-        field_name: 8.1 owed
+        field_name: Check Box57
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       owed_notice_pay:
-        field_name: 8.1 notice pay
+        field_name: Check Box61
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       owed_holiday_pay:
-        field_name: 8.1 holiday pay
+        field_name: Check Box60
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       owed_arrears_of_pay:
-        field_name: 8.1 arrears of pay
+        field_name: Check Box59
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       owed_other_payments:
-        field_name: 8.1 other payments
+        field_name: Check Box58
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       other_type_of_claim:
-        field_name: 8.1 another type of claim
+        field_name: Check Box62
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       other_type_of_claim_details:
-        field_name: 8.1 other type of claim
+        field_name: NodwchnaturyrhawliadDarper
       claim_description:
-        field_name: '8.2'
+        field_name: Defnyddiwch y ddalen wag ar ddiwedd y ffurflen os bydd angen
     what_do_you_want:
       prefer_re_instatement:
-        field_name: 9.1 old job back
+        field_name: Check Box63
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       prefer_re_engagement:
-        field_name: 9.1 another job
+        field_name: Check Box64
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       prefer_compensation:
-        field_name: 9.1 compensation
+        field_name: Check Box65
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       prefer_recommendation:
-        field_name: 9.1 recommendation
+        field_name: Check Box66
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       compensation:
-        field_name: '9.2'
+        field_name: barod rhowch hyn isod os gwelwch yn dda
     information_to_regulators:
       whistle_blowing:
-        field_name: '10.1'
+        field_name: Check Box67
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
     your_representative:
       name_of_representative:
-        field_name: '11.1'
+        field_name: 'Os oes rhywun wedi cytuno ich cynrychioli chi llenwch yr adran hon Byddwn yn cysylltu âch cynrychiolwr yn unig o hyn ymlaen'
       name_of_organisation:
-        field_name: '11.2'
+        field_name: undefined_12
       building:
-        field_name: 11.3 number
+        field_name: Rhifneuenw_6
       street:
-        field_name: 11.3 street
+        field_name: Stryd_6
       locality:
-        field_name: 11.3 town city
+        field_name: nas_6
       county:
-        field_name: 11.3 county
+        field_name: r_6
       post_code:
-        field_name: 11.3 postcode
+        field_name: Cod post_6
       dx_number:
-        field_name: 11.4 dx number
+        field_name: undefined_13
       telephone_number:
-        field_name: 11.5 phone number
+        field_name: undefined_14
       alternative_telephone_number:
-        field_name: 11.6 mobile number
+        field_name: undefined_15
       reference:
-        field_name: 11.7 reference
+        field_name: rnod ar gyfer gohebiaeth
       email_address:
-        field_name: 11.8 email
+        field_name: undefined_16
       communication_preference:
-        field_name: 11.9 tick boxes
+        field_name:
+          - Check Box70
+          - Check Box69
+          - Check Box68
+        select_values:
+          email:
+            - 'Yes'
+            - 'Off'
+            - 'Off'
+          post:
+            - 'Off'
+            - 'Yes'
+            - 'Off'
+          fax:
+            - 'Off'
+            - 'Off'
+            - 'Yes'
         unselected_value:
           - 'Off'
-          - null
-        select_values:
-          email: email
-          fax: fax
-          post: post
+          - 'Off'
+          - 'Off'
       fax_number:
-        field_name: 11.10 fax number
+        field_name: undefined_17
     disability:
       has_special_needs:
-        field_name: 12.1 tick box
-        unselected_value: 'Off'
+        field_name:
+          - Check Box72
+          - Check Box71
+        unselected_value:
+          - 'Off'
+          - 'Off'
         select_values:
-          false: 'no'
-          true: 'yes'
+          false:
+            - 'Off'
+            - 'Yes'
+          true:
+            - 'Yes'
+            - 'Off'
       special_needs:
-        field_name: 12.1 if yes
+        field_name: gynnwysargyferunrhywwrandawiadaua
     additional_respondents:
       respondent4:
         name:
-          field_name: 13 R4 name
+          field_name: undefined_18
         building:
-          field_name: 13 R4 number
+          field_name: Rhifneuenw_7
         street:
-          field_name: 13 R4 street
+          field_name: Stryd_7
         locality:
-          field_name: 13 R4 town city
+          field_name: nas_7
         county:
-          field_name: 13 R4 county
+          field_name: r_7
         post_code:
-          field_name: 13 R4 postcode
+          field_name: Cod post_7
         telephone_number:
-          field_name: 13 R4 phone number
+          field_name: undefined_19
         have_acas:
-          field_name: Check Box22
+          field_name:
+            - Check Box74
+            - Check Box73
           unselected_value:
             - 'Off'
-            - null
+            - 'Off'
           select_values:
-            true: 'Yes'
-            false: 'no'
+            true:
+              - 'Yes'
+              - 'Off'
+            false:
+              - 'Off'
+              - 'Yes'
         acas_number:
-          field_name: Text23
+          field_name: cynnar_4
       respondent5:
         name:
-          field_name: 13 R5 name
+          field_name: undefined_20
         building:
-          field_name: 13 R5 number
+          field_name: Rhifneuenw_8
         street:
-          field_name: R5 street
+          field_name: Stryd_8
         locality:
-          field_name: R5 town city
+          field_name: nas_8
         county:
-          field_name: R5 county
+          field_name: r_8
         post_code:
-          field_name: R5 postcode
+          field_name: Cod post_8
         telephone_number:
-          field_name: R5 phone number
+          field_name: Dylai bod gan bron bawb y rhif hwn cyn iddynt lenwir
         have_acas:
-          field_name: Check Box29
+          field_name:
+            - Check Box80
+            - Check Box79
           unselected_value:
             - 'Off'
-            - null
+            - 'Off'
           select_values:
-            true: 'Yes'
-            false: 'no'
+            true:
+              - 'Yes'
+              - 'Off'
+            false:
+              - 'Off'
+              - 'Yes'
         acas_number:
-          field_name: Text30
+          field_name: cynnar_5
     final_check:
       satisfied:
-        field_name: 14 satisfied tick box
-        unselected_value: null
-        select_values:
-          false: 'Off'
-          true: 'yes'
+        field_name: '14 satisfied tick box'
     additional_information:
       additional_information:
-        field_name: '15'
+        field_name: wrthym pam
     official_use_only:
       tribunal_office:
-        field_name: 'tribunal office'
+        field_name: Swyddfa Tribiwnlys
       case_number:
-        field_name: 'case number'
+        field_name: Rhif yr achos
       date_received:
-        field_name: 'date received'
+        field_name: ad derbyn
   review:
     submit_claim: "Cyflwyno'r hawliad"
     common:

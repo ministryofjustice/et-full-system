@@ -3,7 +3,6 @@ require 'faker'
 FactoryBot.define do
   factory :respondent, class: OpenStruct do
     name { Faker::Company.name }
-
     trait :work_address do
         work_building {'101'}
         work_street {'Petty France'}

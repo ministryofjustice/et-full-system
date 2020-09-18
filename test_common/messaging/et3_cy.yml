@@ -38,6 +38,12 @@ cy:
       fax:
         label: Ffacs
         input_label: Rhif ffacs
+    allow_video_attendance:
+      label: A allech chi gymryd rhan mewn gwrandawiad drwy fideo? (angen mynediad i'r rhyngrwyd)
+      'yes':
+        label: Gallaf
+      'no':
+        label: Na allaf
     organisation_employ_gb:
       label: "Faint o bobl sy’n gyflogedig gan y sefydliad hwn ym Mhrydain Fawr? (dewisol)"
     organisation_more_than_one_site:

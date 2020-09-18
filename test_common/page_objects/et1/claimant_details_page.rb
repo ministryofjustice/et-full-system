@@ -170,6 +170,23 @@ module EtFullSystem
               choose(factory_translate(value), name: 'claimant[contact_preference]')
             end
           end
+
+          section :allow_video_attendance, :legend_header, 'simple_form.labels.claimant.allow_video_attendance' do
+            include ::EtFullSystem::Test::I18n
+            element :error_allow_video_attendance, :error, 'activemodel.errors.models.claimant.attributes.allow_video_attendance.blank'
+            element :allow_video_attendance_hint, :paragraph, 'simple_form.hints.claimant.allow_video_attendance'
+            section :yes, :form_labelled, 'simple_form.options.claimant.allow_video_attendance.yes' do
+              element :selector, :css, '#claimant_allow_video_attendance_true'
+              def set(*args); selector.set(*args); end
+            end
+            element :no, :form_labelled, 'simple_form.options.claimant.allow_video_attendance.no' do
+              element :selector, :css, '#claimant_allow_video_attendance_false'
+              def set(*args); selector.set(*args); end
+            end
+            def set(value)
+              choose(factory_translate(value), name: 'claimant[allow_video_attendance]')
+            end
+          end
           #Save and continue
           element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
         end
@@ -227,6 +244,9 @@ module EtFullSystem
           expect(main_content.claimant_contact_preference).to have_contact_preference
           expect(main_content.claimant_contact_preference).to have_email_preference
           expect(main_content.claimant_contact_preference).to have_post_preference
+          # Allow video attendance
+          expect(main_content.allow_video_attendance).to have_yes
+          expect(main_content.allow_video_attendance).to have_no
           #Save and continue
           expect(main_content).to have_save_and_continue_button
           #Support
@@ -259,6 +279,10 @@ module EtFullSystem
           expect(main_content.date_of_birth).to have_invalid_date_of_birth
         end
 
+        def has_correct_invalid_error_message_for_allow_video_attendance?
+          expect(main_content.allow_video_attendance).to have_error_allow_video_attendance
+        end
+
         def has_correct_validation_error_message?
           #Errors on page
           expect(main_content.error_message).to have_error_summary
@@ -273,6 +297,7 @@ module EtFullSystem
           expect(main_content).to have_blank_post_code
           expect(main_content).to have_error_address_county
           expect(main_content.claimant_contact_preference).to have_error_claimant_contact_preference
+          expect(main_content.allow_video_attendance).to have_error_allow_video_attendance
         end
 
         # Fills in the entire page for the user given
@@ -294,6 +319,7 @@ module EtFullSystem
           end
 
           main_content.claimant_contact_preference.set(data[:correspondence])
+          main_content.allow_video_attendance.set(data[:allow_video_attendance])
           main_content.tap do |s|
             set_field(s, :building, data)
             set_field(s, :street, data)

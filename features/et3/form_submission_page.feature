@@ -13,6 +13,3 @@ Background: ET3 form submission page
 
   Scenario: Download PDF
     Then I can download a PDF of my application
-
-  Scenario: Return to gov.uk
-    Then I can return to gov.uk

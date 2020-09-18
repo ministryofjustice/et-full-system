@@ -26,6 +26,9 @@ en:
         contact_preference:
           email: Email
           post: Post
+        allow_video_attendance:
+          'yes': 'Yes'
+          'no': 'No'
         title:
           mr: Mr
           mrs: Mrs
@@ -153,6 +156,7 @@ en:
         address_country: Country
         applying_for_remission: Do you want to get help paying your fee (known as ‘help with fees’)?
         contact_preference: Best way to send correspondence to you (the claimant)
+        allow_video_attendance: Would you be able to take part in a hearing by video? (Requires internet access).
         _destroy: 'Remove this claimant'
 
       additional_claimants:
@@ -279,6 +283,7 @@ en:
         has_representative: "Someone who has agreed to represent you (for example, to prepare your case and/or act on your behalf if there is a hearing)"
         applying_for_remission: "You may not have to pay a fee if you have limited savings and you’re on benefits or a low income. Do I qualify for help?"
         contact_preference: "Note that if you have a representative (eg solicitor), then all future correspondence will be sent to them"
+        allow_video_attendance: "Further details on video hearings can be found on the following link https://www.gov.uk/guidance/hmcts-telephone-and-videohearings-during-coronavirus-outbreak"
         address_county: "Eg if London, Greater London; if Manchester, Greater Manchester"
       claimants:
         address_county: Eg if London, Greater London; if Manchester, Greater Manchester
@@ -732,6 +737,8 @@ en:
               blank: Say whether you require assistance at the tribunal hearing
             contact_preference:
               blank: "Say whether you’d like correspondence to be sent to the claimant by post or email"
+            allow_video_attendance:
+              blank: "Please say whether you would be able to attend a hearing by video"
             address_building:
               blank: "Enter the building number or name from the claimant’s address"
             address_street:
@@ -852,10 +859,10 @@ en:
       title:
         field_name: 1.1 title tick boxes
         select_values:
-          Miss: miss
-          Mr: mr
-          Mrs: mrs
-          Ms: ms
+          Miss: Your details - 1.1 Title - tickbox - Miss
+          Mr: Your details - 1.1 Title - tickbox - Mr
+          Mrs: Your details - 1.1 Title - tickbox - Mrs
+          Ms: Your details - 1.1 Title - tickbox - Ms
         unselected_value: 'Off'
       first_name:
         field_name: 1.2 first names
@@ -896,6 +903,12 @@ en:
           fax: fax
           post: post
         unselected_value: 'Off'
+      allow_video_attendance:
+        field_name: 'Check Box2'
+        select_values:
+          true: 'Yes'
+          false: 'no'
+        unselected_value: 'Off'
     respondents_details:
       name:
         field_name: '2.1'
@@ -935,10 +948,10 @@ en:
         telephone_number:
           field_name: 2.3 phone number
       additional_respondents:
-        field_name: 2.4 tick box
+        field_name: Check Box7
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       respondent2:
         name:
           field_name: 2.4 R2 name
@@ -958,9 +971,7 @@ en:
         acas:
           have_acas:
             field_name: Check Box8
-            unselected_value:
-              - 'Off'
-              - null
+            unselected_value: 'Off'
             select_values:
               true: 'Yes'
               false: 'no'
@@ -1251,7 +1262,7 @@ en:
           false: 'no'
           true: 'yes'
       special_needs:
-        field_name: 12.1 if yes
+        field_name: '12.1 if yes'
     additional_respondents:
       respondent4:
         name:
