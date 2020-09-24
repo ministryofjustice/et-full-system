@@ -21,7 +21,7 @@ module EtFullSystem
                 pay_before_tax: pay_tax(employment.try(:pay_before_tax), employment.pay_before_tax_type.to_s.split('.').last),
                 pay_after_tax: pay_tax(employment.try(:pay_after_tax), employment.pay_after_tax_type.to_s.split('.').last),
                 paid_for_notice_period: nil,
-                # @TODO Re add - notice_period: notice_period(employment.notice_period, employment.notice_period_type),
+                notice_period: notice_period(employment.notice_period, employment.notice_period_type),
                 employers_pension_scheme: employers_pension_scheme(employment),
                 benefits: employment.try(:benefits)
               }

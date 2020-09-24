@@ -27,7 +27,7 @@ module EtFullSystem
                     post_code: post_code_for(respondents.first.work_post_code, optional: true) || '',
                     telephone_number: respondents.first.work_telephone_number || ''
                 },
-                # @TODO Re add - additional_respondents: respondents.length > 1 ? true : false,
+                additional_respondents: respondents.length > 1 ? true : false,
                 respondent2: {
                     name: title_for(respondents[1].try(:name), optional: true) || '',
                     address: {
