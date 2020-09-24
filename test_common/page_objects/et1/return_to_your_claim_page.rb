@@ -24,8 +24,10 @@ module EtFullSystem
           element :new_claim, :link_named, 'user_sessions.new.link'
           element :reset_memorable_word_element, :link_named, 'helpers.link.user_session.reset_memorable_word'
         end
-        element :memorable_word_email_sent_flash_element, '#flash-summary *', text: 'You will receive an email with instructions on how to reset your memorable word in a few minutes'
-        element :memorable_word_updated_flash_element, '#flash-summary *', text: "Your memorable word has been updated. You can use it below and return to your claim."
+        section :flash_heading, '#flash-summary' do
+          element :memorable_word_email_sent_flash_element, :content_header, 'simple_form.labels.user_session.memorable_word.email_sent_flash_text'
+          element :memorable_word_updated_flash_element, :content_header, 'simple_form.labels.user_session.memorable_word.updated_flash_text'
+        end
 
         #Support links
         section :support, 'aside[role="complementary"]' do
@@ -56,12 +58,12 @@ module EtFullSystem
         end
 
         def assert_memorable_word_email_sent
-          memorable_word_email_sent_flash_element
+          flash_heading.memorable_word_email_sent_flash_element
           self
         end
 
         def assert_memorable_word_updated
-          memorable_word_updated_flash_element
+          flash_heading.memorable_word_updated_flash_element
           self
         end
 
