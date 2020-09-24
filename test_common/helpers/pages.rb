@@ -66,6 +66,10 @@ module EtFullSystem
         EtFullSystem::Test::Et1::ReturnToYourClaimPage.new
       end
 
+      def et1_reset_memorable_word_page
+        EtFullSystem::Test::Et1::ResetMemorableWordPage.new
+      end
+
       def et1_claim_submitted
         EtFullSystem::Test::Et1::ClaimSubmitted.new
       end

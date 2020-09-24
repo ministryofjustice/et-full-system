@@ -13,6 +13,12 @@ Feature:
     When I enter my claim details
     Then I should be taken to where I was left off
 
+  Scenario: Find my claim but lost password
+    Given I'm a return claimant
+    When I reset my password to "newpassword"
+    And I enter my claim details
+    Then I should be taken to where I was left off
+
   Scenario: 'Start a new claim' link
     Given a claimant is on the Return to your claim page
     When I click Start a new claim

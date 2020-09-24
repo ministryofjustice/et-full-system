@@ -128,7 +128,7 @@ en:
         password: Create your memorable word
       user_session:
         new:
-          reference: Claim number
+          reference: Save and return number
           password: Memorable word
         destroy:
           email_address: Enter your email address to get your claim number emailed to you.
@@ -275,7 +275,7 @@ en:
 
     hints:
       application_number:
-        password: For example your surname
+        password: If you have entered your email address above, you will be able to reset your memorable word if you forget it
       address_county: Eg if London, Greater London; if Manchester, Greater Manchester
       claimant:
         date_of_birth: "For example, 23 04 1981"
@@ -472,8 +472,8 @@ en:
           acas_details: details of your claim including the background, dates and people involved
     application_number:
       header: Saving your claim
-      application_number: Your claim number
-      intro_text: You can save your claim and return to it at any time. You will need your claim number (above), and memorable word, which you create below.
+      application_number: Your save and return number
+      intro_text: You can save your claim and return to it at any time. You will need your save and return number (above), and memorable word, which you create below. If you enter your email address you will be able to reset your memorable word if you forget it.
       email_hint: Enter your email address to get the claim number emailed to you.
       print_link: Print this page
       print_copy: to have a copy of your claim number for reference
