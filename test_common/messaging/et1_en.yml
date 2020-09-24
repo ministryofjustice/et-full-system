@@ -356,6 +356,8 @@ en:
     link:
       claim:
         return: Return to a claim
+      user_session:
+        reset_memorable_word: Click here to reset
 
   shared:
     reference: Your claim number is

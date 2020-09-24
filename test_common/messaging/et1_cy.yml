@@ -131,11 +131,11 @@ cy:
 
     labels:
       application_number:
-        email_address: Rhowch eich cyfeiriad e-bost i gael gopi o rif eich hawliad (dewisol)
-        password: Creu eich gair cofiadwy
+        email_address: Nodwch eich cyfeiriad e-bost i gael eich rhif hawliad (dewisol)
+        password: Crëwch eich gair cofiadwy
       user_session:
         new:
-          reference: Rhif yr hawliad
+          reference: Rhif cadw a dychwelyd
           password: Gair cofiadwy
         destroy:
           email_address: Rhowch eich cyfeiriad e-bost i gael copi o rif eich hawliad drwy neges e-bost.
@@ -378,7 +378,7 @@ cy:
 
       user_session:
         new:
-          reference: Cafodd hwn ein anfon atoch drwy e-bost (os gwnaethoch roi eich cyfeiriad e-bost)
+          reference: Cafodd hwn ei anfon atoch drwy e-bost (os wnaethoch chi nodi cyfeiriad e-bost)
           password: Mi wnaethoch greu hwn ar ddechrau'r hawliad
         destroy:
           email_address: Cael eich rhif hawliad drwy neges e-bost
@@ -400,6 +400,8 @@ cy:
     link:
       claim:
         return: Dychwelyd i hawliad
+      user_session:
+        reset_memorable_word: Cliciwch yma i'w ailosod
 
   shared:
     reference: Eich rhif hawliad yw

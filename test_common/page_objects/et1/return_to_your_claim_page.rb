@@ -22,7 +22,7 @@ module EtFullSystem
           #don't have these details
           element :form_hint, :paragraph, 'user_sessions.new.hint_html', exact: false
           element :new_claim, :link_named, 'user_sessions.new.link'
-          element :reset_memorable_word_element, :link, 'Click here to reset'
+          element :reset_memorable_word_element, :link_named, 'helpers.link.user_session.reset_memorable_word'
         end
         element :memorable_word_email_sent_flash_element, '#flash-summary *', text: 'You will receive an email with instructions on how to reset your memorable word in a few minutes'
         element :memorable_word_updated_flash_element, '#flash-summary *', text: "Your memorable word has been updated. You can use it below and return to your claim."
