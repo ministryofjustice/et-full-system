@@ -132,6 +132,9 @@ en:
           password: Memorable word
         destroy:
           email_address: Enter your email address to get your claim number emailed to you.
+        memorable_word:
+          email_sent_flash_text: You will receive an email with instructions on how to reset your memorable word in a few minutes.
+          updated_flash_text: Your memorable word has been updated. You can use it below and return to your claim.
 
       claimant:
         first_name: First name
@@ -351,6 +354,7 @@ en:
         create: Find my claim
         destroy: Sign out now
         update: Save and continue
+        reset_memorable_word: Reset memorable word
       confirmation_email:
         create: Submit claim and proceed to payment
     link:
@@ -358,6 +362,7 @@ en:
         return: Return to a claim
       user_session:
         reset_memorable_word: Click here to reset
+
 
   shared:
     reference: Your claim number is
