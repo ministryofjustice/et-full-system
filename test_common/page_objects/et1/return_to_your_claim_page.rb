@@ -15,13 +15,18 @@ module EtFullSystem
           element :claim_number, 'input#user_reference'
           #memorable word
           element :memorable_word_label, :form_labelled, 'simple_form.labels.user_session.new.password'
+          element :memorable_word_hint, :paragraph, 'simple_form.hints.user_session.new.password'
           element :memorable_word, 'input#user_password'
           #find my claim
           element :find_my_claim, :submit_text, 'helpers.submit.user_session.create'
           #don't have these details
           element :form_hint, :paragraph, 'user_sessions.new.hint_html', exact: false
           element :new_claim, :link_named, 'user_sessions.new.link'
+          element :reset_memorable_word_element, :link, 'Click here to reset'
         end
+        element :memorable_word_email_sent_flash_element, '#flash-summary *', text: 'You will receive an email with instructions on how to reset your memorable word in a few minutes'
+        element :memorable_word_updated_flash_element, '#flash-summary *', text: "Your memorable word has been updated. You can use it below and return to your claim."
+
         #Support links
         section :support, 'aside[role="complementary"]' do
           element :suport_header, :support_header, 'shared.aside.gethelp_header'
@@ -43,6 +48,21 @@ module EtFullSystem
         
         def start_a_new_claim
           main_content.new_claim.click
+        end
+
+        def reset_memorable_word
+          main_content.reset_memorable_word_element.click
+          ResetMemorableWordEmailInstructionsPage.new
+        end
+
+        def assert_memorable_word_email_sent
+          memorable_word_email_sent_flash_element
+          self
+        end
+
+        def assert_memorable_word_updated
+          memorable_word_updated_flash_element
+          self
         end
 
         def has_correct_translation?
