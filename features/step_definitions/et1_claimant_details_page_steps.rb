@@ -66,3 +66,11 @@ end
 Then("I should see an invalid error message for date of birth claimant details page") do
   expect(et1_claimant_details_page.has_correct_invalid_error_message_for_dob?).to be true
 end
+
+When("I submit an invalid allow video attendance for claimant details page") do
+  et1_claimant_details_page.save_and_continue.click
+end
+
+Then("I should see an invalid error message for allow video attendance claimant details page") do
+  expect(et1_claimant_details_page.has_correct_invalid_error_message_for_allow_video_attendance?).to be true
+end

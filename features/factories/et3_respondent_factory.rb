@@ -10,6 +10,7 @@ FactoryBot.define do
     county {"london"}
     postcode {"wc1 1aa"}
     organisation_more_than_one_site {:"questions.organisation_more_than_one_site.no.label"}
+    allow_video_attendance { :"questions.allow_video_attendance.yes.label" }
   end
 
   factory :et3_dummy_data, class: OpenStruct do
@@ -57,5 +58,6 @@ FactoryBot.define do
     email_receipt {''}
     disability {nil}
     disability_information {''}
+    allow_video_attendance { :"questions.allow_video_attendance.no.label" }
   end
 end

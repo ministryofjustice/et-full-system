@@ -126,6 +126,31 @@ module EtFullSystem
             end
           end
         end
+
+        # Does the respondent want to allow a video session ?
+        section :allow_video_attendance_question, :single_choice_option, 'questions.allow_video_attendance.label', exact: false do
+          include ::EtFullSystem::Test::I18n
+          element :error_allow_video_attendance, :error, 'errors.respondents_details.allow_video_attendance.blank'
+          element :has_allow_video_attendance_hint, :paragraph, 'questions.allow_video_attendance.hint'
+          section :yes, :form_labelled, 'questions.allow_video_attendance.yes' do
+            element :selector, :css, 'input'
+            def set(*args); selector.set(*args); end
+          end
+          element :no, :form_labelled, 'questions.allow_video_attendance.no' do
+            element :selector, :css, 'input'
+            def set(*args); selector.set(*args); end
+          end
+
+          def set(value)
+            return if value.nil?
+
+            choose(factory_translate(value), name: 'respondents_detail[video_call]')
+          end
+
+          def set_for(respondent)
+            set(respondent.allow_video_attendance)
+          end
+        end
         # Does this organisation have more than one site in Great Britain?
         section :organisation_employ_gb_question, :question_labelled, 'questions.organisation_employ_gb.label', exact: false do
           element :field, :css, "input"

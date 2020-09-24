@@ -48,7 +48,7 @@ module EtFullSystem
               return ret if ret == true || ret == false
               return ret.to_s if ret
               if value[:unselected_value].is_a? Array
-                return nil if value[:unselected_value].include?(raw)
+                return nil if value[:unselected_value].include?(raw) || value[:unselected_value] == raw
               else
                 return nil if value[:unselected_value] == raw
               end  

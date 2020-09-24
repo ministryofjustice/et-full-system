@@ -77,6 +77,7 @@ FactoryBot.define do
     defend_claim {:"questions.defend_claim.no.label"}
     defend_claim_facts {''}
     agree_with_employment_dates {:"questions.agree_with_employment_dates.yes.label"}
+    allow_video_attendance { :"questions.allow_video_attendance.no.label" }
     employment_start {''}
     employment_end {''}
     disagree_employment {''}
