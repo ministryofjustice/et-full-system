@@ -405,7 +405,7 @@ cy:
       claim:
         return: Dychwelyd i hawliad
       user_session:
-        reset_memorable_word: Cliciwch yma i ailosod
+        reset_memorable_word: Cliciwch yma i'w ailosod
 
   shared:
     reference: Eich rhif hawliad yw
