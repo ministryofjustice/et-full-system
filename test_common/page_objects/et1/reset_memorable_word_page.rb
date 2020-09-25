@@ -22,8 +22,8 @@ module EtFullSystem
 
         private
 
-        element :memorable_word_element, :fillable_field, "Memorable word"
-        element :submit_button, :button, 'Reset memorable word'
+        element :memorable_word_element,'input', id: 'user_password'
+        element :submit_button, :submit_text, 'helpers.submit.user_session.reset_memorable_word'
       end
     end
   end
