@@ -27,6 +27,7 @@ module EtFullSystem
         section :flash_heading, '#flash-summary' do
           element :memorable_word_email_sent_flash_element, :content_header, 'simple_form.labels.user_session.memorable_word.email_sent_flash_text'
           element :memorable_word_updated_flash_element, :content_header, 'simple_form.labels.user_session.memorable_word.updated_flash_text'
+          element :invalid,:content_header, 'user_sessions.new.invalid'
         end
 
         #Support links
@@ -67,6 +68,10 @@ module EtFullSystem
           self
         end
 
+        def memorable_word_valid?
+          expect(flash_heading).to have_invalid
+        end
+
         def has_correct_translation?
           #header
           expect(self).to have_header
@@ -86,6 +91,13 @@ module EtFullSystem
           main_content.tap do |s|
             set_field(s, :claim_number, data)
             set_field(s, :memorable_word, data)
+          end
+        end
+
+        def set_user(user)
+          data = user[0].to_h
+          main_content.tap do |s|
+            set_field(s, :claim_number, data)
           end
         end
 
