@@ -446,6 +446,7 @@ cy:
       subheader: Rhowch eich manylion isod
       hint_html: Nid yw'r manylion hyn gennych?
       link: Cychwynnwch hawliad newydd
+      invalid: "Gair cofiadwy annilys neu rif arbed a dychwelyd annilys, rhowch gynnig arall arni."
     create:
       header: Dychwelyd i'ch hawliad
     reminder:

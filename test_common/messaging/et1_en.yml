@@ -403,6 +403,7 @@ en:
       subheader: Enter your details below
       hint_html: Don’t have these details? 
       link: Start a new claim
+      invalid: Invalid memorable word or save and return number, please check and try again.
     create:
       header: Return to your claim
     reminder:

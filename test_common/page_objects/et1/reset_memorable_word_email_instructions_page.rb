@@ -11,12 +11,23 @@ module EtFullSystem
           ReturnToYourClaimPage.new
         end
 
+        def submit
+          fieldset.submit_button.click
+        end
+
+        def valid?
+          expect(error).to have_invalid
+        end
+
         private
 
         section :fieldset, 'fieldset' do
           element :email_address_element, 'input', id: 'user_email'
           element :claim_number_element, 'input', id: 'user_reference'
           element :submit_button, :submit_text, 'helpers.submit.user_session.reset_memorable_word'
+        end
+        section :error, '#error-summary' do
+          element :invalid,:content_header, 'shared.error_notification.error_summary'
         end
       end
     end

@@ -19,6 +19,16 @@ Feature:
     And I enter my claim details
     Then I should be taken to where I was left off
 
+  Scenario: Return to claim has invalid inputs
+    Given I'm a return claimant
+    When I enter my claim number but not my password
+    Then I should see an error message pop up
+
+  Scenario: Reset memorable word has invalid inputs
+    Given I'm a return claimant
+    When I forget my details and input the wrong email
+    Then I should see an error message
+
   Scenario: 'Start a new claim' link
     Given a claimant is on the Return to your claim page
     When I click Start a new claim
