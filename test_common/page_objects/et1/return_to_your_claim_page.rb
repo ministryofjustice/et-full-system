@@ -12,11 +12,10 @@ module EtFullSystem
           #claim number
           element :claim_number_label, :form_labelled, 'simple_form.labels.user_session.new.reference'
           element :claim_number_hint, :paragraph, 'simple_form.hints.user_session.new.reference'
-          element :claim_number, 'input#user_session_reference'
+          element :claim_number, 'input#user_reference'
           #memorable word
           element :memorable_word_label, :form_labelled, 'simple_form.labels.user_session.new.password'
-          element :memorable_word_hint, :paragraph, 'simple_form.hints.user_session.new.password'
-          element :memorable_word, 'input#user_session_password'
+          element :memorable_word, 'input#user_password'
           #find my claim
           element :find_my_claim, :submit_text, 'helpers.submit.user_session.create'
           #don't have these details
@@ -54,7 +53,6 @@ module EtFullSystem
           expect(main_content).to have_claim_number_label
           expect(main_content).to have_claim_number_hint
           expect(main_content).to have_memorable_word_label
-          expect(main_content).to have_memorable_word_hint
           #find my claim
           expect(main_content).to have_find_my_claim
           #don't have these details

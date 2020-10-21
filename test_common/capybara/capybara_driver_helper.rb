@@ -1,7 +1,7 @@
 require 'capybara'
 require_relative '../configuration'
 Capybara.configure do |config|
-  driver = ENV.fetch('DRIVER', 'chromedriver').to_sym
+  driver = ENV.fetch('DRIVER', 'chromedriver').to_sym || :headless
   config.javascript_driver = driver
   config.default_max_wait_time = 45
   config.match = :prefer_exact

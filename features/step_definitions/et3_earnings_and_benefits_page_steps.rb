@@ -4,7 +4,6 @@ Given(/^I am on the ET3 earnings and benefits page$/) do
   start_a_new_et3_response
   et3_answer_respondents_details
   et3_answer_claimants_details
-  expect(earnings_and_benefits_page).to have_defend_claim_question
 end
 
 When(/^I successfully submit information about my earnings and benefits$/) do
