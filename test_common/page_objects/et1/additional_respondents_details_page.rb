@@ -52,7 +52,7 @@ module EtFullSystem
 
         def save_and_continue
           page.scroll_to(main_content.save_and_continue_button, align: :bottom)
-          sleep(0.5.second)
+          sleep(0.5.second) #Save and continue button click randomly fails without half second wait after scrolling
           main_content.save_and_continue_button.click
         end
 
