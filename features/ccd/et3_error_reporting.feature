@@ -5,6 +5,7 @@ Feature:
   I want to ensure that I am aware of temporary and permanent problems in the transmission
   of data to CCD for an ET3 response
 
+  #TODO: Needs work, may not be checking all elements on earnings_and_benefits_page.rb
   @local
   Scenario: Submitting a response which will report successful export to ccd
     Given an employer responds to an existing claim

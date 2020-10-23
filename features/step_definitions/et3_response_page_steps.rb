@@ -5,7 +5,7 @@ Given(/^I am on the ET3 response page$/) do
   et3_answer_respondents_details
   et3_answer_claimants_details
   et3_answer_earnings_and_benefits
-  expect(response_page.main_header).to have_header
+  expect(response_page).to have_defend_claim_question
 end
 
 When(/^I successfully submit my response$/) do

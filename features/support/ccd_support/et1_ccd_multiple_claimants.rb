@@ -40,6 +40,7 @@ module EtFullSystem
           aggregate_failures 'validating key fields' do
             created_case = ccd.caseworker_search_latest_by_ethos_case_reference(case_references.first, case_type_id: ccd_office)
 
+            expect(created_case['case_fields']).to include "leadClaimant" => "Yes"
             expect(created_case['case_fields']).to include case_details(reference_number)
             expect(created_case['case_fields']).to include "claimantIndType" => a_hash_including(claimant_ind_type(claimant[0]).as_json)
             expect(created_case['case_fields']).to include "claimantType" => a_hash_including(claimant_type(claimant[0]).as_json)

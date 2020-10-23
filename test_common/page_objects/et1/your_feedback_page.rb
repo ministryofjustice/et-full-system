@@ -37,6 +37,8 @@ module EtFullSystem
           element :contact_use, :link_named, 'shared.aside.contact_us'
         end
 
+        expected_elements :header, :main_content, :form_actions, :support
+
         def send_your_feedback
           form_actions.submit_feedback.click
         end
