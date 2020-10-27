@@ -17,7 +17,8 @@ module EtFullSystem
                 },
                 acas: {
                     have_acas: respondents.first.acas_number.present?,
-                    acas_number: respondents.first.acas_number || ''
+                    acas_number: respondents.first.acas_number || '',
+                    no_acas_number_reason: respondents.first.no_acas_number_reason.to_s.split('.').last
                 },
                 different_address: {
                     building: respondents.first.work_building || '',
