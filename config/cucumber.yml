@@ -1,1 +1,2 @@
 parallel: --format pretty --format ParallelTests::Cucumber::FailuresLogger --out tmp/cucumber_failures.log --tags "not @production"
+smoke: -t @smoke -t "not @fail"

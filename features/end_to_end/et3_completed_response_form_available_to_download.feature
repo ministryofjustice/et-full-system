@@ -1,5 +1,6 @@
 @e2e
 @javascript
+@smoke
 Feature: ET3 response to local office
   As an ATOS admin
   I want to be able to download completed Employment Tribunal response form
