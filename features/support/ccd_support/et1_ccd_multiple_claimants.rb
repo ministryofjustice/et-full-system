@@ -109,6 +109,9 @@ module EtFullSystem
           secondary_cases = cases.drop(1)
 
           secondary_cases.each do |secondary_case|
+
+            expect(secondary_case).to include "leadClaimant" => "No"
+
             claimant = secondary_claimants_left.find do |c|
               #claimant
               secondary_case["claimantIndType"] == claimant_csv_ind_type(c)
@@ -138,6 +141,9 @@ module EtFullSystem
           secondary_cases = cases.drop(1)
 
           secondary_cases.each do |secondary_case|
+
+            expect(secondary_case).to include "leadClaimant" => "No"
+
             claimant = secondary_claimants_left.find do |c|
               #claimant
               secondary_case["claimantIndType"] == claimant_ind_type(c, secondary: true)
