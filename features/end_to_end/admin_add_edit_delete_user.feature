@@ -1,5 +1,4 @@
 @javascript
-@fail
 Feature: Create new user
   As an Admin/Super user
   I want to be able to add, edit and delete users who are no longer working for MOJ
