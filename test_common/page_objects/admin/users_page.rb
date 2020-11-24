@@ -19,18 +19,18 @@ module EtFullSystem
           section :thead, 'thead tr' do
             element :resource_selection_cell, '.col.col-selectable .resource_selection_toggle_cell'
             element :resource_id_link, '.col.col-id a'
-            element :username, '.col.col-username a'
+            element :username, '.col.col-name a'
             element :email, '.col.col-email a'
             element :department, '.col.col-department a'
           end
           section :table, '#index_table_users tbody' do
             def has_user_matching?(user)
-              root_element.has_selector?(:css, '.col.col-username', text: user['username'])
+              root_element.has_selector?(:css, '.col.col-name', text: user['name'])
             end
             sections :tr, 'tr' do
               elements :resource_selection_cell, '.col.col-selectable .resource_selection_cell input[type="checkbox"]'
               elements :resource_id_link, '.col.col-id resource_id_link'
-              elements :username, '.col.col-username'
+              elements :username, '.col.col-name'
               elements :email, '.col.col-email'
               elements :department, '.col.col-department'
               sections :table_actions, '.col.col-actions .table_actions' do

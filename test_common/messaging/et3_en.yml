@@ -112,7 +112,7 @@ en:
       'no':
         label: 'No'
       queried_hours:
-        label: Tell us the details you believe to be correct
+        label: Tell us the details you believe to be correct.
     agree_with_earnings_details:
       label: Are the earnings correct? (optional)
       'yes':

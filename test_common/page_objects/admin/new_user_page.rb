@@ -8,11 +8,12 @@ module EtFullSystem
         element :email, 'input[name="admin_user[email]"]'
         element :username, 'input[name="admin_user[username]"]'
         element :username_error, '#admin_user_username_input .inline-errors'
-        element :department, 'input[name="admin_user[department]"]'
+        element :department, 'select[name="admin_user[department]"]'
         element :password, 'input[name="admin_user[password]"]'
         element :confirm_password, 'input[name="admin_user[password_confirmation]"]'
         element :password, 'input[name="admin_user[password]"]'
-        element :role_selection_field, '.select2-selection'
+        element :department_selection_field, '#admin_user_department_input > span > span.selection > span'
+        element :role_selection_field, '#admin_user_role_ids_input > div.selected-list-container > span > span.selection > span'
         section :drop_downList, '.select2-dropdown' do
           element :role_input_field, '.select2-search input'
           element :role_selection, '.select2-results ul li'
@@ -24,7 +25,8 @@ module EtFullSystem
           name.set(user[:name])
           email.set("#{user[:email]}@blah.com")
           username.set(user[:username])
-          department.set(user[:department])
+          department_selection_field.click
+          drop_downList.role_input_field.set(user[:department]+"\n")
           password.set(user[:password])
           confirm_password.set(user[:password])
           role_selection_field.click

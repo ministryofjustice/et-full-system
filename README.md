@@ -563,7 +563,7 @@ staging: ./bin/dev/test_exec bundle exec cucumber ENVIRONMENT=staging
 
 ## Using cucumber.yml profile
 
-./bin/dev/test_exec bundle exec cucumber -p smoke_test
+./bin/dev/test_exec bundle exec cucumber -p smoke
 
 ## Running test in parallel
 
