@@ -32,7 +32,7 @@ module EtFullSystem
         end
 
         def assert_multiple_title(title)
-          expect(response['case_fields']).to include "bulkCaseTitle" => title
+          expect(response['case_fields']).to include "multipleName" => title
         end
 
         def assert_primary_claimant(claimant, representative, employment, respondents, reference_number, ccd_office)
