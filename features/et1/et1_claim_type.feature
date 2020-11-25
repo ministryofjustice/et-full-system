@@ -1,3 +1,4 @@
+@et1
 @javascript
 Feature:
   As About the claim page

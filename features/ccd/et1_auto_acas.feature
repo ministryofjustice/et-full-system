@@ -1,4 +1,4 @@
-@e2e
+@ccd
 @javascript
 @acas
 Feature:

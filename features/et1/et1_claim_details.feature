@@ -1,3 +1,4 @@
+@et1
 @javascript
 Feature:
   As Claim details page

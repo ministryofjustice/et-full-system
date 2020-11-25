@@ -1,4 +1,4 @@
-@javascript
+@e2e @javascript
 Feature:
   As an ET Admin User
   I want to log onto the ET Admin section and be able to supply a postal Claimant's workplace Postcode
