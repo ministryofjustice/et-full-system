@@ -1,4 +1,4 @@
-@javascript
+@e2e @javascript
 Feature: Username validation
   As an Admin system
   I want to ensure that there are validation against username when adding or editing username
@@ -7,7 +7,6 @@ Feature: Username validation
     When an administrator login
     And add a new user
 
-  @fail
   Scenario: Username validations
     When I enter "eee" characters in the username field
     Then the following error message is shown "is too short (minimum is 4 characters) and must consist of alphanumeric characters only"
