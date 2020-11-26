@@ -9,7 +9,6 @@ Feature:
   Scenario: Verify copy text for Respondent's details page
     Then I can verify that the copy text on Respondent's details page displayed correctly
 
-  @fail
   Scenario: Verify blank submission for error messages
     When I submit a blank Respondent's details page
     Then I can verify blank error messages for Respondent's details page

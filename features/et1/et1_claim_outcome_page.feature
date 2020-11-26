@@ -1,4 +1,4 @@
-@javascript
+@et1 @javascript
 Feature:
   As Claim outcome page
   I want to ensure that user can submit their Claim outcome in Welsh or in English

@@ -1,4 +1,4 @@
-@javascript
+@et1 @javascript
 Feature:
   As Submission page
   I want to ensure that user can view the submission details in Welsh or in English

@@ -8,7 +8,7 @@ Feature:
     Given an administrator login
     And load Generate Reference page
 
-  Scenario: Geneate new reference number
+  Scenario: Generate new reference number
     When I enter a postcode 'N1 1PA' 
     Then a random reference number is displayed 'ET1 Postal Fee Group Reference Number:'
 

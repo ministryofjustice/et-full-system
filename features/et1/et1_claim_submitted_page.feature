@@ -1,4 +1,4 @@
-@javascript
+@et1 @javascript
 Feature:
   As Claim submitted page
   I want to ensure that user can view the claim submitted page in Welsh or in English

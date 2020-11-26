@@ -59,7 +59,7 @@ Feature:
     When the completed form is submitted
     Then  I can download the form and validate in PDF format
 
-  Scenario: claimaint's address is outside UK
+  Scenario: claimant's address is outside UK
     Given a claimant submitted an ET1 who live outside UK
     When the completed form is submitted
     Then  I can download the form and validate in PDF format

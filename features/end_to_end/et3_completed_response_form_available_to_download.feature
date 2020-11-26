@@ -16,7 +16,7 @@ Feature: ET3 response to local office
     When the completed Employment Tribunal response form is submitted
     Then I can download the ET3 form and validate in PDF format
   
-   Scenario: No respresentative
+   Scenario: No representative
     Given an employer responds to a claim with no respresentative
     When the completed Employment Tribunal response form is submitted
     Then I can download the ET3 form and validate in PDF format
