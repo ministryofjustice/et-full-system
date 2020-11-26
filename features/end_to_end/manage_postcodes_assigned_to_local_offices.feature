@@ -22,7 +22,6 @@ Feature: Manage postcodes assigned to local offices
     When I delete postcode 'TT'
     Then the deleted postcode is no longer saved in the system
 
-  @fail
   Scenario: Filename based on newly added postcode 'BT' to 'Default' office
     Given a new postcode 'BT' is added to 'Default' office
     When a claimant submitted an ET1 form using postcode BT1 1AA

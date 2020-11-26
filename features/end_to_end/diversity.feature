@@ -14,7 +14,6 @@ Feature: Diversity monitoring questionnaire
     When the completed Diversity questionnaire form is submitted
     Then the data is updated in ET Admin system
 
-   @fail
   Scenario: All questions answered
     Given a claimant answered all questions on the survey participant form
     When the completed Diversity questionnaire form is submitted

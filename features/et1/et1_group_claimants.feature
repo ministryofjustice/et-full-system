@@ -1,4 +1,4 @@
-@javascript
+@et1 @javascript
 Feature:
   As Group claims page
   I want to ensure that user can submit their Group claims in Welsh or in English

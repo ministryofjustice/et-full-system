@@ -1,4 +1,4 @@
-@javascript
+@et1 @javascript
 Feature:
   As More about the claim page
   I want to ensure that user can submit their More about the claim in Welsh or in English

@@ -1,4 +1,4 @@
-@javascript
+@et1 @javascript
 Feature:
   As Respondent's details page
   I want to ensure that user can submit their Respondent's details in Welsh or in English

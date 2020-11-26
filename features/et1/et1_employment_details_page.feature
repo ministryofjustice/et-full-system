@@ -1,4 +1,4 @@
-@javascript
+@et1 @javascript
 Feature:
   As Employment details page
   I want to ensure that user can submit their Employment details in Welsh or in English
