@@ -4,7 +4,7 @@ Feature:
   I want to ensure that user can submit their Additional respondent's details in Welsh or in English
 
   Background: Additional respondent's details page
-    Given a claimant is on Additional respondent's details page 
+    Given a claimant is on Additional respondent's details page
 
   Scenario: Verify copy text for Additional respondent's details page
     Then I can verify that the copy text on Additional respondent's details page displayed correctly

@@ -39,6 +39,30 @@ Capybara::Screenshot.register_driver(:firefoxdriver) do |driver, path|
     driver.browser.save_screenshot(path)
   end
 end
+
+Capybara::Screenshot.register_driver(:firefox_saucelabs) do |driver, path|
+  ::EtFullSystem::Test::FullScreenshot.with_resizing do
+    driver.browser.save_screenshot(path)
+  end
+end
+
+Capybara::Screenshot.register_driver(:chromedriver_saucelabs) do |driver, path|
+  ::EtFullSystem::Test::FullScreenshot.with_resizing do
+    driver.browser.save_screenshot(path)
+  end
+end
+
+Capybara::Screenshot.register_driver(:safari_saucelabs) do |driver, path|
+  ::EtFullSystem::Test::FullScreenshot.with_resizing do
+    driver.browser.save_screenshot(path)
+  end
+end
+
+Capybara::Screenshot.register_driver(:internet_explorer_saucelabs) do |driver, path|
+  ::EtFullSystem::Test::FullScreenshot.with_resizing do
+    driver.browser.save_screenshot(path)
+  end
+end
 if ENV.key?('SCREENSHOT_S3_ACCESS_KEY_ID')
   Capybara::Screenshot.prune_strategy = { keep: 20 }
   Capybara::Screenshot.s3_configuration = {
