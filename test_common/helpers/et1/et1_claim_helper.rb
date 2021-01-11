@@ -16,8 +16,7 @@ module EtFullSystem
       end
 
       def et1_answer_login
-        et1_application_number_page.set(@claimant)
-        et1_application_number_page.save_and_continue
+        et1_application_number_page.register(@claimant)
       end
 
       def et1_answer_claimant_questions

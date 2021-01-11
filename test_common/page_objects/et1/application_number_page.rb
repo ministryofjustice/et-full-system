@@ -4,11 +4,12 @@ module EtFullSystem
     module Et1
       class ApplicationNumberPage < BasePage
         include RSpec::Matchers
+
         #page and main header
         section :main_header, '.main-header' do
           element :page_header, :page_title, 'claims.application_number.header'
         end
-        section :main_content, '#content .main-section .main-content' do
+        section :main_content, '#main-content .main-section .main-content' do
           element :claim_number_text, :paragraph, 'claims.application_number.application_number'
           element :claims_number, '.callout-reference .number'
           element :claims_intro_text, :paragraph, 'claims.application_number.intro_text'
@@ -73,6 +74,13 @@ module EtFullSystem
         def set(data)
           main_content.email_label.set(data[0].dig(:email_address))
           main_content.memorable_word_label.set(data[0].dig(:memorable_word))
+        end
+
+        # Registers the user for a save and return
+        def register(data)
+          main_content.email_label.set(data[0].dig(:email_address))
+          main_content.memorable_word_label.set(data[0].dig(:memorable_word))
+          main_content.save_and_continue.click
         end
       end
     end
