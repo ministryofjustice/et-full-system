@@ -2,7 +2,6 @@ FactoryBot.define do
   factory :claim, class: OpenStruct do
     claim_types do
       [:"simple_form.labels.claim_type.is_unfair_dismissal",
-      :"simple_form.labels.claim_type.is_protective_award",
       :"simple_form.options.claim_type.discrimination_claims.sex_including_equal_pay",
       :"simple_form.options.claim_type.discrimination_claims.race",
       :"simple_form.options.claim_type.discrimination_claims.pregnancy_or_maternity",
