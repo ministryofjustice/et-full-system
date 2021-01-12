@@ -29,18 +29,6 @@ module EtFullSystem
               def set(*args); selector.set(*args); end
             end
           end
-          #Protective aware
-          section :protective_award, :legend_header, 'claims.claim_type.protective_award' do
-            element :what_is_this, :summary_text, 'claims.claim_type.summary' do
-              element :selector, :css, '.summary'
-              def set(*args); selector.set(*args); end
-            end
-            element :protective_award_info, :paragraph, 'claims.claim_type.protective_award_summary_detail', exact: false
-            element :protective_award_claim_type, :form_labelled, 'simple_form.labels.claim_type.is_protective_award' do
-              element :selector, :css, 'input[type="checkbox"]'
-              def set(*args); selector.set(*args); end
-            end
-          end
           #Discrimination
           section :discrimination, :legend_header, 'claims.claim_type.discrimination' do
             #Sex
@@ -195,11 +183,6 @@ module EtFullSystem
           expect(main_content.unfair_dismissal).to have_what_is_this
           expect(main_content.unfair_dismissal).to have_unfair_dismissal_info
           expect(main_content.unfair_dismissal).to have_unfair_dismissal_claim_type
-          #Protective award
-          expect(main_content).to have_protective_award
-          expect(main_content.protective_award).to have_what_is_this
-          expect(main_content.protective_award).to have_protective_award_info
-          expect(main_content.protective_award).to have_protective_award_claim_type
           #Discrimination
           expect(main_content.discrimination).to have_sex_including_equal_pay_claim_type
           expect(main_content.discrimination).to have_race_claim_type
@@ -268,7 +251,6 @@ module EtFullSystem
         def map_claim_type_section_element_from(claim_type)
           case claim_type
           when :"simple_form.labels.claim_type.is_unfair_dismissal" then [:unfair_dismissal, :unfair_dismissal_claim_type]
-          when :"simple_form.labels.claim_type.is_protective_award" then [:protective_award, :protective_award_claim_type]
           when :"simple_form.options.claim_type.discrimination_claims.sex_including_equal_pay" then [:discrimination, :sex_including_equal_pay_claim_type]
           when :"simple_form.options.claim_type.discrimination_claims.race" then [:discrimination, :race_claim_type]
           when :"simple_form.options.claim_type.discrimination_claims.pregnancy_or_maternity" then [:discrimination, :pregnancy_or_maternity_claim_type]
