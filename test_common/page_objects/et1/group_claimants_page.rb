@@ -8,7 +8,7 @@ module EtFullSystem
         section :main_header, '.main-header' do
           element :page_header, :page_title, 'claims.additional_claimants.header', exact: false
         end
-        section :main_content, '.main-section .main-content' do
+        section :main_content, '#main-content' do
           section :error_message, '#error-summary' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
             element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
