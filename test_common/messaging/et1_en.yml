@@ -488,7 +488,7 @@ en:
 
     claimant:
       header: "Claimant’s details"
-      gender: Gender
+      gender: "Gender (optional)"
       legend_disability: "Do you have a disability which means you require assistance at the tribunal hearing? (optional"
       legend_personal_details: About the claimant
       legend_contact_details: "Claimant’s contact details"
