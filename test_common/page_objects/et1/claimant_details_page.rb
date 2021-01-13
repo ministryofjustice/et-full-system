@@ -8,7 +8,7 @@ module EtFullSystem
         section :main_header, '.main-header' do
           element :page_header, :page_title, 'claims.claimant.header', exact: false
         end
-        section :main_content, '.main-section .main-content' do
+        section :main_content, '#main-content' do
           section :error_message, '#error-summary' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
             element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
@@ -43,15 +43,15 @@ module EtFullSystem
             element :invalid_date_of_birth, :error, 'activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.date_of_birth.invalid'
             element :date_of_birth_hint, :paragraph, 'simple_form.hints.claimant.date_of_birth'
             section :day, :question_labelled, 'simple_form.labels.claimant.date_of_birth.day' do
-              element :field, :css, '#claimant_date_of_birth_day'
+              element :field, :css, '#claimant_date_of_birth_3i'
               def set(*args); field.set(*args); end
             end
             section :month, :question_labelled, 'simple_form.labels.claimant.date_of_birth.month' do
-              element :field, :css, '#claimant_date_of_birth_month'
+              element :field, :css, '#claimant_date_of_birth_2i'
               def set(*args); field.set(*args); end
             end
             section :year, :question_labelled, 'simple_form.labels.claimant.date_of_birth.year' do
-              element :field, :css, '#claimant_date_of_birth_year'
+              element :field, :css, '#claimant_date_of_birth_1i'
               def set(*args); field.set(*args); end
             end
             def set(value)
@@ -61,7 +61,7 @@ module EtFullSystem
               year.set(year_value)
             end
           end
-          section :gender, :question_labelled, 'claims.claimant.gender', exact: false do
+          section :gender, :legend_header, 'claims.claimant.gender', exact: false do
             include ::EtFullSystem::Test::I18n
             element :error_gender, :error, 'activemodel.errors.models.claimant.attributes.gender.blank'
             element :male, :form_labelled, 'simple_form.options.claimant.gender.male' do
@@ -97,8 +97,7 @@ module EtFullSystem
             end
           end
           #describe the assistance you require
-          section :assistance, '.claimant_special_needs' do
-            element :special_needs, :textarea_labelled, 'simple_form.labels.claimant.special_needs'
+          section :assistance, :form_labelled ,'simple_form.labels.claimant.special_needs' do
             element :field, :css, 'textarea'
             def set(*args); field.set(*args); end
           end
@@ -227,7 +226,6 @@ module EtFullSystem
           expect(main_content.claimant_has_special_needs).to have_has_special_needs_hint
           expect(main_content.claimant_has_special_needs).to have_yes
           expect(main_content.claimant_has_special_needs).to have_no
-          expect(main_content.assistance).to have_special_needs
           #Claimant's contact details
           expect(main_content).to have_claimants_contact_details
           expect(main_content).to have_building
@@ -260,7 +258,7 @@ module EtFullSystem
         end
         
         def has_correct_translation_for_assistance_required?
-          expect(main_content.assistance).to have_special_needs
+
         end
 
         def has_correct_error_message_for_leaving_email_address_field_blank?
@@ -315,7 +313,6 @@ module EtFullSystem
 
           if data[:has_special_needs] == :"simple_form.yes"
             main_content.claimant_has_special_needs.set(data[:has_special_needs])
-            main_content.assistance.special_needs.set(data[:special_needs])
           end
 
           main_content.claimant_contact_preference.set(data[:correspondence])
