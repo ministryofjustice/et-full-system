@@ -8,7 +8,7 @@ module EtFullSystem
         section :main_header, '.main-header' do
           element :page_header, :page_title, 'claims.representative.header', exact: false
         end
-        section :main_content, '.main-section .main-content' do
+        section :main_content, '#main-content' do
           section :error_message, '#error-summary' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
             element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
@@ -16,7 +16,7 @@ module EtFullSystem
           #The person representing you
           element :representative_header, :legend_header, 'claims.representative.form_legend'
           element :representative_labelled, :legend_translated, 'simple_form.labels.representative.has_representative'
-          section :representative, '.representative_has_representative' do
+          section :representative, '.govuk-radios' do
             element :yes, :form_labelled, 'simple_form.yes' do
               element :selector, :css, 'input'
               def set(*args); selector.set(*args); end
@@ -33,7 +33,8 @@ module EtFullSystem
           #About your representative
           element :about_your_representative, :legend_header, 'claims.representative.representative_legend'
           #Type of representative
-          section :type, '.representative_type' do
+          element :representative_type_field, '#representative-type-field'
+          section :type,  '.govuk-form-group:nth-child(2)' do
             include ::EtFullSystem::Test::I18n
             element :blank_type, :error, 'activemodel.errors.models.representative.attributes.type.blank'
             element :type_of_representative_labelled, :form_labelled, 'claims.representative.representative_type_legend'
@@ -155,7 +156,7 @@ module EtFullSystem
           #About your representative
           expect(main_content).to have_about_your_representative
           #Type of presentative
-          expect(main_content.type).to have_type_of_representative_labelled 
+          expect(main_content.type).to have_type_of_representative_labelled
           expect(main_content).to have_organisation_name
           expect(main_content).to have_name
           #Representative contact details
@@ -208,10 +209,11 @@ module EtFullSystem
           data = user[0].to_h
           if data[:representative_have] == 'Yes'
             main_content.representative.yes.click
+            main_content.representative_type_field.select("Solicitor")
             main_content do |s|
-              set_field s, :type, data
               set_field s, :organisation_name, data
               set_field s, :name, data
+              sleep(2)
               set_field s, :building, data
               set_field s, :street, data
               set_field s, :locality, data
