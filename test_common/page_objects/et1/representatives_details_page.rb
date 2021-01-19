@@ -213,7 +213,6 @@ module EtFullSystem
             main_content do |s|
               set_field s, :organisation_name, data
               set_field s, :name, data
-              sleep(2)
               set_field s, :building, data
               set_field s, :street, data
               set_field s, :locality, data
