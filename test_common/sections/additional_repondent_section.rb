@@ -42,7 +42,7 @@ module EtFullSystem
         def set(*args); field.set(*args); end
       end
       #I don't have an Acas number
-      element :no_acas_number, :form_labelled, 'simple_form.labels.respondent.no_acas_number' do
+      element :no_acas_number, :legend_header, 'simple_form.labels.respondent.no_acas_number' do
         element :field, :css, 'input'
         def set(*args); field.set(*args); end
       end

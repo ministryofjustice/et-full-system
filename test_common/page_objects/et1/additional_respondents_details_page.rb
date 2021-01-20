@@ -8,7 +8,7 @@ module EtFullSystem
         section :main_header, '.main-header' do
           element :page_header, :page_title, 'claims.additional_respondents.header', exact: false
         end
-        section :main_content, '#content .main-section .main-content' do
+        section :main_content, '#main-content' do
           section :error_message, '#error-summary' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
             element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
@@ -17,16 +17,16 @@ module EtFullSystem
           element :additional_respondents_header, :legend_header, 'claims.additional_respondents.additional_respondents_legend'
           #Are you making a claim against another person or organisation?
           element :additional_respondents_intro, :paragraph, 'claims.additional_respondents.additional_respondents_intro'
+          element :yes, :form_labelled, 'claims.additional_respondents.yes' do
+            element :selector, :css, 'input[type="radio"]'
+            def set(*args); selector.set(*args); end
+          end
+          element :no, :form_labelled, 'claims.additional_respondents.no' do
+            element :selector, :css, 'input[type="radio"]'
+            def set(*args); selector.set(*args); end
+          end
           section :additional_respondents, '.additional_respondents_of_collection_type' do
             include ::EtFullSystem::Test::I18n
-            element :yes, :form_labelled, 'claims.additional_respondents.yes' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            element :no, :form_labelled, 'claims.additional_respondents.no' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
             def set(value)
               choose(factory_translate(value), name: 'additional_respondents[of_collection_type]')
             end
