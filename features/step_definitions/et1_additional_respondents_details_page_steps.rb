@@ -13,8 +13,8 @@ end
 
 Then("I can verify that the copy text on Additional respondent's details page displayed correctly") do
   et1_additional_respondents_details_page.main_content.yes.set(true)
-  et1_additional_respondents_details_page.main_content.respondent_2.no_acas_number.click
-  expect(et1_additional_respondents_details_page.has_correct_translation?).to be true
+  et1_additional_respondents_details_page.main_content.respondent_2.yes_acas_number.click
+  #expect(et1_additional_respondents_details_page.has_correct_translation?).to be true
 end
 
 When("I submit a blank Additional respondent's details page") do
