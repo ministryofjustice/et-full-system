@@ -7,7 +7,7 @@ Then("Apply page copy texts are displayed in the correct language") do
 end
 
 When("user click on Your feedback link") do
-  et1_apply_page.feedback_notice.feedback_link.click
+  et1_apply_page.feedback_link.click
 end
 
 Then("user is taken to the feedback page") do

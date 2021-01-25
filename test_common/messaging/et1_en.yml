@@ -203,7 +203,7 @@ en:
         work_address_county: County (optional)
         work_address_post_code: Postcode (optional)
         worked_at_same_address: "Did you work at the same address to the one given above? (optional)"
-        acas_early_conciliation_certificate_number: "Acas number"
+        acas_early_conciliation_certificate_number: "Acas early conciliation certificate number"
         no_acas_number: "I don’t have an Acas number"
         no_acas_number_reason: "Why don’t you have an Acas number?"
         _destroy: 'Remove this respondent'
