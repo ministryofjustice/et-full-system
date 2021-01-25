@@ -23,7 +23,7 @@ module EtFullSystem
             element :field, :css, "input"
             def set(*args); field.set(*args); end
           end
-          element :example_word, :paragraph, 'simple_form.hints.application_number.password'
+          element :example_word, '#save-and-return-user-password-hint'
           #print this page
           element :print_link, :link_named, 'user_sessions.reminder.print_link'
           element :print_copy, :paragraph, 'claims.application_number.print_copy', exact: false

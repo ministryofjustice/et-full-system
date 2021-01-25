@@ -5,8 +5,8 @@ Feature:
   So that I can use my preferred language
 
   Background: Apply page
-    Given a claimant is on the Apply page 
-
+    Given a claimant is on the Apply page
+  @test
   Scenario: Verify copy texts
     Then Apply page copy texts are displayed in the correct language
   

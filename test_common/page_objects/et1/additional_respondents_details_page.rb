@@ -129,8 +129,9 @@ module EtFullSystem
           return if respondents.nil? || respondents.empty?
           if respondents.length == 1
             main_content.additional_respondents.set(:"claims.additional_respondents.no")
+            et1_additional_respondents_details_page.main_content.no.set(true)
           else
-            main_content.additional_respondents.set(:"claims.additional_respondents.yes")
+            et1_additional_respondents_details_page.main_content.yes.set(true)
             main_content do |s|
               respondents[1..-1].each_with_index do |respondent, idx|
                 s.add_another_respondent.click unless idx == 0
