@@ -1,7 +1,8 @@
 Given(/^I am on the ET3 claimants details page$$/) do
   @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers)
   @claimant = FactoryBot.create_list(:et3_claimant, 1, :agree_with_employment_dates)
-  start_a_new_et3_response  
+  start_a_new_et3_response
+  et3_answer_saving_response
   et3_answer_respondents_details
 end
 
@@ -22,7 +23,7 @@ When(/^I successfully submit required claimants details only$/) do
 end
 
 Then(/^I should be taken to the earnings and benefits page$/) do
-  expect(earnings_and_benefits_page.main_header).to have_header
+  expect(earnings_and_benefits_page).to have_header
 end
 
 When(/^I click on next without providing the required claimants details$/) do

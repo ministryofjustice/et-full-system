@@ -11,8 +11,9 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         # Claimant Details Details
+        element :header, :content_header, 'claimants_details.header'
         section :main_header, '.content-header' do
-          element :header, :content_header, 'claimants_details.header'
+
         end
         section :error_summary, '.error-summary' do
           element :error_heading, :main_header, 'errors.header'
@@ -150,7 +151,7 @@ module EtFullSystem
 
         def has_correct_translation?
           # Claimants's Details
-          expect(main_header).to have_header
+          expect(self).to have_header
           # Claimant's name (optional)
           expect(self).to have_claimants_name_question
           # Do you agree with the details given by the claimant about Early Conciliation with Acas? (optional)

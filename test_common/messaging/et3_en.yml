@@ -271,10 +271,10 @@ en:
       case_number_invalid: Case number is invalid
       contact_name: Please enter your full name
       contact_name_contain_numbers: Name of contact must not contain numbers
-      company_name: Name of individual, company or organisation can't be blank
-      building_name: Building name or number can't be blank
-      street: Street can't be blank
-      town: Town/City can't be blank
+      company_name: Name can't be blank
+      building_name: Building name can't be blank
+      street: Street name can't be blank
+      town: Town can't be blank
       postcode_blank: Postcode can't be blank
       postcode_invalid: This is not a valid UK postcode
       contact_number_invalid: This is not a valid phone number
@@ -290,7 +290,7 @@ en:
       header_end_date_error: When their employment ended or will end can't be blank
       start_date_blank: Employment start can't be blank
       end_date_blank: Employment end can't be blank
-      disagree_dates: Why do you disagree with the dates given by the claimant can't be blank
+      disagree_dates: Disagree employment can't be blank
       date_error: Invalid date
     disability:
       disability_blank: It would help us if you could say what this disability is and tell us what assistance, if any, you will need as your claim progresses through the system, including for any hearings that maybe held at tribunal premises can't be blank

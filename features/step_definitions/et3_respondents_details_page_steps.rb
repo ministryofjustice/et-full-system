@@ -1,6 +1,7 @@
 Given(/^I am on the ET3 respondents details page$/) do
   @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers)
   start_a_new_et3_response
+  et3_answer_saving_response
 end
 
 Then("Respondents details page copy texts are displayed in the correct language") do
@@ -16,7 +17,7 @@ When(/^I successfully submit the required respondents details only$/) do
 end
 
 Then(/^I should be taken to the claimants details page$/) do
-  expect(claimants_details_page.main_header).to have_header
+  expect(claimants_details_page).to have_header
 end
 
 When(/^I click on next without providing the required respondents details$/) do

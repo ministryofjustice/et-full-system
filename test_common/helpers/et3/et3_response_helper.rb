@@ -37,6 +37,11 @@ module EtFullSystem
         respondents_details_page.next
       end
 
+      def et3_answer_saving_response
+        saving_response_page.set
+        saving_response_page.save_and_continue
+      end
+
       def et3_answer_required_espondents_details
         user = @respondent[0]
         respondents_details_page.case_number_question.set(user.case_number)
