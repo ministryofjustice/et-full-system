@@ -68,6 +68,7 @@ When(/^a DUMMY USER responds to a claim$/) do
   @representative = FactoryBot.create_list(:representative, 1, :et3_no_representative)
 
   start_a_new_et3_response
+  et3_answer_saving_response
   et3_answer_respondents_details
 
   user = @claimant[0]
