@@ -11,6 +11,7 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         # Your representative page
+        element :header, :content_header, 'questions.have_representative.title'
         section :main_header, '.content-header' do
 
         end
