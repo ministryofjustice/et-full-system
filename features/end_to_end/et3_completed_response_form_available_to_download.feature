@@ -1,5 +1,5 @@
 @e2e
-@javascript @dev
+@javascript
 @smoke
 Feature: ET3 response to local office
   As an ATOS admin

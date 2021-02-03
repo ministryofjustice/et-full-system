@@ -1,4 +1,4 @@
-@javascript @dev
+@javascript
 Feature: Username validation
   As an Admin system
   I want to ensure that there are validation against username when adding or editing username

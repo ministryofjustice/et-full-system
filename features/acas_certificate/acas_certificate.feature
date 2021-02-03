@@ -1,4 +1,4 @@
-@acas @javascript @dev
+@acas @javascript
 Feature:
   As an ACAS administrator
   I want to download a certificate/document from the ET Admin
