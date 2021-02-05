@@ -92,15 +92,15 @@ module EtFullSystem
           end
           section :representative_contact_preference, '.representative_contact_preference' do
             include ::EtFullSystem::Test::I18n
-            section :email_preference, :form_labelled, 'Email' do
+            section :email_preference, :form_labelled, 'simple_form.options.representative.contact_preference.email' do
               element :selector, :css, 'input[type="radio"]'
               def set(*args); selector.set(*args); end
             end
-            section :post_preference, :form_labelled, 'Post' do
+            section :post_preference, :form_labelled, 'simple_form.options.representative.contact_preference.post' do
               element :selector, :css, 'input[type="radio"]'
               def set(*args); selector.set(*args); end
             end
-            section :dx_number, :form_labelled, 'DX number' do
+            section :dx_number, :form_labelled, 'simple_form.options.representative.contact_preference.dx_number' do
               element :selector, :css, 'input[type="radio"]'
               def set(*args); selector.set(*args); end
             end

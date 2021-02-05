@@ -53,6 +53,7 @@ en:
         contact_preference:
           email: Email
           post: Post
+          dx_number: DX number
 
       respondent:
         no_acas_number_reason:
