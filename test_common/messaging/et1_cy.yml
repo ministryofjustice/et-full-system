@@ -54,6 +54,7 @@ cy:
         contact_preference:
           email: E-bost
           post: Post
+          dx_number: Rhif DX
 
       respondent:
         no_acas_number_reason:
