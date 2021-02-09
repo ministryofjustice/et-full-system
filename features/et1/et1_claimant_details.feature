@@ -1,4 +1,4 @@
-@et1 @javascript
+@dev @et1 @javascript
 Feature:
   As claimant details page
   I want to ensure that user can submit their claimant details in Welsh or in English

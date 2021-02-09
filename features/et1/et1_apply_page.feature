@@ -1,4 +1,4 @@
-@et1 @javascript
+@dev @et1 @javascript
 Feature:
   As a claimant
   I would like to select whether I submit my application in Welsh or English

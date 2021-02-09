@@ -1,4 +1,4 @@
-@javascript
+@javascript @dev
 Feature: Diversity monitoring questionnaire
   As a Claimant
   I want, after submitting an online ET1 Claim form, to be able to participate in the online Diversity questionnaire

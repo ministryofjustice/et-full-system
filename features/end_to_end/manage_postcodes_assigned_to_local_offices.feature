@@ -1,5 +1,5 @@
 @e2e
-@javascript @smoke
+@javascript @smoke @dev
 Feature: Manage postcodes assigned to local offices
   As a Super or Admin user
   I want to manage the postcodes assigned to local offices
