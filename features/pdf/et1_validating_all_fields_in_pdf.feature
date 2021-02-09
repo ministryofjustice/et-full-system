@@ -1,5 +1,5 @@
 @e2e
-@javascript
+@javascript @test
 Feature:
   As a PDF
   I want to ensure that all fields are displaying correctly in PDF

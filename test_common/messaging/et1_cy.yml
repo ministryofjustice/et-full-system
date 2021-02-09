@@ -54,6 +54,7 @@ cy:
         contact_preference:
           email: E-bost
           post: Post
+          dx_number: Rhif DX
 
       respondent:
         no_acas_number_reason:
@@ -570,7 +571,7 @@ cy:
       how_to_save: "Gwnewch hyn drwy ddewis File > Save as / Export To > Format: Comma Separated Values (.csv)"
       no_spaces: "Peidiwch â chynnwys bylchau yn enw'r ffeil"
       step_three_header: Cam 3
-      upload_limit: "Uchafswm maint ffeil: 2MB"
+      upload_limit: "Uchafswm maint ffeil: 5MB"
 
     representative:
       header: "Manylion y cynrychiolydd"
@@ -945,11 +946,11 @@ cy:
       last_name:
         field_name: undefined_2
       dob_day:
-        field_name: undefined_3
+        field_name: Text10
       dob_month:
-        field_name: undefined_4
+        field_name: Text11
       dob_year:
-        field_name: undefined_5
+        field_name: Text12
       gender:
         field_name:
           - Check Box6
@@ -1095,10 +1096,10 @@ cy:
         telephone_number:
           field_name: undefined_7
       additional_respondents:
-        field_name: 2.4 tick box
+        field_name: Check Box40
         select_values:
           false: 'Off'
-          true: 'yes'
+          true: 'Yes'
       respondent2:
         name:
           field_name: undefined_8
@@ -1174,12 +1175,12 @@ cy:
           - 'Off'
           - 'Off'
         select_values:
-          false:
-            - 'Off'
-            - 'Off'
           true:
             - 'Yes'
             - 'Off'
+          false:
+            - 'Off'
+            - 'Yes'
       other_claimants:
         field_name: ad gyda
     not_your_employer:
@@ -1202,8 +1203,8 @@ cy:
             - 'Yes'
             - 'Off'
         unselected_value:
-          - 'Off'
-          - 'Off'
+          - null
+          - null
       ended_date:
         field_name: Os daeth eich swydd i ben pa bryd
       ending_date:
@@ -1255,15 +1256,15 @@ cy:
             - 'Yes'
           true:
             - 'Yes'
-            - 'off'
+            - null
         unselected_value:
           - 'Off'
           - 'Off'
       notice_period:
         weeks:
-          field_name: wythnos
+          field_name: Text41
         months:
-          field_name: mis
+          field_name: Text42
       employers_pension_scheme:
         field_name:
           - Check Box42
