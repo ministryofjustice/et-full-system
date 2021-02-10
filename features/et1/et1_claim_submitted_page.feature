@@ -22,12 +22,12 @@ Feature:
     Given a group claimaints submitting an ET1 form by uploading CSV and Rich Text Format documents
     When the completed form is submitted
     Then I should see valid claim submitted page
-
+@test
   Scenario: Submission details include CSV files
     Given 7 employees making a claim by uploading CSV file
     When the completed form is submitted
     Then I should see valid claim submitted page
-
+@test
   Scenario: Submission details include RTF files
     Given an employee making a claim by uploading a Rich Text Format document
     When the completed form is submitted
