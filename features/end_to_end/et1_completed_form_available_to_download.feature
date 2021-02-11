@@ -14,7 +14,7 @@ Feature:
     Given an employee making a claim
     When the completed form is submitted
     Then I can download the form and validate in TXT format
-@test
+
   Scenario: RTF format
     Given an employee making a claim by uploading a Rich Text Format document
     When the completed form is submitted
@@ -34,12 +34,12 @@ Feature:
     Given an employee making a claim against '3' respondents
     When the completed form is submitted
     Then I can download the form and validate in PDF format
-@test
+
   Scenario: Validate TXT file when uploading CSV data
     Given 7 employees making a claim by uploading CSV file
     When the completed form is submitted
     Then I can download the uploaded CSV data and validate in TXT format
-@test
+
   Scenario: Validate CSV file when uploading CSV data
     Given 7 employees making a claim by uploading CSV file
     When the completed form is submitted

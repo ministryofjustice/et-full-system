@@ -243,7 +243,7 @@ module EtFullSystem
           expect(street_question).to have_error_blank
           expect(town_question).to have_error_blank
           expect(postcode_question).to have_error_blank
-          expect(organisation_more_than_one_site_question).to have_inclusion
+          #expect(organisation_more_than_one_site_question).to have_inclusion
         end
       end
     end

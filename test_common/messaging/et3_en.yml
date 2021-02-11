@@ -67,7 +67,7 @@ en:
       disagree_conciliation_reason:
         label: Why do you disagree with the claimant? (optional)
     agree_with_employment_dates:
-      label: Are the dates of employment given by the claimant correct?
+      label: Are the dates of employment given by the claimant correct? (optional)
       'yes':
         label: 'Yes'
       'no':
