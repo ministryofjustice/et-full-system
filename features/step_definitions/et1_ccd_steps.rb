@@ -56,7 +56,7 @@ end
 
 Given("an employee submitting mandatory respresentative fields") do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
-  @representative = FactoryBot.create_list(:representative, 1, :et1_information, organisation_name: '', telephone_number: '', alternative_telephone_number: '', email_address: '', dx_number: '')
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information, organisation_name: '', telephone_number: '', alternative_telephone_number: '', email_address: 'anonymous@example.com', dx_number: '')
   @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'M1 1AQ', expected_office: '24')
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)

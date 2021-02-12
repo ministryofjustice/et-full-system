@@ -48,7 +48,7 @@ Feature:
   Scenario: Making claim against 3 employers
     Given an employee making a claim against 3 employers
     When the completed form is submitted
-    Then I can download the form and validate the TXT file contained  3 employers details
+    Then I can download the form and validate the TXT file contained 3 employers details
 
   Scenario: Ignore special characters in first and last name when generating filenames
     When a claimant submitted an ET1 with special characters in the first and last name 
