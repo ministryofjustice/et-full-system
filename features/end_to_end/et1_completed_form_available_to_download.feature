@@ -1,5 +1,5 @@
 @e2e
-@javascript @smoke
+@javascript @smoke @test
 Feature:
   As an ATOS admin
   I want to be able to download completed Employment Tribunal forms

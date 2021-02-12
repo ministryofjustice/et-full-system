@@ -58,7 +58,7 @@ module EtFullSystem
                 expect(dx_number).to have_answer(text: with_not_entered(representative.dx_number))
                 expect(mobile).to have_answer(text: with_not_entered(representative.alternative_telephone_number))
                 expect(phone).to have_answer(text: with_not_entered(representative.telephone_number))
-                expect(preferred_contact).to have_answer(text: with_not_entered(nil)) # ET1 outputs not entered always ! (data not collected)
+                expect(preferred_contact).to have_answer(text: with_not_entered(factory_translate representative.representative_contact_preference))
                 expect(organisation_name).to have_answer(text: with_not_entered(representative.organisation_name))
                 expect(self).to have_no_representative
               end

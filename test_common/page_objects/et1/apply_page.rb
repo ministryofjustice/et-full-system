@@ -40,6 +40,7 @@ module EtFullSystem
 
         def switch_to_welsh
           feedback_notice.welsh_link.click
+          page.scroll_to(start_a_claim_button, align: :bottom)
         rescue Capybara::ElementNotFound => ex
           raise ex unless feedback_notice.has_english_link?
         end
