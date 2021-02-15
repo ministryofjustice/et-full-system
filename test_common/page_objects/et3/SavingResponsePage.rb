@@ -6,45 +6,33 @@ module EtFullSystem
         include RSpec::Matchers
         #page and main header
         section :main_header, '.main-header' do
-          element :page_header, :page_title, 'claims.application_number.header'
+          element :page_header, :page_title, 'saving_response.header'
         end
         section :main_content, '#content .main-section .main-content' do
-          element :claim_number_text, :paragraph, 'claims.application_number.application_number'
-          element :claims_number, '.callout-reference .number'
-          element :claims_intro_text, :paragraph, 'claims.application_number.intro_text'
+          element :claim_number_text, :paragraph, 'saving_response.application_number'
+          element :claims_number, '.panel-border-narrow .number'
+          element :claims_intro_text, :paragraph, 'saving_response.intro_text'
           #email address
-          section :email_label, :question_labelled, 'simple_form.labels.application_number.email_address_return', exact: false do
+          section :email_label, :question_labelled, 'saving_response.email_label', exact: false do
             element :field, :css, "input"
             def set(*args); field.set(*args); end
           end
           #create your memorable word
-          section :memorable_word_label, :question_labelled, 'simple_form.labels.application_number.password', exact: false do
+          section :memorable_word_label, :question_labelled, 'saving_response.memorable_word_label', exact: false do
             element :field, :css, "input"
             def set(*args); field.set(*args); end
           end
           element :example_word, :paragraph, 'simple_form.hints.application_number.password'
           #print this page
-          element :print_link, :link_named, 'user_sessions.reminder.print_link'
-          element :print_copy, :paragraph, 'claims.application_number.print_copy', exact: false
+          element :print_link, :link_named, 'saving_response.print_link'
+          element :print_copy, :paragraph, 'saving_response.print_copy', exact: false
           #save and continue button
           element :save_and_continue, :submit_text, 'helpers.submit.update'
-        end
-
-        def switch_language
-          feedback_notice.language.click
         end
 
         def save_and_continue
           page.scroll_to(main_content.save_and_continue, align: :bottom)
           main_content.save_and_continue.click
-        end
-
-        def switch_to_welsh
-          feedback_notice.welsh_link.click
-        end
-
-        def switch_to_english
-          feedback_notice.english_link.click
         end
 
         def set

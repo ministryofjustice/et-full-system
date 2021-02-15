@@ -406,6 +406,15 @@ en:
     confirmation_of_supplied_details:
       email_receipt: For example, name@address.com
 
+
+  saving_response:
+    header: Saving your response
+    application_number: Your save and return number
+    intro_text: You can save your response and return to it at any time. You will need your save and return number (above), and memorable word, which you create below. If you enter your email address you will be able to reset your memorable word if you forget it.
+    email_label: Enter your email address to receive your save and return number (optional)
+    print_link: Print this page
+    print_copy: to have a copy of your save and return number for reference
+    memorable_word_label: Create your memorable word
   respondents_details:
     header: "Respondent's Details"
   claimants_details:
