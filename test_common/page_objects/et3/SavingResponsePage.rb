@@ -9,8 +9,8 @@ module EtFullSystem
           element :page_header, :page_title, 'saving_response.header'
         end
         section :main_content, '#content .main-section .main-content' do
-          element :claim_number_text, :paragraph, 'saving_response.application_number'
-          element :claims_number, '.panel-border-narrow .number'
+          element :response_number_text, :paragraph, 'saving_response.application_number'
+          element :response_number, '.reference-number'
           element :claims_intro_text, :paragraph, 'saving_response.intro_text'
           #email address
           section :email_label, :question_labelled, 'saving_response.email_label', exact: false do
@@ -37,7 +37,7 @@ module EtFullSystem
 
         def set
           main_content.email_label.set("example@example.com")
-          main_content.memorable_word_label.set("test")
+          main_content.memorable_word_label.set("password")
         end
       end
     end

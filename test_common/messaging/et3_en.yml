@@ -415,6 +415,9 @@ en:
     print_link: Print this page
     print_copy: to have a copy of your save and return number for reference
     memorable_word_label: Create your memorable word
+  return_response:
+    header: Return to your response
+    find: Find my response
   respondents_details:
     header: "Respondent's Details"
   claimants_details:

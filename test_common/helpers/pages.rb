@@ -131,6 +131,10 @@ module EtFullSystem
         EtFullSystem::Test::Et3::FormSubmissionPage.new
       end
 
+      def return_to_your_claim_page
+        EtFullSystem::Test::Et3::ReturnPage.new
+      end
+
       def et1_guide_page
         EtFullSystem::Test::Et1::GuidePage.new
       end

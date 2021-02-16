@@ -41,6 +41,7 @@ module EtFullSystem
         end
         # Start now
         element :start_button, :css, ".button.button-start"
+        element :return_button, :css, ".button-return"
         def next
           start_button.click
         end
