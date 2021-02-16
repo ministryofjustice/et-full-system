@@ -36,7 +36,7 @@ module EtFullSystem
         end
 
         def set
-          main_content.email_label.set("example@example.com")
+          main_content.email_label.set("anonymous@example.com")
           main_content.memorable_word_label.set("password")
         end
       end

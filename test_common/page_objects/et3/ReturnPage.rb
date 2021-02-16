@@ -34,55 +34,11 @@ module EtFullSystem
           main_content.find_my_response.click
         end
 
-        def start_a_new_response
-          main_content.new_response.click
-        end
-
-        def reset_memorable_word
-          main_content.reset_memorable_word_element.click
-          ResetMemorableWordEmailInstructionsPage.new
-        end
-
-        def assert_memorable_word_email_sent
-          flash_heading.memorable_word_email_sent_flash_element
-          self
-        end
-
-        def assert_memorable_word_updated
-          flash_heading.memorable_word_updated_flash_element
-          self
-        end
-
-        def memorable_word_valid?
-          expect(flash_heading).to have_invalid
-        end
-
-        def has_correct_translation?
-          #header
-          expect(self).to have_header
-          expect(main_content).to have_sub_header
-          #enter your details below
-          expect(main_content).to have_claim_number_label
-          expect(main_content).to have_claim_number_hint
-          expect(main_content).to have_memorable_word_label
-          #find my claim
-          expect(main_content).to have_find_my_claim
-          #don't have these details
-          expect(main_content).to have_form_hint
-        end
-
         def set(user)
           data = user[0].to_h
           main_content.tap do |s|
             set_field(s, :response_number, data)
             set_field(s, :memorable_word, data)
-          end
-        end
-
-        def set_user(user)
-          data = user[0].to_h
-          main_content.tap do |s|
-            set_field(s, :claim_number, data)
           end
         end
 
