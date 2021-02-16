@@ -46,7 +46,6 @@ When(/^a respondent completes an ET3 form$/) do
   @representative = FactoryBot.create_list(:representative, 1, :et3_information)
 
   start_a_new_et3_response
-  et3_answer_saving_response
   et3_answer_respondents_details
   et3_answer_claimants_details
   et3_answer_earnings_and_benefits

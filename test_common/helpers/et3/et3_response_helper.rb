@@ -4,6 +4,7 @@ module EtFullSystem
       def start_a_new_et3_response
         load_et3_start_page
         start_page.next
+        et3_answer_saving_response
       end
 
       def load_et3_start_page(in_language: ::EtFullSystem::Test::Messaging.instance.current_locale)

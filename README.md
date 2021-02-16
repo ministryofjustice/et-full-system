@@ -516,7 +516,7 @@ sudo easy_install pip
 
 ```
 
-For Linux (debian based - e.g. ubuntu)ƒ
+For Linux (debian based - e.g. ubuntu)
 
 ```
 apt-get install python python-dev python-pip

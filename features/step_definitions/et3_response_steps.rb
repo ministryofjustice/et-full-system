@@ -1,6 +1,5 @@
 When(/^the completed Employment Tribunal response form is submitted$/) do
   start_a_new_et3_response
-  et3_answer_saving_response
   et3_answer_respondents_details
   et3_answer_claimants_details
   et3_answer_earnings_and_benefits
@@ -20,7 +19,6 @@ When(/^an employer responds to mandatory questions$/) do
   @representative = FactoryBot.create_list(:representative, 1, :et3_no_representative)
 
   start_a_new_et3_response
-  et3_answer_saving_response
   et3_answer_respondents_details
 
   user = @claimant[0]
@@ -44,7 +42,6 @@ When("an employer responds to a claim with special characters in the company's n
   @representative = FactoryBot.create_list(:representative, 1, :et3_no_representative)
 
   start_a_new_et3_response
-  et3_answer_saving_response
   et3_answer_respondents_details
 
   user = @claimant[0]
@@ -68,7 +65,6 @@ When(/^a DUMMY USER responds to a claim$/) do
   @representative = FactoryBot.create_list(:representative, 1, :et3_no_representative)
 
   start_a_new_et3_response
-  et3_answer_saving_response
   et3_answer_respondents_details
 
   user = @claimant[0]

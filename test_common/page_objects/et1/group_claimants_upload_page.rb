@@ -98,7 +98,7 @@ module EtFullSystem
           expect(main_content.group_claims).to have_no_spaces
           expect(main_content.group_claims).to have_step_3
           expect(main_content.group_claims).to have_file_spreadsheet_labelled
-          #expect(main_content.group_claims).to have_upload_limit
+          expect(main_content.group_claims).to have_upload_limit
           #save and continue
           expect(main_content).to have_save_and_continue_button
           #Support links

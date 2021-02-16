@@ -91,7 +91,6 @@ module EtFullSystem
           end
           section :disagree_employment, :question_labelled, 'questions.agree_with_employment_dates.disagree_employment.label', exact: false do
             element :field, :css, 'textarea'
-            element :error_blank, :exact_error_text, 'errors.claimants_details.disagree_dates', exact: false
             def set(*args); field.set(*args); end
           end
           element :error_blank, :exact_error_text, 'errors.messages.blank', exact: false

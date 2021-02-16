@@ -1,8 +1,9 @@
 Given("I'm a return respondent") do
-  start_a_new_et3_response
+  load_et3_start_page
+  start_page.next
   @response_number = saving_response_page.main_content.response_number.text
-  @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers, :upload_additional_information, response_number: @response_number)
   et3_answer_saving_response
+  @respondent = FactoryBot.create_list(:et3_respondent, 1, :et3_respondent_answers, :upload_additional_information, response_number: @response_number)
   @page_left_off = current_url
   page.reset!
   load_et3_start_page
