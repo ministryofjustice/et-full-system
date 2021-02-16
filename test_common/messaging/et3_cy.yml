@@ -161,7 +161,7 @@ cy:
         label: "Dywedwch wrthym y ffeithiau rydych chi'n dibynnu arnyn nhw i amddiffyn yr hawliad."
     # Your Representatives Page
     have_representative:
-      title: "A oes gennych chi gynrychiolydd?"
+      title: "Oes gennych chi gynrychiolydd?"
       label: "Dyma rywun sydd wedi cytuno i weithredu ar eich rhan."
       'yes':
         label: Oes
@@ -483,7 +483,7 @@ cy:
           - Check Box5
           - Check Box6
         select_values:
-          email:
+          e-bost:
             - 'Yes'
             - 'Off'
             - 'Off'
@@ -749,7 +749,7 @@ cy:
           - Check Box35
           - Check Box34
         select_values:
-          email:
+          e-bost:
             - 'Yes'
             - 'Off'
             - 'Off'

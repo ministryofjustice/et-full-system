@@ -27,7 +27,6 @@ module EtFullSystem
               multi_site_gb: respondent[:organisation_more_than_one_site] == 'Yes',
               employment_at_site_number: respondent[:employment_at_site_number].to_s
             }
-            print(mapped_field_values.to_s + " : " + expected_values.to_s + "\n")
             expect(mapped_field_values).to match(expected_values)
           end
 
