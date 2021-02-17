@@ -27,10 +27,6 @@ module EtFullSystem
               multi_site_gb: respondent[:organisation_more_than_one_site] == 'Yes',
               employment_at_site_number: respondent[:employment_at_site_number].to_s
             }
-            # @TODO Review this conditional after march 2019 - the welsh pdf should have the contact preference field added
-            if locale == :cy
-              expected_values.delete(:contact_preference)
-            end
             expect(mapped_field_values).to match(expected_values)
           end
 

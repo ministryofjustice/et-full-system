@@ -13,7 +13,7 @@ When(/^I successfully submit my response$/) do
 end
 
 Then(/^I should be taken to your representative page$/) do
-  expect(your_representative_page.main_header).to have_header
+  expect(your_representative_page).to have_header
 end
 
 When(/^I try to continue without providing a response to claim question$/) do

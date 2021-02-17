@@ -10,8 +10,9 @@ module EtFullSystem
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
+        element :header, :content_header, 'employer_contract_claim.header'
         section :main_header, '.content-header' do
-          element :header, :content_header, 'employer_contract_claim.header'
+
         end
         element :error_header, :error_titled, 'errors.header', exact: true
         section :make_employer_contract_claim_question, :single_choice_option, 'questions.make_employer_contract_claim.label', exact: true do

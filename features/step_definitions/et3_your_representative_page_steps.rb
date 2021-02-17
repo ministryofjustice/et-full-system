@@ -7,7 +7,7 @@ Given(/^I am on the ET3 your representative page$/) do
   et3_answer_claimants_details
   et3_answer_earnings_and_benefits
   et3_answer_defend_claim_question
-  expect(your_representative_page.main_header).to have_header
+  expect(your_representative_page).to have_header
 end
 
 When(/^I successfully submit whether I have a representative$/) do
@@ -19,5 +19,5 @@ When(/^I click on next without providing whether I have a representative$/) do
 end
 
 Then(/^I should be taken to disability page$/) do
-  expect(disability_page.main_header).to have_header
+  expect(disability_page).to have_header
 end

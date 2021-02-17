@@ -11,6 +11,7 @@ FactoryBot.define do
     postcode {"wc1 1aa"}
     organisation_more_than_one_site {:"questions.organisation_more_than_one_site.no.label"}
     allow_video_attendance { :"questions.allow_video_attendance.yes.label" }
+    memorable_word { 'password' }
   end
 
   factory :et3_dummy_data, class: OpenStruct do

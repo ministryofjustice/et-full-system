@@ -10,7 +10,7 @@ Given(/^I am on the ET3 additional information page$/) do
   et3_answer_representative
   et3_answer_disability_question
   et3_employers_contract_claim
-  expect(additional_information_page.main_header).to have_header
+  expect(additional_information_page).to have_header
 end
 
 When(/^I successfully upload my file with additional information$/) do
@@ -26,5 +26,5 @@ Then(/^I should see my file has been added$/) do
 end
 
 Then(/^I should be taken to the confirmation of supplied details page$/) do
-  expect(confirmation_of_supplied_details_page.main_header).to have_header
+  expect(confirmation_of_supplied_details_page).to have_header
 end

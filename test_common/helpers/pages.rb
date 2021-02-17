@@ -90,6 +90,10 @@ module EtFullSystem
         EtFullSystem::Test::Et3::ClaimantsDetailsPage.new
       end
 
+      def saving_response_page
+        EtFullSystem::Test::Et3::SavingResponsePage.new
+      end
+
       def earnings_and_benefits_page
         EtFullSystem::Test::Et3::EarningsAndBenefitsPage.new
       end
@@ -125,6 +129,10 @@ module EtFullSystem
 
       def form_submission_page
         EtFullSystem::Test::Et3::FormSubmissionPage.new
+      end
+
+      def return_to_your_claim_page
+        EtFullSystem::Test::Et3::ReturnPage.new
       end
 
       def et1_guide_page

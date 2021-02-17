@@ -10,8 +10,9 @@ module EtFullSystem
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
+        element :header, :content_header, 'disability.header'
         section :main_header, '.content-header' do
-          element :header, :content_header, 'disability.header'
+
         end
         section :error_summary, '.error-summary' do
           element :error_heading, :main_header, 'errors.header'

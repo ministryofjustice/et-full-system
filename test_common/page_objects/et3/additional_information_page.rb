@@ -13,8 +13,9 @@ module EtFullSystem
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
+        element :header, :content_header, "additional_information.header"
         section :main_header, '.content-header' do
-          element :header, :content_header, "additional_information.header"
+
         end
         element :error_header, :error_titled, 'errors.header', exact: true
         section :upload_additional_information_question, :css, 'form.dropzone' do

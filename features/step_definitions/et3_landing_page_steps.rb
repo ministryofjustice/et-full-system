@@ -8,6 +8,7 @@ end
 
 When(/^I click on the begin this form button$/) do
   start_page.next
+  et3_answer_saving_response
 end
 
 Then(/^I should be taken to the respondents details page$/) do
