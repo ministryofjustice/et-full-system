@@ -8,15 +8,18 @@ module EtFullSystem
         section :main_header, '.main-header' do
           element :page_header, :page_title, 'claims.employment.header', exact: false
         end
-        section :main_content, '#content .main-section .main-content' do
+        section :main_content, '#main-content' do
+          include EtTestHelpers::Section
           section :error_message, '#error-summary' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
             element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
           end
           #Your employment details
           element :your_employment_details_header, :legend_header, 'claims.employment.situation_legend'
-          section :your_employment_details, '.employment_was_employed' do
-            #Have you ever been employed by the person or organisation that you’re making this claim against? (optional)
+          # @!method your_employment_details
+          #   A govuk radio button component for your_employment_details question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :your_employment_details, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.employment.was_employed' do
             element :employment_intro, :form_labelled, 'simple_form.labels.employment.was_employed'
             include ::EtFullSystem::Test::I18n
             element :yes, :form_labelled, 'claims.employment.yes' do
@@ -27,13 +30,13 @@ module EtFullSystem
               element :selector, :css, 'input[type="radio"]'
               def set(*args); selector.set(*args); end
             end
-            def set(value)
-              choose(factory_translate(value), name: 'employment[was_employed]')
-            end
           end
           #What is your current work situation in relation to the employer you're making a claim against?
           element :current_work_situation_labelled, :legend_header, 'claims.employment.current_situation', exact: false
-          section :employment_current_situation, '.employment_current_situation' do
+          # @!method employment_current_situation
+          #   A govuk radio button component for employment_current_situation question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :employment_current_situation, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'claims.employment.current_situation' do
             element :error_current_situation, :error, 'activemodel.errors.models.employment.attributes.current_situation.blank'
             include ::EtFullSystem::Test::I18n
             element :still_employed, :form_labelled, 'simple_form.options.employment.current_situation.still_employed' do
@@ -48,43 +51,26 @@ module EtFullSystem
               element :selector, :css, 'input[type="radio"]'
               def set(*args); selector.set(*args); end
             end
-            def set(value)
-              choose(factory_translate(value), name: 'employment[current_situation]')
-            end
           end
           #Employment details
           element :employment_details_header, :legend_header, 'claims.employment.situation_legend'
-          #Job title (optional)
-          section :employment_job_title, '.employment_job_title' do
+
+          # @!method employment_job_title
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :employment_job_title, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.employment.job_title' do
             element :job_title, :form_labelled, 'simple_form.labels.employment.job_title'
             #The job you were doing at the time of the problem at work
             element :job_title_hint, :form_hint, 'simple_form.hints.employment.job_title'
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
           end
-          #Employment start date
-          section :employment_start_date, :legend_header, 'claims.employment.start_date', exact: false do
+
+          # @!method employment_start_date
+          #   A govuk date field component wrapping the inputs, label, hint etc.. for a date question
+          #   @return [EtTestHelpers::Components::GovUKDateField] The site prism section
+          section :employment_start_date, govuk_component(:date_field), :govuk_date_field, :'claims.employment.start_date' do
             element :invalid_employment_start_date, :error, 'activemodel.errors.models.employment.attributes.start_date.invalid'
             #For example, 22 04 2014 (if you don’t know the exact date then put your best estimate)
             element :employment_start_date_hint, :form_hint, 'simple_form.hints.employment.start_date'
-            section :day, :question_labelled, 'simple_form.labels.employment.start_date.day' do
-              element :field, :css, '#employment_start_date_day'
-              def set(*args); field.set(*args); end
-            end
-            section :month, :question_labelled, 'simple_form.labels.employment.start_date.month' do
-              element :field, :css, '#employment_start_date_month'
-              def set(*args); field.set(*args); end
-            end
-            section :year, :question_labelled, 'simple_form.labels.employment.start_date.year' do
-              element :field, :css, '#employment_start_date_year'
-              def set(*args); field.set(*args); end
-            end
-            def set(value)
-              (day_value, month_value, year_value) = value.split("/")
-              day.set(day_value)
-              month.set(month_value)
-              year.set(year_value)
-            end
           end
           #Notice period end date
           section :notice_period, :css, 'fieldset[data-show-array="notice_period"]' do
@@ -136,21 +122,18 @@ module EtFullSystem
               year.set(year_value)
             end
           end
-          #Did you work (or get paid for) a period of notice?
-          section :worked_notice_period_or_paid_in_lieu, :legend_header, 'claims.employment.worked_notice_period_or_paid_in_lieu' do
-            section :period_of_notice, '.options' do
-              include ::EtFullSystem::Test::I18n
-              element :yes, :form_labelled, 'claims.employment.yes' do
-                element :selector, :css, 'input[type="radio"]'
-                def set(*args); selector.set(*args); end
-              end
-              element :no, :form_labelled, 'claims.employment.no' do
-                element :selector, :css, 'input[type="radio"]'
-                def set(*args); selector.set(*args); end
-              end
-              def set(value)
-                choose(factory_translate(value), name: 'employment[worked_notice_period_or_paid_in_lieu]')
-              end
+          # @!method worked_notice_period_or_paid_in_lieu_question
+          #   A govuk radio button component for 'Did you work (or get paid for) a period of notice?' question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :worked_notice_period_or_paid_in_lieu, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'claims.employment.worked_notice_period_or_paid_in_lieu' do
+            include ::EtFullSystem::Test::I18n
+            element :yes, :form_labelled, 'claims.employment.yes' do
+              element :selector, :css, 'input[type="radio"]'
+              def set(*args); selector.set(*args); end
+            end
+            element :no, :form_labelled, 'claims.employment.no' do
+              element :selector, :css, 'input[type="radio"]'
+              def set(*args); selector.set(*args); end
             end
           end
           #For how many weeks or months did you get paid? (optional)
@@ -178,16 +161,18 @@ module EtFullSystem
               notice_pay.set(value)
             end
           end
-          #Average hours worked per week (optionl)
-          section :employment_average_hours_worked_per_week, '.employment_average_hours_worked_per_week' do
+
+          # @!method employment_average_hours_worked_per_week
+          #   A govuk text field component for the 'Average hours worked per week (optional)' question
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :employment_average_hours_worked_per_week, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.employment.average_hours_worked_per_week' do
             element :average_hours_worked_per_week, :form_labelled, 'simple_form.labels.employment.average_hours_worked_per_week'
             #Don’t include overtime
             element :overtime_hint, :form_hint, 'simple_form.hints.employment.average_hours_worked_per_week'
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
           end
           #Pay, pension and benefits
           element :pay_pension_benefits, :legend_header, 'claims.employment.pay_legend'
+
           #Pay before tax (optional)
           section :employment_gross_pay, '.employment_gross_pay' do
             element :gross_pay, :form_labelled, 'simple_form.labels.employment.gross_pay'
@@ -392,8 +377,8 @@ module EtFullSystem
           expect(main_content.employment_end_date).to have_year
           #Did you work (or get paid for) a period of notice?
           expect(main_content).to have_worked_notice_period_or_paid_in_lieu
-          expect(main_content.worked_notice_period_or_paid_in_lieu.period_of_notice).to have_yes
-          expect(main_content.worked_notice_period_or_paid_in_lieu.period_of_notice).to have_no
+          expect(main_content.worked_notice_period_or_paid_in_lieu).to have_yes
+          expect(main_content.worked_notice_period_or_paid_in_lieu).to have_no
           #For how many weeks or months did you get paid? (optional)
           expect(main_content.notice_period_value).to have_notice_pay_period_count
           expect(main_content.notice_period_value.notice_pay.employment_notice_pay_period_type).to have_weeks
@@ -461,11 +446,11 @@ module EtFullSystem
                 s.employment_end_date.set(data[:end_date])
               end
               if data[:paid_for_notice_period] == :"claims.employment.paid_for_notice_period.yes"
-                s.worked_notice_period_or_paid_in_lieu.period_of_notice.set(data[:paid_for_notice_period])
+                s.worked_notice_period_or_paid_in_lieu.set(data[:paid_for_notice_period])
                 s.notice_period_value.set(data[:notice_period])
                 s.notice_period_value.notice_pay.employment_notice_pay_period_type.set(data[:notice_period_type])
               elsif data[:paid_for_notice_period] == :"claims.employment.paid_for_notice_period.no"
-                s.worked_notice_period_or_paid_in_lieu.period_of_notice.set(data[:paid_for_notice_period])
+                s.worked_notice_period_or_paid_in_lieu.set(data[:paid_for_notice_period])
               end
               s.employment_average_hours_worked_per_week.set(data[:average_weekly_hours])
               s.employment_gross_pay.set(data[:pay_before_tax])

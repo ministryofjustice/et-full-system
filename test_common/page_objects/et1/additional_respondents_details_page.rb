@@ -9,6 +9,7 @@ module EtFullSystem
           element :page_header, :page_title, 'claims.additional_respondents.header', exact: false
         end
         section :main_content, '#main-content' do
+          include EtTestHelpers::Section
           section :error_message, '#error-summary' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
             element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
@@ -25,12 +26,10 @@ module EtFullSystem
             element :selector, :css, 'input[type="radio"]'
             def set(*args); selector.set(*args); end
           end
-          section :additional_respondents, '.additional_respondents_of_collection_type' do
-            include ::EtFullSystem::Test::I18n
-            def set(value)
-              choose(factory_translate(value), name: 'additional_respondents[of_collection_type]')
-            end
-          end
+          # @!method additional_respondents
+          #   A govuk radio button component for additional_respondents question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :additional_respondents, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'claims.additional_respondents.additional_respondents_legend'
 
           section :respondent_2, AdditionalRespondentSection, :group_claimants, "claims.additional_respondents.person", number: 2
           section :respondent_3, AdditionalRespondentSection, :group_claimants, "claims.additional_respondents.person", number: 3
