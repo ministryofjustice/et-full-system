@@ -1,4 +1,5 @@
 require 'site_prism'
+require 'et_test_helpers'
 require_relative 'capybara_selectors'
 require_relative 'sections'
 require_relative 'page_objects/base_page'
