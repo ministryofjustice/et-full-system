@@ -8,7 +8,8 @@ module EtFullSystem
         section :main_header, '.main-header' do
           element :page_header, :page_title, 'claims.additional_information.header', exact: false
         end
-        section :main_content, '#content .main-section .main-content' do
+        section :main_content, '#main-content' do
+          include EtTestHelpers::Section
           #Other important details
           section :other_important_details, :legend_header, 'claims.additional_information.legend' do
             #Do you want to provide additional information about your claim? (optional)
@@ -28,12 +29,13 @@ module EtFullSystem
               choose(factory_translate(value), name: 'additional_information[has_miscellaneous_information]')
             end
           end
-          
-          section :additional_information_miscellaneous_information, '.additional_information_miscellaneous_information' do
-            #Enter more detail about your claim. Limit is 2500 characters. (2500 characters remaining)
+
+          # Enter more detail about your claim.
+          # @!method additional_information_miscellaneous_information
+          #   A govuk text area component wrapping the input, label, hint etc.. for a text area
+          #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
+          section :additional_information_miscellaneous_information, govuk_component(:text_area), :govuk_text_area, :'simple_form.labels.additional_information.miscellaneous_information' do
             element :additonal_miscellaneous_information_hint, :form_hint, 'simple_form.hints.additional_information.miscellaneous_information', exact: false
-            element :field, :css, 'textarea'
-            def set(*args); field.set(*args); end
           end
           #Save and continue
           element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
