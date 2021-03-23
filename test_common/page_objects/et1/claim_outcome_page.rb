@@ -8,9 +8,11 @@ module EtFullSystem
         section :main_header, '.main-header' do
           element :page_header, :page_title, 'claim_confirmations.show.header', exact: false
         end
-        section :main_content, '#content .main-section .main-content' do
+        section :main_content, '#main-content' do
+          include EtTestHelpers::Section
           #Choose your preferred outcome(s)
           section :claim_outcome, :legend_header, 'claims.claim_outcome.claim_outcome' do
+            include EtTestHelpers::Section
             #What do you want if your claim is successful? (optional)
             element :desired_outcomes, :form_labelled, 'simple_form.labels.claim.desired_outcomes'
             #You can select more than one
@@ -36,14 +38,14 @@ module EtFullSystem
               def set(*args); selector.set(*args); end
             end
 
-            section :claim_outcome_other_outcome, '.claim_outcome_other_outcome' do
-              #What compensation or other outcome do you want? (optional)
-              element :other_outcome, :form_labelled, 'simple_form.labels.claim_outcome.other_outcome'
-              #If you’re claiming financial compensation, you can say how much you want and how you worked out the sum. 
+            # What compensation or other outcome do you want? (optional)
+            # @!method claim_outcome_other_outcome
+            #   A govuk text area component wrapping the input, label, hint etc.. for a text area
+            #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
+            section :claim_outcome_other_outcome, govuk_component(:text_area), :govuk_text_area, :'simple_form.labels.claim_outcome.other_outcome' do
+              #If you’re claiming financial compensation, you can say how much you want and how you worked out the sum.
               #You can change these details later, or leave this section blank if you don’t know
               element :other_outcome_hint, :form_hint, 'simple_form.hints.claim_outcome.other_outcome'
-              element :field, :css, 'textarea'
-              def set(*args); field.set(*args); end
             end
           end
           #Save and continue
@@ -79,7 +81,7 @@ module EtFullSystem
           expect(main_content.claim_outcome).to have_tribunal_recommendation
           expect(main_content.claim_outcome).to have_reinstated_employment_and_compensation
           expect(main_content.claim_outcome).to have_new_employment_and_compensation
-          expect(main_content.claim_outcome.claim_outcome_other_outcome).to have_other_outcome
+          expect(main_content.claim_outcome).to have_claim_outcome_other_outcome
           expect(main_content.claim_outcome.claim_outcome_other_outcome).to have_other_outcome_hint
           #Save and continue
           expect(main_content).to have_save_and_continue_button
