@@ -535,6 +535,14 @@ en:
       what_is_dx:
         detail: What is a DX number?
         summary: "DX is a private mail system used by organisations (eg legal firms)"
+      contact_preference:
+        label: Best way to send correspondence to your representative
+        options:
+          email: Email
+          post: Post
+          dx_number: DX number
+        errors:
+          blank: Say whether you’d like correspondence to be sent to the representative by post or email
 
     respondent:
       header: "Respondent’s details"

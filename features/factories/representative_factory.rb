@@ -82,4 +82,13 @@ FactoryBot.define do
     representative_fax {''}
     employer_contract_claim {''}
   end
+
+  trait :contact_by_post do
+    contact_preference { :"simple_form.options.representative.contact_preference.post" }
+  end
+
+  trait :contact_by_email do
+    contact_preference { :"simple_form.options.representative.contact_preference.email" }
+  end
+
 end

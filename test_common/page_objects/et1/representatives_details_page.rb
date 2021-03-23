@@ -9,6 +9,7 @@ module EtFullSystem
           element :page_header, :page_title, 'claims.representative.header', exact: false
         end
         section :main_content, '#main-content' do
+          include EtTestHelpers::Section
           section :error_message, '#error-summary' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
             element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
@@ -91,30 +92,18 @@ module EtFullSystem
             element :field, :css, 'input'
             def set(*args); field.set(*args); end
           end
-          section :representative_contact_preference, '.representative_contact_preference' do
-            include ::EtFullSystem::Test::I18n
-            section :email_preference, :form_labelled, 'simple_form.options.representative.contact_preference.email' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            section :post_preference, :form_labelled, 'simple_form.options.representative.contact_preference.post' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            section :dx_number, :form_labelled, 'simple_form.options.representative.contact_preference.dx_number' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            def set(value)
-              choose(factory_translate(value), name: 'representative[contact_preference]')
-            end
-          end
           element :invalid_email_address, :error, 'activemodel.errors.models.representative.attributes.email_address.invalid'
           element :blank_email_address, :error, 'activemodel.errors.models.representative.attributes.email_address.blank'
           section :email_address, :question_labelled, 'simple_form.labels.representative.email_address' do
             element :field, :css, 'input'
             def set(*args); field.set(*args); end
           end
+
+          # @!method representative_contact_preference
+          #   A govuk radio button component for contact_preference question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :representative_contact_preference, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'claims.representative.contact_preference.label'
+
           section :dx_number, :question_labelled, 'simple_form.labels.representative.dx_number' do
             element :field, :css, 'input'
             def set(*args); field.set(*args); end
@@ -169,6 +158,7 @@ module EtFullSystem
           expect(main_content).to have_post_code
           expect(main_content).to have_telephone_number
           expect(main_content).to have_alternative_telephone_number
+          expect(main_content).to have_contact_preference
           expect(main_content).to have_email_address
           expect(main_content).to have_dx_number
           #What is DX number
@@ -195,6 +185,7 @@ module EtFullSystem
           expect(main_content).to have_blank_locality
           expect(main_content).to have_blank_county
           expect(main_content).to have_blank_post_code
+          main_content.contact_preference.assert_error_message(t 'claims.representative.contact_preference.errors.blank')
         end
 
         def has_correct_error_message_for_invalid_uk_postcode?
