@@ -7,7 +7,7 @@ module EtFullSystem
         section :main_header, '.main-header' do
           element :page_header, :main_header, 'claim_reviews.show.header', exact: false
         end
-        section :main_content, '#content .main-section .main-content' do
+        section :main_content, '#main-content' do
           section :group_claim_section, SubmissionPageSections::GroupClaimSection, :et1_review_section_labelled, 'review.group_claim.title'
           section :additional_respondents_section, SubmissionPageSections::AdditionalRespondentsSection, :et1_review_section_labelled, 'review.additional_respondents.title'
           section :additional_information_section, SubmissionPageSections::AdditionalInformationSection, :et1_review_section_labelled, 'review.additional_information.title'
