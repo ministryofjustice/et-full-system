@@ -9,7 +9,8 @@ module EtFullSystem
         section :main_header, '.main-header' do
           element :page_header, :page_title, 'claims.claim_details.header', exact: false
         end
-        section :main_content, '#content .main-section .main-content' do
+        section :main_content, '#main-content' do
+          include EtTestHelpers::Section
           section :error_message, '#error-summary' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
             element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
@@ -40,12 +41,13 @@ module EtFullSystem
               end
             end
           end
-          #Limit is 2500 characters. (2500 characters remaining)
-          section :claim_details_claim_details, '.claim_details_claim_details' do
+
+          # @!method claim_details_claim_details
+          #   A govuk text area component wrapping the input, label, hint etc.. for a text area
+          #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
+          section :claim_details_claim_details, govuk_component(:text_area), :govuk_text_area, :'claims.claim_details.claim_details' do
             element :blank_claim_details_claim_details, :error, 'activemodel.errors.models.claim_details.attributes.claim_details.blank'
             element :claim_details_claim_details_hint, :form_hint, 'claims.claim_details.claim_details_hint_html'
-            element :field, :css, 'textarea'
-            def set(*args); field.set(*args); end
           end
           #Similar claims
           section :claim_details_other_known_claimants, :legend_header, 'claims.claim_details.similar_claims' do
@@ -66,13 +68,11 @@ module EtFullSystem
               choose(factory_translate(value), name: 'claim_details[other_known_claimants]')
             end
           end
-          #You can add the names of other people here. (optional)
-          section :other_known_claimant_names, '.claim_details_other_known_claimant_names' do
-            element :claim_details_other_known_claimant_names, :form_labelled, 'simple_form.labels.claim_details.other_known_claimant_names', exact: false
-            #Limit is 350 characters. (350 characters remaining)
+          # @!method other_known_claimant_names
+          #   A govuk text area component for the 'You can add the names of other people here. (optional)' question
+          #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
+          section :other_known_claimant_names, govuk_component(:text_area), :govuk_text_area, :'simple_form.labels.claim_details.other_known_claimant_names' do
             element :claim_details_other_known_claimant_names_hint, :form_hint, 'simple_form.hints.claim_details.other_known_claimants', exact: false
-            element :field, :css, 'textarea'
-            def set(*args); field.set(*args); end
           end
           #Save and continue
           element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
@@ -117,8 +117,8 @@ module EtFullSystem
           expect(main_content.claim_details_other_known_claimants).to have_yes
           expect(main_content.claim_details_other_known_claimants).to have_no
           #You can add the names of other people here. (optional)
-          expect(main_content.other_known_claimant_names).to have_claim_details_other_known_claimant_names
-          expect(main_content.other_known_claimant_names).to have_claim_details_other_known_claimant_names
+          expect(main_content).to have_other_known_claimant_names
+          expect(main_content.other_known_claimant_names).to have_claim_details_other_known_claimant_names_hint
           #Save and continue
           expect(main_content).to have_save_and_continue_button
           #Support
