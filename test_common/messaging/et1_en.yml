@@ -270,6 +270,8 @@ en:
       your_fee:
         applying_for_remission: Do you want to apply for help with fees?
         remission_claimant_count: How many in your group want to apply for help with fees?
+      additional_information:
+        miscellaneous_information: "Enter more detail about your claim."
 
 
     hints:
@@ -328,8 +330,6 @@ en:
       claim_outcome:
         desired_outcomes: You can select more than one
         other_outcome: "If you’re claiming financial compensation, you can say how much you want and how you worked out the sum. You can change these details later, or leave this section blank if you don’t know."
-      additional_information:
-        miscellaneous_information: "Enter more detail about your claim. Limit is 2500 characters. (2500 characters remaining)"
 
       user_session:
         new:

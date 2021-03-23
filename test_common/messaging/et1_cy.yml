@@ -311,6 +311,8 @@ cy:
       your_fee:
         applying_for_remission: "Ydych chi eisiau gwneud cais am help i dalu ffioedd?"
         remission_claimant_count: "Faint yn eich grŵp chi sydd eisiau gwneud cais am help i dalu ffioedd?"
+      additional_information:
+        miscellaneous_information: "Rhowch fwy o fanylion am eich hawliad."
 
     hints:
       application_number:
@@ -372,8 +374,6 @@ cy:
       claim_outcome:
         desired_outcomes: Gallwch ddewis mwy nag un
         other_outcome: "Os ydych chi'n hawlio iawndal ariannol, gallwch ddweud faint ydych chi eisiau a sut y gwnaethoch gyfrifo'r swm. Gallwch newid y manylion hyn hwyrach ymlaen, neu adael yr adran hon yn wag os nad ydych yn gwybod."
-      additional_information:
-        miscellaneous_information: "Rhowch fwy o fanylion am eich hawliad. Cewch ddefnyddio hyd at 2500 o nodau. (2500 o nodau yn weddill)"
 
       user_session:
         new:
