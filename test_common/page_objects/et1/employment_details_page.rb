@@ -172,86 +172,51 @@ module EtFullSystem
           end
           #Pay, pension and benefits
           element :pay_pension_benefits, :legend_header, 'claims.employment.pay_legend'
-
+          # @!method employment_pay_period_type
+          #   A govuk radio button component for pay_period_type question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :employment_pay_period_type, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'review.employment.questions.pay_period_type.label'
+          
           #Pay before tax (optional)
-          section :employment_gross_pay, '.employment_gross_pay' do
-            element :gross_pay, :form_labelled, 'simple_form.labels.employment.gross_pay'
+          # @!method employment_gross_pay
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :employment_gross_pay, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.employment.gross_pay' do
             #This is your gross pay, before tax and other deductions. You can find it on your payslip. Don’t include any overtime payments
             element :gross_pay_hint, :form_hint, 'simple_form.hints.employment.gross_pay'
-            section :gross_pay_count, '.prefixed-field.inline-fields' do
-              element :field, :css, 'input'
-              def set(*args); field.set(*args); end
-              section :employment_gross_pay_period_type, '.employment_gross_pay_period_type .options' do
-                include ::EtFullSystem::Test::I18n
-                element :weekly, :form_labelled, 'simple_form.options.employment.gross_pay_period_type.weekly' do
-                  element :selector, :css, 'input[type="radio"]'
-                  def set(*args); selector.set(*args); end
-                end
-                element :monthly, :form_labelled, 'simple_form.options.employment.gross_pay_period_type.monthly' do
-                  element :selector, :css, 'input[type="radio"]'
-                  def set(*args); selector.set(*args); end
-                end
-                def set(value)
-                  choose(factory_translate(value), name: "employment[gross_pay_period_type]")
-                end
-              end
-            end
-            def set(value)
-              gross_pay_count.set(value)
-            end
           end
-          #Pay after tax (optional)
-          section :employment_net_pay, '.employment_net_pay' do
-            element :net_pay, :form_labelled, 'simple_form.labels.employment.net_pay'
+
+
+          # @!method employment_net_pay
+          #   A govuk text field component for the 'Pay after tax (optional)' question
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :employment_net_pay, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.employment.net_pay' do
             #This is your net or take-home pay, after tax and other deductions. You can find it on your payslip. Include overtime, commission and bonuses
             element :net_pay_hint, :form_hint, 'simple_form.hints.employment.net_pay'
-            section :net_pay_count, '.prefixed-field.inline-fields' do
-              element :field, :css, 'input'
-              def set(*args); field.set(*args); end
-              section :employment_net_pay_period_type, '.employment_net_pay_period_type .options' do
-                include ::EtFullSystem::Test::I18n
-                element :weekly, :form_labelled, 'simple_form.options.employment.net_pay_period_type.weekly' do
-                  element :selector, :css, 'input[type="radio"]'
-                  def set(*args); selector.set(*args); end
-                end
-                element :monthly, :form_labelled, 'simple_form.options.employment.net_pay_period_type.monthly' do
-                  element :selector, :css, 'input[type="radio"]'
-                  def set(*args); selector.set(*args); end
-                end
-                def set(value)
-                  choose(factory_translate(value), name: "employment[net_pay_period_type]")
-                end
-              end
-            end
-            def set(value)
-              net_pay_count.set(value)
-            end
           end
-          #Are – or were – you a member of your employer’s pension scheme? (optional)
-          section :employment_enrolled_in_pension_scheme, '.employment_enrolled_in_pension_scheme' do
-            element :enrolled_in_pension_scheme, :form_labelled, 'simple_form.labels.employment.enrolled_in_pension_scheme'
-            section :pension_scheme, '.options' do
-              include ::EtFullSystem::Test::I18n
-              element :yes, :form_labelled, 'claims.employment.true' do
-                element :selector, :css, 'input[type="radio"]'
-                def set(*args); selector.set(*args); end
-              end
-              element :no, :form_labelled, 'claims.employment.false' do
-                element :selector, :css, 'input[type="radio"]'
-                def set(*args); selector.set(*args); end
-              end
-              def set(value)
-                choose(factory_translate(value), name: 'employment[enrolled_in_pension_scheme]')
-              end
+
+
+          # @!method employment_enrolled_in_pension_scheme
+          #   A govuk radio button component for 'Are – or were – you a member of your employer’s pension scheme? (optional)' question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :employment_enrolled_in_pension_scheme, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.employment.enrolled_in_pension_scheme' do
+            include ::EtFullSystem::Test::I18n
+            element :yes, :form_labelled, 'claims.employment.true' do
+              element :selector, :css, 'input[type="radio"]'
+              def set(*args); selector.set(*args); end
+            end
+            element :no, :form_labelled, 'claims.employment.false' do
+              element :selector, :css, 'input[type="radio"]'
+              def set(*args); selector.set(*args); end
             end
           end
           #Do – or did – you have any benefits, like a company car? (optional)
-          section :employment_benefit_details, '.employment_benefit_details' do
-            element :benefit_details, :form_labelled, 'simple_form.labels.employment.benefit_details'
+          # @!method employment_benefit_details
+          #   A govuk text area component wrapping the input, label, hint etc.. for a text area
+          #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
+          section :employment_benefit_details, govuk_component(:text_area), :govuk_text_area, :'simple_form.labels.employment.benefit_details' do
             #Details of benefit(s)
             element :benefit_details_hint, :form_hint, 'simple_form.hints.employment.benefit_details'
-            element :field, :css, 'textarea'
-            def set(*args); field.set(*args); end
           end
           #New Job
           section :notice_period_end_date, :legend_header, 'claims.employment.new_job_legend', exact: false do
@@ -388,22 +353,20 @@ module EtFullSystem
           expect(main_content.employment_average_hours_worked_per_week).to have_overtime_hint
           #Pay, pension and benefits
           expect(main_content).to have_pay_pension_benefits
-          #Pay before tax (optionl)
-          expect(main_content.employment_gross_pay).to have_gross_pay
+          # How often were you paid (optional)
+          expect(main_content).to have_employment_pay_period_type
+          #Pay before tax (optional)
+          expect(main_content).to have_employment_gross_pay
           expect(main_content.employment_gross_pay).to have_gross_pay_hint
-          expect(main_content.employment_gross_pay.gross_pay_count.employment_gross_pay_period_type).to have_weekly
-          expect(main_content.employment_gross_pay.gross_pay_count.employment_gross_pay_period_type).to have_monthly
           #Pay after tax (optional)
-          expect(main_content.employment_net_pay).to have_net_pay
+          expect(main_content).to have_employment_net_pay
           expect(main_content.employment_net_pay).to have_net_pay_hint
-          expect(main_content.employment_net_pay.net_pay_count.employment_net_pay_period_type).to have_weekly
-          expect(main_content.employment_net_pay.net_pay_count.employment_net_pay_period_type).to have_monthly
           #Are – or were – you a member of your employer’s pension scheme? (optional)
-          expect(main_content.employment_enrolled_in_pension_scheme).to have_enrolled_in_pension_scheme
-          expect(main_content.employment_enrolled_in_pension_scheme.pension_scheme).to have_yes
-          expect(main_content.employment_enrolled_in_pension_scheme.pension_scheme).to have_no
+          expect(main_content).to have_employment_enrolled_in_pension_scheme
+          expect(main_content.employment_enrolled_in_pension_scheme).to have_yes
+          expect(main_content.employment_enrolled_in_pension_scheme).to have_no
           #Do – or did – you have any benefits, like a company car? (optional)
-          expect(main_content.employment_benefit_details).to have_benefit_details
+          expect(main_content).to have_employment_benefit_details
           expect(main_content.employment_benefit_details).to have_benefit_details_hint
           #Save and continue
           expect(main_content).to have_save_and_continue_button
@@ -453,11 +416,10 @@ module EtFullSystem
                 s.worked_notice_period_or_paid_in_lieu.set(data[:paid_for_notice_period])
               end
               s.employment_average_hours_worked_per_week.set(data[:average_weekly_hours])
+              s.employment_pay_period_type.set(data[:pay_period_type])
               s.employment_gross_pay.set(data[:pay_before_tax])
-              s.employment_gross_pay.gross_pay_count.employment_gross_pay_period_type.set(data[:pay_before_tax_type])
               s.employment_net_pay.set(data[:pay_after_tax])
-              s.employment_net_pay.net_pay_count.employment_net_pay_period_type.set(data[:pay_after_tax_type])
-              s.employment_enrolled_in_pension_scheme.pension_scheme.set(data[:employers_pension_scheme])
+              s.employment_enrolled_in_pension_scheme.set(data[:employers_pension_scheme])
               s.employment_benefit_details.set(data[:benefits])
 
               if data[:new_job] == :"claims.employment.new_job.yes"

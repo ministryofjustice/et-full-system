@@ -73,10 +73,7 @@ en:
         notice_pay_period_type:
           weeks: Weeks
           months: Months
-        gross_pay_period_type:
-          weekly: Weekly
-          monthly: Monthly
-        net_pay_period_type:
+        pay_period_type:
           weekly: Weekly
           monthly: Monthly
         new_job_gross_pay_frequency:
@@ -1489,6 +1486,8 @@ en:
             "no": "No"
         end_date: 'End date'
         start_date: 'Start date'
+        pay_period_type:
+          label: 'How often were you paid (optional)'
         pay_before_tax: 'Pay before tax'
         pay_after_tax: 'Pay after tax'
         average_weekly_hours_worked: 'Average weekly hours worked'
