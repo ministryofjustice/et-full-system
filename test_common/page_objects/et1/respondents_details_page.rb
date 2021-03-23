@@ -9,6 +9,7 @@ module EtFullSystem
           element :page_header, :page_title, 'claims.respondent.header', exact: false
         end
         section :main_content, '#main-content' do
+          include EtTestHelpers::Section
           section :error_message, '#error-summary' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
             element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
@@ -54,53 +55,61 @@ module EtFullSystem
           end
           #Your work address
           element :work_address_header, :legend_header, 'claims.respondent.workaddress_legend'
-          section :same_address, :legend_header, 'simple_form.labels.respondent.worked_at_same_address' do
-            include ::EtFullSystem::Test::I18n
-            element :yes, :form_labelled, 'simple_form.labels.respondent.yes' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            element :no, :form_labelled, 'simple_form.labels.respondent.no' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            def set(value)
-              choose(factory_translate(value), name: 'respondent[worked_at_same_address]')
-            end
-          end
-          section :building_optional, :question_labelled, 'simple_form.labels.respondent.work_address_building' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          section :street_optional, :question_labelled, 'simple_form.labels.respondent.work_address_street' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          section :locality_optional, :question_labelled, 'simple_form.labels.respondent.work_address_locality' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          section :county_optional, :question_labelled, 'simple_form.labels.respondent.work_address_county' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          section :post_code_optional, :question_labelled, 'simple_form.labels.respondent.work_address_post_code' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          section :telephone_number_optional, :question_labelled, 'simple_form.labels.respondent.work_address_telephone_number' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          #Your work address
-          section :work_address, '#work_address_wrapper' do
+
+          # @!method work_address
+          #   A govuk fieldset component
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :work_address, govuk_component(:fieldset), :govuk_fieldset, :'claims.respondent.workaddress_legend' do
+            include EtTestHelpers::Section
             element :work_address_hint, :paragraph, 'claims.respondent.work_address'
             element :blank_building, :error, 'activemodel.errors.models.respondent.attributes.work_address_building.blank'
             element :blank_street, :error, 'activemodel.errors.models.respondent.attributes.work_address_street.blank'
             element :blank_locality, :error, 'activemodel.errors.models.respondent.attributes.work_address_locality.blank'
             element :county_hint, :paragraph, 'simple_form.hints.respondent.address_county', exact: false
             element :blank_post_code, :error, 'activemodel.errors.models.respondent.attributes.work_address_post_code.blank'
+
+            section :same_address, :legend_header, 'simple_form.labels.respondent.worked_at_same_address' do
+              include ::EtFullSystem::Test::I18n
+              element :yes, :form_labelled, 'simple_form.labels.respondent.yes' do
+                element :selector, :css, 'input[type="radio"]'
+                def set(*args); selector.set(*args); end
+              end
+              element :no, :form_labelled, 'simple_form.labels.respondent.no' do
+                element :selector, :css, 'input[type="radio"]'
+                def set(*args); selector.set(*args); end
+              end
+              def set(value)
+                choose(factory_translate(value), name: 'respondent[worked_at_same_address]')
+              end
+            end
+
+            section :building_optional, :question_labelled, 'simple_form.labels.respondent.work_address_building' do
+              element :field, :css, 'input'
+              def set(*args); field.set(*args); end
+            end
+            section :street_optional, :question_labelled, 'simple_form.labels.respondent.work_address_street' do
+              element :field, :css, 'input'
+              def set(*args); field.set(*args); end
+            end
+            section :locality_optional, :question_labelled, 'simple_form.labels.respondent.work_address_locality' do
+              element :field, :css, 'input'
+              def set(*args); field.set(*args); end
+            end
+            section :county_optional, :question_labelled, 'simple_form.labels.respondent.work_address_county' do
+              element :field, :css, 'input'
+              def set(*args); field.set(*args); end
+            end
+            section :post_code_optional, :question_labelled, 'simple_form.labels.respondent.work_address_post_code' do
+              element :field, :css, 'input'
+              def set(*args); field.set(*args); end
+            end
+
+            # @!method telephone_number_optional
+            #   A govuk phone field component representing the phone or mobile question
+            #   @return [EtTestHelpers::Components::GovUKPhoneField] The site prism section
+            section :telephone_number_optional, govuk_component(:phone_field), :govuk_phone_field, :'simple_form.labels.respondent.work_address_telephone_number'
           end
+
           #Acas early conciliation certificate number
           #element :acas_early_conciliation_header, :legend_header, 'claims.respondent.acas_legend'
           section :acas_certificate_number, :question_labelled, 'claims.respondent.acas_legend' do
@@ -250,21 +259,13 @@ module EtFullSystem
             set_field s, :telephone_number, data
           end
           if data.key?(:work_building)
-            main_content.same_address.no.click
-            main_content.building_optional.set(data[:work_building])
-            main_content.street_optional.set(data[:work_street])
-            main_content.locality_optional.set(data[:work_locality])
-            main_content.county_optional.set(data[:work_county])
-            main_content.post_code_optional.set(data[:work_post_code])
-            main_content.telephone_number_optional.set(data[:work_telephone_number])
-            main_content.work_address do |s|
-              #s.building.set(data[:work_building])
-              #s.street.set(data[:work_street])
-              #s.locality.set(data[:work_locality])
-              #s.county.set(data[:work_county])
-              #s.post_code.set(data[:work_post_code])
-              #s.telephone_number.set(data[:work_telephone_number])
-            end
+            main_content.work_address.same_address.no.click
+            main_content.work_address.building_optional.set(data[:work_building])
+            main_content.work_address.street_optional.set(data[:work_street])
+            main_content.work_address.locality_optional.set(data[:work_locality])
+            main_content.work_address.county_optional.set(data[:work_county])
+            main_content.work_address.post_code_optional.set(data[:work_post_code])
+            main_content.work_address.telephone_number_optional.set(data[:work_telephone_number])
           else
             main_content.same_address.yes.click
           end
