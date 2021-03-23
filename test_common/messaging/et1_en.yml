@@ -140,7 +140,7 @@ en:
       claimant:
         first_name: First name
         last_name: Last name
-        title: Title
+        title: Title (optional)
         date_of_birth:
           day: Day
           month: Month

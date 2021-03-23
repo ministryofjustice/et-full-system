@@ -9,8 +9,8 @@ group :test do
   gem 'rspec', '~> 3.7'
   gem 'capybara', '~> 3.10'
   gem 'site_prism', '~> 3.0'
-  gem 'i18n', '~> 0.8'
-  gem 'activesupport', '~> 5.2'
+  gem 'i18n', '~> 1.8'
+  gem 'activesupport', '~> 6.0'
   gem 'selenium-webdriver', '~> 3.141'
   gem 'webdrivers', '~> 4.0'
   gem 'capybara-screenshot', '~> 1.0'
@@ -30,6 +30,7 @@ group :test do
   gem 'settingslogic'
   gem 'mail'
   gem 'et_ccd_client', git: 'https://github.com/hmcts/et-ccd-client-ruby.git', tag: 'v0.1.51'
+  gem 'et_test_helpers', git: 'https://github.com/hmcts/et_test_helpers.git', tag: 'v0.1.9'
 end
 
 group :development, :test do
