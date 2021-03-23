@@ -9,6 +9,7 @@ module EtFullSystem
           element :page_header, :page_title, 'claims.claimant.header', exact: false
         end
         section :main_content, '#main-content' do
+          include EtTestHelpers::Section
           section :error_message, '#error-summary' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
             element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
@@ -131,12 +132,11 @@ module EtFullSystem
           end
           element :blank_post_code, :error, 'activemodel.errors.models.claimant.attributes.address_post_code.blank'
           element :invalid_post_code, :error, 'activemodel.errors.models.claimant.attributes.address_post_code.invalid'
-          section :country, :question_labelled, 'simple_form.labels.claimant.address_country' do
-            include ::EtFullSystem::Test::I18n
-            def set(value)
-              root_element.select(factory_translate(value))
-            end
-          end
+          # @!method country
+          #   A govuk radio button component for country question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :country, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.claimant.address_country'
+          
           element :error_address_county, :error, 'activemodel.errors.models.claimant.attributes.address_county.blank'
           section :telephone_number, :question_labelled, 'simple_form.labels.claimant.address_telephone_number' do
             element :field, :css, 'input'
