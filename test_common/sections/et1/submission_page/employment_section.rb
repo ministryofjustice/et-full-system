@@ -55,8 +55,8 @@ module EtFullSystem
               aggregate_failures 'validating employment section with employment populated' do
                 expect(pension_scheme).to have_answer(text: with_not_entered(convert_true_false employment.employers_pension_scheme))
                 expect(start_date).to have_answer(text: with_date_not_entered(employment.start_date))
-                expect(pay_before_tax).to have_answer(text: with_money_not_entered(employment.pay_before_tax, employment.pay_before_tax_type))
-                expect(pay_after_tax).to have_answer(text: with_money_not_entered(employment.pay_after_tax, employment.pay_after_tax_type))
+                expect(pay_before_tax).to have_answer(text: with_money_not_entered(employment.pay_before_tax, employment.pay_period_type))
+                expect(pay_after_tax).to have_answer(text: with_money_not_entered(employment.pay_after_tax, employment.pay_period_type))
                 expect(average_weekly_hours_worked).to have_answer(text: with_not_entered(employment.average_weekly_hours))
                 expect(current_situation).to have_answer(text: with_not_entered(factory_translate employment.current_work_situation))
                 expect(job).to have_answer(text: with_not_entered(employment.job_title))

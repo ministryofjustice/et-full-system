@@ -80,10 +80,7 @@ cy:
         notice_pay_period_type:
           weeks: Wythnosau
           months: Misoedd
-        gross_pay_period_type:
-          weekly: yn wythnosol
-          monthly: yn fisol
-        net_pay_period_type:
+        pay_period_type:
           weekly: yn wythnosol
           monthly: yn fisol
         new_job_gross_pay_frequency:
@@ -1674,6 +1671,8 @@ cy:
             "no": "Nac oes"
         end_date: 'Dyddiad gorffen'
         start_date: 'Dyddiad cychwyn'
+        pay_period_type:
+          label: 'Pa mor aml y cawsoch eich talu (dewisol)'
         pay_before_tax: 'Tâl cyn treth'
         pay_after_tax: 'Tâl ar ôl treth'
         average_weekly_hours_worked: 'Oriau gwaith bob wythnos ar gyfartaledd'
