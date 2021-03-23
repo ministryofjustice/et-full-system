@@ -8,8 +8,8 @@ module EtFullSystem
         section :main_header, '.main-header' do
           element :page_header, :page_title, 'claim_confirmations.show.header', exact: false
         end
-        section :main_content, '.main-section' do
-          section :callout_confirmation, '.callout-confirmation' do
+        section :main_content, '#main-content' do
+          section :callout_confirmation, '.govuk-panel--confirmation' do
             #Your claim number
             element :claim_number, :paragraph, 'claim_confirmations.show.callout_detail'
             element :answer, :css, '.number'
