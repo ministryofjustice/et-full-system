@@ -8,7 +8,8 @@ module EtFullSystem
         section :main_header, '.main-header' do
           element :page_header, :page_title, 'claims.claim_type.header', exact: false
         end
-        section :main_content, '#content .main-section .main-content' do
+        section :main_content, '#main-content' do
+          include EtTestHelpers::Section
           section :error_message, '#error-summary' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
             element :default_message, :paragraph, 'activemodel.errors.models.claim_type.attributes.blank', exact: false
@@ -115,11 +116,13 @@ module EtFullSystem
               def set(*args); selector.set(*args); end
             end
           end
+
           #Give a very short description of your claim; you will have the opportunity to add more detail on the next page
-          section :claim_type_other_claim_details, '#other_claim_details_wrapper' do
+          # @!method claim_type_other_claim_details
+          #   A govuk text area component wrapping the input, label, hint etc.. for a text area
+          #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
+          section :claim_type_other_claim_details, govuk_component(:text_area), :govuk_text_area, :'simple_form.labels.claim_type.other_claim_details' do
             element :other_claim_details_hint, :paragraph, 'simple_form.hints.claim_type.other_claim_details'
-            element :field, :css, 'textarea'
-            def set(*args); field.set(*args); end
           end
           #Whistleblowing claim
           section :whistleblowing_claim, :legend_header, 'claims.claim_type.whistleblowing' do
@@ -138,8 +141,12 @@ module EtFullSystem
               choose(factory_translate(value), name: 'claim_type[is_whistleblowing]')
             end
           end
-          #Do you want us to send a copy of your claim to the relevant person or body that deals with whistleblowing?
-          section :send_to_relevant_person, '.claim_type_send_claim_to_whistleblowing_entity' do 
+
+          # Do you want us to send a copy of your claim to the relevant person or body that deals with whistleblowing?
+          # @!method send_to_relevant_person
+          #   A govuk radio button component for send_to_relevant_person question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :send_to_relevant_person, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.claim_type.send_claim_to_whistleblowing_entity' do
             element :whistleblowing_entity_header, :form_labelled, 'simple_form.labels.claim_type.send_claim_to_whistleblowing_entity'
             include ::EtFullSystem::Test::I18n
             element :yes, :form_labelled, 'simple_form.yes' do
@@ -149,9 +156,6 @@ module EtFullSystem
             element :no, :form_labelled, 'simple_form.no' do
               element :selector, :css, 'input'
               def set(*args); selector.set(*args); end
-            end
-            def set(value)
-              choose(factory_translate(value), name: 'claim_type[send_claim_to_whistleblowing_entity]')
             end
           end
 
