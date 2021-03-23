@@ -1,6 +1,6 @@
 Given("an employee making a claim wanting to be contacted by {string}") do |string|
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data, :"contact_by_#{string}")
-  @representative = FactoryBot.create_list(:representative, 1, :et1_information)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information, :contact_by_post)
   @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'G1 2FF', expected_office: '41')
   @employment = FactoryBot.create(:employment, :still_employed)
   @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)

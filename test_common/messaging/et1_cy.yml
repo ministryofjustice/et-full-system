@@ -583,6 +583,15 @@ cy:
       what_is_dx:
         detail: "Beth yw rhif DX?"
         summary: System bost breifat yw DX a ddefnyddir gan sefydliadau (ee cwmnïau cyfreithiol)
+      contact_preference:
+        label: Y ffordd orau i anfon gohebiaeth at eich cynrychiolydd
+        options:
+          contact_preference:
+            email: E-bost
+            post: Post
+            dx_number: Rhif cyfnewid dogfennau
+          errors:
+            blank: Nodwch a hoffech i ohebiaeth gael ei hanfon at yr hawlydd trwy'r post, e-bost neu rif DX
 
     respondent:
       header: "Manylion yr atebydd"
