@@ -73,29 +73,14 @@ module EtFullSystem
             element :employment_start_date_hint, :form_hint, 'simple_form.hints.employment.start_date'
           end
           #Notice period end date
-          section :notice_period, :css, 'fieldset[data-show-array="notice_period"]' do
+          # @!method notice_period
+          #   A govuk date field component wrapping the inputs, label, hint etc.. for a date question
+          #   @return [EtTestHelpers::Components::GovUKDateField] The site prism section
+          section :notice_period, govuk_component(:date_field), :govuk_date_field, :'claims.employment.notice_period_end_date' do
             # section :notice_period_end_date, :legend_header, 'claims.employment.notice_period_end_date', exact: false do
               element :invalid_employment_notice_period_end_date, :error, 'activemodel.errors.models.employment.attributes.notice_period_end_date.invalid'
               #The date your employment ends. For example, 22 04 2014
               element :employment_notice_period_end_date_hint, :form_hint, 'simple_form.hints.employment.notice_period_end_date'
-              section :day, :question_labelled, 'simple_form.labels.employment.notice_period_end_date.day' do
-                element :field, :css, '#employment_notice_period_end_date_day'
-                def set(*args); field.set(*args); end
-              end
-              section :month, :question_labelled, 'simple_form.labels.employment.notice_period_end_date.month' do
-                element :field, :css, '#employment_notice_period_end_date_month'
-                def set(*args); field.set(*args); end
-              end
-              section :year, :question_labelled, 'simple_form.labels.employment.notice_period_end_date.year' do
-                element :field, :css, '#employment_notice_period_end_date_year'
-                def set(*args); field.set(*args); end
-              end
-              def set(value)
-                (day_value, month_value, year_value) = value.split("/")
-                day.set(day_value)
-                month.set(month_value)
-                year.set(year_value)
-              end
             # end
           end
           #Employment end date
