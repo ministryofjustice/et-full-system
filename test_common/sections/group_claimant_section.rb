@@ -1,6 +1,7 @@
 module EtFullSystem
   module Test
     class GroupClaimantSection < BaseSection
+      include EtTestHelpers::Section
       section :title, :question_labelled, 'simple_form.labels.claimant.title', exact: false do
         element :blank_title, :error, 'activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.title.inclusion', exact: false
         include ::EtFullSystem::Test::I18n
@@ -25,26 +26,10 @@ module EtFullSystem
       element :date_of_birth_hint, :paragraph, 'simple_form.hints.claimant.date_of_birth'
       element :blank_date_of_birth, :error, 'activemodel.errors.models.claimant.attributes.date_of_birth.too_young'
       element :invalid_date_of_birth, :error, 'activemodel.errors.models.claimant.attributes.date_of_birth.invalid'
-      section :date_of_birth, '.know-date-input' do
-        section :day, :question_labelled, 'simple_form.labels.claimant.date_of_birth.day' do
-          element :field, :css, 'input[type="tel"]'
-          def set(*args); field.set(*args); end
-        end
-        section :month, :question_labelled, 'simple_form.labels.claimant.date_of_birth.month' do
-          element :field, :css, 'input[type="tel"]'
-          def set(*args); field.set(*args); end
-        end
-        section :year, :question_labelled, 'simple_form.labels.claimant.date_of_birth.year' do
-          element :field, :css, 'input[type="tel"]'
-          def set(*args); field.set(*args); end
-        end
-        def set(value)
-          (day_value, month_value, year_value) = value.split("/")
-          day.set(day_value)
-          month.set(month_value)
-          year.set(year_value)
-        end
-      end
+      # @!method date_of_birth
+      #   A govuk date field component wrapping the inputs, label, hint etc.. for the date of birth question
+      #   @return [EtTestHelpers::Components::GovUKDateField] The site prism section
+      section :date_of_birth, govuk_component(:date_field), :govuk_date_field, :'claims.personal_details.date_of_birth'
       #Building number or name
       element :blank_building, :error, 'activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.address_building.blank'
       section :building, :question_labelled, 'simple_form.labels.claimant.address_building' do

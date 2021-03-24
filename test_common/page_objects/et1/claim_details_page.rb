@@ -32,12 +32,15 @@ module EtFullSystem
             #You can usually save a file as RTF by selecting File> Save As> Export To> Format: Rich Text Format
             element :claim_details_claim_details_rtf_hint, :form_hint, 'simple_form.hints.claim_details.claim_details_rtf', exact: false
           end
-          section :file_upload, 'input#claim_details_claim_details_rtf' do
+          # @!method file_upload
+          #   A govuk file field component wrapping the input, label, hint etc.. for the file_upload question
+          #   @return [EtTestHelpers::Components::GovUKFileField] The site prism section
+          section :file_upload, govuk_component(:file_field), :govuk_file_field, :'simple_form.labels.claim_details.claim_details_rtf' do
             include ::EtFullSystem::Test::UploadHelper
             def set(value)
               force_remote do
                 full_path = File.expand_path(File.join('test_common', 'fixtures', value))
-                root_element.set(full_path)
+                input.set(full_path)
               end
             end
           end

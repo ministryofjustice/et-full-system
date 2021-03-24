@@ -97,11 +97,11 @@ module EtFullSystem
               choose(factory_translate(value), name: 'claimant[has_special_needs]')
             end
           end
-          #describe the assistance you require
-          section :assistance, :form_labelled ,'simple_form.labels.claimant.special_needs' do
-            element :field, :css, 'textarea'
-            def set(*args); field.set(*args); end
-          end
+          # @!method assistance
+          #   A govuk text area component for the 'describe the assistance you require' question
+          #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
+          section :assistance, govuk_component(:text_area), :govuk_text_area, :'simple_form.labels.claimant.special_needs'
+
           #Claimant's contact details
           element :claimants_contact_details, :legend_header, 'claims.claimant.legend_contact_details', exact: false
           section :building, :question_labelled, 'simple_form.labels.claimant.address_building' do
@@ -311,9 +311,8 @@ module EtFullSystem
             set_field(s, :gender, data)
           end
 
-          if data[:has_special_needs] == :"simple_form.yes"
-            main_content.claimant_has_special_needs.set(data[:has_special_needs])
-          end
+          main_content.claimant_has_special_needs.set(data[:has_special_needs])
+          main_content.assistance.set(data[:special_needs]) if data[:has_special_needs].to_s.split('.').last == 'yes'
 
           main_content.claimant_contact_preference.set(data[:correspondence])
           main_content.allow_video_attendance.set(data[:allow_video_attendance])

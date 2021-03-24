@@ -942,6 +942,11 @@ cy:
             - 'Off'
             - 'Off'
             - 'Yes'
+          '':
+            - 'Off'
+            - 'Off'
+            - 'Off'
+            - 'Off'
         unselected_value:
           - 'Off'
           - 'Off'

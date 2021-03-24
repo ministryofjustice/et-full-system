@@ -145,12 +145,12 @@ module EtFullSystem
             element :selector, :css, 'input[type="radio"]'
             def set(*args); selector.set(*args); end
           end
-          section :respondent_no_acas_number_reason, '.respondent_no_acas_number_reason' do
+          # @!method respondent_no_acas_number_reason
+          #   A govuk radio button component for respondent_no_acas_number_reason question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :respondent_no_acas_number_reason, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'claims.respondent.no_acas_number_reason' do
             include ::EtFullSystem::Test::I18n
             element :blank_no_acas_number_reason, :error, 'activemodel.errors.models.respondent.attributes.no_acas_number_reason.blank'
-            def set(value)
-              choose(factory_translate(value), name: 'respondent[no_acas_number_reason]')
-            end
           end
           #Save and continue
           element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
@@ -210,10 +210,6 @@ module EtFullSystem
           #Why don't you have an Acas number?
           expect(main_content).to have_no_acas_number_reason
           expect(main_content).to have_no_acas_number_note_one
-          expect(main_content.respondent_no_acas_number_reason).to have_joint_claimant_has_acas_number
-          expect(main_content.respondent_no_acas_number_reason).to have_acas_has_no_jurisdiction
-          expect(main_content.respondent_no_acas_number_reason).to have_employer_contacted_acas
-          expect(main_content.respondent_no_acas_number_reason).to have_interim_relief
           #Save and continue
           expect(main_content).to have_save_and_continue_button
           #Support
@@ -267,22 +263,13 @@ module EtFullSystem
             main_content.work_address.post_code_optional.set(data[:work_post_code])
             main_content.work_address.telephone_number_optional.set(data[:work_telephone_number])
           else
-            main_content.same_address.yes.click
+            main_content.work_address.same_address.yes.click
           end
 
           main_content.acas_certificate_number.set(data[:acas_number]) if data.key?(:acas_number)
           if data.key?(:no_acas_number_reason)
             main_content.yes_no_acas_number.click
-            case factory_translate(data[:no_acas_number_reason])
-            when "Another person I’m making the claim with has an Acas early conciliation certificate number"
-              main_content.joint_claimant_has_acas_number.set(true)
-            when "Acas doesn’t have the power to conciliate on some or all of my claim"
-              main_content.acas_has_no_jurisdiction.set(true)
-            when "My employer has already been in touch with Acas"
-              main_content.employer_contacted_acas.set(true)
-            when "The claim consists only of a complaint of unfair dismissal which contains an application for interim relief."
-              main_content.interim_relief.selector.set(true)
-            end
+            main_content.respondent_no_acas_number_reason.set(data[:no_acas_number_reason])
           end
         end
 
