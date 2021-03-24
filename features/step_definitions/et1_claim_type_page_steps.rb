@@ -14,7 +14,6 @@ end
 
 Then("I can verify that the copy text on About the claim page displayed correctly") do
   et1_claim_type_page.main_content.unfair_dismissal.what_is_this.click
-  et1_claim_type_page.main_content.protective_award.what_is_this.click
   et1_claim_type_page.main_content.other_type_of_claim.other_type_of_claim.click
   et1_claim_type_page.main_content.whistleblowing_claim.set(:"claims.claim_type.yes")
   expect(et1_claim_type_page.has_correct_translation?).to be true

@@ -13,8 +13,9 @@ module EtFullSystem
         end
         # Introduction
         section :main_header, '.content-header' do
-          element :header, :content_header, "introduction.header"
+
         end
+        element :header, :content_header, "introduction.header"
         element :description, :element_with_text, "introduction.description"
         # What you need for this form
         section :what_you_need, :wrapper_headered, "introduction.what_title" do
@@ -40,6 +41,7 @@ module EtFullSystem
         end
         # Start now
         element :start_button, :css, ".button.button-start"
+        element :return_button, :css, ".button-return"
         def next
           start_button.click
         end
@@ -63,7 +65,7 @@ module EtFullSystem
 
         def has_correct_translation?
           #Introduction
-          expect(main_header).to have_header
+          expect(self).to have_header
           expect(self).to have_description
           # What you need for this form
           expect(self).to have_what_you_need

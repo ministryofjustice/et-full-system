@@ -11,8 +11,9 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         # Confirmation of Supplied Details
+        element :header, :content_header, 'confirmation.header'
         section :main_header, '.content-header' do
-          element :header, :content_header, 'confirmation.header'
+
         end
         element :error_header, :error_titled, 'errors.header', exact: true
         section :email_receipt_question, :question_labelled, 'questions.email_receipt.label', exact: false do

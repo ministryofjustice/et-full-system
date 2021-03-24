@@ -51,7 +51,7 @@ module EtFullSystem
         end
 
         def save_and_continue
-          page.scroll_to(main_content.save_and_continue_button, align: :bottom)
+          page.execute_script "window.scrollBy(0,10000)"
           main_content.save_and_continue_button.click
         end
 

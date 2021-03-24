@@ -11,8 +11,9 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         # Earnings and Benefits
+        element :header, :content_header, 'earnings_and_benefits.header'
         section :main_header, '.content-header' do
-          element :header, :content_header, 'earnings_and_benefits.header'
+
         end
         element :error_header, :error_titled, 'errors.header', exact: true
         section :agree_with_claimants_hours_question, :single_choice_option, 'questions.agree_with_claimants_hours.label', exact: false do

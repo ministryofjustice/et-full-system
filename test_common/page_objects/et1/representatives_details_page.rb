@@ -91,6 +91,24 @@ module EtFullSystem
             element :field, :css, 'input'
             def set(*args); field.set(*args); end
           end
+          section :representative_contact_preference, '.representative_contact_preference' do
+            include ::EtFullSystem::Test::I18n
+            section :email_preference, :form_labelled, 'simple_form.options.representative.contact_preference.email' do
+              element :selector, :css, 'input[type="radio"]'
+              def set(*args); selector.set(*args); end
+            end
+            section :post_preference, :form_labelled, 'simple_form.options.representative.contact_preference.post' do
+              element :selector, :css, 'input[type="radio"]'
+              def set(*args); selector.set(*args); end
+            end
+            section :dx_number, :form_labelled, 'simple_form.options.representative.contact_preference.dx_number' do
+              element :selector, :css, 'input[type="radio"]'
+              def set(*args); selector.set(*args); end
+            end
+            def set(value)
+              choose(factory_translate(value), name: 'representative[contact_preference]')
+            end
+          end
           element :invalid_email_address, :error, 'activemodel.errors.models.representative.attributes.email_address.invalid'
           element :blank_email_address, :error, 'activemodel.errors.models.representative.attributes.email_address.blank'
           section :email_address, :question_labelled, 'simple_form.labels.representative.email_address' do
@@ -202,6 +220,7 @@ module EtFullSystem
               set_field s, :post_code, data
               set_field s, :telephone_number, data
               set_field s, :alternative_telephone_number, data
+              set_field s, :representative_contact_preference, data
               set_field s, :email_address, data
               set_field s, :dx_number, data
             end

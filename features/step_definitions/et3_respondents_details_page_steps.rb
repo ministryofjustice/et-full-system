@@ -16,7 +16,7 @@ When(/^I successfully submit the required respondents details only$/) do
 end
 
 Then(/^I should be taken to the claimants details page$/) do
-  expect(claimants_details_page.main_header).to have_header
+  expect(claimants_details_page).to have_header
 end
 
 When(/^I click on next without providing the required respondents details$/) do

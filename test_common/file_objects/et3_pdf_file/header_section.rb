@@ -8,7 +8,8 @@ module EtFullSystem
             # @TODO Review this conditional after march 2019 - once the pdf has been sorted, it should have the date_received and rtf fields
             if locale == :cy
               expected_values = {
-                case_number: respondent.case_number
+                case_number: respondent.case_number,
+                date_received: date_for(Time.now)
               }
               expect(mapped_field_values).to eql(expected_values)
             else

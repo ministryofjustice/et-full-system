@@ -4,6 +4,7 @@ module EtFullSystem
       def start_a_new_et3_response
         load_et3_start_page
         start_page.next
+        et3_answer_saving_response
       end
 
       def load_et3_start_page(in_language: ::EtFullSystem::Test::Messaging.instance.current_locale)
@@ -35,6 +36,11 @@ module EtFullSystem
         respondents_details_page.organisation_employ_gb_question.set(user.organisation_employ_gb)
 
         respondents_details_page.next
+      end
+
+      def et3_answer_saving_response
+        saving_response_page.set
+        saving_response_page.save_and_continue
       end
 
       def et3_answer_required_espondents_details

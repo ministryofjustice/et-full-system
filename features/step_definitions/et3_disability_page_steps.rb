@@ -8,7 +8,7 @@ Given(/^I am on the ET3 disability page$/) do
   et3_answer_earnings_and_benefits
   et3_answer_defend_claim_question
   et3_answer_representative
-  expect(disability_page.main_header).to have_header
+  expect(disability_page).to have_header
 end
 
 When(/^I successfully submit whether I have a disability$/) do
@@ -20,7 +20,7 @@ When(/^I click on next without answering the disability question$/) do
 end
 
 Then(/^I should be taken to the employers contract claim page$/) do
-  expect(employers_contract_claim_page.main_header).to have_header
+  expect(employers_contract_claim_page).to have_header
 end
 
 When("I click on yes without providing the required disability question") do
