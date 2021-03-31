@@ -13,7 +13,7 @@ end
 Then("I can verify that the copy text on Employment details page displayed correctly") do
   et1_employment_details_page.main_content.your_employment_details.set(:"claims.employment.yes")
   et1_employment_details_page.main_content.employment_current_situation.set(:"simple_form.options.employment.current_situation.notice_period")
-  et1_employment_details_page.main_content.worked_notice_period_or_paid_in_lieu.period_of_notice.set(:"claims.employment.yes")
+  et1_employment_details_page.main_content.worked_notice_period_or_paid_in_lieu.set(:"claims.employment.yes")
   expect(et1_employment_details_page.has_correct_translation?).to be true
 end
 
@@ -23,7 +23,7 @@ end
 
 Then("I should on About the claim page") do
   et1_employment_details_page.save_and_continue
-  expect(et1_claim_type_page.main_header).to have_page_header
+  expect(et1_claim_type_page).to have_page_header
 end
 
 Then("I submit without answering work situation") do

@@ -11,9 +11,13 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         section :main_content, '.container' do
+          include EtTestHelpers::Section
           #How do you identify?
           element :header, :main_header, 'diversities.identity.hint', exact: false
-          section :sex, :question_labelled, 'diversities.identity.sex.hint' do
+          # @!method sex
+          #   A govuk radio button component for sex question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :sex, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'diversities.identity.sex.hint' do
             section :male, :form_labelled, 'sex.male' do
               element :field, 'input'
               def set(*args); field.set(*args); end
@@ -27,7 +31,11 @@ module EtFullSystem
               def set(*args); field.set(*args); end
             end
           end
-          section :gender, :question_labelled, 'diversities.identity.gender.hint' do
+
+          # @!method gender
+          #   A govuk radio button component for gender question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :gender, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'diversities.identity.gender.hint' do
             section :male, :form_labelled, 'gender.male-including-female-to-male-trans-men' do
               element :field, 'input'
               def set(*args); field.set(*args); end
@@ -41,7 +49,10 @@ module EtFullSystem
               def set(*args); field.set(*args); end
             end
           end
-          section :gender_at_birth, :question_labelled, 'diversities.identity.gender_at_birth.hint' do
+          # @!method gender_at_birth
+          #   A govuk radio button component for gender_at_birth question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :gender_at_birth, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'diversities.identity.gender_at_birth.hint' do
             section :yes, :form_labelled, 'gender_at_birth.yes_answer' do
               element :field, 'input'
               def set(*args); field.set(*args); end
@@ -55,7 +66,10 @@ module EtFullSystem
               def set(*args); field.set(*args); end
             end
           end
-          section :your_sexual_identity, :question_labelled, 'diversities.identity.sexual_identity.hint' do
+          # @!method your_sexual_identity
+          #   A govuk radio button component for your_sexual_identity question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :your_sexual_identity, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'diversities.identity.sexual_identity.hint' do
             section :heterosexual, :form_labelled, 'sexual_identity.heterosexual-straight' do
               element :field, 'input'
               def set(*args); field.set(*args); end

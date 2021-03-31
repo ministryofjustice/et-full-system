@@ -5,9 +5,7 @@ module EtFullSystem
       class AdditionalRespondentsDetailsPage < BasePage
         include RSpec::Matchers
         #Additional respondents
-        section :main_header, '.main-header' do
-          element :page_header, :page_title, 'claims.additional_respondents.header', exact: false
-        end
+        element :page_header, :page_title, 'claims.additional_respondents.header', exact: false
         section :main_content, '#main-content' do
           include EtTestHelpers::Section
           section :error_message, '#error-summary' do

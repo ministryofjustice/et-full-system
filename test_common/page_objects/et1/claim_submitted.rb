@@ -5,42 +5,39 @@ module EtFullSystem
       class ClaimSubmitted < BasePage
         include RSpec::Matchers
         #Claim submitted
-        section :main_header, '.main-header' do
-          element :page_header, :page_title, 'claim_confirmations.show.header', exact: false
-        end
+        element :page_header, :page_title, 'claim_confirmations.show.header', exact: false
         section :main_content, '#main-content' do
           section :callout_confirmation, '.govuk-panel--confirmation' do
             #Your claim number
-            element :claim_number, :paragraph, 'claim_confirmations.show.callout_detail'
+            element :claim_number, :h1, 'claim_confirmations.show.callout_detail'
             element :answer, :css, '.number'
           end
           #What happens next
           element :what_happens_next, :content_header, 'claim_confirmations.show.what_happens_next.header'
-          section :numerical_list, '.numerical-list' do
+          section :numerical_list, '.govuk-list' do
             #We'll contact you once we have sent your claim to the respondent and explain what happens next. At present, this is taking us an of average of 25 days.
             element :send_to_respondent, :paragraph, 'claim_confirmations.show.what_happens_next.send_to_respondent', exact: false
             #Once we have sent them your claim, the respondent has 28 days to reply
             element :next_steps, :paragraph, 'claim_confirmations.show.what_happens_next.next_steps', exact: false
           end
           #Submission details
-          section :submission_details, :table_captioned, 'claim_confirmations.show.submission_details.header' do
+          section :submission_details, :css, '.submission-details' do
             #Download your claim
-            section :download_application, :table_row_with_th_labelled, 'claim_confirmations.show.download_application.header' do
+            section :download_application, :grid_row_with_col_labelled, 'claim_confirmations.show.download_application.header' do
               element :download_application_link, :link_named, 'claim_confirmations.show.download_application.link_html'
             end
             #Claim submitted
-            section :submission_information, :table_row_with_th_labelled, 'claim_confirmations.show.submission_details.submission_information' do
-              element :answer, :css, 'td'
+            section :submission_information, :grid_row_with_col_labelled, 'claim_confirmations.show.submission_details.submission_information' do
+              element :answer, :css, '.answer'
             end
             # Tribunal office
-            section :tribunal_office, :table_row_with_th_labelled, 'claim_confirmations.show.submission_details.tribunal_office' do
-              element :answer, :css, 'td'
+            section :tribunal_office, :grid_row_with_col_labelled, 'claim_confirmations.show.submission_details.tribunal_office' do
+              element :answer, :css, '.answer'
             end
 
             #Attachments included
-            section :attachments, :table_row_with_th_labelled, 'claim_confirmations.show.submission_details.attachments' do
-              element :answer, :css, 'td'
-              element :no_attachments, :td_containing, 'claim_confirmations.show.no_attachments'
+            section :attachments, :grid_row_with_col_labelled, 'claim_confirmations.show.submission_details.attachments' do
+              element :answer, :css, '.answer'
             end
           end
           element :print_this_page, :link_named, 'claim_confirmations.show.print_link_html'
@@ -69,7 +66,7 @@ module EtFullSystem
           expect(feedback_notice).to have_feedback_link
           expect(feedback_notice).to have_feedback_info
           #Claim submitted
-          expect(self).to have_main_header
+          expect(self).to have_page_header
           #Your claim number
           expect(main_content.callout_confirmation).to have_claim_number
           expect(main_content.callout_confirmation).to have_answer(text: claim_number)
@@ -120,7 +117,7 @@ module EtFullSystem
             expect(main_content.submission_details.attachments).to have_answer(text: csv_attachment)
           else
             #no attachments
-            expect(main_content.submission_details.attachments).to have_no_attachments
+            expect(main_content.submission_details.attachments).to have_answer(text: t('claim_confirmations.show.no_attachments'))
           end
         end
 

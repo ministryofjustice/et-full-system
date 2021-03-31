@@ -49,7 +49,7 @@ module EtFullSystem
             element :field, 'input'
             def set(*args); field.set(*args); end
           end
-          section :describe_religion, '.diversities_religion_religion_text' do
+          section :describe_religion, '.religion_text_field' do
             element :describe_religion_hint, :form_hint, 'religion.free_text'
             element :field, 'input'
             def set(*args); field.set(*args); end
@@ -97,7 +97,6 @@ module EtFullSystem
           expect(main_content).to have_sikh
           expect(main_content).to have_prefer_not_to_say
           expect(main_content).to have_other_religion
-          expect(main_content).to have_describe_religion
         end
 
       end

@@ -5,15 +5,14 @@ module EtFullSystem
       class RepresentativesDetailsPage < BasePage
         include RSpec::Matchers
         #Representative's details
-        section :main_header, '.main-header' do
-          element :page_header, :page_title, 'claims.representative.header', exact: false
-        end
+        element :page_header, :page_title, 'claims.representative.header', exact: false
         section :main_content, '#main-content' do
           include EtTestHelpers::Section
-          section :error_message, '#error-summary' do
-            element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
-            element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
-          end
+          # @!method error_summary
+          #   A govuk error component
+          #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
+          section :error_summary, govuk_component(:error_summary), :govuk_error_summary, :'shared.error_notification.default_message'
+
           #The person representing you
           element :representative_header, :legend_header, 'claims.representative.form_legend'
           element :representative_labelled, :legend_translated, 'simple_form.labels.representative.has_representative'
@@ -28,21 +27,13 @@ module EtFullSystem
             end
           end
           #All correspondence
-          section :correspondence, '.callout-reference' do
-            element :contact_info, :paragraph, 'claims.representative.contact_info', exact: false 
-          end
+          element :contact_info, :paragraph, 'claims.representative.contact_info', exact: false
           #About your representative
           element :about_your_representative, :legend_header, 'claims.representative.representative_legend'
-          #Type of representative
-          element :representative_type_field, '#representative-type-field'
-          section :type,  '.govuk-form-group:nth-child(2)' do
-            include ::EtFullSystem::Test::I18n
-            element :blank_type, :error, 'activemodel.errors.models.representative.attributes.type.blank'
-            element :type_of_representative_labelled, :form_labelled, 'claims.representative.representative_type_legend'
-            def set(value)
-              root_element.select(factory_translate(value))
-            end
-          end
+          # @!method type
+          #   A govukselect component wrapping the select, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKCollectionSelect] The site prism section
+          section :type, govuk_component(:collection_select), :govuk_collection_select, :'claims.representative.representative_type_legend'
           section :organisation_name, :question_labelled, 'simple_form.labels.representative.organisation_name' do
             element :field, :css, 'input'
             def set(*args); field.set(*args); end
@@ -54,34 +45,27 @@ module EtFullSystem
           end
           #Representative's contact details
           element :representative_contact_details, :legend_header, 'claims.representative.contact_legend'
-          element :blank_building, :error, 'activemodel.errors.models.representative.attributes.address_building.blank'
-          section :building, :question_labelled, 'simple_form.labels.representative.address_building' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          element :blank_street, :error, 'activemodel.errors.models.representative.attributes.address_building.blank'
-          section :street, :question_labelled, 'simple_form.labels.representative.address_street' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          element :blank_locality, :error, 'activemodel.errors.models.representative.attributes.address_street.blank'
-          section :locality, :question_labelled, 'simple_form.labels.representative.address_locality' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
+          # @!method building
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :building, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.representative.address_building'
+          # @!method street
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :street, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.representative.address_street'
+          # @!method locality
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :locality, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.representative.address_locality'
           #County
-          element :blank_county, :error, 'activemodel.errors.models.representative.attributes.address_locality.blank'
-          section :county, :question_labelled, 'simple_form.labels.representative.address_county' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          element :blank_post_code, :error, 'activemodel.errors.models.representative.attributes.address_post_code.blank'
-          element :invalid_post_code, :error, 'activemodel.errors.models.representative.attributes.address_post_code.invalid'
-          element :county_hint, :paragraph, 'simple_form.hints.representative.address_county', exact: false
-          section :post_code, :question_labelled, 'simple_form.labels.representative.address_post_code' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
+          # @!method county
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :county, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.representative.address_county'
+          # @!method post_code
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :post_code, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.representative.address_post_code'
           element :blank_telephone_number, :error, 'activemodel.errors.models.representative.attributes.address_locality.blank'
           section :telephone_number, :question_labelled, 'simple_form.labels.representative.address_telephone_number' do
             element :field, :css, 'input'
@@ -134,18 +118,18 @@ module EtFullSystem
           expect(feedback_notice).to have_feedback_link
           expect(feedback_notice).to have_feedback_info
           #Page header
-          expect(main_header).to have_page_header
+          expect(self).to have_page_header
           #The person representating you
           expect(main_content).to have_representative_header
           expect(main_content).to have_representative_labelled
           expect(main_content.representative).to have_yes
           expect(main_content.representative).to have_no
           #All correspondence
-          expect(main_content.correspondence).to have_contact_info
+          expect(main_content).to have_contact_info
           #About your representative
           expect(main_content).to have_about_your_representative
           #Type of presentative
-          expect(main_content.type).to have_type_of_representative_labelled
+          expect(main_content).to have_type
           expect(main_content).to have_organisation_name
           expect(main_content).to have_name
           #Representative contact details
@@ -154,11 +138,11 @@ module EtFullSystem
           expect(main_content).to have_street
           expect(main_content).to have_locality
           expect(main_content).to have_county
-          expect(main_content).to have_county_hint
+          expect(main_content.county).to have_hint(text: t('simple_form.hints.representative.address_county'))
           expect(main_content).to have_post_code
           expect(main_content).to have_telephone_number
           expect(main_content).to have_alternative_telephone_number
-          expect(main_content).to have_contact_preference
+          expect(main_content).to have_representative_contact_preference
           expect(main_content).to have_email_address
           expect(main_content).to have_dx_number
           #What is DX number
@@ -176,20 +160,20 @@ module EtFullSystem
         end
 
         def has_correct_validation_error_message?
-          expect(main_content.error_message).to have_error_summary
-          expect(main_content.error_message).to have_default_message
+          expect(main_content).to have_error_summary
           expect(main_content).to have_type
           expect(main_content).to have_name
-          expect(main_content).to have_blank_building
-          expect(main_content).to have_blank_street
-          expect(main_content).to have_blank_locality
-          expect(main_content).to have_blank_county
-          expect(main_content).to have_blank_post_code
-          main_content.contact_preference.assert_error_message(t 'claims.representative.contact_preference.errors.blank')
+          expect(main_content.building).to have_error(text: t('activemodel.errors.models.representative.attributes.address_building.blank'))
+          expect(main_content.street).to have_error(text: t('activemodel.errors.models.representative.attributes.address_street.blank'))
+          expect(main_content.locality).to have_error(text: t('activemodel.errors.models.representative.attributes.address_locality.blank'))
+          expect(main_content.county).to have_error(text: t('activemodel.errors.models.representative.attributes.address_county.blank'))
+          expect(main_content.post_code).to have_error(text: t('activemodel.errors.models.representative.attributes.address_post_code.blank'))
+          main_content.representative_contact_preference.assert_error_message(t 'claims.representative.contact_preference.errors.blank')
+          true
         end
 
         def has_correct_error_message_for_invalid_uk_postcode?
-          expect(main_content).to have_invalid_post_code
+          expect(main_content.post_code).to have_error(text: t('activemodel.errors.models.representative.attributes.address_post_code.invalid'))
         end
 
         def has_correct_dx_information?
@@ -200,8 +184,8 @@ module EtFullSystem
           data = user[0].to_h
           if data[:representative_have] == 'Yes'
             main_content.representative.yes.click
-            main_content.representative_type_field.select("Solicitor")
             main_content do |s|
+              set_field s, :type, data
               set_field s, :organisation_name, data
               set_field s, :name, data
               set_field s, :building, data

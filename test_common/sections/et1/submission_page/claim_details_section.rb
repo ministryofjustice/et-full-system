@@ -5,13 +5,13 @@ module EtFullSystem
       module SubmissionPageSections
         class ClaimDetailsSection < BaseSection
           section :claim_details, :et1_review_question_labelled, 'review.claim_details.questions.claim_details' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :other_known_claimants, :et1_review_question_labelled, 'review.claim_details.questions.other_known_claimants' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :attached_documents, :et1_review_question_labelled, 'review.claim_details.questions.attached_documents.title' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
 
           def has_correct_translation?(claim:)

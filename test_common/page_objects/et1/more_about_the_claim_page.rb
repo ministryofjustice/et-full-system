@@ -5,28 +5,19 @@ module EtFullSystem
       class MoreAboutTheClaimPage < BasePage
         include RSpec::Matchers
         #More about the claim
-        section :main_header, '.main-header' do
-          element :page_header, :page_title, 'claims.additional_information.header', exact: false
-        end
+        element :page_header, :page_title, 'claims.additional_information.header', exact: false
         section :main_content, '#main-content' do
           include EtTestHelpers::Section
           #Other important details
           section :other_important_details, :legend_header, 'claims.additional_information.legend' do
+            include EtTestHelpers::Section
             #Do you want to provide additional information about your claim? (optional)
-            element :miscellaneous_information, :form_labelled, 'claims.additional_information.has_miscellaneous_information'
-            #Include anything that will help the tribunal come to a decision about whether your case can be heard. What you write may be seen by the respondent
-            element :miscellaneous_information_hint , :form_hint, 'claims.additional_information.has_miscellaneous_information_hint'
-            include ::EtFullSystem::Test::I18n
-            element :yes, :form_labelled, 'claims.additional_information.yes' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            element :no, :form_labelled, 'claims.additional_information.no' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
+            # @!method miscellaneous_information
+            #   A govuk radio button component for miscellaneous_information question
+            #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+            section :miscellaneous_information, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'claims.additional_information.has_miscellaneous_information'
             def set(value)
-              choose(factory_translate(value), name: 'additional_information[has_miscellaneous_information]')
+              miscellaneous_information.set(value)
             end
           end
 
@@ -34,9 +25,7 @@ module EtFullSystem
           # @!method additional_information_miscellaneous_information
           #   A govuk text area component wrapping the input, label, hint etc.. for a text area
           #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
-          section :additional_information_miscellaneous_information, govuk_component(:text_area), :govuk_text_area, :'simple_form.labels.additional_information.miscellaneous_information' do
-            element :additonal_miscellaneous_information_hint, :form_hint, 'simple_form.hints.additional_information.miscellaneous_information', exact: false
-          end
+          section :additional_information_miscellaneous_information, govuk_component(:text_area), :govuk_text_area, :'simple_form.labels.additional_information.miscellaneous_information'
           #Save and continue
           element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
         end
@@ -60,15 +49,15 @@ module EtFullSystem
           expect(feedback_notice).to have_feedback_link
           expect(feedback_notice).to have_feedback_info
           #More about the claim
-          expect(main_header).to have_page_header
+          expect(self).to have_page_header
           #Other important details
           expect(main_content).to have_other_important_details
           expect(main_content.other_important_details).to have_miscellaneous_information
-          expect(main_content.other_important_details).to have_miscellaneous_information_hint
-          expect(main_content.other_important_details).to have_yes
-          expect(main_content.other_important_details).to have_no
+          expect(main_content.other_important_details.miscellaneous_information).to have_hint(text: t('claims.additional_information.has_miscellaneous_information_hint'))
+          expect(main_content.other_important_details.miscellaneous_information).to have_option(:'claims.additional_information.yes')
+          expect(main_content.other_important_details.miscellaneous_information).to have_option(:'claims.additional_information.no')
           #Enter more details about your claim
-          expect(main_content.additional_information_miscellaneous_information).to have_additonal_miscellaneous_information_hint
+          expect(main_content).to have_additional_information_miscellaneous_information
           #save and continue
           expect(main_content).to have_save_and_continue_button
           #Support links

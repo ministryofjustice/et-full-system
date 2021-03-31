@@ -16,7 +16,7 @@ end
 
 Then("I can verify that the copy text on Claim details page displayed correctly") do
   et1_claim_details_page.main_content.upload_document.click
-  et1_claim_details_page.main_content.claim_details_other_known_claimants.set(:"claims.claim_type.yes")
+  et1_claim_details_page.main_content.claim_details_other_known_claimants_fieldset.other_known_claimants.set(:"claims.claim_type.yes")
   expect(et1_claim_details_page.has_correct_translation?).to be true
 end
 
@@ -39,5 +39,5 @@ end
 
 Then("I should be on Claim outcome page") do
   et1_claim_details_page.save_and_continue
-  expect(et1_claim_outcome_page).to have_main_header
+  expect(et1_claim_outcome_page).to have_page_header
 end

@@ -9,7 +9,8 @@ module EtFullSystem
           element :reject_button, :input_with_value, 'banner.reject_analytics'
           element :cookies, :link_named, 'banner.cookie_link'
         end
-        section :feedback_notice, '.feedback-notice' do
+
+        section :feedback_notice, '.govuk-phase-banner' do
           include ::EtFullSystem::Test::I18n
           element :language, :link_named, 'switch.language'
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)

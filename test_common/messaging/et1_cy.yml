@@ -262,6 +262,7 @@ cy:
         benefit_details: "A oes - neu a oedd - gennych chi unrhyw fuddion, fel car cwmni? (dewisol)"
         found_new_job: "Oes gennych chi swydd newydd?"
         notice_pay_period_count: "Am faint o wythnosau neu fisoedd gawsoch chi dâl? (dewisol)"
+        notice_pay_period_type: "A oedd yr wythnosau neu'r misoedd hyn ?"
         was_employed: "Ydych chi erioed wedi cael eich cyflogi gan yr unigolyn neu'r sefydliad yr ydych chi'n gwneud yr hawliad hwn yn ei erbyn? (dewisol)"
         new_job_gross_pay: Tâl y swydd newydd cyn treth
         start_date:
@@ -378,7 +379,7 @@ cy:
       user_session:
         new:
           reference: Cafodd hwn ei anfon atoch drwy e-bost (os wnaethoch chi nodi cyfeiriad e-bost)
-          password: Mi wnaethoch greu hwn ar ddechrau'r hawliad
+          password: "Os ydych wedi nodi eich cyfeiriad e-bost uchod, byddwch yn gallu ailosod eich gair cofiadwy os byddwch yn ei anghofio"
         destroy:
           email_address: Cael eich rhif hawliad drwy neges e-bost
 
@@ -705,6 +706,17 @@ cy:
         Ar sail y wybodaeth yr ydych wedi'i rhoi i ni, mae'n rhaid i chi dalu <strong>£%{fee}</strong> gyda cherdyn debyd neu gredyd.
       hearing_fee: |
         Os bydd eich achos yn mynd i dribiwnlys, bydd rhaid i chi dalu ffi gwrandawiad o <strong>£%{fee}</strong>.
+    reset_password:
+      email_address:
+        label: Nodwch eich cyfeiriad e-bost
+        hint: Os bu ichi nodi cyfeiriad e-bost dilys pan wnaethoch ddechrau eich hawliad, byddwn yn anfon neges e-bost atoch gyda chyfarwyddiadau ar sut i ailosod eich gair cofiadwy. Os nad yw eich cyfeiriad e-bost yn cyfateb i unrhyw gais presennol, neu os nad ydych wedi nodi cyfeiriad e-bost dilys, bydd rhaid ichi ddechrau cais o’r newydd.
+      claim_number:
+        label: Rhif cadw a dychwelyd
+        hint: Cafodd hwn ei anfon atoch drwy e-bost (os wnaethoch chi nodi cyfeiriad e-bost).
+      new_password:
+        label: Gair cofiadwy
+        hint: Eich gair cofiadwy newydd
+
   # Form Errors - Handled by ActiveModel
   activemodel:
     errors:

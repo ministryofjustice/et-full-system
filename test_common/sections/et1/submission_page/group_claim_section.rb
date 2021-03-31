@@ -5,32 +5,32 @@ module EtFullSystem
       module SubmissionPageSections
         class GroupClaimSection < BaseSection
           section :group_claim, :et1_review_question_labelled, 'review.group_claim.questions.group_claim.label' do
-            element :answer, :css, 'td'
-            element :yes_answer, :td_containing, 'review.group_claim.questions.group_claim.options.yes'
-            element :no_answer, :td_containing, 'review.group_claim.questions.group_claim.options.no'
+            element :answer, :css, 'dt.govuk-summary-list__value'
+            element :yes_answer, :dt_containing, 'review.group_claim.questions.group_claim.options.yes'
+            element :no_answer, :dt_containing, 'review.group_claim.questions.group_claim.options.no'
           end
           section :csv_file_name, :et1_review_question_labelled, 'review.group_claim.questions.csv_file_name' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :number_of_additional_claimants, :et1_review_question_labelled, 'review.group_claim.questions.number_of_additional_claimants' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           sections :claimants, :et1_review_additional_claimant_labelled, 'review.group_claim.claimant_header' do
             include RSpec::Matchers
             include EtFullSystem::Test::I18n
             section :full_name, :et1_review_question_labelled, 'review.group_claim.claimant.questions.full_name' do
-              element :answer, :css, 'td'
-              element :answer_empty, :td_containing, 'review.common.not_entered'
+              element :answer, :css, 'dt.govuk-summary-list__value'
+              element :answer_empty, :dt_containing, 'review.common.not_entered'
             end
 
             section :date_of_birth, :et1_review_question_labelled, 'review.group_claim.claimant.questions.date_of_birth' do
-              element :answer, :css, 'td'
-              element :answer_empty, :td_containing, 'review.common.not_entered'
+              element :answer, :css, 'dt.govuk-summary-list__value'
+              element :answer_empty, :dt_containing, 'review.common.not_entered'
             end
 
             section :address, :et1_review_question_labelled, 'review.group_claim.claimant.questions.address' do
-              element :answer, :css, 'td'
-              element :answer_empty, :td_containing, 'review.common.not_entered'
+              element :answer, :css, 'dt.govuk-summary-list__value'
+              element :answer_empty, :dt_containing, 'review.common.not_entered'
             end
 
             def has_correct_translation?(claimant)

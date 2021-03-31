@@ -5,18 +5,16 @@ module EtFullSystem
       class ClaimOutcomePage < BasePage
         include RSpec::Matchers
         #Claim outcome
-        section :main_header, '.main-header' do
-          element :page_header, :page_title, 'claim_confirmations.show.header', exact: false
-        end
+        element :page_header, :page_title, 'claims.claim_outcome.header', exact: false
         section :main_content, '#main-content' do
           include EtTestHelpers::Section
-          #Choose your preferred outcome(s)
-          section :claim_outcome, :legend_header, 'claims.claim_outcome.claim_outcome' do
+          #What do you want if your claim is successful? (optional)
+          # @!method claim_outcome
+          #   A govuk collection of checkboxes component for claim_outcome question
+          #   @return [EtTestHelpers::Components::GovUKCollectionCheckBoxes] The site prism section
+          section :claim_outcome, govuk_component(:collection_check_boxes), :govuk_collection_check_boxes, :'simple_form.labels.claim.desired_outcomes' do
             include EtTestHelpers::Section
-            #What do you want if your claim is successful? (optional)
-            element :desired_outcomes, :form_labelled, 'simple_form.labels.claim.desired_outcomes'
-            #You can select more than one
-            element :desired_outcomes_hint, :form_hint, 'simple_form.hints.claim_outcome.desired_outcomes'
+
             #Compensation
             element :compensation_only, :form_labelled, 'simple_form.options.claim_outcome.desired_outcomes.compensation_only' do
               element :selector, :css, 'input[type="checkbox"]'
@@ -37,17 +35,14 @@ module EtFullSystem
               element :selector, :css, 'input[type="checkbox"]'
               def set(*args); selector.set(*args); end
             end
-
-            # What compensation or other outcome do you want? (optional)
-            # @!method claim_outcome_other_outcome
-            #   A govuk text area component wrapping the input, label, hint etc.. for a text area
-            #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
-            section :claim_outcome_other_outcome, govuk_component(:text_area), :govuk_text_area, :'simple_form.labels.claim_outcome.other_outcome' do
-              #If you’re claiming financial compensation, you can say how much you want and how you worked out the sum.
-              #You can change these details later, or leave this section blank if you don’t know
-              element :other_outcome_hint, :form_hint, 'simple_form.hints.claim_outcome.other_outcome'
-            end
           end
+
+          # What compensation or other outcome do you want? (optional)
+          # @!method claim_outcome_other_outcome
+          #   A govuk text area component wrapping the input, label, hint etc.. for a text area
+          #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
+          section :claim_outcome_other_outcome, govuk_component(:text_area), :govuk_text_area, :'simple_form.labels.claim_outcome.other_outcome'
+
           #Save and continue
           element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
         end
@@ -71,18 +66,17 @@ module EtFullSystem
           expect(feedback_notice).to have_feedback_link
           expect(feedback_notice).to have_feedback_info
           #Claim outcome
-          expect(self).to have_main_header
+          expect(self).to have_page_header
           #Choose your preferred outcome(s)
           expect(main_content).to have_claim_outcome
           ##What do you want if your claim is successful? (optional)
-          expect(main_content.claim_outcome).to have_desired_outcomes
-          expect(main_content.claim_outcome).to have_desired_outcomes_hint
+          expect(main_content.claim_outcome).to have_hint(text: t('simple_form.hints.claim_outcome.desired_outcomes'))
           expect(main_content.claim_outcome).to have_compensation_only
           expect(main_content.claim_outcome).to have_tribunal_recommendation
           expect(main_content.claim_outcome).to have_reinstated_employment_and_compensation
           expect(main_content.claim_outcome).to have_new_employment_and_compensation
-          expect(main_content.claim_outcome).to have_claim_outcome_other_outcome
-          expect(main_content.claim_outcome.claim_outcome_other_outcome).to have_other_outcome_hint
+          expect(main_content).to have_claim_outcome_other_outcome
+          expect(main_content.claim_outcome_other_outcome).to have_hint(text: t('simple_form.hints.claim_outcome.other_outcome'))
           #Save and continue
           expect(main_content).to have_save_and_continue_button
           #Support
@@ -102,7 +96,7 @@ module EtFullSystem
             main_content.send(section).send(element).click
           end
           data = claim.to_h
-          main_content.claim_outcome.claim_outcome_other_outcome.set(data[:preferred_outcome_notes])
+          main_content.claim_outcome_other_outcome.set(data[:preferred_outcome_notes])
         end
         
         def map_preferred_outcome_section_element_from(preferred_outcome)

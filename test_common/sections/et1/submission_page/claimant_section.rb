@@ -7,7 +7,7 @@ module EtFullSystem
           section :date_of_birth, :et1_review_question_labelled, 'review.claimant.questions.date_of_birth' do
             include ::EtFullSystem::Test::I18n
             include RSpec::Matchers
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
 
             def has_answer_for?(claimant)
               if claimant.date_of_birth.nil?
@@ -20,12 +20,12 @@ module EtFullSystem
             end
           end
           section :preferred_contact, :et1_review_question_labelled, 'review.claimant.questions.preferred_contact' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :address, :et1_review_question_labelled, 'review.claimant.questions.address' do
             include ::EtFullSystem::Test::I18n
             include RSpec::Matchers
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
 
             def has_answer_for?(claimant)
               if claimant.building.nil? && claimant.street.nil? && claimant.locality.nil? && claimant.county.nil? && claimant.post_code.nil?
@@ -37,22 +37,22 @@ module EtFullSystem
             end
           end
           section :email, :et1_review_question_labelled, 'review.claimant.questions.email' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :assistance_required, :et1_review_question_labelled, 'review.claimant.questions.assistance_required' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :full_name, :et1_review_question_labelled, 'review.claimant.questions.full_name' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :mobile, :et1_review_question_labelled, 'review.claimant.questions.mobile' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :phone, :et1_review_question_labelled, 'review.claimant.questions.phone' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :gender, :et1_review_question_labelled, 'review.claimant.questions.gender' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
 
           def has_correct_translation?(claimant:)

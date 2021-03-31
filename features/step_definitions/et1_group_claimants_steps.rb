@@ -15,7 +15,7 @@ When("I submit no other people are making claims") do
 end
 
 Then("I should be on the Respresentative's details page") do
-  expect(et1_representatives_details_page.main_header).to have_page_header
+  expect(et1_representatives_details_page).to have_page_header
 end
 
 When("there 5 or few claimants") do
@@ -29,13 +29,13 @@ end
 Then("I should be able to submit two claimant details") do
   et1_group_claimants_page.set(@claimant)
   et1_group_claimants_page.save_and_continue
-  expect(et1_representatives_details_page.main_header).to have_page_header
+  expect(et1_representatives_details_page).to have_page_header
 end
 
 When("there are group claimants") do
   @claimant = FactoryBot.create_list(:claimant, 1, :group_claims)
   et1_group_claimants_page.set(@claimant)
-  et1_group_claimants_upload_page.main_content.form_group.yes.click
+  et1_group_claimants_upload_page.main_content.has_additional_claimants.yes.click
 end
 
 Then("I can very that the copy texts correctly dispayed for Upload user details in separate spreadsheet") do
@@ -46,7 +46,7 @@ When("I submit no to upload group claimant") do
   @claimant = FactoryBot.create_list(:claimant, 1, :group_claims)
   et1_group_claimants_page.set(@claimant)
   et1_group_claimants_upload_page.save_and_continue
-  expect(et1_representatives_details_page.main_header).to have_page_header
+  expect(et1_representatives_details_page).to have_page_header
 end
 
 When("I changed my mind to manually enter claimant details") do

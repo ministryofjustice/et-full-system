@@ -6,9 +6,7 @@ module EtFullSystem
       class GroupClaimantsUploadPage < BasePage
         include RSpec::Matchers
         #Group claims
-        section :main_header, '.main-header' do
-          element :page_header, :page_title, 'claims.additional_claimants.header', exact: false
-        end
+        element :page_header, :page_title, 'claims.additional_claimants.header', exact: false
         section :main_content, '#main-content' do
           include EtTestHelpers::Section
           section :error_message, '#edit_claimant #error-summary' do
@@ -22,7 +20,6 @@ module EtFullSystem
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
           section :has_additional_claimants, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.additional_claimants_upload.has_additional_claimants' do
             element :has_additional_claimants, :form_labelled, 'simple_form.labels.additional_claimants_upload.has_additional_claimants'
-            element :form_hint_text, :paragraph, 'claims.additional_claimants_upload.has_additional_claimants_html', exact: false
             element :manually_link, :link_named, 'claims.additional_claimants_upload.has_additional_claimants_link', exact: false
             include ::EtFullSystem::Test::I18n
             element :yes, :form_labelled, 'simple_form.yes' do
@@ -39,17 +36,17 @@ module EtFullSystem
           section :group_claims, :legend_header, 'claims.additional_claimants_upload.steps_header' do
             include EtTestHelpers::Section
             #Step 1
-            element :step_1, :break_text, 'claims.additional_claimants_upload.step_one_header'
+            element :step_1, :paragraph, 'claims.additional_claimants_upload.step_one_header'
             element :download_spreadsheet_template_link, :link_named, 'claims.additional_claimants_upload.download_template_html', exact: false
             element :use_your_own_text, :paragraph, 'claims.additional_claimants_upload.use_your_own_text', exact: false
             element :dob_info, :paragraph, 'claims.additional_claimants_upload.dob_info'
             #Step 2
-            element :step_2, :break_text, 'claims.additional_claimants_upload.step_two_header'
+            element :step_2, :paragraph, 'claims.additional_claimants_upload.step_two_header'
             element :save_csv_format_text, :paragraph, 'claims.additional_claimants_upload.save_csv_format', exact: false
             element :how_to_save, :paragraph, 'claims.additional_claimants_upload.how_to_save'
             element :no_spaces, :paragraph, 'claims.additional_claimants_upload.no_spaces', exact: false
             #Step 3
-            element :step_3, :break_text, 'claims.additional_claimants_upload.step_three_header'
+            element :step_3, :paragraph, 'claims.additional_claimants_upload.step_three_header'
             element :file_spreadsheet_labelled, :form_labelled, 'simple_form.labels.additional_claimants_upload.additional_claimants_csv', exact: false
 
             # @!method file_upload
@@ -85,13 +82,13 @@ module EtFullSystem
           expect(feedback_notice).to have_feedback_link
           expect(feedback_notice).to have_feedback_info
           #Group claims
-          expect(main_header).to have_page_header
+          expect(self).to have_page_header
           #people making a claim with you
           expect(main_content).to have_people_making_claim
           #Do you want to upload details of 6 claimants or more? (optional)
           expect(main_content).to have_has_additional_claimants
           #For up to 5 other claimants you can enter their details manually
-          expect(main_content.has_additional_claimants).to have_form_hint_text
+          expect(main_content.has_additional_claimants).to have_hint(text: t('claims.additional_claimants_upload.has_additional_claimants_html'))
           expect(main_content.has_additional_claimants).to have_manually_link
           expect(main_content.has_additional_claimants).to have_yes
           expect(main_content.has_additional_claimants).to have_no

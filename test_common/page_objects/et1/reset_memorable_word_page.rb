@@ -3,10 +3,11 @@ module EtFullSystem
   module Test
     module Et1
       class ResetMemorableWordPage < BasePage
+        include EtTestHelpers::Page
 
         def set_memorable_word(value)
-          memorable_word_element.set(value)
-          submit_button.click
+          memorable_word.set(value)
+          submit_button.submit
           ReturnToYourClaimPage.new
         end
 
@@ -22,8 +23,14 @@ module EtFullSystem
 
         private
 
-        element :memorable_word_element,'input', id: 'user_password'
-        element :submit_button, :submit_text, 'helpers.submit.user_session.reset_memorable_word'
+        # @!method memorable_word
+        #   A govuk text field component wrapping the input, label, hint etc..
+        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+        section :memorable_word, govuk_component(:text_field), :govuk_text_field, :'claims.reset_password.new_password.label'
+        # @!method submit_button
+        #   A govuk submit button component...
+        #   @return [EtTestHelpers::Components::GovUKSubmit] The site prism section
+        section :submit_button, govuk_component(:submit), :govuk_submit, :'helpers.submit.user_session.reset_memorable_word'
       end
     end
   end

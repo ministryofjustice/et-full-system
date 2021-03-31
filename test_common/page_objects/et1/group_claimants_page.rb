@@ -5,14 +5,13 @@ module EtFullSystem
       class GroupClaimantsPage < BasePage
         include RSpec::Matchers
         #Group claims
-        section :main_header, '.main-header' do
-          element :page_header, :page_title, 'claims.additional_claimants.header', exact: false
-        end
+        element :page_header, :page_title, 'claims.additional_claimants.header', exact: false
         section :main_content, '#main-content' do
-          section :error_message, '#error-summary' do
-            element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
-            element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
-          end
+          include EtTestHelpers::Section
+          # @!method error_summary
+          #   A govuk error component
+          #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
+          section :error_summary, govuk_component(:error_summary), :govuk_error_summary, :'shared.error_notification.default_message'
 
           #People making a claim with you
           element :legend_group_claims, :legend_header, 'claims.additional_claimants.subheader', exact: false
@@ -62,7 +61,7 @@ module EtFullSystem
           expect(feedback_notice).to have_feedback_link
           expect(feedback_notice).to have_feedback_info
           #Group claims
-          expect(main_header).to have_page_header
+          expect(self).to have_page_header
           #people making a claim with you
           expect(main_content).to have_legend_group_claims
           expect(main_content.additional_claimants_of_collection_type).to have_yes
@@ -91,7 +90,7 @@ module EtFullSystem
           expect(main_content.about_claimant_2).to have_last_name
           #date of birth
           expect(main_content.about_claimant_2).to have_date_of_birth
-          expect(main_content.about_claimant_2).to have_date_of_birth_hint
+          expect(main_content.about_claimant_2.date_of_birth).to have_hint(text: t('simple_form.hints.claimant.date_of_birth'))
           expect(main_content.about_claimant_2).to have_building
           expect(main_content.about_claimant_2).to have_street
           expect(main_content.about_claimant_2).to have_locality
@@ -103,20 +102,19 @@ module EtFullSystem
 
         def has_correct_mandatory_error_msg_for_group_claimants?
           #Errors on page
-          expect(main_content.error_message).to have_error_summary
-          expect(main_content.error_message).to have_default_message
-          expect(main_content.about_claimant_2.first_name).to have_blank_first_name
-          expect(main_content.about_claimant_2.last_name).to have_blank_last_name
-          expect(main_content.about_claimant_2).to have_blank_date_of_birth
-          expect(main_content.about_claimant_2).to have_blank_building
-          expect(main_content.about_claimant_2).to have_blank_street
-          expect(main_content.about_claimant_2).to have_blank_locality
-          expect(main_content.about_claimant_2).to have_blank_county
-          expect(main_content.about_claimant_2).to have_blank_post_code
+          expect(main_content).to have_error_summary
+          expect(main_content.about_claimant_2.first_name).to have_error(text: t('activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.first_name.blank'))
+          expect(main_content.about_claimant_2.last_name).to have_error(text: t('activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.last_name.blank'))
+          expect(main_content.about_claimant_2.date_of_birth).to have_error(text: t('activemodel.errors.models.claimant.attributes.date_of_birth.too_young'))
+          expect(main_content.about_claimant_2.building).to have_error(text: t('activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.address_building.blank'))
+          expect(main_content.about_claimant_2.street).to have_error(text: t('activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.address_street.blank'))
+          expect(main_content.about_claimant_2.locality).to have_error(text: t('activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.address_locality.blank'))
+          expect(main_content.about_claimant_2.county).to have_error(text: t('activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.address_county.blank'))
+          expect(main_content.about_claimant_2.post_code).to have_error(text: t('activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.address_post_code.blank'))
         end
 
         def has_correct_invalid_error_msg_for_dob?
-          expect(main_content.about_claimant_2).to have_invalid_date_of_birth
+          expect(main_content.about_claimant_2.date_of_birth).to have_error(text: t('activemodel.errors.models.claimant.attributes.date_of_birth.invalid'))
         end
 
         def set(data)

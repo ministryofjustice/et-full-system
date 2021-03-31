@@ -5,50 +5,43 @@ module EtFullSystem
       class RespondentsDetailsPage < BasePage
         include RSpec::Matchers
         #Respondent's details
-        section :main_header, '.main-header' do
-          element :page_header, :page_title, 'claims.respondent.header', exact: false
-        end
+        element :page_header, :page_title, 'claims.respondent.header', exact: false
         section :main_content, '#main-content' do
           include EtTestHelpers::Section
-          section :error_message, '#error-summary' do
-            element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
-            element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
-          end
+          # @!method error_summary
+          #   A govuk error component
+          #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
+          section :error_summary, govuk_component(:error_summary), :govuk_error_summary, :'shared.error_notification.default_message'
+
           #About the respondent
           element :respondent_header, :legend_header, 'claims.respondent.respondent_legend'
           element :respondent_summary, :paragraph, 'claims.respondent.form_hint'
-          element :blank_respondent_name, :error, 'activemodel.errors.models.respondent.attributes.name.blank'
-          section :name, :question_labelled, 'simple_form.labels.respondent.name' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          element :blank_building, :error, 'activemodel.errors.models.respondent.attributes.address_building.blank'
-          section :building, :question_labelled, 'simple_form.labels.respondent.address_building' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          element :blank_street, :error, 'activemodel.errors.models.respondent.attributes.address_building.blank'
-          section :street, :question_labelled, 'simple_form.labels.respondent.address_street' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          element :blank_locality, :error, 'activemodel.errors.models.respondent.attributes.address_street.blank'
-          section :locality, :question_labelled, 'simple_form.labels.respondent.address_locality' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          element :blank_county, :error, 'activemodel.errors.models.respondent.attributes.address_locality.blank'
-          element :county_hint, :paragraph, 'simple_form.hints.respondent.address_county', exact: false
-          section :county, :question_labelled, 'simple_form.labels.respondent.address_county' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          element :blank_post_code, :error, 'activemodel.errors.models.respondent.attributes.address_post_code.blank'
-          element :invalid_post_code, :error, 'activemodel.errors.models.respondent.attributes.address_post_code.invalid'
-          section :post_code, :question_labelled, 'simple_form.labels.respondent.address_post_code' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
+          # @!method name
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :name, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.name'
+          # @!method building
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :building, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.address_building'
+          # @!method street
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :street, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.address_street'
+          # @!method locality
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :locality, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.address_locality'
+          # @!method county
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :county, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.address_county'
+
+          # @!method post_code
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :post_code, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.address_post_code'
+
           section :telephone_number, :question_labelled, 'simple_form.labels.respondent.address_telephone_number' do
             element :field, :css, 'input'
             def set(*args); field.set(*args); end
@@ -62,11 +55,6 @@ module EtFullSystem
           section :work_address, govuk_component(:fieldset), :govuk_fieldset, :'claims.respondent.workaddress_legend' do
             include EtTestHelpers::Section
             element :work_address_hint, :paragraph, 'claims.respondent.work_address'
-            element :blank_building, :error, 'activemodel.errors.models.respondent.attributes.work_address_building.blank'
-            element :blank_street, :error, 'activemodel.errors.models.respondent.attributes.work_address_street.blank'
-            element :blank_locality, :error, 'activemodel.errors.models.respondent.attributes.work_address_locality.blank'
-            element :county_hint, :paragraph, 'simple_form.hints.respondent.address_county', exact: false
-            element :blank_post_code, :error, 'activemodel.errors.models.respondent.attributes.work_address_post_code.blank'
 
             section :same_address, :legend_header, 'simple_form.labels.respondent.worked_at_same_address' do
               include ::EtFullSystem::Test::I18n
@@ -83,26 +71,26 @@ module EtFullSystem
               end
             end
 
-            section :building_optional, :question_labelled, 'simple_form.labels.respondent.work_address_building' do
-              element :field, :css, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :street_optional, :question_labelled, 'simple_form.labels.respondent.work_address_street' do
-              element :field, :css, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :locality_optional, :question_labelled, 'simple_form.labels.respondent.work_address_locality' do
-              element :field, :css, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :county_optional, :question_labelled, 'simple_form.labels.respondent.work_address_county' do
-              element :field, :css, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :post_code_optional, :question_labelled, 'simple_form.labels.respondent.work_address_post_code' do
-              element :field, :css, 'input'
-              def set(*args); field.set(*args); end
-            end
+            # @!method building_optional
+            #   A govuk text field component wrapping the input, label, hint etc..
+            #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+            section :building_optional, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.work_address_building'
+            # @!method street_optional
+            #   A govuk text field component wrapping the input, label, hint etc..
+            #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+            section :street_optional, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.work_address_street'
+            # @!method locality_optional
+            #   A govuk text field component wrapping the input, label, hint etc..
+            #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+            section :locality_optional, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.work_address_locality'
+            # @!method county_optional
+            #   A govuk text field component wrapping the input, label, hint etc..
+            #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+            section :county_optional, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.work_address_county'
+            # @!method post_code_optional
+            #   A govuk text field component wrapping the input, label, hint etc..
+            #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+            section :post_code_optional, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.work_address_post_code'
 
             # @!method telephone_number_optional
             #   A govuk phone field component representing the phone or mobile question
@@ -111,11 +99,16 @@ module EtFullSystem
           end
 
           #Acas early conciliation certificate number
-          #element :acas_early_conciliation_header, :legend_header, 'claims.respondent.acas_legend'
-          section :acas_certificate_number, :question_labelled, 'claims.respondent.acas_legend' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
+          # @!method acas_certificate_number
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :acas_certificate_number, govuk_component(:text_field), :govuk_text_field, :'claims.respondent.acas_legend'
+
+          # @!method no_acas_number
+          #   A govuk radio button component for no_acas_number question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :no_acas_number, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.respondent.no_acas_number'
+
           #section :acas_certificate_number, '.respondent_acas_early_conciliation_certificate_number' do
           #element :acas_hint, :paragraph, 'claims.respondent.acas_early_conciliation_certificate_number_html', exact: false
           #element :certificate_number, :link_named, 'claims.respondent.acas_early_conciliation_certificate_number_link', exact: false
@@ -126,9 +119,6 @@ module EtFullSystem
           #end
           #I don't have an Acas number
           element :yes_no_acas_number, '#respondent-no-acas-number-true-field'
-          #Why don't you have an Acas number?
-          element :no_acas_number_reason, :legend_header, 'claims.respondent.no_acas_number_reason'
-          element :no_acas_number_note_one, :form_hint, 'claims.respondent.no_acas_number_note_one', exact: false
           element :joint_claimant_has_acas_number, :form_labelled, 'simple_form.options.respondent.no_acas_number_reason.joint_claimant_has_acas_number' do
             element :selector, :css, 'input[type="radio"]'
             def set(*args); selector.set(*args); end
@@ -148,10 +138,7 @@ module EtFullSystem
           # @!method respondent_no_acas_number_reason
           #   A govuk radio button component for respondent_no_acas_number_reason question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          section :respondent_no_acas_number_reason, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'claims.respondent.no_acas_number_reason' do
-            include ::EtFullSystem::Test::I18n
-            element :blank_no_acas_number_reason, :error, 'activemodel.errors.models.respondent.attributes.no_acas_number_reason.blank'
-          end
+          section :respondent_no_acas_number_reason, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'claims.respondent.no_acas_number_reason'
           #Save and continue
           element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
         end
@@ -175,7 +162,7 @@ module EtFullSystem
           expect(feedback_notice).to have_feedback_link
           expect(feedback_notice).to have_feedback_info
           #Respoondent's details
-          expect(main_header).to have_page_header
+          expect(self).to have_page_header
           #About the respondent
           expect(main_content).to have_respondent_header
           expect(main_content).to have_respondent_summary
@@ -185,31 +172,28 @@ module EtFullSystem
           expect(main_content).to have_street
           expect(main_content).to have_locality
           expect(main_content).to have_county
-          expect(main_content).to have_county_hint
+          expect(main_content.county).to have_hint(text: t('simple_form.hints.respondent.address_county'))
           expect(main_content).to have_post_code
           expect(main_content).to have_telephone_number
           #Your work address
           expect(main_content).to have_work_address_header
-          expect(main_content.same_address).to have_yes
-          expect(main_content.same_address).to have_no
+          expect(main_content.work_address.same_address).to have_yes
+          expect(main_content.work_address.same_address).to have_no
           #Different work address
           expect(main_content.work_address).to have_work_address_hint
-          expect(main_content.work_address).to have_building
-          expect(main_content.work_address).to have_street
-          expect(main_content.work_address).to have_locality
-          expect(main_content.work_address).to have_county
-          expect(main_content.work_address).to have_county_hint
-          expect(main_content.work_address).to have_post_code
-          expect(main_content.work_address).to have_telephone_number
+          expect(main_content.work_address).to have_building_optional
+          expect(main_content.work_address).to have_street_optional
+          expect(main_content.work_address).to have_locality_optional
+          expect(main_content.work_address).to have_county_optional
+          expect(main_content.work_address.county_optional).to have_hint(text: t('simple_form.hints.respondent.address_county'))
+          expect(main_content.work_address).to have_post_code_optional
+          expect(main_content.work_address).to have_telephone_number_optional
           #Acas early conciliation certifcate number
-          expect(main_content).to have_acas_early_conciliation_header
-          expect(main_content.acas_certificate_number).to have_acas_hint
-          expect(main_content.acas_certificate_number).to have_certificate_number
+          expect(main_content.acas_certificate_number).to have_hint(text: t('claims.respondent.acas_early_conciliation_certificate_number_html'))
           #I don't have an acas number
           expect(main_content).to have_no_acas_number
           #Why don't you have an Acas number?
-          expect(main_content).to have_no_acas_number_reason
-          expect(main_content).to have_no_acas_number_note_one
+          expect(main_content.respondent_no_acas_number_reason).to have_hint(text: t('claims.respondent.no_acas_number_note_one'))
           #Save and continue
           expect(main_content).to have_save_and_continue_button
           #Support
@@ -223,23 +207,22 @@ module EtFullSystem
         end
 
         def has_correct_blank_validation_error_messages?
-          expect(main_content.error_message).to have_error_summary
-          expect(main_content.error_message).to have_default_message
-          expect(main_content).to have_blank_respondent_name
-          expect(main_content).to have_blank_building
-          expect(main_content).to have_blank_street
-          expect(main_content).to have_blank_locality
-          expect(main_content).to have_blank_county
-          expect(main_content).to have_blank_post_code
-          expect(main_content.work_address).to have_blank_building
-          expect(main_content.work_address).to have_blank_street
-          expect(main_content.work_address).to have_blank_locality
-          expect(main_content.work_address).to have_blank_post_code
-          expect(main_content.respondent_no_acas_number_reason).to have_blank_no_acas_number_reason
+          expect(main_content).to have_error_summary
+          expect(main_content.name).to have_error(text: t('activemodel.errors.models.respondent.attributes.name.blank'))
+          expect(main_content.building).to have_error(text: t('activemodel.errors.models.respondent.attributes.address_building.blank'))
+          expect(main_content.street).to have_error(text: t('activemodel.errors.models.respondent.attributes.address_street.blank'))
+          expect(main_content.locality).to have_error(text: t('activemodel.errors.models.respondent.attributes.address_locality.blank'))
+          expect(main_content.county).to have_error(text: t('activemodel.errors.models.respondent.attributes.address_county.blank'))
+          expect(main_content.post_code).to have_error(text: t('activemodel.errors.models.respondent.attributes.address_post_code.blank'))
+          expect(main_content.work_address.building_optional).to have_error(text: t('activemodel.errors.models.respondent.attributes.work_address_building.blank'))
+          expect(main_content.work_address.street_optional).to have_error(text: t('activemodel.errors.models.respondent.attributes.work_address_street.blank'))
+          expect(main_content.work_address.locality_optional).to have_error(text: t('activemodel.errors.models.respondent.attributes.work_address_locality.blank'))
+          expect(main_content.work_address.post_code_optional).to have_error(text: t('activemodel.errors.models.respondent.attributes.work_address_post_code.blank'))
+          expect(main_content.respondent_no_acas_number_reason).to have_error(text: t('activemodel.errors.models.respondent.attributes.no_acas_number_reason.blank'))
         end
 
         def has_correct_error_message_for_invalid_uk_postcode?
-          expect(main_content).to have_invalid_post_code
+          expect(main_content.post_code).to have_error(text: t('activemodel.errors.models.respondent.attributes.address_post_code.invalid'))
         end
 
         def set(respondent)

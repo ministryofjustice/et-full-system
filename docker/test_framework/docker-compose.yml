@@ -25,6 +25,7 @@ services:
       - test_gem_cache:/usr/local/bundle
     networks:
       - test_framework
+    command: bundle exec cucumber
   zalenium:
     image: "dosel/zalenium"
     hostname: zalenium
