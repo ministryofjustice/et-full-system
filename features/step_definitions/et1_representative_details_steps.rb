@@ -17,7 +17,7 @@ When("I submit a claim without any representative") do
 end
 
 Then("I should be taken to Respondent's details page") do
-  expect(et1_respondents_details_page.main_header).to have_page_header
+  expect(et1_respondents_details_page).to have_page_header
 end
 
 When("I submit without answering any representative questions") do

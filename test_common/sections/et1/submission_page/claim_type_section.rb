@@ -5,15 +5,15 @@ module EtFullSystem
       module SubmissionPageSections
         class ClaimTypeSection < BaseSection
           section :send_to_whistleblowing_body, :et1_review_question_labelled, 'review.claim_type.questions.send_to_whistleblowing_body' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :whistleblowing, :et1_review_question_labelled, 'review.claim_type.questions.whistleblowing' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :types, :et1_review_question_labelled, 'review.claim_type.questions.types.title' do
             include ::EtFullSystem::Test::I18n
             include RSpec::Matchers
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
 
             def has_answer_for?(claim)
               if claim.claim_types.nil? || claim.claim_types.empty?

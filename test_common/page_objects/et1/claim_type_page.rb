@@ -5,12 +5,13 @@ module EtFullSystem
       class ClaimTypePage < BasePage
         include RSpec::Matchers
         #About the claim
-        section :main_header, '.main-header' do
-          element :page_header, :page_title, 'claims.claim_type.header', exact: false
-        end
+        element :page_header, :page_title, 'claims.claim_type.header', exact: false
         section :main_content, '#main-content' do
           include EtTestHelpers::Section
-          section :error_message, '#error-summary' do
+          # @!method error_message
+          #   A govuk error component
+          #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
+          section :error_message, govuk_component(:error_summary), :govuk_error_summary, :'shared.error_notification.default_message' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
             element :default_message, :paragraph, 'activemodel.errors.models.claim_type.attributes.blank', exact: false
           end
@@ -107,38 +108,34 @@ module EtFullSystem
             end
           end
           #Other type of claim (not shown above)
-          section :other_type_of_claim, :legend_header, 'claims.claim_type.other_type' do
-            #If you can’t see a good match for your claim or want to add a claim that doesn’t appear in the options above.
-            element :other_type_of_claim_hint, :paragraph, 'simple_form.hints.claim_type.is_other_type_of_claim'
+          # # @!method other_type_of_claim
+          #   A govuk collection of checkboxes component for other_type_of_claim question
+          #   @return [EtTestHelpers::Components::GovUKCollectionCheckBoxes] The site prism section
+          section :other_type_of_claim, govuk_component(:collection_check_boxes), :govuk_collection_check_boxes, :'claims.claim_type.other_type' do
             #Other type of claim
-            element :other_type_of_claim, :form_labelled, 'simple_form.labels.claim_type.is_other_type_of_claim' do
-              element :selector, :css, 'input[type="checkbox"]'
-              def set(*args); selector.set(*args); end
-            end
+            element :other_type_of_claim, :form_labelled, 'simple_form.labels.claim_type.is_other_type_of_claim'
           end
 
           #Give a very short description of your claim; you will have the opportunity to add more detail on the next page
           # @!method claim_type_other_claim_details
           #   A govuk text area component wrapping the input, label, hint etc.. for a text area
           #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
-          section :claim_type_other_claim_details, govuk_component(:text_area), :govuk_text_area, :'simple_form.labels.claim_type.other_claim_details' do
-            element :other_claim_details_hint, :paragraph, 'simple_form.hints.claim_type.other_claim_details'
-          end
+          section :claim_type_other_claim_details, govuk_component(:text_area), :govuk_text_area, :'simple_form.labels.claim_type.other_claim_details'
+
           #Whistleblowing claim
           section :whistleblowing_claim, :legend_header, 'claims.claim_type.whistleblowing' do
-            element :is_whistleblowing, :form_labelled, 'simple_form.labels.claim.is_whistleblowing'
-            element :is_whistleblowing_hint , :form_hint, 'simple_form.hints.claim_type.is_whistleblowing'
+            include EtTestHelpers::Section
+            # @!method is_whistleblowing
+            #   A govuk radio button component for is_whistleblowing question
+            #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+            section :is_whistleblowing, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.claim.is_whistleblowing'
+
             include ::EtFullSystem::Test::I18n
-            element :yes, :form_labelled, 'claims.claim_type.yes' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            element :no, :form_labelled, 'claims.claim_type.no' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
+            element :yes, :form_labelled, 'claims.claim_type.yes'
+            element :no, :form_labelled, 'claims.claim_type.no'
+
             def set(value)
-              choose(factory_translate(value), name: 'claim_type[is_whistleblowing]')
+              is_whistleblowing.set(value)
             end
           end
 
@@ -147,7 +144,6 @@ module EtFullSystem
           #   A govuk radio button component for send_to_relevant_person question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
           section :send_to_relevant_person, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.claim_type.send_claim_to_whistleblowing_entity' do
-            element :whistleblowing_entity_header, :form_labelled, 'simple_form.labels.claim_type.send_claim_to_whistleblowing_entity'
             include ::EtFullSystem::Test::I18n
             element :yes, :form_labelled, 'simple_form.yes' do
               element :selector, :css, 'input'
@@ -177,7 +173,7 @@ module EtFullSystem
           expect(feedback_notice).to have_feedback_link
           expect(feedback_notice).to have_feedback_info
           #About the claim
-          expect(main_header).to have_page_header
+          expect(self).to have_page_header
           #What your claim is about
           expect(main_content).to have_about_claim
           #Select at least one of the claim types below
@@ -205,17 +201,17 @@ module EtFullSystem
           expect(main_content.pay).to have_arrears_claim_type
           #Other type of cliam (not shown above)
           expect(main_content).to have_other_type_of_claim
-          expect(main_content.other_type_of_claim).to have_other_type_of_claim_hint
+          expect(main_content.other_type_of_claim).to have_hint(text: t('simple_form.hints.claim_type.is_other_type_of_claim'))
           expect(main_content.other_type_of_claim).to have_other_type_of_claim
           #Give a very short description of your claim
-          expect(main_content.claim_type_other_claim_details).to have_other_claim_details_hint
+          expect(main_content.claim_type_other_claim_details).to have_hint(text: t('simple_form.hints.claim_type.other_claim_details'))
           #Whistleblowing claim
           expect(main_content.whistleblowing_claim).to have_is_whistleblowing
-          expect(main_content.whistleblowing_claim).to have_is_whistleblowing_hint
+          expect(main_content.whistleblowing_claim.is_whistleblowing).to have_hint(text: t('simple_form.hints.claim_type.is_whistleblowing'))
           expect(main_content.whistleblowing_claim).to have_yes
           expect(main_content.whistleblowing_claim).to have_no
           #whistleblowing_entity
-          expect(main_content.send_to_relevant_person).to have_whistleblowing_entity_header
+          expect(main_content).to have_send_to_relevant_person
           expect(main_content.send_to_relevant_person).to have_yes
           expect(main_content.send_to_relevant_person).to have_no
           #Save and continue
@@ -248,7 +244,7 @@ module EtFullSystem
           end
           data = claim.to_h
           main_content.claim_type_other_claim_details.set(data[:other_type_of_claim_details]) unless data[:other_type_of_claim_details].nil?
-          set_field main_content, :whistleblowing_claim, data
+          main_content.whistleblowing_claim.is_whistleblowing.set(data[:whistleblowing_claim])
           set_field main_content, :send_to_relevant_person, data
         end
         

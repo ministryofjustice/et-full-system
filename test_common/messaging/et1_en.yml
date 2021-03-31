@@ -219,6 +219,7 @@ en:
         benefit_details: "Do – or did – you have any benefits, like a company car? (optional)"
         found_new_job: Have you got a new job?
         notice_pay_period_count: For how many weeks or months did you get paid? (optional)
+        notice_pay_period_type: Was this weeks or months ?
         was_employed: "Have you ever been employed by the person or organisation that you’re making this claim against? (optional)"
         new_job_gross_pay: New job pay before tax (optional)
         start_date:
@@ -334,7 +335,7 @@ en:
       user_session:
         new:
           reference: This was emailed to you (if you entered your email address)
-          password: You created this at the beginning of the claim
+          password: If you have entered your email address above, you will be able to reset your memorable word if you forget it
         destroy:
           email_address: Get your claim number in an email
 
@@ -382,7 +383,7 @@ en:
       contact_us_link: http://www.justice.gov.uk/contacts/hmcts/tribunals/employment    
     error_notification:
       error_summary: "Errors on page"
-      default_message: "Provide information in the highlighted fields"
+      default_message: "Provide information in the highlighted fields."
 
   errors:
     messages:
@@ -658,6 +659,18 @@ en:
         From the information you’ve given us, you have to pay <strong>£%{fee}</strong> by debit or credit card.
       hearing_fee: |
         If your case goes to a tribunal, you’ll have to pay a hearing fee of <strong>£%{fee}</strong>.
+
+    reset_password:
+      email_address:
+        label: Enter your email address
+        hint: If you entered a valid email address when you started your claim, we will email you with instructions on how to reset your memorable word. If we cannot match your email address or you did not enter a valid email address you will need to start a new claim.
+      claim_number:
+        label: Save and return number
+        hint: This was emailed to you (if you entered an email address).
+      new_password:
+        label: Memorable word
+        hint: Your new memorable word
+
   # Form Errors - Handled by ActiveModel
   activemodel:
     errors:

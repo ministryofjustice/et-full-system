@@ -10,7 +10,7 @@ end
 
 When("I answerd Yes to disability") do
   et1_claimant_details_page.main_content.claimant_has_special_needs.set(@claimant[0][:has_special_needs])
-  et1_claimant_details_page.main_content.assistance.special_needs.set(@claimant[0][:special_needs])
+  et1_claimant_details_page.main_content.assistance.set(@claimant[0][:special_needs])
 end
 
 Then("I should see the option to describe the assistant I need") do

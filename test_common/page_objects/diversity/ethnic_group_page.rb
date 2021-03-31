@@ -11,6 +11,7 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         section :main_content, '.container' do
+          include EtTestHelpers::Section
           #What is your ethnic group?
           element :header, :main_header, 'diversities.ethnicity.hint'
           section :white, :form_labelled, 'ethnicity.white' do
@@ -37,116 +38,148 @@ module EtFullSystem
             element :field, 'input'
             def set(*args); field.set(*args); end
           end
-          #What is your ethnic type? (optional)
-          section :ethnicity_subgroup, '.ethnicity_subgroup' do
-            element :header, :form_labelled, 'diversities.ethnicity_subgroup.header'
-            section :english, :form_labelled, 'ethnicity_subgroup.english-welsh-scottish-northern-irish-british' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :irish, :form_labelled, 'ethnicity_subgroup.irish' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :gypsy, :form_labelled, 'ethnicity_subgroup.gypsy-or-irish-traveller' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :other_white, :form_labelled, 'ethnicity_subgroup.any-other-white-background' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :none_of_the_above, :form_labelled, 'ethnicity_subgroup.none-of-the-above' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
+          section :white_subgroup, 'div[data-subgroup="white"]' do
+            include EtTestHelpers::Section
+            #What is your ethnic type? (optional)
+            # @!method selection
+            #   A govuk radio button component for ethnicity_subgroup question
+            #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+            section :selection, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'diversities.ethnicity_subgroup.header' do
+              section :english, :form_labelled, 'ethnicity_subgroup.english-welsh-scottish-northern-irish-british' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
+              section :irish, :form_labelled, 'ethnicity_subgroup.irish' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
+              section :gypsy, :form_labelled, 'ethnicity_subgroup.gypsy-or-irish-traveller' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
+              section :other_white, :form_labelled, 'ethnicity_subgroup.any-other-white-background' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
+              section :none_of_the_above, :form_labelled, 'ethnicity_subgroup.none-of-the-above' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
             end
           end
-          section :mixed_subgroup, '.mixed-multiple-ethnic-groups' do
+          section :mixed_subgroup, 'div[data-subgroup="mixed-multiple-ethnic-groups"]' do
+            include EtTestHelpers::Section
             #What is your ethnic type? (optional)
-            element :header, :form_labelled, 'ethnicity_subgroup.header'
-            section :white_and_black_caribbean, :form_labelled, 'ethnicity_subgroup.white-and-black-caribbean' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :white_and_black_african, :form_labelled, 'ethnicity_subgroup.white-and-black-african' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :white_and_asian, :form_labelled, 'ethnicity_subgroup.white-and-asian' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :mixed_background, :form_labelled, 'ethnicity_subgroup.any-other-mixed-multiple-ethnic-background' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :none_of_the_above, :form_labelled, 'ethnicity_subgroup.none-of-the-above' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
+            # @!method selection
+            #   A govuk radio button component for ethnicity_subgroup question
+            #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+            section :selection, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'diversities.ethnicity_subgroup.header' do
+              element :header, :form_labelled, 'ethnicity_subgroup.header'
+              section :white_and_black_caribbean, :form_labelled, 'ethnicity_subgroup.white-and-black-caribbean' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
+              section :white_and_black_african, :form_labelled, 'ethnicity_subgroup.white-and-black-african' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
+              section :white_and_asian, :form_labelled, 'ethnicity_subgroup.white-and-asian' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
+              section :mixed_background, :form_labelled, 'ethnicity_subgroup.any-other-mixed-multiple-ethnic-background' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
+              section :none_of_the_above, :form_labelled, 'ethnicity_subgroup.none-of-the-above' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
             end
           end
-          section :asian_subgroup, '.asian-asian-british' do
+          section :asian_subgroup, 'div[data-subgroup="asian-asian-british"]' do
+            include EtTestHelpers::Section
             #What is your ethnic type? (optional)
-            element :header, :form_labelled, 'ethnicity_subgroup.header'
-            section :indian, :form_labelled, 'ethnicity_subgroup.indian' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :pakistani, :form_labelled, 'ethnicity_subgroup.pakistani' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :bangladeshi, :form_labelled, 'ethnicity_subgroup.bangladeshi' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :chinese, :form_labelled, 'ethnicity_subgroup.chinese' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :other_asian, :form_labelled, 'ethnicity_subgroup.any-other-asian-background' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :none_of_the_above, :form_labelled, 'ethnicity_subgroup.none-of-the-above' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
+            # @!method selection
+            #   A govuk radio button component for ethnicity_subgroup question
+            #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+            section :selection, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'diversities.ethnicity_subgroup.header' do
+              #What is your ethnic type? (optional)
+              element :header, :form_labelled, 'ethnicity_subgroup.header'
+              section :indian, :form_labelled, 'ethnicity_subgroup.indian' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
+              section :pakistani, :form_labelled, 'ethnicity_subgroup.pakistani' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
+              section :bangladeshi, :form_labelled, 'ethnicity_subgroup.bangladeshi' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
+              section :chinese, :form_labelled, 'ethnicity_subgroup.chinese' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
+              section :other_asian, :form_labelled, 'ethnicity_subgroup.any-other-asian-background' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
+              section :none_of_the_above, :form_labelled, 'ethnicity_subgroup.none-of-the-above' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
             end
           end
-          section :black_subgroup, '.black-african-caribbean-black-british' do
+          section :black_subgroup, 'div[data-subgroup="black-african-caribbean-black-british"]' do
+            include EtTestHelpers::Section
             #What is your ethnic type? (optional)
-            element :header, :form_labelled, 'ethnicity_subgroup.header'
-            section :african, :form_labelled, 'ethnicity_subgroup.african' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :caribbean, :form_labelled, 'ethnicity_subgroup.caribbean' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :other_black, :form_labelled, 'ethnicity_subgroup.any-other-black-african-caribbean-background' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :none_of_the_above, :form_labelled, 'ethnicity_subgroup.none-of-the-above' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
+            # @!method selection
+            #   A govuk radio button component for ethnicity_subgroup question
+            #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+            section :selection, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'diversities.ethnicity_subgroup.header' do
+              #What is your ethnic type? (optional)
+              element :header, :form_labelled, 'ethnicity_subgroup.header'
+              section :african, :form_labelled, 'ethnicity_subgroup.african' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
+              section :caribbean, :form_labelled, 'ethnicity_subgroup.caribbean' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
+              section :other_black, :form_labelled, 'ethnicity_subgroup.any-other-black-african-caribbean-background' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
+              section :none_of_the_above, :form_labelled, 'ethnicity_subgroup.none-of-the-above' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
             end
           end
-          section :other_subgroup, '.other-ethnic-group' do
+          section :other_subgroup, 'div[data-subgroup="other-ethnic-group"]' do
+            include EtTestHelpers::Section
             #What is your ethnic type? (optional)
-            element :header, :form_labelled, 'ethnicity_subgroup.header'
-            section :arab, :form_labelled, 'ethnicity_subgroup.arab' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :other_ethnic_group, :form_labelled, 'ethnicity_subgroup.any-other-ethnic-group' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
-            end
-            section :none_of_the_above, :form_labelled, 'ethnicity_subgroup.none-of-the-above' do
-              element :field, 'input'
-              def set(*args); field.set(*args); end
+            # @!method selection
+            #   A govuk radio button component for ethnicity_subgroup question
+            #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+            section :selection, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'diversities.ethnicity_subgroup.header' do
+              #What is your ethnic type? (optional)
+              element :header, :form_labelled, 'ethnicity_subgroup.header'
+              section :arab, :form_labelled, 'ethnicity_subgroup.arab' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
+              section :other_ethnic_group, :form_labelled, 'ethnicity_subgroup.any-other-ethnic-group' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
+              section :none_of_the_above, :form_labelled, 'ethnicity_subgroup.none-of-the-above' do
+                element :field, 'input'
+                def set(*args); field.set(*args); end
+              end
             end
           end
           #save and continue button
@@ -183,40 +216,40 @@ module EtFullSystem
           expect(main_content).to have_prefer_not_to_say
 
           choose(factory_translate(:"ethnicity.white"), name: 'diversities_ethnicity[ethnicity]')
-          expect(main_content.ethnicity_subgroup).to have_english
-          expect(main_content.ethnicity_subgroup).to have_irish
-          expect(main_content.ethnicity_subgroup).to have_gypsy
-          expect(main_content.ethnicity_subgroup).to have_other_white
-          expect(main_content.ethnicity_subgroup).to have_none_of_the_above
+          expect(main_content.white_subgroup.selection).to have_english
+          expect(main_content.white_subgroup.selection).to have_irish
+          expect(main_content.white_subgroup.selection).to have_gypsy
+          expect(main_content.white_subgroup.selection).to have_other_white
+          expect(main_content.white_subgroup.selection).to have_none_of_the_above
           
           choose(factory_translate(:"ethnicity.mixed-multiple-ethnic-groups"), name: 'diversities_ethnicity[ethnicity]')
-          expect(main_content.mixed_subgroup).to have_white_and_black_caribbean
-          expect(main_content.mixed_subgroup).to have_white_and_black_african
-          expect(main_content.mixed_subgroup).to have_white_and_asian
-          expect(main_content.mixed_subgroup).to have_mixed_background
-          expect(main_content.mixed_subgroup).to have_none_of_the_above
+          expect(main_content.mixed_subgroup.selection).to have_white_and_black_caribbean
+          expect(main_content.mixed_subgroup.selection).to have_white_and_black_african
+          expect(main_content.mixed_subgroup.selection).to have_white_and_asian
+          expect(main_content.mixed_subgroup.selection).to have_mixed_background
+          expect(main_content.mixed_subgroup.selection).to have_none_of_the_above
 
           choose(factory_translate(:"ethnicity.asian-asian-british"), name: 'diversities_ethnicity[ethnicity]')
-          expect(main_content.asian_subgroup).to have_indian
-          expect(main_content.asian_subgroup).to have_pakistani
-          expect(main_content.asian_subgroup).to have_bangladeshi
-          expect(main_content.asian_subgroup).to have_chinese
-          expect(main_content.asian_subgroup).to have_other_asian
-          expect(main_content.asian_subgroup).to have_none_of_the_above
+          expect(main_content.asian_subgroup.selection).to have_indian
+          expect(main_content.asian_subgroup.selection).to have_pakistani
+          expect(main_content.asian_subgroup.selection).to have_bangladeshi
+          expect(main_content.asian_subgroup.selection).to have_chinese
+          expect(main_content.asian_subgroup.selection).to have_other_asian
+          expect(main_content.asian_subgroup.selection).to have_none_of_the_above
 
           choose(factory_translate(:"ethnicity.black-african-caribbean-black-british"), name: 'diversities_ethnicity[ethnicity]')
-          expect(main_content.black_subgroup).to have_african
-          expect(main_content.black_subgroup).to have_caribbean
-          expect(main_content.black_subgroup).to have_other_black
-          expect(main_content.black_subgroup).to have_none_of_the_above
-          expect(main_content.other_subgroup).to have_arab
-          expect(main_content.other_subgroup).to have_other_ethnic_group
-          expect(main_content.other_subgroup).to have_none_of_the_above
+          expect(main_content.black_subgroup.selection).to have_african
+          expect(main_content.black_subgroup.selection).to have_caribbean
+          expect(main_content.black_subgroup.selection).to have_other_black
+          expect(main_content.black_subgroup.selection).to have_none_of_the_above
+          expect(main_content.other_subgroup.selection).to have_arab
+          expect(main_content.other_subgroup.selection).to have_other_ethnic_group
+          expect(main_content.other_subgroup.selection).to have_none_of_the_above
 
           choose(factory_translate(:"ethnicity.other-ethnic-group"), name: 'diversities_ethnicity[ethnicity]')
-          expect(main_content.other_subgroup).to have_arab
-          expect(main_content.other_subgroup).to have_other_ethnic_group
-          expect(main_content.other_subgroup).to have_none_of_the_above
+          expect(main_content.other_subgroup.selection).to have_arab
+          expect(main_content.other_subgroup.selection).to have_other_ethnic_group
+          expect(main_content.other_subgroup.selection).to have_none_of_the_above
         end
 
         private

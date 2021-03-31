@@ -7,24 +7,29 @@ module EtFullSystem
         include RSpec::Matchers
 
         #page and main header
-        section :main_header, '.main-header' do
-          element :page_header, :page_title, 'claims.application_number.header'
+        element :page_header, :page_title, 'claims.application_number.header'
+
+        # @!method claim_number_fieldset
+        #   A govuk fieldset component
+        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+        section :claim_number_fieldset, govuk_component(:fieldset), :govuk_fieldset, :'claims.application_number.application_number' do
+          include EtTestHelpers::Section
+
+          element :claims_number, '.number'
+          element :claims_intro_text, :paragraph, 'claims.application_number.intro_text'
+
+          # @!method email_question
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :email_question, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.application_number.email_address', exact: false
+          # @!method memorable_word_question
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :memorable_word_question, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.application_number.password'
+
+          element :example_word, '#save-and-return-user-password-hint'
         end
 
-        element :claim_number_text, :paragraph, 'claims.application_number.application_number'
-        element :claims_number, '.callout-reference .number'
-        element :claims_intro_text, :paragraph, 'claims.application_number.intro_text'
-
-        # @!method email_question
-        #   A govuk text field component wrapping the input, label, hint etc..
-        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-        section :email_question, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.application_number.email_address', exact: false
-        # @!method memorable_word_question
-        #   A govuk text field component wrapping the input, label, hint etc..
-        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-        section :memorable_word_question, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.application_number.password'
-
-        element :example_word, '#save-and-return-user-password-hint'
         #print this page
         element :print_link, :link_named, 'user_sessions.reminder.print_link'
         element :print_copy, :paragraph, 'claims.application_number.print_copy', exact: false
@@ -52,20 +57,20 @@ module EtFullSystem
 
         def has_correct_translation?
           #saving your claim heading
-          expect(main_header).to have_page_header
+          expect(self).to have_page_header
           #your claim number
-          expect(self).to have_claim_number_text
+          expect(self).to have_claim_number_fieldset
           #claim intro
-          expect(self).to have_claims_intro_text
+          expect(claim_number_fieldset).to have_claims_intro_text
           #email address
-          expect(self).to have_email_question
+          expect(claim_number_fieldset).to have_email_question
           #memorable
-          expect(self).to have_memorable_word_question
+          expect(claim_number_fieldset).to have_memorable_word_question
           #print this page
           expect(self).to have_print_link
           expect(self).to have_print_copy
           #save and continue button
-          expect(self).to have_example_word
+          expect(claim_number_fieldset).to have_example_word
           #Support links
           expect(support).to have_suport_header
           expect(support).to have_guide
@@ -80,8 +85,8 @@ module EtFullSystem
 
         # Registers the user for a save and return
         def register(data)
-          email_question.set(data[0].dig(:email_address))
-          memorable_word_question.set(data[0].dig(:memorable_word))
+          claim_number_fieldset.email_question.set(data[0].dig(:email_address))
+          claim_number_fieldset.memorable_word_question.set(data[0].dig(:memorable_word))
           save_and_continue_button.submit
         end
       end

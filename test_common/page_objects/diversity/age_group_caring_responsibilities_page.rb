@@ -11,9 +11,13 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         section :main_content, '.container' do
+          include EtTestHelpers::Section
           #What is your age group and caring responsibilities?
           element :header, :main_header, 'diversities.age_caring.hint'
-          section :age_group, :question_labelled, 'diversities.age_caring.age_group.hint' do
+          # @!method age_group
+          #   A govuk radio button component for age_group question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :age_group, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'diversities.age_caring.age_group.hint' do
             section :u25, :form_labelled, 'age_group.under-25' do
               element :field, 'input'
               def set(*args); field.set(*args); end
@@ -43,8 +47,10 @@ module EtFullSystem
               def set(*args); field.set(*args); end
             end
           end
-          section :caring_responsibility, :question_labelled, 'diversities.age_caring.caring_responsibility.hint' do
-            element :hint, :paragraph, 'diversities.age_caring.caring_responsibility.form_hint'
+          # @!method caring_responsibility
+          #   A govuk radio button component for caring_responsibility question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :caring_responsibility, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'diversities.age_caring.caring_responsibility.hint' do
             section :yes, :form_labelled, 'caring_responsibility.yes_answer' do
               element :field, 'input'
               def set(*args); field.set(*args); end

@@ -42,6 +42,6 @@ end
 
 When("user changed {string} to {string}") do |string, string2|
   @diversity = build(:diversity, :not_blank, claim_type: :"claim_type.redundancy-payment")
-  diversity_pages.submission_form_page.main_content.claim_type_row.link.click
+  diversity_pages.submission_form_page.main_content.summary.claim_type_row.link.click
   diversity_pages.claim_type_page.set_for(@diversity)
 end

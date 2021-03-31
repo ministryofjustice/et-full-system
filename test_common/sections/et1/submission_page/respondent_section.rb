@@ -5,19 +5,19 @@ module EtFullSystem
       module SubmissionPageSections
         class RespondentSection < BaseSection
           section :name, :et1_review_question_labelled, 'review.respondent.questions.name' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :address, :et1_review_question_labelled, 'review.respondent.questions.address' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :phone, :et1_review_question_labelled, 'review.respondent.questions.phone' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :acas_number, :et1_review_question_labelled, 'review.respondent.questions.acas_number' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :work_address, :et1_review_question_labelled, 'review.respondent.questions.work_address' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
 
           def has_correct_translation?(respondent:)

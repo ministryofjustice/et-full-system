@@ -5,49 +5,49 @@ module EtFullSystem
       module SubmissionPageSections
         class EmploymentSection < BaseSection
           section :pension_scheme, :et1_review_question_labelled, 'review.employment.questions.pension_scheme' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :notice_period, :et1_review_question_labelled, 'review.employment.questions.notice_period.title' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :end_date, :et1_review_question_labelled, 'review.employment.questions.end_date' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :start_date, :et1_review_question_labelled, 'review.employment.questions.start_date' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :pay_before_tax, :et1_review_question_labelled, 'review.employment.questions.pay_before_tax' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :pay_after_tax, :et1_review_question_labelled, 'review.employment.questions.pay_after_tax' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :average_weekly_hours_worked, :et1_review_question_labelled, 'review.employment.questions.average_weekly_hours_worked' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :current_situation, :et1_review_question_labelled, 'review.employment.questions.current_situation' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :job, :et1_review_question_labelled, 'review.employment.questions.job' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :benefit_details, :et1_review_question_labelled, 'review.employment.questions.benefit_details' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :another_job, :et1_review_question_labelled, 'review.employment.questions.another_job' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :notice_pay, :et1_review_question_labelled, 'review.employment.questions.notice_pay' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :notice_period_end_date, :et1_review_question_labelled, 'review.employment.questions.notice_period_end_date' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :pay_before_tax_at_new_job, :et1_review_question_labelled, 'review.employment.questions.pay_before_tax_at_new_job' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :employed_by_employer, :et1_review_question_labelled, 'review.employment.questions.employed_by_employer.title' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
 
           def has_correct_translation?(employment:)

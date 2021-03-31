@@ -1,7 +1,7 @@
 Given /^a claimant continued from Saving your claim page$/ do
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data)
   start_a_new_et1_claim
-  @claim_number = et1_application_number_page.main_content.claims_number.text
+  @claim_number = et1_application_number_page.claim_number_fieldset.claims_number.text
   et1_answer_login
 end
 

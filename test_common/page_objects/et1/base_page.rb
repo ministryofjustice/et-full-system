@@ -3,7 +3,7 @@ module EtFullSystem
     module Et1
       class BasePage < ::EtFullSystem::Test::BasePage
         #your feedback header
-        section :feedback_notice, '.feedback-notice' do
+        section :feedback_notice, '.govuk-phase-banner' do
           include ::EtFullSystem::Test::I18n
           element :language, :link_named, 'switch.language'
           element :welsh_link, :link_or_button, t('switch.language', locale: :en)

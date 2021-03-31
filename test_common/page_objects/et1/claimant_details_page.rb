@@ -5,44 +5,42 @@ module EtFullSystem
       class ClaimantDetailsPage < BasePage
         include RSpec::Matchers
         #page and main header
-        section :main_header, '.main-header' do
-          element :page_header, :page_title, 'claims.claimant.header', exact: false
-        end
+        element :page_header, :page_title, 'claims.claimant.header', exact: false
         section :main_content, '#main-content' do
           include EtTestHelpers::Section
-          section :error_message, '#error-summary' do
-            element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
-            element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
-          end
+          # @!method error_summary
+          #   A govuk error component
+          #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
+          section :error_summary, govuk_component(:error_summary), :govuk_error_summary, :'shared.error_notification.default_message'
           #About the claimant
           element :legend_personal_details, :legend_header, 'claims.claimant.legend_personal_details', exact: false
           #information about the person
           element :personal_details_description, :paragraph, 'claims.claimant.personal_details_description', exact: false
-          #title
-          section :title, :question_labelled, 'simple_form.labels.claimant.title', exact: false do
-            include EtFullSystem::Test::I18n
-            def set(value)
-              root_element.select(factory_translate value)
-            end
+
+          # @!method title
+          #   A govukselect component wrapping the select, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKCollectionSelect] The site prism section
+          section :title, govuk_component(:collection_select), :govuk_collection_select, :'simple_form.labels.claimant.title' do
             element :error_title, :error, 'activemodel.errors.models.claimant.attributes.title.blank', exact: false
           end
+
           #first name
-          section :first_name, :question_labelled, 'simple_form.labels.claimant.first_name' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-            element :error_first_name, :error, 'activemodel.errors.models.claimant.attributes.first_name.blank'
-          end
+          # @!method first_name
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :first_name, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.claimant.first_name'
+
+
           #lastname name
-          section :last_name, :question_labelled, 'simple_form.labels.claimant.last_name' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-            element :error_last_name, :error, 'activemodel.errors.models.claimant.attributes.last_name.blank'
-          end
+          # @!method last_name
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :last_name, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.claimant.last_name'
           #Date of birth
-          section :date_of_birth, :legend_header, 'claims.personal_details.date_of_birth', exact: false do
-            element :error_date_of_birth, :error, 'activemodel.errors.models.claimant.attributes.date_of_birth.too_young'
-            element :invalid_date_of_birth, :error, 'activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.date_of_birth.invalid'
-            element :date_of_birth_hint, :paragraph, 'simple_form.hints.claimant.date_of_birth'
+          # @!method date_of_birth
+          #   A govuk date field component wrapping the inputs, label, hint etc.. for a date question
+          #   @return [EtTestHelpers::Components::GovUKDateField] The site prism section
+          section :date_of_birth, govuk_component(:date_field), :govuk_date_field, :'claims.personal_details.date_of_birth' do
             section :day, :question_labelled, 'simple_form.labels.claimant.date_of_birth.day' do
               element :field, :css, '#claimant_date_of_birth_3i'
               def set(*args); field.set(*args); end
@@ -54,12 +52,6 @@ module EtFullSystem
             section :year, :question_labelled, 'simple_form.labels.claimant.date_of_birth.year' do
               element :field, :css, '#claimant_date_of_birth_1i'
               def set(*args); field.set(*args); end
-            end
-            def set(value)
-              (day_value, month_value, year_value) = value.split("/")
-              day.set(day_value)
-              month.set(month_value)
-              year.set(year_value)
             end
           end
           section :gender, :legend_header, 'claims.claimant.gender', exact: false do
@@ -82,9 +74,11 @@ module EtFullSystem
             end
           end
           #has special needs
-          section :claimant_has_special_needs, :legend_header, 'simple_form.labels.claimant.has_special_needs' do
+          # @!method claimant_has_special_needs
+          #   A govuk radio button component for claimant_has_special_needs question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :claimant_has_special_needs, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.claimant.has_special_needs' do
             include ::EtFullSystem::Test::I18n
-            element :has_special_needs_hint, :paragraph, 'simple_form.hints.claimant.has_special_needs'
             element :yes, :form_labelled, 'simple_form.yes' do
               element :selector, :css, '#claimant_has_special_needs_true'
               def set(*args); selector.set(*args); end
@@ -92,9 +86,6 @@ module EtFullSystem
             element :no, :form_labelled, 'simple_form.no' do
               element :selector, :css, '#claimant_has_special_needs_false'
               def set(*args); selector.set(*args); end
-            end
-            def set(value)
-              choose(factory_translate(value), name: 'claimant[has_special_needs]')
             end
           end
           # @!method assistance
@@ -104,40 +95,33 @@ module EtFullSystem
 
           #Claimant's contact details
           element :claimants_contact_details, :legend_header, 'claims.claimant.legend_contact_details', exact: false
-          section :building, :question_labelled, 'simple_form.labels.claimant.address_building' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          element :error_building, :error, 'activemodel.errors.models.claimant.attributes.address_building.blank'
-          section :street, :question_labelled, 'simple_form.labels.claimant.address_street' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          element :error_street, :error, 'activemodel.errors.models.claimant.attributes.address_street.blank'
-          section :locality, :question_labelled, 'simple_form.labels.claimant.address_locality' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          element :error_locality, :error, 'activemodel.errors.models.claimant.attributes.address_locality.blank'
+          # @!method building
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :building, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.claimant.address_building'
+          # @!method street
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :street, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.claimant.address_street'
+          # @!method locality
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :locality, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.claimant.address_locality'
           #County
-          section :county, :question_labelled, 'simple_form.labels.claimant.address_county' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          element :error_county, :error, 'activemodel.errors.models.claimant.attributes.address_county.blank'
-          element :county_hint, :paragraph, 'simple_form.hints.claimant.address_county', exact: false
-          section :post_code, :question_labelled, 'simple_form.labels.claimant.address_post_code' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          element :blank_post_code, :error, 'activemodel.errors.models.claimant.attributes.address_post_code.blank'
-          element :invalid_post_code, :error, 'activemodel.errors.models.claimant.attributes.address_post_code.invalid'
+          # @!method county
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :county, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.claimant.address_county'
+
+          # @!method post_code
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :post_code, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.claimant.address_post_code'
           # @!method country
           #   A govuk radio button component for country question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
           section :country, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.claimant.address_country'
           
-          element :error_address_county, :error, 'activemodel.errors.models.claimant.attributes.address_county.blank'
           section :telephone_number, :question_labelled, 'simple_form.labels.claimant.address_telephone_number' do
             element :field, :css, 'input'
             def set(*args); field.set(*args); end
@@ -146,17 +130,16 @@ module EtFullSystem
             element :field, :css, 'input'
             def set(*args); field.set(*args); end
           end
-          section :email_address, :question_labelled, 'simple_form.labels.claimant.email_address', exact: false do
-            element :invalid_email_address, :error, 'activemodel.errors.models.claimant.attributes.email_address.invalid'
-            element :field, :css, 'input[type="email"]'
-            def set(*args); field.set(*args); end
-          end
-          element :blank_email_address, :error, 'activemodel.errors.models.claimant.attributes.email_address.blank'
+          # @!method email_address
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKEmailField] The site prism section
+          section :email_address, govuk_component(:email_field), :govuk_email_field, :'simple_form.labels.claimant.email_address'
           #correspondence
-          section :claimant_contact_preference, :legend_header, 'simple_form.labels.claimant.contact_preference' do
+          # @!method claimant_contact_preference
+          #   A govuk radio button component for claimant_contact_preference question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :claimant_contact_preference, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.claimant.contact_preference' do
             include ::EtFullSystem::Test::I18n
-            element :error_claimant_contact_preference, :error, 'activemodel.errors.models.claimant.attributes.contact_preference.blank'
-            element :contact_preference, :paragraph, 'simple_form.hints.claimant.contact_preference', exact: false
             section :email_preference, :form_labelled, 'simple_form.options.claimant.contact_preference.email' do
               element :selector, :css, 'input[type="radio"]'
               def set(*args); selector.set(*args); end
@@ -170,9 +153,11 @@ module EtFullSystem
             end
           end
 
-          section :allow_video_attendance, :legend_header, 'simple_form.labels.claimant.allow_video_attendance' do
+          # @!method allow_video_attendance
+          #   A govuk radio button component for allow_video_attendance question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+          section :allow_video_attendance, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.claimant.allow_video_attendance' do
             include ::EtFullSystem::Test::I18n
-            element :error_allow_video_attendance, :error, 'activemodel.errors.models.claimant.attributes.allow_video_attendance.blank'
             element :allow_video_attendance_hint, :paragraph, 'simple_form.hints.claimant.allow_video_attendance'
             section :yes, :form_labelled, 'simple_form.options.claimant.allow_video_attendance.yes' do
               element :selector, :css, '#claimant_allow_video_attendance_true'
@@ -204,7 +189,7 @@ module EtFullSystem
           expect(feedback_notice).to have_feedback_link
           expect(feedback_notice).to have_feedback_info
           #Page header
-          expect(main_header).to have_page_header
+          expect(self).to have_page_header
           #About your claimant
           expect(main_content).to have_legend_personal_details
           expect(main_content).to have_personal_details_description
@@ -213,7 +198,7 @@ module EtFullSystem
           expect(main_content).to have_last_name
           #date of birth
           expect(main_content).to have_date_of_birth
-          expect(main_content.date_of_birth).to have_date_of_birth_hint
+          expect(main_content.date_of_birth).to have_hint(text: t('simple_form.hints.claimant.date_of_birth'))
           expect(main_content.date_of_birth).to have_day
           expect(main_content.date_of_birth).to have_month
           expect(main_content.date_of_birth).to have_year
@@ -223,7 +208,7 @@ module EtFullSystem
           expect(main_content.gender).to have_female
           expect(main_content.gender).to have_prefer_not_to_say
           #has special needs
-          expect(main_content.claimant_has_special_needs).to have_has_special_needs_hint
+          expect(main_content.claimant_has_special_needs).to have_hint(text: t('simple_form.hints.claimant.has_special_needs'))
           expect(main_content.claimant_has_special_needs).to have_yes
           expect(main_content.claimant_has_special_needs).to have_no
           #Claimant's contact details
@@ -232,14 +217,14 @@ module EtFullSystem
           expect(main_content).to have_street
           expect(main_content).to have_locality
           expect(main_content).to have_county
-          expect(main_content).to have_county_hint
+          expect(main_content.county).to have_hint(text: t('simple_form.hints.claimant.address_county'))
           expect(main_content).to have_post_code
           expect(main_content).to have_country
           expect(main_content).to have_telephone_number
           expect(main_content).to have_alternative_telephone_number
           expect(main_content).to have_email_address
           #Best way to send correspondence
-          expect(main_content.claimant_contact_preference).to have_contact_preference
+          expect(main_content.claimant_contact_preference).to have_hint(text: t('simple_form.hints.claimant.contact_preference'))
           expect(main_content.claimant_contact_preference).to have_email_preference
           expect(main_content.claimant_contact_preference).to have_post_preference
           # Allow video attendance
@@ -258,44 +243,42 @@ module EtFullSystem
         end
         
         def has_correct_translation_for_assistance_required?
-
+          expect(main_content).to have_assistance
         end
 
         def has_correct_error_message_for_leaving_email_address_field_blank?
-          expect(main_content).to have_blank_email_address
+          expect(main_content.email_address).to have_error(text: t('activemodel.errors.models.claimant.attributes.email_address.blank'))
         end
 
         def has_correct_error_message_for_invalid_email_address?
-          expect(main_content.email_address).to have_invalid_email_address
+          expect(main_content.email_address).to have_error(text: t('activemodel.errors.models.claimant.attributes.email_address.invalid'))
         end
 
         def has_correct_error_message_for_invalid_uk_postcode?
-          expect(main_content).to have_invalid_post_code
+          expect(main_content.post_code).to have_error(text: t('activemodel.errors.models.claimant.attributes.address_post_code.invalid'))
         end
 
         def has_correct_invalid_error_message_for_dob?
-          expect(main_content.date_of_birth).to have_invalid_date_of_birth
+          expect(main_content.date_of_birth).to have_error(text: t('activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.date_of_birth.invalid'))
         end
 
         def has_correct_invalid_error_message_for_allow_video_attendance?
-          expect(main_content.allow_video_attendance).to have_error_allow_video_attendance
+          expect(main_content.allow_video_attendance).to have_error(text: t('activemodel.errors.models.claimant.attributes.allow_video_attendance.blank'))
         end
 
         def has_correct_validation_error_message?
           #Errors on page
-          expect(main_content.error_message).to have_error_summary
-          expect(main_content.error_message).to have_default_message
-          expect(main_content.first_name).to have_error_first_name
-          expect(main_content.last_name).to have_error_last_name
-          expect(main_content.date_of_birth).to have_error_date_of_birth
-          expect(main_content).to have_error_building
-          expect(main_content).to have_error_street
-          expect(main_content).to have_error_locality
-          expect(main_content).to have_error_county
-          expect(main_content).to have_blank_post_code
-          expect(main_content).to have_error_address_county
-          expect(main_content.claimant_contact_preference).to have_error_claimant_contact_preference
-          expect(main_content.allow_video_attendance).to have_error_allow_video_attendance
+          expect(main_content).to have_error_summary
+          expect(main_content.first_name).to have_error(text: t('activemodel.errors.models.claimant.attributes.first_name.blank'))
+          expect(main_content.last_name).to have_error(text: t('activemodel.errors.models.claimant.attributes.last_name.blank'))
+          expect(main_content.date_of_birth).to have_error(text: t('activemodel.errors.models.claimant.attributes.date_of_birth.too_young'))
+          expect(main_content.building).to have_error(text: t('activemodel.errors.models.claimant.attributes.address_building.blank'))
+          expect(main_content.street).to have_error(text: t('activemodel.errors.models.claimant.attributes.address_street.blank'))
+          expect(main_content.locality).to have_error(text: t('activemodel.errors.models.claimant.attributes.address_locality.blank'))
+          expect(main_content.county).to have_error(text: t('activemodel.errors.models.claimant.attributes.address_county.blank'))
+          expect(main_content.post_code).to have_error(text: t('activemodel.errors.models.claimant.attributes.address_post_code.blank'))
+          expect(main_content.claimant_contact_preference).to have_error(text: t('activemodel.errors.models.claimant.attributes.contact_preference.blank'))
+          expect(main_content.allow_video_attendance).to have_error(text: t('activemodel.errors.models.claimant.attributes.allow_video_attendance.blank'))
         end
 
         # Fills in the entire page for the user given
@@ -304,7 +287,7 @@ module EtFullSystem
         def set(user)
           data = user[0].to_h
           main_content.tap do |s|
-            set_field(s, :title, data)
+            set_field(s, :title, data) unless data[:title].nil?
             set_field(s, :first_name, data)
             set_field(s, :last_name, data)
             set_field(s, :date_of_birth, data)

@@ -6,17 +6,21 @@ module EtFullSystem
         include RSpec::Matchers
         #page title
         element :header, :main_header, 'user_sessions.new.header'
-        section :main_content, '.container .main-section .main-content' do
+        section :main_content, '#main-content' do
+          include EtTestHelpers::Section
           #return to your claim
           element :sub_header, :legend_header, 'user_sessions.new.subheader'
-          #claim number
-          element :claim_number_label, :form_labelled, 'simple_form.labels.user_session.new.reference'
-          element :claim_number_hint, :paragraph, 'simple_form.hints.user_session.new.reference'
-          element :claim_number, 'input#user_reference'
-          #memorable word
-          element :memorable_word_label, :form_labelled, 'simple_form.labels.user_session.new.password'
-          element :memorable_word_hint, :paragraph, 'simple_form.hints.user_session.new.password'
-          element :memorable_word, 'input#user_password'
+          # claim number
+          # @!method claim_number
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :claim_number, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.user_session.new.reference'
+          # memorable word
+          # @!method memorable_word
+          #   A govuk text field component wrapping the input, label, hint etc..
+          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+          section :memorable_word, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.user_session.new.password'
+
           #find my claim
           element :find_my_claim, :submit_text, 'helpers.submit.user_session.create'
           #don't have these details
@@ -25,9 +29,9 @@ module EtFullSystem
           element :reset_memorable_word_element, :link_named, 'helpers.link.user_session.reset_memorable_word'
         end
         section :flash_heading, '#flash-summary' do
-          element :memorable_word_email_sent_flash_element, :content_header, 'simple_form.labels.user_session.memorable_word.email_sent_flash_text'
-          element :memorable_word_updated_flash_element, :content_header, 'simple_form.labels.user_session.memorable_word.updated_flash_text'
-          element :invalid,:content_header, 'user_sessions.new.invalid'
+          element :memorable_word_email_sent_flash_element, :paragraph, 'simple_form.labels.user_session.memorable_word.email_sent_flash_text'
+          element :memorable_word_updated_flash_element, :paragraph, 'simple_form.labels.user_session.memorable_word.updated_flash_text'
+          element :invalid, :paragraph, 'user_sessions.new.invalid'
         end
 
         #Support links
@@ -77,9 +81,8 @@ module EtFullSystem
           expect(self).to have_header
           expect(main_content).to have_sub_header
           #enter your details below
-          expect(main_content).to have_claim_number_label
-          expect(main_content).to have_claim_number_hint
-          expect(main_content).to have_memorable_word_label
+          expect(main_content.claim_number).to have_hint(text: t('simple_form.hints.user_session.new.reference'))
+          expect(main_content.memorable_word).to have_hint(text: t('simple_form.hints.user_session.new.password'))
           #find my claim
           expect(main_content).to have_find_my_claim
           #don't have these details

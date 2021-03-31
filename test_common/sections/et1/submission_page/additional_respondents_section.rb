@@ -6,7 +6,7 @@ module EtFullSystem
       module SubmissionPageSections
         class AdditionalRespondentsSection < BaseSection
           section :additional_respondents, :et1_review_question_labelled, 'review.additional_respondents.questions.additional_respondents.label' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           sections :respondents, AdditionalRespondentSection, :et1_review_additional_claimant_labelled, 'review.additional_respondents.respondent_header'
 

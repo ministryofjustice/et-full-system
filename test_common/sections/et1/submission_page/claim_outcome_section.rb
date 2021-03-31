@@ -8,7 +8,7 @@ module EtFullSystem
             include RSpec::Matchers
             include ::EtFullSystem::Test::I18n
 
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
 
             def has_answer_for?(value)
               if value.nil? || value.empty?
@@ -26,7 +26,7 @@ module EtFullSystem
             end
           end
           section :outcome_details, :et1_review_question_labelled, 'review.claim_outcome.questions.outcome_details' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
 
           def has_correct_translation?(claim:)

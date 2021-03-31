@@ -5,15 +5,15 @@ module EtFullSystem
       module SubmissionPageSections
         class RepresentativeSection < BaseSection
           section :type_of_representative, :et1_review_question_labelled, 'review.representative.questions.type_of_representative' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :email, :et1_review_question_labelled, 'review.representative.questions.email' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :address, :et1_review_question_labelled, 'review.representative.questions.address' do
             include ::EtFullSystem::Test::I18n
             include RSpec::Matchers
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
 
             def has_answer_for?(rep)
               if rep.building.nil? && rep.street.nil? && rep.locality.nil? && rep.county.nil? && rep.post_code.nil?
@@ -25,25 +25,25 @@ module EtFullSystem
             end
           end
           section :full_name, :et1_review_question_labelled, 'review.representative.questions.full_name' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :dx_number, :et1_review_question_labelled, 'review.representative.questions.dx_number' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :mobile, :et1_review_question_labelled, 'review.representative.questions.mobile' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :preferred_contact, :et1_review_question_labelled, 'review.representative.questions.preferred_contact' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :phone, :et1_review_question_labelled, 'review.representative.questions.phone' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :organisation_name, :et1_review_question_labelled, 'review.representative.questions.organisation_name' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
           section :representative, :et1_review_question_labelled, 'review.representative.questions.representative' do
-            element :answer, :css, 'td'
+            element :answer, :css, 'dt.govuk-summary-list__value'
           end
 
           def has_correct_translation?(representative:)
