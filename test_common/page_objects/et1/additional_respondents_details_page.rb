@@ -27,7 +27,7 @@ module EtFullSystem
           # @!method additional_respondents
           #   A govuk radio button component for additional_respondents question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          section :additional_respondents, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'claims.additional_respondents.additional_respondents_legend'
+          gds_radios :additional_respondents, :'claims.additional_respondents.additional_respondents_legend'
 
           section :respondent_2, AdditionalRespondentSection, :group_claimants, "claims.additional_respondents.person", number: 2
           section :respondent_3, AdditionalRespondentSection, :group_claimants, "claims.additional_respondents.person", number: 3

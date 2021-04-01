@@ -13,7 +13,7 @@ module EtFullSystem
           # @!method error_summary
           #   A govuk error component
           #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
-          section :error_summary, govuk_component(:error_summary), :govuk_error_summary, :'shared.error_notification.default_message'
+          gds_error_summary :error_summary, :'shared.error_notification.default_message'
           #Describe your claim
           element :describe_your_claim, :legend_header, 'claims.claim_details.claim_details'
           #Write your claim statement below. Include the background, dates and people involved. 
@@ -28,11 +28,11 @@ module EtFullSystem
           # @!method claim_details_claimt_details_rtf
           #   A govuk file field component wrapping the input, label, hint etc.. for the claim_details_claimt_details_rtf question
           #   @return [EtTestHelpers::Components::GovUKFileField] The site prism section
-          section :claim_details_claim_details_rtf, govuk_component(:file_field), :govuk_file_field, :'simple_form.labels.claim_details.claim_details_rtf'
+          gds_file_upload :claim_details_claim_details_rtf, :'simple_form.labels.claim_details.claim_details_rtf'
           # @!method file_upload
           #   A govuk file field component wrapping the input, label, hint etc.. for the file_upload question
           #   @return [EtTestHelpers::Components::GovUKFileField] The site prism section
-          section :file_upload, govuk_component(:file_field), :govuk_file_field, :'simple_form.labels.claim_details.claim_details_rtf' do
+          gds_file_upload :file_upload, :'simple_form.labels.claim_details.claim_details_rtf' do
             include ::EtFullSystem::Test::UploadHelper
             def set(value)
               force_remote do
@@ -45,7 +45,7 @@ module EtFullSystem
           # @!method claim_details_claim_details
           #   A govuk text area component wrapping the input, label, hint etc.. for a text area
           #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
-          section :claim_details_claim_details, govuk_component(:text_area), :govuk_text_area, :'claims.claim_details.claim_details' do
+          gds_text_area :claim_details_claim_details, :'claims.claim_details.claim_details' do
             element :claim_details_claim_details_hint, :form_hint, 'claims.claim_details.claim_details_hint_html'
           end
 
@@ -53,13 +53,13 @@ module EtFullSystem
           # @!method claim_details_other_known_claimants_fieldset
           #   A govuk fieldset component
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :claim_details_other_known_claimants_fieldset, govuk_component(:fieldset), :govuk_fieldset, :'claims.claim_details.similar_claims' do
+          gds_fieldset :claim_details_other_known_claimants_fieldset, :'claims.claim_details.similar_claims' do
             include EtTestHelpers::Section
             #Do you know of any other claimants (not already listed) making similar claims against the same employer? (optional)
             # @!method other_known_claimants
             #   A govuk radio button component for other_known_claimants question
             #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-            section :other_known_claimants, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.claim_details.other_known_claimants' do
+            gds_radios :other_known_claimants, :'simple_form.labels.claim_details.other_known_claimants' do
               element :yes, :form_labelled, 'claims.claim_type.yes'
               element :no, :form_labelled, 'claims.claim_type.no'
             end
@@ -67,7 +67,7 @@ module EtFullSystem
           # @!method other_known_claimant_names
           #   A govuk text area component for the 'You can add the names of other people here. (optional)' question
           #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
-          section :other_known_claimant_names, govuk_component(:text_area), :govuk_text_area, :'simple_form.labels.claim_details.other_known_claimant_names' do
+          gds_text_area :other_known_claimant_names, :'simple_form.labels.claim_details.other_known_claimant_names' do
             element :claim_details_other_known_claimant_names_hint, :form_hint, 'simple_form.hints.claim_details.other_known_claimants', exact: false
           end
           #Save and continue

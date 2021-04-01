@@ -11,7 +11,7 @@ module EtFullSystem
           # @!method error_summary
           #   A govuk error component
           #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
-          section :error_summary, govuk_component(:error_summary), :govuk_error_summary, :'shared.error_notification.default_message'
+          gds_error_summary :error_summary, :'shared.error_notification.default_message'
 
           #About the respondent
           element :respondent_header, :legend_header, 'claims.respondent.respondent_legend'
@@ -19,28 +19,28 @@ module EtFullSystem
           # @!method name
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :name, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.name'
+          gds_text_input :name, :'simple_form.labels.respondent.name'
           # @!method building
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :building, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.address_building'
+          gds_text_input :building, :'simple_form.labels.respondent.address_building'
           # @!method street
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :street, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.address_street'
+          gds_text_input :street, :'simple_form.labels.respondent.address_street'
           # @!method locality
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :locality, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.address_locality'
+          gds_text_input :locality, :'simple_form.labels.respondent.address_locality'
           # @!method county
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :county, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.address_county'
+          gds_text_input :county, :'simple_form.labels.respondent.address_county'
 
           # @!method post_code
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :post_code, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.address_post_code'
+          gds_text_input :post_code, :'simple_form.labels.respondent.address_post_code'
 
           section :telephone_number, :question_labelled, 'simple_form.labels.respondent.address_telephone_number' do
             element :field, :css, 'input'
@@ -52,7 +52,7 @@ module EtFullSystem
           # @!method work_address
           #   A govuk fieldset component
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :work_address, govuk_component(:fieldset), :govuk_fieldset, :'claims.respondent.workaddress_legend' do
+          gds_fieldset :work_address, :'claims.respondent.workaddress_legend' do
             include EtTestHelpers::Section
             element :work_address_hint, :paragraph, 'claims.respondent.work_address'
 
@@ -74,40 +74,40 @@ module EtFullSystem
             # @!method building_optional
             #   A govuk text field component wrapping the input, label, hint etc..
             #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-            section :building_optional, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.work_address_building'
+            gds_text_input :building_optional, :'simple_form.labels.respondent.work_address_building'
             # @!method street_optional
             #   A govuk text field component wrapping the input, label, hint etc..
             #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-            section :street_optional, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.work_address_street'
+            gds_text_input :street_optional, :'simple_form.labels.respondent.work_address_street'
             # @!method locality_optional
             #   A govuk text field component wrapping the input, label, hint etc..
             #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-            section :locality_optional, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.work_address_locality'
+            gds_text_input :locality_optional, :'simple_form.labels.respondent.work_address_locality'
             # @!method county_optional
             #   A govuk text field component wrapping the input, label, hint etc..
             #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-            section :county_optional, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.work_address_county'
+            gds_text_input :county_optional, :'simple_form.labels.respondent.work_address_county'
             # @!method post_code_optional
             #   A govuk text field component wrapping the input, label, hint etc..
             #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-            section :post_code_optional, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.respondent.work_address_post_code'
+            gds_text_input :post_code_optional, :'simple_form.labels.respondent.work_address_post_code'
 
             # @!method telephone_number_optional
             #   A govuk phone field component representing the phone or mobile question
             #   @return [EtTestHelpers::Components::GovUKPhoneField] The site prism section
-            section :telephone_number_optional, govuk_component(:phone_field), :govuk_phone_field, :'simple_form.labels.respondent.work_address_telephone_number'
+            gds_phone_input :telephone_number_optional, :'simple_form.labels.respondent.work_address_telephone_number'
           end
 
           #Acas early conciliation certificate number
           # @!method acas_certificate_number
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :acas_certificate_number, govuk_component(:text_field), :govuk_text_field, :'claims.respondent.acas_legend'
+          gds_text_input :acas_certificate_number, :'claims.respondent.acas_legend'
 
           # @!method no_acas_number
           #   A govuk radio button component for no_acas_number question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          section :no_acas_number, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.respondent.no_acas_number'
+          gds_radios :no_acas_number, :'simple_form.labels.respondent.no_acas_number'
 
           #section :acas_certificate_number, '.respondent_acas_early_conciliation_certificate_number' do
           #element :acas_hint, :paragraph, 'claims.respondent.acas_early_conciliation_certificate_number_html', exact: false
@@ -138,7 +138,7 @@ module EtFullSystem
           # @!method respondent_no_acas_number_reason
           #   A govuk radio button component for respondent_no_acas_number_reason question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          section :respondent_no_acas_number_reason, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'claims.respondent.no_acas_number_reason'
+          gds_radios :respondent_no_acas_number_reason, :'claims.respondent.no_acas_number_reason'
           #Save and continue
           element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
         end

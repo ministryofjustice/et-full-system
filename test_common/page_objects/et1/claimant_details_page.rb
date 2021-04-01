@@ -11,7 +11,7 @@ module EtFullSystem
           # @!method error_summary
           #   A govuk error component
           #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
-          section :error_summary, govuk_component(:error_summary), :govuk_error_summary, :'shared.error_notification.default_message'
+          gds_error_summary :error_summary, :'shared.error_notification.default_message'
           #About the claimant
           element :legend_personal_details, :legend_header, 'claims.claimant.legend_personal_details', exact: false
           #information about the person
@@ -20,7 +20,7 @@ module EtFullSystem
           # @!method title
           #   A govukselect component wrapping the select, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKCollectionSelect] The site prism section
-          section :title, govuk_component(:collection_select), :govuk_collection_select, :'simple_form.labels.claimant.title' do
+          gds_select :title, :'simple_form.labels.claimant.title' do
             element :error_title, :error, 'activemodel.errors.models.claimant.attributes.title.blank', exact: false
           end
 
@@ -28,19 +28,19 @@ module EtFullSystem
           # @!method first_name
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :first_name, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.claimant.first_name'
+          gds_text_input :first_name, :'simple_form.labels.claimant.first_name'
 
 
           #lastname name
           # @!method last_name
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :last_name, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.claimant.last_name'
+          gds_text_input :last_name, :'simple_form.labels.claimant.last_name'
           #Date of birth
           # @!method date_of_birth
           #   A govuk date field component wrapping the inputs, label, hint etc.. for a date question
           #   @return [EtTestHelpers::Components::GovUKDateField] The site prism section
-          section :date_of_birth, govuk_component(:date_field), :govuk_date_field, :'claims.personal_details.date_of_birth' do
+          gds_date_input :date_of_birth, :'claims.personal_details.date_of_birth' do
             section :day, :question_labelled, 'simple_form.labels.claimant.date_of_birth.day' do
               element :field, :css, '#claimant_date_of_birth_3i'
               def set(*args); field.set(*args); end
@@ -77,7 +77,7 @@ module EtFullSystem
           # @!method claimant_has_special_needs
           #   A govuk radio button component for claimant_has_special_needs question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          section :claimant_has_special_needs, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.claimant.has_special_needs' do
+          gds_radios :claimant_has_special_needs, :'simple_form.labels.claimant.has_special_needs' do
             include ::EtFullSystem::Test::I18n
             element :yes, :form_labelled, 'simple_form.yes' do
               element :selector, :css, '#claimant_has_special_needs_true'
@@ -91,36 +91,36 @@ module EtFullSystem
           # @!method assistance
           #   A govuk text area component for the 'describe the assistance you require' question
           #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
-          section :assistance, govuk_component(:text_area), :govuk_text_area, :'simple_form.labels.claimant.special_needs'
+          gds_text_area :assistance, :'simple_form.labels.claimant.special_needs'
 
           #Claimant's contact details
           element :claimants_contact_details, :legend_header, 'claims.claimant.legend_contact_details', exact: false
           # @!method building
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :building, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.claimant.address_building'
+          gds_text_input :building, :'simple_form.labels.claimant.address_building'
           # @!method street
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :street, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.claimant.address_street'
+          gds_text_input :street, :'simple_form.labels.claimant.address_street'
           # @!method locality
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :locality, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.claimant.address_locality'
+          gds_text_input :locality, :'simple_form.labels.claimant.address_locality'
           #County
           # @!method county
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :county, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.claimant.address_county'
+          gds_text_input :county, :'simple_form.labels.claimant.address_county'
 
           # @!method post_code
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :post_code, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.claimant.address_post_code'
+          gds_text_input :post_code, :'simple_form.labels.claimant.address_post_code'
           # @!method country
           #   A govuk radio button component for country question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          section :country, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.claimant.address_country'
+          gds_radios :country, :'simple_form.labels.claimant.address_country'
           
           section :telephone_number, :question_labelled, 'simple_form.labels.claimant.address_telephone_number' do
             element :field, :css, 'input'
@@ -133,12 +133,12 @@ module EtFullSystem
           # @!method email_address
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKEmailField] The site prism section
-          section :email_address, govuk_component(:email_field), :govuk_email_field, :'simple_form.labels.claimant.email_address'
+          gds_email_input :email_address, :'simple_form.labels.claimant.email_address'
           #correspondence
           # @!method claimant_contact_preference
           #   A govuk radio button component for claimant_contact_preference question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          section :claimant_contact_preference, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.claimant.contact_preference' do
+          gds_radios :claimant_contact_preference, :'simple_form.labels.claimant.contact_preference' do
             include ::EtFullSystem::Test::I18n
             section :email_preference, :form_labelled, 'simple_form.options.claimant.contact_preference.email' do
               element :selector, :css, 'input[type="radio"]'
@@ -156,7 +156,7 @@ module EtFullSystem
           # @!method allow_video_attendance
           #   A govuk radio button component for allow_video_attendance question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          section :allow_video_attendance, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.claimant.allow_video_attendance' do
+          gds_radios :allow_video_attendance, :'simple_form.labels.claimant.allow_video_attendance' do
             include ::EtFullSystem::Test::I18n
             element :allow_video_attendance_hint, :paragraph, 'simple_form.hints.claimant.allow_video_attendance'
             section :yes, :form_labelled, 'simple_form.options.claimant.allow_video_attendance.yes' do

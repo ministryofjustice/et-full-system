@@ -11,7 +11,7 @@ module EtFullSystem
           # @!method error_summary
           #   A govuk error component
           #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
-          section :error_summary, govuk_component(:error_summary), :govuk_error_summary, :'shared.error_notification.default_message' do
+          gds_error_summary :error_summary, :'shared.error_notification.default_message' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
           end
           #Your employment details
@@ -19,7 +19,7 @@ module EtFullSystem
           # @!method your_employment_details
           #   A govuk radio button component for your_employment_details question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          section :your_employment_details, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.employment.was_employed' do
+          gds_radios :your_employment_details, :'simple_form.labels.employment.was_employed' do
             include ::EtFullSystem::Test::I18n
             element :yes, :form_labelled, 'claims.employment.yes' do
               element :selector, :css, 'input[type="radio"]'
@@ -35,7 +35,7 @@ module EtFullSystem
           # @!method employment_current_situation
           #   A govuk radio button component for employment_current_situation question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          section :employment_current_situation, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'claims.employment.current_situation' do
+          gds_radios :employment_current_situation, :'claims.employment.current_situation' do
             include ::EtFullSystem::Test::I18n
             element :still_employed, :form_labelled, 'simple_form.options.employment.current_situation.still_employed' do
               element :selector, :css, 'input[type="radio"]'
@@ -56,17 +56,17 @@ module EtFullSystem
           # @!method employment_job_title
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :employment_job_title, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.employment.job_title'
+          gds_text_input :employment_job_title, :'simple_form.labels.employment.job_title'
 
           # @!method employment_start_date
           #   A govuk date field component wrapping the inputs, label, hint etc.. for a date question
           #   @return [EtTestHelpers::Components::GovUKDateField] The site prism section
-          section :employment_start_date, govuk_component(:date_field), :govuk_date_field, :'claims.employment.start_date'
+          gds_date_input :employment_start_date, :'claims.employment.start_date'
           #Notice period end date
           # @!method notice_period
           #   A govuk date field component wrapping the inputs, label, hint etc.. for a date question
           #   @return [EtTestHelpers::Components::GovUKDateField] The site prism section
-          section :notice_period, govuk_component(:date_field), :govuk_date_field, :'claims.employment.notice_period_end_date' do
+          gds_date_input :notice_period, :'claims.employment.notice_period_end_date' do
             # section :notice_period_end_date, :legend_header, 'claims.employment.notice_period_end_date', exact: false do
               element :invalid_employment_notice_period_end_date, :error, 'activemodel.errors.models.employment.attributes.notice_period_end_date.invalid'
               #The date your employment ends. For example, 22 04 2014
@@ -77,7 +77,7 @@ module EtFullSystem
           # @!method employment_end_date
           #   A govuk date field component wrapping the inputs, label, hint etc.. for a date question
           #   @return [EtTestHelpers::Components::GovUKDateField] The site prism section
-          section :employment_end_date, govuk_component(:date_field), :govuk_date_field, :'claims.employment.end_date' do
+          gds_date_input :employment_end_date, :'claims.employment.end_date' do
             element :invalid_employment_end_date, :error, 'activemodel.errors.models.employment.attributes.end_date.invalid'
             section :day, :question_labelled, 'simple_form.labels.employment.end_date.day' do
               element :field, :css, '#employment_end_date_day'
@@ -101,7 +101,7 @@ module EtFullSystem
           # @!method worked_notice_period_or_paid_in_lieu_question
           #   A govuk radio button component for 'Did you work (or get paid for) a period of notice?' question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          section :worked_notice_period_or_paid_in_lieu, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'claims.employment.worked_notice_period_or_paid_in_lieu' do
+          gds_radios :worked_notice_period_or_paid_in_lieu, :'claims.employment.worked_notice_period_or_paid_in_lieu' do
             include ::EtFullSystem::Test::I18n
             element :yes, :form_labelled, 'claims.employment.yes' do
               element :selector, :css, 'input[type="radio"]'
@@ -116,12 +116,12 @@ module EtFullSystem
           # @!method notice_period_value
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :notice_period_value, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.employment.notice_pay_period_count'
+          gds_text_input :notice_period_value, :'simple_form.labels.employment.notice_pay_period_count'
 
           # @!method employment_notice_pay_period_type
           #   A govuk radio button component for employment_notice_pay_period_type question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          section :employment_notice_pay_period_type, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.employment.notice_pay_period_type' do
+          gds_radios :employment_notice_pay_period_type, :'simple_form.labels.employment.notice_pay_period_type' do
             include ::EtFullSystem::Test::I18n
             element :weeks, :form_labelled, 'simple_form.options.employment.notice_pay_period_type.weeks' do
               element :selector, :css, '#employment_notice_pay_period_type_weeks'
@@ -136,31 +136,31 @@ module EtFullSystem
           # @!method employment_average_hours_worked_per_week
           #   A govuk text field component for the 'Average hours worked per week (optional)' question
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :employment_average_hours_worked_per_week, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.employment.average_hours_worked_per_week'
+          gds_text_input :employment_average_hours_worked_per_week, :'simple_form.labels.employment.average_hours_worked_per_week'
           #Pay, pension and benefits
           element :pay_pension_benefits, :legend_header, 'claims.employment.pay_legend'
           # @!method employment_pay_period_type
           #   A govuk radio button component for pay_period_type question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          section :employment_pay_period_type, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'review.employment.questions.pay_period_type.label'
+          gds_radios :employment_pay_period_type, :'review.employment.questions.pay_period_type.label'
           
           #Pay before tax (optional)
           # @!method employment_gross_pay
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :employment_gross_pay, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.employment.gross_pay'
+          gds_text_input :employment_gross_pay, :'simple_form.labels.employment.gross_pay'
 
 
           # @!method employment_net_pay
           #   A govuk text field component for the 'Pay after tax (optional)' question
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :employment_net_pay, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.employment.net_pay'
+          gds_text_input :employment_net_pay, :'simple_form.labels.employment.net_pay'
 
 
           # @!method employment_enrolled_in_pension_scheme
           #   A govuk radio button component for 'Are – or were – you a member of your employer’s pension scheme? (optional)' question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          section :employment_enrolled_in_pension_scheme, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.employment.enrolled_in_pension_scheme' do
+          gds_radios :employment_enrolled_in_pension_scheme, :'simple_form.labels.employment.enrolled_in_pension_scheme' do
             include ::EtFullSystem::Test::I18n
             element :yes, :form_labelled, 'claims.employment.true' do
               element :selector, :css, 'input[type="radio"]'
@@ -175,7 +175,7 @@ module EtFullSystem
           # @!method employment_benefit_details
           #   A govuk text area component wrapping the input, label, hint etc.. for a text area
           #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
-          section :employment_benefit_details, govuk_component(:text_area), :govuk_text_area, :'simple_form.labels.employment.benefit_details'
+          gds_text_area :employment_benefit_details, :'simple_form.labels.employment.benefit_details'
           #New Job
           section :notice_period_end_date, :legend_header, 'claims.employment.new_job_legend', exact: false do
             #Have you got a new job? (optional)

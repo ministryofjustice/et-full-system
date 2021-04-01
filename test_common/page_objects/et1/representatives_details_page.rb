@@ -11,7 +11,7 @@ module EtFullSystem
           # @!method error_summary
           #   A govuk error component
           #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
-          section :error_summary, govuk_component(:error_summary), :govuk_error_summary, :'shared.error_notification.default_message'
+          gds_error_summary :error_summary, :'shared.error_notification.default_message'
 
           #The person representing you
           element :representative_header, :legend_header, 'claims.representative.form_legend'
@@ -33,7 +33,7 @@ module EtFullSystem
           # @!method type
           #   A govukselect component wrapping the select, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKCollectionSelect] The site prism section
-          section :type, govuk_component(:collection_select), :govuk_collection_select, :'claims.representative.representative_type_legend'
+          gds_select :type, :'claims.representative.representative_type_legend'
           section :organisation_name, :question_labelled, 'simple_form.labels.representative.organisation_name' do
             element :field, :css, 'input'
             def set(*args); field.set(*args); end
@@ -48,24 +48,24 @@ module EtFullSystem
           # @!method building
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :building, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.representative.address_building'
+          gds_text_input :building, :'simple_form.labels.representative.address_building'
           # @!method street
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :street, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.representative.address_street'
+          gds_text_input :street, :'simple_form.labels.representative.address_street'
           # @!method locality
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :locality, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.representative.address_locality'
+          gds_text_input :locality, :'simple_form.labels.representative.address_locality'
           #County
           # @!method county
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :county, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.representative.address_county'
+          gds_text_input :county, :'simple_form.labels.representative.address_county'
           # @!method post_code
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :post_code, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.representative.address_post_code'
+          gds_text_input :post_code, :'simple_form.labels.representative.address_post_code'
           element :blank_telephone_number, :error, 'activemodel.errors.models.representative.attributes.address_locality.blank'
           section :telephone_number, :question_labelled, 'simple_form.labels.representative.address_telephone_number' do
             element :field, :css, 'input'
@@ -86,7 +86,7 @@ module EtFullSystem
           # @!method representative_contact_preference
           #   A govuk radio button component for contact_preference question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          section :representative_contact_preference, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'claims.representative.contact_preference.label'
+          gds_radios :representative_contact_preference, :'claims.representative.contact_preference.label'
 
           section :dx_number, :question_labelled, 'simple_form.labels.representative.dx_number' do
             element :field, :css, 'input'

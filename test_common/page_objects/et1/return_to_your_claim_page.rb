@@ -14,12 +14,12 @@ module EtFullSystem
           # @!method claim_number
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :claim_number, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.user_session.new.reference'
+          gds_text_input :claim_number, :'simple_form.labels.user_session.new.reference'
           # memorable word
           # @!method memorable_word
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :memorable_word, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.user_session.new.password'
+          gds_text_input :memorable_word, :'simple_form.labels.user_session.new.password'
 
           #find my claim
           element :find_my_claim, :submit_text, 'helpers.submit.user_session.create'

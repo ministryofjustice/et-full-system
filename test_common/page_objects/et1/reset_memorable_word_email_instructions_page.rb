@@ -27,20 +27,20 @@ module EtFullSystem
           # @!method email_address
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :email_address, govuk_component(:text_field), :govuk_text_field, :'claims.reset_password.email_address.label'
+          gds_text_input :email_address, :'claims.reset_password.email_address.label'
           # @!method claim_number
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :claim_number, govuk_component(:text_field), :govuk_text_field, :'claims.reset_password.claim_number.label'
+          gds_text_input :claim_number, :'claims.reset_password.claim_number.label'
           # @!method submit_button
           #   A govuk submit button component...
           #   @return [EtTestHelpers::Components::GovUKSubmit] The site prism section
-          section :submit_button, govuk_component(:submit), :govuk_submit, :'helpers.submit.user_session.reset_memorable_word'
+          gds_submit_button :submit_button, :'helpers.submit.user_session.reset_memorable_word'
         end
         # @!method error_summary
         #   A govuk error component
         #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
-        section :error_summary, govuk_component(:error_summary), :govuk_error_summary, :'shared.error_notification.default_message'
+        gds_error_summary :error_summary, :'shared.error_notification.default_message'
       end
     end
   end
