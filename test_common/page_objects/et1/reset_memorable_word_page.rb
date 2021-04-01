@@ -26,11 +26,11 @@ module EtFullSystem
         # @!method memorable_word
         #   A govuk text field component wrapping the input, label, hint etc..
         #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-        section :memorable_word, govuk_component(:text_field), :govuk_text_field, :'claims.reset_password.new_password.label'
+        gds_text_input :memorable_word, :'claims.reset_password.new_password.label'
         # @!method submit_button
         #   A govuk submit button component...
         #   @return [EtTestHelpers::Components::GovUKSubmit] The site prism section
-        section :submit_button, govuk_component(:submit), :govuk_submit, :'helpers.submit.user_session.reset_memorable_word'
+        gds_submit_button :submit_button, :'helpers.submit.user_session.reset_memorable_word'
       end
     end
   end

@@ -11,7 +11,7 @@ module EtFullSystem
           # @!method error_summary
           #   A govuk error component
           #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
-          section :error_summary, govuk_component(:error_summary), :govuk_error_summary, :'shared.error_notification.default_message'
+          gds_error_summary :error_summary, :'shared.error_notification.default_message'
 
           #People making a claim with you
           element :legend_group_claims, :legend_header, 'claims.additional_claimants.subheader', exact: false

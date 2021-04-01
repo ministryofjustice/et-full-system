@@ -15,7 +15,7 @@ module EtFullSystem
             # @!method miscellaneous_information
             #   A govuk radio button component for miscellaneous_information question
             #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-            section :miscellaneous_information, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'claims.additional_information.has_miscellaneous_information'
+            gds_radios :miscellaneous_information, :'claims.additional_information.has_miscellaneous_information'
             def set(value)
               miscellaneous_information.set(value)
             end
@@ -25,7 +25,7 @@ module EtFullSystem
           # @!method additional_information_miscellaneous_information
           #   A govuk text area component wrapping the input, label, hint etc.. for a text area
           #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
-          section :additional_information_miscellaneous_information, govuk_component(:text_area), :govuk_text_area, :'simple_form.labels.additional_information.miscellaneous_information'
+          gds_text_area :additional_information_miscellaneous_information, :'simple_form.labels.additional_information.miscellaneous_information'
           #Save and continue
           element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
         end

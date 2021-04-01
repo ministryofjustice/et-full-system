@@ -11,7 +11,7 @@ module EtFullSystem
           # @!method error_message
           #   A govuk error component
           #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
-          section :error_message, govuk_component(:error_summary), :govuk_error_summary, :'shared.error_notification.default_message' do
+          gds_error_summary :error_message, :'shared.error_notification.default_message' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
             element :default_message, :paragraph, 'activemodel.errors.models.claim_type.attributes.blank', exact: false
           end
@@ -107,11 +107,11 @@ module EtFullSystem
               def set(*args); selector.set(*args); end
             end
           end
-          #Other type of claim (not shown above)
-          # # @!method other_type_of_claim
-          #   A govuk collection of checkboxes component for other_type_of_claim question
-          #   @return [EtTestHelpers::Components::GovUKCollectionCheckBoxes] The site prism section
-          section :other_type_of_claim, govuk_component(:collection_check_boxes), :govuk_collection_check_boxes, :'claims.claim_type.other_type' do
+          # Other type of claim (not shown above)
+          # @!method other_type_of_claim
+          # A govuk collection of checkboxes component for other_type_of_claim question
+          # @return [EtTestHelpers::Components::GovUKCollectionCheckBoxes] The site prism section
+          gds_checkboxes :other_type_of_claim, :'claims.claim_type.other_type' do
             #Other type of claim
             element :other_type_of_claim, :form_labelled, 'simple_form.labels.claim_type.is_other_type_of_claim'
           end
@@ -120,7 +120,7 @@ module EtFullSystem
           # @!method claim_type_other_claim_details
           #   A govuk text area component wrapping the input, label, hint etc.. for a text area
           #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
-          section :claim_type_other_claim_details, govuk_component(:text_area), :govuk_text_area, :'simple_form.labels.claim_type.other_claim_details'
+          gds_text_area :claim_type_other_claim_details, :'simple_form.labels.claim_type.other_claim_details'
 
           #Whistleblowing claim
           section :whistleblowing_claim, :legend_header, 'claims.claim_type.whistleblowing' do
@@ -128,7 +128,7 @@ module EtFullSystem
             # @!method is_whistleblowing
             #   A govuk radio button component for is_whistleblowing question
             #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-            section :is_whistleblowing, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.claim.is_whistleblowing'
+            gds_radios :is_whistleblowing, :'simple_form.labels.claim.is_whistleblowing'
 
             include ::EtFullSystem::Test::I18n
             element :yes, :form_labelled, 'claims.claim_type.yes'
@@ -143,7 +143,7 @@ module EtFullSystem
           # @!method send_to_relevant_person
           #   A govuk radio button component for send_to_relevant_person question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          section :send_to_relevant_person, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.claim_type.send_claim_to_whistleblowing_entity' do
+          gds_radios :send_to_relevant_person, :'simple_form.labels.claim_type.send_claim_to_whistleblowing_entity' do
             include ::EtFullSystem::Test::I18n
             element :yes, :form_labelled, 'simple_form.yes' do
               element :selector, :css, 'input'

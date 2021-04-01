@@ -18,7 +18,7 @@ module EtFullSystem
           # @!method has_additional_claimants
           #   A govuk radio button component for has_additional_claimants question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          section :has_additional_claimants, govuk_component(:collection_radio_buttons), :govuk_collection_radio_buttons, :'simple_form.labels.additional_claimants_upload.has_additional_claimants' do
+          gds_radios :has_additional_claimants, :'simple_form.labels.additional_claimants_upload.has_additional_claimants' do
             element :has_additional_claimants, :form_labelled, 'simple_form.labels.additional_claimants_upload.has_additional_claimants'
             element :manually_link, :link_named, 'claims.additional_claimants_upload.has_additional_claimants_link', exact: false
             include ::EtFullSystem::Test::I18n
@@ -52,7 +52,7 @@ module EtFullSystem
             # @!method file_upload
             #   A govuk file field component wrapping the input, label, hint etc.. for the file_upload question
             #   @return [EtTestHelpers::Components::GovUKFileField] The site prism section
-            section :file_upload, govuk_component(:file_field), :govuk_file_field, :'simple_form.labels.additional_claimants_upload.additional_claimants_csv' do
+            gds_file_upload :file_upload, :'simple_form.labels.additional_claimants_upload.additional_claimants_csv' do
               include ::EtFullSystem::Test::UploadHelper
               def set(value)
                 force_remote do

@@ -12,7 +12,7 @@ module EtFullSystem
           # @!method claim_outcome
           #   A govuk collection of checkboxes component for claim_outcome question
           #   @return [EtTestHelpers::Components::GovUKCollectionCheckBoxes] The site prism section
-          section :claim_outcome, govuk_component(:collection_check_boxes), :govuk_collection_check_boxes, :'simple_form.labels.claim.desired_outcomes' do
+          gds_checkboxes :claim_outcome, :'simple_form.labels.claim.desired_outcomes' do
             include EtTestHelpers::Section
 
             #Compensation
@@ -41,7 +41,7 @@ module EtFullSystem
           # @!method claim_outcome_other_outcome
           #   A govuk text area component wrapping the input, label, hint etc.. for a text area
           #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
-          section :claim_outcome_other_outcome, govuk_component(:text_area), :govuk_text_area, :'simple_form.labels.claim_outcome.other_outcome'
+          gds_text_area :claim_outcome_other_outcome, :'simple_form.labels.claim_outcome.other_outcome'
 
           #Save and continue
           element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false

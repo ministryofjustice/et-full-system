@@ -12,7 +12,7 @@ module EtFullSystem
         # @!method claim_number_fieldset
         #   A govuk fieldset component
         #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-        section :claim_number_fieldset, govuk_component(:fieldset), :govuk_fieldset, :'claims.application_number.application_number' do
+        gds_fieldset :claim_number_fieldset, :'claims.application_number.application_number' do
           include EtTestHelpers::Section
 
           element :claims_number, '.number'
@@ -21,11 +21,11 @@ module EtFullSystem
           # @!method email_question
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :email_question, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.application_number.email_address', exact: false
+          gds_text_input :email_question, :'simple_form.labels.application_number.email_address', exact: false
           # @!method memorable_word_question
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          section :memorable_word_question, govuk_component(:text_field), :govuk_text_field, :'simple_form.labels.application_number.password'
+          gds_text_input :memorable_word_question, :'simple_form.labels.application_number.password'
 
           element :example_word, '#save-and-return-user-password-hint'
         end
@@ -37,7 +37,7 @@ module EtFullSystem
         # @!method save_and_continue_button
         #   A govuk submit button component...
         #   @return [EtTestHelpers::Components::GovUKSubmit] The site prism section
-        section :save_and_continue_button, govuk_component(:submit), :govuk_submit, :'helpers.submit.update'
+        gds_submit_button :save_and_continue_button, :'helpers.submit.update'
 
         def switch_language
           feedback_notice.language.click
