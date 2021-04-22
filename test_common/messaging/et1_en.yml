@@ -452,6 +452,20 @@ en:
     show:
       header: Cookies
 
+  banner:
+    title: Cookies on Employment tribunal
+    first_line: We use some essential cookies to make this service work.
+    second_line: We'd also like to use analytics cookies so we can understand how you use the service and make improvements.
+    accept_analytics: Accept analytics cookies
+    reject_analytics: Reject analytics cookies
+    cookie_link: View cookies
+  cookie_banner:
+    confirmation_message:
+      true: You've accepted analytics cookies. You can change your <a href="%{edit_cookies_path}">cookie settings</a> at any time.
+      false: You've rejected analytics cookies. You can change your <a href="%{edit_cookies_path}">cookie settings</a> at any time.
+      hide_button: Hide this message
+      cookie_flashes: You've set your cookie preferences
+
   claims:
     personal_details:
       date_of_birth: Date of birth
