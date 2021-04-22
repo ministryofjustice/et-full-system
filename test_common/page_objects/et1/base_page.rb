@@ -3,6 +3,12 @@ module EtFullSystem
     module Et1
       class BasePage < ::EtFullSystem::Test::BasePage
         #your feedback header
+        section :cookie, '.govuk-cookie-banner' do
+          element :header, :content_header, 'banner.title'
+          element :accept_button, :input_with_value, 'banner.accept_analytics'
+          element :reject_button, :input_with_value, 'banner.reject_analytics'
+          element :cookies, :link_named, 'banner.cookie_link'
+        end
         section :feedback_notice, '.feedback-notice' do
           include ::EtFullSystem::Test::I18n
           element :language, :link_named, 'switch.language'
