@@ -13,7 +13,7 @@ Then(/^the claim in the admin should show that the export completely failed to C
   # Look up and wait for the claim to be processed.  A user would typically not need to do this as they are not as fast as this test suite
   claim = admin_api.processed_claim(claim_reference: @claim_reference)
   admin_api.wait_for_claim_failed_in_ccd_export(claim['reference'], timeout: 1500, sleep: 5) do |found_claim|
-    broadcast_message("Waiting for claim reference #{claim['reference']} to fail - currently #{found_claim[:ccd_state]}")
+    broadcast_message("Waiting for claim reference #{claim['reference']} to fail - currently #{found_claim[:ecm_state]}")
     page.execute_script('true;')
   end
 
