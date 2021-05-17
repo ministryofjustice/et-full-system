@@ -261,3 +261,27 @@ Given(/^a claimant submitting data to trigger a 502 error once only in a seconda
   @employment = nil
   @claim = FactoryBot.create(:claim, :simple)
 end
+
+Given(/^a claimant submitting data to trigger a 401 error for the first 3 requests using fake ccd$/) do
+  @claimant = FactoryBot.create_list(:claimant, 1, :person_data, :contact_by_post)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information, :contact_by_post)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'BT11AE', expected_office: '61')
+  @employment = FactoryBot.create(:employment, :still_employed)
+  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
+end
+
+Given(/^a claimant submitting data to trigger a 401 error for the first 3 requests of every secondary claimant using fake ccd$/) do
+  @claimant = FactoryBot.create_list(:claimant, 2, :person_data, :contact_by_post)
+  @representative = FactoryBot.create_list(:representative, 1, :et1_information, :contact_by_post)
+  @respondent = FactoryBot.create_list(:respondent,  1, :yes_acas, :both_addresses, work_post_code: 'BT11AE', expected_office: '61')
+  @employment = FactoryBot.create(:employment, :still_employed)
+  @claim = FactoryBot.create(:claim, :yes_to_whistleblowing_claim)
+end
+
+And(/^the CCD claim should have (\d+) acas certificates$/) do |number|
+  sleep 10
+  office = @respondent[0]["expected_office"]
+  ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
+  ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
+  ccd_object.assert_acas_pdf_file_quantity(5)
+end

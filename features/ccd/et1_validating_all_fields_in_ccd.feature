@@ -89,6 +89,7 @@ Feature:
     Given an employee making a claim against 5 employers
     When the completed form is submitted
     Then the claim should be present in CCD
+    And the CCD claim should have 5 acas certificates
 
   Scenario: Respondent details - same address as to the one given above
     Given an employee making a claim where the respondent provided the same address
