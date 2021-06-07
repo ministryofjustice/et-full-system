@@ -603,4 +603,4 @@ Go to your et-full-system folder path
 
 Run Below command
 
-`$ DRIVER=chromedriver_saucelabs cucumber --tags @saucelabs`
+`$ ENVIRONMENT=dev DRIVER=chrome_saucelabs cucumber --tags @saucelabs`
