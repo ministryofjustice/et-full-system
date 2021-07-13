@@ -23,7 +23,7 @@ Then("I should be able to select Outside United Kingdom as country of residence"
 end
 
 When("I submit without answering any questions") do
-  et1_claimant_details_page.save_and_continue.click
+  et1_claimant_details_page.save_and_continue
 end
 
 Then("I should see mandatory errors on the Claimant's details page") do
@@ -32,7 +32,7 @@ end
 
 When("leaving an email address field blank") do
   et1_claimant_details_page.main_content.claimant_contact_preference.set(@claimant[0][:correspondence])
-  et1_claimant_details_page.save_and_continue.click
+  et1_claimant_details_page.save_and_continue
 end
 
 Then("I should see an error message for leaving email address field blank") do
@@ -42,7 +42,7 @@ end
 When("entering an invalid email address") do
   et1_claimant_details_page.main_content.claimant_contact_preference.set(:"simple_form.options.claimant.contact_preference.email")
   et1_claimant_details_page.main_content.email_address.set('blah@blah')
-  et1_claimant_details_page.save_and_continue.click
+  et1_claimant_details_page.save_and_continue
 end
 
 Then("I should see an error message for entering invalid email address") do
@@ -51,7 +51,7 @@ end
 
 When("entering {string} postcode") do |string|
   et1_claimant_details_page.main_content.post_code.set(string)
-  et1_claimant_details_page.save_and_continue.click
+  et1_claimant_details_page.save_and_continue
 end
 
 Then("I should see an error message for invalid UK postcode please use SW55 9QT") do
@@ -60,7 +60,7 @@ end
 
 When("I submit an invalid date of birth for claimant details page") do
   et1_claimant_details_page.main_content.date_of_birth.set('0/0/01')
-  et1_claimant_details_page.save_and_continue.click
+  et1_claimant_details_page.save_and_continue
 end
 
 Then("I should see an invalid error message for date of birth claimant details page") do
@@ -68,7 +68,7 @@ Then("I should see an invalid error message for date of birth claimant details p
 end
 
 When("I submit an invalid allow video attendance for claimant details page") do
-  et1_claimant_details_page.save_and_continue.click
+  et1_claimant_details_page.save_and_continue
 end
 
 Then("I should see an invalid error message for allow video attendance claimant details page") do

@@ -13,10 +13,11 @@ GIT
 PATH
   remote: ../et_test_helpers
   specs:
-    et_test_helpers (0.1.18)
-      activesupport (~> 6.0)
+    et_test_helpers (0.1.22)
+      activesupport (> 5.0)
       capybara (~> 3)
       i18n (~> 1.8)
+      rspec (>= 3.0)
       site_prism (~> 3.5)
 
 GEM
