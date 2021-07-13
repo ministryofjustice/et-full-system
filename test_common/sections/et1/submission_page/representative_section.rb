@@ -19,6 +19,8 @@ module EtFullSystem
               if rep.building.nil? && rep.street.nil? && rep.locality.nil? && rep.county.nil? && rep.post_code.nil?
                 expect(self).to have_answer(text: t('review.common.not_entered'))
               else
+                print("IDK WHAT I AM DOING ====== " + self.answer.text)
+                sleep(600)
                 expect(self).to have_answer(text: "#{rep.building}#{rep.street}#{rep.locality}#{rep.county}#{rep.post_code}")
               end
               true

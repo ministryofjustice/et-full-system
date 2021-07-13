@@ -217,11 +217,11 @@ en:
         net_pay: "Pay after tax (optional)"
         enrolled_in_pension_scheme: "Are – or were – you a member of your employer’s pension scheme? (optional)"
         benefit_details: "Do – or did – you have any benefits, like a company car? (optional)"
-        found_new_job: Have you got a new job?
+        found_new_job: Have you got a new job? (optional)
         notice_pay_period_count: For how many weeks or months did you get paid? (optional)
         notice_pay_period_type: Was this weeks or months ?
         was_employed: "Have you ever been employed by the person or organisation that you’re making this claim against? (optional)"
-        new_job_gross_pay: New job pay before tax (optional)
+        new_job_gross_pay: New job pay before tax
         start_date:
           day: "Day"
           month: "Month"
@@ -580,6 +580,7 @@ en:
         "no": 'No'
       worked_notice_period_or_paid_in_lieu: Did you work (or get paid for) a period of notice?
       new_job_start_date: New job start date
+      new_job_pay_before_tax_type: How often are you paid
       notice_period_end_date: Notice period end date
       employment_details_legend: Employment details
       pay_legend: Pay, pension and benefits
