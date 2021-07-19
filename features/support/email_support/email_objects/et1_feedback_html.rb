@@ -38,7 +38,7 @@ module EtFullSystem
       end
 
       def has_correct_email_address?(email_address)
-        mail.from.first == email_address
+        mail.from.first == "no-reply@employmenttribunals.service.gov.uk"
       end
 
       def has_correct_subject_for_feedback_submitted?

@@ -4,8 +4,8 @@ module EtFullSystem
     module Et1
       class YourFeedbackPage < BasePage
         include RSpec::Matchers
-        section 'flash_heading', '#flash-summary' do
-          element :flash_message, :content_header, 'feedback.create.sent'
+        section :flash_heading, '#flash-summary' do
+          element :flash_message, '#flash-heading'
         end
         #your feedback header
         element :header, :main_header, 'feedback.new.header'
