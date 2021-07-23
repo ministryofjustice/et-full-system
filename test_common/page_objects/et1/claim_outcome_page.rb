@@ -8,6 +8,7 @@ module EtFullSystem
         element :page_header, :page_title, 'claims.claim_outcome.header', exact: false
         section :main_content, '#main-content' do
           include EtTestHelpers::Section
+          include EtFullSystem::Test::I18n
           #What do you want if your claim is successful? (optional)
           # @!method claim_outcome
           #   A govuk collection of checkboxes component for claim_outcome question
@@ -44,7 +45,7 @@ module EtFullSystem
           gds_text_area :claim_outcome_other_outcome, :'simple_form.labels.claim_outcome.other_outcome'
 
           #Save and continue
-          element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
+          gds_submit_button :save_and_continue_button, t('helpers.submit.update')
         end
 
         def save_and_continue

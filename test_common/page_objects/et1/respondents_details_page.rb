@@ -8,6 +8,7 @@ module EtFullSystem
         element :page_header, :page_title, 'claims.respondent.header', exact: false
         section :main_content, '#main-content' do
           include EtTestHelpers::Section
+          include EtFullSystem::Test::I18n
           # @!method error_summary
           #   A govuk error component
           #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
@@ -140,7 +141,7 @@ module EtFullSystem
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
           gds_radios :respondent_no_acas_number_reason, :'claims.respondent.no_acas_number_reason'
           #Save and continue
-          element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
+          gds_submit_button :save_and_continue_button, t('helpers.submit.update')
         end
 
         def save_and_continue
@@ -249,11 +250,14 @@ module EtFullSystem
             main_content.work_address.same_address.yes.click
           end
 
-          main_content.acas_certificate_number.set(data[:acas_number]) if data.key?(:acas_number)
+          # @TODO Dont commit this
           if data.key?(:no_acas_number_reason)
-            main_content.yes_no_acas_number.click
+            main_content.no_acas_number.set(:'simple_form.labels.respondent.no')
             main_content.respondent_no_acas_number_reason.set(data[:no_acas_number_reason])
+          else
+            main_content.no_acas_number.set(:'simple_form.labels.respondent.yes')
           end
+          main_content.acas_certificate_number.set(data[:acas_number]) if data.key?(:acas_number)
         end
 
         private

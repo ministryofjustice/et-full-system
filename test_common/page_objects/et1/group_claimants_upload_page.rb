@@ -9,6 +9,7 @@ module EtFullSystem
         element :page_header, :page_title, 'claims.additional_claimants.header', exact: false
         section :main_content, '#main-content' do
           include EtTestHelpers::Section
+          include EtFullSystem::Test::I18n
           section :error_message, '#edit_claimant #error-summary' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
             element :default_message, :paragraph, 'shared.error_notification.default_message'
@@ -65,7 +66,7 @@ module EtFullSystem
             element :upload_limit, :paragraph, 'claims.additional_claimants_upload.upload_limit', exact: false
           end
           #Save and continue
-          element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
+          gds_submit_button :save_and_continue_button, t('helpers.submit.update')
         end
 
         def switch_to_welsh

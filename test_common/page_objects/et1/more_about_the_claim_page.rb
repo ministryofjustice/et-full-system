@@ -8,6 +8,7 @@ module EtFullSystem
         element :page_header, :page_title, 'claims.additional_information.header', exact: false
         section :main_content, '#main-content' do
           include EtTestHelpers::Section
+          include EtFullSystem::Test::I18n
           #Other important details
           section :other_important_details, :legend_header, 'claims.additional_information.legend' do
             include EtTestHelpers::Section
@@ -27,7 +28,7 @@ module EtFullSystem
           #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
           gds_text_area :additional_information_miscellaneous_information, :'simple_form.labels.additional_information.miscellaneous_information'
           #Save and continue
-          element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
+          gds_submit_button :save_and_continue_button, t('helpers.submit.update')
         end
 
         def save_and_continue
