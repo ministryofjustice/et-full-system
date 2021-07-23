@@ -8,6 +8,8 @@ module EtFullSystem
           element :page_header, :main_header, 'claim_reviews.show.header', exact: false
         end
         section :main_content, '#main-content' do
+          include EtTestHelpers::Section
+          include EtFullSystem::Test::I18n
           section :group_claim_section, SubmissionPageSections::GroupClaimSection, :et1_review_section_labelled, 'review.group_claim.title'
           section :additional_respondents_section, SubmissionPageSections::AdditionalRespondentsSection, :et1_review_section_labelled, 'review.additional_respondents.title'
           section :additional_information_section, SubmissionPageSections::AdditionalInformationSection, :et1_review_section_labelled, 'review.additional_information.title'
@@ -19,7 +21,7 @@ module EtFullSystem
           section :representative_section, SubmissionPageSections::RepresentativeSection,:et1_review_section_labelled, 'review.representative.title'
           section :respondent_section, SubmissionPageSections::RespondentSection,:et1_review_section_labelled, 'review.respondent.title'
 
-          element :submit_claim_button, :input_with_value, 'review.submit_claim'
+          gds_submit_button :submit_claim_button, t('review.submit_claim')
         end
 
         def submit_claim

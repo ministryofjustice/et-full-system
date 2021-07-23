@@ -4,6 +4,7 @@ module EtFullSystem
     module Et1
       class ApplyPage < BasePage
         include RSpec::Matchers
+        include EtTestHelpers::Page
         set_url ::EtFullSystem::Test::Configuration.et1_url
         element :header, :main_header, 'claims.new.header'
         element :language, :link_named, 'switch.language'
@@ -25,7 +26,7 @@ module EtFullSystem
         element :acas_certificate_number_link, :link_named, 'claims.new.what_you_need_to_know.body_html.link', exact: false
         element :what_you_need_to_know_acas_details, :listing_containing_text, 'claims.new.what_you_need_to_know.body_html.acas_details'
         #start a claim
-        element :start_a_claim_button, :submit_text, 'helpers.submit.claim.create'
+        gds_submit_button :start_a_claim_button, t('helpers.submit.claim.create')
         #return to a claim
         element :return_a_claim_button, :link_named, 'helpers.link.claim.return'
         #Support links

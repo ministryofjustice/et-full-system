@@ -30,8 +30,7 @@ group :test do
   gem 'settingslogic'
   gem 'mail'
   gem 'et_ccd_client', git: 'https://github.com/hmcts/et-ccd-client-ruby.git', tag: 'v0.1.51'
-  gem 'et_test_helpers', path: '../et_test_helpers'
-  #gem 'et_test_helpers', git: 'https://github.com/hmcts/et_test_helpers.git', tag: 'v0.1.17'
+  gem 'et_test_helpers', git: 'https://github.com/hmcts/et_test_helpers.git', tag: 'v1.0.2'
 end
 
 group :development, :test do

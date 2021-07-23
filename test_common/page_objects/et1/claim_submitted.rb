@@ -7,9 +7,9 @@ module EtFullSystem
         #Claim submitted
         element :page_header, :page_title, 'claim_confirmations.show.header', exact: false
         section :main_content, '#main-content' do
-          section :callout_confirmation, '.govuk-panel--confirmation' do
+          section :callout_confirmation, '.govuk-notification-banner' do
             #Your claim number
-            element :claim_number, :h1, 'claim_confirmations.show.callout_detail'
+            element :claim_number, :h2, '.govuk-notification-banner__title'
             element :answer, :css, '.number'
           end
           #What happens next

@@ -30,6 +30,20 @@ module EtFullSystem
           element :example_word, '#save-and-return-user-password-hint'
         end
 
+        element :claims_number, '.number'
+        element :claims_intro_text, :paragraph, 'claims.application_number.intro_text'
+
+        # @!method email_question
+        #   A govuk text field component wrapping the input, label, hint etc..
+        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+        gds_text_input :email_question, :'simple_form.labels.application_number.email_address', exact: false
+        # @!method memorable_word_question
+        #   A govuk text field component wrapping the input, label, hint etc..
+        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+        gds_text_input :memorable_word_question, :'simple_form.labels.application_number.password'
+
+        element :example_word, '#save-and-return-user-password-hint'
+
         #print this page
         element :print_link, :link_named, 'user_sessions.reminder.print_link'
         element :print_copy, :paragraph, 'claims.application_number.print_copy', exact: false
@@ -85,8 +99,8 @@ module EtFullSystem
 
         # Registers the user for a save and return
         def register(data)
-          claim_number_fieldset.email_question.set(data[0].dig(:email_address))
-          claim_number_fieldset.memorable_word_question.set(data[0].dig(:memorable_word))
+          email_question.set(data[0].dig(:email_address))
+          memorable_word_question.set(data[0].dig(:memorable_word))
           save_and_continue_button.submit
         end
       end
