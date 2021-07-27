@@ -8,6 +8,7 @@ module EtFullSystem
         element :page_header, :page_title, 'claims.additional_claimants.header', exact: false
         section :main_content, '#main-content' do
           include EtTestHelpers::Section
+          include EtFullSystem::Test::I18n
           # @!method error_summary
           #   A govuk error component
           #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
@@ -35,7 +36,7 @@ module EtFullSystem
           section :about_claimant_6, GroupClaimantSection, :group_claimants, "claims.additional_claimants.person", number: 6
 
           element :add_more_claimants_link, :submit_text, 'claims.additional_claimants.add_fields'
-          element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
+          gds_submit_button :save_and_continue_button, t('helpers.submit.update')
         end
 
         def switch_to_welsh

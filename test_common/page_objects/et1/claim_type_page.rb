@@ -8,6 +8,7 @@ module EtFullSystem
         element :page_header, :page_title, 'claims.claim_type.header', exact: false
         section :main_content, '#main-content' do
           include EtTestHelpers::Section
+          include EtFullSystem::Test::I18n
           # @!method error_message
           #   A govuk error component
           #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
@@ -156,7 +157,7 @@ module EtFullSystem
           end
 
           #Save and continue
-          element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
+          gds_submit_button :save_and_continue_button, t('helpers.submit.update')
         end
 
         def switch_to_welsh

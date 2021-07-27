@@ -9,6 +9,7 @@ module EtFullSystem
         element :page_header, :page_title, 'claims.claim_details.header', exact: false
         section :main_content, '#main-content' do
           include EtTestHelpers::Section
+          include EtFullSystem::Test::I18n
 
           # @!method error_summary
           #   A govuk error component
@@ -71,7 +72,7 @@ module EtFullSystem
             element :claim_details_other_known_claimant_names_hint, :form_hint, 'simple_form.hints.claim_details.other_known_claimants', exact: false
           end
           #Save and continue
-          element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
+          gds_submit_button :save_and_continue_button, t('helpers.submit.update')
         end
 
         def save_and_continue
