@@ -257,7 +257,10 @@ module EtFullSystem
           else
             main_content.no_acas_number.set(:'simple_form.labels.respondent.yes')
           end
-          main_content.acas_certificate_number.set(data[:acas_number]) if data.key?(:acas_number)
+          if data.key?(:acas_number)
+            main_content.no_acas_number.set(:'simple_form.labels.respondent.yes')
+            main_content.acas_certificate_number.set(data[:acas_number])
+          end
         end
 
         private

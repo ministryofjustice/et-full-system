@@ -46,7 +46,7 @@ module EtFullSystem
         element :field, :css, 'input'
         def set(*args); field.set(*args); end
       end
-      element :yes_acas_number, '#additional-respondents-secondary-respondents-attributes-0-no-acas-number-true-field'
+      element :yes_acas_number, '#additional-respondents-secondary-respondents-attributes-0-has-acas-number-true-field'
       element :no_acas_number_note_one, :form_hint, 'claims.respondent.no_acas_number_note_one', exact: false
       section :respondent_no_acas_number_reason, '.additional_respondents_collection_no_acas_number_reason' do
         include ::EtFullSystem::Test::I18n
