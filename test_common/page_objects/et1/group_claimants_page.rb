@@ -104,7 +104,6 @@ module EtFullSystem
         def has_correct_mandatory_error_msg_for_group_claimants?
           #Errors on page
           expect(main_content).to have_error_summary
-          sleep(10)
           expect(main_content.about_claimant_2.first_name).to have_error(text: t('activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.first_name.blank'))
           expect(main_content.about_claimant_2.last_name).to have_error(text: t('activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.last_name.blank'))
           expect(main_content.about_claimant_2.date_of_birth).to have_error(text: t('activemodel.errors.models.claimant.attributes.date_of_birth.too_young'))

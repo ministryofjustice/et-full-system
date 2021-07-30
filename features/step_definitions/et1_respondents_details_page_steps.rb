@@ -21,7 +21,6 @@ When("I submit a blank Respondent's details page") do
 end
 
 Then("I can verify blank error messages for Respondent's details page") do
-  sleep(10)
   expect(et1_respondents_details_page.has_correct_blank_validation_error_messages?).to be true
 end
 

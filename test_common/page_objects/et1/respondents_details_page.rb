@@ -219,7 +219,7 @@ module EtFullSystem
           expect(main_content.work_address.street_optional).to have_error(text: t('activemodel.errors.models.respondent.attributes.work_address_street.blank'))
           expect(main_content.work_address.locality_optional).to have_error(text: t('activemodel.errors.models.respondent.attributes.work_address_locality.blank'))
           expect(main_content.work_address.post_code_optional).to have_error(text: t('activemodel.errors.models.respondent.attributes.work_address_post_code.blank'))
-          expect(main_content.respondent_no_acas_number_reason).to have_error(text: t('activemodel.errors.models.respondent.attributes.no_acas_number_reason.blank'))
+          expect(main_content.acas_certificate_number).to have_error(text: t('activemodel.errors.models.respondent.attributes.no_acas_number_reason.blank'))
         end
 
         def has_correct_error_message_for_invalid_uk_postcode?

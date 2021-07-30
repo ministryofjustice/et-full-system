@@ -28,6 +28,7 @@ end
 
 When("entering invalid acas number for Additional respondent's details page") do
   et1_additional_respondents_details_page.main_content.yes.set(true)
+  et1_additional_respondents_details_page.main_content.respondent_2.yes_acas_number.click
   et1_additional_respondents_details_page.main_content.respondent_2.acas_number.set('88234w')
   et1_additional_respondents_details_page.save_and_continue 
 end
@@ -39,7 +40,6 @@ end
 When("entering invalid postcode for Additional respondent's details page") do
   et1_additional_respondents_details_page.main_content.yes.set(true)
   et1_additional_respondents_details_page.main_content.respondent_2.yes_acas_number.click
-  sleep(4)
   et1_additional_respondents_details_page.main_content.respondent_2.post_code.set('88234w')
   et1_additional_respondents_details_page.save_and_continue 
 end
