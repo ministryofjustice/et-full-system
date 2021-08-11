@@ -37,7 +37,7 @@ module EtFullSystem
       #Acas number
       element :invalid_acas_number, :error, 'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.acas_early_conciliation_certificate_number.invalid'
       element :blank_acas_number, :error, 'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.acas_early_conciliation_certificate_number.blank'
-      section :acas_number, :question_labelled, 'simple_form.labels.respondent.acas_early_conciliation_certificate_number' do
+      section :acas_number, :legend_header, 'simple_form.labels.respondent.no_acas_number' do
         element :field, :css, 'input'
         def set(*args); field.set(*args); end
       end

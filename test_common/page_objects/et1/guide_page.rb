@@ -5,7 +5,7 @@ module EtFullSystem
       class GuidePage < BasePage
         include RSpec::Matchers
         set_url ::EtFullSystem::Test::Configuration.et1_url
-        section :static_content, '.main-content .static-content' do
+        section :static_content, '#main-content .static-content' do
           #Time limits
           section :time_limits, '#time_limits' do
             element :time_limits_title, :content_header, 'guides.time_limits.title'
