@@ -228,7 +228,6 @@ module EtFullSystem
         end
 
         def has_missing_claim_type_error_message?
-          expect(main_content.error_message).to have_error_summary
           expect(main_content.error_message).to have_default_message
         end
 

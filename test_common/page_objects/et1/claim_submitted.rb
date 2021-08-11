@@ -9,7 +9,7 @@ module EtFullSystem
         section :main_content, '#main-content' do
           section :callout_confirmation, '.govuk-notification-banner' do
             #Your claim number
-            element :claim_number, :h2, '.govuk-notification-banner__title'
+            element :claim_number, '.govuk-notification-banner__title'
             element :answer, :css, '.number'
           end
           #What happens next
