@@ -9,26 +9,19 @@ module EtFullSystem
         end
         #your feedback header
         element :header, :main_header, 'feedback.new.header'
-        section :main_content, '.main-section, .main-content' do
+        section :main_content, '#main-content' do
+          include EtTestHelpers::Section
           #have you had any problems using this service? (optional)
-          section :comments, :question_labelled, 'simple_form.labels.feedback.comments', exact: false do
-            element :field, :css, "textarea"
-            def set(*args); field.set(*args); end
-          end
+          gds_text_area :comments, :'simple_form.labels.feedback.comments'
           #do you have any other comments or suggestions? (optional)
-          section :suggestions, :question_labelled, 'simple_form.labels.feedback.suggestions', exact: false do
-            element :field, :css, "textarea"
-            def set(*args); field.set(*args); end
-          end
+          gds_text_area :suggestions, :'simple_form.labels.feedback.suggestions'
           #your email address (optional)
-          section :email_address, :question_labelled, 'simple_form.labels.feedback.email_address', exact: false do
-            element :field, :css, "input"
-            def set(*args); field.set(*args); end
-          end
+          gds_text_input :email_address, :'simple_form.labels.feedback.email_address'
         end
         #send feedback
         section :form_actions, '.form-actions' do
-          element :submit_feedback, :submit_text, 'helpers.submit.feedback.create'
+          include EtTestHelpers::Section
+          gds_submit_button :submit_feedback, :'helpers.submit.feedback.create'
         end
         #Support links
         section :support, 'aside[role="complementary"]' do

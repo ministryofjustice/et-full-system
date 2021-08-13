@@ -8,9 +8,9 @@ cy:
   simple_form:
     labels:
       feedback:
-        comments: "Ydych chi wedi cael unrhyw broblemau wrth ddefnyddio'r gwasanaeth hwn?"
-        suggestions: "Oes gennych chi unrhyw sylwadau neu awgrymiadau eraill?"
-        email_address: Eich cyfeiriad e-bost
+        comments: "Ydych chi wedi cael unrhyw broblemau wrth ddefnyddio'r gwasanaeth hwn? (dewisol)"
+        suggestions: "Oes gennych chi unrhyw sylwadau neu awgrymiadau eraill? (dewisol)"
+        email_address: Eich cyfeiriad e-bost (dewisol)
 
   helpers:
     submit:
