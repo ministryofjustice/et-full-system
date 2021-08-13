@@ -19,19 +19,9 @@ module EtFullSystem
           # @!method has_additional_claimants
           #   A govuk radio button component for has_additional_claimants question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          gds_radios :has_additional_claimants, :'simple_form.labels.additional_claimants_upload.has_additional_claimants' do
-            element :has_additional_claimants, :form_labelled, 'simple_form.labels.additional_claimants_upload.has_additional_claimants'
-            element :manually_link, :link_named, 'claims.additional_claimants_upload.has_additional_claimants_link', exact: false
-            include ::EtFullSystem::Test::I18n
-            element :yes, :form_labelled, 'simple_form.yes' do
-              element :selector, :css, 'input'
-              def set(*args); selector.set(*args); end
-            end
-            element :no, :form_labelled, 'simple_form.no' do
-              element :selector, :css, 'input'
-              def set(*args); selector.set(*args); end
-            end
-          end
+          gds_radios :has_additional_claimants, :'simple_form.labels.additional_claimants_upload.has_additional_claimants'
+
+          element :manually_link, :link_named, 'claims.additional_claimants_upload.has_additional_claimants_link', exact: false
 
           #Spreadsheet for group claim
           section :group_claims, :legend_header, 'claims.additional_claimants_upload.steps_header' do
@@ -90,9 +80,7 @@ module EtFullSystem
           expect(main_content).to have_has_additional_claimants
           #For up to 5 other claimants you can enter their details manually
           expect(main_content.has_additional_claimants).to have_hint(text: t('claims.additional_claimants_upload.has_additional_claimants_html'))
-          expect(main_content.has_additional_claimants).to have_manually_link
-          expect(main_content.has_additional_claimants).to have_yes
-          expect(main_content.has_additional_claimants).to have_no
+          expect(main_content).to have_manually_link
           #Spreadsheet for group claim
           expect(main_content).to have_group_claims
           expect(main_content.group_claims).to have_step_1
@@ -121,7 +109,7 @@ module EtFullSystem
         def set(user)
           group_claims_csv = user[0].dig(:group_claims_csv)
           if group_claims_csv.present?
-            main_content.has_additional_claimants.yes.click
+            main_content.has_additional_claimants.set(:'simple_form.yes')
             main_content.group_claims.file_upload.set(group_claims_csv)
           else
             main_content.has_additional_claimants.no.click
