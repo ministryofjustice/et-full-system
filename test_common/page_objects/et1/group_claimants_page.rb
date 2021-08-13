@@ -35,7 +35,7 @@ module EtFullSystem
           section :about_claimant_5, GroupClaimantSection, :group_claimants, "claims.additional_claimants.person", number: 5
           section :about_claimant_6, GroupClaimantSection, :group_claimants, "claims.additional_claimants.person", number: 6
 
-          element :add_more_claimants_link, :submit_text, 'claims.additional_claimants.add_fields'
+          gds_submit_button :add_more_claimants_link, :'claims.additional_claimants.add_fields'
           gds_submit_button :save_and_continue_button, t('helpers.submit.update')
         end
 

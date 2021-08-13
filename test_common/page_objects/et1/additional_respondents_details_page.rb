@@ -37,7 +37,7 @@ module EtFullSystem
           section :respondent_6, AdditionalRespondentSection, :group_claimants, "claims.additional_respondents.person", number: 6
           
           #Add another respondent
-          element :add_another_respondent, :submit_text, 'claims.additional_respondents.add_fields'
+          gds_submit_button :add_another_respondent, :'claims.additional_respondents.add_fields'
           #Remove another respondent
           element :remove_another_respondent, :remove_multiple, 'claims.additional_respondents.remove_resource_link'
           #Save and continue
@@ -148,6 +148,14 @@ module EtFullSystem
           set_field section, :locality, respondent
           set_field section, :county, respondent
           set_field section, :post_code, respondent
+          # @TODO Dont commit this
+          if respondent.key?(:no_acas_number_reason)
+            section.no_acas_number.set(:'simple_form.labels.respondent.no')
+            section.respondent_no_acas_number_reason.set(data[:no_acas_number_reason])
+          else
+            section.no_acas_number.set(:'simple_form.labels.respondent.yes')
+          end
+          
           set_field section, :acas_number, respondent
         end
 
