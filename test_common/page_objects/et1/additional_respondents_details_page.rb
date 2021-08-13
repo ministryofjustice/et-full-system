@@ -151,12 +151,11 @@ module EtFullSystem
           # @TODO Dont commit this
           if respondent.key?(:no_acas_number_reason)
             section.no_acas_number.set(:'simple_form.labels.respondent.no')
-            section.respondent_no_acas_number_reason.set(data[:no_acas_number_reason])
+            section.respondent_no_acas_number_reason.set(respondent[:no_acas_number_reason])
           else
             section.no_acas_number.set(:'simple_form.labels.respondent.yes')
+            set_field section, :acas_number, respondent
           end
-          
-          set_field section, :acas_number, respondent
         end
 
         def set_field(s, key, data)
