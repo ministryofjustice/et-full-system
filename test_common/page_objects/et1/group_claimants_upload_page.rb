@@ -12,7 +12,7 @@ module EtFullSystem
           include EtFullSystem::Test::I18n
           section :error_message, '#edit_claimant #error-summary' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
-            element :default_message, :paragraph, 'shared.error_notification.default_message'
+            element :default_message, :li, 'shared.error_notification.default_message'
           end
           #People making a claim with you
           element :people_making_claim, :legend_header, 'claims.additional_claimants.subheader'

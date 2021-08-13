@@ -14,7 +14,7 @@ module EtFullSystem
           #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
           gds_error_summary :error_message, :'shared.error_notification.default_message' do
             element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
-            element :default_message, :paragraph, 'activemodel.errors.models.claim_type.attributes.blank', exact: false
+            element :default_message, :li, 'activemodel.errors.models.claim_type.attributes.blank', exact: false
           end
           #What your claim is about
           element :about_claim, :content_header, 'claims.claim_type.claim_type'
