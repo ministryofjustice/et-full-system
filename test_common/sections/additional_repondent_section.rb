@@ -1,6 +1,7 @@
 module EtFullSystem
   module Test
     class AdditionalRespondentSection < BaseSection
+      include EtTestHelpers::Section
       #Respondent 2
       element :blank_name, :error, 'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.name.blank'
       section :name, :question_labelled, 'simple_form.labels.respondent.name' do
@@ -37,17 +38,14 @@ module EtFullSystem
       #Acas number
       element :invalid_acas_number, :error, 'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.acas_early_conciliation_certificate_number.invalid'
       element :blank_acas_number, :error, 'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.acas_early_conciliation_certificate_number.blank'
-      section :acas_number, :legend_header, 'simple_form.labels.respondent.no_acas_number' do
-        element :field, :css, 'input'
-        def set(*args); field.set(*args); end
-      end
+      gds_text_input :acas_number, :'simple_form.labels.respondent.acas_early_conciliation_certificate_number'
       #I don't have an Acas number
-      element :no_acas_number, :legend_header, 'simple_form.labels.respondent.no_acas_number' do
-        element :field, :css, 'input'
-        def set(*args); field.set(*args); end
-      end
-      element :yes_acas_number, '#additional-respondents-secondary-respondents-attributes-0-has-acas-number-true-field'
-      element :no_acas_number_note_one, :form_hint, 'claims.respondent.no_acas_number_note_one', exact: false
+      # @!method no_acas_number
+          #   A govuk radio button component for no_acas_number question
+          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+      gds_radios :no_acas_number, :'simple_form.labels.respondent.no_acas_number'
+      # element :yes_acas_number, '#additional-respondents-secondary-respondents-attributes-0-has-acas-number-true-field'
+      # element :no_acas_number_note_one, :form_hint, 'claims.respondent.no_acas_number_note_one', exact: false
       section :respondent_no_acas_number_reason, '.additional_respondents_collection_no_acas_number_reason' do
         include ::EtFullSystem::Test::I18n
         element :blank_no_acas_number_reason, :error, 'activemodel.errors.models.respondent.attributes.no_acas_number_reason.blank'

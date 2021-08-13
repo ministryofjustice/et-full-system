@@ -144,7 +144,7 @@ module EtFullSystem
         Timeout.timeout(timeout) do
           loop do
             claims = claims q: {reference_equals: reference}
-            return claims.first if claims.first['ccd_state'].start_with?('complete')
+            return claims.first if claims.first['ecm_state'].start_with?('complete')
             sleep(sleep)
           end
         end
@@ -243,7 +243,7 @@ module EtFullSystem
         Timeout.timeout(timeout) do
           loop do
             filtered_claims = claims q: {reference_equals: reference}
-            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ccd_state] == 'failed'
+            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ecm_state] == 'failed'
             yield filtered_claims.first if block_given?
             sleep(sleep)
           end
@@ -258,7 +258,7 @@ module EtFullSystem
         Timeout.timeout(timeout) do
           loop do
             filtered_claims = claims q: {reference_equals: reference}
-            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ccd_state] == 'erroring'
+            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ecm_state] == 'erroring'
             yield if block_given?
             sleep(sleep)
           end
@@ -272,7 +272,7 @@ module EtFullSystem
         Timeout.timeout(timeout) do
           loop do
             filtered_claims = claims q: {reference_equals: reference}
-            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ccd_state] == 'complete'
+            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ecm_state] == 'complete'
             yield if block_given?
             sleep(sleep)
           end
@@ -286,7 +286,7 @@ module EtFullSystem
         Timeout.timeout(timeout) do
           loop do
             filtered_responses = responses q: {case_number_equals: case_number}
-            return filtered_responses.first if filtered_responses.first.present? && filtered_responses.first[:ccd_state] == 'complete'
+            return filtered_responses.first if filtered_responses.first.present? && filtered_responses.first[:ecm_state] == 'complete'
             sleep(sleep)
           end
         end
