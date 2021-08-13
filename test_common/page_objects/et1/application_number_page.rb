@@ -9,28 +9,19 @@ module EtFullSystem
         #page and main header
         element :page_header, :page_title, 'claims.application_number.header'
 
-        # @!method claim_number_fieldset
-        #   A govuk fieldset component
-        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-        gds_fieldset :claim_number_fieldset, :'claims.application_number.application_number' do
-          include EtTestHelpers::Section
-
+        section(:claim_number_notification, :xpath, XPath.generate { |x| x.css('.govuk-notification-banner')[x.child(:div)[x.attr(:class).contains_word('govuk-notification-banner__header') & x.string.n.equals(t('claims.application_number.application_number'))]] }) do
           element :claims_number, '.number'
-          element :claims_intro_text, :paragraph, 'claims.application_number.intro_text'
-
-          # @!method email_question
-          #   A govuk text field component wrapping the input, label, hint etc..
-          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          gds_text_input :email_question, :'simple_form.labels.application_number.email_address', exact: false
-          # @!method memorable_word_question
-          #   A govuk text field component wrapping the input, label, hint etc..
-          #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          gds_text_input :memorable_word_question, :'simple_form.labels.application_number.password'
-
-          element :example_word, '#save-and-return-user-password-hint'
         end
+        # @!method email_question
+        #   A govuk text field component wrapping the input, label, hint etc..
+        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+        gds_text_input :email_question, :'simple_form.labels.application_number.email_address', exact: false
+        # @!method memorable_word_question
+        #   A govuk text field component wrapping the input, label, hint etc..
+        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+        gds_text_input :memorable_word_question, :'simple_form.labels.application_number.password'
 
-        element :claims_number, '.number'
+        
         element :claims_intro_text, :paragraph, 'claims.application_number.intro_text'
 
         # @!method email_question
@@ -73,18 +64,18 @@ module EtFullSystem
           #saving your claim heading
           expect(self).to have_page_header
           #your claim number
-          expect(self).to have_claim_number_fieldset
+          expect(self).to have_claim_number_notification
           #claim intro
-          expect(claim_number_fieldset).to have_claims_intro_text
+          expect(self).to have_claims_intro_text
           #email address
-          expect(claim_number_fieldset).to have_email_question
+          expect(self).to have_email_question
           #memorable
-          expect(claim_number_fieldset).to have_memorable_word_question
+          expect(self).to have_memorable_word_question
           #print this page
           expect(self).to have_print_link
           expect(self).to have_print_copy
           #save and continue button
-          expect(claim_number_fieldset).to have_example_word
+          expect(self).to have_example_word
           #Support links
           expect(support).to have_suport_header
           expect(support).to have_guide
