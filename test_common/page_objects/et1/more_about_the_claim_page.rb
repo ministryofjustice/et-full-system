@@ -75,7 +75,7 @@ module EtFullSystem
           data = claim.to_h
           return if data.nil?
           main_content.other_important_details.set(data[:other_additional_information])
-          if data[:other_important_details] != nil
+          if data[:other_additional_information].to_s.split('.').last == 'yes'
             main_content.additional_information_miscellaneous_information.set data[:other_important_details]
           end
         end

@@ -8,9 +8,9 @@ en:
   simple_form:
     labels:
       feedback:
-        comments: Have you had any problems using this service?
-        suggestions: Do you have any other comments or suggestions?
-        email_address: Your email address
+        comments: Have you had any problems using this service? (optional)
+        suggestions: Do you have any other comments or suggestions? (optional)
+        email_address: Your email address (optional)
 
   helpers:
     submit:
