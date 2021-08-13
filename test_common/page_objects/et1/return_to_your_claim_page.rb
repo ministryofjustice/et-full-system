@@ -22,7 +22,7 @@ module EtFullSystem
           gds_text_input :memorable_word, :'simple_form.labels.user_session.new.password'
 
           #find my claim
-          element :find_my_claim, :submit_text, 'helpers.submit.user_session.create'
+          gds_submit_button :find_my_claim, :'helpers.submit.user_session.create'
           #don't have these details
           element :form_hint, :paragraph, 'user_sessions.new.hint_html', exact: false
           element :new_claim, :link_named, 'user_sessions.new.link'
@@ -82,7 +82,6 @@ module EtFullSystem
           expect(main_content).to have_sub_header
           #enter your details below
           expect(main_content.claim_number).to have_hint(text: t('simple_form.hints.user_session.new.reference'))
-          expect(main_content.memorable_word).to have_hint(text: t('simple_form.hints.user_session.new.password'))
           #find my claim
           expect(main_content).to have_find_my_claim
           #don't have these details
