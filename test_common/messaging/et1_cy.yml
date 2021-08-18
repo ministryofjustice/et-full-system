@@ -153,7 +153,12 @@ cy:
         mobile_number: Rhif ffôn neu rif ffôn symudol arall (dewisol)
         email_address: "Cyfeiriad e-bost"
         fax_number: Ffacs
-        has_special_needs: "Oes gennych chi anabledd sy'n golygu eich bod angen cymorth yn y gwrandawiad tribiwnlys? (dewisol)"
+        has_special_needs: 
+          label: "Oes gennych chi anabledd sy'n golygu eich bod angen cymorth yn y gwrandawiad tribiwnlys? (dewisol)"
+          hint: :'simple_form.hints.claimant.has_special_needs'
+          options:
+            yes: :'simple_form.yes'
+            no: :'simple_form.no'
         special_needs: Disgrifiwch y cymorth sydd ei angen arnoch
         address_telephone_number: "Rhif ffôn neu rif ffôn symudol (dewisol)"
         address_building: Rhif neu enw'r adeilad
@@ -163,8 +168,17 @@ cy:
         address_post_code: Cod post
         address_country: Gwlad
         applying_for_remission: "Ydych chi eisiau gwneud cais am help i dalu eich ffi (a elwir yn \"help i dalu ffioedd\")?"
-        contact_preference: "Y ffordd orau i anfon gohebiaeth atoch (yr hawlydd)"
-        allow_video_attendance: "A allech chi gymryd rhan mewn gwrandawiad drwy fideo? (angen mynediad i'r rhyngrwyd)."
+        contact_preference: 
+          label: "Y ffordd orau i anfon gohebiaeth atoch (yr hawlydd)"
+          hint: :'simple_form.hints.claimant.contact_preference'
+          options:
+            email: :'simple_form.options.claimant.contact_preference.email'
+            post: :'simple_form.options.claimant.contact_preference.post'
+        allow_video_attendance:
+          label: "A allech chi gymryd rhan mewn gwrandawiad drwy fideo? (angen mynediad i'r rhyngrwyd)."
+          options:
+            yes: :'simple_form.options.claimant.allow_video_attendance.yes'
+            no: :'simple_form.options.claimant.allow_video_attendance.no'          
         _destroy: 'Dileu''r hawlydd yma'
         gender: Rhywedd
 
@@ -262,8 +276,16 @@ cy:
         benefit_details: "A oes - neu a oedd - gennych chi unrhyw fuddion, fel car cwmni? (dewisol)"
         found_new_job: "Oes gennych chi swydd newydd?"
         notice_pay_period_count: "Am faint o wythnosau neu fisoedd gawsoch chi dâl? (dewisol)"
-        notice_pay_period_type: "A oedd yr wythnosau neu'r misoedd hyn ?"
-        was_employed: "Ydych chi erioed wedi cael eich cyflogi gan yr unigolyn neu'r sefydliad yr ydych chi'n gwneud yr hawliad hwn yn ei erbyn? (dewisol)"
+        notice_pay_period_type: 
+          label: "A oedd yr wythnosau neu'r misoedd hyn ?"
+          options:
+            weeks: :'simple_form.options.employment.notice_pay_period_type.weeks'
+            months: :'simple_form.options.employment.notice_pay_period_type.months'
+        was_employed:
+          label: "Ydych chi erioed wedi cael eich cyflogi gan yr unigolyn neu'r sefydliad yr ydych chi'n gwneud yr hawliad hwn yn ei erbyn? (dewisol)"
+          options:
+            yes: :'claims.employment.yes'
+            no: :'claims.employment.no' 
         new_job_gross_pay: Tâl y swydd newydd cyn treth
         start_date:
           day: "Diwrnod"
@@ -301,9 +323,18 @@ cy:
         is_other_type_of_claim: Math arall o hawliad
         other_claim_details: Nodwch y math arall o hawliad(au) ydych yn gwneud
         is_whistleblowing: "Ydych chi'n riportio'r posibilrwydd o gamymddwyn yn y gwaith?"
-        send_claim_to_whistleblowing_entity: "Ydych chi eisiau i ni anfon copi o'ch hawliad at yr unigolyn neu gorff perthnasol sy'n delio â chwythu'r chwiban?"
+        send_claim_to_whistleblowing_entity: 
+          label: "Ydych chi eisiau i ni anfon copi o'ch hawliad at yr unigolyn neu gorff perthnasol sy'n delio â chwythu'r chwiban?"
+          options:
+            yes: :'simple_form.yes'
+            no: :'simple_form.no'
       claim_details:
-        other_known_claimants: "Ydych chi'n gwybod am unrhyw hawlwyr eraill (nad ydynt eisoes wedi'u rhestru) sy'n gwneud hawliadau tebyg yn erbyn yr un cyflogwr? (dewisol)"
+        other_known_claimants: 
+          label: "Ydych chi'n gwybod am unrhyw hawlwyr eraill (nad ydynt eisoes wedi'u rhestru) sy'n gwneud hawliadau tebyg yn erbyn yr un cyflogwr? (dewisol)"
+          hint: :'simple_form.hints.claim_details.other_known_claimants'
+          options:
+            yes: :'claims.claim_type.yes'
+            no: :'claims.claim_type.no'
         other_known_claimant_names: "Gallwch ychwanegu enwau unigolion eraill yma. (dewisol)"
         claim_details_rtf: "Mae angen i'r ddogfen fod mewn Rich Text Format(RTF) (dewisol)"
       claim_outcome:
@@ -534,7 +565,12 @@ cy:
 
     claimant:
       header: Manylion yr hawlydd
-      gender: Rhywedd
+      gender: 
+        label: Rhywedd
+        options:
+          male: :'simple_form.options.claimant.gender.male'
+          female: :'simple_form.options.claimant.gender.female'
+          prefer_not_to_say: :'simple_form.options.claimant.gender.prefer_not_to_say'
       legend_disability: "Oes gennych chi anabledd sy'n golygu eich bod angen cymorth yn y gwrandawiad tribiwnlys?"
       legend_personal_details: Ynglŷn â’r hawlydd
       legend_contact_details: "Manylion cyswllt yr hawlydd"
@@ -618,18 +654,25 @@ cy:
       no_acas_number_note_two: :claims.respondent.no_acas_number_note_two
       "yes": 'Ydw'
       "no": 'Nac ydw'
-
-
     employment:
       header: "Manylion cyflogaeth"
       situation_legend: "Eich manylion cyflogaeth"
-      current_situation: "Beth yw eich sefyllfa bresennol yn y gwaith o ran y cyflogwr yr ydych chi'n gwneud hawliad yn ei erbyn?"
+      current_situation: 
+        label: "Beth yw eich sefyllfa bresennol yn y gwaith o ran y cyflogwr yr ydych chi'n gwneud hawliad yn ei erbyn?"
+        options:
+          still_employed: :'simple_form.options.employment.current_situation.still_employed'
+          notice_period: :'simple_form.options.employment.current_situation.notice_period'
+          employment_terminated: :'simple_form.options.employment.current_situation.employment_terminated'        
       start_date: Dyddiad cychwyn cyflogaeth
       end_date: Dyddiad gorffen cyflogaeth
       paid_for_notice_period:
         "yes": 'Do'
         "no": 'Naddo'
-      worked_notice_period_or_paid_in_lieu: "A wnaethoch weithio cyfnod rhybudd (neu gael tâl amdano)?"
+      worked_notice_period_or_paid_in_lieu:
+        label: "A wnaethoch weithio cyfnod rhybudd (neu gael tâl amdano)?"
+        options:
+          yes: :'claims.employment.yes'
+          no: :'claims.employment.no'
       new_job_start_date: Dyddiad cychwyn swydd newydd
       notice_period_end_date: Dyddiad gorffen y cyfnod rhybudd
       employment_details_legend: "Manylion cyflogaeth"

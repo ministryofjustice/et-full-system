@@ -13,6 +13,7 @@ module EtFullSystem
         #Check your answers
         element :header, :main_header, 'diversities.review.hint'
         section :main_content, '#main-content' do
+          include EtTestHelpers::Section
           section :summary, :govuk_summary_list do
             #What is the type of your claim?
             section :claim_type_row, :govuk_summary_list_row, :'summary.claim' do
@@ -82,7 +83,7 @@ module EtFullSystem
           end
 
           #Submit form
-          element :submit_form, :submit_text, 'diversities.show.submit'
+          gds_submit_button :submit_form, :'diversities.show.submit'
         end
 
         def submit_form
@@ -103,8 +104,6 @@ module EtFullSystem
           expect(self).to have_header
           expect(main_content.summary.claim_type_row).to have_answer(text: data[:claim_type])
           expect(main_content.summary.sex_row).to have_answer(text: data[:sex])
-          expect(main_content.summary.gender_row).to have_answer(text: data[:gender])
-          expect(main_content.summary.gender_at_birth_row).to have_answer(text: data[:gender_at_birth])
           expect(main_content.summary.sexual_identity_row).to have_answer(text: data[:sexual_identity])
           expect(main_content.summary.relationship_row).to have_answer(text: data[:relationship])
           expect(main_content.summary.age_row).to have_answer(text: data[:age_group])

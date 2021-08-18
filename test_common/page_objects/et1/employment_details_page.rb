@@ -36,21 +36,7 @@ module EtFullSystem
           # @!method employment_current_situation
           #   A govuk radio button component for employment_current_situation question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          gds_radios :employment_current_situation, :'claims.employment.current_situation' do
-            include ::EtFullSystem::Test::I18n
-            element :still_employed, :form_labelled, 'simple_form.options.employment.current_situation.still_employed' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            element :notice_period, :form_labelled, 'simple_form.options.employment.current_situation.notice_period' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            element :employment_terminated, :form_labelled, 'simple_form.options.employment.current_situation.employment_terminated' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-          end
+          gds_radios :employment_current_situation, :'claims.employment.current_situation'
           #Employment details
           element :employment_details_header, :legend_header, 'claims.employment.situation_legend'
 
@@ -221,14 +207,9 @@ module EtFullSystem
           #Your employment details
           expect(main_content).to have_your_employment_details_header
           #Have you ever been employed by the person or organisation that you’re making this claim against? (optional)
-          expect(main_content).to have_your_employment_details
-          expect(main_content.your_employment_details).to have_yes
-          expect(main_content.your_employment_details).to have_no
+          main_content.your_employment_details.assert_valid_options
           #What is your current work situation in relation to the employer you're making a claim against?
-          expect(main_content).to have_current_work_situation_labelled
-          expect(main_content.employment_current_situation).to have_still_employed
-          expect(main_content.employment_current_situation).to have_notice_period
-          expect(main_content.employment_current_situation).to have_employment_terminated
+          main_content.employment_current_situation.assert_valid_options
           #Employment details
           expect(main_content).to have_employment_details_header
           #Job title (optional)
@@ -242,13 +223,10 @@ module EtFullSystem
           expect(main_content).to have_employment_end_date
           expect(main_content.employment_end_date).to have_hint(text: t('simple_form.hints.employment.end_date'))
           #Did you work (or get paid for) a period of notice?
-          expect(main_content).to have_worked_notice_period_or_paid_in_lieu
-          expect(main_content.worked_notice_period_or_paid_in_lieu).to have_yes
-          expect(main_content.worked_notice_period_or_paid_in_lieu).to have_no
+          main_content.worked_notice_period_or_paid_in_lieu.assert_valid_options
           #For how many weeks or months did you get paid? (optional)
           expect(main_content).to have_notice_period_value
-          expect(main_content.employment_notice_pay_period_type).to have_weeks
-          expect(main_content.employment_notice_pay_period_type).to have_months
+          main_content.employment_notice_pay_period_type.assert_valid_options
           #Average hours worked per week (optional)
           expect(main_content.employment_average_hours_worked_per_week).to have_hint(text: t('simple_form.hints.employment.average_hours_worked_per_week'))
           #Pay, pension and benefits

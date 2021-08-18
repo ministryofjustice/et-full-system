@@ -144,17 +144,7 @@ module EtFullSystem
           # @!method send_to_relevant_person
           #   A govuk radio button component for send_to_relevant_person question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          gds_radios :send_to_relevant_person, :'simple_form.labels.claim_type.send_claim_to_whistleblowing_entity' do
-            include ::EtFullSystem::Test::I18n
-            element :yes, :form_labelled, 'simple_form.yes' do
-              element :selector, :css, 'input'
-              def set(*args); selector.set(*args); end
-            end
-            element :no, :form_labelled, 'simple_form.no' do
-              element :selector, :css, 'input'
-              def set(*args); selector.set(*args); end
-            end
-          end
+          gds_radios :send_to_relevant_person, :'simple_form.labels.claim_type.send_claim_to_whistleblowing_entity'
 
           #Save and continue
           gds_submit_button :save_and_continue_button, t('helpers.submit.update')
@@ -212,9 +202,7 @@ module EtFullSystem
           expect(main_content.whistleblowing_claim).to have_yes
           expect(main_content.whistleblowing_claim).to have_no
           #whistleblowing_entity
-          expect(main_content).to have_send_to_relevant_person
-          expect(main_content.send_to_relevant_person).to have_yes
-          expect(main_content.send_to_relevant_person).to have_no
+          main_content.send_to_relevant_person.assert_valid_options
           #Save and continue
           expect(main_content).to have_save_and_continue_button
           #Support

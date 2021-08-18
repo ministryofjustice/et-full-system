@@ -55,40 +55,15 @@ module EtFullSystem
               def set(*args); field.set(*args); end
             end
           end
-          section :gender, :legend_header, 'claims.claimant.gender', exact: false do
+          gds_radios :gender, :'claims.claimant.gender' do
             include ::EtFullSystem::Test::I18n
             element :error_gender, :error, 'activemodel.errors.models.claimant.attributes.gender.blank'
-            element :male, :form_labelled, 'simple_form.options.claimant.gender.male' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            element :female, :form_labelled, 'simple_form.options.claimant.gender.female' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            element :prefer_not_to_say, :form_labelled, 'simple_form.options.claimant.gender.prefer_not_to_say' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            def set(value)
-              choose(factory_translate(value), name: 'claimant[gender]') unless value.nil?
-            end
           end
           #has special needs
           # @!method claimant_has_special_needs
           #   A govuk radio button component for claimant_has_special_needs question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          gds_radios :claimant_has_special_needs, :'simple_form.labels.claimant.has_special_needs' do
-            include ::EtFullSystem::Test::I18n
-            element :yes, :form_labelled, 'simple_form.yes' do
-              element :selector, :css, '#claimant_has_special_needs_true'
-              def set(*args); selector.set(*args); end
-            end
-            element :no, :form_labelled, 'simple_form.no' do
-              element :selector, :css, '#claimant_has_special_needs_false'
-              def set(*args); selector.set(*args); end
-            end
-          end
+          gds_radios :claimant_has_special_needs, :'simple_form.labels.claimant.has_special_needs'
           # @!method assistance
           #   A govuk text area component for the 'describe the assistance you require' question
           #   @return [EtTestHelpers::Components::GovUKTextArea] The site prism section
@@ -139,39 +114,12 @@ module EtFullSystem
           # @!method claimant_contact_preference
           #   A govuk radio button component for claimant_contact_preference question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          gds_radios :claimant_contact_preference, :'simple_form.labels.claimant.contact_preference' do
-            include ::EtFullSystem::Test::I18n
-            section :email_preference, :form_labelled, 'simple_form.options.claimant.contact_preference.email' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            section :post_preference, :form_labelled, 'simple_form.options.claimant.contact_preference.post' do 
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            def set(value)
-              choose(factory_translate(value), name: 'claimant[contact_preference]')
-            end
-          end
+          gds_radios :claimant_contact_preference, :'simple_form.labels.claimant.contact_preference'
 
           # @!method allow_video_attendance
           #   A govuk radio button component for allow_video_attendance question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          gds_radios :allow_video_attendance, :'simple_form.labels.claimant.allow_video_attendance' do
-            include ::EtFullSystem::Test::I18n
-            element :allow_video_attendance_hint, :paragraph, 'simple_form.hints.claimant.allow_video_attendance'
-            section :yes, :form_labelled, 'simple_form.options.claimant.allow_video_attendance.yes' do
-              element :selector, :css, '#claimant_allow_video_attendance_true'
-              def set(*args); selector.set(*args); end
-            end
-            element :no, :form_labelled, 'simple_form.options.claimant.allow_video_attendance.no' do
-              element :selector, :css, '#claimant_allow_video_attendance_false'
-              def set(*args); selector.set(*args); end
-            end
-            def set(value)
-              choose(factory_translate(value), name: 'claimant[allow_video_attendance]')
-            end
-          end
+          gds_radios :allow_video_attendance, :'simple_form.labels.claimant.allow_video_attendance'
           #Save and continue
           gds_submit_button :save_and_continue_button, t('helpers.submit.update')
         end
@@ -205,13 +153,10 @@ module EtFullSystem
           expect(main_content.date_of_birth).to have_year
           #gender
           expect(main_content).to have_gender
-          expect(main_content.gender).to have_male
-          expect(main_content.gender).to have_female
-          expect(main_content.gender).to have_prefer_not_to_say
+          main_content.gender.assert_valid_options
           #has special needs
-          expect(main_content.claimant_has_special_needs).to have_hint(text: t('simple_form.hints.claimant.has_special_needs'))
-          expect(main_content.claimant_has_special_needs).to have_yes
-          expect(main_content.claimant_has_special_needs).to have_no
+          main_content.claimant_has_special_needs.assert_valid_hint
+          main_content.claimant_has_special_needs.assert_valid_options
           #Claimant's contact details
           expect(main_content).to have_claimants_contact_details
           expect(main_content).to have_building
@@ -225,12 +170,10 @@ module EtFullSystem
           expect(main_content).to have_alternative_telephone_number
           expect(main_content).to have_email_address
           #Best way to send correspondence
-          expect(main_content.claimant_contact_preference).to have_hint(text: t('simple_form.hints.claimant.contact_preference'))
-          expect(main_content.claimant_contact_preference).to have_email_preference
-          expect(main_content.claimant_contact_preference).to have_post_preference
+          main_content.claimant_contact_preference.assert_valid_hint
+          main_content.claimant_contact_preference.assert_valid_options
           # Allow video attendance
-          expect(main_content.allow_video_attendance).to have_yes
-          expect(main_content.allow_video_attendance).to have_no
+          main_content.allow_video_attendance.assert_valid_options
           #Save and continue
           expect(main_content).to have_save_and_continue_button
           #Support

@@ -8,6 +8,7 @@ module EtFullSystem
     class BasePage < ::SitePrism::Page
       include ::EtFullSystem::Test::I18n
       include ::EtFullSystem::Test::MessageBroadcast
+      include EtTestHelpers::Page
       include RSpec::Matchers
 
       def messaging

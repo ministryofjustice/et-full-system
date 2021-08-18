@@ -11,6 +11,7 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         section :main_content, '.container' do
+          include EtTestHelpers::Section
           include ::EtFullSystem::Test::I18n
           #Do you have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more?
           element :header, :main_header, 'diversities.disability.hint', exact: false
@@ -29,7 +30,7 @@ module EtFullSystem
             def set(*args); field.set(*args); end
           end
           #save and continue button
-          element :save_and_continue, :submit_text, 'helpers.submit.update'
+          gds_submit_button :save_and_continue, :'helpers.submit.update'
         end
 
         def save_and_continue

@@ -15,8 +15,8 @@ Given("a claimant is on Claim details page") do
 end
 
 Then("I can verify that the copy text on Claim details page displayed correctly") do
-  et1_claim_details_page.main_content.upload_document.click
-  et1_claim_details_page.main_content.claim_details_other_known_claimants_fieldset.other_known_claimants.set(:"claims.claim_type.yes")
+  et1_claim_details_page.upload_document.click
+  et1_claim_details_page.other_claimants_fieldset.other_known_claimants.set(:"claims.claim_type.yes")
   expect(et1_claim_details_page.has_correct_translation?).to be true
 end
 

@@ -4,9 +4,8 @@ And(/^the administrator exports the claim to the scotland office$/) do
 
   admin_pages.login_page.load
   admin_pages.login_page.login
-  admin_pages.claims_page.load
-  admin_pages.claims_page.list_not_exported_to_ccd
-  admin_pages.claims_page.export_claim(claim['reference'], 'CCD Glasgow')
+  admin_pages.default_office_claims_page.load
+  admin_pages.default_office_claims_page.export_claim(claim['reference'], 'CCD Glasgow')
 end
 
 Then(/^the claim in the admin should show that the export completely failed to CCD$/) do
