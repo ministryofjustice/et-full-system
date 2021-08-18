@@ -146,7 +146,12 @@ en:
         mobile_number: Alternative phone or mobile number (optional)
         email_address: Email address
         fax_number: Fax
-        has_special_needs: "Do you have a disability which means you require assistance at the tribunal hearing? (optional)"
+        has_special_needs: 
+          label: "Do you have a disability which means you require assistance at the tribunal hearing? (optional)"
+          hint: :'simple_form.hints.claimant.has_special_needs'
+          options:
+            yes: :'simple_form.yes'
+            no: :'simple_form.no'
         special_needs: Describe the assistance you require (optional)
         address_telephone_number: Phone or mobile number (optional)
         address_building: Building number or name
@@ -156,8 +161,17 @@ en:
         address_post_code: Postcode
         address_country: Country
         applying_for_remission: Do you want to get help paying your fee (known as ‘help with fees’)?
-        contact_preference: Best way to send correspondence to you (the claimant)
-        allow_video_attendance: Would you be able to take part in a hearing by video? (Requires internet access).
+        contact_preference: 
+          label: Best way to send correspondence to you (the claimant)
+          hint: :'simple_form.hints.claimant.contact_preference'
+          options:
+            email: :'simple_form.options.claimant.contact_preference.email'
+            post: :'simple_form.options.claimant.contact_preference.post'
+        allow_video_attendance: 
+          label: Would you be able to take part in a hearing by video? (Requires internet access).
+          options:
+            yes: :'simple_form.options.claimant.allow_video_attendance.yes'
+            no: :'simple_form.options.claimant.allow_video_attendance.no'
         _destroy: 'Remove this claimant'
 
       additional_claimants:
@@ -219,8 +233,16 @@ en:
         benefit_details: "Do – or did – you have any benefits, like a company car? (optional)"
         found_new_job: Have you got a new job? (optional)
         notice_pay_period_count: For how many weeks or months did you get paid? (optional)
-        notice_pay_period_type: Was this weeks or months ?
-        was_employed: "Have you ever been employed by the person or organisation that you’re making this claim against? (optional)"
+        notice_pay_period_type:
+          label: Was this weeks or months ?
+          options:
+            weeks: :'simple_form.options.employment.notice_pay_period_type.weeks'
+            months: :'simple_form.options.employment.notice_pay_period_type.months'
+        was_employed: 
+          label: "Have you ever been employed by the person or organisation that you’re making this claim against? (optional)"
+          options:
+            yes: :'claims.employment.yes'
+            no: :'claims.employment.no' 
         new_job_gross_pay: New job pay before tax
         start_date:
           day: "Day"
@@ -260,9 +282,18 @@ en:
         is_other_type_of_claim: "Other type of claim"
         other_claim_details: State the other type of claim(s) that you’re making
         is_whistleblowing: Are you reporting suspected wrongdoing at work?
-        send_claim_to_whistleblowing_entity: "Do you want us to send a copy of your claim to the relevant person or body that deals with whistleblowing?"
+        send_claim_to_whistleblowing_entity: 
+          label: "Do you want us to send a copy of your claim to the relevant person or body that deals with whistleblowing?"
+          options:
+            yes: :'simple_form.yes'
+            no: :'simple_form.no'
       claim_details:
-        other_known_claimants: "Do you know of any other claimants (not already listed) making similar claims against the same employer? (optional)"
+        other_known_claimants: 
+          label: "Do you know of any other claimants (not already listed) making similar claims against the same employer? (optional)"
+          hint: :'simple_form.hints.claim_details.other_known_claimants'
+          options:
+            yes: :'claims.claim_type.yes'
+            no: :'claims.claim_type.no'
         other_known_claimant_names: "You can add the names of other people here. (optional)"
         claim_details_rtf: "The document needs to be in Rich Text Format(RTF) (optional)"
       claim_outcome:
@@ -499,7 +530,12 @@ en:
 
     claimant:
       header: "Claimant’s details"
-      gender: "Gender (optional)"
+      gender: 
+        label: "Gender (optional)"
+        options:
+          male: :'simple_form.options.claimant.gender.male'
+          female: :'simple_form.options.claimant.gender.female'
+          prefer_not_to_say: :'simple_form.options.claimant.gender.prefer_not_to_say'
       legend_disability: "Do you have a disability which means you require assistance at the tribunal hearing? (optional"
       legend_personal_details: About the claimant
       legend_contact_details: "Claimant’s contact details"
@@ -586,13 +622,23 @@ en:
     employment:
       header: Employment details
       situation_legend: Your employment details
-      current_situation: What is your current work situation in relation to the employer you're making a claim against?
+      current_situation: 
+        label: What is your current work situation in relation to the employer you're making a claim against?
+        options:
+          still_employed: :'simple_form.options.employment.current_situation.still_employed'
+          notice_period: :'simple_form.options.employment.current_situation.notice_period'
+          employment_terminated: :'simple_form.options.employment.current_situation.employment_terminated'          
       start_date: Employment start date
       end_date: Employment end date
       paid_for_notice_period:
         "yes": 'Yes'
         "no": 'No'
-      worked_notice_period_or_paid_in_lieu: Did you work (or get paid for) a period of notice?
+      worked_notice_period_or_paid_in_lieu:
+        label: Did you work (or get paid for) a period of notice?
+        options:
+          yes: :'claims.employment.yes'
+          no: :'claims.employment.no'
+
       new_job_start_date: New job start date
       new_job_pay_before_tax_type: How often are you paid
       notice_period_end_date: Notice period end date

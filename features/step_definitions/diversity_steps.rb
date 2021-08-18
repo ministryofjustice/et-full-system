@@ -41,7 +41,7 @@ Given("a claimant prefered not to answer ethnicity on the survey participant for
 end
 
 When("user changed {string} to {string}") do |string, string2|
-  @diversity = build(:diversity, :not_blank, claim_type: :"claim_type.redundancy-payment")
+  @diversity = build(:diversity, :not_blank, claim_type: :"diversities.claim_type.claim_type.options.redundancy-payment")
   diversity_pages.submission_form_page.main_content.summary.claim_type_row.link.click
   diversity_pages.claim_type_page.set_for(@diversity)
 end

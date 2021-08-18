@@ -67,6 +67,7 @@ module EtFullSystem
             "Claimants",
             "Claims",
             "Commands",
+            "Default Office Claims",
             "Diversity Responses",
             "Et Offices",
             "Exported Files",

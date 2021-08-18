@@ -11,8 +11,9 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         section :main_content, '.container' do
+          include EtTestHelpers::Section
           #What is your religion
-          element :header, :main_header, 'diversities.religion.hint'
+          element :header, :main_header, 'diversities.religion.header'
           section :none, :form_labelled, 'religion.no-religion' do
             element :field, 'input'
             def set(*args); field.set(*args); end
@@ -56,7 +57,7 @@ module EtFullSystem
           end
 
           #save and continue button
-          element :save_and_continue, :submit_text, 'helpers.submit.update'
+          gds_submit_button :save_and_continue, :'helpers.submit.update'
         end
 
         def save_and_continue

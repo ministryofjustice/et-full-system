@@ -39,6 +39,11 @@ module EtFullSystem
         Admin::ClaimsPage.new
       end
 
+      # @return [::Admin::DefaultOfficeClaimsPage] The page object for claims
+      def self.default_office_claims_page
+        Admin::DefaultOfficeClaimsPage.new
+      end
+
       # @return [::Admin::ExportPage] The page object for a single export
       def self.export_page
         Admin::ExportPage.new

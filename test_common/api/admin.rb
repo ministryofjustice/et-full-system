@@ -168,17 +168,7 @@ module EtFullSystem
           &pregnancy_contains=data[:pregnancy]
           &relationship_contains=data[:relationship]
           &religion_contains=data[:religion]", cookies: cookies_hash)
-        data = response[0].delete_if { |k, v| %w"id created_at updated_at".include? k}
-        return data.inject({}) do |a, (k,v)|
-          if v.nil? 
-            a[k] = nil
-          elsif v == "Jehovah's Witnesses"
-            a[k] = v
-          else
-            a[k] = t("#{k}.#{v}")
-          end
-          a
-        end
+        response[0].delete_if { |k, v| %w"id created_at updated_at".include? k}
       end
 
       def export_response_to_ccd(external_system_id:, response_reference:)

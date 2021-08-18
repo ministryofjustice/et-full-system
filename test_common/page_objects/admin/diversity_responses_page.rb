@@ -6,8 +6,9 @@ module EtFullSystem
 
         def has_response_for?(data)
           api = EtFullSystem::Test::AdminApi.new atos_interface: atos_interface
-          expected_data = data.to_h.inject({}) do |acc, (k,v)|
-            acc[k] = factory_translate(v)
+          expected_data = data.to_h.inject({}) do |acc, (k, v)|
+            # Value should always be 'diversities.<page>.question.options.<value>'
+            acc[k] = v&.to_s&.split('.')&.last
             acc
           end
           expect {api.admin_diversity_data.symbolize_keys}.to eventually include(expected_data), timeout: 30, sleep: 2

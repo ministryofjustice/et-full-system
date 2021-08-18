@@ -65,7 +65,7 @@ module EtFullSystem
             end
           end
           #save and continue button
-          element :save_and_continue, :submit_text, 'helpers.submit.update'
+          gds_submit_button :save_and_continue, :'helpers.submit.update'
         end
 
         def save_and_continue

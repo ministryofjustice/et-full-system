@@ -1,8 +1,8 @@
 module EtFullSystem
   module Test
     module Admin
-      class ClaimsPage < Admin::BasePage
-        set_url "/claims"
+      class DefaultOfficeClaimsPage < Admin::BasePage
+        set_url "/default_office_claims"
         section :scopes, :css, '.table_tools .scopes' do
           section :not_exported_to_ccd_button, :xpath, XPath.generate {|x| x.descendant(:li)[x.child(:a)[x.string.n.starts_with('Not Exported To Ecm')]]} do
             element :link, :css, 'a'
