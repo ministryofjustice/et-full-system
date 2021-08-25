@@ -307,8 +307,16 @@ cy:
         is_pay_related: Tâl
         is_other_type_of_claim: Math arall o hawliad
         other_claim_details: Nodwch y math arall o hawliad(au) ydych yn gwneud
-        claim_details: "Hwn yw eich cyfle chi i ddweud wrthym am eich problem yn y gwaith, fel bod y tribiwnlys a'r cyflogwr yn deall eich hawliad. Nid oes rhaid i chi ddarparu tystiolaeth ar hyn o bryd. Sut ydw i'n ysgrifennu datganiad i gefnogi fy hawliad?"
-        desired_outcomes: "Beth ydych chi eisiau os yw eich hawliad yn llwyddiannus? (dewisol)"
+        claim_details: 
+          label: "Hwn yw eich cyfle chi i ddweud wrthym am eich problem yn y gwaith, fel bod y tribiwnlys a'r cyflogwr yn deall eich hawliad. Nid oes rhaid i chi ddarparu tystiolaeth ar hyn o bryd. Sut ydw i'n ysgrifennu datganiad i gefnogi fy hawliad?"
+        desired_outcomes: 
+          label: "Beth ydych chi eisiau os yw eich hawliad yn llwyddiannus? (dewisol)"
+          hint: :'simple_form.hints.claim_outcome.desired_outcomes'
+          options:
+            compensation_only: :'simple_form.options.claim_outcome.desired_outcomes.compensation_only'
+            tribunal_recommendation: :'simple_form.options.claim_outcome.desired_outcomes.tribunal_recommendation'
+            reinstated_employment_and_compensation: :'simple_form.options.claim_outcome.desired_outcomes.reinstated_employment_and_compensation'
+            new_employment_and_compensation: :'simple_form.options.claim_outcome.desired_outcomes.new_employment_and_compensation'
         other_outcome: "Pa fath o iawndal neu ganlyniad(au) eraill ydych chi eisiau?"
         other_known_claimants: "Ydych chi'n gwybod am unrhyw hawlwyr eraill (nad ydynt eisoes wedi'u rhestru) sy'n gwneud hawliadau tebyg yn erbyn yr un cyflogwr?"
         other_known_claimant_names: "Gallwch ychwanegu enwau unigolion eraill yma."

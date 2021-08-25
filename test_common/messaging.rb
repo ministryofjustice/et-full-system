@@ -10,6 +10,20 @@ module EtFullSystem
         load_translations Dir.glob(File.join(messaging_dir, '**', '*.yml'))
         @initialized = true
       end
+
+      def resolve(locale, object, subject, options = EMPTY_HASH)
+        return subject if options[:resolve] == false
+
+        result = catch(:exception) do
+          case subject
+          when Symbol
+            translate(locale, subject, **options.merge(throw: true))
+          else
+            super
+          end
+        end
+        result unless result.is_a?(::I18n::MissingTranslation)
+      end
     end
 
     # A singleton class for translating i18n keys in the test suite.
@@ -25,11 +39,11 @@ module EtFullSystem
       # @param [Hash] options - Any options that the translation requires
       # @return [String] The translated text
       # @raise [::I18n::MissingTranslation] If the translation was not found
-      def translate(key, locale: current_locale, **options)
+      def translate(key, locale: current_locale, raise: true, **options)
         result = catch(:exception) do
           backend.translate(locale, key, options)
         end
-        result.is_a?(::I18n::MissingTranslation) ? raise(result) : result
+        result.is_a?(::I18n::MissingTranslation) ? handle_exception(result, raise) : result
       end
 
       # Provides the current_locale which is the default for the #translate method
@@ -50,13 +64,18 @@ module EtFullSystem
         format = options.delete(:format) || :default
         backend.localize(locale, object, format, options)
       end
-      alias :l :localize
-
+      alias l localize
 
       private
 
       def initialize(messaging_dir: File.absolute_path('../messaging', __FILE__))
         self.backend = Backend.new(messaging_dir: messaging_dir)
+      end
+
+      def handle_exception(exception, raise_error)
+        return nil unless raise_error
+
+        raise exception
       end
 
       attr_accessor :backend
@@ -73,6 +92,7 @@ module EtFullSystem
 
       def factory_translate(value, *args)
         return value unless value.is_a?(Symbol)
+
         t(value, *args)
       end
 
