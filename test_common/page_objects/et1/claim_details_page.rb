@@ -19,12 +19,7 @@ module EtFullSystem
         # More about writing your claim statement.
         element :about_claim_info, :link_named, 'claims.claim_details.claim_details_hint', exact: false
         # Or upload it as a separate document
-        element :upload_document, :summary_text, 'claims.claim_details.claim_details_upload' do
-          element :selector, :css, '.summary'
-          def set(*args)
-            selector.set(*args)
-          end
-        end
+        element :upload_document, :summary_text, 'claims.claim_details.claim_details_upload'
         # @!method claim_details_claimt_details_rtf
         #   A govuk file field component wrapping the input, label, hint etc.. for the claim_details_claimt_details_rtf question
         #   @return [EtTestHelpers::Components::GovUKFileField] The site prism section

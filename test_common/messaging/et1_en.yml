@@ -266,8 +266,17 @@ en:
         is_pay_related: Pay
         is_other_type_of_claim: Another type of claim
         other_claim_details: State the other type of claim(s) that you’re making
-        claim_details: This is your opportunity to tell us about your problem at work, so that the tribunal and employer understand your claim. You don’t have to provide evidence at this stage. How do I write a claim statement?
-        desired_outcomes: "What do you want if your claim is successful? (optional)"
+        claim_details: 
+          label: This is your opportunity to tell us about your problem at work, so that the tribunal and employer understand your claim. You don’t have to provide evidence at this stage. How do I write a claim statement?
+        desired_outcomes:
+          label: "What do you want if your claim is successful? (optional)"
+          hint: :'simple_form.hints.claim_outcome.desired_outcomes'
+          options:
+            compensation_only: :'simple_form.options.claim_outcome.desired_outcomes.compensation_only'
+            tribunal_recommendation: :'simple_form.options.claim_outcome.desired_outcomes.tribunal_recommendation'
+            reinstated_employment_and_compensation: :'simple_form.options.claim_outcome.desired_outcomes.reinstated_employment_and_compensation'
+            new_employment_and_compensation: :'simple_form.options.claim_outcome.desired_outcomes.new_employment_and_compensation'
+
         other_outcome: What compensation or other outcome(s) do you want?
         other_known_claimants: "Do you know of any other claimants (not already listed) making similar claims against the same employer? (optional)"
         other_known_claimant_names: You can add the names of other people here.
@@ -606,18 +615,25 @@ en:
       acas_early_conciliation_certificate_number_link: "Acas early conciliation service"
 
     additional_respondents:
+      additional_respondents:
+        label: Claims against more than one employer
+        hint: "Are you making a claim against another person or organisation?"
+        options:
+          'yes': 'Yes'
+          'no': 'No'
       no_acas_number_reason: Why don’t you have an Acas number?
       header: Additional respondents
-      additional_respondents_legend: Claims against more than one employer
-      additional_respondents_intro: "Are you making a claim against another person or organisation?"
+      additional_respondents_legend: :'claims.additional_respondents.additional_respondents.label'
+      additional_respondents_intro: :'claims.additional_respondents.additional_respondents.hint'
       person: Respondent %{number}
       add_fields: Add another respondent
       remove_resource_link: Remove this respondent
       additional_respondents_limit: If you are making a claim against more than %{max} additional respondents, enter their details in the ‘more about the claim’ section later in the form.
       no_acas_number_note_one: :claims.respondent.no_acas_number_note_one
       no_acas_number_note_two: :claims.respondent.no_acas_number_note_two
-      "yes": 'Yes'
-      "no": 'No'
+      "yes": :'claims.additional_respondents.additional_respondents.options.yes'
+      "no": :'claims.additional_respondents.additional_respondents.options.no'
+        
 
     employment:
       header: Employment details

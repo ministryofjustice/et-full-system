@@ -2,55 +2,50 @@ require_relative './base_page'
 module EtFullSystem
   module Test
     module Et1
+      # The additional respondents page
       class AdditionalRespondentsDetailsPage < BasePage
         include RSpec::Matchers
-        #Additional respondents
+        # Additional respondents
         element :page_header, :page_title, 'claims.additional_respondents.header', exact: false
-        section :main_content, '#main-content' do
-          include EtTestHelpers::Section
-          include EtFullSystem::Test::I18n
-          section :error_message, '#error-summary' do
-            element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
-            element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
-          end
-          #Claims against more than one employer
-          element :additional_respondents_header, :legend_header, 'claims.additional_respondents.additional_respondents_legend'
-          #Are you making a claim against another person or organisation?
-          element :additional_respondents_intro, :paragraph, 'claims.additional_respondents.additional_respondents_intro'
-          element :yes, :form_labelled, 'claims.additional_respondents.yes' do
-            element :selector, :css, 'input[type="radio"]'
-            def set(*args); selector.set(*args); end
-          end
-          element :no, :form_labelled, 'claims.additional_respondents.no' do
-            element :selector, :css, 'input[type="radio"]'
-            def set(*args); selector.set(*args); end
-          end
-          # @!method additional_respondents
-          #   A govuk radio button component for additional_respondents question
-          #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
-          gds_radios :additional_respondents, :'claims.additional_respondents.additional_respondents_legend'
 
-          section :respondent_2, AdditionalRespondentSection, :group_claimants, "claims.additional_respondents.person", number: 2
-          section :respondent_3, AdditionalRespondentSection, :group_claimants, "claims.additional_respondents.person", number: 3
-          section :respondent_4, AdditionalRespondentSection, :group_claimants, "claims.additional_respondents.person", number: 4
-          section :respondent_5, AdditionalRespondentSection, :group_claimants, "claims.additional_respondents.person", number: 5
-          section :respondent_6, AdditionalRespondentSection, :group_claimants, "claims.additional_respondents.person", number: 6
-          
-          #Add another respondent
-          gds_submit_button :add_another_respondent, :'claims.additional_respondents.add_fields'
-          #Remove another respondent
-          element :remove_another_respondent, :remove_multiple, 'claims.additional_respondents.remove_resource_link'
-          #Save and continue
-          gds_submit_button :save_and_continue_button, t('helpers.submit.update')
-        end
+        # @!method error_summary
+        #   A govuk error component
+        #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
+        gds_error_summary :error_summary, :'shared.error_notification.default_message'
+
+        # Claims against more than one employer
+        # Are you making a claim against another person or organisation?
+        # @!method additional_respondents
+        #   A govuk radio button component for additional_respondents question
+        #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+        gds_radios :additional_respondents, :'claims.additional_respondents.additional_respondents'
+
+        section :respondent_2, AdditionalRespondentSection, :group_claimants, 'claims.additional_respondents.person',
+                number: 2
+        section :respondent_3, AdditionalRespondentSection, :group_claimants, 'claims.additional_respondents.person',
+                number: 3
+        section :respondent_4, AdditionalRespondentSection, :group_claimants, 'claims.additional_respondents.person',
+                number: 4
+        section :respondent_5, AdditionalRespondentSection, :group_claimants, 'claims.additional_respondents.person',
+                number: 5
+        section :respondent_6, AdditionalRespondentSection, :group_claimants, 'claims.additional_respondents.person',
+                number: 6
+
+        # Add another respondent
+        gds_submit_button :add_another_respondent_button, :'claims.additional_respondents.add_fields'
+        # Remove another respondent
+        element :remove_another_respondent_button, :remove_multiple,
+                'claims.additional_respondents.remove_resource_link'
+        # Save and continue
+        gds_submit_button :save_and_continue_button, t('helpers.submit.update')
 
         def remove_another_respondent
-          main_content.remove_another_respondent.click
+          remove_another_respondent_button.click
         end
 
         def save_and_continue
-          page.execute_script "window.scrollBy(0,10000)"
-          main_content.save_and_continue_button.click
+          page.execute_script 'window.scrollBy(0,10000)'
+          save_and_continue_button.click
         end
 
         def switch_to_welsh
@@ -62,79 +57,74 @@ module EtFullSystem
         end
 
         def has_correct_translation?
-          #your feedback header
+          # your feedback header
           expect(feedback_notice).to have_language
           expect(feedback_notice).to have_feedback_link
           expect(feedback_notice).to have_feedback_info
-          #Additional respondents
+          # Additional respondents
           expect(main_header).to have_page_header
-          #Claims against more than one employer
-          expect(main_content).to have_additional_respondents_header
-          expect(main_content).to have_additional_respondents_intro
-          expect(main_content.additional_respondents).to have_yes
-          expect(main_content.additional_respondents).to have_no
-          #Respondent details
-          expect(main_content.respondent_2).to have_name
-          expect(main_content.respondent_2).to have_building
-          expect(main_content.respondent_2).to have_street
-          expect(main_content.respondent_2).to have_locality
-          expect(main_content.respondent_2).to have_county
-          expect(main_content.respondent_2).to have_post_code
-          #Acas number
-          expect(main_content.respondent_2).to have_acas_number
-          #I don't have an acas number
-          expect(main_content.respondent_2).to have_no_acas_number
-          expect(main_content.respondent_2).to have_no_acas_number_note_one
-          expect(main_content.respondent_2.respondent_no_acas_number_reason).to have_joint_claimant_has_acas_number
-          expect(main_content.respondent_2.respondent_no_acas_number_reason).to have_acas_has_no_jurisdiction
-          expect(main_content.respondent_2.respondent_no_acas_number_reason).to have_employer_contacted_acas
-          expect(main_content.respondent_2.respondent_no_acas_number_reason).to have_interim_relief
-          #Add another respondent
-          expect(main_content).to have_add_another_respondent
-          #Save and continue
-          expect(main_content).to have_save_and_continue_button
-          #Support
+          # Claims against more than one employer
+          additional_respondents.assert_valid_options
+          additional_respondents.assert_valid_hint
+          # Respondent details
+          expect(respondent_2).to have_name
+          expect(respondent_2).to have_building
+          expect(respondent_2).to have_street
+          expect(respondent_2).to have_locality
+          expect(respondent_2).to have_county
+          expect(respondent_2).to have_post_code
+          # Acas number
+          expect(respondent_2).to have_acas_number
+          # I don't have an acas number
+          expect(respondent_2).to have_no_acas_number
+          expect(respondent_2).to have_no_acas_number_note_one
+          expect(respondent_2.respondent_no_acas_number_reason).to have_joint_claimant_has_acas_number
+          expect(respondent_2.respondent_no_acas_number_reason).to have_acas_has_no_jurisdiction
+          expect(respondent_2.respondent_no_acas_number_reason).to have_employer_contacted_acas
+          expect(respondent_2.respondent_no_acas_number_reason).to have_interim_relief
+          # Add another respondent
+          expect(self).to have_add_another_respondent
+          # Save and continue
+          expect(self).to have_save_and_continue_button
+          # Support
           expect(support).to have_suport_header
           expect(support).to have_guide
           expect(support).to have_contact_use
-          #Save your claim later
+          # Save your claim later
           expect(support).to have_your_claim
-          #TODO this has stopped working - why?
+          # TODO: this has stopped working - why?
           # expect(support).to have_save_and_complete_later
         end
 
         def has_correct_blank_validation?
-          expect(main_content.error_message).to have_error_summary
-          expect(main_content.error_message).to have_default_message
-          expect(main_content.respondent_2).to have_blank_name
-          expect(main_content.respondent_2).to have_blank_building
-          expect(main_content.respondent_2).to have_blank_street
-          expect(main_content.respondent_2).to have_blank_locality
-          expect(main_content.respondent_2).to have_blank_county
-          expect(main_content.respondent_2).to have_blank_post_code
-          expect(main_content.respondent_2).to have_blank_acas_number
+          expect(self).to have_error_summary
+          expect(respondent_2).to have_blank_name
+          expect(respondent_2).to have_blank_building
+          expect(respondent_2).to have_blank_street
+          expect(respondent_2).to have_blank_locality
+          expect(respondent_2).to have_blank_county
+          expect(respondent_2).to have_blank_post_code
+          expect(respondent_2).to have_blank_acas_number
         end
 
         def has_correct_invalid_acas_number?
-          expect(main_content.respondent_2).to have_invalid_acas_number
+          expect(respondent_2).to have_invalid_acas_number
         end
 
         def has_correct_invalid_postcode?
-          expect(main_content.respondent_2).to have_post_code
+          expect(respondent_2).to have_post_code
         end
 
         def set(respondents)
           return if respondents.nil? || respondents.empty?
+
           if respondents.length == 1
-            main_content.additional_respondents.set(:"claims.additional_respondents.no")
-            et1_additional_respondents_details_page.main_content.no.set(true)
+            additional_respondents.set(:"claims.additional_respondents.additional_respondents.options.no")
           else
-            et1_additional_respondents_details_page.main_content.yes.set(true)
-            main_content do |s|
-              respondents[1..-1].each_with_index do |respondent, idx|
-                s.add_another_respondent.click unless idx == 0
-                populate_respondent s.send(:"respondent_#{idx + 2}"), respondent.to_h
-              end
+            additional_respondents.set(:"claims.additional_respondents.additional_respondents.options.yes")
+            respondents[1..-1].each_with_index do |respondent, idx|
+              add_another_respondent_button.click unless idx == 0
+              populate_respondent send(:"respondent_#{idx + 2}"), respondent.to_h
             end
           end
         end
