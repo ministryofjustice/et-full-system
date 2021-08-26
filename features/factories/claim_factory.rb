@@ -1,29 +1,15 @@
 FactoryBot.define do
   factory :claim, class: OpenStruct do
     claim_types do
-      [:"simple_form.labels.claim_type.is_unfair_dismissal",
-      :"simple_form.options.claim_type.discrimination_claims.sex_including_equal_pay",
-      :"simple_form.options.claim_type.discrimination_claims.race",
-      :"simple_form.options.claim_type.discrimination_claims.pregnancy_or_maternity",
-      :"simple_form.options.claim_type.discrimination_claims.sexual_orientation",
-      :"simple_form.options.claim_type.discrimination_claims.gender_reassignment",
-      :"simple_form.options.claim_type.discrimination_claims.disability",
-      :"simple_form.options.claim_type.discrimination_claims.age",
-      :"simple_form.options.claim_type.discrimination_claims.religion_or_belief",
-      :"simple_form.options.claim_type.discrimination_claims.marriage_or_civil_partnership",
-      :"simple_form.options.claim_type.pay_claims.redundancy",
-      :"simple_form.options.claim_type.pay_claims.holiday",
-      :"simple_form.options.claim_type.pay_claims.other",
-      :"simple_form.options.claim_type.pay_claims.notice",
-      :"simple_form.options.claim_type.pay_claims.arrears",
-      :"simple_form.labels.claim_type.is_other_type_of_claim"]
+      build :claim_type, :all
     end
-    other_type_of_claim_details {'Give a very short description of your claim; you will have the opportunity to add more detail on the next page'}
+
     description {'Full text version of claim'}
 
     trait :simple do
-      claim_types { [:"simple_form.labels.claim_type.is_unfair_dismissal"] }
-      other_type_of_claim_details { nil }
+      claim_types do
+        build :claim_type, :unfair_dismissal
+      end
     end
   end
 

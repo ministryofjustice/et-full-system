@@ -16,15 +16,17 @@ module EtFullSystem
             element :answer, :css, 'dt.govuk-summary-list__value'
 
             def has_answer_for?(claim)
-              if claim.claim_types.nil? || claim.claim_types.empty?
+              claim_types = claim.claim_types
+              if claim_types.nil? || (claim_types.unfair_dismissal + claim_types.discrimination + claim_types.pay + claim_types.other).empty?
                 raise "claim types must always exist - the application should not let you get this far"
               else
                 # Other type of claim is never shown as a claim type
-                claim_types = claim.claim_types.reject {|c| c.to_s.split('.').last == 'is_other_type_of_claim'}
                 aggregate_failures 'validating claim types' do
-                  claim_types.each do |type|
-                    key = type.to_s.gsub(/.*\.options\.claim_type\./, 'review.claim_type.questions.types.options.')
-                    expect(answer).to have_text(t(key), exact: false)
+                  claim_types.discrimination.each do |type|
+                    expect(self).to have_answer(text: t("review.claim_type.questions.types.options.discrimination.#{type}"), exact: false)
+                  end
+                  claim_types.pay do |type|
+                    expect(self).to have_answer(text: t("review.claim_type.questions.types.options.pay.#{type}"), exact: false)
                   end
                 end
               end

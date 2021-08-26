@@ -129,21 +129,6 @@ module EtFullSystem
             Date.parse(d) > Date.today ? d : nil
           end
 
-          def claim_type_for(claim_type)
-            claim_type = claim_type.to_s.gsub(/.*\.claim_type\./, '').split('.').map(&:to_sym)
-            if claim_type.length == 1
-              claim_type.first
-            elsif claim_type.length == 2
-              "#{claim_type.first.to_s.gsub(/_claims\z/, '')}_#{claim_type.last}".to_sym
-            else
-              raise "Invalid claim_type #{claim_type}"
-            end
-          end
-
-          def claim_types_for(claim_types)
-            claim_types.map { |claim_type| claim_type_for(claim_type) }
-          end
-
           def outcome_type_for(outcome_type)
             case outcome_type.to_s.split('.').last.to_sym
             when :compensation_only then
