@@ -47,10 +47,10 @@ FactoryBot.define do
 
   trait :no_to_other_claimants do
     preferred_outcome do
-      [:"simple_form.options.claim_outcome.desired_outcomes.compensation_only",
-      :"simple_form.options.claim_outcome.desired_outcomes.tribunal_recommendation",
-      :"simple_form.options.claim_outcome.desired_outcomes.reinstated_employment_and_compensation",
-      :"simple_form.options.claim_outcome.desired_outcomes.new_employment_and_compensation"]
+      [:compensation_only,
+      :tribunal_recommendation,
+      :reinstated_employment_and_compensation,
+      :new_employment_and_compensation]
     end
     preferred_outcome_notes {'I would like 50,000 GBP due to the stress this caused me'}
     whistleblowing_claim {:"claims.claim_type.no"}
@@ -62,10 +62,10 @@ FactoryBot.define do
 
   trait :no_to_whistleblowing_claim do
     preferred_outcome do
-      [:"simple_form.options.claim_outcome.desired_outcomes.compensation_only",
-      :"simple_form.options.claim_outcome.desired_outcomes.tribunal_recommendation",
-      :"simple_form.options.claim_outcome.desired_outcomes.reinstated_employment_and_compensation",
-      :"simple_form.options.claim_outcome.desired_outcomes.new_employment_and_compensation"]
+      [:compensation_only,
+      :tribunal_recommendation,
+      :reinstated_employment_and_compensation,
+      :new_employment_and_compensation]
     end
     preferred_outcome_notes {'I would like 50,000 GBP due to the stress this caused me'}
     whistleblowing_claim {:"claims.claim_type.no"}
@@ -77,10 +77,10 @@ FactoryBot.define do
 
   trait :yes_to_whistleblowing_claim do
     preferred_outcome do
-      [:"simple_form.options.claim_outcome.desired_outcomes.compensation_only",
-      :"simple_form.options.claim_outcome.desired_outcomes.tribunal_recommendation",
-      :"simple_form.options.claim_outcome.desired_outcomes.reinstated_employment_and_compensation",
-      :"simple_form.options.claim_outcome.desired_outcomes.new_employment_and_compensation"]
+      [:compensation_only,
+      :tribunal_recommendation,
+      :reinstated_employment_and_compensation,
+      :new_employment_and_compensation]
     end
     preferred_outcome_notes {'I would like 50,000 GBP due to the stress this caused me'}
     whistleblowing_claim {:"claims.claim_type.yes"}
@@ -93,10 +93,10 @@ FactoryBot.define do
 
   trait :no_to_multiple_claims do
     preferred_outcome do
-      [:"simple_form.options.claim_outcome.desired_outcomes.compensation_only",
-      :"simple_form.options.claim_outcome.desired_outcomes.tribunal_recommendation",
-      :"simple_form.options.claim_outcome.desired_outcomes.reinstated_employment_and_compensation",
-      :"simple_form.options.claim_outcome.desired_outcomes.new_employment_and_compensation"]
+      [:compensation_only,
+      :tribunal_recommendation,
+      :reinstated_employment_and_compensation,
+      :new_employment_and_compensation]
     end
     preferred_outcome_notes {'I would like 50,000 GBP due to the stress this caused me'}
     whistleblowing_claim {:"claims.claim_type.yes"}
@@ -120,10 +120,10 @@ FactoryBot.define do
 
   trait :no_to_other_important_details do
     preferred_outcome do
-      [:"simple_form.options.claim_outcome.desired_outcomes.compensation_only",
-      :"simple_form.options.claim_outcome.desired_outcomes.tribunal_recommendation",
-      :"simple_form.options.claim_outcome.desired_outcomes.reinstated_employment_and_compensation",
-      :"simple_form.options.claim_outcome.desired_outcomes.new_employment_and_compensation"]
+      [:compensation_only,
+      :tribunal_recommendation,
+      :reinstated_employment_and_compensation,
+      :new_employment_and_compensation]
     end
     preferred_outcome_notes {''}
     whistleblowing_claim {:"claims.claim_type.yes"}

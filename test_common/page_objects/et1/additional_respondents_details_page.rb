@@ -119,9 +119,9 @@ module EtFullSystem
           return if respondents.nil? || respondents.empty?
 
           if respondents.length == 1
-            additional_respondents.set(:"claims.additional_respondents.additional_respondents.options.no")
+            additional_respondents.set(:no)
           else
-            additional_respondents.set(:"claims.additional_respondents.additional_respondents.options.yes")
+            additional_respondents.set(:yes)
             respondents[1..-1].each_with_index do |respondent, idx|
               add_another_respondent_button.click unless idx == 0
               populate_respondent send(:"respondent_#{idx + 2}"), respondent.to_h
@@ -140,10 +140,10 @@ module EtFullSystem
           set_field section, :post_code, respondent
           # @TODO Dont commit this
           if respondent.key?(:no_acas_number_reason)
-            section.no_acas_number.set(:'simple_form.labels.respondent.no')
+            section.no_acas_number.set(:no)
             section.respondent_no_acas_number_reason.set(respondent[:no_acas_number_reason])
           else
-            section.no_acas_number.set(:'simple_form.labels.respondent.yes')
+            section.no_acas_number.set(:yes)
             set_field section, :acas_number, respondent
           end
         end

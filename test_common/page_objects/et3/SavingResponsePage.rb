@@ -13,7 +13,7 @@ module EtFullSystem
           element :response_number, '.reference-number'
           element :claims_intro_text, :paragraph, 'saving_response.intro_text'
           #email address
-          section :email_label, :question_labelled, 'saving_response.email_label', exact: false do
+          section :email_label, :question_labelled, 'saving_response.email_label' do
             element :field, :css, "input"
             def set(*args); field.set(*args); end
           end

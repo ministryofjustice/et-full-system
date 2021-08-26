@@ -44,8 +44,6 @@ module EtFullSystem
           #   A govuk radio button component for no_acas_number question
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
       gds_radios :no_acas_number, :'simple_form.labels.respondent.no_acas_number'
-      # element :yes_acas_number, '#additional-respondents-secondary-respondents-attributes-0-has-acas-number-true-field'
-      # element :no_acas_number_note_one, :form_hint, 'claims.respondent.no_acas_number_note_one', exact: false
       gds_radios :respondent_no_acas_number_reason, :'claims.additional_respondents.no_acas_number_reason'
       # section :respondent_no_acas_number_reason, '.additional_respondents_collection_no_acas_number_reason' do
       #   include ::EtFullSystem::Test::I18n

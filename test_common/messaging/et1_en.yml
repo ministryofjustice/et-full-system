@@ -215,7 +215,11 @@ en:
         work_address_post_code: Postcode (optional)
         worked_at_same_address: "Did you work at the same address to the one given above? (optional)"
         acas_early_conciliation_certificate_number: "Acas early conciliation certificate number"
-        no_acas_number: "Do you have an Acas number?"
+        no_acas_number: 
+          label: "Do you have an Acas number?"
+          options:
+            'yes': :'simple_form.labels.respondent.yes'
+            'no': :'simple_form.labels.respondent.no'
         no_acas_number_reason: "Why don’t you have an Acas number?"
         _destroy: 'Remove this respondent'
         "yes": 'Yes'

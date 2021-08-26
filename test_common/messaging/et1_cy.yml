@@ -237,7 +237,11 @@ cy:
         work_address_post_code: Cod post (dewisol)
         worked_at_same_address: "Oeddech chi'n gweithio yn yr un cyfeiriad a roddwyd uchod? (dewisol)"
         acas_early_conciliation_certificate_number: Rhif Acas
-        no_acas_number: "Nid oes gen i rif Acas"
+        no_acas_number: 
+          label: "Nid oes gen i rif Acas"
+          options:
+            'yes': :'simple_form.labels.respondent.yes'
+            'no': :'simple_form.labels.respondent.no'
         no_acas_number_reason: "Pam nad oes gennych rif Acas?"
         _destroy: 'Dileu''r atebydd yma '
         "yes": 'Oeddwn'

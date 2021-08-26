@@ -63,9 +63,7 @@ module EtFullSystem
         def set(claim)
           return if claim.nil? || claim.preferred_outcome.nil?
 
-          claim.preferred_outcome.each do |preferred_outcome|
-            claim_outcome.set(preferred_outcome)
-          end
+          claim_outcome.set(claim.preferred_outcome)
           data = claim.to_h
           claim_outcome_other_outcome.set(data[:preferred_outcome_notes])
         end
