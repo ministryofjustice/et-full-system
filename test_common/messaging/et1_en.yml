@@ -137,7 +137,13 @@ en:
       claimant:
         first_name: First name
         last_name: Last name
-        title: Title (optional)
+        title: 
+          label: Title (optional)
+          options:
+            mr: :'simple_form.options.claimant.title.mr'
+            mrs: :'simple_form.options.claimant.title.mrs'
+            miss: :'simple_form.options.claimant.title.miss'
+            ms: :'simple_form.options.claimant.title.ms'
         date_of_birth:
           day: Day
           month: Month
@@ -157,9 +163,15 @@ en:
         address_building: Building number or name
         address_locality: Town/city
         address_street: Street
-        address_county: County
+        address_county: 
+          label: County
+          hint: :'simple_form.hints.claimant.address_county'
         address_post_code: Postcode
-        address_country: Country
+        address_country: 
+          label: Country
+          options:
+            united_kingdom: :'simple_form.options.claimant.address_country.united_kingdom'
+            other: :'simple_form.options.claimant.address_country.other'
         applying_for_remission: Do you want to get help paying your fee (known as ‘help with fees’)?
         contact_preference: 
           label: Best way to send correspondence to you (the claimant)
@@ -520,7 +532,13 @@ en:
 
   claims:
     personal_details:
-      date_of_birth: Date of birth
+      date_of_birth:
+        label: Date of birth
+        hint: :'simple_form.hints.claimant.date_of_birth'
+        parts:
+          day: :'simple_form.labels.claimant.date_of_birth.day'
+          month: :'simple_form.labels.claimant.date_of_birth.month'
+          year: :'simple_form.labels.claimant.date_of_birth.year'
 
     show:
       page_number: Page %{current_page} of %{total_pages}

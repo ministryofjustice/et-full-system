@@ -2,7 +2,7 @@ module EtFullSystem
   module Test
     class GroupClaimantSection < BaseSection
       include EtTestHelpers::Section
-      section :title, :question_labelled, 'simple_form.labels.claimant.title', exact: false do
+      section :title, :question_labelled, 'simple_form.labels.claimant.title.label', exact: false do
         element :blank_title, :error, 'activemodel.errors.models.additional_claimants_form/additional_claimant.attributes.title.inclusion', exact: false
         include ::EtFullSystem::Test::I18n
         def set(value)

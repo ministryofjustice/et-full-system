@@ -9,8 +9,8 @@ Then("Claimant's details page copy texts are displayed in the correct language")
 end
 
 When("I answerd Yes to disability") do
-  et1_claimant_details_page.main_content.claimant_has_special_needs.set(@claimant[0][:has_special_needs])
-  et1_claimant_details_page.main_content.assistance.set(@claimant[0][:special_needs])
+  et1_claimant_details_page.claimant_has_special_needs.set(@claimant[0][:has_special_needs])
+  et1_claimant_details_page.assistance.set(@claimant[0][:special_needs])
 end
 
 Then("I should see the option to describe the assistant I need") do
@@ -19,7 +19,7 @@ end
 
 Then("I should be able to select Outside United Kingdom as country of residence") do
   claimant = FactoryBot.create_list(:claimant, 1, :person_data, country: :"simple_form.options.claimant.address_country.other")
-  et1_claimant_details_page.main_content.country.set(claimant[0][:country])
+  et1_claimant_details_page.country.set(claimant[0][:country])
 end
 
 When("I submit without answering any questions") do
@@ -31,7 +31,7 @@ Then("I should see mandatory errors on the Claimant's details page") do
 end
 
 When("leaving an email address field blank") do
-  et1_claimant_details_page.main_content.claimant_contact_preference.set(@claimant[0][:correspondence])
+  et1_claimant_details_page.claimant_contact_preference.set(@claimant[0][:correspondence])
   et1_claimant_details_page.save_and_continue
 end
 
@@ -40,8 +40,8 @@ Then("I should see an error message for leaving email address field blank") do
 end
 
 When("entering an invalid email address") do
-  et1_claimant_details_page.main_content.claimant_contact_preference.set(:"simple_form.options.claimant.contact_preference.email")
-  et1_claimant_details_page.main_content.email_address.set('blah@blah')
+  et1_claimant_details_page.claimant_contact_preference.set(:"simple_form.options.claimant.contact_preference.email")
+  et1_claimant_details_page.email_address.set('blah@blah')
   et1_claimant_details_page.save_and_continue
 end
 
@@ -50,7 +50,7 @@ Then("I should see an error message for entering invalid email address") do
 end
 
 When("entering {string} postcode") do |string|
-  et1_claimant_details_page.main_content.post_code.set(string)
+  et1_claimant_details_page.post_code.set(string)
   et1_claimant_details_page.save_and_continue
 end
 
@@ -59,7 +59,7 @@ Then("I should see an error message for invalid UK postcode please use SW55 9QT"
 end
 
 When("I submit an invalid date of birth for claimant details page") do
-  et1_claimant_details_page.main_content.date_of_birth.set('0/0/01')
+  et1_claimant_details_page.date_of_birth.set('0/0/01')
   et1_claimant_details_page.save_and_continue
 end
 

@@ -144,7 +144,13 @@ cy:
       claimant:
         first_name: Enw cyntaf
         last_name: Enw olaf
-        title: Teitl
+        title: 
+          label: Teitl
+          options:
+            mr: :'simple_form.options.claimant.title.mr'
+            mrs: :'simple_form.options.claimant.title.mrs'
+            miss: :'simple_form.options.claimant.title.miss'
+            ms: :'simple_form.options.claimant.title.ms'
         date_of_birth:
           day: "Diwrnod"
           month: "Mis"
@@ -164,9 +170,15 @@ cy:
         address_building: Rhif neu enw'r adeilad
         address_locality: "Tref/dinas"
         address_street: Stryd
-        address_county: Sir
+        address_county: 
+          label: Sir
+          hint: :'simple_form.hints.claimant.address_county'
         address_post_code: Cod post
-        address_country: Gwlad
+        address_country: 
+          label: Gwlad
+          options:
+            united_kingdom: :'simple_form.options.claimant.address_country.united_kingdom'
+            other: :'simple_form.options.claimant.address_country.other'
         applying_for_remission: "Ydych chi eisiau gwneud cais am help i dalu eich ffi (a elwir yn \"help i dalu ffioedd\")?"
         contact_preference: 
           label: "Y ffordd orau i anfon gohebiaeth atoch (yr hawlydd)"
@@ -553,8 +565,13 @@ cy:
 
   claims:
     personal_details:
-      date_of_birth: Dyddiad geni
-
+      date_of_birth: 
+        label: Dyddiad geni
+        hint: :'simple_form.hints.claimant.date_of_birth'
+        parts:
+          day: :'simple_form.labels.claimant.date_of_birth.day'
+          month: :'simple_form.labels.claimant.date_of_birth.month'
+          year: :'simple_form.labels.claimant.date_of_birth.year'
     show:
       page_number: "Tudalen %{current_page} o %{total_pages}"
 
