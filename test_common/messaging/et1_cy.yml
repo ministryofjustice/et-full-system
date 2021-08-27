@@ -195,7 +195,11 @@ cy:
         gender: Rhywedd
 
       additional_claimants:
-        of_collection_type: "A oes unigolion eraill sy'n gwneud hawliad gyda chi (yn erbyn yr un cyflogwr neu sefydliad)? (dewisol)"
+        has_multiple_claimants: 
+          label: "A oes unigolion eraill sy'n gwneud hawliad gyda chi (yn erbyn yr un cyflogwr neu sefydliad)? (dewisol)"
+          options:
+            'yes': :'simple_form.yes'
+            'no': :'simple_form.no'
         collection:
           first_name: Enw cyntaf
           last_name: Enw olaf

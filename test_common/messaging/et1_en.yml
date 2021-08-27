@@ -187,7 +187,11 @@ en:
         _destroy: 'Remove this claimant'
 
       additional_claimants:
-        of_collection_type: "Are other people making a claim with you (against the same employer or organisation)? (optional)"
+        has_multiple_claimants:
+          label: "Are other people making a claim with you (against the same employer or organisation)? (optional)"
+          options:
+            'yes': :'simple_form.yes'
+            'no': :'simple_form.no'
         collection: :"simple_form.labels.claimant"
 
       additional_claimants_upload:

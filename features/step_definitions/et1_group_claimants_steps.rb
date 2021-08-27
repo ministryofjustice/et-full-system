@@ -19,7 +19,7 @@ Then("I should be on the Respresentative's details page") do
 end
 
 When("there 5 or few claimants") do
-  et1_group_claimants_page.main_content.additional_claimants_of_collection_type.yes.click
+  et1_group_claimants_page.has_multiple_claimants.set(:yes)
 end
 
 Then("I can very that the copy texts correctly dispayed for group claimants") do
@@ -62,7 +62,7 @@ Then("I submit a group claims via csv file") do
 end
 
 When("I submit without answering any claimant details") do
-  et1_group_claimants_page.main_content.additional_claimants_of_collection_type.yes.click
+  et1_group_claimants_page.has_multiple_claimants.set(:yes)
   et1_group_claimants_page.save_and_continue
 end
 
@@ -71,8 +71,8 @@ Then("I should see mandatory errors on the Group claims page") do
 end
 
 When("I submit an invalid date of birth") do
-  et1_group_claimants_page.main_content.additional_claimants_of_collection_type.yes.click
-  et1_group_claimants_page.main_content.about_claimant_2.date_of_birth.set('0/0/0')
+  et1_group_claimants_page.has_multiple_claimants.set(:yes)
+  et1_group_claimants_page.about_claimant_2.date_of_birth.set('0/0/0')
   et1_group_claimants_page.save_and_continue
 end
 
