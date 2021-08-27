@@ -45,29 +45,6 @@ module EtFullSystem
           #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
       gds_radios :no_acas_number, :'simple_form.labels.respondent.no_acas_number'
       gds_radios :respondent_no_acas_number_reason, :'claims.additional_respondents.no_acas_number_reason'
-      # section :respondent_no_acas_number_reason, '.additional_respondents_collection_no_acas_number_reason' do
-      #   include ::EtFullSystem::Test::I18n
-      #   element :blank_no_acas_number_reason, :error, 'activemodel.errors.models.respondent.attributes.no_acas_number_reason.blank'
-      #   element :joint_claimant_has_acas_number, :form_labelled, 'simple_form.options.respondent.no_acas_number_reason.joint_claimant_has_acas_number' do
-      #     element :selector, :css, 'input[type="radio"]'
-      #     def set(*args); selector.set(*args); end
-      #   end
-      #   element :acas_has_no_jurisdiction, :form_labelled, 'simple_form.options.respondent.no_acas_number_reason.acas_has_no_jurisdiction' do
-      #     element :selector, :css, 'input[type="radio"]'
-      #     def set(*args); selector.set(*args); end
-      #   end
-      #   element :employer_contacted_acas, :form_labelled, 'simple_form.options.respondent.no_acas_number_reason.employer_contacted_acas' do
-      #     element :selector, :css, 'input[type="radio"]'
-      #     def set(*args); selector.set(*args); end
-      #   end
-      #   element :interim_relief, :form_labelled, 'simple_form.options.respondent.no_acas_number_reason.interim_relief' do
-      #     element :selector, :css, 'input[type="radio"]'
-      #     def set(*args); selector.set(*args); end
-      #   end
-      #   def set(value)
-      #     choose(factory_translate(value), name: 'additional_respondents[collection_attributes][0][no_acas_number_reason]')
-      #   end
-      # end
     end
   end
 end

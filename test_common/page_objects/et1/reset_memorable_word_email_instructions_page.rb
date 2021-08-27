@@ -20,8 +20,6 @@ module EtFullSystem
           expect(self).to have_error_summary
         end
 
-        private
-
         section :fieldset, 'fieldset' do
           include EtTestHelpers::Section
           # @!method email_address

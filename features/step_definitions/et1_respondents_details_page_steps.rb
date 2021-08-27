@@ -9,14 +9,14 @@ Given("a claimant is on Respondent's details page") do
 end
 
 Then("I can verify that the copy text on Respondent's details page displayed correctly") do
-  et1_respondents_details_page.main_content.work_address.same_address.set(:"simple_form.labels.respondent.no")
-  et1_respondents_details_page.main_content.no_acas_number.set(:'simple_form.labels.respondent.yes')
+  et1_respondents_details_page.work_address.same_address.set(:"simple_form.labels.respondent.no")
+  et1_respondents_details_page.no_acas_number.set(:'simple_form.labels.respondent.yes')
   expect(et1_respondents_details_page.has_correct_translation?).to be true
 end
 
 When("I submit a blank Respondent's details page") do
-  et1_respondents_details_page.main_content.work_address.same_address.set(:"simple_form.labels.respondent.no")
-  et1_respondents_details_page.main_content.no_acas_number.set(:"simple_form.labels.respondent.yes")
+  et1_respondents_details_page.work_address.same_address.set(:"simple_form.labels.respondent.no")
+  et1_respondents_details_page.no_acas_number.set(:"simple_form.labels.respondent.yes")
   et1_respondents_details_page.save_and_continue
 end
 
@@ -25,7 +25,7 @@ Then("I can verify blank error messages for Respondent's details page") do
 end
 
 When("entering invalid postcode for Respondent's details page") do
-  et1_respondents_details_page.main_content.work_address.same_address.set(:"simple_form.labels.respondent.no")
+  et1_respondents_details_page.work_address.same_address.set(:"simple_form.labels.respondent.no")
   et1_representatives_details_page.post_code.set('UTOI&*"?£$')
   et1_respondents_details_page.save_and_continue
 end

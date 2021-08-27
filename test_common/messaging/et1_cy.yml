@@ -252,15 +252,23 @@ cy:
         address_building: Rhif neu enw'r adeilad
         address_locality: Tref/dinas
         address_street: Stryd
-        address_county: Sir
+        address_county: 
+          label: Sir
+          hint: :'simple_form.hints.respondent.address_county'
         address_post_code: Cod post
         work_address_telephone_number: Rhif ffôn (dewisol)
         work_address_building: "Rhif neu enw'r adeilad (dewisol)"
         work_address_locality: Tref/dinas (dewisol)
         work_address_street: Stryd (dewisol)
-        work_address_county: Sir (dewisol)
+        work_address_county: 
+          label: Sir (dewisol)
+          hint: :'simple_form.hints.respondent.address_county'
         work_address_post_code: Cod post (dewisol)
-        worked_at_same_address: "Oeddech chi'n gweithio yn yr un cyfeiriad a roddwyd uchod? (dewisol)"
+        worked_at_same_address: 
+          label: "Oeddech chi'n gweithio yn yr un cyfeiriad a roddwyd uchod? (dewisol)"
+          options:
+            'yes': :'simple_form.labels.respondent.yes'
+            'no': :'simple_form.labels.respondent.no'
         acas_early_conciliation_certificate_number: Rhif Acas
         no_acas_number: 
           label: "Nid oes gen i rif Acas"
@@ -680,12 +688,21 @@ cy:
 
     respondent:
       header: "Manylion yr atebydd"
-      no_acas_number_reason: "Pam nad oes gennych rif Acas?"
+      no_acas_number_reason: 
+        label: "Pam nad oes gennych rif Acas?"
+        hint: :'claims.respondent.no_acas_number_note_one'
+        options:
+          joint_claimant_has_acas_number: :'simple_form.options.respondent.no_acas_number_reason.joint_claimant_has_acas_number'
+          acas_has_no_jurisdiction: :'simple_form.options.respondent.no_acas_number_reason.acas_has_no_jurisdiction'
+          employer_contacted_acas: :'simple_form.options.respondent.no_acas_number_reason.employer_contacted_acas'
+          interim_relief: :'simple_form.options.respondent.no_acas_number_reason.interim_relief'
       respondent_legend: "Ynglŷn â’r atebydd"
       no_acas_number_note_one: "Noder: Mae’n bosib y bydd eich hawliad yn cael ei wrthod os byddwch yn hawlio esemptiad yn anghywir. Os oes gennych amheuaeth, cysylltwch ag ACAS"
       no_acas_number_note_two: "Noder: Mae hwn yn fath anghyffredin o hawliad. Nid yw'r ffaith eich bod yn gwneud hawliad am ddiswyddo annheg yn golygu eich bod o reidrwydd yn gwneud hawliad am gymorth interim. "
 
-      acas_legend: Rhif tystysgrif cymodi cynnar Acas
+      acas_legend: 
+        label: Rhif tystysgrif cymodi cynnar Acas
+        hint: :'claims.respondent.acas_early_conciliation_certificate_number_html'
       workaddress_legend: Eich cyfeiriad gwaith
       form_hint: "Manylion cyswllt yr unigolyn neu sefydliad yr ydych chi'n gwneud hawliad yn ei erbyn (a elwir yn 'atebydd'). Fe ddefnyddir y cyfeiriad ar gyfer anfon gohebiaeth am yr achos."
       work_address: "Rhowch fanylion eich cyfeiriad gwaith"

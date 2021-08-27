@@ -17,11 +17,10 @@ module EtFullSystem
         def from_email_for(email_address)
           email = EtFullSystem::Test::Et1ResetPasswordEmailHtml.find(email_address: email_address)
           raise Capybara::ElementNotFound, "Email not found for #{email_address}" if email.nil?
+
           visit email.reset_memorable_word_url
           self
         end
-
-        private
 
         # @!method memorable_word
         #   A govuk text field component wrapping the input, label, hint etc..
