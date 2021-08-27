@@ -11,14 +11,14 @@ Given("a claimant is on Employment details page") do
 end
 
 Then("I can verify that the copy text on Employment details page displayed correctly") do
-  et1_employment_details_page.main_content.your_employment_details.set(:"claims.employment.yes")
-  et1_employment_details_page.main_content.employment_current_situation.set(:"simple_form.options.employment.current_situation.notice_period")
-  et1_employment_details_page.main_content.worked_notice_period_or_paid_in_lieu.set(:"claims.employment.yes")
+  et1_employment_details_page.your_employment_details.set(:"claims.employment.yes")
+  et1_employment_details_page.employment_current_situation.set(:"simple_form.options.employment.current_situation.notice_period")
+  et1_employment_details_page.worked_notice_period_or_paid_in_lieu.set(:"claims.employment.yes")
   expect(et1_employment_details_page.has_correct_translation?).to be true
 end
 
 Then("I submit without providing Employment details") do
-  et1_employment_details_page.main_content.your_employment_details.set(:"claims.employment.no")
+  et1_employment_details_page.your_employment_details.set(:"claims.employment.no")
 end
 
 Then("I should on About the claim page") do
@@ -27,7 +27,7 @@ Then("I should on About the claim page") do
 end
 
 Then("I submit without answering work situation") do
-  et1_employment_details_page.main_content.your_employment_details.set(:"claims.employment.yes")
+  et1_employment_details_page.your_employment_details.set(:"claims.employment.yes")
   et1_employment_details_page.save_and_continue
 end
 
@@ -36,16 +36,16 @@ Then("I should get an error that work situation must be selected") do
 end
 
 When("I submit without answering Employment details") do
-  et1_employment_details_page.main_content.your_employment_details.set(:"claims.employment.yes")
-  et1_employment_details_page.main_content.employment_current_situation.set(:"simple_form.options.employment.current_situation.notice_period")
+  et1_employment_details_page.your_employment_details.set(:"claims.employment.yes")
+  et1_employment_details_page.employment_current_situation.set(:"simple_form.options.employment.current_situation.notice_period")
 end
 
 When("I submit an invalid start and end date") do
-  et1_employment_details_page.main_content.your_employment_details.set(:"claims.employment.yes")
-  et1_employment_details_page.main_content.employment_current_situation.set(:"simple_form.options.employment.current_situation.notice_period")
-  et1_employment_details_page.main_content.employment_start_date.set('0/0/0')
+  et1_employment_details_page.your_employment_details.set(:"claims.employment.yes")
+  et1_employment_details_page.employment_current_situation.set(:"simple_form.options.employment.current_situation.notice_period")
+  et1_employment_details_page.employment_start_date.set('0/0/0')
   #TODO
-  # et1_employment_details_page.main_content.employment_end_date.set('0/0/0')
+  # et1_employment_details_page.employment_end_date.set('0/0/0')
   et1_employment_details_page.save_and_continue
 end
 

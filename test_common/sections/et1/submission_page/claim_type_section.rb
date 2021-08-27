@@ -23,10 +23,10 @@ module EtFullSystem
                 # Other type of claim is never shown as a claim type
                 aggregate_failures 'validating claim types' do
                   claim_types.discrimination.each do |type|
-                    expect(self).to have_answer(text: t("review.claim_type.questions.types.options.discrimination.#{type}"), exact: false)
+                    expect(self).to have_answer(text: t("review.claim_type.questions.types.options.discrimination.#{type}"))
                   end
                   claim_types.pay do |type|
-                    expect(self).to have_answer(text: t("review.claim_type.questions.types.options.pay.#{type}"), exact: false)
+                    expect(self).to have_answer(text: t("review.claim_type.questions.types.options.pay.#{type}"))
                   end
                 end
               end

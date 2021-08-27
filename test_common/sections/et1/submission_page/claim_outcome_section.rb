@@ -18,7 +18,7 @@ module EtFullSystem
                 aggregate_failures 'validating outcomes' do
                   outcomes.each do |outcome|
                     key = "simple_form.options.claim.desired_outcomes.#{outcome.to_s.split('.').last}"
-                    expect(answer).to have_text(t(key), exact: false)
+                    expect(answer).to have_text(t(key))
                   end
                 end
               end
