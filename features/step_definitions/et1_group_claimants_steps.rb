@@ -35,7 +35,7 @@ end
 When("there are group claimants") do
   @claimant = FactoryBot.create_list(:claimant, 1, :group_claims)
   et1_group_claimants_page.set(@claimant)
-  et1_group_claimants_upload_page.main_content.has_additional_claimants.set(:'simple_form.yes')
+  et1_group_claimants_upload_page.has_additional_claimants.set(:'simple_form.yes')
 end
 
 Then("I can very that the copy texts correctly dispayed for Upload user details in separate spreadsheet") do
@@ -52,7 +52,7 @@ end
 When("I changed my mind to manually enter claimant details") do
   @claimant = FactoryBot.create_list(:claimant, 1, :group_claims)
   et1_group_claimants_page.set(@claimant)
-  et1_group_claimants_upload_page.main_content.manually_link.click
+  et1_group_claimants_upload_page.manually_link.click
   @claimant = FactoryBot.create_list(:claimant, 2, :person_data)
 end
 

@@ -217,7 +217,12 @@ cy:
           email_address: "Cyfeiriad e-bost (dewisol)"
 
       additional_claimants_upload:
-        has_additional_claimants: "Ydych chi eisiau uwchlwytho manylion 6 hawlydd neu fwy? (dewisol)"
+        has_additional_claimants: 
+          label: "Ydych chi eisiau uwchlwytho manylion 6 hawlydd neu fwy? (dewisol)"
+          hint: :'claims.additional_claimants_upload.has_additional_claimants_html'
+          options:
+            'yes': :'simple_form.yes'
+            'no': :'simple_form.no'
         additional_claimants_csv: "Uwchlwytho taenlen (dewisol)"
         claimants: ""
 

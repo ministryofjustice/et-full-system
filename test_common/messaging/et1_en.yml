@@ -195,7 +195,12 @@ en:
         collection: :"simple_form.labels.claimant"
 
       additional_claimants_upload:
-        has_additional_claimants: "Do you want to upload details of 6 claimants or more? (optional)"
+        has_additional_claimants: 
+          label: "Do you want to upload details of 6 claimants or more? (optional)"
+          hint: :'claims.additional_claimants_upload.has_additional_claimants_html'
+          options:
+            'yes': :'simple_form.yes'
+            'no': :'simple_form.no'
         additional_claimants_csv: "Upload spreadsheet (optional)"
         claimants: :"simple_form.labels.claimant"
 
