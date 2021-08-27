@@ -772,12 +772,13 @@ en:
     additional_information:
       header: More about the claim
       legend: Other important details
-      has_miscellaneous_information: Do you want to provide additional information about your claim? (optional)
-      has_miscellaneous_information_hint: "Include anything that will help the tribunal come to a decision about whether your case can be heard. What you write may be seen by the respondent."
+      has_miscellaneous_information: 
+        label: Do you want to provide additional information about your claim? (optional)
+        hint: "Include anything that will help the tribunal come to a decision about whether your case can be heard. What you write may be seen by the respondent."
+        options:
+          "yes": 'Yes'
+          "no": 'No'
       additional_respondents_callout: If you are making a claim against more than 3 additional respondents, enter their details below.
-      "yes": 'Yes'
-      "no": 'No'
-
     your_fee:
       header: Fee
       standard_fee: Standard fee

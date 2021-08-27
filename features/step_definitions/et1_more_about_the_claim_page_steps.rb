@@ -17,7 +17,7 @@ Given("a claimant is on More about the claim page") do
 end
 
 Then("I can verify that the copy text on More about the claim page displayed correctly") do
-  et1_more_about_the_claim_page.main_content.other_important_details.set(:'claims.additional_information.yes')
+  et1_more_about_the_claim_page.other_important_details.set(:yes)
   expect(et1_more_about_the_claim_page.has_correct_translation?).to be true
 end 
 
