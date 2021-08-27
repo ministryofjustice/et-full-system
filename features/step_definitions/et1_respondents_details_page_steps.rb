@@ -26,7 +26,7 @@ end
 
 When("entering invalid postcode for Respondent's details page") do
   et1_respondents_details_page.main_content.work_address.same_address.set(:"simple_form.labels.respondent.no")
-  et1_representatives_details_page.main_content.post_code.set('UTOI&*"?£$')
+  et1_representatives_details_page.post_code.set('UTOI&*"?£$')
   et1_respondents_details_page.save_and_continue
 end
 

@@ -205,7 +205,11 @@ en:
         claimants: :"simple_form.labels.claimant"
 
       representative:
-        has_representative: "Do you have someone who’s agreed to represent you (eg by handling correspondence)? (optional)"
+        has_representative: 
+          label: "Do you have someone who’s agreed to represent you (eg by handling correspondence)? (optional)"
+          options:
+            'yes': :'simple_form.yes'
+            'no': :'simple_form.no'
         address_telephone_number: Phone or mobile number (optional)
         address_building: Building number or name
         address_locality: Town/city

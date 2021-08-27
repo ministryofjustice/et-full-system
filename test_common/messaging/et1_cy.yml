@@ -227,7 +227,11 @@ cy:
         claimants: ""
 
       representative:
-        has_representative: "Oes gennych chi rywun sydd wedi cytuno i'ch cynrychioli (e.e. trwy ddelio â gohebiaeth)? (dewisol)"
+        has_representative: 
+          label: "Oes gennych chi rywun sydd wedi cytuno i'ch cynrychioli (e.e. trwy ddelio â gohebiaeth)? (dewisol)"
+          options:
+            'yes': :'simple_form.yes'
+            'no': :'simple_form.no'
         address_telephone_number: "Rhif ffôn neu rif ffôn symudol (dewisol)"
         address_building: Rhif neu enw'r adeilad
         address_locality: Tref/dinas
