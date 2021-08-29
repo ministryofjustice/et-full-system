@@ -228,30 +228,30 @@ en:
         name: 
           label: "Name of respondent"
           errors:
-            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.name.blank'
+            blank: :'activemodel.errors.models.respondent.attributes.name.blank'
         address_telephone_number: "Phone number (optional)"
         address_building: 
           label: Building number or name
           errors:
-            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_building.blank'
+            blank: :'activemodel.errors.models.respondent.attributes.address_building.blank'
         address_locality: 
           label: Town/city
           errors:
-            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_street.blank'
+            blank: :'activemodel.errors.models.respondent.attributes.address_locality.blank'
         address_street: 
           label: Street
           errors:
-            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_building.blank'
+            blank: :'activemodel.errors.models.respondent.attributes.address_street.blank'
         address_county: 
           label: County
           hint: :'simple_form.hints.respondent.address_county'
           errors:
-            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_locality.blank'
+            blank: :'activemodel.errors.models.respondent.attributes.address_county.blank'
         address_post_code: 
           label: Postcode
           errors:
-            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_post_code.blank'
-            invalid: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_post_code.invalid'
+            blank: :'activemodel.errors.models.respondent.attributes.address_post_code.blank'
+            invalid: :'activemodel.errors.models.respondent.attributes.address_post_code.invalid'
         work_address_telephone_number: Phone number (optional)
         work_address_building: 
           label: Building number or name (optional)
@@ -279,9 +279,6 @@ en:
             'no': :'simple_form.labels.respondent.no'
         acas_early_conciliation_certificate_number: 
           label: "Acas early conciliation certificate number"
-          errors:
-            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.acas_early_conciliation_certificate_number.blank'
-            invalid: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.acas_early_conciliation_certificate_number.invalid'
         no_acas_number: 
           label: "Do you have an Acas number?"
           options:
@@ -708,6 +705,9 @@ en:
       acas_legend: 
         label: Acas early conciliation certificate number
         hint: :'claims.respondent.acas_early_conciliation_certificate_number_html'
+        errors:
+          blank: :'activemodel.errors.models.respondent.attributes.no_acas_number_reason.blank'
+          invalid: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.acas_early_conciliation_certificate_number.invalid'
       workaddress_legend: Your work address
       form_hint: "The contact details of the person or organisation you're making a claim against (known as the 'respondent'). The address will be used for correspondence about the case."
       work_address: "Give details of your work address."

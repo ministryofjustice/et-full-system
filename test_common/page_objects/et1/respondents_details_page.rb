@@ -173,10 +173,12 @@ module EtFullSystem
           work_address.locality.assert_valid_error(:blank)
           work_address.post_code.assert_valid_error(:blank)
           acas_certificate_number.assert_valid_error(:blank)
+          true
         end
 
         def has_correct_error_message_for_invalid_uk_postcode?
           post_code.assert_valid_error(:invalid)
+          true
         end
 
         def set(respondent)

@@ -250,30 +250,30 @@ cy:
         name: 
           label: "Enw'r atebydd"
           errors:
-            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.name.blank'
+            blank: :'activemodel.errors.models.respondent.attributes.name.blank'
         address_telephone_number: Rhif ffôn (dewisol)
         address_building: 
           label: Rhif neu enw'r adeilad
           errors:
-            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_building.blank'
+            blank: :'activemodel.errors.models.respondent.attributes.address_building.blank'
         address_locality: 
           label: Tref/dinas
           errors:
-            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_street.blank'
+            blank: :'activemodel.errors.models.respondent.attributes.address_locality.blank'
         address_street: 
           label: Stryd
           errors:
-            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_building.blank'
+            blank: :'activemodel.errors.models.respondent.attributes.address_street.blank'
         address_county: 
           label: Sir
           hint: :'simple_form.hints.respondent.address_county'
           errors:
-            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_locality.blank'
+            blank: :'activemodel.errors.models.respondent.attributes.address_county.blank'
         address_post_code: 
           label: Cod post
           errors:
-            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_post_code.blank'
-            invalid: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_post_code.invalid'
+            blank: :'activemodel.errors.models.respondent.attributes.address_post_code.blank'
+            invalid: :'activemodel.errors.models.respondent.attributes.address_post_code.invalid'
         work_address_telephone_number: Rhif ffôn (dewisol)
         work_address_building: 
           label: "Rhif neu enw'r adeilad (dewisol)"
@@ -301,9 +301,6 @@ cy:
             'no': :'simple_form.labels.respondent.no'
         acas_early_conciliation_certificate_number: 
           label: Rhif Acas
-          errors:
-            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.acas_early_conciliation_certificate_number.blank'
-            invalid: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.acas_early_conciliation_certificate_number.invalid'
         no_acas_number: 
           label: "Nid oes gen i rif Acas"
           options:
@@ -741,6 +738,9 @@ cy:
       acas_legend: 
         label: Rhif tystysgrif cymodi cynnar Acas
         hint: :'claims.respondent.acas_early_conciliation_certificate_number_html'
+        errors:
+          blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.acas_early_conciliation_certificate_number.blank'
+          invalid: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.acas_early_conciliation_certificate_number.invalid'
       workaddress_legend: Eich cyfeiriad gwaith
       form_hint: "Manylion cyswllt yr unigolyn neu sefydliad yr ydych chi'n gwneud hawliad yn ei erbyn (a elwir yn 'atebydd'). Fe ddefnyddir y cyfeiriad ar gyfer anfon gohebiaeth am yr achos."
       work_address: "Rhowch fanylion eich cyfeiriad gwaith"
