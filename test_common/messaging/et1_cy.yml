@@ -247,29 +247,63 @@ cy:
         email_address: Cyfeiriad e-bost (dewisol)
 
       respondent:
-        name: "Enw'r atebydd"
+        name: 
+          label: "Enw'r atebydd"
+          errors:
+            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.name.blank'
         address_telephone_number: Rhif ffôn (dewisol)
-        address_building: Rhif neu enw'r adeilad
-        address_locality: Tref/dinas
-        address_street: Stryd
+        address_building: 
+          label: Rhif neu enw'r adeilad
+          errors:
+            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_building.blank'
+        address_locality: 
+          label: Tref/dinas
+          errors:
+            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_street.blank'
+        address_street: 
+          label: Stryd
+          errors:
+            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_building.blank'
         address_county: 
           label: Sir
           hint: :'simple_form.hints.respondent.address_county'
-        address_post_code: Cod post
+          errors:
+            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_locality.blank'
+        address_post_code: 
+          label: Cod post
+          errors:
+            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_post_code.blank'
+            invalid: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_post_code.invalid'
         work_address_telephone_number: Rhif ffôn (dewisol)
-        work_address_building: "Rhif neu enw'r adeilad (dewisol)"
-        work_address_locality: Tref/dinas (dewisol)
-        work_address_street: Stryd (dewisol)
+        work_address_building: 
+          label: "Rhif neu enw'r adeilad (dewisol)"
+          errors:
+            blank: :'activemodel.errors.models.respondent.attributes.work_address_building.blank'
+        work_address_locality: 
+          label: Tref/dinas (dewisol)
+          errors:
+            blank: :'activemodel.errors.models.respondent.attributes.work_address_locality.blank'
+        work_address_street: 
+          label: Stryd (dewisol)
+          errors:
+            blank: :'activemodel.errors.models.respondent.attributes.work_address_street.blank'
         work_address_county: 
           label: Sir (dewisol)
           hint: :'simple_form.hints.respondent.address_county'
-        work_address_post_code: Cod post (dewisol)
+        work_address_post_code: 
+          label: Cod post (dewisol)
+          errors:
+            blank: :'activemodel.errors.models.respondent.attributes.work_address_post_code.blank'
         worked_at_same_address: 
           label: "Oeddech chi'n gweithio yn yr un cyfeiriad a roddwyd uchod? (dewisol)"
           options:
             'yes': :'simple_form.labels.respondent.yes'
             'no': :'simple_form.labels.respondent.no'
-        acas_early_conciliation_certificate_number: Rhif Acas
+        acas_early_conciliation_certificate_number: 
+          label: Rhif Acas
+          errors:
+            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.acas_early_conciliation_certificate_number.blank'
+            invalid: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.acas_early_conciliation_certificate_number.invalid'
         no_acas_number: 
           label: "Nid oes gen i rif Acas"
           options:
@@ -309,7 +343,11 @@ cy:
         job_title: "Teitl swydd (dewisol)"
         gross_pay: "Tâl cyn treth (dewisol)"
         net_pay: "Tâl ar ôl treth (dewisol)"
-        enrolled_in_pension_scheme: "Ydych chi - neu oeddech chi - yn aelod o gynllun pensiwn eich cyflogwr? (dewisol)"
+        enrolled_in_pension_scheme: 
+          label: "Ydych chi - neu oeddech chi - yn aelod o gynllun pensiwn eich cyflogwr? (dewisol)"
+          options:
+            'yes': :'simple_form.yes'
+            'no': :'simple_form.no'
         benefit_details: "A oes - neu a oedd - gennych chi unrhyw fuddion, fel car cwmni? (dewisol)"
         found_new_job: "Oes gennych chi swydd newydd?"
         notice_pay_period_count: "Am faint o wythnosau neu fisoedd gawsoch chi dâl? (dewisol)"
@@ -710,7 +748,13 @@ cy:
       acas_early_conciliation_certificate_number_link: "wasanaeth cymodi cynnar Acas"
 
     additional_respondents:
-      no_acas_number_reason: "Pam nad oes gennych rif Acas?"
+      no_acas_number_reason: 
+        label: "Pam nad oes gennych rif Acas?"
+        options:
+          joint_claimant_has_acas_number: :'simple_form.options.respondent.no_acas_number_reason.joint_claimant_has_acas_number'
+          acas_has_no_jurisdiction: :'simple_form.options.respondent.no_acas_number_reason.acas_has_no_jurisdiction'
+          employer_contacted_acas: :'simple_form.options.respondent.no_acas_number_reason.employer_contacted_acas'
+          interim_relief: :'simple_form.options.respondent.no_acas_number_reason.interim_relief'
       header: Atebwyr ychwanegol
       additional_respondents_legend: Hawliadau yn erbyn mwy nag un cyflogwr
       additional_respondents_intro: "Ydych chi'n gwneud hawliad yn erbyn unigolyn neu sefydliad arall?"

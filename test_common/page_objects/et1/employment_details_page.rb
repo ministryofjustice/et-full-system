@@ -165,8 +165,7 @@ module EtFullSystem
           expect(employment_net_pay).to have_hint(text: t('simple_form.hints.employment.net_pay'))
           # Are – or were – you a member of your employer’s pension scheme? (optional)
           expect(self).to have_employment_enrolled_in_pension_scheme
-          expect(employment_enrolled_in_pension_scheme).to have_yes
-          expect(employment_enrolled_in_pension_scheme).to have_no
+          employment_enrolled_in_pension_scheme.assert_valid_options
           # Do – or did – you have any benefits, like a company car? (optional)
           expect(self).to have_employment_benefit_details
           expect(employment_benefit_details).to have_hint(text: t('simple_form.hints.employment.benefit_details'))

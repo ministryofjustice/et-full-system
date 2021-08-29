@@ -225,29 +225,63 @@ en:
         email_address: Email address (optional)
 
       respondent:
-        name: "Name of respondent"
+        name: 
+          label: "Name of respondent"
+          errors:
+            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.name.blank'
         address_telephone_number: "Phone number (optional)"
-        address_building: Building number or name
-        address_locality: Town/city
-        address_street: Street
+        address_building: 
+          label: Building number or name
+          errors:
+            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_building.blank'
+        address_locality: 
+          label: Town/city
+          errors:
+            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_street.blank'
+        address_street: 
+          label: Street
+          errors:
+            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_building.blank'
         address_county: 
           label: County
           hint: :'simple_form.hints.respondent.address_county'
-        address_post_code: Postcode
+          errors:
+            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_locality.blank'
+        address_post_code: 
+          label: Postcode
+          errors:
+            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_post_code.blank'
+            invalid: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.address_post_code.invalid'
         work_address_telephone_number: Phone number (optional)
-        work_address_building: Building number or name (optional)
-        work_address_locality: Town/city (optional)
-        work_address_street: Street (optional)
+        work_address_building: 
+          label: Building number or name (optional)
+          errors:
+            blank: :'activemodel.errors.models.respondent.attributes.work_address_building.blank'
+        work_address_locality: 
+          label: Town/city (optional)
+          errors:
+            blank: :'activemodel.errors.models.respondent.attributes.work_address_locality.blank'
+        work_address_street: 
+          label: Street (optional)
+          errors:
+            blank: :'activemodel.errors.models.respondent.attributes.work_address_street.blank'
         work_address_county: 
           label: County (optional)
           hint: :'simple_form.hints.respondent.address_county'
-        work_address_post_code: Postcode (optional)
+        work_address_post_code: 
+          label: Postcode (optional)
+          errors:
+            blank: :'activemodel.errors.models.respondent.attributes.work_address_post_code.blank'
         worked_at_same_address: 
           label: "Did you work at the same address to the one given above? (optional)"
           options:
             'yes': :'simple_form.labels.respondent.yes'
             'no': :'simple_form.labels.respondent.no'
-        acas_early_conciliation_certificate_number: "Acas early conciliation certificate number"
+        acas_early_conciliation_certificate_number: 
+          label: "Acas early conciliation certificate number"
+          errors:
+            blank: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.acas_early_conciliation_certificate_number.blank'
+            invalid: :'activemodel.errors.models.additional_respondents_form/additional_respondent.attributes.acas_early_conciliation_certificate_number.invalid'
         no_acas_number: 
           label: "Do you have an Acas number?"
           options:
@@ -266,7 +300,11 @@ en:
         job_title: "Job title (optional)"
         gross_pay: "Pay before tax (optional)"
         net_pay: "Pay after tax (optional)"
-        enrolled_in_pension_scheme: "Are – or were – you a member of your employer’s pension scheme? (optional)"
+        enrolled_in_pension_scheme: 
+          label: "Are – or were – you a member of your employer’s pension scheme? (optional)"
+          options:
+            'yes': :'simple_form.yes'
+            'no': :'simple_form.no'
         benefit_details: "Do – or did – you have any benefits, like a company car? (optional)"
         found_new_job: Have you got a new job? (optional)
         notice_pay_period_count: For how many weeks or months did you get paid? (optional)
@@ -683,7 +721,13 @@ en:
         options:
           'yes': 'Yes'
           'no': 'No'
-      no_acas_number_reason: Why don’t you have an Acas number?
+      no_acas_number_reason: 
+        label: Why don’t you have an Acas number?
+        options:
+          joint_claimant_has_acas_number: :'simple_form.options.respondent.no_acas_number_reason.joint_claimant_has_acas_number'
+          acas_has_no_jurisdiction: :'simple_form.options.respondent.no_acas_number_reason.acas_has_no_jurisdiction'
+          employer_contacted_acas: :'simple_form.options.respondent.no_acas_number_reason.employer_contacted_acas'
+          interim_relief: :'simple_form.options.respondent.no_acas_number_reason.interim_relief'
       header: Additional respondents
       additional_respondents_legend: :'claims.additional_respondents.additional_respondents.label'
       additional_respondents_intro: :'claims.additional_respondents.additional_respondents.hint'

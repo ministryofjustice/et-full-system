@@ -53,31 +53,31 @@ module EtFullSystem
 
           gds_radios :same_address, :'simple_form.labels.respondent.worked_at_same_address'
 
-          # @!method building_optional
+          # @!method building
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          gds_text_input :building_optional, :'simple_form.labels.respondent.work_address_building'
-          # @!method street_optional
+          gds_text_input :building, :'simple_form.labels.respondent.work_address_building'
+          # @!method street
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          gds_text_input :street_optional, :'simple_form.labels.respondent.work_address_street'
-          # @!method locality_optional
+          gds_text_input :street, :'simple_form.labels.respondent.work_address_street'
+          # @!method locality
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          gds_text_input :locality_optional, :'simple_form.labels.respondent.work_address_locality'
-          # @!method county_optional
+          gds_text_input :locality, :'simple_form.labels.respondent.work_address_locality'
+          # @!method county
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          gds_text_input :county_optional, :'simple_form.labels.respondent.work_address_county'
-          # @!method post_code_optional
+          gds_text_input :county, :'simple_form.labels.respondent.work_address_county'
+          # @!method post_code
           #   A govuk text field component wrapping the input, label, hint etc..
           #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
-          gds_text_input :post_code_optional, :'simple_form.labels.respondent.work_address_post_code'
+          gds_text_input :post_code, :'simple_form.labels.respondent.work_address_post_code'
 
-          # @!method telephone_number_optional
+          # @!method telephone_number
           #   A govuk phone field component representing the phone or mobile question
           #   @return [EtTestHelpers::Components::GovUKPhoneField] The site prism section
-          gds_phone_input :telephone_number_optional, :'simple_form.labels.respondent.work_address_telephone_number'
+          gds_phone_input :telephone_number, :'simple_form.labels.respondent.work_address_telephone_number'
         end
 
         # Acas early conciliation certificate number
@@ -136,13 +136,13 @@ module EtFullSystem
           work_address.same_address.assert_valid_options
           # Different work address
           expect(work_address).to have_work_address_hint
-          expect(work_address).to have_building_optional
-          expect(work_address).to have_street_optional
-          expect(work_address).to have_locality_optional
-          expect(work_address).to have_county_optional
-          work_address.county_optional.assert_valid_hint
-          expect(work_address).to have_post_code_optional
-          expect(work_address).to have_telephone_number_optional
+          expect(work_address).to have_building
+          expect(work_address).to have_street
+          expect(work_address).to have_locality
+          expect(work_address).to have_county
+          work_address.county.assert_valid_hint
+          expect(work_address).to have_post_code
+          expect(work_address).to have_telephone_number
           # Acas early conciliation certifcate number
           acas_certificate_number.assert_valid_hint
           # I don't have an acas number
@@ -163,21 +163,20 @@ module EtFullSystem
 
         def has_correct_blank_validation_error_messages?
           expect(self).to have_error_summary
-          expect(name).to have_error(text: t('activemodel.errors.models.respondent.attributes.name.blank'))
-          expect(building).to have_error(text: t('activemodel.errors.models.respondent.attributes.address_building.blank'))
-          expect(street).to have_error(text: t('activemodel.errors.models.respondent.attributes.address_street.blank'))
-          expect(locality).to have_error(text: t('activemodel.errors.models.respondent.attributes.address_locality.blank'))
-          expect(county).to have_error(text: t('activemodel.errors.models.respondent.attributes.address_county.blank'))
-          expect(post_code).to have_error(text: t('activemodel.errors.models.respondent.attributes.address_post_code.blank'))
-          expect(work_address.building_optional).to have_error(text: t('activemodel.errors.models.respondent.attributes.work_address_building.blank'))
-          expect(work_address.street_optional).to have_error(text: t('activemodel.errors.models.respondent.attributes.work_address_street.blank'))
-          expect(work_address.locality_optional).to have_error(text: t('activemodel.errors.models.respondent.attributes.work_address_locality.blank'))
-          expect(work_address.post_code_optional).to have_error(text: t('activemodel.errors.models.respondent.attributes.work_address_post_code.blank'))
-          expect(acas_certificate_number).to have_error(text: t('activemodel.errors.models.respondent.attributes.no_acas_number_reason.blank'))
+          name.assert_valid_error(:blank)
+          street.assert_valid_error(:blank)
+          locality.assert_valid_error(:blank)
+          county.assert_valid_error(:blank)
+          post_code.assert_valid_error(:blank)
+          work_address.building.assert_valid_error(:blank)
+          work_address.street.assert_valid_error(:blank)
+          work_address.locality.assert_valid_error(:blank)
+          work_address.post_code.assert_valid_error(:blank)
+          acas_certificate_number.assert_valid_error(:blank)
         end
 
         def has_correct_error_message_for_invalid_uk_postcode?
-          expect(post_code).to have_error(text: t('activemodel.errors.models.respondent.attributes.address_post_code.invalid'))
+          post_code.assert_valid_error(:invalid)
         end
 
         def set(respondent)
@@ -194,12 +193,12 @@ module EtFullSystem
 
           if data.key?(:work_building)
             work_address.same_address.set(:no)
-            work_address.building_optional.set(data[:work_building])
-            work_address.street_optional.set(data[:work_street])
-            work_address.locality_optional.set(data[:work_locality])
-            work_address.county_optional.set(data[:work_county])
-            work_address.post_code_optional.set(data[:work_post_code])
-            work_address.telephone_number_optional.set(data[:work_telephone_number])
+            work_address.building.set(data[:work_building])
+            work_address.street.set(data[:work_street])
+            work_address.locality.set(data[:work_locality])
+            work_address.county.set(data[:work_county])
+            work_address.post_code.set(data[:work_post_code])
+            work_address.telephone_number.set(data[:work_telephone_number])
           else
             work_address.same_address.set(:yes)
           end

@@ -78,10 +78,7 @@ module EtFullSystem
           # I don't have an acas number
           expect(respondent_2).to have_no_acas_number
           expect(respondent_2).to have_no_acas_number_note_one
-          expect(respondent_2.respondent_no_acas_number_reason).to have_joint_claimant_has_acas_number
-          expect(respondent_2.respondent_no_acas_number_reason).to have_acas_has_no_jurisdiction
-          expect(respondent_2.respondent_no_acas_number_reason).to have_employer_contacted_acas
-          expect(respondent_2.respondent_no_acas_number_reason).to have_interim_relief
+          respondent_2.respondent_no_acas_number_reason.assert_valid_options
           # Add another respondent
           expect(self).to have_add_another_respondent
           # Save and continue
@@ -98,17 +95,17 @@ module EtFullSystem
 
         def has_correct_blank_validation?
           expect(self).to have_error_summary
-          expect(respondent_2).to have_blank_name
-          expect(respondent_2).to have_blank_building
-          expect(respondent_2).to have_blank_street
-          expect(respondent_2).to have_blank_locality
-          expect(respondent_2).to have_blank_county
-          expect(respondent_2).to have_blank_post_code
-          expect(respondent_2).to have_blank_acas_number
+          respondent_2.name.assert_valid_error(:blank)
+          respondent_2.building.assert_valid_error(:blank)
+          respondent_2.street.assert_valid_error(:blank)
+          respondent_2.locality.assert_valid_error(:blank)
+          respondent_2.county.assert_valid_error(:blank)
+          respondent_2.post_code.assert_valid_error(:blank)
+          respondent_2.acas_number.assert_valid_error(:blank)
         end
 
         def has_correct_invalid_acas_number?
-          expect(respondent_2).to have_invalid_acas_number
+          respondent_2.acas_number.assert_valid_error(:invalid)
         end
 
         def has_correct_invalid_postcode?
@@ -138,7 +135,6 @@ module EtFullSystem
           set_field section, :locality, respondent
           set_field section, :county, respondent
           set_field section, :post_code, respondent
-          # @TODO Dont commit this
           if respondent.key?(:no_acas_number_reason)
             section.no_acas_number.set(:no)
             section.respondent_no_acas_number_reason.set(respondent[:no_acas_number_reason])
