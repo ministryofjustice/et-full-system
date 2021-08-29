@@ -126,7 +126,9 @@ en:
         password: Create your memorable word
       user_session:
         new:
-          reference: Save and return number
+          reference: 
+            label: Save and return number
+            hint: :'simple_form.hints.user_session.new.reference'
           password: Memorable word
         destroy:
           email_address: Enter your email address to get your claim number emailed to you.

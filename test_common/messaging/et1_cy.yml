@@ -133,7 +133,9 @@ cy:
         password: Crëwch eich gair cofiadwy
       user_session:
         new:
-          reference: Rhif cadw a dychwelyd
+          reference: 
+            label: Rhif cadw a dychwelyd
+            hint: :'simple_form.hints.user_session.new.reference'
           password: Gair cofiadwy
         destroy:
           email_address: Rhowch eich cyfeiriad e-bost i gael copi o rif eich hawliad drwy neges e-bost.

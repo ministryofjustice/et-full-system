@@ -81,9 +81,9 @@ module EtFullSystem
       # The sleep in this method is intentional - submitting this too quick makes the
       # invisible captcha think we are a bot (which, in a way, we are)
       def et1_submit_your_feedback(email_address, name, delay:)
-        et1_your_feedback_page.main_content.comments.set('feedback page has no validation')
-        et1_your_feedback_page.main_content.suggestions.set(name)
-        et1_your_feedback_page.main_content.email_address.set(email_address)
+        et1_your_feedback_page.comments.set('feedback page has no validation')
+        et1_your_feedback_page.suggestions.set(name)
+        et1_your_feedback_page.email_address.set(email_address)
         sleep delay
         et1_your_feedback_page.send_your_feedback
       end
