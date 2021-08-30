@@ -4,21 +4,22 @@ module EtFullSystem
     module Et1
       module SubmissionPageSections
         class ClaimTypeSection < BaseSection
-          section :send_to_whistleblowing_body, :et1_review_question_labelled, 'review.claim_type.questions.send_to_whistleblowing_body' do
-            element :answer, :css, 'dt.govuk-summary-list__value'
+          section :send_to_whistleblowing_body, :govuk_summary_list_row,
+                  :'review.claim_type.questions.send_to_whistleblowing_body' do
+            element :answer, :govuk_summary_list_col
           end
-          section :whistleblowing, :et1_review_question_labelled, 'review.claim_type.questions.whistleblowing' do
-            element :answer, :css, 'dt.govuk-summary-list__value'
+          section :whistleblowing, :govuk_summary_list_row, :'review.claim_type.questions.whistleblowing' do
+            element :answer, :govuk_summary_list_col
           end
-          section :types, :et1_review_question_labelled, 'review.claim_type.questions.types.title' do
+          section :types, :govuk_summary_list_row, :'review.claim_type.questions.types.title' do
             include ::EtFullSystem::Test::I18n
             include RSpec::Matchers
-            element :answer, :css, 'dt.govuk-summary-list__value'
+            element :answer, :govuk_summary_list_col
 
             def has_answer_for?(claim)
               claim_types = claim.claim_types
               if claim_types.nil? || (claim_types.unfair_dismissal + claim_types.discrimination + claim_types.pay + claim_types.other).empty?
-                raise "claim types must always exist - the application should not let you get this far"
+                raise 'claim types must always exist - the application should not let you get this far'
               else
                 # Other type of claim is never shown as a claim type
                 aggregate_failures 'validating claim types' do
@@ -30,6 +31,7 @@ module EtFullSystem
                   end
                 end
               end
+
               true
             end
           end

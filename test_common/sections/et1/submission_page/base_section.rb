@@ -24,6 +24,7 @@ module EtFullSystem
 
           def convert_yes_no(val)
             return val if val.nil?
+
             t "review.common.#{val.to_s.split('.').last}"
           end
         end

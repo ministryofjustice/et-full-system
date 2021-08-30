@@ -6,16 +6,16 @@ module EtFullSystem
         class AdditionalRespondentSection < BaseSection
           include RSpec::Matchers
           include EtFullSystem::Test::I18n
-          section :name, :et1_review_question_labelled, 'review.additional_respondents.respondent.questions.name' do
-            element :answer, :css, 'dt.govuk-summary-list__value'
+          section :name, :govuk_summary_list_row, :'review.additional_respondents.respondent.questions.name' do
+            element :answer, :govuk_summary_list_col
           end
 
-          section :acas_number, :et1_review_question_labelled, 'review.additional_respondents.respondent.questions.acas_number' do
-            element :answer, :css, 'dt.govuk-summary-list__value'
+          section :acas_number, :govuk_summary_list_row, :'review.additional_respondents.respondent.questions.acas_number' do
+            element :answer, :govuk_summary_list_col
           end
 
-          section :address, :et1_review_question_labelled, 'review.additional_respondents.respondent.questions.address' do
-            element :answer, :css, 'dt.govuk-summary-list__value'
+          section :address, :govuk_summary_list_row, :'review.additional_respondents.respondent.questions.address' do
+            element :answer, :govuk_summary_list_col
           end
 
           def has_correct_translation?(respondent)

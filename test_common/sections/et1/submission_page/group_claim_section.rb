@@ -4,42 +4,43 @@ module EtFullSystem
     module Et1
       module SubmissionPageSections
         class GroupClaimSection < BaseSection
-          section :group_claim, :et1_review_question_labelled, 'review.group_claim.questions.group_claim.label' do
-            element :answer, :css, 'dt.govuk-summary-list__value'
-            element :yes_answer, :dt_containing, 'review.group_claim.questions.group_claim.options.yes'
-            element :no_answer, :dt_containing, 'review.group_claim.questions.group_claim.options.no'
+          section :group_claim, :govuk_summary_list_row, :'review.group_claim.questions.group_claim.label' do
+            element :answer, :govuk_summary_list_col
+            element :yes_answer, :govuk_summary_list_col, :'review.group_claim.questions.group_claim.options.yes'
+            element :no_answer, :govuk_summary_list_col, :'review.group_claim.questions.group_claim.options.no'
           end
-          section :csv_file_name, :et1_review_question_labelled, 'review.group_claim.questions.csv_file_name' do
-            element :answer, :css, 'dt.govuk-summary-list__value'
+          section :csv_file_name, :govuk_summary_list_row, :'review.group_claim.questions.csv_file_name' do
+            element :answer, :govuk_summary_list_col
           end
-          section :number_of_additional_claimants, :et1_review_question_labelled, 'review.group_claim.questions.number_of_additional_claimants' do
-            element :answer, :css, 'dt.govuk-summary-list__value'
+          section :number_of_additional_claimants, :govuk_summary_list_row,
+                  :'review.group_claim.questions.number_of_additional_claimants' do
+            element :answer, :govuk_summary_list_col
           end
-          sections :claimants, :et1_review_additional_claimant_labelled, 'review.group_claim.claimant_header' do
+          sections :claimants, :govuk_summary_list, :'review.group_claim.claimant_header' do
             include RSpec::Matchers
             include EtFullSystem::Test::I18n
-            section :full_name, :et1_review_question_labelled, 'review.group_claim.claimant.questions.full_name' do
-              element :answer, :css, 'dt.govuk-summary-list__value'
-              element :answer_empty, :dt_containing, 'review.common.not_entered'
+            section :full_name, :govuk_summary_list_row, :'review.group_claim.claimant.questions.full_name' do
+              element :answer, :govuk_summary_list_col
+              element :answer_empty, :govuk_summary_list_col, :'review.common.not_entered'
             end
 
-            section :date_of_birth, :et1_review_question_labelled, 'review.group_claim.claimant.questions.date_of_birth' do
-              element :answer, :css, 'dt.govuk-summary-list__value'
-              element :answer_empty, :dt_containing, 'review.common.not_entered'
+            section :date_of_birth, :govuk_summary_list_row, :'review.group_claim.claimant.questions.date_of_birth' do
+              element :answer, :govuk_summary_list_col
+              element :answer_empty, :govuk_summary_list_col, :'review.common.not_entered'
             end
 
-            section :address, :et1_review_question_labelled, 'review.group_claim.claimant.questions.address' do
-              element :answer, :css, 'dt.govuk-summary-list__value'
-              element :answer_empty, :dt_containing, 'review.common.not_entered'
+            section :address, :govuk_summary_list_row, :'review.group_claim.claimant.questions.address' do
+              element :answer, :govuk_summary_list_col
+              element :answer_empty, :govuk_summary_list_col, :'review.common.not_entered'
             end
 
             def has_correct_translation?(claimant)
               has_full_name? &&
-                  has_date_of_birth? &&
-                  has_address? &&
-                  has_full_name_answer_for?(claimant) &&
-                  has_date_of_birth_answer_for?(claimant.date_of_birth) &&
-                  has_address_answer_for?(claimant)
+                has_date_of_birth? &&
+                has_address? &&
+                has_full_name_answer_for?(claimant) &&
+                has_date_of_birth_answer_for?(claimant.date_of_birth) &&
+                has_address_answer_for?(claimant)
             end
 
             # @param [String] dob A date of birth in the format "dd/mm/yyyy"
@@ -57,10 +58,10 @@ module EtFullSystem
                 address.has_answer_empty?
               else
                 adress.answer.has_text(claimant.building) &&
-                    address.answer.has_text?(claimant.street) &&
-                    address.answer.has_text?(claimant.locality) &&
-                    address.answer.has_text?(claimant.county) &&
-                    address.answer.has_text?(claimant.post_code)
+                  address.answer.has_text?(claimant.street) &&
+                  address.answer.has_text?(claimant.locality) &&
+                  address.answer.has_text?(claimant.county) &&
+                  address.answer.has_text?(claimant.post_code)
               end
             end
           end
