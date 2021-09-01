@@ -4,9 +4,10 @@ module EtFullSystem
       class BasePage < ::EtFullSystem::Test::BasePage
         #your feedback header
         section :cookie, '.govuk-cookie-banner' do
-          element :header, :content_header, 'banner.title'
-          element :accept_button, :input_with_value, 'banner.accept_analytics'
-          element :reject_button, :input_with_value, 'banner.reject_analytics'
+          include EtTestHelpers::Section
+          element :header, :cookie_banner_heading, :'banner.title'
+          gds_submit_button :accept_button, :'banner.accept_analytics'
+          gds_submit_button :reject_button, :'banner.reject_analytics'
           element :cookies, :link_named, 'banner.cookie_link'
         end
 
