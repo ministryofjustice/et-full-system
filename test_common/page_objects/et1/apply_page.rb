@@ -26,9 +26,9 @@ module EtFullSystem
         element :acas_certificate_number_link, :link_named, 'claims.new.what_you_need_to_know.body_html.link', exact: false
         element :what_you_need_to_know_acas_details, :listing_containing_text, 'claims.new.what_you_need_to_know.body_html.acas_details'
         #start a claim
-        gds_submit_button :start_a_claim_button, t('helpers.submit.claim.create')
+        gds_submit_button :start_a_claim_button, :'helpers.submit.claim.create'
         #return to a claim
-        element :return_a_claim_button, :link_named, 'helpers.link.claim.return'
+        gds_submit_button :return_a_claim_button, :'helpers.link.claim.return'
         #Support links
         section :support, 'aside[role="complementary"]' do
           element :suport_header, :support_header, 'shared.aside.gethelp_header'
