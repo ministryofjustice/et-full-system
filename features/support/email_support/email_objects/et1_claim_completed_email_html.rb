@@ -6,7 +6,7 @@ module EtFullSystem
     class Et1ClaimCompletedEmailHtml < SitePrism::Page
       include RSpec::Matchers
       include ::EtFullSystem::Test::I18n
-      element(:claim_submitted_element, :xpath, XPath.generate { |x| x.descendant(:tr)[x.child(:td)[x.string.n.starts_with(t('claim_confirmations.show.header'))]].child(:td)[2] })
+      element(:claim_submitted_element, :xpath, XPath.generate { |x| x.descendant(:p)[x.string.n.starts_with(t('claim_confirmations.show.header'))] })
     
       def self.find(search_url: ::EtFullSystem::Test::Configuration.mailhog_search_url, claim_number:, sleep: 10, timeout: 50)
         item = find_email(claim_number, search_url, sleep: sleep, timeout: timeout)
@@ -33,14 +33,13 @@ module EtFullSystem
 
       def initialize(mail)
         self.mail = mail
-        multipart = mail.parts.detect { |p| p.content_type =~ %r{multipart\/alternative} }
-        part = multipart.parts.detect { |p| p.content_type =~ %r{text\/html} }
+        part = mail.parts.detect { |p| p.content_type =~ %r{text\/html} }
         body = part.nil? ? '' : part.body.to_s
         load(body)
       end
 
       def submission_submitted
-        claim_submitted_element.text
+        claim_submitted_element.text.gsub(%r{#{t('claim_confirmations.show.header')}:}, '').strip
       end
 
       def has_correct_subject_for_claim_submitted?
