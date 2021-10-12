@@ -180,16 +180,36 @@ cy:
     no_answer: 'Nac oeddwn'
     prefer-not-to-say: "Mae'n well gen i beidio dweud"
   summary: 
-    claim: "Beth yw natur eich hawliad?"
-    sex: "Beth yw eich rhyw?"
-    gender: "Beth yw eich hunaniaeth ryweddol?"
-    gender_at_birth: "A yw eich hunaniaeth ryweddol yn wahanol i'ch rhyw tybiedig pan gawsoch eich geni?"
-    sexual_identity: "Pa un o'r opsiynau isod sy'n disgrifio orau eich hunaniaeth rywiol?"
-    relationship: "Beth yw statws eich perthynas?"
-    age: "Ym mha grŵp oedran ydych chi?"
-    care: "A oes gennych chi unrhyw gyfrifoldebau gofalu?"
-    religion: "Beth yw eich crefydd?"
-    ethnicity_group: "Beth yw eich grŵp ethnig?"
-    ethnicity_type: "Beth yw eich ethnig?"
-    health: "A oes gennych unrhyw gyflyrau neu anhwylderau iechyd meddwl neu iechyd corfforol sy'n parhau neu'n debygol o barhau am 12 mis neu ragor?"
-    pregnancy: "A oeddech chi'n feichiog pan gawsoch eich diswyddo?"
+    claim: 
+      label: "Beth yw natur eich hawliad?"
+      edit_link: Golygu Math o hawliad atebion
+    sex: 
+      label: "Beth yw eich rhyw?"
+      edit_link: :'diversities.edit'
+    sexual_identity: 
+      label: "Pa un o'r opsiynau isod sy'n disgrifio orau eich hunaniaeth rywiol?"
+      edit_link: :'diversities.edit'
+    relationship: 
+      label: "Beth yw statws eich perthynas?"
+      edit_link: Golygu Perthynas atebion
+    age: 
+      label: "Ym mha grŵp oedran ydych chi?"
+      edit_link: :'diversities.edit'
+    care: 
+      label: "A oes gennych chi unrhyw gyfrifoldebau gofalu?"
+      edit_link: :'diversities.edit'
+    religion: 
+      label: "Beth yw eich crefydd?"
+      edit_link: Golygu Crefydd atebion
+    ethnicity_group: 
+      label: "Beth yw eich grŵp ethnig?"
+      edit_link: Golygu Ethnigrwydd atebion
+    ethnicity_type: 
+      label: "Beth yw eich ethnig?"
+      edit_link: Golygu Ethnigrwydd atebion
+    health: 
+      label: "A oes gennych unrhyw gyflyrau neu anhwylderau iechyd meddwl neu iechyd corfforol sy'n parhau neu'n debygol o barhau am 12 mis neu ragor?"
+      edit_link: Golygu Anabledd atebion
+    pregnancy: 
+      label: "A oeddech chi'n feichiog pan gawsoch eich diswyddo?"
+      edit_link: Golygu Beichiogrwydd atebion

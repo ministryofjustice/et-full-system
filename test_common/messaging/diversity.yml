@@ -179,16 +179,36 @@ en:
     prefer-not-to-say: Prefer not to say
     
   summary: 
-    claim: "What is the type of your claim?"
-    sex: "What is your sex?"
-    gender: "What is your gender identity?"
-    gender_at_birth: "Is your gender identity different to the sex you were assumed to be at birth?"
-    sexual_identity: "Which of the options below best describes your sexual identity?"
-    relationship: "What is your relationship status?"
-    age: "Which age group are you in?"
-    care: "Do you have any caring responsibilities?"
-    religion: "What is your religion?"
-    ethnicity_group: "What is your ethnic group?"
-    ethnicity_type: "What is your ethnic type?"
-    health: "Do you have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more?"
-    pregnancy: "Were you pregnant when you were dismissed?"
+    claim: 
+      label: "What is the type of your claim?"
+      edit_link: Edit Claim Type answers
+    sex: 
+      label: "What is your sex?"
+      edit_link: :'diversities.edit'
+    sexual_identity: 
+      label: "Which of the options below best describes your sexual identity?"
+      edit_link: :'diversities.edit'
+    relationship: 
+      label: "What is your relationship status?"
+      edit_link: Edit Relationship answers
+    age: 
+      label: "Which age group are you in?"
+      edit_link: :'diversities.edit'
+    care: 
+      label: "Do you have any caring responsibilities?"
+      edit_link: :'diversities.edit'
+    religion: 
+      label: "What is your religion?"
+      edit_link: Edit Religion answers
+    ethnicity_group: 
+      label: "What is your ethnic group?"
+      edit_link: Edit Ethnicity answers
+    ethnicity_type: 
+      label: "What is your ethnic type?"
+      edit_link: Edit Ethnicity answers
+    health: 
+      label: "Do you have any physical or mental health conditions or illnesses lasting or expected to last for 12 months or more?"
+      edit_link: Edit Disability answers
+    pregnancy: 
+      label: "Were you pregnant when you were dismissed?"
+      edit_link: Edit Pregnancy answers
