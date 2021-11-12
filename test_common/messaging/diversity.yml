@@ -181,7 +181,7 @@ en:
   summary: 
     claim: 
       label: "What is the type of your claim?"
-      edit_link: Edit Claim Type answers
+      edit_link: :'diversities.edit'
     sex: 
       label: "What is your sex?"
       edit_link: :'diversities.edit'

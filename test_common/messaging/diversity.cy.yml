@@ -182,7 +182,7 @@ cy:
   summary: 
     claim: 
       label: "Beth yw natur eich hawliad?"
-      edit_link: Golygu Math o hawliad atebion
+      edit_link: :'diversities.edit'
     sex: 
       label: "Beth yw eich rhyw?"
       edit_link: :'diversities.edit'
