@@ -78,24 +78,14 @@ module EtFullSystem
                 'activemodel.errors.models.representative.attributes.email_address.invalid'
         element :blank_email_address, :error,
                 'activemodel.errors.models.representative.attributes.email_address.blank'
-        section :email_address, :question_labelled, 'simple_form.labels.representative.email_address' do
-          element :field, :css, 'input'
-          def set(*args)
-            field.set(*args)
-          end
-        end
+        gds_email_input :email_address, :'simple_form.labels.representative.email_address'
 
         # @!method representative_contact_preference
         #   A govuk radio button component for contact_preference question
         #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
         gds_radios :representative_contact_preference, :'claims.representative.contact_preference.label'
 
-        section :dx_number, :question_labelled, 'simple_form.labels.representative.dx_number' do
-          element :field, :css, 'input'
-          def set(*args)
-            field.set(*args)
-          end
-        end
+        gds_text_input :dx_number, :'simple_form.labels.representative.dx_number'
         # What is Dx number?
         element :what_is_dx_number, :summary_text, 'claims.representative.what_is_dx.detail'
         element :dx_information, :paragraph, 'claims.representative.what_is_dx.summary'
@@ -143,8 +133,6 @@ module EtFullSystem
           expect(self).to have_telephone_number
           expect(self).to have_alternative_telephone_number
           expect(self).to have_representative_contact_preference
-          expect(self).to have_email_address
-          expect(self).to have_dx_number
           # What is DX number
           expect(self).to have_what_is_dx_number
           # Save and continue
@@ -195,8 +183,8 @@ module EtFullSystem
             set_field :telephone_number, data
             set_field :alternative_telephone_number, data
             set_field :representative_contact_preference, data
-            set_field :email_address, data
-            set_field :dx_number, data
+            set_field :email_address, data if data[:representative_contact_preference].to_s.split('.').last == 'email'
+            set_field :dx_number, data if data[:representative_contact_preference].to_s.split('.').last == 'dx_number'
           else
             representative.set(:no)
           end

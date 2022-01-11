@@ -35,7 +35,7 @@ module EtFullSystem
           expect(response['case_fields']).to include "multipleName" => title
         end
 
-        def assert_primary_claimant(claimant, representative, employment, respondents, reference_number, ccd_office)
+        def assert_primary_claimant(claimant, representative, employment, respondents, reference_number, ccd_office, claim)
           case_references = response.dig('case_fields', 'caseIdCollection').map { |obj| obj.dig('value', 'ethos_CaseReference') }
           aggregate_failures 'validating key fields' do
             created_case = ccd.caseworker_search_latest_by_ethos_case_reference(case_references.first, case_type_id: ccd_office)
@@ -65,6 +65,20 @@ module EtFullSystem
               expect(created_case['case_fields']['respondentCollection'][i]).to include "value" => a_hash_including(respondent_sum_type(respondent))
             end
 
+            filenames = created_case.dig('case_fields', 'documentCollection').map {|doc| doc.dig('value', 'uploadedDocument', 'document_filename') }
+            expected_filenames = [
+              "et1_#{claimant.first.first_name.underscore}_#{claimant.first.last_name.underscore}.pdf",
+              "acas_#{respondents.first.name}.pdf"
+            ]
+            # The first respondent's acas is guaranteed to be in CCD but the other 4 (max) may come
+            # later - and are not really important - so we ignore them if they are present
+            respondents[1..4].each do |respondent|
+              filenames.delete("acas_#{respondent.name}.pdf")
+            end
+            expected_filenames << "et1a_#{claimant.first.first_name}_#{claimant.first.last_name}.csv" if claimant.first.group_claims_csv.present?
+            expected_filenames << "et1_attachment_#{claimant.first.first_name}_#{claimant.first.last_name}.rtf" if claim.rtf_file.present?
+
+            expect(filenames).to match_array(expected_filenames)
           end
         end
 
@@ -95,6 +109,16 @@ module EtFullSystem
             end
             return data
           end
+        end
+
+        def all_filenames(ccd_office)
+          case_references = response.dig('case_fields', 'caseIdCollection').first.dig('value', 'ethos_CaseReference')
+          created_case = ccd.caseworker_search_latest_by_ethos_case_reference(case_references, case_type_id: ccd_office)
+          documents(created_case)
+        end
+
+        def assert_valid_filenames(et1_multiple_claimants: true, et1_additional_info: true, ccd_office:)
+
         end
 
         def assert_secondary_xls_claimants(claimants, representative, employment, respondents, ccd_office)

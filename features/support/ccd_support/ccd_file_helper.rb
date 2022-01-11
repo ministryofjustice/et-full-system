@@ -28,6 +28,10 @@ module EtFullSystem
           end
         end
       end
+
+      def documents(response)
+        response['case_fields']['documentCollection']
+      end
     end
   end
 end

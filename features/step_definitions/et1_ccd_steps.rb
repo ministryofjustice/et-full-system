@@ -141,7 +141,7 @@ Then /^the claim should be present in CCD$/ do
   ccd_object.assert_claimant_work_address(@respondent.first)
   ccd_object.assert_respondents(@respondent)
 
-  expect(ccd_object.find_pdf_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)  
+  expect(ccd_object.find_pdf_file).to match_et1_pdf_for(claim: @claim, claimants: @claimant, representative: @representative.first, respondents: @respondent, employment: @employment)
 end
 
 Then /^the claim should be present in CCD with an attached acas certificate$/ do
@@ -178,7 +178,7 @@ Then /^the RTF file should be present in CCD$/ do
   office = @respondent[0]["expected_office"]
   ccd_office_lookup = ::EtFullSystem::Test::CcdOfficeLookUp
   ccd_object = EtFullSystem::Test::Ccd::Et1CcdSingleClaimant.find_by_reference(@claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
-  
+
   ccd_object.assert_primary_reference(@claim_reference)
   ccd_object.assert_primary_claimants(@claimant)
   ccd_object.assert_primary_representative(@representative)
@@ -204,7 +204,7 @@ Then /^the multiple claimaints should be present in CCD$/ do
   raise "multiple not found for reference #{@claim_reference} looking for multiple reference #{multiple_reference} at #{Time.now.strftime('%d/%m/%y %H:%M:%S')}" if ccd_object.nil?
   ccd_object.assert_multiple_title(@respondent.first.name)
 
-  ccd_object.assert_primary_claimant(@claimant, @representative, @employment, @respondent, @claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id])
+  ccd_object.assert_primary_claimant(@claimant, @representative, @employment, @respondent, @claim_reference, ccd_office_lookup.office_lookup[office][:single][:case_type_id], @claim)
 
   if @claimant[0].dig(:group_claims_csv)
     ccd_object.assert_secondary_xls_claimants(@claimant, @representative, @employment, @respondent, ccd_office_lookup.office_lookup[office][:single][:case_type_id])

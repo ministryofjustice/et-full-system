@@ -26,7 +26,7 @@ FactoryBot.define do
     type {:"simple_form.options.representative.type.solicitor"}
     organisation_name { Faker::Company.bs }
     name { Faker::Name.name }
-    building {'106'}  
+    building {'106'}
     street {'Mayfair'}
     locality {'London'}
     county {'Greater London'}
@@ -34,7 +34,7 @@ FactoryBot.define do
     telephone_number {'01111 123456'}
     alternative_telephone_number {'02222 654321'}
     email_address  {'sivvoy.taing@hmcts.net'}
-    dx_number  {'dx1234567890'}
+    dx_number  { nil }
     representative_have {'Yes'}
     representative_mobile {'07987654321'}
     representative_reference {'Rep Ref'}
@@ -46,7 +46,7 @@ FactoryBot.define do
     type {''}
     organisation_name {''}
     name {''}
-    building {''}  
+    building {''}
     street {''}
     locality {''}
     county {''}

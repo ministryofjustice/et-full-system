@@ -133,7 +133,7 @@ cy:
         password: Crëwch eich gair cofiadwy
       user_session:
         new:
-          reference: 
+          reference:
             label: Rhif cadw a dychwelyd
             hint: :'simple_form.hints.user_session.new.reference'
           password: Gair cofiadwy
@@ -146,7 +146,7 @@ cy:
       claimant:
         first_name: Enw cyntaf
         last_name: Enw olaf
-        title: 
+        title:
           label: Teitl
           options:
             mr: :'simple_form.options.claimant.title.mr'
@@ -161,7 +161,7 @@ cy:
         mobile_number: Rhif ffôn neu rif ffôn symudol arall (dewisol)
         email_address: "Cyfeiriad e-bost"
         fax_number: Ffacs
-        has_special_needs: 
+        has_special_needs:
           label: "Oes gennych chi anabledd sy'n golygu eich bod angen cymorth yn y gwrandawiad tribiwnlys? (dewisol)"
           hint: :'simple_form.hints.claimant.has_special_needs'
           options:
@@ -172,17 +172,17 @@ cy:
         address_building: Rhif neu enw'r adeilad
         address_locality: "Tref/dinas"
         address_street: Stryd
-        address_county: 
+        address_county:
           label: Sir
           hint: :'simple_form.hints.claimant.address_county'
         address_post_code: Cod post
-        address_country: 
+        address_country:
           label: Gwlad
           options:
             united_kingdom: :'simple_form.options.claimant.address_country.united_kingdom'
             other: :'simple_form.options.claimant.address_country.other'
         applying_for_remission: "Ydych chi eisiau gwneud cais am help i dalu eich ffi (a elwir yn \"help i dalu ffioedd\")?"
-        contact_preference: 
+        contact_preference:
           label: "Y ffordd orau i anfon gohebiaeth atoch (yr hawlydd)"
           hint: :'simple_form.hints.claimant.contact_preference'
           options:
@@ -192,12 +192,12 @@ cy:
           label: "A allech chi gymryd rhan mewn gwrandawiad drwy fideo? (angen mynediad i'r rhyngrwyd)."
           options:
             yes: :'simple_form.options.claimant.allow_video_attendance.yes'
-            no: :'simple_form.options.claimant.allow_video_attendance.no'          
+            no: :'simple_form.options.claimant.allow_video_attendance.no'
         _destroy: 'Dileu''r hawlydd yma'
         gender: Rhywedd
 
       additional_claimants:
-        has_multiple_claimants: 
+        has_multiple_claimants:
           label: "A oes unigolion eraill sy'n gwneud hawliad gyda chi (yn erbyn yr un cyflogwr neu sefydliad)? (dewisol)"
           options:
             'yes': :'simple_form.yes'
@@ -219,7 +219,7 @@ cy:
           email_address: "Cyfeiriad e-bost (dewisol)"
 
       additional_claimants_upload:
-        has_additional_claimants: 
+        has_additional_claimants:
           label: "Ydych chi eisiau uwchlwytho manylion 6 hawlydd neu fwy? (dewisol)"
           hint: :'claims.additional_claimants_upload.has_additional_claimants_html'
           options:
@@ -229,7 +229,7 @@ cy:
         claimants: ""
 
       representative:
-        has_representative: 
+        has_representative:
           label: "Oes gennych chi rywun sydd wedi cytuno i'ch cynrychioli (e.e. trwy ddelio â gohebiaeth)? (dewisol)"
           options:
             'yes': :'simple_form.yes'
@@ -244,66 +244,66 @@ cy:
         organisation_name: "Enw sefydliad y cynrychiolydd (dewisol)"
         name: "Enw'r cynrychiolydd"
         mobile_number: "Rhif ffôn neu rif ffôn symudol arall (dewisol)"
-        dx_number: Rhif cyfnewid dogfennau (DX) (dewisol)
+        dx_number: Rhif cyfnewid dogfennau (DX)
         contact_preference: Y ffordd orau i anfon gohebiaeth at eich cynrychiolydd
-        email_address: Cyfeiriad e-bost (dewisol)
+        email_address: Cyfeiriad e-bost
 
       respondent:
-        name: 
+        name:
           label: "Enw'r atebydd"
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.name.blank'
         address_telephone_number: Rhif ffôn (dewisol)
-        address_building: 
+        address_building:
           label: Rhif neu enw'r adeilad
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.address_building.blank'
-        address_locality: 
+        address_locality:
           label: Tref/dinas
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.address_locality.blank'
-        address_street: 
+        address_street:
           label: Stryd
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.address_street.blank'
-        address_county: 
+        address_county:
           label: Sir
           hint: :'simple_form.hints.respondent.address_county'
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.address_county.blank'
-        address_post_code: 
+        address_post_code:
           label: Cod post
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.address_post_code.blank'
             invalid: :'activemodel.errors.models.respondent.attributes.address_post_code.invalid'
         work_address_telephone_number: Rhif ffôn (dewisol)
-        work_address_building: 
+        work_address_building:
           label: "Rhif neu enw'r adeilad (dewisol)"
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.work_address_building.blank'
-        work_address_locality: 
+        work_address_locality:
           label: Tref/dinas (dewisol)
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.work_address_locality.blank'
-        work_address_street: 
+        work_address_street:
           label: Stryd (dewisol)
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.work_address_street.blank'
-        work_address_county: 
+        work_address_county:
           label: Sir (dewisol)
           hint: :'simple_form.hints.respondent.address_county'
-        work_address_post_code: 
+        work_address_post_code:
           label: Cod post (dewisol)
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.work_address_post_code.blank'
-        worked_at_same_address: 
+        worked_at_same_address:
           label: "Oeddech chi'n gweithio yn yr un cyfeiriad a roddwyd uchod? (dewisol)"
           options:
             'yes': :'simple_form.labels.respondent.yes'
             'no': :'simple_form.labels.respondent.no'
-        acas_early_conciliation_certificate_number: 
+        acas_early_conciliation_certificate_number:
           label: Rhif Acas
-        no_acas_number: 
+        no_acas_number:
           label: "Nid oes gen i rif Acas"
           options:
             'yes': :'simple_form.labels.respondent.yes'
@@ -342,7 +342,7 @@ cy:
         job_title: "Teitl swydd (dewisol)"
         gross_pay: "Tâl cyn treth (dewisol)"
         net_pay: "Tâl ar ôl treth (dewisol)"
-        enrolled_in_pension_scheme: 
+        enrolled_in_pension_scheme:
           label: "Ydych chi - neu oeddech chi - yn aelod o gynllun pensiwn eich cyflogwr? (dewisol)"
           options:
             'yes': :'simple_form.yes'
@@ -350,7 +350,7 @@ cy:
         benefit_details: "A oes - neu a oedd - gennych chi unrhyw fuddion, fel car cwmni? (dewisol)"
         found_new_job: "Oes gennych chi swydd newydd?"
         notice_pay_period_count: "Am faint o wythnosau neu fisoedd gawsoch chi dâl? (dewisol)"
-        notice_pay_period_type: 
+        notice_pay_period_type:
           label: "A oedd yr wythnosau neu'r misoedd hyn ?"
           options:
             weeks: :'simple_form.options.employment.notice_pay_period_type.weeks'
@@ -359,7 +359,7 @@ cy:
           label: "Ydych chi erioed wedi cael eich cyflogi gan yr unigolyn neu'r sefydliad yr ydych chi'n gwneud yr hawliad hwn yn ei erbyn? (dewisol)"
           options:
             yes: :'claims.employment.yes'
-            no: :'claims.employment.no' 
+            no: :'claims.employment.no'
         new_job_gross_pay: Tâl y swydd newydd cyn treth
         start_date:
           day: "Diwrnod"
@@ -381,9 +381,9 @@ cy:
         is_pay_related: Tâl
         is_other_type_of_claim: Math arall o hawliad
         other_claim_details: Nodwch y math arall o hawliad(au) ydych yn gwneud
-        claim_details: 
+        claim_details:
           label: "Hwn yw eich cyfle chi i ddweud wrthym am eich problem yn y gwaith, fel bod y tribiwnlys a'r cyflogwr yn deall eich hawliad. Nid oes rhaid i chi ddarparu tystiolaeth ar hyn o bryd. Sut ydw i'n ysgrifennu datganiad i gefnogi fy hawliad?"
-        desired_outcomes: 
+        desired_outcomes:
           label: "Beth ydych chi eisiau os yw eich hawliad yn llwyddiannus? (dewisol)"
           hint: :'simple_form.hints.claim_outcome.desired_outcomes'
           options:
@@ -394,12 +394,12 @@ cy:
         other_outcome: "Pa fath o iawndal neu ganlyniad(au) eraill ydych chi eisiau?"
         other_known_claimants: "Ydych chi'n gwybod am unrhyw hawlwyr eraill (nad ydynt eisoes wedi'u rhestru) sy'n gwneud hawliadau tebyg yn erbyn yr un cyflogwr?"
         other_known_claimant_names: "Gallwch ychwanegu enwau unigolion eraill yma."
-        is_whistleblowing: 
+        is_whistleblowing:
           label: "Ydych chi'n riportio'r posibilrwydd o gamymddwyn yn y gwaith?"
           options:
             'yes': :'claims.claim_type.yes'
             'no': :'claims.claim_type.no'
-        send_claim_to_whistleblowing_entity: 
+        send_claim_to_whistleblowing_entity:
           label: "Ydych chi eisiau i ni anfon copi o'ch hawliad at yr unigolyn neu gorff perthnasol sy'n delio â chwythu'r chwiban?"
           options:
             'yes': :'claims.claim_type.yes'
@@ -410,17 +410,17 @@ cy:
       claim_type:
         is_unfair_dismissal: Diswyddo annheg (gan gynnwys diswyddo deongliadol)
         is_other_type_of_claim: Math arall o hawliad
-        other_claim_details: 
+        other_claim_details:
           label: Nodwch y math arall o hawliad(au) ydych yn gwneud
           hint: :'simple_form.hints.claim_type.other_claim_details'
         is_whistleblowing: "Ydych chi'n riportio'r posibilrwydd o gamymddwyn yn y gwaith?"
-        send_claim_to_whistleblowing_entity: 
+        send_claim_to_whistleblowing_entity:
           label: "Ydych chi eisiau i ni anfon copi o'ch hawliad at yr unigolyn neu gorff perthnasol sy'n delio â chwythu'r chwiban?"
           options:
             yes: :'simple_form.yes'
             no: :'simple_form.no'
       claim_details:
-        other_known_claimants: 
+        other_known_claimants:
           label: "Ydych chi'n gwybod am unrhyw hawlwyr eraill (nad ydynt eisoes wedi'u rhestru) sy'n gwneud hawliadau tebyg yn erbyn yr un cyflogwr? (dewisol)"
           hint: :'simple_form.hints.claim_details.other_known_claimants'
           options:
@@ -623,7 +623,7 @@ cy:
 
   claims:
     personal_details:
-      date_of_birth: 
+      date_of_birth:
         label: Dyddiad geni
         hint: :'simple_form.hints.claimant.date_of_birth'
         parts:
@@ -661,7 +661,7 @@ cy:
 
     claimant:
       header: Manylion yr hawlydd
-      gender: 
+      gender:
         label: Rhywedd
         options:
           male: :'simple_form.options.claimant.gender.male'
@@ -725,7 +725,7 @@ cy:
 
     respondent:
       header: "Manylion yr atebydd"
-      no_acas_number_reason: 
+      no_acas_number_reason:
         label: "Pam nad oes gennych rif Acas?"
         hint: :'claims.respondent.no_acas_number_note_one'
         options:
@@ -737,7 +737,7 @@ cy:
       no_acas_number_note_one: "Noder: Mae’n bosib y bydd eich hawliad yn cael ei wrthod os byddwch yn hawlio esemptiad yn anghywir. Os oes gennych amheuaeth, cysylltwch ag ACAS"
       no_acas_number_note_two: "Noder: Mae hwn yn fath anghyffredin o hawliad. Nid yw'r ffaith eich bod yn gwneud hawliad am ddiswyddo annheg yn golygu eich bod o reidrwydd yn gwneud hawliad am gymorth interim. "
 
-      acas_legend: 
+      acas_legend:
         label: Rhif tystysgrif cymodi cynnar Acas
         hint: :'claims.respondent.acas_early_conciliation_certificate_number_html'
         errors:
@@ -750,7 +750,7 @@ cy:
       acas_early_conciliation_certificate_number_link: "wasanaeth cymodi cynnar Acas"
 
     additional_respondents:
-      no_acas_number_reason: 
+      no_acas_number_reason:
         label: "Pam nad oes gennych rif Acas?"
         options:
           joint_claimant_has_acas_number: :'simple_form.options.respondent.no_acas_number_reason.joint_claimant_has_acas_number'
@@ -771,12 +771,12 @@ cy:
     employment:
       header: "Manylion cyflogaeth"
       situation_legend: "Eich manylion cyflogaeth"
-      current_situation: 
+      current_situation:
         label: "Beth yw eich sefyllfa bresennol yn y gwaith o ran y cyflogwr yr ydych chi'n gwneud hawliad yn ei erbyn?"
         options:
           still_employed: :'simple_form.options.employment.current_situation.still_employed'
           notice_period: :'simple_form.options.employment.current_situation.notice_period'
-          employment_terminated: :'simple_form.options.employment.current_situation.employment_terminated'        
+          employment_terminated: :'simple_form.options.employment.current_situation.employment_terminated'
       start_date: Dyddiad cychwyn cyflogaeth
       end_date: Dyddiad gorffen cyflogaeth
       paid_for_notice_period:
@@ -809,14 +809,14 @@ cy:
       header: "Ynglŷn â'r hawliad"
       claim_type: "Ynglŷn â beth mae eich hawliad"
       claim_type_label: "Dewiswch o leiaf un o'r mathau isod o hawliad."
-      unfair_dismissal: 
+      unfair_dismissal:
         label: Diswyddo annheg
         hint: :'claims.claim_type.summary'
         options:
           is_unfair_dismissal: :'simple_form.labels.claim_type.is_unfair_dismissal'
       summary:  "Beth yw hyn?"
       unfair_dismissal_summary_detail: "Fe all eich diswyddiad fod yn annheg os nad oes gan eich cyflogwr reswm da dros eich diswyddo neu os nad yw wedi dilyn proses ddisgyblu ffurfiol neu broses ddiswyddo'r cwmni. Diswyddo deongliadol yw pan fyddwch yn cael eich gorfodi i adael eich swydd yn erbyn eich ewyllys oherwydd ymddygiad eich cyflogwr."
-      discrimination: 
+      discrimination:
         label: Gwahaniaethu
         options:
           sex_including_equal_pay: :'simple_form.options.claim_type.discrimination_claims.sex_including_equal_pay'
@@ -828,7 +828,7 @@ cy:
           age: :'simple_form.options.claim_type.discrimination_claims.age'
           religion_or_belief: :'simple_form.options.claim_type.discrimination_claims.religion_or_belief'
           marriage_or_civil_partnership: :'simple_form.options.claim_type.discrimination_claims.marriage_or_civil_partnership'
-      pay: 
+      pay:
         label: "Tâl"
         options:
           redundancy: :'simple_form.options.claim_type.pay_claims.redundancy'
@@ -836,7 +836,7 @@ cy:
           other: :'simple_form.options.claim_type.pay_claims.other'
           notice: :'simple_form.options.claim_type.pay_claims.notice'
           arrears: :'simple_form.options.claim_type.pay_claims.arrears'
-      other_type: 
+      other_type:
         label: Math arall o hawliad (na ddangosir uchod)
         hint: :'simple_form.hints.claim_type.is_other_type_of_claim'
         options:
@@ -862,7 +862,7 @@ cy:
     additional_information:
       header: Mwy am yr hawliad
       legend: "Manylion pwysig eraill"
-      has_miscellaneous_information: 
+      has_miscellaneous_information:
         label: "Ydych chi eisiau darparu gwybodaeth ychwanegol am eich hawliad? (dewisol)"
         hint: "Dylech gynnwys unrhyw beth fyddai'n helpu'r tribiwnlys i ddod i benderfyniad ynghylch p'un a ellir gwrando eich achos. Efallai y bydd yr atebydd yn gweld beth ydych yn ysgrifennu."
         options:

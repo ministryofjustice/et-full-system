@@ -77,6 +77,8 @@ module EtFullSystem
             "Jobs",
             "Office Postcodes",
             "Permissions",
+            "Reports",
+            "",
             "Representatives",
             "Respondents",
             "Responses",
@@ -88,28 +90,28 @@ module EtFullSystem
         end
 
         def partial_access
-          ["Dashboard", 
-            "Acas", 
-            "", 
-            "", 
-            "Claims", 
-            "Et Offices", 
-            "Generate References", 
+          ["Dashboard",
+            "Acas",
+            "",
+            "",
+            "Claims",
+            "Et Offices",
+            "Generate References",
             "Office Postcodes",
             "Responses",
             "Roles",
-            "Users", 
-            "", 
+            "Users",
+            "",
             "Logout"]
         end
 
         def basic_access
-          ["Dashboard", 
-            "Acas", 
-            "", 
-            "", 
-            "Et Offices", 
-            "Generate References", 
+          ["Dashboard",
+            "Acas",
+            "",
+            "",
+            "Et Offices",
+            "Generate References",
             "Logout"]
         end
         section :utility_nav, '#header ul#utility_nav' do

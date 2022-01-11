@@ -126,7 +126,7 @@ en:
         password: Create your memorable word
       user_session:
         new:
-          reference: 
+          reference:
             label: Save and return number
             hint: :'simple_form.hints.user_session.new.reference'
           password: Memorable word
@@ -139,7 +139,7 @@ en:
       claimant:
         first_name: First name
         last_name: Last name
-        title: 
+        title:
           label: Title (optional)
           options:
             mr: :'simple_form.options.claimant.title.mr'
@@ -154,7 +154,7 @@ en:
         mobile_number: Alternative phone or mobile number (optional)
         email_address: Email address
         fax_number: Fax
-        has_special_needs: 
+        has_special_needs:
           label: "Do you have a disability which means you require assistance at the tribunal hearing? (optional)"
           hint: :'simple_form.hints.claimant.has_special_needs'
           options:
@@ -165,23 +165,23 @@ en:
         address_building: Building number or name
         address_locality: Town/city
         address_street: Street
-        address_county: 
+        address_county:
           label: County
           hint: :'simple_form.hints.claimant.address_county'
         address_post_code: Postcode
-        address_country: 
+        address_country:
           label: Country
           options:
             united_kingdom: :'simple_form.options.claimant.address_country.united_kingdom'
             other: :'simple_form.options.claimant.address_country.other'
         applying_for_remission: Do you want to get help paying your fee (known as ‘help with fees’)?
-        contact_preference: 
+        contact_preference:
           label: Best way to send correspondence to you (the claimant)
           hint: :'simple_form.hints.claimant.contact_preference'
           options:
             email: :'simple_form.options.claimant.contact_preference.email'
             post: :'simple_form.options.claimant.contact_preference.post'
-        allow_video_attendance: 
+        allow_video_attendance:
           label: Would you be able to take part in a hearing by video? (Requires internet access).
           options:
             yes: :'simple_form.options.claimant.allow_video_attendance.yes'
@@ -197,7 +197,7 @@ en:
         collection: :"simple_form.labels.claimant"
 
       additional_claimants_upload:
-        has_additional_claimants: 
+        has_additional_claimants:
           label: "Do you want to upload details of 6 claimants or more? (optional)"
           hint: :'claims.additional_claimants_upload.has_additional_claimants_html'
           options:
@@ -207,7 +207,7 @@ en:
         claimants: :"simple_form.labels.claimant"
 
       representative:
-        has_representative: 
+        has_representative:
           label: "Do you have someone who’s agreed to represent you (eg by handling correspondence)? (optional)"
           options:
             'yes': :'simple_form.yes'
@@ -222,66 +222,66 @@ en:
         organisation_name: "Name of the representative’s organisation (optional)"
         name: "Representative’s name"
         mobile_number: Alternative phone or mobile number (optional)
-        dx_number: "Document exchange (DX) number (optional)"
+        dx_number: "Document exchange (DX) number"
         contact_preference: Best way to send correspondence to your representative
-        email_address: Email address (optional)
+        email_address: Email address
 
       respondent:
-        name: 
+        name:
           label: "Name of respondent"
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.name.blank'
         address_telephone_number: "Phone number (optional)"
-        address_building: 
+        address_building:
           label: Building number or name
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.address_building.blank'
-        address_locality: 
+        address_locality:
           label: Town/city
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.address_locality.blank'
-        address_street: 
+        address_street:
           label: Street
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.address_street.blank'
-        address_county: 
+        address_county:
           label: County
           hint: :'simple_form.hints.respondent.address_county'
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.address_county.blank'
-        address_post_code: 
+        address_post_code:
           label: Postcode
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.address_post_code.blank'
             invalid: :'activemodel.errors.models.respondent.attributes.address_post_code.invalid'
         work_address_telephone_number: Phone number (optional)
-        work_address_building: 
+        work_address_building:
           label: Building number or name (optional)
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.work_address_building.blank'
-        work_address_locality: 
+        work_address_locality:
           label: Town/city (optional)
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.work_address_locality.blank'
-        work_address_street: 
+        work_address_street:
           label: Street (optional)
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.work_address_street.blank'
-        work_address_county: 
+        work_address_county:
           label: County (optional)
           hint: :'simple_form.hints.respondent.address_county'
-        work_address_post_code: 
+        work_address_post_code:
           label: Postcode (optional)
           errors:
             blank: :'activemodel.errors.models.respondent.attributes.work_address_post_code.blank'
-        worked_at_same_address: 
+        worked_at_same_address:
           label: "Did you work at the same address to the one given above? (optional)"
           options:
             'yes': :'simple_form.labels.respondent.yes'
             'no': :'simple_form.labels.respondent.no'
-        acas_early_conciliation_certificate_number: 
+        acas_early_conciliation_certificate_number:
           label: "Acas early conciliation certificate number"
-        no_acas_number: 
+        no_acas_number:
           label: "Do you have an Acas number?"
           options:
             'yes': :'simple_form.labels.respondent.yes'
@@ -299,7 +299,7 @@ en:
         job_title: "Job title (optional)"
         gross_pay: "Pay before tax (optional)"
         net_pay: "Pay after tax (optional)"
-        enrolled_in_pension_scheme: 
+        enrolled_in_pension_scheme:
           label: "Are – or were – you a member of your employer’s pension scheme? (optional)"
           options:
             'yes': :'simple_form.yes'
@@ -312,11 +312,11 @@ en:
           options:
             weeks: :'simple_form.options.employment.notice_pay_period_type.weeks'
             months: :'simple_form.options.employment.notice_pay_period_type.months'
-        was_employed: 
+        was_employed:
           label: "Have you ever been employed by the person or organisation that you’re making this claim against? (optional)"
           options:
             yes: :'claims.employment.yes'
-            no: :'claims.employment.no' 
+            no: :'claims.employment.no'
         new_job_gross_pay: New job pay before tax
         start_date:
           day: "Day"
@@ -340,7 +340,7 @@ en:
         is_pay_related: Pay
         is_other_type_of_claim: Another type of claim
         other_claim_details: State the other type of claim(s) that you’re making
-        claim_details: 
+        claim_details:
           label: This is your opportunity to tell us about your problem at work, so that the tribunal and employer understand your claim. You don’t have to provide evidence at this stage. How do I write a claim statement?
         desired_outcomes:
           label: "What do you want if your claim is successful? (optional)"
@@ -354,13 +354,13 @@ en:
         other_outcome: What compensation or other outcome(s) do you want?
         other_known_claimants: "Do you know of any other claimants (not already listed) making similar claims against the same employer? (optional)"
         other_known_claimant_names: You can add the names of other people here.
-        is_whistleblowing: 
+        is_whistleblowing:
           hint: :'simple_form.hints.claim_type.is_whistleblowing'
           label: Are you reporting suspected wrongdoing at work?
           options:
             'yes': :'claims.claim_type.yes'
             'no': :'claims.claim_type.no'
-        send_claim_to_whistleblowing_entity: 
+        send_claim_to_whistleblowing_entity:
           label: Do you want us to send a copy of your claim to the relevant person or body that deals with whistleblowing?
           options:
             'yes': :'claims.claim_type.yes'
@@ -371,17 +371,17 @@ en:
       claim_type:
         is_unfair_dismissal: "Unfair dismissal (including constructive dismissal)"
         is_other_type_of_claim: "Other type of claim"
-        other_claim_details: 
+        other_claim_details:
           label: State the other type of claim(s) that you’re making
           hint: :'simple_form.hints.claim_type.other_claim_details'
         is_whistleblowing: Are you reporting suspected wrongdoing at work?
-        send_claim_to_whistleblowing_entity: 
+        send_claim_to_whistleblowing_entity:
           label: "Do you want us to send a copy of your claim to the relevant person or body that deals with whistleblowing?"
           options:
             yes: :'simple_form.yes'
             no: :'simple_form.no'
       claim_details:
-        other_known_claimants: 
+        other_known_claimants:
           label: "Do you know of any other claimants (not already listed) making similar claims against the same employer? (optional)"
           hint: :'simple_form.hints.claim_details.other_known_claimants'
           options:
@@ -504,7 +504,7 @@ en:
       read_guide: Application guide
       exit_guide: Back to form
       contact_us: Contact us
-      contact_us_link: http://www.justice.gov.uk/contacts/hmcts/tribunals/employment    
+      contact_us_link: http://www.justice.gov.uk/contacts/hmcts/tribunals/employment
     error_notification:
       error_summary: "Errors on page"
       default_message: "Provide information in the highlighted fields."
@@ -522,7 +522,7 @@ en:
     new:
       header: Return to your claim
       subheader: Enter your details below
-      hint_html: Don’t have these details? 
+      hint_html: Don’t have these details?
       link: Start a new claim
       invalid: Invalid memorable word or save and return number, please check and try again.
     create:
@@ -629,7 +629,7 @@ en:
 
     claimant:
       header: "Claimant’s details"
-      gender: 
+      gender:
         label: "Gender (optional)"
         options:
           male: :'simple_form.options.claimant.gender.male'
@@ -647,7 +647,7 @@ en:
       add_fields: Add more claimants
       remove_resource_link: Remove this claimant
       number_claimants_info: "For 5 or fewer claimants, enter their details below"
-      csv_upload_text_html: "For 6 or more claimants, you can" 
+      csv_upload_text_html: "For 6 or more claimants, you can"
       csv_upload_link: "upload their details in a separate spreadsheet"
 
     additional_claimants_upload:
@@ -693,7 +693,7 @@ en:
 
     respondent:
       header: "Respondent’s details"
-      no_acas_number_reason: 
+      no_acas_number_reason:
         label: "Why don’t you have an Acas number?"
         hint: :'claims.respondent.no_acas_number_note_one'
         options:
@@ -704,7 +704,7 @@ en:
       respondent_legend: About the respondent
       no_acas_number_note_one: "Please note: Incorrectly claiming an exemption may lead to your claim being rejected. If in doubt, please contact ACAS."
       no_acas_number_note_two: "Please note: This is a rare type of claim. The fact that you are making a claim of unfair dismissal does not mean you are necessarily making a claim for interim relief."
-      acas_legend: 
+      acas_legend:
         label: Acas early conciliation certificate number
         hint: :'claims.respondent.acas_early_conciliation_certificate_number_html'
         errors:
@@ -723,7 +723,7 @@ en:
         options:
           'yes': 'Yes'
           'no': 'No'
-      no_acas_number_reason: 
+      no_acas_number_reason:
         label: Why don’t you have an Acas number?
         options:
           joint_claimant_has_acas_number: :'simple_form.options.respondent.no_acas_number_reason.joint_claimant_has_acas_number'
@@ -741,17 +741,17 @@ en:
       no_acas_number_note_two: :claims.respondent.no_acas_number_note_two
       "yes": :'claims.additional_respondents.additional_respondents.options.yes'
       "no": :'claims.additional_respondents.additional_respondents.options.no'
-        
+
 
     employment:
       header: Employment details
       situation_legend: Your employment details
-      current_situation: 
+      current_situation:
         label: What is your current work situation in relation to the employer you're making a claim against?
         options:
           still_employed: :'simple_form.options.employment.current_situation.still_employed'
           notice_period: :'simple_form.options.employment.current_situation.notice_period'
-          employment_terminated: :'simple_form.options.employment.current_situation.employment_terminated'          
+          employment_terminated: :'simple_form.options.employment.current_situation.employment_terminated'
       start_date: Employment start date
       end_date: Employment end date
       paid_for_notice_period:
@@ -786,14 +786,14 @@ en:
       header: About the claim
       claim_type: What your claim is about
       claim_type_label: "Select at least one of the claim types below."
-      unfair_dismissal: 
+      unfair_dismissal:
         label: Unfair dismissal
         hint: :'claims.claim_type.summary'
         options:
           is_unfair_dismissal: :'simple_form.labels.claim_type.is_unfair_dismissal'
       summary:  What is this?
       unfair_dismissal_summary_detail: "Your dismissal could be unfair if your employer doesn’t have a good reason for dismissing you or follow the company’s formal disciplinary or dismissal process. Constructive dismissal is when you’re forced to leave your job against your will because of your employer’s conduct"
-      discrimination: 
+      discrimination:
         label: Discrimination
         options:
           sex_including_equal_pay: :'simple_form.options.claim_type.discrimination_claims.sex_including_equal_pay'
@@ -805,7 +805,7 @@ en:
           age: :'simple_form.options.claim_type.discrimination_claims.age'
           religion_or_belief: :'simple_form.options.claim_type.discrimination_claims.religion_or_belief'
           marriage_or_civil_partnership: :'simple_form.options.claim_type.discrimination_claims.marriage_or_civil_partnership'
-      pay: 
+      pay:
         label: Pay
         options:
           redundancy: :'simple_form.options.claim_type.pay_claims.redundancy'
@@ -813,7 +813,7 @@ en:
           other: :'simple_form.options.claim_type.pay_claims.other'
           notice: :'simple_form.options.claim_type.pay_claims.notice'
           arrears: :'simple_form.options.claim_type.pay_claims.arrears'
-      other_type: 
+      other_type:
         label: Other type of claim (not shown above)
         hint: :'simple_form.hints.claim_type.is_other_type_of_claim'
         options:
@@ -839,7 +839,7 @@ en:
     additional_information:
       header: More about the claim
       legend: Other important details
-      has_miscellaneous_information: 
+      has_miscellaneous_information:
         label: Do you want to provide additional information about your claim? (optional)
         hint: "Include anything that will help the tribunal come to a decision about whether your case can be heard. What you write may be seen by the respondent."
         options:
@@ -1000,7 +1000,7 @@ en:
               invalid: The date you have provided is invalid
             current_situation:
               blank: Please select one of the options
-            
+
         password:
           attributes:
             password:
@@ -1195,8 +1195,8 @@ en:
             - 'Yes'
             - 'Off'
           no:
-            - 'No'
             - 'Off'
+            - 'No'
         unselected_value:
           - 'Off'
           - 'Off'
