@@ -18,10 +18,9 @@ FactoryBot.define do
       notice_period_type {nil}
       notice_period_end_date {'01/01/2025'}
       average_weekly_hours {'38'}
+      pay_period_type { :"simple_form.options.employment.pay_period_type.monthly" }
       pay_before_tax {'3000'}
-      pay_before_tax_type {:"simple_form.options.employment.gross_pay_period_type.monthly"}
-      pay_after_tax {'2000'} 
-      pay_after_tax_type {:"simple_form.options.employment.net_pay_period_type.weekly"}
+      pay_after_tax {'2000'}
       employers_pension_scheme {:"claims.employment.false"}
       benefits {'Company car, private health care'}
       #New Job
@@ -43,10 +42,9 @@ FactoryBot.define do
       notice_period_type {nil}
       notice_period_end_date {''}
       average_weekly_hours {'38'}
+      pay_period_type { :"simple_form.options.employment.pay_period_type.monthly" }
       pay_before_tax {'3000'}
-      pay_before_tax_type {:"simple_form.options.employment.gross_pay_period_type.weekly"}
-      pay_after_tax {'2000'} 
-      pay_after_tax_type {:"simple_form.options.employment.net_pay_period_type.monthly"}
+      pay_after_tax {'2000'}
       employers_pension_scheme {:"claims.employment.true"}
       benefits {'Company car, private health care'}
       #New Job
@@ -69,10 +67,9 @@ FactoryBot.define do
       notice_period_end_date {''}
       average_weekly_hours {'38'}
       # Pay, pension and benefits
+      pay_period_type { :"simple_form.options.employment.pay_period_type.monthly" }
       pay_before_tax {'3000'}
-      pay_before_tax_type {:"simple_form.options.employment.gross_pay_period_type.monthly"}
-      pay_after_tax {'2000'} 
-      pay_after_tax_type {:"simple_form.options.employment.net_pay_period_type.weekly"}
+      pay_after_tax {'2000'}
       employers_pension_scheme {:"claims.employment.true"}
       benefits {'Company car, private health care'}
       #New Job

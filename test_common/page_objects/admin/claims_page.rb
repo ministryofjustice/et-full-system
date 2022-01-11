@@ -4,10 +4,10 @@ module EtFullSystem
       class ClaimsPage < Admin::BasePage
         set_url "/claims"
         section :scopes, :css, '.table_tools .scopes' do
-          section :not_exported_to_ccd_button, :xpath, XPath.generate {|x| x.descendant(:li)[x.child(:a)[x.string.n.starts_with('Not Exported To Ccd')]]} do
+          section :not_exported_to_ccd_button, :xpath, XPath.generate {|x| x.descendant(:li)[x.child(:a)[x.string.n.starts_with('Not Exported To Ecm')]]} do
             element :link, :css, 'a'
           end
-          section :not_exported_to_ccd_button_selected, :xpath, XPath.generate {|x| x.css('li.selected')[x.child(:a)[x.string.n.starts_with('Not Exported To Ccd')]]} do
+          section :not_exported_to_ccd_button_selected, :xpath, XPath.generate {|x| x.css('li.selected')[x.child(:a)[x.string.n.starts_with('Not Exported To Ecm')]]} do
             element :link, :css, 'a'
           end
         end

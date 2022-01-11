@@ -230,7 +230,7 @@ module EtFullSystem
           section :claim_information_row, :table_row_with_td_labelled, 'questions.make_employer_contract_claim.claim_information.label', exact: true do
             element :claim_information_answer, :return_answer
           end
-          element :edit_answers_link, :link_named, 'confirmation.edit_answers'
+          element :edit_answers_link, :link_named, 'questions.confirmation_of_employer_contract_claim_answers.edit_answers'
           element :back_to_top, :link_named, 'confirmation.back_to_the_top'
         end
 

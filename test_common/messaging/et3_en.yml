@@ -262,6 +262,7 @@ en:
       caption: Disability
     confirmation_of_employer_contract_claim_answers:
       caption: Employer Contract Claim
+      edit_answers: Edit Employer Contract Claim answers
     confirmation_of_additional_information_answers:
       caption: Additional Information
   errors:
@@ -443,7 +444,7 @@ en:
     header: Check and submit your response
     receipt_header: Email Receipt
     receipt_description: Please enter your email address so that we can provide you with a receipt of your transaction.
-    edit_answers: Edit answers on this page
+    edit_answers: Edit Respondent's Details answers
     back_to_the_top: Back to the top
     submit_guidance: 'Pressing "Submit Form" at the foot of the page will send the details confirmed below for processing.'
     submit: Submit your response

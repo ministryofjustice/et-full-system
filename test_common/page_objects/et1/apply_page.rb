@@ -4,8 +4,14 @@ module EtFullSystem
     module Et1
       class ApplyPage < BasePage
         include RSpec::Matchers
+        include EtTestHelpers::Page
         set_url ::EtFullSystem::Test::Configuration.et1_url
         element :header, :main_header, 'claims.new.header'
+        element :language, :link_named, 'switch.language'
+        element :welsh_link, :link_or_button, t('switch.language', locale: :en)
+        element :english_link, :link_or_button, t('switch.language', locale: :cy)
+        element :feedback_link, :link_named, 'shared.feedback_link'
+        element :feedback_info, :paragraph, 'shared.feedback_statement_html', exact: false
         #are you in time?
         element :are_you_in_time_header, :content_header, 'claims.new.are_you_in_time.legend'
         element :are_you_in_time_paragraph, :paragraph, 'claims.new.are_you_in_time.body_html', exact: false
@@ -17,12 +23,12 @@ module EtFullSystem
         element :what_you_need_to_know_header, :content_header, 'claims.new.what_you_need_to_know.legend'
         #what you'll need
         element :what_you_need_to_know_acas_text, :listing_containing_text, 'claims.new.what_you_need_to_know.body_html.acas_text', exact: false
-        element :acas_certificate_number_link, :listing_containing_text, 'claims.new.what_you_need_to_know.body_html.link', exact: false
+        element :acas_certificate_number_link, :link_named, 'claims.new.what_you_need_to_know.body_html.link', exact: false
         element :what_you_need_to_know_acas_details, :listing_containing_text, 'claims.new.what_you_need_to_know.body_html.acas_details'
         #start a claim
-        element :start_a_claim_button, :submit_text, 'helpers.submit.claim.create'
+        gds_submit_button :start_a_claim_button, :'helpers.submit.claim.create'
         #return to a claim
-        element :return_a_claim_button, :link_named, 'helpers.link.claim.return'
+        gds_submit_button :return_a_claim_button, :'helpers.link.claim.return'
         #Support links
         section :support, 'aside[role="complementary"]' do
           element :suport_header, :support_header, 'shared.aside.gethelp_header'
@@ -59,9 +65,9 @@ module EtFullSystem
 
         def has_correct_translation?
           #your feedback header
-          expect(feedback_notice).to have_language
-          expect(feedback_notice).to have_feedback_link
-          expect(feedback_notice).to have_feedback_info
+          expect(self).to have_language
+          expect(self).to have_feedback_link
+          expect(self).to have_feedback_info
           expect(self).to have_header
           #are you in time?
           expect(self).to have_are_you_in_time_header

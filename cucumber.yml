@@ -1,0 +1,1 @@
+default: --publish-quiet --retry 1 --tags "not @broken"  --format progress

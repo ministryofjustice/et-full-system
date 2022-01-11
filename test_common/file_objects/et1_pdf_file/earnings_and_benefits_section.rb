@@ -8,8 +8,8 @@ module EtFullSystem
             if employment.employment_details == :"claims.employment.yes" && employment.paid_for_notice_period == :"claims.employment.paid_for_notice_period.yes"
               expected_values = {
                 average_weekly_hours: employment.try(:average_weekly_hours).try(:to_f).try(:to_s),
-                pay_before_tax: pay_tax(employment.try(:pay_before_tax), employment.pay_before_tax_type.to_s.split('.').last),
-                pay_after_tax: pay_tax(employment.try(:pay_after_tax), employment.pay_after_tax_type.to_s.split('.').last),
+                pay_before_tax: pay_tax(employment.try(:pay_before_tax), employment.pay_period_type.to_s.split('.').last),
+                pay_after_tax: pay_tax(employment.try(:pay_after_tax), employment.pay_period_type.to_s.split('.').last),
                 paid_for_notice_period: employment.paid_for_notice_period.to_s.split('.').last == "yes",
                 notice_period: notice_period(employment.notice_period, employment.notice_period_type),
                 employers_pension_scheme: employers_pension_scheme(employment),
@@ -18,8 +18,8 @@ module EtFullSystem
             elsif employment.employment_details == :"claims.employment.yes" && employment.paid_for_notice_period == :"claims.employment.paid_for_notice_period.no"
               expected_values = {
                 average_weekly_hours: employment.try(:average_weekly_hours).try(:to_f).try(:to_s),
-                pay_before_tax: pay_tax(employment.try(:pay_before_tax), employment.pay_before_tax_type.to_s.split('.').last),
-                pay_after_tax: pay_tax(employment.try(:pay_after_tax), employment.pay_after_tax_type.to_s.split('.').last),
+                pay_before_tax: pay_tax(employment.try(:pay_before_tax), employment.pay_period_type.to_s.split('.').last),
+                pay_after_tax: pay_tax(employment.try(:pay_after_tax), employment.pay_period_type.to_s.split('.').last),
                 paid_for_notice_period: nil,
                 notice_period: notice_period(employment.notice_period, employment.notice_period_type),
                 employers_pension_scheme: employers_pension_scheme(employment),

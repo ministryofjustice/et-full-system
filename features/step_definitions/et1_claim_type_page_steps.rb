@@ -13,9 +13,9 @@ Given("a claimant is on About the claim page") do
 end
 
 Then("I can verify that the copy text on About the claim page displayed correctly") do
-  et1_claim_type_page.main_content.unfair_dismissal.what_is_this.click
-  et1_claim_type_page.main_content.other_type_of_claim.other_type_of_claim.click
-  et1_claim_type_page.main_content.whistleblowing_claim.set(:"claims.claim_type.yes")
+  et1_claim_type_page.unfair_dismissal.hint.click
+  et1_claim_type_page.other_type_of_claim.set(:is_other_type_of_claim)
+  et1_claim_type_page.whistleblowing_claim.is_whistleblowing.set(:yes)
   expect(et1_claim_type_page.has_correct_translation?).to be true
 end
 
@@ -26,7 +26,7 @@ end
 
 Then("I should be on Claim details page") do
   et1_claim_type_page.save_and_continue
-  expect(et1_claim_details_page.main_header).to have_page_header
+  expect(et1_claim_details_page).to have_page_header
 end
 
 Then("I submit without selecting a claim type") do

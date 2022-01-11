@@ -144,7 +144,7 @@ module EtFullSystem
         Timeout.timeout(timeout) do
           loop do
             claims = claims q: {reference_equals: reference}
-            return claims.first if claims.first['ccd_state'].start_with?('complete')
+            return claims.first if claims.first['ecm_state'].start_with?('complete')
             sleep(sleep)
           end
         end
@@ -168,17 +168,7 @@ module EtFullSystem
           &pregnancy_contains=data[:pregnancy]
           &relationship_contains=data[:relationship]
           &religion_contains=data[:religion]", cookies: cookies_hash)
-        data = response[0].delete_if { |k, v| %w"id created_at updated_at".include? k}
-        return data.inject({}) do |a, (k,v)|
-          if v.nil? 
-            a[k] = nil
-          elsif v == "Jehovah's Witnesses"
-            a[k] = v
-          else
-            a[k] = t("#{k}.#{v}")
-          end
-          a
-        end
+        response[0].delete_if { |k, v| %w"id created_at updated_at".include? k}
       end
 
       def export_response_to_ccd(external_system_id:, response_reference:)
@@ -243,7 +233,7 @@ module EtFullSystem
         Timeout.timeout(timeout) do
           loop do
             filtered_claims = claims q: {reference_equals: reference}
-            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ccd_state] == 'failed'
+            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ecm_state] == 'failed'
             yield filtered_claims.first if block_given?
             sleep(sleep)
           end
@@ -258,7 +248,7 @@ module EtFullSystem
         Timeout.timeout(timeout) do
           loop do
             filtered_claims = claims q: {reference_equals: reference}
-            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ccd_state] == 'erroring'
+            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ecm_state] == 'erroring'
             yield if block_given?
             sleep(sleep)
           end
@@ -272,7 +262,7 @@ module EtFullSystem
         Timeout.timeout(timeout) do
           loop do
             filtered_claims = claims q: {reference_equals: reference}
-            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ccd_state] == 'complete'
+            return filtered_claims.first if filtered_claims.first.present? && filtered_claims.first[:ecm_state] == 'complete'
             yield if block_given?
             sleep(sleep)
           end
@@ -286,7 +276,7 @@ module EtFullSystem
         Timeout.timeout(timeout) do
           loop do
             filtered_responses = responses q: {case_number_equals: case_number}
-            return filtered_responses.first if filtered_responses.first.present? && filtered_responses.first[:ccd_state] == 'complete'
+            return filtered_responses.first if filtered_responses.first.present? && filtered_responses.first[:ecm_state] == 'complete'
             sleep(sleep)
           end
         end

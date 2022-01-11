@@ -40,7 +40,7 @@ module EtFullSystem
                         telephone_number: ''
                     },
                     acas: {
-                        have_acas: respondents[1].nil? ? nil : respondents[1].acas_number.present?,
+                        have_acas: respondents[1]&.acas_number.present?,
                         acas_number: respondents[1].try(:acas_number) || ''
                     }
                 },
@@ -55,7 +55,7 @@ module EtFullSystem
                         telephone_number: ''
                     },
                     acas: {
-                        have_acas: respondents[2].nil? ? nil : respondents[2].acas_number.present?,
+                        have_acas: respondents[2]&.acas_number.present?,
                         acas_number: respondents[2].try(:acas_number) || ''
                     }
                 }

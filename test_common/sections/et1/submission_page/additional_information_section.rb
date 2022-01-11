@@ -4,8 +4,9 @@ module EtFullSystem
     module Et1
       module SubmissionPageSections
         class AdditionalInformationSection < BaseSection
-          section :important_details, :et1_review_question_labelled, 'review.additional_information.questions.important_details' do
-            element :answer, :css, 'td'
+          section :important_details, :govuk_summary_list_row,
+                  :'review.additional_information.questions.important_details' do
+            element :answer, :govuk_summary_list_col
           end
 
           def has_correct_translation?(claim:)

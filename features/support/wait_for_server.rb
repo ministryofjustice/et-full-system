@@ -1,3 +1,4 @@
+require_relative './test_common'
 module EtFullSystem
   module Test
     class WaitForServer

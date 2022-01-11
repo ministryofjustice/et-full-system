@@ -9,7 +9,7 @@ end
 
 Given("I'm a return claimant") do
   start_a_new_et1_claim
-  @claim_number = et1_application_number_page.main_content.claims_number.text
+  @claim_number = et1_application_number_page.claim_number_notification.claims_number.text
   @claimant = FactoryBot.create_list(:claimant, 1, :person_data, claim_number: @claim_number)
   et1_answer_login
   @page_left_off = current_url

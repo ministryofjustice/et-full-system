@@ -4,33 +4,36 @@ module EtFullSystem
     module Et1
       class ReturnToYourClaimPage < BasePage
         include RSpec::Matchers
-        #page title
+        # page title
         element :header, :main_header, 'user_sessions.new.header'
-        section :main_content, '.container .main-section .main-content' do
-          #return to your claim
-          element :sub_header, :legend_header, 'user_sessions.new.subheader'
-          #claim number
-          element :claim_number_label, :form_labelled, 'simple_form.labels.user_session.new.reference'
-          element :claim_number_hint, :paragraph, 'simple_form.hints.user_session.new.reference'
-          element :claim_number, 'input#user_reference'
-          #memorable word
-          element :memorable_word_label, :form_labelled, 'simple_form.labels.user_session.new.password'
-          element :memorable_word_hint, :paragraph, 'simple_form.hints.user_session.new.password'
-          element :memorable_word, 'input#user_password'
-          #find my claim
-          element :find_my_claim, :submit_text, 'helpers.submit.user_session.create'
-          #don't have these details
-          element :form_hint, :paragraph, 'user_sessions.new.hint_html', exact: false
-          element :new_claim, :link_named, 'user_sessions.new.link'
-          element :reset_memorable_word_element, :link_named, 'helpers.link.user_session.reset_memorable_word'
-        end
+        # return to your claim
+        element :sub_header, :legend_header, 'user_sessions.new.subheader'
+        # claim number
+        # @!method claim_number
+        #   A govuk text field component wrapping the input, label, hint etc..
+        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+        gds_text_input :claim_number, :'simple_form.labels.user_session.new.reference'
+        # memorable word
+        # @!method memorable_word
+        #   A govuk text field component wrapping the input, label, hint etc..
+        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+        gds_text_input :memorable_word, :'simple_form.labels.user_session.new.password'
+
+        # find my claim
+        gds_submit_button :find_my_claim_button, :'helpers.submit.user_session.create'
+        # don't have these details
+        element :form_hint, :paragraph, 'user_sessions.new.hint_html', exact: false
+        element :new_claim, :link_named, 'user_sessions.new.link'
+        element :reset_memorable_word_element, :link_named, 'helpers.link.user_session.reset_memorable_word'
         section :flash_heading, '#flash-summary' do
-          element :memorable_word_email_sent_flash_element, :content_header, 'simple_form.labels.user_session.memorable_word.email_sent_flash_text'
-          element :memorable_word_updated_flash_element, :content_header, 'simple_form.labels.user_session.memorable_word.updated_flash_text'
-          element :invalid,:content_header, 'user_sessions.new.invalid'
+          element :memorable_word_email_sent_flash_element, :paragraph,
+                  'simple_form.labels.user_session.memorable_word.email_sent_flash_text'
+          element :memorable_word_updated_flash_element, :paragraph,
+                  'simple_form.labels.user_session.memorable_word.updated_flash_text'
+          element :invalid, :paragraph, 'user_sessions.new.invalid'
         end
 
-        #Support links
+        # Support links
         section :support, 'aside[role="complementary"]' do
           element :suport_header, :support_header, 'shared.aside.gethelp_header'
           element :guide, :link_named, 'shared.aside.read_guide'
@@ -38,7 +41,7 @@ module EtFullSystem
         end
 
         def find_my_claim
-          main_content.find_my_claim.click
+          find_my_claim_button.click
         end
 
         def switch_to_welsh
@@ -48,13 +51,13 @@ module EtFullSystem
         def switch_to_english
           feedback_notice.english_link.click
         end
-        
+
         def start_a_new_claim
-          main_content.new_claim.click
+          new_claim.click
         end
 
         def reset_memorable_word
-          main_content.reset_memorable_word_element.click
+          reset_memorable_word_element.click
           ResetMemorableWordEmailInstructionsPage.new
         end
 
@@ -73,22 +76,20 @@ module EtFullSystem
         end
 
         def has_correct_translation?
-          #header
+          # header
           expect(self).to have_header
-          expect(main_content).to have_sub_header
-          #enter your details below
-          expect(main_content).to have_claim_number_label
-          expect(main_content).to have_claim_number_hint
-          expect(main_content).to have_memorable_word_label
-          #find my claim
-          expect(main_content).to have_find_my_claim
-          #don't have these details
-          expect(main_content).to have_form_hint
+          expect(self).to have_sub_header
+          # enter your details below
+          claim_number.assert_valid_hint
+          # find my claim
+          expect(self).to have_find_my_claim_button
+          # don't have these details
+          expect(self).to have_form_hint
         end
 
         def set(user)
           data = user[0].to_h
-          main_content.tap do |s|
+          tap do |s|
             set_field(s, :claim_number, data)
             set_field(s, :memorable_word, data)
           end
@@ -96,7 +97,7 @@ module EtFullSystem
 
         def set_user(user)
           data = user[0].to_h
-          main_content.tap do |s|
+          tap do |s|
             set_field(s, :claim_number, data)
           end
         end

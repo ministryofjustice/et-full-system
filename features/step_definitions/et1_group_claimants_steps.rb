@@ -15,11 +15,11 @@ When("I submit no other people are making claims") do
 end
 
 Then("I should be on the Respresentative's details page") do
-  expect(et1_representatives_details_page.main_header).to have_page_header
+  expect(et1_representatives_details_page).to have_page_header
 end
 
 When("there 5 or few claimants") do
-  et1_group_claimants_page.main_content.additional_claimants_of_collection_type.yes.click
+  et1_group_claimants_page.has_multiple_claimants.set(:yes)
 end
 
 Then("I can very that the copy texts correctly dispayed for group claimants") do
@@ -29,13 +29,13 @@ end
 Then("I should be able to submit two claimant details") do
   et1_group_claimants_page.set(@claimant)
   et1_group_claimants_page.save_and_continue
-  expect(et1_representatives_details_page.main_header).to have_page_header
+  expect(et1_representatives_details_page).to have_page_header
 end
 
 When("there are group claimants") do
   @claimant = FactoryBot.create_list(:claimant, 1, :group_claims)
   et1_group_claimants_page.set(@claimant)
-  et1_group_claimants_upload_page.main_content.form_group.yes.click
+  et1_group_claimants_upload_page.has_additional_claimants.set(:'simple_form.yes')
 end
 
 Then("I can very that the copy texts correctly dispayed for Upload user details in separate spreadsheet") do
@@ -46,13 +46,13 @@ When("I submit no to upload group claimant") do
   @claimant = FactoryBot.create_list(:claimant, 1, :group_claims)
   et1_group_claimants_page.set(@claimant)
   et1_group_claimants_upload_page.save_and_continue
-  expect(et1_representatives_details_page.main_header).to have_page_header
+  expect(et1_representatives_details_page).to have_page_header
 end
 
 When("I changed my mind to manually enter claimant details") do
   @claimant = FactoryBot.create_list(:claimant, 1, :group_claims)
   et1_group_claimants_page.set(@claimant)
-  et1_group_claimants_upload_page.main_content.form_group.manually_link.click
+  et1_group_claimants_upload_page.manually_link.click
   @claimant = FactoryBot.create_list(:claimant, 2, :person_data)
 end
 
@@ -62,7 +62,7 @@ Then("I submit a group claims via csv file") do
 end
 
 When("I submit without answering any claimant details") do
-  et1_group_claimants_page.main_content.additional_claimants_of_collection_type.yes.click
+  et1_group_claimants_page.has_multiple_claimants.set(:yes)
   et1_group_claimants_page.save_and_continue
 end
 
@@ -71,8 +71,8 @@ Then("I should see mandatory errors on the Group claims page") do
 end
 
 When("I submit an invalid date of birth") do
-  et1_group_claimants_page.main_content.additional_claimants_of_collection_type.yes.click
-  et1_group_claimants_page.main_content.about_claimant_2.date_of_birth.set('0/0/0')
+  et1_group_claimants_page.has_multiple_claimants.set(:yes)
+  et1_group_claimants_page.about_claimant_2.date_of_birth.set('0/0/0')
   et1_group_claimants_page.save_and_continue
 end
 

@@ -7,11 +7,15 @@ Then("Apply page copy texts are displayed in the correct language") do
 end
 
 When("user click on Your feedback link") do
-  et1_apply_page.feedback_notice.feedback_link.click
+  @feedback_page = window_opened_by do
+    et1_apply_page.feedback_link.click
+  end
 end
 
 Then("user is taken to the feedback page") do
-  expect(et1_your_feedback_page.header.text).to be_truthy
+  within_window @feedback_page do
+    expect(et1_your_feedback_page).to be_displayed
+  end
 end
 
 When("user click on Learn about when you can apply link") do

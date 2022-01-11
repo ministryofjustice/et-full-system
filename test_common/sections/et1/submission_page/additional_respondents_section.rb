@@ -5,10 +5,12 @@ module EtFullSystem
     module Et1
       module SubmissionPageSections
         class AdditionalRespondentsSection < BaseSection
-          section :additional_respondents, :et1_review_question_labelled, 'review.additional_respondents.questions.additional_respondents.label' do
-            element :answer, :css, 'td'
+          section :additional_respondents, :govuk_summary_list_row,
+                  :'review.additional_respondents.questions.additional_respondents.label' do
+            element :answer, :govuk_summary_list_col
           end
-          sections :respondents, AdditionalRespondentSection, :et1_review_additional_claimant_labelled, 'review.additional_respondents.respondent_header'
+          sections :respondents, AdditionalRespondentSection, :govuk_summary_list,
+                   :'review.additional_respondents.respondent_header'
 
           def has_correct_translation?(respondents:)
             additional_respondents_data = respondents.drop(1)

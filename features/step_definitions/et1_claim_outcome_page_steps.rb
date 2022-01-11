@@ -28,5 +28,5 @@ When("I submit my preferred outcomes") do
 end
 
 Then("I should on More about the claim page") do
-  expect(et1_more_about_the_claim_page.main_header).to have_page_header
+  expect(et1_more_about_the_claim_page).to have_page_header
 end

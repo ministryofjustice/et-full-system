@@ -4,130 +4,97 @@ module EtFullSystem
     module Et1
       class RepresentativesDetailsPage < BasePage
         include RSpec::Matchers
-        #Representative's details
-        section :main_header, '.main-header' do
-          element :page_header, :page_title, 'claims.representative.header', exact: false
+        # Representative's details
+        element :page_header, :page_title, 'claims.representative.header', exact: false
+        # @!method error_summary
+        #   A govuk error component
+        #   @return [EtTestHelpers::Components::GovUKErrorSummary] The site prism section
+        gds_error_summary :error_summary, :'shared.error_notification.default_message'
+
+        # The person representing you
+        gds_radios :representative, :'simple_form.labels.representative.has_representative'
+
+        # All correspondence
+        element :contact_info, :paragraph, 'claims.representative.contact_info', exact: false
+        # About your representative
+        element :about_your_representative, :legend_header, 'claims.representative.representative_legend'
+        # @!method type
+        #   A govukselect component wrapping the select, label, hint etc..
+        #   @return [EtTestHelpers::Components::GovUKCollectionSelect] The site prism section
+        gds_select :type, :'claims.representative.representative_type_legend'
+        section :organisation_name, :question_labelled, 'simple_form.labels.representative.organisation_name' do
+          element :field, :css, 'input'
+          def set(*args)
+            field.set(*args)
+          end
         end
-        section :main_content, '.main-section .main-content' do
-          section :error_message, '#error-summary' do
-            element :error_summary, :content_header, 'shared.error_notification.error_summary', exact: false
-            element :default_message, :paragraph, 'shared.error_notification.default_message', exact: false
+        section :name, :question_labelled, 'simple_form.labels.representative.name' do
+          element :blank_organisation_name, :error, 'activemodel.errors.models.representative.attributes.name.blank'
+          element :field, :css, 'input'
+          def set(*args)
+            field.set(*args)
           end
-          #The person representing you
-          element :representative_header, :legend_header, 'claims.representative.form_legend'
-          element :representative_labelled, :legend_translated, 'simple_form.labels.representative.has_representative'
-          section :representative, '.representative_has_representative' do
-            element :yes, :form_labelled, 'simple_form.yes' do
-              element :selector, :css, 'input'
-              def set(*args); selector.set(*args); end
-            end
-            element :no, :form_labelled, 'simple_form.no' do
-              element :selector, :css, 'input'
-              def set(*args); selector.set(*args); end
-            end
-          end
-          #All correspondence
-          section :correspondence, '.callout-reference' do
-            element :contact_info, :paragraph, 'claims.representative.contact_info', exact: false 
-          end
-          #About your representative
-          element :about_your_representative, :legend_header, 'claims.representative.representative_legend'
-          #Type of representative
-          section :type, '.representative_type' do
-            include ::EtFullSystem::Test::I18n
-            element :blank_type, :error, 'activemodel.errors.models.representative.attributes.type.blank'
-            element :type_of_representative_labelled, :form_labelled, 'claims.representative.representative_type_legend'
-            def set(value)
-              root_element.select(factory_translate(value))
-            end
-          end
-          section :organisation_name, :question_labelled, 'simple_form.labels.representative.organisation_name' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          section :name, :question_labelled, 'simple_form.labels.representative.name' do
-            element :blank_organisation_name, :error, 'activemodel.errors.models.representative.attributes.name.blank'
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          #Representative's contact details
-          element :representative_contact_details, :legend_header, 'claims.representative.contact_legend'
-          element :blank_building, :error, 'activemodel.errors.models.representative.attributes.address_building.blank'
-          section :building, :question_labelled, 'simple_form.labels.representative.address_building' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          element :blank_street, :error, 'activemodel.errors.models.representative.attributes.address_building.blank'
-          section :street, :question_labelled, 'simple_form.labels.representative.address_street' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          element :blank_locality, :error, 'activemodel.errors.models.representative.attributes.address_street.blank'
-          section :locality, :question_labelled, 'simple_form.labels.representative.address_locality' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          #County
-          element :blank_county, :error, 'activemodel.errors.models.representative.attributes.address_locality.blank'
-          section :county, :question_labelled, 'simple_form.labels.representative.address_county' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          element :blank_post_code, :error, 'activemodel.errors.models.representative.attributes.address_post_code.blank'
-          element :invalid_post_code, :error, 'activemodel.errors.models.representative.attributes.address_post_code.invalid'
-          element :county_hint, :paragraph, 'simple_form.hints.representative.address_county', exact: false
-          section :post_code, :question_labelled, 'simple_form.labels.representative.address_post_code' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          element :blank_telephone_number, :error, 'activemodel.errors.models.representative.attributes.address_locality.blank'
-          section :telephone_number, :question_labelled, 'simple_form.labels.representative.address_telephone_number' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          element :blank_mobile, :error, 'activemodel.errors.models.representative.attributes.address_locality.blank'
-          section :alternative_telephone_number, :question_labelled, 'simple_form.labels.representative.mobile_number' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          section :representative_contact_preference, '.representative_contact_preference' do
-            include ::EtFullSystem::Test::I18n
-            section :email_preference, :form_labelled, 'simple_form.options.representative.contact_preference.email' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            section :post_preference, :form_labelled, 'simple_form.options.representative.contact_preference.post' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            section :dx_number, :form_labelled, 'simple_form.options.representative.contact_preference.dx_number' do
-              element :selector, :css, 'input[type="radio"]'
-              def set(*args); selector.set(*args); end
-            end
-            def set(value)
-              choose(factory_translate(value), name: 'representative[contact_preference]')
-            end
-          end
-          element :invalid_email_address, :error, 'activemodel.errors.models.representative.attributes.email_address.invalid'
-          element :blank_email_address, :error, 'activemodel.errors.models.representative.attributes.email_address.blank'
-          section :email_address, :question_labelled, 'simple_form.labels.representative.email_address' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          section :dx_number, :question_labelled, 'simple_form.labels.representative.dx_number' do
-            element :field, :css, 'input'
-            def set(*args); field.set(*args); end
-          end
-          #What is Dx number?
-          element :what_is_dx_number, :summary_text, 'claims.representative.what_is_dx.detail'
-          element :dx_information, :paragraph, 'claims.representative.what_is_dx.summary'
-          #Save and continue
-          element :save_and_continue_button, :submit_text, 'helpers.submit.update', exact: false
         end
+        # Representative's contact details
+        element :representative_contact_details, :legend_header, 'claims.representative.contact_legend'
+        # @!method building
+        #   A govuk text field component wrapping the input, label, hint etc..
+        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+        gds_text_input :building, :'simple_form.labels.representative.address_building'
+        # @!method street
+        #   A govuk text field component wrapping the input, label, hint etc..
+        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+        gds_text_input :street, :'simple_form.labels.representative.address_street'
+        # @!method locality
+        #   A govuk text field component wrapping the input, label, hint etc..
+        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+        gds_text_input :locality, :'simple_form.labels.representative.address_locality'
+        # County
+        # @!method county
+        #   A govuk text field component wrapping the input, label, hint etc..
+        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+        gds_text_input :county, :'simple_form.labels.representative.address_county'
+        # @!method post_code
+        #   A govuk text field component wrapping the input, label, hint etc..
+        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+        gds_text_input :post_code, :'simple_form.labels.representative.address_post_code'
+        element :blank_telephone_number, :error,
+                'activemodel.errors.models.representative.attributes.address_locality.blank'
+        section :telephone_number, :question_labelled, 'simple_form.labels.representative.address_telephone_number' do
+          element :field, :css, 'input'
+          def set(*args)
+            field.set(*args)
+          end
+        end
+        element :blank_mobile, :error, 'activemodel.errors.models.representative.attributes.address_locality.blank'
+        section :alternative_telephone_number, :question_labelled,
+                'simple_form.labels.representative.mobile_number' do
+          element :field, :css, 'input'
+          def set(*args)
+            field.set(*args)
+          end
+        end
+        element :invalid_email_address, :error,
+                'activemodel.errors.models.representative.attributes.email_address.invalid'
+        element :blank_email_address, :error,
+                'activemodel.errors.models.representative.attributes.email_address.blank'
+        gds_email_input :email_address, :'simple_form.labels.representative.email_address'
+
+        # @!method representative_contact_preference
+        #   A govuk radio button component for contact_preference question
+        #   @return [EtTestHelpers::Components::GovUKCollectionRadioButtons] The site prism section
+        gds_radios :representative_contact_preference, :'claims.representative.contact_preference.label'
+
+        gds_text_input :dx_number, :'simple_form.labels.representative.dx_number'
+        # What is Dx number?
+        element :what_is_dx_number, :summary_text, 'claims.representative.what_is_dx.detail'
+        element :dx_information, :paragraph, 'claims.representative.what_is_dx.summary'
+        # Save and continue
+        gds_submit_button :save_and_continue_button, t('helpers.submit.update')
 
         def save_and_continue
-          page.scroll_to(main_content.save_and_continue_button, align: :bottom)
-          main_content.save_and_continue_button.click
+          page.scroll_to(save_and_continue_button, align: :bottom)
+          save_and_continue_button.click
         end
 
         def switch_to_welsh
@@ -139,102 +106,97 @@ module EtFullSystem
         end
 
         def has_correct_translation?
-          #your feedback header
+          # your feedback header
           expect(feedback_notice).to have_language
           expect(feedback_notice).to have_feedback_link
           expect(feedback_notice).to have_feedback_info
-          #Page header
-          expect(main_header).to have_page_header
-          #The person representating you
-          expect(main_content).to have_representative_header
-          expect(main_content).to have_representative_labelled
-          expect(main_content.representative).to have_yes
-          expect(main_content.representative).to have_no
-          #All correspondence
-          expect(main_content.correspondence).to have_contact_info
-          #About your representative
-          expect(main_content).to have_about_your_representative
-          #Type of presentative
-          expect(main_content.type).to have_type_of_representative_labelled 
-          expect(main_content).to have_organisation_name
-          expect(main_content).to have_name
-          #Representative contact details
-          expect(main_content).to have_representative_contact_details
-          expect(main_content).to have_building
-          expect(main_content).to have_street
-          expect(main_content).to have_locality
-          expect(main_content).to have_county
-          expect(main_content).to have_county_hint
-          expect(main_content).to have_post_code
-          expect(main_content).to have_telephone_number
-          expect(main_content).to have_alternative_telephone_number
-          expect(main_content).to have_email_address
-          expect(main_content).to have_dx_number
-          #What is DX number
-          expect(main_content).to have_what_is_dx_number
-          #Save and continue
-          expect(main_content).to have_save_and_continue_button
-          #Support
+          # Page header
+          expect(self).to have_page_header
+          # The person representating you
+          representative.assert_valid_options
+          # All correspondence
+          expect(self).to have_contact_info
+          # About your representative
+          expect(self).to have_about_your_representative
+          # Type of presentative
+          expect(self).to have_type
+          expect(self).to have_organisation_name
+          expect(self).to have_name
+          # Representative contact details
+          expect(self).to have_representative_contact_details
+          expect(self).to have_building
+          expect(self).to have_street
+          expect(self).to have_locality
+          expect(self).to have_county
+          expect(county).to have_hint(text: t('simple_form.hints.representative.address_county'))
+          expect(self).to have_post_code
+          expect(self).to have_telephone_number
+          expect(self).to have_alternative_telephone_number
+          expect(self).to have_representative_contact_preference
+          # What is DX number
+          expect(self).to have_what_is_dx_number
+          # Save and continue
+          expect(self).to have_save_and_continue_button
+          # Support
           expect(support).to have_suport_header
           expect(support).to have_guide
           expect(support).to have_contact_use
-          #Save your claim later
+          # Save your claim later
           expect(support).to have_your_claim
-          #TODO this has stopped working - why?
+          # TODO: this has stopped working - why?
           # expect(support).to have_save_and_complete_later
         end
 
         def has_correct_validation_error_message?
-          expect(main_content.error_message).to have_error_summary
-          expect(main_content.error_message).to have_default_message
-          expect(main_content).to have_type
-          expect(main_content).to have_name
-          expect(main_content).to have_blank_building
-          expect(main_content).to have_blank_street
-          expect(main_content).to have_blank_locality
-          expect(main_content).to have_blank_county
-          expect(main_content).to have_blank_post_code
+          expect(self).to have_error_summary
+          expect(self).to have_type
+          expect(self).to have_name
+          expect(building).to have_error(text: t('activemodel.errors.models.representative.attributes.address_building.blank'))
+          expect(street).to have_error(text: t('activemodel.errors.models.representative.attributes.address_street.blank'))
+          expect(locality).to have_error(text: t('activemodel.errors.models.representative.attributes.address_locality.blank'))
+          expect(county).to have_error(text: t('activemodel.errors.models.representative.attributes.address_county.blank'))
+          expect(post_code).to have_error(text: t('activemodel.errors.models.representative.attributes.address_post_code.blank'))
+          representative_contact_preference.assert_error_message(t('claims.representative.contact_preference.errors.blank'))
+          true
         end
 
         def has_correct_error_message_for_invalid_uk_postcode?
-          expect(main_content).to have_invalid_post_code
+          expect(post_code).to have_error(text: t('activemodel.errors.models.representative.attributes.address_post_code.invalid'))
         end
 
         def has_correct_dx_information?
-          expect(main_content).to have_dx_information
+          expect(self).to have_dx_information
         end
 
         def set(user)
           data = user[0].to_h
           if data[:representative_have] == 'Yes'
-            main_content.representative.yes.click
-            main_content do |s|
-              set_field s, :type, data
-              set_field s, :organisation_name, data
-              set_field s, :name, data
-              set_field s, :building, data
-              set_field s, :street, data
-              set_field s, :locality, data
-              set_field s, :county, data
-              set_field s, :post_code, data
-              set_field s, :telephone_number, data
-              set_field s, :alternative_telephone_number, data
-              set_field s, :representative_contact_preference, data
-              set_field s, :email_address, data
-              set_field s, :dx_number, data
-            end
+            representative.set(:yes)
+            set_field :type, data
+            set_field :organisation_name, data
+            set_field :name, data
+            set_field :building, data
+            set_field :street, data
+            set_field :locality, data
+            set_field :county, data
+            set_field :post_code, data
+            set_field :telephone_number, data
+            set_field :alternative_telephone_number, data
+            set_field :representative_contact_preference, data
+            set_field :email_address, data if data[:representative_contact_preference].to_s.split('.').last == 'email'
+            set_field :dx_number, data if data[:representative_contact_preference].to_s.split('.').last == 'dx_number'
           else
-            main_content.representative.no.click
+            representative.set(:no)
           end
         end
 
         private
-        
-        def set_field(s, key, data)
+
+        def set_field(key, data)
           if data.key?(key)
-            s.send(key).set(data[key])
+            send(key).set(data[key])
           else
-            s.send(key).set('')
+            send(key).set('')
           end
         end
       end

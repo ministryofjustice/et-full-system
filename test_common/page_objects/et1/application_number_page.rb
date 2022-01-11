@@ -3,40 +3,53 @@ module EtFullSystem
   module Test
     module Et1
       class ApplicationNumberPage < BasePage
+        include EtTestHelpers::Page
         include RSpec::Matchers
+
         #page and main header
-        section :main_header, '.main-header' do
-          element :page_header, :page_title, 'claims.application_number.header'
+        element :page_header, :page_title, 'claims.application_number.header'
+
+        section(:claim_number_notification, :xpath, XPath.generate { |x| x.css('.govuk-notification-banner')[x.child(:div)[x.attr(:class).contains_word('govuk-notification-banner__header') & x.string.n.equals(t('claims.application_number.application_number'))]] }) do
+          element :claims_number, '.number'
         end
-        section :main_content, '#content .main-section .main-content' do
-          element :claim_number_text, :paragraph, 'claims.application_number.application_number'
-          element :claims_number, '.callout-reference .number'
-          element :claims_intro_text, :paragraph, 'claims.application_number.intro_text'
-          #email address
-          section :email_label, :question_labelled, 'simple_form.labels.application_number.email_address', exact: false do
-            element :field, :css, "input"
-            def set(*args); field.set(*args); end
-          end
-          #create your memorable word
-          section :memorable_word_label, :question_labelled, 'simple_form.labels.application_number.password', exact: false do
-            element :field, :css, "input"
-            def set(*args); field.set(*args); end
-          end
-          element :example_word, :paragraph, 'simple_form.hints.application_number.password'
-          #print this page
-          element :print_link, :link_named, 'user_sessions.reminder.print_link'
-          element :print_copy, :paragraph, 'claims.application_number.print_copy', exact: false
-          #save and continue button
-          element :save_and_continue, :submit_text, 'helpers.submit.update'
-        end
+        # @!method email_question
+        #   A govuk text field component wrapping the input, label, hint etc..
+        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+        gds_text_input :email_question, :'simple_form.labels.application_number.email_address', exact: false
+        # @!method memorable_word_question
+        #   A govuk text field component wrapping the input, label, hint etc..
+        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+        gds_text_input :memorable_word_question, :'simple_form.labels.application_number.password'
+
+        
+        element :claims_intro_text, :paragraph, 'claims.application_number.intro_text'
+
+        # @!method email_question
+        #   A govuk text field component wrapping the input, label, hint etc..
+        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+        gds_text_input :email_question, :'simple_form.labels.application_number.email_address', exact: false
+        # @!method memorable_word_question
+        #   A govuk text field component wrapping the input, label, hint etc..
+        #   @return [EtTestHelpers::Components::GovUKTextField] The site prism section
+        gds_text_input :memorable_word_question, :'simple_form.labels.application_number.password'
+
+        element :example_word, '#save-and-return-user-password-hint'
+
+        #print this page
+        element :print_link, :link_named, 'user_sessions.reminder.print_link'
+        element :print_copy, :paragraph, 'claims.application_number.print_copy', exact: false
+
+        # @!method save_and_continue_button
+        #   A govuk submit button component...
+        #   @return [EtTestHelpers::Components::GovUKSubmit] The site prism section
+        gds_submit_button :save_and_continue_button, :'helpers.submit.update'
 
         def switch_language
           feedback_notice.language.click
         end
 
         def save_and_continue
-          page.scroll_to(main_content.save_and_continue, align: :bottom)
-          main_content.save_and_continue.click
+          save_and_continue_button.submit
         end
 
         def switch_to_welsh
@@ -49,20 +62,20 @@ module EtFullSystem
 
         def has_correct_translation?
           #saving your claim heading
-          expect(main_header).to have_page_header
+          expect(self).to have_page_header
           #your claim number
-          expect(main_content).to have_claim_number_text
+          expect(self).to have_claim_number_notification
           #claim intro
-          expect(main_content).to have_claims_intro_text
+          expect(self).to have_claims_intro_text
           #email address
-          expect(main_content).to have_email_label
+          expect(self).to have_email_question
           #memorable
-          expect(main_content).to have_memorable_word_label
+          expect(self).to have_memorable_word_question
           #print this page
-          expect(main_content).to have_print_link
-          expect(main_content).to have_print_copy
+          expect(self).to have_print_link
+          expect(self).to have_print_copy
           #save and continue button
-          expect(main_content).to have_example_word
+          expect(self).to have_example_word
           #Support links
           expect(support).to have_suport_header
           expect(support).to have_guide
@@ -73,6 +86,13 @@ module EtFullSystem
         def set(data)
           main_content.email_label.set(data[0].dig(:email_address))
           main_content.memorable_word_label.set(data[0].dig(:memorable_word))
+        end
+
+        # Registers the user for a save and return
+        def register(data)
+          email_question.set(data[0].dig(:email_address))
+          memorable_word_question.set(data[0].dig(:memorable_word))
+          save_and_continue_button.submit
         end
       end
     end

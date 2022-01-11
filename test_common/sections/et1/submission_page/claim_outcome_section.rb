@@ -4,11 +4,11 @@ module EtFullSystem
     module Et1
       module SubmissionPageSections
         class ClaimOutcomeSection < BaseSection
-          section :what_outcome, :et1_review_question_labelled, 'review.claim_outcome.questions.what_outcome' do
+          section :what_outcome, :govuk_summary_list_row, :'review.claim_outcome.questions.what_outcome' do
             include RSpec::Matchers
             include ::EtFullSystem::Test::I18n
 
-            element :answer, :css, 'td'
+            element :answer, :govuk_summary_list_col
 
             def has_answer_for?(value)
               if value.nil? || value.empty?
@@ -18,15 +18,15 @@ module EtFullSystem
                 aggregate_failures 'validating outcomes' do
                   outcomes.each do |outcome|
                     key = "simple_form.options.claim.desired_outcomes.#{outcome.to_s.split('.').last}"
-                    expect(answer).to have_text(t(key), exact: false)
+                    expect(answer).to have_text(t(key))
                   end
                 end
               end
               true
             end
           end
-          section :outcome_details, :et1_review_question_labelled, 'review.claim_outcome.questions.outcome_details' do
-            element :answer, :css, 'td'
+          section :outcome_details, :govuk_summary_list_row, :'review.claim_outcome.questions.outcome_details' do
+            element :answer, :govuk_summary_list_col
           end
 
           def has_correct_translation?(claim:)

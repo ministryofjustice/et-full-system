@@ -11,8 +11,9 @@ module EtFullSystem
           element :english_link, :link_or_button, t('switch.language', locale: :cy)
         end
         section :main_content, '.container' do
+          include EtTestHelpers::Section
           #What is your religion
-          element :header, :main_header, 'diversities.religion.hint'
+          element :header, :main_header, 'diversities.religion.header'
           section :none, :form_labelled, 'religion.no-religion' do
             element :field, 'input'
             def set(*args); field.set(*args); end
@@ -49,14 +50,14 @@ module EtFullSystem
             element :field, 'input'
             def set(*args); field.set(*args); end
           end
-          section :describe_religion, '.diversities_religion_religion_text' do
+          section :describe_religion, '.religion_text_field' do
             element :describe_religion_hint, :form_hint, 'religion.free_text'
             element :field, 'input'
             def set(*args); field.set(*args); end
           end
 
           #save and continue button
-          element :save_and_continue, :submit_text, 'helpers.submit.update'
+          gds_submit_button :save_and_continue, :'helpers.submit.update'
         end
 
         def save_and_continue
@@ -97,7 +98,6 @@ module EtFullSystem
           expect(main_content).to have_sikh
           expect(main_content).to have_prefer_not_to_say
           expect(main_content).to have_other_religion
-          expect(main_content).to have_describe_religion
         end
 
       end

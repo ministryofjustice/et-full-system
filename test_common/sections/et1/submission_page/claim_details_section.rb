@@ -4,14 +4,16 @@ module EtFullSystem
     module Et1
       module SubmissionPageSections
         class ClaimDetailsSection < BaseSection
-          section :claim_details, :et1_review_question_labelled, 'review.claim_details.questions.claim_details' do
-            element :answer, :css, 'td'
+          section :claim_details, :govuk_summary_list_row, :'review.claim_details.questions.claim_details' do
+            element :answer, :govuk_summary_list_col
           end
-          section :other_known_claimants, :et1_review_question_labelled, 'review.claim_details.questions.other_known_claimants' do
-            element :answer, :css, 'td'
+          section :other_known_claimants, :govuk_summary_list_row,
+                  :'review.claim_details.questions.other_known_claimants' do
+            element :answer, :govuk_summary_list_col
           end
-          section :attached_documents, :et1_review_question_labelled, 'review.claim_details.questions.attached_documents.title' do
-            element :answer, :css, 'td'
+          section :attached_documents, :govuk_summary_list_row,
+                  :'review.claim_details.questions.attached_documents.title' do
+            element :answer, :govuk_summary_list_col
           end
 
           def has_correct_translation?(claim:)

@@ -4,20 +4,20 @@ module EtFullSystem
     module Et1
       module SubmissionPageSections
         class RespondentSection < BaseSection
-          section :name, :et1_review_question_labelled, 'review.respondent.questions.name' do
-            element :answer, :css, 'td'
+          section :name, :govuk_summary_list_row, :'review.respondent.questions.name' do
+            element :answer, :govuk_summary_list_col
           end
-          section :address, :et1_review_question_labelled, 'review.respondent.questions.address' do
-            element :answer, :css, 'td'
+          section :address, :govuk_summary_list_row, :'review.respondent.questions.address' do
+            element :answer, :govuk_summary_list_col
           end
-          section :phone, :et1_review_question_labelled, 'review.respondent.questions.phone' do
-            element :answer, :css, 'td'
+          section :phone, :govuk_summary_list_row, :'review.respondent.questions.phone' do
+            element :answer, :govuk_summary_list_col
           end
-          section :acas_number, :et1_review_question_labelled, 'review.respondent.questions.acas_number' do
-            element :answer, :css, 'td'
+          section :acas_number, :govuk_summary_list_row, :'review.respondent.questions.acas_number' do
+            element :answer, :govuk_summary_list_col
           end
-          section :work_address, :et1_review_question_labelled, 'review.respondent.questions.work_address' do
-            element :answer, :css, 'td'
+          section :work_address, :govuk_summary_list_row, :'review.respondent.questions.work_address' do
+            element :answer, :govuk_summary_list_col
           end
 
           def has_correct_translation?(respondent:)

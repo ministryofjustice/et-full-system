@@ -263,6 +263,7 @@ cy:
       caption: Anabledd
     confirmation_of_employer_contract_claim_answers:
       caption: Hawliad Contract y Cyflogwr
+      edit_answers: Golygu Hawliad Contract y Cyflogwr atebion
     confirmation_of_additional_information_answers:
       caption: Gwybodaeth Ychwanegol
   errors:
@@ -430,7 +431,7 @@ cy:
     header: "Gwirio a chyflwyno eich ymateb"
     receipt_header: "Nodyn yn cadarnhau bod y neges e-bost wedi cyrraedd"
     receipt_description: "Nodwch eich cyfeiriad e-bost fel y gallwn roi derbynneb o'ch taliad ichi."
-    edit_answers: Golygu atebion ar y dudalen hon
+    edit_answers: Golygu Manylion yr Atebydd atebion
     back_to_the_top: Yn ôl i frig y dudalen
     submit_guidance: Bydd clicio ar "Cyflwyno Ffurflen " ar waelod y dudalen yn anfon y manylion a gadarnheir isod i'w prosesu.
     submit: Cyflwyno eich ymateb

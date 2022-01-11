@@ -5,7 +5,7 @@ module EtFullSystem
       class GuidePage < BasePage
         include RSpec::Matchers
         set_url ::EtFullSystem::Test::Configuration.et1_url
-        section :static_content, '.main-content .static-content' do
+        section :static_content, '#main-content .static-content' do
           #Time limits
           section :time_limits, '#time_limits' do
             element :time_limits_title, :content_header, 'guides.time_limits.title'
@@ -24,10 +24,10 @@ module EtFullSystem
             element :phone, :paragraph, 'guides.acas_early_conciliation.address.phone', exact: false
             element :textphone, :paragraph, 'guides.acas_early_conciliation.address.textphone', exact: false
             element :week, :paragraph, 'guides.acas_early_conciliation.address.week', exact: false
-            element :conciliation_title_two, :support_header, 'guides.acas_early_conciliation.title_two', exact: false
+            element :conciliation_title_two, :h3_containing, 'guides.acas_early_conciliation.title_two', exact: false
             element :conciliation_line_four, :paragraph, 'guides.acas_early_conciliation.line_four_html', exact: false
             element :conciliation_line_five, :paragraph, 'guides.acas_early_conciliation.line_five_html', exact: false
-            element :conciliation_title_three, :support_header, 'guides.acas_early_conciliation.title_three', exact: false
+            element :conciliation_title_three, :h3_containing, 'guides.acas_early_conciliation.title_three', exact: false
             element :conciliation_line_six, :paragraph, 'guides.acas_early_conciliation.line_six_html', exact: false
           end
         end

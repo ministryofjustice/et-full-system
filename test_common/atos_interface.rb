@@ -228,7 +228,7 @@ module EtFullSystem
 
       def list_zip_filenames
         response = HTTParty.get("#{base_url}/list", basic_auth: { username: username, password: password }, verify: false)
-        raise "An error has occured listing the files from the atos server - the response body was \n\n#{response.body}" unless response.success?
+        raise "An error has occured listing the files from the atos server - the response status was #{response.code} and body was \n\n#{response.body}" unless response.success?
         response.body.lines.map(&:strip)
       end
 
@@ -242,7 +242,7 @@ module EtFullSystem
       def delete_zip_file(filename)
         response = HTTParty.post("#{base_url}/delete",
           verify: false,
-          basic_auth: { username: username, password: password }, 
+          basic_auth: { username: username, password: password },
           body: {
             filename: filename
         })

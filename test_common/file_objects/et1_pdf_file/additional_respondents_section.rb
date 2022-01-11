@@ -16,7 +16,7 @@ module EtFullSystem
                     county: respondents[3].try(:county),
                     post_code: post_code_for(respondents[3].try(:post_code), optional: true),
                     telephone_number: "",
-                    have_acas: respondents[2].nil? ? be_blank : respondents[2].acas_number.present?,
+                    have_acas: respondents[2]&.acas_number.present?,
                     acas_number: respondents[3].try(:acas_number)
 
                 },
@@ -28,7 +28,7 @@ module EtFullSystem
                     county: respondents[4].try(:county),
                     post_code: post_code_for(respondents[4].try(:post_code), optional: true),
                     telephone_number: "",
-                    have_acas: respondents[2].nil? ? be_blank : respondents[2].acas_number.present?,
+                    have_acas: respondents[4]&.acas_number.present?,
                     acas_number: respondents[4].try(:acas_number)
                 }
             }
