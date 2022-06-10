@@ -22,7 +22,7 @@ group :test do
   gem 'rubyzip', '~> 2.3'
   # HTTParty - used to download from ATOS API during tests
   gem 'httparty', '~> 0.18'
-  gem 'mechanize', '~> 2.7', '>= 2.7.6'
+  gem 'mechanize', '~> 2.8'
   gem 'pry'
   # Pdf forms to test pdf content
   gem 'pdf-forms', '~> 1.1', '>= 1.1.1'
