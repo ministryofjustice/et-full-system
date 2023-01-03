@@ -21,7 +21,7 @@ group :test do
   # Rubyzip used to test zip files
   gem 'rubyzip', '~> 2.3'
   # HTTParty - used to download from ATOS API during tests
-  gem 'httparty', '~> 0.18'
+  gem 'httparty', '~> 0.21'
   gem 'mechanize', '~> 2.7', '>= 2.7.6'
   gem 'pry'
   # Pdf forms to test pdf content
