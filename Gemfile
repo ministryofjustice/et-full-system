@@ -10,7 +10,7 @@ group :test do
   gem 'capybara', '~> 3.10'
   gem 'site_prism', '~> 3.7'
   gem 'i18n', '~> 1.8'
-  gem 'activesupport', '~> 6.0'
+  gem 'activesupport', '~> 6.1'
   gem 'selenium-webdriver', '~> 3.141'
   gem 'webdrivers', '~> 4.0'
   gem 'capybara-screenshot', '~> 1.0'
